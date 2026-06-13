@@ -132,11 +132,20 @@ function buildQuestion(item, words) {
 
 // ---------- audio ----------
 function speak(text) {
+  const lang = LANGS[state.lang].tts;
+  // Prefer Android native TTS (reliable inside the app's WebView)
+  const cap = window.Capacitor;
+  if (cap && cap.Plugins && cap.Plugins.TextToSpeech) {
+    try { cap.Plugins.TextToSpeech.stop().catch(() => {}); } catch (e) {}
+    cap.Plugins.TextToSpeech.speak({ text, lang, rate: 1.0, pitch: 1.0, volume: 1.0, category: 'playback' }).catch(() => {});
+    return;
+  }
+  // Web fallback (PWA in a browser)
   try {
     if (!('speechSynthesis' in window)) return;
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = LANGS[state.lang].tts;
+    u.lang = lang;
     u.rate = 0.9;
     speechSynthesis.speak(u);
   } catch (e) {}
