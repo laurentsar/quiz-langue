@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#061525" />
+  <title>Quiz Langue</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-blob blob-one"></div>
+  <div class="bg-blob blob-two"></div>
+
+  <main id="app">
+    <!-- HOME -->
+    <section id="view-home" class="view">
+      <h1 class="title">Quiz Langue</h1>
+      <p class="subtitle">Vocabulaire, niveaux et score en local</p>
+
+      <div class="card hero">
+        <span class="hero-label">Langue</span>
+        <div class="lang-row">
+          <button class="lang-chip" data-lang="en">🇬🇧 Anglais</button>
+          <button class="lang-chip" data-lang="es">🇪🇸 Espagnol</button>
+        </div>
+
+        <span class="hero-label">Niveau</span>
+        <div id="level-row" class="level-row"></div>
+
+        <div class="stat-row">
+          <div class="stat-pill"><span id="stat-last" class="stat-value">0/5</span><span class="stat-label">Score</span></div>
+          <div class="stat-pill"><span id="stat-total" class="stat-value">0</span><span class="stat-label">Total</span></div>
+          <div class="stat-pill"><span id="stat-points" class="stat-value">0</span><span class="stat-label">Points</span></div>
+        </div>
+      </div>
+
+      <div class="card meta">
+        <div class="meta-row"><span class="meta-label">Série parfaite</span><span id="stat-streak" class="meta-value">0</span></div>
+        <div class="meta-row"><span class="meta-label">Total parfait</span><span id="stat-perfect" class="meta-value">0</span></div>
+        <div class="meta-row"><span class="meta-label">Mots disponibles</span><span id="stat-pool" class="meta-value">—</span></div>
+      </div>
+
+      <button id="btn-start" class="primary">Démarrer le quiz</button>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="view-quiz" class="view hidden">
+      <div class="quiz-header">
+        <span id="quiz-progress" class="quiz-progress">Question 1/5</span>
+        <span id="quiz-level" class="quiz-level"></span>
+      </div>
+
+      <div class="card word-card">
+        <span class="word-label">Mot</span>
+        <span id="quiz-word" class="word-value"></span>
+      </div>
+
+      <div id="quiz-options" class="options"></div>
+
+      <div class="feedback-area"><span id="quiz-feedback" class="feedback"></span></div>
+
+      <button id="btn-next" class="primary" disabled>Suivant</button>
+    </section>
+
+    <!-- RESULT -->
+    <section id="view-result" class="view hidden">
+      <h1 class="title">Résultat</h1>
+      <p class="subtitle">Quiz terminé</p>
+
+      <div class="card result-card">
+        <span id="result-score" class="result-score">0/5</span>
+        <span class="result-label">Bonnes réponses</span>
+      </div>
+
+      <div id="result-wrong" class="card wrong-card"></div>
+
+      <button id="btn-replay" class="primary">Rejouer</button>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

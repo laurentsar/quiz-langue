@@ -1,0 +1,6 @@
+{
+  "appId": "com.laurent.quizlangue",
+  "appName": "Quiz Langue",
+  "webDir": "www",
+  "android": { "allowMixedContent": true }
+}

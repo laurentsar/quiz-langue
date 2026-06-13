@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Quiz Langue</string>
+    <string name="title_activity_main">Quiz Langue</string>
+    <string name="package_name">com.laurent.quizlangue</string>
+    <string name="custom_url_scheme">com.laurent.quizlangue</string>
+</resources>
