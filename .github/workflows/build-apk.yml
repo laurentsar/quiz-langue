@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,3 +44,22 @@ jobs:
           name: quiz-langue-release-apk
           path: android/app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error
+
+      - name: Read app version
+        id: version
+        run: |
+          VERSION=$(grep -oP 'versionName\s+"\K[^"]+' android/app/build.gradle)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Version détectée : $VERSION"
+
+      - name: Rename APK with version
+        run: cp android/app/build/outputs/apk/release/app-release.apk "quiz-langue-${{ steps.version.outputs.version }}.apk"
+
+      - name: Create / update GitHub Release
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: Quiz Langue v${{ steps.version.outputs.version }}
+          files: quiz-langue-${{ steps.version.outputs.version }}.apk
+          fail_on_unmatched_files: true
