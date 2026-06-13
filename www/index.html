@@ -18,32 +18,50 @@
     <!-- HOME -->
     <section id="view-home" class="view">
       <h1 class="title">Quiz Langue</h1>
-      <p class="subtitle">Vocabulaire, niveaux et score en local</p>
+      <p class="subtitle">Vocabulaire avec révision intelligente</p>
 
       <div class="card hero">
         <span class="hero-label">Langue</span>
-        <div class="lang-row">
-          <button class="lang-chip" data-lang="en">🇬🇧 Anglais</button>
-          <button class="lang-chip" data-lang="es">🇪🇸 Espagnol</button>
+        <div class="chip-row">
+          <button class="chip lang-chip" data-lang="en">🇬🇧 Anglais</button>
+          <button class="chip lang-chip" data-lang="es">🇪🇸 Espagnol</button>
+        </div>
+
+        <span class="hero-label">Sens</span>
+        <div class="chip-row">
+          <button class="chip dir-chip" data-dir="fwd">Mot → Français</button>
+          <button class="chip dir-chip" data-dir="rev">Français → Mot</button>
         </div>
 
         <span class="hero-label">Niveau</span>
-        <div id="level-row" class="level-row"></div>
+        <div id="level-row" class="chip-row"></div>
 
-        <div class="stat-row">
-          <div class="stat-pill"><span id="stat-last" class="stat-value">0/5</span><span class="stat-label">Score</span></div>
-          <div class="stat-pill"><span id="stat-total" class="stat-value">0</span><span class="stat-label">Total</span></div>
-          <div class="stat-pill"><span id="stat-points" class="stat-value">0</span><span class="stat-label">Points</span></div>
+        <span class="hero-label">Questions</span>
+        <div class="chip-row">
+          <button class="chip count-chip" data-count="5">5</button>
+          <button class="chip count-chip" data-count="10">10</button>
+          <button class="chip count-chip" data-count="20">20</button>
         </div>
       </div>
 
       <div class="card meta">
-        <div class="meta-row"><span class="meta-label">Série parfaite</span><span id="stat-streak" class="meta-value">0</span></div>
-        <div class="meta-row"><span class="meta-label">Total parfait</span><span id="stat-perfect" class="meta-value">0</span></div>
-        <div class="meta-row"><span class="meta-label">Mots disponibles</span><span id="stat-pool" class="meta-value">—</span></div>
+        <div class="meta-row"><span class="meta-label">Score précédent</span><span id="stat-last" class="meta-value">0/5</span></div>
+        <div class="meta-row"><span class="meta-label">Quiz terminés · Points</span><span id="stat-total" class="meta-value">0 · 0</span></div>
+        <div class="meta-row"><span class="meta-label">Série parfaite · record</span><span id="stat-streak" class="meta-value">0 · 0</span></div>
+        <div class="meta-divider"></div>
+        <div class="meta-row"><span class="meta-label">Mots vus / dispo</span><span id="stat-seen" class="meta-value">—</span></div>
+        <div class="meta-row"><span class="meta-label">Mots maîtrisés</span><span id="stat-mastered" class="meta-value">—</span></div>
+        <div class="meta-row"><span class="meta-label">À revoir maintenant</span><span id="stat-due" class="meta-value">—</span></div>
       </div>
 
-      <button id="btn-start" class="primary">Démarrer le quiz</button>
+      <div class="card meta toggles">
+        <label class="toggle"><span>🔊 Lire le mot automatiquement</span><input type="checkbox" id="opt-audio" /></label>
+        <label class="toggle"><span>⏭️ Question suivante automatique</span><input type="checkbox" id="opt-autonext" /></label>
+        <label class="toggle"><span>🎵 Son juste / faux</span><input type="checkbox" id="opt-sound" /></label>
+      </div>
+
+      <button id="btn-start" class="primary">Démarrer la révision</button>
+      <button id="btn-review" class="secondary">Réviser mes erreurs (<span id="review-count">0</span>)</button>
     </section>
 
     <!-- QUIZ -->
@@ -54,21 +72,27 @@
       </div>
 
       <div class="card word-card">
-        <span class="word-label">Mot</span>
-        <span id="quiz-word" class="word-value"></span>
+        <span id="quiz-prompt-label" class="word-label">Mot</span>
+        <div class="word-line">
+          <span id="quiz-word" class="word-value"></span>
+          <button id="btn-speak" class="speak-btn" title="Écouter">🔊</button>
+        </div>
       </div>
 
       <div id="quiz-options" class="options"></div>
 
       <div class="feedback-area"><span id="quiz-feedback" class="feedback"></span></div>
 
-      <button id="btn-next" class="primary" disabled>Suivant</button>
+      <div class="quiz-footer">
+        <button id="btn-abort" class="ghost">Quitter</button>
+        <button id="btn-next" class="primary grow" disabled>Suivant</button>
+      </div>
     </section>
 
     <!-- RESULT -->
     <section id="view-result" class="view hidden">
       <h1 class="title">Résultat</h1>
-      <p class="subtitle">Quiz terminé</p>
+      <p id="result-sub" class="subtitle">Quiz terminé</p>
 
       <div class="card result-card">
         <span id="result-score" class="result-score">0/5</span>
@@ -77,7 +101,8 @@
 
       <div id="result-wrong" class="card wrong-card"></div>
 
-      <button id="btn-replay" class="primary">Rejouer</button>
+      <button id="btn-replay" class="primary">Nouvelle révision</button>
+      <button id="btn-home" class="secondary">Accueil</button>
     </section>
   </main>
 

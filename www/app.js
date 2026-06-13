@@ -1,124 +1,186 @@
 'use strict';
 
-const QUESTION_COUNT = 5;
 const OPTION_COUNT = 4;
 
 const LANGS = {
-  en: { label: 'Anglais', file: 'data/wordlist_en.json', levels: ['Global', 'A1', 'A2', 'B1', 'B2', 'C', 'D'] },
-  es: { label: 'Espagnol', file: 'data/wordlist_es.json', levels: ['Global', 'A1-A2', 'B1-B2', 'C1-C2'] },
+  en: { label: 'Anglais', file: 'data/wordlist_en.json', tts: 'en-US', levels: ['Global', 'A1', 'A2', 'B1', 'B2', 'C', 'D'] },
+  es: { label: 'Espagnol', file: 'data/wordlist_es.json', tts: 'es-ES', levels: ['Global', 'A1-A2', 'B1-B2', 'C1-C2'] },
 };
+
+// Leitner box -> days until due
+const BOX_DAYS = [0, 1, 2, 4, 8, 16];
+const MAX_BOX = BOX_DAYS.length - 1;
+const DAY = 86400000;
 
 const state = {
   lang: 'en',
   level: 'Global',
-  words: [],          // loaded wordlist for current lang
+  dir: 'fwd',       // 'fwd' = word->fr, 'rev' = fr->word
+  count: 5,
+  mode: 'srs',      // 'srs' | 'review'
+  words: [],
   questions: [],
   answers: [],
   index: 0,
 };
 
-const cache = {}; // lang -> words array
+const settings = loadSettings();
+const cache = {};   // lang -> words
+const srsCache = {}; // lang -> srs map
 
-// ---------- storage ----------
+// ---------- persistence ----------
+function lsGet(k, d) { try { const r = localStorage.getItem(k); return r ? JSON.parse(r) : d; } catch (e) { return d; } }
+function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+
+function loadSettings() {
+  return Object.assign({ audioAuto: true, autoNext: true, sound: true }, lsGet('quizlangue:settings:v1', {}));
+}
+function saveSettings() { lsSet('quizlangue:settings:v1', settings); }
+
 function statsKey(lang) { return `quizlangue:stats:${lang}:v1`; }
-function defaultStats() { return { totalCompleted: 0, totalPoints: 0, perfectStreak: 0, perfectTotal: 0, lastScore: 0 }; }
-function loadStats(lang) {
-  try {
-    const raw = localStorage.getItem(statsKey(lang));
-    return raw ? Object.assign(defaultStats(), JSON.parse(raw)) : defaultStats();
-  } catch (e) { return defaultStats(); }
+function defaultStats() { return { totalCompleted: 0, totalPoints: 0, perfectStreak: 0, bestStreak: 0, perfectTotal: 0, lastScore: 0 }; }
+function loadStats(lang) { return Object.assign(defaultStats(), lsGet(statsKey(lang), {})); }
+function saveStats(lang, s) { lsSet(statsKey(lang), s); }
+
+function srsKey(lang) { return `quizlangue:srs:${lang}:v1`; }
+function getSrs(lang) {
+  if (!srsCache[lang]) srsCache[lang] = lsGet(srsKey(lang), {});
+  return srsCache[lang];
 }
-function saveStats(lang, stats) {
-  try { localStorage.setItem(statsKey(lang), JSON.stringify(stats)); } catch (e) {}
-}
+function saveSrs(lang) { lsSet(srsKey(lang), getSrs(lang)); }
 
 // ---------- helpers ----------
-function display(value) { return String(value || '').replace(/_/g, ' '); }
+function display(v) { return String(v || '').replace(/_/g, ' '); }
 
 function shuffle(list) {
   const a = list.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
   return a;
 }
 
-function pickUnique(list, count) {
-  if (count >= list.length) return list.slice();
-  const used = new Set();
-  const out = [];
-  while (out.length < count) {
-    const idx = Math.floor(Math.random() * list.length);
-    if (used.has(idx)) continue;
-    used.add(idx);
-    out.push(list[idx]);
-  }
-  return out;
+function levelWords() {
+  const lv = state.level;
+  return (lv && lv !== 'Global') ? state.words.filter(w => w.level === lv) : state.words;
 }
 
-function buildQuestion(item, pool) {
-  const correct = item.fr;
+// ---------- SRS scheduling ----------
+function srsUpdate(lang, word, correct) {
+  const srs = getSrs(lang);
+  const e = srs[word] || { box: 0, due: 0, seen: 0, correct: 0, wrong: 0, last: '' };
+  e.seen++;
+  if (correct) { e.correct++; e.box = Math.min(e.box + 1, MAX_BOX); e.last = 'ok'; }
+  else { e.wrong++; e.box = 0; e.last = 'ko'; }
+  e.due = Date.now() + BOX_DAYS[e.box] * DAY;
+  srs[word] = e;
+}
+
+function dueList(words, srs, now) {
+  return words.filter(w => srs[w.word] && srs[w.word].due <= now)
+              .sort((a, b) => srs[a.word].due - srs[b.word].due);
+}
+function newList(words, srs) { return shuffle(words.filter(w => !srs[w.word])); }
+function wrongList(words, srs) {
+  return words.filter(w => srs[w.word] && (srs[w.word].last === 'ko' || srs[w.word].box === 0) && srs[w.word].seen > 0);
+}
+
+function pickSession(mode) {
+  const words = levelWords();
+  const srs = getSrs(state.lang);
+  const now = Date.now();
+  let picks;
+  if (mode === 'review') {
+    picks = shuffle(wrongList(words, srs)).slice(0, state.count);
+  } else {
+    const due = dueList(words, srs, now);
+    const fresh = newList(words, srs);
+    picks = due.concat(fresh).slice(0, state.count);
+    if (picks.length < state.count) picks = picks.concat(shuffle(words)).slice(0, state.count);
+    // de-dup while keeping order
+    const used = new Set(); picks = picks.filter(w => !used.has(w.word) && used.add(w.word));
+  }
+  return shuffle(picks);
+}
+
+// ---------- question building ----------
+function buildQuestion(item, words) {
+  // prompt/answer depend on direction
+  const fwd = state.dir === 'fwd';
+  const promptText = display(fwd ? item.word : item.fr);
+  const correctRaw = fwd ? item.fr : item.word;
+  const correct = display(correctRaw);
+  const poolRaw = fwd ? words.map(w => w.fr) : words.map(w => w.word);
+
   const options = [correct];
   const used = new Set([correct]);
   let guard = 0;
-  while (options.length < OPTION_COUNT && guard < 4000) {
-    const cand = pool[Math.floor(Math.random() * pool.length)];
-    if (!used.has(cand)) { used.add(cand); options.push(cand); }
+  while (options.length < OPTION_COUNT && guard < 6000) {
+    const cand = display(poolRaw[Math.floor(Math.random() * poolRaw.length)]);
+    if (cand && !used.has(cand)) { used.add(cand); options.push(cand); }
     guard++;
   }
   const shuffled = shuffle(options);
   return {
-    wordDisplay: display(item.word),
-    level: item.level || '',
-    options: shuffled.map(display),
+    word: item.word,                       // canonical key for SRS
+    foreign: display(item.word),           // the EN/ES word (for audio)
+    promptText,
+    promptIsForeign: fwd,
+    options: shuffled,
     correctIndex: shuffled.indexOf(correct),
-    correctText: display(correct),
+    correctText: correct,
   };
 }
 
-function buildQuiz(words, level, count) {
-  const filtered = level && level !== 'Global' ? words.filter(w => w.level === level) : words;
-  const source = filtered.length >= count ? filtered : words;
-  const pool = source.map(w => w.fr);
-  return pickUnique(source, count).map(it => buildQuestion(it, pool));
+// ---------- audio ----------
+function speak(text) {
+  try {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = LANGS[state.lang].tts;
+    u.rate = 0.9;
+    speechSynthesis.speak(u);
+  } catch (e) {}
 }
 
-async function loadWords(lang) {
-  if (cache[lang]) return cache[lang];
-  const res = await fetch(LANGS[lang].file);
-  const data = await res.json();
-  cache[lang] = data;
-  return data;
+// ---------- sound + haptic ----------
+let audioCtx = null;
+function beep(ok) {
+  if (!settings.sound) return;
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.connect(g); g.connect(audioCtx.destination);
+    o.type = ok ? 'sine' : 'square';
+    o.frequency.value = ok ? 880 : 180;
+    g.gain.setValueAtTime(0.001, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.25, audioCtx.currentTime + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (ok ? 0.18 : 0.28));
+    o.start(); o.stop(audioCtx.currentTime + (ok ? 0.2 : 0.3));
+  } catch (e) {}
 }
+function vibrate(ok) { try { navigator.vibrate && navigator.vibrate(ok ? 25 : [40, 50, 40]); } catch (e) {} }
 
 // ---------- DOM ----------
 const $ = (id) => document.getElementById(id);
 const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result') };
+let autoNextTimer = null;
 
 function showView(name) {
   Object.entries(views).forEach(([k, el]) => el.classList.toggle('hidden', k !== name));
   window.scrollTo(0, 0);
 }
 
-function renderLangChips() {
-  document.querySelectorAll('.lang-chip').forEach(chip => {
-    chip.classList.toggle('active', chip.dataset.lang === state.lang);
-  });
+function renderChips(selector, current, attr) {
+  document.querySelectorAll(selector).forEach(c => c.classList.toggle('active', c.dataset[attr] === String(current)));
 }
 
 function renderLevelChips() {
-  const row = $('level-row');
-  row.innerHTML = '';
+  const row = $('level-row'); row.innerHTML = '';
   LANGS[state.lang].levels.forEach(lv => {
     const b = document.createElement('button');
-    b.className = 'level-chip' + (lv === state.level ? ' active' : '');
+    b.className = 'chip' + (lv === state.level ? ' active' : '');
     b.textContent = lv;
-    b.addEventListener('click', () => {
-      state.level = lv;
-      renderLevelChips();
-      updatePool();
-    });
+    b.addEventListener('click', () => { state.level = lv; renderLevelChips(); renderStats(); });
     row.appendChild(b);
   });
 }
@@ -126,32 +188,42 @@ function renderLevelChips() {
 function renderStats() {
   const s = loadStats(state.lang);
   $('stat-last').textContent = `${s.lastScore}/5`;
-  $('stat-total').textContent = s.totalCompleted;
-  $('stat-points').textContent = s.totalPoints;
-  $('stat-streak').textContent = s.perfectStreak;
-  $('stat-perfect').textContent = s.perfectTotal;
+  $('stat-total').textContent = `${s.totalCompleted} · ${s.totalPoints}`;
+  $('stat-streak').textContent = `${s.perfectStreak} · ${s.bestStreak || 0}`;
+
+  const words = levelWords();
+  const srs = getSrs(state.lang);
+  const now = Date.now();
+  const seen = words.filter(w => srs[w.word] && srs[w.word].seen > 0).length;
+  const mastered = words.filter(w => srs[w.word] && srs[w.word].box >= 4).length;
+  const due = dueList(words, srs, now).length;
+  const wrong = wrongList(words, srs).length;
+  $('stat-seen').textContent = `${seen} / ${words.length}`;
+  $('stat-mastered').textContent = mastered;
+  $('stat-due').textContent = due;
+  $('review-count').textContent = wrong;
+  $('btn-review').disabled = wrong === 0;
 }
 
-function updatePool() {
-  const lv = state.level;
-  const words = state.words;
-  const n = (lv && lv !== 'Global') ? words.filter(w => w.level === lv).length : words.length;
-  $('stat-pool').textContent = n;
+async function loadWords(lang) {
+  if (!cache[lang]) cache[lang] = await (await fetch(LANGS[lang].file)).json();
+  return cache[lang];
 }
 
 async function selectLang(lang) {
   state.lang = lang;
   state.level = 'Global';
   state.words = await loadWords(lang);
-  renderLangChips();
+  renderChips('.lang-chip', lang, 'lang');
   renderLevelChips();
   renderStats();
-  updatePool();
 }
 
 // ---------- quiz flow ----------
-function startQuiz() {
-  state.questions = buildQuiz(state.words, state.level, QUESTION_COUNT);
+function startSession(mode) {
+  state.mode = mode;
+  state.questions = pickSession(mode).map(it => buildQuestion(it, state.words));
+  if (!state.questions.length) return;
   state.answers = [];
   state.index = 0;
   showView('quiz');
@@ -159,14 +231,20 @@ function startQuiz() {
 }
 
 function renderQuestion() {
+  clearTimeout(autoNextTimer);
   const q = state.questions[state.index];
   const a = state.answers[state.index];
   $('quiz-progress').textContent = `Question ${state.index + 1}/${state.questions.length}`;
-  $('quiz-level').textContent = state.level;
-  $('quiz-word').textContent = q.wordDisplay;
+  $('quiz-level').textContent = (state.mode === 'review' ? '⟳ ' : '') + state.level;
+  $('quiz-prompt-label').textContent = q.promptIsForeign ? 'Mot' : 'Traduire en ' + (state.lang === 'en' ? 'anglais' : 'espagnol');
+  $('quiz-word').textContent = q.promptText;
 
-  const box = $('quiz-options');
-  box.innerHTML = '';
+  // speak button: only meaningful for the foreign word
+  const speakBtn = $('btn-speak');
+  speakBtn.style.display = q.promptIsForeign ? '' : 'none';
+  if (q.promptIsForeign && !a && settings.audioAuto) speak(q.foreign);
+
+  const box = $('quiz-options'); box.innerHTML = '';
   q.options.forEach((opt, idx) => {
     const btn = document.createElement('button');
     btn.className = 'option';
@@ -183,12 +261,9 @@ function renderQuestion() {
 
   const fb = $('quiz-feedback');
   if (a) {
-    fb.textContent = a.correct ? 'Correct' : `Faux. Bonne réponse : ${q.correctText}`;
+    fb.textContent = a.correct ? '✅ Correct' : `❌ Faux — ${q.correctText}`;
     fb.className = 'feedback ' + (a.correct ? 'good' : 'bad');
-  } else {
-    fb.textContent = '';
-    fb.className = 'feedback';
-  }
+  } else { fb.textContent = ''; fb.className = 'feedback'; }
 
   const next = $('btn-next');
   next.disabled = !a;
@@ -198,59 +273,80 @@ function renderQuestion() {
 function selectOption(idx) {
   if (state.answers[state.index]) return;
   const q = state.questions[state.index];
-  state.answers[state.index] = { selectedIndex: idx, correct: idx === q.correctIndex };
+  const correct = idx === q.correctIndex;
+  state.answers[state.index] = { selectedIndex: idx, correct };
+  srsUpdate(state.lang, q.word, correct);
+  saveSrs(state.lang);
+  beep(correct); vibrate(correct);
+  // in reverse mode, pronounce the correct foreign word after answering
+  if (!q.promptIsForeign && settings.audioAuto) speak(q.foreign);
   renderQuestion();
+  if (settings.autoNext) autoNextTimer = setTimeout(goNext, correct ? 900 : 1700);
 }
 
 function goNext() {
+  clearTimeout(autoNextTimer);
   if (!state.answers[state.index]) return;
-  if (state.index < state.questions.length - 1) {
-    state.index++;
-    renderQuestion();
-  } else {
-    finishQuiz();
-  }
+  if (state.index < state.questions.length - 1) { state.index++; renderQuestion(); }
+  else finishQuiz();
 }
 
 function finishQuiz() {
+  const total = state.questions.length;
   const score = state.answers.filter(a => a && a.correct).length;
-  const wrong = state.questions.map((q, i) => {
-    const a = state.answers[i];
-    return { word: q.wordDisplay, correct: q.correctText, isCorrect: a ? a.correct : false };
-  }).filter(x => !x.isCorrect);
+  const wrong = state.questions.map((q, i) => ({
+    foreign: q.foreign, correct: q.correctText, isCorrect: state.answers[i] && state.answers[i].correct,
+  })).filter(x => !x.isCorrect);
 
+  // stats: "perfect" tracked on 5-question sessions baseline; use ratio
   const prev = loadStats(state.lang);
-  const perfect = score === QUESTION_COUNT;
+  const perfect = score === total;
+  const streak = perfect ? prev.perfectStreak + 1 : 0;
   const next = {
     totalCompleted: prev.totalCompleted + 1,
     totalPoints: prev.totalPoints + score,
-    perfectStreak: perfect ? prev.perfectStreak + 1 : 0,
+    perfectStreak: streak,
+    bestStreak: Math.max(prev.bestStreak || 0, streak),
     perfectTotal: perfect ? prev.perfectTotal + 1 : prev.perfectTotal,
     lastScore: score,
   };
   saveStats(state.lang, next);
 
-  $('result-score').textContent = `${score}/5`;
+  $('result-sub').textContent = state.mode === 'review' ? 'Révision des erreurs terminée' : 'Quiz terminé';
+  $('result-score').textContent = `${score}/${total}`;
   const wbox = $('result-wrong');
   if (wrong.length) {
-    wbox.innerHTML = '<span class="wrong-title">Erreurs</span>' +
-      wrong.map(w => `<div class="wrong-row"><span class="wrong-word">${w.word}</span><span class="wrong-answer">${w.correct}</span></div>`).join('');
+    wbox.innerHTML = '<span class="wrong-title">À retravailler</span>' +
+      wrong.map(w => `<div class="wrong-row"><span class="wrong-word">${w.foreign}</span><span class="wrong-answer">${w.correct}</span></div>`).join('');
   } else {
-    wbox.innerHTML = '<span class="wrong-title">Parfait</span><span class="wrong-answer">Aucune erreur</span>';
+    wbox.innerHTML = '<span class="wrong-title">Parfait 🎉</span><span class="wrong-answer">Aucune erreur</span>';
   }
   showView('result');
 }
 
 // ---------- wire up ----------
-document.querySelectorAll('.lang-chip').forEach(chip => {
-  chip.addEventListener('click', () => selectLang(chip.dataset.lang));
-});
-$('btn-start').addEventListener('click', startQuiz);
+document.querySelectorAll('.lang-chip').forEach(c => c.addEventListener('click', () => selectLang(c.dataset.lang)));
+document.querySelectorAll('.dir-chip').forEach(c => c.addEventListener('click', () => { state.dir = c.dataset.dir; renderChips('.dir-chip', state.dir, 'dir'); }));
+document.querySelectorAll('.count-chip').forEach(c => c.addEventListener('click', () => { state.count = +c.dataset.count; renderChips('.count-chip', state.count, 'count'); }));
+
+$('btn-start').addEventListener('click', () => startSession('srs'));
+$('btn-review').addEventListener('click', () => startSession('review'));
 $('btn-next').addEventListener('click', goNext);
-$('btn-replay').addEventListener('click', () => { showView('home'); renderStats(); });
+$('btn-abort').addEventListener('click', () => { clearTimeout(autoNextTimer); speechSynthesis && speechSynthesis.cancel(); showView('home'); renderStats(); });
+$('btn-speak').addEventListener('click', () => { const q = state.questions[state.index]; if (q) speak(q.foreign); });
+$('btn-replay').addEventListener('click', () => startSession(state.mode));
+$('btn-home').addEventListener('click', () => { showView('home'); renderStats(); });
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(() => {});
+function bindToggle(id, key) {
+  const el = $(id); el.checked = settings[key];
+  el.addEventListener('change', () => { settings[key] = el.checked; saveSettings(); });
 }
+bindToggle('opt-audio', 'audioAuto');
+bindToggle('opt-autonext', 'autoNext');
+bindToggle('opt-sound', 'sound');
 
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+
+renderChips('.dir-chip', state.dir, 'dir');
+renderChips('.count-chip', state.count, 'count');
 selectLang('en');
