@@ -62,6 +62,42 @@
 
       <button id="btn-start" class="primary">Démarrer la révision</button>
       <button id="btn-review" class="secondary">Réviser mes erreurs (<span id="review-count">0</span>)</button>
+      <button id="btn-stats" class="secondary">📊 Statistiques détaillées</button>
+    </section>
+
+    <!-- STATS -->
+    <section id="view-stats" class="view hidden">
+      <div class="quiz-header">
+        <span class="quiz-progress">📊 Statistiques</span>
+        <span id="stats-lang" class="quiz-level"></span>
+      </div>
+
+      <div class="chip-row">
+        <button class="chip slang-chip" data-lang="en">🇬🇧 Anglais</button>
+        <button class="chip slang-chip" data-lang="es">🇪🇸 Espagnol</button>
+      </div>
+
+      <div id="stats-summary" class="card stats-tiles"></div>
+
+      <div class="card chart-card">
+        <span class="chart-title">Activité — 14 derniers jours</span>
+        <canvas id="chart-activity" class="chart"></canvas>
+        <span class="chart-legend">Barres = questions répondues par jour</span>
+      </div>
+
+      <div class="card chart-card">
+        <span class="chart-title">Maîtrise par boîte SRS</span>
+        <canvas id="chart-boxes" class="chart"></canvas>
+        <span class="chart-legend">Boîte 0 = à revoir · 4–5 = maîtrisé</span>
+      </div>
+
+      <div class="card chart-card">
+        <span class="chart-title">Par niveau — vus / maîtrisés</span>
+        <canvas id="chart-levels" class="chart"></canvas>
+        <span class="chart-legend"><i class="dot sky"></i> Vus &nbsp; <i class="dot green"></i> Maîtrisés</span>
+      </div>
+
+      <button id="btn-stats-home" class="secondary">Accueil</button>
     </section>
 
     <!-- QUIZ -->

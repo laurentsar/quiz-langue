@@ -32,13 +32,13 @@ jobs:
       - name: Sync Capacitor (Android)
         run: npx cap sync android
 
-      - name: Build debug APK
+      - name: Build release APK (signed, non-debuggable)
         working-directory: android
-        run: ./gradlew assembleDebug --no-daemon
+        run: ./gradlew assembleRelease --no-daemon
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: quiz-langue-debug-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: quiz-langue-release-apk
+          path: android/app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error

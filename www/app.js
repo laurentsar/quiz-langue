@@ -171,7 +171,7 @@ function vibrate(ok) { try { navigator.vibrate && navigator.vibrate(ok ? 25 : [4
 
 // ---------- DOM ----------
 const $ = (id) => document.getElementById(id);
-const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result') };
+const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats') };
 let autoNextTimer = null;
 
 function showView(name) {
@@ -286,6 +286,7 @@ function selectOption(idx) {
   state.answers[state.index] = { selectedIndex: idx, correct };
   srsUpdate(state.lang, q.word, correct);
   saveSrs(state.lang);
+  logDaily(state.lang, correct);
   beep(correct); vibrate(correct);
   // in reverse mode, pronounce the correct foreign word after answering
   if (!q.promptIsForeign && settings.audioAuto) speak(q.foreign);
@@ -353,6 +354,122 @@ function bindToggle(id, key) {
 bindToggle('opt-audio', 'audioAuto');
 bindToggle('opt-autonext', 'autoNext');
 bindToggle('opt-sound', 'sound');
+
+// ---------- daily activity log ----------
+function dailyKey(lang) { return `quizlangue:daily:${lang}:v1`; }
+function todayStr() { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+function logDaily(lang, correct) {
+  const m = lsGet(dailyKey(lang), {});
+  const t = todayStr();
+  const e = m[t] || { q: 0, c: 0 };
+  e.q++; if (correct) e.c++;
+  m[t] = e;
+  // prune > 90 days
+  const keys = Object.keys(m).sort();
+  while (keys.length > 90) delete m[keys.shift()];
+  lsSet(dailyKey(lang), m);
+}
+function lastNDays(lang, n) {
+  const m = lsGet(dailyKey(lang), {});
+  const out = [];
+  for (let i = n - 1; i >= 0; i--) {
+    const d = new Date(); d.setDate(d.getDate() - i);
+    const k = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    out.push({ day: d.getDate(), q: (m[k] || {}).q || 0 });
+  }
+  return out;
+}
+
+// ---------- canvas charts ----------
+function canvasCtx(c, h) {
+  const dpr = window.devicePixelRatio || 1;
+  const w = c.clientWidth || 320;
+  c.width = w * dpr; c.height = h * dpr;
+  const x = c.getContext('2d'); x.scale(dpr, dpr); x.clearRect(0, 0, w, h);
+  return [x, w, h];
+}
+function roundRect(x, bx, by, bw, bh, r) {
+  r = Math.min(r, bw / 2, bh / 2); if (bh <= 0) return;
+  x.beginPath();
+  x.moveTo(bx + r, by);
+  x.arcTo(bx + bw, by, bx + bw, by + bh, r);
+  x.arcTo(bx + bw, by + bh, bx, by + bh, r);
+  x.arcTo(bx, by + bh, bx, by, r);
+  x.arcTo(bx, by, bx + bw, by, r);
+  x.closePath();
+}
+function drawBars(c, labels, values, colors) {
+  const [x, w, h] = canvasCtx(c, 170);
+  const pad = { l: 6, r: 6, t: 20, b: 22 };
+  const max = Math.max(1, ...values);
+  const n = values.length || 1;
+  const bw = (w - pad.l - pad.r) / n;
+  x.font = '11px sans-serif'; x.textAlign = 'center';
+  values.forEach((v, i) => {
+    const bh = (h - pad.t - pad.b) * (v / max);
+    const bx = pad.l + i * bw, by = h - pad.b - bh;
+    x.fillStyle = (typeof colors === 'function' ? colors(i, v) : (colors[i] || '#27B3FF'));
+    roundRect(x, bx + bw * 0.18, by, bw * 0.64, bh, 4); x.fill();
+    if (v) { x.fillStyle = '#EAF2FF'; x.fillText(v, bx + bw / 2, by - 5); }
+    x.fillStyle = '#B8C7E3'; x.fillText(labels[i], bx + bw / 2, h - 7);
+  });
+}
+function drawGrouped(c, labels, a, b, colA, colB) {
+  const [x, w, h] = canvasCtx(c, 170);
+  const pad = { l: 6, r: 6, t: 20, b: 22 };
+  const max = Math.max(1, ...a, ...b);
+  const n = labels.length || 1;
+  const gw = (w - pad.l - pad.r) / n;
+  x.font = '11px sans-serif'; x.textAlign = 'center';
+  labels.forEach((lab, i) => {
+    const gx = pad.l + i * gw;
+    [[a[i], colA, 0.20], [b[i], colB, 0.52]].forEach(([v, col, off]) => {
+      const bh = (h - pad.t - pad.b) * (v / max);
+      const bx = gx + gw * off, by = h - pad.b - bh, bwid = gw * 0.28;
+      x.fillStyle = col; roundRect(x, bx, by, bwid, bh, 3); x.fill();
+      if (v) { x.fillStyle = '#EAF2FF'; x.fillText(v, bx + bwid / 2, by - 4); }
+    });
+    x.fillStyle = '#B8C7E3'; x.fillText(lab, gx + gw / 2, h - 7);
+  });
+}
+
+// ---------- stats view ----------
+function renderStatsView() {
+  const lang = state.lang, words = state.words, srs = getSrs(lang);
+  document.querySelectorAll('.slang-chip').forEach(c => c.classList.toggle('active', c.dataset.lang === lang));
+  $('stats-lang').textContent = LANGS[lang].label;
+
+  let c = 0, w = 0, seen = 0, mastered = 0;
+  const boxes = [0, 0, 0, 0, 0, 0];
+  words.forEach(it => {
+    const e = srs[it.word];
+    if (e && e.seen > 0) { seen++; c += e.correct; w += e.wrong; boxes[e.box] = (boxes[e.box] || 0) + 1; if (e.box >= 4) mastered++; }
+  });
+  const acc = (c + w) ? Math.round(100 * c / (c + w)) : 0;
+  const st = loadStats(lang);
+  $('stats-summary').innerHTML = [
+    ['Quiz', st.totalCompleted], ['Points', st.totalPoints], ['Précision', acc + '%'],
+    ['Mots vus', seen], ['Maîtrisés', mastered], ['Record série', st.bestStreak || 0],
+  ].map(([l, v]) => `<div class="stile"><b>${v}</b><span>${l}</span></div>`).join('');
+
+  const act = lastNDays(lang, 14);
+  drawBars($('chart-activity'), act.map(d => d.day), act.map(d => d.q), '#27B3FF');
+
+  const boxColors = ['#FF6B81', '#27B3FF', '#27B3FF', '#4CE0D2', '#35D07F', '#35D07F'];
+  drawBars($('chart-boxes'), ['0', '1', '2', '3', '4', '5'], boxes, (i) => boxColors[i]);
+
+  const lvls = LANGS[lang].levels.filter(l => l !== 'Global');
+  const vus = lvls.map(lv => words.filter(it => it.level === lv && srs[it.word] && srs[it.word].seen > 0).length);
+  const mas = lvls.map(lv => words.filter(it => it.level === lv && srs[it.word] && srs[it.word].box >= 4).length);
+  drawGrouped($('chart-levels'), lvls, vus, mas, '#27B3FF', '#35D07F');
+}
+
+document.querySelectorAll('.slang-chip').forEach(c => c.addEventListener('click', async () => {
+  await selectLang(c.dataset.lang); renderStatsView();
+}));
+$('btn-stats').addEventListener('click', () => { showView('stats'); renderStatsView(); });
+$('btn-stats-home').addEventListener('click', () => { showView('home'); renderStats(); });
+window.addEventListener('resize', () => { if (!views.stats.classList.contains('hidden')) renderStatsView(); });
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 
