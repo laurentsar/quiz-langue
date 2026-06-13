@@ -1,4 +1,4 @@
-const CACHE = 'quiz-langue-v2';
+const CACHE = 'quiz-langue-v3';
 const ASSETS = [
   './',
   'index.html',
@@ -7,7 +7,6 @@ const ASSETS = [
   'manifest.webmanifest',
   'data/wordlist_en.json',
   'data/wordlist_es.json',
-  'data/seed.json',
   'img/icon-192.png',
   'img/icon-512.png',
 ];

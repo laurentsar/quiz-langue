@@ -354,26 +354,6 @@ bindToggle('opt-audio', 'audioAuto');
 bindToggle('opt-autonext', 'autoNext');
 bindToggle('opt-sound', 'sound');
 
-// ---------- import HA stats ----------
-async function importSeed() {
-  if (!confirm('Importer ta progression depuis Home Assistant ?\nCela remplacera les stats et le suivi des mots actuels de l\'app.')) return;
-  try {
-    const seed = await (await fetch('data/seed.json', { cache: 'no-store' })).json();
-    let words = 0;
-    ['en', 'es'].forEach(lang => {
-      if (!seed[lang]) return;
-      if (seed[lang].stats) lsSet(statsKey(lang), seed[lang].stats);
-      if (seed[lang].srs) { lsSet(srsKey(lang), seed[lang].srs); words += Object.keys(seed[lang].srs).length; }
-      delete srsCache[lang];
-    });
-    renderStats();
-    alert('Import réussi ✅\n' + words + ' mots et tes scores ont été repris.');
-  } catch (e) {
-    alert('Import impossible : ' + e.message);
-  }
-}
-$('btn-import').addEventListener('click', importSeed);
-
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 
 renderChips('.dir-chip', state.dir, 'dir');
