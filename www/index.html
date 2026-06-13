@@ -17,8 +17,13 @@
   <main id="app">
     <!-- HOME -->
     <section id="view-home" class="view">
-      <h1 class="title">Quiz Langue</h1>
-      <p class="subtitle">Vocabulaire avec révision intelligente</p>
+      <div class="home-head">
+        <div>
+          <h1 class="title">Quiz Langue</h1>
+          <p class="subtitle">Vocabulaire avec révision intelligente</p>
+        </div>
+        <button id="btn-settings" class="gear" title="Réglages">⚙️</button>
+      </div>
 
       <div class="top-actions">
         <button id="btn-review" class="secondary">⟳ Mes erreurs (<span id="review-count">0</span>)</button>
@@ -59,14 +64,21 @@
         <div class="meta-row"><span class="meta-label">À revoir maintenant</span><span id="stat-due" class="meta-value">—</span></div>
       </div>
 
-      <div class="card meta toggles">
+      <button id="btn-start" class="primary">Démarrer la révision</button>
+    </section>
+
+    <!-- SETTINGS (modal) -->
+    <div id="settings-modal" class="modal hidden">
+      <div class="modal-card">
+        <div class="modal-head">
+          <span>⚙️ Réglages</span>
+          <button id="settings-close" class="gear">✕</button>
+        </div>
         <label class="toggle"><span>🔊 Lire le mot automatiquement</span><input type="checkbox" id="opt-audio" /></label>
         <label class="toggle"><span>⏭️ Question suivante automatique</span><input type="checkbox" id="opt-autonext" /></label>
         <label class="toggle"><span>🎵 Son juste / faux</span><input type="checkbox" id="opt-sound" /></label>
       </div>
-
-      <button id="btn-start" class="primary">Démarrer la révision</button>
-    </section>
+    </div>
 
     <!-- STATS -->
     <section id="view-stats" class="view hidden">

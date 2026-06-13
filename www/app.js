@@ -355,6 +355,11 @@ bindToggle('opt-audio', 'audioAuto');
 bindToggle('opt-autonext', 'autoNext');
 bindToggle('opt-sound', 'sound');
 
+const settingsModal = $('settings-modal');
+$('btn-settings').addEventListener('click', () => settingsModal.classList.remove('hidden'));
+$('settings-close').addEventListener('click', () => settingsModal.classList.add('hidden'));
+settingsModal.addEventListener('click', (e) => { if (e.target === settingsModal) settingsModal.classList.add('hidden'); });
+
 // ---------- daily activity log ----------
 function dailyKey(lang) { return `quizlangue:daily:${lang}:v1`; }
 function todayStr() { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
