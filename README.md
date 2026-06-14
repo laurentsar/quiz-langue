@@ -3,7 +3,7 @@
 App de quiz de vocabulaire **anglais** et **espagnol**, 100 % hors-ligne.
 Score, niveaux et séries enregistrés en local (par langue).
 
-- Anglais : 8000 mots — niveaux A1, A2, B1, B2, C, D
+- Anglais : 8773 mots — niveaux A1, A2, B1, B2, C, D
 - Espagnol : 5336 mots — niveaux A1-A2, B1-B2, C1-C2
 
 Le code de l'app est dans `www/` (HTML/CSS/JS pur, aucune dépendance runtime).
