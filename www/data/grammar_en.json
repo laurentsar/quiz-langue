@@ -1,0 +1,371 @@
+[
+  {
+    "id": "present-simple-continuous",
+    "title": "Présent simple vs présent continu",
+    "subtitle": "Habitudes vs action en cours",
+    "sections": [
+      {
+        "heading": "Présent simple",
+        "points": [
+          "Habitudes, routines, vérités générales, états permanents.",
+          "Forme : base verbale, + s à la 3ᵉ personne du singulier (he/she/it).",
+          "Négation et question avec do / does + base verbale.",
+          "Mots clés : always, usually, often, every day, never."
+        ],
+        "examples": [
+          { "en": "I work from home.", "fr": "Je travaille à la maison." },
+          { "en": "She doesn't eat meat.", "fr": "Elle ne mange pas de viande." },
+          { "en": "Do you speak English?", "fr": "Parles-tu anglais ?" }
+        ]
+      },
+      {
+        "heading": "Présent continu (be + V-ing)",
+        "points": [
+          "Action en train de se dérouler maintenant, ou situation temporaire.",
+          "Forme : am / is / are + verbe-ing.",
+          "Mots clés : now, right now, at the moment, today.",
+          "Verbes d'état (like, know, want, believe) ne s'emploient normalement pas au continu."
+        ],
+        "examples": [
+          { "en": "I'm working right now.", "fr": "Je travaille en ce moment." },
+          { "en": "They are watching a film.", "fr": "Ils regardent un film." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "past-vs-present-perfect",
+    "title": "Prétérit vs present perfect",
+    "subtitle": "Passé daté vs lien avec le présent",
+    "sections": [
+      {
+        "heading": "Prétérit (past simple)",
+        "points": [
+          "Action terminée à un moment précis et révolu du passé.",
+          "Forme : verbe + -ed (réguliers) ou forme irrégulière (went, saw…).",
+          "Négation/question avec did + base verbale.",
+          "Mots clés : yesterday, last week, in 2010, ago."
+        ],
+        "examples": [
+          { "en": "I saw her yesterday.", "fr": "Je l'ai vue hier." },
+          { "en": "We didn't go out.", "fr": "Nous ne sommes pas sortis." }
+        ]
+      },
+      {
+        "heading": "Present perfect (have + participe passé)",
+        "points": [
+          "Action passée liée au présent : résultat actuel, expérience, durée qui continue.",
+          "Forme : have / has + participe passé.",
+          "Mots clés : already, yet, just, ever, never, since, for.",
+          "On ne précise PAS le moment exact (sinon → prétérit)."
+        ],
+        "examples": [
+          { "en": "I have lost my keys.", "fr": "J'ai perdu mes clés (et je ne les ai pas)." },
+          { "en": "Have you ever been to London?", "fr": "Es-tu déjà allé à Londres ?" },
+          { "en": "She has lived here for ten years.", "fr": "Elle habite ici depuis dix ans." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "future",
+    "title": "Le futur : will vs be going to",
+    "subtitle": "Décision spontanée vs intention/prévision",
+    "sections": [
+      {
+        "heading": "will + base verbale",
+        "points": [
+          "Décision prise sur le moment, promesse, prédiction, offre.",
+          "Forme : will + verbe (négation : won't).",
+          "Souvent avec : I think, probably, maybe."
+        ],
+        "examples": [
+          { "en": "I'll help you.", "fr": "Je vais t'aider (décision immédiate)." },
+          { "en": "It will rain tomorrow.", "fr": "Il pleuvra demain." }
+        ]
+      },
+      {
+        "heading": "be going to + base verbale",
+        "points": [
+          "Intention déjà décidée, ou prévision fondée sur un indice présent.",
+          "Forme : am / is / are going to + verbe."
+        ],
+        "examples": [
+          { "en": "I'm going to study tonight.", "fr": "Je vais étudier ce soir (prévu)." },
+          { "en": "Look at those clouds — it's going to rain.", "fr": "Regarde ces nuages — il va pleuvoir." }
+        ]
+      },
+      {
+        "heading": "Présent continu pour le futur",
+        "points": [
+          "Rendez-vous, arrangements planifiés avec une heure/date."
+        ],
+        "examples": [
+          { "en": "I'm meeting Tom at 5.", "fr": "Je vois Tom à 17 h (prévu)." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "articles",
+    "title": "Les articles : a / an / the / ∅",
+    "subtitle": "Indéfini, défini, ou rien",
+    "sections": [
+      {
+        "heading": "a / an (indéfini)",
+        "points": [
+          "Devant un nom dénombrable singulier, première mention, non précis.",
+          "a + son consonne (a car), an + son voyelle (an apple, an hour).",
+          "Pas d'article avec un pluriel ou un indénombrable indéfini."
+        ],
+        "examples": [
+          { "en": "I bought a car.", "fr": "J'ai acheté une voiture." },
+          { "en": "She is an engineer.", "fr": "Elle est ingénieure." }
+        ]
+      },
+      {
+        "heading": "the (défini)",
+        "points": [
+          "Élément précis, déjà connu, ou unique.",
+          "Devant singulier, pluriel et indénombrables."
+        ],
+        "examples": [
+          { "en": "The car is red.", "fr": "La voiture est rouge (celle dont on parle)." },
+          { "en": "The sun is hot.", "fr": "Le soleil est chaud." }
+        ]
+      },
+      {
+        "heading": "Sans article (∅)",
+        "points": [
+          "Généralités (pluriel/indénombrable), langues, repas, sports.",
+          "Différence clé avec le français qui met souvent un article."
+        ],
+        "examples": [
+          { "en": "Dogs are loyal.", "fr": "Les chiens sont fidèles (en général)." },
+          { "en": "I like music.", "fr": "J'aime la musique." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "comparatives",
+    "title": "Comparatifs et superlatifs",
+    "subtitle": "Plus / le plus",
+    "sections": [
+      {
+        "heading": "Adjectifs courts (1 syllabe)",
+        "points": [
+          "Comparatif : adjectif + -er + than.",
+          "Superlatif : the + adjectif + -est.",
+          "Doublement de la consonne finale : big → bigger / biggest."
+        ],
+        "examples": [
+          { "en": "Tom is taller than me.", "fr": "Tom est plus grand que moi." },
+          { "en": "It's the cheapest one.", "fr": "C'est le moins cher." }
+        ]
+      },
+      {
+        "heading": "Adjectifs longs (2+ syllabes)",
+        "points": [
+          "Comparatif : more + adjectif + than.",
+          "Superlatif : the most + adjectif."
+        ],
+        "examples": [
+          { "en": "This book is more interesting.", "fr": "Ce livre est plus intéressant." },
+          { "en": "the most expensive hotel", "fr": "l'hôtel le plus cher" }
+        ]
+      },
+      {
+        "heading": "Irréguliers",
+        "points": [
+          "good → better → the best ; bad → worse → the worst ; far → further."
+        ],
+        "examples": [
+          { "en": "Her English is better than mine.", "fr": "Son anglais est meilleur que le mien." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modals",
+    "title": "Les modaux",
+    "subtitle": "can, must, should, may…",
+    "sections": [
+      {
+        "heading": "Règles communes",
+        "points": [
+          "Toujours suivis de la base verbale (sans to) : I can swim.",
+          "Pas de -s à la 3ᵉ personne, pas de do pour la négation/question.",
+          "Négation : cannot/can't, must not/mustn't, shouldn't."
+        ],
+        "examples": [
+          { "en": "He can drive.", "fr": "Il sait conduire." },
+          { "en": "Can you help?", "fr": "Peux-tu aider ?" }
+        ]
+      },
+      {
+        "heading": "Sens principaux",
+        "points": [
+          "can = capacité/permission ; could = possibilité/poli.",
+          "must = obligation forte ; have to = obligation (externe).",
+          "should / ought to = conseil ; may / might = possibilité.",
+          "mustn't = interdiction ; don't have to = pas obligé."
+        ],
+        "examples": [
+          { "en": "You should rest.", "fr": "Tu devrais te reposer." },
+          { "en": "You mustn't smoke here.", "fr": "Tu ne dois pas fumer ici (interdit)." },
+          { "en": "You don't have to come.", "fr": "Tu n'es pas obligé de venir." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "conditionals",
+    "title": "Le conditionnel (if)",
+    "subtitle": "Types 0, 1, 2, 3",
+    "sections": [
+      {
+        "heading": "Type 0 et 1 (réel)",
+        "points": [
+          "Type 0 (vérité générale) : If + présent, présent.",
+          "Type 1 (futur probable) : If + présent, will + base verbale."
+        ],
+        "examples": [
+          { "en": "If you heat ice, it melts.", "fr": "Si on chauffe la glace, elle fond." },
+          { "en": "If it rains, I'll stay home.", "fr": "S'il pleut, je resterai à la maison." }
+        ]
+      },
+      {
+        "heading": "Type 2 (irréel du présent)",
+        "points": [
+          "Hypothèse improbable/imaginaire : If + prétérit, would + base verbale.",
+          "On emploie were pour tout le monde (If I were…)."
+        ],
+        "examples": [
+          { "en": "If I had money, I would travel.", "fr": "Si j'avais de l'argent, je voyagerais." },
+          { "en": "If I were you, I'd wait.", "fr": "À ta place, j'attendrais." }
+        ]
+      },
+      {
+        "heading": "Type 3 (irréel du passé)",
+        "points": [
+          "Regret/hypothèse passée : If + had + participe passé, would have + participe passé."
+        ],
+        "examples": [
+          { "en": "If I had known, I would have called.", "fr": "Si j'avais su, j'aurais appelé." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "questions-negation",
+    "title": "Questions et négations",
+    "subtitle": "Les auxiliaires do / does / did",
+    "sections": [
+      {
+        "heading": "Au présent et au passé simples",
+        "points": [
+          "Pas d'auxiliaire dans la phrase ? On ajoute do/does (présent) ou did (passé).",
+          "Après do/does/did → toujours la base verbale (pas de -s, pas de -ed).",
+          "Question : Do/Does/Did + sujet + base verbale ?"
+        ],
+        "examples": [
+          { "en": "Do you like tea?", "fr": "Aimes-tu le thé ?" },
+          { "en": "She doesn't know.", "fr": "Elle ne sait pas." },
+          { "en": "Did they win?", "fr": "Ont-ils gagné ?" }
+        ]
+      },
+      {
+        "heading": "Avec be, un modal ou have (perfect)",
+        "points": [
+          "On n'utilise PAS do : on inverse directement l'auxiliaire.",
+          "be : Are you ready? ; modal : Can he come? ; perfect : Have you finished?"
+        ],
+        "examples": [
+          { "en": "Is she coming?", "fr": "Est-ce qu'elle vient ?" },
+          { "en": "Have you eaten?", "fr": "As-tu mangé ?" }
+        ]
+      },
+      {
+        "heading": "Mots interrogatifs",
+        "points": [
+          "what, where, when, who, why, how, which, whose + structure de question."
+        ],
+        "examples": [
+          { "en": "Where do you live?", "fr": "Où habites-tu ?" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "quantifiers",
+    "title": "Quantité",
+    "subtitle": "some/any, much/many, a lot of",
+    "sections": [
+      {
+        "heading": "some / any",
+        "points": [
+          "some : phrases affirmatives et offres/demandes polies.",
+          "any : négations et questions."
+        ],
+        "examples": [
+          { "en": "I have some money.", "fr": "J'ai de l'argent." },
+          { "en": "Do you have any questions?", "fr": "As-tu des questions ?" }
+        ]
+      },
+      {
+        "heading": "much / many / a lot of",
+        "points": [
+          "much + indénombrable (much time) — surtout en négation/question.",
+          "many + dénombrable pluriel (many people).",
+          "a lot of / lots of : les deux, surtout à l'affirmatif."
+        ],
+        "examples": [
+          { "en": "How much water?", "fr": "Combien d'eau ?" },
+          { "en": "There are many cars.", "fr": "Il y a beaucoup de voitures." }
+        ]
+      },
+      {
+        "heading": "(a) few / (a) little",
+        "points": [
+          "a few / few + dénombrable ; a little / little + indénombrable.",
+          "a few = quelques (positif) ; few = peu (négatif)."
+        ],
+        "examples": [
+          { "en": "a little sugar", "fr": "un peu de sucre" },
+          { "en": "few friends", "fr": "peu d'amis" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gerund-infinitive",
+    "title": "Gérondif vs infinitif",
+    "subtitle": "V-ing ou to + verbe",
+    "sections": [
+      {
+        "heading": "Verbe + -ing (gérondif)",
+        "points": [
+          "Après certaines verbes : enjoy, like, hate, finish, mind, suggest, avoid.",
+          "Après une préposition : good at swimming.",
+          "Comme sujet : Smoking is bad."
+        ],
+        "examples": [
+          { "en": "I enjoy reading.", "fr": "J'aime lire." },
+          { "en": "She's good at drawing.", "fr": "Elle est douée pour le dessin." }
+        ]
+      },
+      {
+        "heading": "to + base verbale (infinitif)",
+        "points": [
+          "Après : want, need, decide, hope, would like, promise.",
+          "Pour exprimer le but : I came to help."
+        ],
+        "examples": [
+          { "en": "I want to learn.", "fr": "Je veux apprendre." },
+          { "en": "He decided to leave.", "fr": "Il a décidé de partir." }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,51 @@
+[
+  { "id": "g-psc-1", "topic": "present-simple-continuous", "q": "She ___ to work by bus every day.", "options": ["goes", "is going", "go", "going"], "answer": "goes", "hint": "Habitude → présent simple." },
+  { "id": "g-psc-2", "topic": "present-simple-continuous", "q": "Listen! The baby ___.", "options": ["is crying", "cries", "cry", "cried"], "answer": "is crying", "hint": "Action en cours → présent continu." },
+  { "id": "g-psc-3", "topic": "present-simple-continuous", "q": "Water ___ at 100 degrees.", "options": ["boils", "is boiling", "boil", "boiled"], "answer": "boils", "hint": "Vérité générale → présent simple." },
+  { "id": "g-psc-4", "topic": "present-simple-continuous", "q": "I can't talk now, I ___ dinner.", "options": ["am cooking", "cook", "cooks", "cooked"], "answer": "am cooking", "hint": "Maintenant → présent continu." },
+
+  { "id": "g-pp-1", "topic": "past-vs-present-perfect", "q": "I ___ my keys. I can't find them.", "options": ["have lost", "lost", "lose", "am losing"], "answer": "have lost", "hint": "Résultat présent → present perfect." },
+  { "id": "g-pp-2", "topic": "past-vs-present-perfect", "q": "We ___ to Spain last summer.", "options": ["went", "have gone", "go", "have been"], "answer": "went", "hint": "Moment daté (last summer) → prétérit." },
+  { "id": "g-pp-3", "topic": "past-vs-present-perfect", "q": "Have you ever ___ to Japan?", "options": ["been", "went", "gone", "being"], "answer": "been", "hint": "Expérience → present perfect (have been)." },
+  { "id": "g-pp-4", "topic": "past-vs-present-perfect", "q": "She ___ here since 2010.", "options": ["has lived", "lived", "lives", "living"], "answer": "has lived", "hint": "since → present perfect." },
+
+  { "id": "g-fut-1", "topic": "future", "q": "Look at the sky! It ___ rain.", "options": ["is going to", "will", "goes to", "shall"], "answer": "is going to", "hint": "Indice présent → be going to." },
+  { "id": "g-fut-2", "topic": "future", "q": "I'm tired. I think I ___ go to bed.", "options": ["will", "am going to", "go", "would"], "answer": "will", "hint": "Décision spontanée → will." },
+  { "id": "g-fut-3", "topic": "future", "q": "The train ___ at 9 tomorrow.", "options": ["leaves", "will leave", "is leaving", "leave"], "answer": "leaves", "hint": "Horaire → présent simple." },
+  { "id": "g-fut-4", "topic": "future", "q": "We ___ dinner with Tom at 8 tonight.", "options": ["are having", "will have", "have", "had"], "answer": "are having", "hint": "Arrangement prévu → présent continu." },
+
+  { "id": "g-art-1", "topic": "articles", "q": "I saw ___ elephant at the zoo.", "options": ["an", "a", "the", "some"], "answer": "an", "hint": "Son voyelle → an." },
+  { "id": "g-art-2", "topic": "articles", "q": "___ moon is very bright tonight.", "options": ["The", "A", "An", "Some"], "answer": "The", "hint": "Élément unique → the." },
+  { "id": "g-art-3", "topic": "articles", "q": "He bought ___ new car last week.", "options": ["a", "an", "the", "some"], "answer": "a", "hint": "Première mention, son consonne → a." },
+  { "id": "g-art-4", "topic": "articles", "q": "She plays ___ guitar very well.", "options": ["the", "a", "an", "some"], "answer": "the", "hint": "Instrument de musique → the." },
+
+  { "id": "g-comp-1", "topic": "comparatives", "q": "This box is ___ than that one.", "options": ["heavier", "more heavy", "heaviest", "heavy"], "answer": "heavier", "hint": "Adjectif court → -er + than." },
+  { "id": "g-comp-2", "topic": "comparatives", "q": "It's the ___ film I've ever seen.", "options": ["best", "better", "goodest", "most good"], "answer": "best", "hint": "good → the best (irrégulier)." },
+  { "id": "g-comp-3", "topic": "comparatives", "q": "Today is ___ than yesterday.", "options": ["hotter", "more hot", "hottest", "hot"], "answer": "hotter", "hint": "Court : doublement → hotter." },
+  { "id": "g-comp-4", "topic": "comparatives", "q": "This is the ___ interesting book.", "options": ["most", "more", "much", "very"], "answer": "most", "hint": "Adjectif long → the most." },
+
+  { "id": "g-mod-1", "topic": "modals", "q": "You ___ smoke here. It's forbidden.", "options": ["mustn't", "don't have to", "shouldn't", "can"], "answer": "mustn't", "hint": "Interdiction → mustn't." },
+  { "id": "g-mod-2", "topic": "modals", "q": "She ___ speak three languages.", "options": ["can", "must", "should", "may"], "answer": "can", "hint": "Capacité → can." },
+  { "id": "g-mod-3", "topic": "modals", "q": "You look tired. You ___ rest.", "options": ["should", "must", "can", "may"], "answer": "should", "hint": "Conseil → should." },
+  { "id": "g-mod-4", "topic": "modals", "q": "We ___ hurry, we have plenty of time.", "options": ["don't have to", "mustn't", "can't", "shouldn't"], "answer": "don't have to", "hint": "Pas obligé → don't have to." },
+
+  { "id": "g-cond-1", "topic": "conditionals", "q": "If it ___ tomorrow, we'll stay home.", "options": ["rains", "will rain", "rained", "would rain"], "answer": "rains", "hint": "Type 1 : If + présent, will…" },
+  { "id": "g-cond-2", "topic": "conditionals", "q": "If I ___ rich, I would buy a house.", "options": ["were", "am", "will be", "have been"], "answer": "were", "hint": "Type 2 : If + prétérit (were)." },
+  { "id": "g-cond-3", "topic": "conditionals", "q": "If I had known, I ___ you.", "options": ["would have called", "would call", "called", "will call"], "answer": "would have called", "hint": "Type 3 : would have + participe." },
+  { "id": "g-cond-4", "topic": "conditionals", "q": "Ice melts if you ___ it.", "options": ["heat", "will heat", "heated", "would heat"], "answer": "heat", "hint": "Type 0 : présent, présent." },
+
+  { "id": "g-qn-1", "topic": "questions-negation", "q": "___ she like coffee?", "options": ["Does", "Do", "Is", "Did"], "answer": "Does", "hint": "Présent, 3ᵉ pers. → Does." },
+  { "id": "g-qn-2", "topic": "questions-negation", "q": "They ___ go to the party last night.", "options": ["didn't", "don't", "weren't", "haven't"], "answer": "didn't", "hint": "Passé négatif → didn't + base." },
+  { "id": "g-qn-3", "topic": "questions-negation", "q": "___ you finished your homework?", "options": ["Have", "Did", "Do", "Are"], "answer": "Have", "hint": "Present perfect → Have you…" },
+  { "id": "g-qn-4", "topic": "questions-negation", "q": "Where ___ you live?", "options": ["do", "are", "is", "does"], "answer": "do", "hint": "Présent, you → do." },
+
+  { "id": "g-quant-1", "topic": "quantifiers", "q": "There isn't ___ milk left.", "options": ["any", "some", "many", "a few"], "answer": "any", "hint": "Négation → any." },
+  { "id": "g-quant-2", "topic": "quantifiers", "q": "How ___ people came to the party?", "options": ["many", "much", "few", "little"], "answer": "many", "hint": "Dénombrable → many." },
+  { "id": "g-quant-3", "topic": "quantifiers", "q": "I have ___ money, just a bit.", "options": ["a little", "a few", "many", "much"], "answer": "a little", "hint": "Indénombrable → a little." },
+  { "id": "g-quant-4", "topic": "quantifiers", "q": "Would you like ___ tea?", "options": ["some", "any", "many", "few"], "answer": "some", "hint": "Offre polie → some." },
+
+  { "id": "g-ger-1", "topic": "gerund-infinitive", "q": "I enjoy ___ books.", "options": ["reading", "to read", "read", "reads"], "answer": "reading", "hint": "Après enjoy → V-ing." },
+  { "id": "g-ger-2", "topic": "gerund-infinitive", "q": "She wants ___ a doctor.", "options": ["to be", "being", "be", "been"], "answer": "to be", "hint": "Après want → to + verbe." },
+  { "id": "g-ger-3", "topic": "gerund-infinitive", "q": "He's good at ___.", "options": ["cooking", "to cook", "cook", "cooked"], "answer": "cooking", "hint": "Après préposition → V-ing." },
+  { "id": "g-ger-4", "topic": "gerund-infinitive", "q": "They decided ___ early.", "options": ["to leave", "leaving", "leave", "left"], "answer": "to leave", "hint": "Après decide → to + verbe." }
+]

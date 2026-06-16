@@ -14,6 +14,8 @@ const DAY = 86400000;
 
 const VERBS_FILE = 'data/verbs_en.json';
 const VERBS_KEY = 'verbs';   // espace stats/SRS dédié aux verbes irréguliers
+const GRAMMAR_QUIZ_FILE = 'data/grammar_quiz_en.json';
+const GRAMMAR_KEY = 'grammar'; // espace stats/SRS dédié aux exos de grammaire
 
 const state = {
   lang: 'en',
@@ -33,8 +35,8 @@ const state = {
 let verbsData = null;   // liste des verbes irréguliers (chargée à la demande)
 
 // Clé de stats/SRS et voix TTS selon le mode courant.
-function quizKey() { return state.kind === 'verbs' ? VERBS_KEY : state.lang; }
-function quizTts() { return state.kind === 'verbs' ? 'en-US' : LANGS[state.lang].tts; }
+function quizKey() { return state.kind === 'verbs' ? VERBS_KEY : state.kind === 'grammar' ? GRAMMAR_KEY : state.lang; }
+function quizTts() { return (state.kind === 'verbs' || state.kind === 'grammar') ? 'en-US' : LANGS[state.lang].tts; }
 
 const settings = loadSettings();
 const cache = {};   // lang -> words
@@ -114,6 +116,23 @@ function pickSession(mode) {
 }
 
 // ---------- question building ----------
+function buildGrammarQuestion(item) {
+  // phrase à compléter : options déjà rédigées (pas de display() -> on garde le "___")
+  const correct = item.answer;
+  const opts = shuffle(item.options.slice());
+  return {
+    word: item.id,                                  // clé SRS = id de l'exercice
+    foreign: item.q,                                // phrase trouée (affichage résultat)
+    fullSentence: item.q.replace('___', item.answer),
+    promptText: item.q,
+    promptIsForeign: false,                          // pas d'audio sur la phrase trouée
+    promptLabel: 'Complète la phrase',
+    options: opts,
+    correctIndex: opts.indexOf(correct),
+    correctText: correct,
+  };
+}
+
 function buildVerbQuestion(item, words) {
   // forme testée : prétérit, participe passé, ou tirage aléatoire (mélange)
   let form = state.verbForm === 'mix' ? (Math.random() < 0.5 ? 'pret' : 'pp') : state.verbForm;
@@ -142,6 +161,7 @@ function buildVerbQuestion(item, words) {
 }
 
 function buildQuestion(item, words) {
+  if (state.kind === 'grammar') return buildGrammarQuestion(item);
   if (state.kind === 'verbs') return buildVerbQuestion(item, words);
   // prompt/answer depend on direction
   const fwd = state.dir === 'fwd';
@@ -211,7 +231,7 @@ function vibrate(ok) { try { navigator.vibrate && navigator.vibrate(ok ? 25 : [4
 
 // ---------- DOM ----------
 const $ = (id) => document.getElementById(id);
-const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs') };
+const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar') };
 let autoNextTimer = null;
 
 function showView(name) {
@@ -290,6 +310,7 @@ function renderQuestion() {
   $('quiz-level').textContent = (state.mode === 'review' ? '⟳ ' : '') + state.badge;
   $('quiz-prompt-label').textContent = q.promptLabel || (q.promptIsForeign ? 'Mot' : 'Traduire en ' + (state.lang === 'en' ? 'anglais' : 'espagnol'));
   $('quiz-word').textContent = q.promptText;
+  $('quiz-word').classList.toggle('sentence', state.kind === 'grammar');
 
   // speak button: only meaningful for the foreign word
   const speakBtn = $('btn-speak');
@@ -313,7 +334,9 @@ function renderQuestion() {
 
   const fb = $('quiz-feedback');
   if (a) {
-    fb.textContent = a.correct ? '✅ Correct' : `❌ Faux — ${q.correctText}`;
+    let txt = a.correct ? '✅ Correct' : `❌ Faux — ${q.correctText}`;
+    if (state.kind === 'grammar' && q.fullSentence) txt += `\n${q.fullSentence}`;
+    fb.textContent = txt;
     fb.className = 'feedback ' + (a.correct ? 'good' : 'bad');
   } else { fb.textContent = ''; fb.className = 'feedback'; }
 
@@ -333,7 +356,8 @@ function selectOption(idx) {
   beep(correct); vibrate(correct);
   // prononce la bonne réponse après coup : mot étranger (sens inverse) ou forme correcte (verbes)
   if (settings.audioAuto) {
-    if (state.kind === 'verbs') speak(q.correctText);
+    if (state.kind === 'grammar') speak(q.fullSentence);
+    else if (state.kind === 'verbs') speak(q.correctText);
     else if (!q.promptIsForeign) speak(q.foreign);
   }
   renderQuestion();
@@ -388,7 +412,7 @@ document.querySelectorAll('.count-chip').forEach(c => c.addEventListener('click'
 function exitToHome() {
   clearTimeout(autoNextTimer);
   try { speechSynthesis && speechSynthesis.cancel(); } catch (e) {}
-  if (state.kind === 'verbs') { state.kind = 'vocab'; state.words = cache[state.lang] || state.words; }
+  if (state.kind === 'verbs' || state.kind === 'grammar') { state.kind = 'vocab'; state.words = cache[state.lang] || state.words; }
   showView('home'); renderStats();
 }
 
@@ -441,6 +465,73 @@ document.querySelectorAll('.vcount-chip').forEach(c => c.addEventListener('click
 $('btn-verbs-start').addEventListener('click', () => startVerbs('srs'));
 $('btn-verbs-review').addEventListener('click', () => startVerbs('review'));
 $('btn-verbs-home').addEventListener('click', () => showView('home'));
+
+// ---------- grammaire (menu dédié, contenu explicatif) ----------
+const GRAMMAR_FILE = 'data/grammar_en.json';
+let grammarData = null;
+
+function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+function renderGrammarList() {
+  $('grammar-crumb').textContent = 'Sommaire';
+  $('grammar-detail').classList.add('hidden');
+  $('btn-grammar-back').classList.add('hidden');
+  $('btn-grammar-quiz').classList.remove('hidden');
+  const list = $('grammar-list');
+  list.classList.remove('hidden');
+  list.innerHTML = (grammarData || []).map((t, i) =>
+    `<button class="grammar-item" data-idx="${i}"><span class="gi-title">${esc(t.title)}</span><span class="gi-sub">${esc(t.subtitle || '')}</span></button>`
+  ).join('');
+  list.querySelectorAll('.grammar-item').forEach(b =>
+    b.addEventListener('click', () => showGrammarTopic(+b.dataset.idx)));
+}
+
+function showGrammarTopic(idx) {
+  const t = grammarData[idx];
+  if (!t) return;
+  $('grammar-crumb').textContent = t.title;
+  const html = (t.sections || []).map(sec =>
+    `<div class="card gram-section">
+      <h3 class="gram-h3">${esc(sec.heading)}</h3>
+      <ul class="gram-points">${(sec.points || []).map(p => `<li>${esc(p)}</li>`).join('')}</ul>
+      ${(sec.examples && sec.examples.length) ? `<div class="gram-ex">${sec.examples.map(e => `<div class="gex-row"><span class="gex-en">${esc(e.en)}</span><span class="gex-fr">${esc(e.fr)}</span></div>`).join('')}</div>` : ''}
+    </div>`
+  ).join('') +
+    `<button class="primary gram-practice" data-topic="${esc(t.id)}">🧩 S'entraîner sur ce point</button>`;
+  const detail = $('grammar-detail');
+  detail.innerHTML = html;
+  const practice = detail.querySelector('.gram-practice');
+  if (practice) practice.addEventListener('click', () => startGrammarQuiz(t.id));
+  detail.classList.remove('hidden');
+  $('grammar-list').classList.add('hidden');
+  $('btn-grammar-quiz').classList.add('hidden');
+  $('btn-grammar-back').classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+let grammarQuizData = null;
+async function startGrammarQuiz(topicId) {
+  if (!grammarQuizData) grammarQuizData = await (await fetch(GRAMMAR_QUIZ_FILE)).json();
+  let pool = grammarQuizData;
+  if (topicId) pool = pool.filter(x => x.topic === topicId);
+  if (!pool.length) return;
+  state.kind = 'grammar';
+  state.level = 'Global';
+  state.words = pool.map(x => Object.assign({ word: x.id }, x));
+  state.badge = 'Grammaire';
+  startSession('srs');
+}
+
+async function openGrammar() {
+  if (!grammarData) grammarData = await (await fetch(GRAMMAR_FILE)).json();
+  renderGrammarList();
+  showView('grammar');
+}
+
+$('btn-grammar').addEventListener('click', openGrammar);
+$('btn-grammar-quiz').addEventListener('click', () => startGrammarQuiz(null));
+$('btn-grammar-back').addEventListener('click', renderGrammarList);
+$('btn-grammar-home').addEventListener('click', () => showView('home'));
 
 function bindToggle(id, key) {
   const el = $(id); el.checked = settings[key];

@@ -184,6 +184,7 @@ html, body {
 .word-card { gap: 6px; }
 .word-label { color: var(--text-dim); font-size: 12px; text-transform: uppercase; letter-spacing: 1.2px; }
 .word-value { font-size: 30px; font-weight: 700; color: var(--white); word-break: break-word; }
+.word-value.sentence { font-size: 21px; line-height: 1.35; }
 
 .options { display: flex; flex-direction: column; gap: 12px; }
 .option {
@@ -205,7 +206,7 @@ html, body {
 .option:disabled { cursor: default; }
 
 .feedback-area { min-height: 24px; }
-.feedback { font-weight: 700; font-size: 14px; }
+.feedback { font-weight: 700; font-size: 14px; white-space: pre-line; }
 .feedback.good { color: var(--success); }
 .feedback.bad { color: var(--warn); }
 
@@ -218,3 +219,28 @@ html, body {
 .wrong-row { display: flex; justify-content: space-between; gap: 12px; }
 .wrong-word { color: var(--text-dim); }
 .wrong-answer { font-weight: 700; text-align: right; }
+
+/* ---------- grammaire ---------- */
+.grammar-list { display: flex; flex-direction: column; gap: 12px; }
+#grammar-detail { display: flex; flex-direction: column; gap: 14px; }
+.grammar-item {
+  display: flex; flex-direction: column; gap: 4px; text-align: left;
+  background: var(--card); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px; padding: 16px 18px; color: var(--text); cursor: pointer;
+}
+.grammar-item:active { background: var(--card-alt); }
+.gi-title { font-weight: 700; font-size: 16px; }
+.gi-sub { font-size: 13px; color: var(--text-dim); }
+
+.gram-section { gap: 12px; }
+.gram-h3 { margin: 0; font-size: 16px; color: var(--sky); }
+.gram-points { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.gram-points li { line-height: 1.4; }
+.gram-ex { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.gex-row {
+  display: flex; flex-direction: column; gap: 2px;
+  background: rgba(255,255,255,0.05); border-left: 3px solid var(--mint);
+  border-radius: 8px; padding: 8px 12px;
+}
+.gex-en { font-weight: 600; }
+.gex-fr { color: var(--text-dim); font-size: 14px; }

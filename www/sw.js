@@ -1,4 +1,4 @@
-const CACHE = 'quiz-langue-v4';
+const CACHE = 'quiz-langue-v6';
 const ASSETS = [
   './',
   'index.html',
@@ -8,6 +8,8 @@ const ASSETS = [
   'data/wordlist_en.json',
   'data/wordlist_es.json',
   'data/verbs_en.json',
+  'data/grammar_en.json',
+  'data/grammar_quiz_en.json',
   'img/icon-192.png',
   'img/icon-512.png',
 ];

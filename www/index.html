@@ -29,6 +29,7 @@
         <button id="btn-review" class="secondary">⟳ Mes erreurs (<span id="review-count">0</span>)</button>
         <button id="btn-stats" class="secondary">📊 Stats</button>
         <button id="btn-verbs" class="secondary">📘 Verbes irréguliers</button>
+        <button id="btn-grammar" class="secondary">📖 Grammaire</button>
       </div>
 
       <div class="card hero">
@@ -144,6 +145,19 @@
       <button id="btn-verbs-start" class="primary">Démarrer</button>
       <button id="btn-verbs-review" class="secondary">⟳ Mes erreurs (<span id="verbs-review-count">0</span>)</button>
       <button id="btn-verbs-home" class="secondary">Accueil</button>
+    </section>
+
+    <!-- GRAMMAIRE (menu dédié, contenu explicatif) -->
+    <section id="view-grammar" class="view hidden">
+      <div class="quiz-header">
+        <span class="quiz-progress">📖 Grammaire anglaise</span>
+        <span id="grammar-crumb" class="quiz-level">Sommaire</span>
+      </div>
+      <div id="grammar-list" class="grammar-list"></div>
+      <button id="btn-grammar-quiz" class="primary">🧩 S'entraîner (phrases à compléter)</button>
+      <div id="grammar-detail" class="hidden"></div>
+      <button id="btn-grammar-back" class="secondary hidden">← Sommaire</button>
+      <button id="btn-grammar-home" class="secondary">Accueil</button>
     </section>
 
     <!-- QUIZ -->
