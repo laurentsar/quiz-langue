@@ -28,6 +28,7 @@
       <div class="top-actions">
         <button id="btn-review" class="secondary">⟳ Mes erreurs (<span id="review-count">0</span>)</button>
         <button id="btn-stats" class="secondary">📊 Stats</button>
+        <button id="btn-verbs" class="secondary">📘 Verbes irréguliers</button>
       </div>
 
       <div class="card hero">
@@ -113,6 +114,36 @@
       </div>
 
       <button id="btn-stats-home" class="secondary">Accueil</button>
+    </section>
+
+    <!-- VERBES IRRÉGULIERS (menu dédié) -->
+    <section id="view-verbs" class="view hidden">
+      <div class="quiz-header">
+        <span class="quiz-progress">📘 Verbes irréguliers</span>
+        <span class="quiz-level">🇬🇧 Anglais</span>
+      </div>
+
+      <div class="card hero">
+        <span class="hero-label">Forme testée</span>
+        <div class="chip-row">
+          <button class="chip vform-chip" data-vform="pret">Prétérit</button>
+          <button class="chip vform-chip" data-vform="pp">Participe passé</button>
+          <button class="chip vform-chip" data-vform="mix">Mélange</button>
+        </div>
+
+        <span class="hero-label">Questions</span>
+        <div class="chip-row">
+          <button class="chip vcount-chip" data-count="5">5</button>
+          <button class="chip vcount-chip" data-count="10">10</button>
+          <button class="chip vcount-chip" data-count="20">20</button>
+        </div>
+      </div>
+
+      <div id="verbs-summary" class="card stats-tiles"></div>
+
+      <button id="btn-verbs-start" class="primary">Démarrer</button>
+      <button id="btn-verbs-review" class="secondary">⟳ Mes erreurs (<span id="verbs-review-count">0</span>)</button>
+      <button id="btn-verbs-home" class="secondary">Accueil</button>
     </section>
 
     <!-- QUIZ -->

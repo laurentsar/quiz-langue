@@ -12,17 +12,29 @@ const BOX_DAYS = [0, 1, 2, 4, 8, 16];
 const MAX_BOX = BOX_DAYS.length - 1;
 const DAY = 86400000;
 
+const VERBS_FILE = 'data/verbs_en.json';
+const VERBS_KEY = 'verbs';   // espace stats/SRS dédié aux verbes irréguliers
+
 const state = {
   lang: 'en',
   level: 'Global',
   dir: 'fwd',       // 'fwd' = word->fr, 'rev' = fr->word
   count: 5,
   mode: 'srs',      // 'srs' | 'review'
+  kind: 'vocab',    // 'vocab' | 'verbs'
+  verbForm: 'mix',  // 'pret' | 'pp' | 'mix'
+  badge: 'Global',  // libellé affiché dans l'en-tête du quiz
   words: [],
   questions: [],
   answers: [],
   index: 0,
 };
+
+let verbsData = null;   // liste des verbes irréguliers (chargée à la demande)
+
+// Clé de stats/SRS et voix TTS selon le mode courant.
+function quizKey() { return state.kind === 'verbs' ? VERBS_KEY : state.lang; }
+function quizTts() { return state.kind === 'verbs' ? 'en-US' : LANGS[state.lang].tts; }
 
 const settings = loadSettings();
 const cache = {};   // lang -> words
@@ -85,7 +97,7 @@ function wrongList(words, srs) {
 
 function pickSession(mode) {
   const words = levelWords();
-  const srs = getSrs(state.lang);
+  const srs = getSrs(quizKey());
   const now = Date.now();
   let picks;
   if (mode === 'review') {
@@ -102,7 +114,35 @@ function pickSession(mode) {
 }
 
 // ---------- question building ----------
+function buildVerbQuestion(item, words) {
+  // forme testée : prétérit, participe passé, ou tirage aléatoire (mélange)
+  let form = state.verbForm === 'mix' ? (Math.random() < 0.5 ? 'pret' : 'pp') : state.verbForm;
+  const correct = display(item[form]);
+  const poolRaw = words.map(w => w[form]);
+
+  const options = [correct];
+  const used = new Set([correct]);
+  let guard = 0;
+  while (options.length < OPTION_COUNT && guard < 6000) {
+    const cand = display(poolRaw[Math.floor(Math.random() * poolRaw.length)]);
+    if (cand && !used.has(cand)) { used.add(cand); options.push(cand); }
+    guard++;
+  }
+  const shuffled = shuffle(options);
+  return {
+    word: item.word,                       // = infinitif (clé SRS)
+    foreign: display(item.inf),            // infinitif (pour l'audio)
+    promptText: display(item.inf) + ' — ' + display(item.fr),
+    promptIsForeign: true,
+    promptLabel: form === 'pret' ? 'Prétérit de' : 'Participe passé de',
+    options: shuffled,
+    correctIndex: shuffled.indexOf(correct),
+    correctText: correct,
+  };
+}
+
 function buildQuestion(item, words) {
+  if (state.kind === 'verbs') return buildVerbQuestion(item, words);
   // prompt/answer depend on direction
   const fwd = state.dir === 'fwd';
   const promptText = display(fwd ? item.word : item.fr);
@@ -132,7 +172,7 @@ function buildQuestion(item, words) {
 
 // ---------- audio ----------
 function speak(text) {
-  const lang = LANGS[state.lang].tts;
+  const lang = quizTts();
   // Prefer Android native TTS (reliable inside the app's WebView)
   const cap = window.Capacitor;
   if (cap && cap.Plugins && cap.Plugins.TextToSpeech) {
@@ -171,7 +211,7 @@ function vibrate(ok) { try { navigator.vibrate && navigator.vibrate(ok ? 25 : [4
 
 // ---------- DOM ----------
 const $ = (id) => document.getElementById(id);
-const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats') };
+const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs') };
 let autoNextTimer = null;
 
 function showView(name) {
@@ -229,8 +269,11 @@ async function selectLang(lang) {
 }
 
 // ---------- quiz flow ----------
+function verbBadge() { return state.verbForm === 'pret' ? 'Prétérit' : state.verbForm === 'pp' ? 'Participe' : 'Mélange'; }
+
 function startSession(mode) {
   state.mode = mode;
+  state.badge = state.kind === 'verbs' ? verbBadge() : state.level;
   state.questions = pickSession(mode).map(it => buildQuestion(it, state.words));
   if (!state.questions.length) return;
   state.answers = [];
@@ -244,8 +287,8 @@ function renderQuestion() {
   const q = state.questions[state.index];
   const a = state.answers[state.index];
   $('quiz-progress').textContent = `Question ${state.index + 1}/${state.questions.length}`;
-  $('quiz-level').textContent = (state.mode === 'review' ? '⟳ ' : '') + state.level;
-  $('quiz-prompt-label').textContent = q.promptIsForeign ? 'Mot' : 'Traduire en ' + (state.lang === 'en' ? 'anglais' : 'espagnol');
+  $('quiz-level').textContent = (state.mode === 'review' ? '⟳ ' : '') + state.badge;
+  $('quiz-prompt-label').textContent = q.promptLabel || (q.promptIsForeign ? 'Mot' : 'Traduire en ' + (state.lang === 'en' ? 'anglais' : 'espagnol'));
   $('quiz-word').textContent = q.promptText;
 
   // speak button: only meaningful for the foreign word
@@ -284,12 +327,15 @@ function selectOption(idx) {
   const q = state.questions[state.index];
   const correct = idx === q.correctIndex;
   state.answers[state.index] = { selectedIndex: idx, correct };
-  srsUpdate(state.lang, q.word, correct);
-  saveSrs(state.lang);
-  logDaily(state.lang, correct);
+  srsUpdate(quizKey(), q.word, correct);
+  saveSrs(quizKey());
+  logDaily(quizKey(), correct);
   beep(correct); vibrate(correct);
-  // in reverse mode, pronounce the correct foreign word after answering
-  if (!q.promptIsForeign && settings.audioAuto) speak(q.foreign);
+  // prononce la bonne réponse après coup : mot étranger (sens inverse) ou forme correcte (verbes)
+  if (settings.audioAuto) {
+    if (state.kind === 'verbs') speak(q.correctText);
+    else if (!q.promptIsForeign) speak(q.foreign);
+  }
   renderQuestion();
   if (settings.autoNext) autoNextTimer = setTimeout(goNext, correct ? 900 : 1700);
 }
@@ -309,7 +355,7 @@ function finishQuiz() {
   })).filter(x => !x.isCorrect);
 
   // stats: "perfect" tracked on 5-question sessions baseline; use ratio
-  const prev = loadStats(state.lang);
+  const prev = loadStats(quizKey());
   const perfect = score === total;
   const streak = perfect ? prev.perfectStreak + 1 : 0;
   const next = {
@@ -320,7 +366,7 @@ function finishQuiz() {
     perfectTotal: perfect ? prev.perfectTotal + 1 : prev.perfectTotal,
     lastScore: score,
   };
-  saveStats(state.lang, next);
+  saveStats(quizKey(), next);
 
   $('result-sub').textContent = state.mode === 'review' ? 'Révision des erreurs terminée' : 'Quiz terminé';
   $('result-score').textContent = `${score}/${total}`;
@@ -339,13 +385,62 @@ document.querySelectorAll('.lang-chip').forEach(c => c.addEventListener('click',
 document.querySelectorAll('.dir-chip').forEach(c => c.addEventListener('click', () => { state.dir = c.dataset.dir; renderChips('.dir-chip', state.dir, 'dir'); }));
 document.querySelectorAll('.count-chip').forEach(c => c.addEventListener('click', () => { state.count = +c.dataset.count; renderChips('.count-chip', state.count, 'count'); }));
 
-$('btn-start').addEventListener('click', () => startSession('srs'));
-$('btn-review').addEventListener('click', () => startSession('review'));
+function exitToHome() {
+  clearTimeout(autoNextTimer);
+  try { speechSynthesis && speechSynthesis.cancel(); } catch (e) {}
+  if (state.kind === 'verbs') { state.kind = 'vocab'; state.words = cache[state.lang] || state.words; }
+  showView('home'); renderStats();
+}
+
+$('btn-start').addEventListener('click', () => { state.kind = 'vocab'; startSession('srs'); });
+$('btn-review').addEventListener('click', () => { state.kind = 'vocab'; startSession('review'); });
 $('btn-next').addEventListener('click', goNext);
-$('btn-abort').addEventListener('click', () => { clearTimeout(autoNextTimer); speechSynthesis && speechSynthesis.cancel(); showView('home'); renderStats(); });
+$('btn-abort').addEventListener('click', exitToHome);
 $('btn-speak').addEventListener('click', () => { const q = state.questions[state.index]; if (q) speak(q.foreign); });
 $('btn-replay').addEventListener('click', () => startSession(state.mode));
-$('btn-home').addEventListener('click', () => { showView('home'); renderStats(); });
+$('btn-home').addEventListener('click', exitToHome);
+
+// ---------- verbes irréguliers (menu dédié) ----------
+function renderVerbsMenu() {
+  renderChips('.vform-chip', state.verbForm, 'vform');
+  renderChips('.vcount-chip', state.count, 'count');
+  const srs = getSrs(VERBS_KEY);
+  const st = loadStats(VERBS_KEY);
+  const list = verbsData || [];
+  let c = 0, w = 0, seen = 0, mastered = 0;
+  list.forEach(it => { const e = srs[it.word]; if (e && e.seen > 0) { seen++; c += e.correct; w += e.wrong; if (e.box >= 4) mastered++; } });
+  const acc = (c + w) ? Math.round(100 * c / (c + w)) : 0;
+  $('verbs-summary').innerHTML = [
+    ['Quiz', st.totalCompleted], ['Points', st.totalPoints], ['Précision', acc + '%'],
+    ['Vus', seen + ' / ' + list.length], ['Maîtrisés', mastered], ['Record', st.bestStreak || 0],
+  ].map(([l, v]) => `<div class="stile"><b>${v}</b><span>${l}</span></div>`).join('');
+  const wrong = wrongList(list, srs).length;
+  $('verbs-review-count').textContent = wrong;
+  $('btn-verbs-review').disabled = wrong === 0;
+}
+
+async function openVerbs() {
+  if (!verbsData) {
+    verbsData = await (await fetch(VERBS_FILE)).json();
+    verbsData.forEach(v => { v.word = v.inf; });   // clé SRS = infinitif
+  }
+  renderVerbsMenu();
+  showView('verbs');
+}
+
+function startVerbs(mode) {
+  state.kind = 'verbs';
+  state.level = 'Global';      // pas de filtrage par niveau pour les verbes
+  state.words = verbsData;
+  startSession(mode);
+}
+
+$('btn-verbs').addEventListener('click', openVerbs);
+document.querySelectorAll('.vform-chip').forEach(c => c.addEventListener('click', () => { state.verbForm = c.dataset.vform; renderChips('.vform-chip', state.verbForm, 'vform'); }));
+document.querySelectorAll('.vcount-chip').forEach(c => c.addEventListener('click', () => { state.count = +c.dataset.count; renderChips('.vcount-chip', state.count, 'count'); }));
+$('btn-verbs-start').addEventListener('click', () => startVerbs('srs'));
+$('btn-verbs-review').addEventListener('click', () => startVerbs('review'));
+$('btn-verbs-home').addEventListener('click', () => showView('home'));
 
 function bindToggle(id, key) {
   const el = $(id); el.checked = settings[key];
