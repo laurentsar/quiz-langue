@@ -734,7 +734,6 @@ function listenGroups() { return (listenData && listenData[listenLang]) || []; }
 async function openListen() {
   if (!listenData) listenData = await (await fetch(LISTEN_FILE)).json();
   listenLang = state.lang; listenAccent = 0;
-  $('listen-player').classList.add('hidden');
   renderListen();
   showView('listen');
 }
@@ -770,13 +769,18 @@ function renderEpisodes(eps) {
 }
 function playEpisode(i) {
   const e = listenEps[i]; if (!e || !e.audio) return;
-  $('listen-now').textContent = '▶ ' + e.title;
-  const au = $('listen-audio'); au.src = e.audio;
-  $('listen-player').classList.remove('hidden');
-  au.play().catch(() => {});
+  const box = $('listen-episodes');
+  const btn = box.querySelector(`.ep[data-i="${i}"]`); if (!btn) return;
+  const old = $('listen-inline'); if (old) old.remove();
+  const pl = document.createElement('div');
+  pl.id = 'listen-inline'; pl.className = 'ep-player';
+  pl.innerHTML = `<div class="listen-now">▶ ${esc(e.title)}</div><audio id="listen-audio" controls preload="none" autoplay></audio>`;
+  btn.insertAdjacentElement('afterend', pl);
+  const au = pl.querySelector('#listen-audio'); au.src = e.audio; au.play().catch(() => {});
+  pl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
 $('btn-listen').addEventListener('click', openListen);
-$('btn-listen-home').addEventListener('click', () => { try { $('listen-audio').pause(); } catch (e) {} showView('home'); });
+$('btn-listen-home').addEventListener('click', () => { const au = $('listen-audio'); if (au) { try { au.pause(); } catch (e) {} } showView('home'); });
 document.querySelectorAll('.slang2-chip').forEach(c => c.addEventListener('click', () => { listenLang = c.dataset.lang; listenAccent = 0; renderListen(); }));
 
 function bindToggle(id, key) {
