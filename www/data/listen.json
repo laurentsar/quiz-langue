@@ -1,0 +1,24 @@
+{
+ "en": [
+  { "accent": "🇬🇧 Britannique", "feeds": [
+     { "name": "BBC 6 Minute English", "url": "https://podcasts.files.bbci.co.uk/p02pc9zn.rss" },
+     { "name": "BBC The English We Speak", "url": "https://podcasts.files.bbci.co.uk/p02pc9x6.rss" }
+  ]},
+  { "accent": "🇺🇸 Américain", "feeds": [
+     { "name": "All Ears English", "url": "https://allearsenglish.libsyn.com/rss" },
+     { "name": "NPR Up First", "url": "https://feeds.npr.org/510318/podcast.xml" }
+  ]},
+  { "accent": "🇦🇺 Australien", "feeds": [
+     { "name": "Aussie English", "url": "https://aussieenglish.libsyn.com/rss" }
+  ]}
+ ],
+ "es": [
+  { "accent": "🇪🇸 Espagne", "feeds": [
+     { "name": "Hoy Hablamos", "url": "https://hoyhablamos.com/feed/podcast/" },
+     { "name": "Coffee Break Spanish", "url": "https://rss.acast.com/coffeebreakspanish" }
+  ]},
+  { "accent": "🌎 Amérique latine", "feeds": [
+     { "name": "Radio Ambulante", "url": "https://feeds.npr.org/510311/podcast.xml" }
+  ]}
+ ]
+}

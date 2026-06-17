@@ -48,7 +48,7 @@ function lsGet(k, d) { try { const r = localStorage.getItem(k); return r ? JSON.
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 
 function loadSettings() {
-  return Object.assign({ audioAuto: true, autoNext: true, sound: true, closeDistractors: false }, lsGet('quizlangue:settings:v1', {}));
+  return Object.assign({ audioAuto: true, autoNext: true, sound: true, closeDistractors: false, pictos: true }, lsGet('quizlangue:settings:v1', {}));
 }
 function saveSettings() { lsSet('quizlangue:settings:v1', settings); }
 
@@ -245,7 +245,7 @@ function vibrate(ok) { try { navigator.vibrate && navigator.vibrate(ok ? 25 : [4
 
 // ---------- DOM ----------
 const $ = (id) => document.getElementById(id);
-const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), learn: $('view-learn') };
+const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), learn: $('view-learn'), listen: $('view-listen') };
 let autoNextTimer = null;
 
 function showView(name) {
@@ -330,6 +330,10 @@ function renderQuestion() {
   $('quiz-prompt-label').textContent = q.promptLabel || (q.promptIsForeign ? 'Mot' : 'Traduire en ' + (state.lang === 'en' ? 'anglais' : 'espagnol'));
   $('quiz-word').textContent = q.promptText;
   $('quiz-word').classList.toggle('sentence', state.kind === 'grammar');
+
+  // pictogramme d'aide à la mémorisation (vocabulaire uniquement)
+  if (state.kind === 'vocab' && settings.pictos) showPicto(state.lang, q.foreign);
+  else { $('quiz-picto').classList.add('hidden'); pictoToken++; }
 
   // speak button: only meaningful for the foreign word
   const speakBtn = $('btn-speak');
@@ -423,6 +427,45 @@ function finishQuiz() {
     wbox.innerHTML = '<span class="wrong-title">Parfait 🎉</span><span class="wrong-answer">Aucune erreur</span>';
   }
   showView('result');
+  if (perfect && total >= 3) launchFireworks();
+}
+
+// ---------- feux d'artifice (série / quiz parfait) ----------
+function launchFireworks() {
+  let c = document.getElementById('fx-canvas');
+  if (!c) { c = document.createElement('canvas'); c.id = 'fx-canvas'; document.body.appendChild(c); }
+  const dpr = window.devicePixelRatio || 1;
+  c.width = innerWidth * dpr; c.height = innerHeight * dpr;
+  const x = c.getContext('2d'); x.scale(dpr, dpr);
+  const W = innerWidth, H = innerHeight;
+  const colors = ['#FF6B81', '#27B3FF', '#35D07F', '#FFD166', '#9b5cff', '#4CE0D2', '#FF9F6B'];
+  let parts = [];
+  function burst(bx, by) {
+    const col = colors[Math.floor(Math.random() * colors.length)];
+    const n = 38 + Math.floor(Math.random() * 22);
+    for (let i = 0; i < n; i++) {
+      const a = (Math.PI * 2 * i) / n, sp = 2 + Math.random() * 3.6;
+      parts.push({ x: bx, y: by, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, life: 1, col, r: 1.6 + Math.random() * 1.8 });
+    }
+  }
+  const t0 = performance.now();
+  let last = 0;
+  function frame(t) {
+    const elapsed = t - t0;
+    if (elapsed < 1700 && t - last > 230) { last = t; burst(W * (0.2 + Math.random() * 0.6), H * (0.2 + Math.random() * 0.35)); }
+    x.clearRect(0, 0, W, H);
+    parts.forEach(p => { p.vy += 0.045; p.x += p.vx; p.y += p.vy; p.life -= 0.012; });
+    parts = parts.filter(p => p.life > 0);
+    parts.forEach(p => {
+      x.globalAlpha = Math.max(0, p.life);
+      x.fillStyle = p.col;
+      x.beginPath(); x.arc(p.x, p.y, p.r, 0, Math.PI * 2); x.fill();
+    });
+    x.globalAlpha = 1;
+    if (elapsed < 2600 || parts.length) requestAnimationFrame(frame);
+    else c.remove();
+  }
+  requestAnimationFrame(frame);
 }
 
 // ---------- wire up ----------
@@ -625,6 +668,117 @@ $('btn-flash-ok').addEventListener('click', () => gradeCard(true));
 $('btn-flash-again').addEventListener('click', () => gradeCard(false));
 $('btn-learn-abort').addEventListener('click', exitToHome);
 
+// ---------- réseau (CapacitorHttp natif, sinon fetch + repli proxy) ----------
+async function httpGetText(url) {
+  const cap = window.Capacitor;
+  if (cap && cap.isNativePlatform && cap.isNativePlatform() && cap.Plugins && cap.Plugins.CapacitorHttp) {
+    const r = await cap.Plugins.CapacitorHttp.get({ url, responseType: 'text', connectTimeout: 15000, readTimeout: 15000 });
+    return typeof r.data === 'string' ? r.data : JSON.stringify(r.data);
+  }
+  try { const r = await fetch(url); if (r.ok) return await r.text(); throw 0; }
+  catch (e) { const r = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(url)); return await r.text(); }
+}
+
+// ---------- pictogrammes ARASAAC (aide mémorisation vocabulaire) ----------
+const ARASAAC_IMG = (id) => `https://static.arasaac.org/pictograms/${id}/${id}_300.png`;
+let pictoToken = 0;
+async function resolvePicto(lang, word) {
+  const w = String(word || '').trim().toLowerCase();
+  if (!w) return null;
+  const key = `quizlangue:picto:${lang}:${w}`;
+  const cached = lsGet(key, undefined);
+  if (cached !== undefined) return cached;     // id (number) ou null
+  let id = null;
+  try {
+    const txt = await httpGetText(`https://api.arasaac.org/api/pictograms/${lang}/search/${encodeURIComponent(w)}`);
+    const arr = JSON.parse(txt);
+    if (Array.isArray(arr) && arr.length) id = arr[0]._id;
+  } catch (e) {}
+  lsSet(key, id);
+  return id;
+}
+async function showPicto(lang, word) {
+  const wrap = $('quiz-picto'), img = $('quiz-picto-img');
+  wrap.classList.add('hidden'); img.removeAttribute('src');
+  const my = ++pictoToken;
+  const id = await resolvePicto(lang, word);
+  if (my !== pictoToken) return;               // la question a changé entre-temps
+  if (id) { img.src = ARASAAC_IMG(id); wrap.classList.remove('hidden'); }
+}
+
+// ---------- Écoute : podcasts par accent ----------
+const LISTEN_FILE = 'data/listen.json';
+let listenData = null, listenLang = state.lang, listenAccent = 0, listenEps = [];
+
+function fmtDur(s) {
+  s = String(s || '').trim();
+  if (!s) return '';
+  if (s.includes(':')) { const p = s.split(':').map(Number); const m = p.length === 3 ? p[0] * 60 + p[1] : p[0]; return m ? m + ' min' : ''; }
+  const n = parseInt(s, 10); return n ? Math.round(n / 60) + ' min' : '';
+}
+function parsePodcast(xmlText, source) {
+  let doc; try { doc = new DOMParser().parseFromString(xmlText, 'text/xml'); } catch (e) { return []; }
+  const out = [];
+  doc.querySelectorAll('item').forEach((it) => {
+    const title = (it.querySelector('title') && it.querySelector('title').textContent || '').trim();
+    const enc = it.querySelector('enclosure');
+    const audio = (enc && (enc.getAttribute('type') || '').startsWith('audio')) ? enc.getAttribute('url') : '';
+    const date = (it.querySelector('pubDate') && it.querySelector('pubDate').textContent || '').trim();
+    let dur = '';
+    for (const n of it.getElementsByTagName('*')) { if (n.tagName.toLowerCase() === 'itunes:duration') { dur = fmtDur(n.textContent); break; } }
+    if (title && audio) out.push({ title, audio, source, ts: Date.parse(date) || 0, dur });
+  });
+  return out.slice(0, 15);
+}
+function listenGroups() { return (listenData && listenData[listenLang]) || []; }
+async function openListen() {
+  if (!listenData) listenData = await (await fetch(LISTEN_FILE)).json();
+  listenLang = state.lang; listenAccent = 0;
+  $('listen-player').classList.add('hidden');
+  renderListen();
+  showView('listen');
+}
+function renderListen() {
+  $('listen-lang').textContent = LANGS[listenLang].label;
+  document.querySelectorAll('.slang2-chip').forEach(c => c.classList.toggle('active', c.dataset.lang === listenLang));
+  const groups = listenGroups();
+  const acc = $('listen-accents');
+  acc.innerHTML = groups.map((g, i) => `<button class="chip ${i === listenAccent ? 'active' : ''}" data-i="${i}">${esc(g.accent)}</button>`).join('');
+  acc.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => { listenAccent = +b.dataset.i; renderListen(); }));
+  loadEpisodes(groups[listenAccent]);
+}
+async function loadEpisodes(group) {
+  const box = $('listen-episodes');
+  if (!group) { box.innerHTML = ''; return; }
+  const key = `quizlangue:listen:${listenLang}:${listenAccent}`;
+  const cached = lsGet(key, null);
+  if (cached && cached.length) renderEpisodes(cached);
+  else box.innerHTML = '<div class="listen-status">Chargement des épisodes…</div>';
+  const results = await Promise.allSettled((group.feeds || []).map(async (f) => parsePodcast(await httpGetText(f.url), f.name)));
+  if (group !== listenGroups()[listenAccent]) return;   // accent changé
+  let eps = [];
+  results.forEach(r => { if (r.status === 'fulfilled') eps = eps.concat(r.value); });
+  eps.sort((a, b) => b.ts - a.ts); eps = eps.slice(0, 30);
+  if (eps.length) { lsSet(key, eps); renderEpisodes(eps); }
+  else if (!cached) box.innerHTML = '<div class="listen-status">Aucun épisode (vérifie ta connexion).</div>';
+}
+function renderEpisodes(eps) {
+  listenEps = eps;
+  $('listen-episodes').innerHTML = eps.map((e, i) =>
+    `<button class="ep" data-i="${i}"><span class="ep-play">▶</span><span class="ep-meta"><b>${esc(e.title)}</b><span class="ep-sub">${esc(e.source)}${e.dur ? ' · ' + esc(e.dur) : ''}</span></span></button>`).join('');
+  $('listen-episodes').querySelectorAll('.ep').forEach(b => b.addEventListener('click', () => playEpisode(+b.dataset.i)));
+}
+function playEpisode(i) {
+  const e = listenEps[i]; if (!e || !e.audio) return;
+  $('listen-now').textContent = '▶ ' + e.title;
+  const au = $('listen-audio'); au.src = e.audio;
+  $('listen-player').classList.remove('hidden');
+  au.play().catch(() => {});
+}
+$('btn-listen').addEventListener('click', openListen);
+$('btn-listen-home').addEventListener('click', () => { try { $('listen-audio').pause(); } catch (e) {} showView('home'); });
+document.querySelectorAll('.slang2-chip').forEach(c => c.addEventListener('click', () => { listenLang = c.dataset.lang; listenAccent = 0; renderListen(); }));
+
 function bindToggle(id, key) {
   const el = $(id); el.checked = settings[key];
   el.addEventListener('change', () => { settings[key] = el.checked; saveSettings(); });
@@ -633,6 +787,7 @@ bindToggle('opt-audio', 'audioAuto');
 bindToggle('opt-autonext', 'autoNext');
 bindToggle('opt-sound', 'sound');
 bindToggle('opt-close', 'closeDistractors');
+bindToggle('opt-pictos', 'pictos');
 
 const settingsModal = $('settings-modal');
 $('btn-settings').addEventListener('click', () => settingsModal.classList.remove('hidden'));

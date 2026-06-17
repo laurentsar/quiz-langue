@@ -2,5 +2,6 @@
   "appId": "com.laurent.quizlangue",
   "appName": "Quiz Langue",
   "webDir": "www",
-  "android": { "allowMixedContent": true }
+  "android": { "allowMixedContent": true },
+  "plugins": { "CapacitorHttp": { "enabled": true } }
 }

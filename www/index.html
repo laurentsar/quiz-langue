@@ -31,6 +31,7 @@
         <button id="btn-stats" class="secondary">📊 Stats</button>
         <button id="btn-verbs" class="secondary">📘 Verbes irréguliers</button>
         <button id="btn-grammar" class="secondary">📖 Grammaire</button>
+        <button id="btn-listen" class="secondary">🎧 Écoute (accents)</button>
       </div>
 
       <div class="card hero">
@@ -81,6 +82,7 @@
         <label class="toggle"><span>⏭️ Question suivante automatique</span><input type="checkbox" id="opt-autonext" /></label>
         <label class="toggle"><span>🎵 Son juste / faux</span><input type="checkbox" id="opt-sound" /></label>
         <label class="toggle"><span>🎯 Distracteurs proches (plus difficile)</span><input type="checkbox" id="opt-close" /></label>
+        <label class="toggle"><span>🖼️ Pictogrammes (vocabulaire)</span><input type="checkbox" id="opt-pictos" /></label>
       </div>
     </div>
 
@@ -188,6 +190,25 @@
       <button id="btn-learn-abort" class="secondary">Quitter</button>
     </section>
 
+    <!-- ÉCOUTE (podcasts par accent) -->
+    <section id="view-listen" class="view hidden">
+      <div class="quiz-header">
+        <span class="quiz-progress">🎧 Écoute — accents</span>
+        <span id="listen-lang" class="quiz-level"></span>
+      </div>
+      <div class="chip-row">
+        <button class="chip slang2-chip" data-lang="en">🇬🇧 Anglais</button>
+        <button class="chip slang2-chip" data-lang="es">🇪🇸 Espagnol</button>
+      </div>
+      <div id="listen-accents" class="chip-row"></div>
+      <div id="listen-episodes" class="listen-list"></div>
+      <div id="listen-player" class="listen-player hidden">
+        <div id="listen-now" class="listen-now"></div>
+        <audio id="listen-audio" controls preload="none"></audio>
+      </div>
+      <button id="btn-listen-home" class="secondary">Accueil</button>
+    </section>
+
     <!-- QUIZ -->
     <section id="view-quiz" class="view hidden">
       <div class="quiz-header">
@@ -197,6 +218,7 @@
       <div class="progress"><div id="quiz-bar" class="progress-bar"></div></div>
 
       <div class="card word-card">
+        <div id="quiz-picto" class="quiz-picto hidden"><img id="quiz-picto-img" alt="" referrerpolicy="no-referrer" onerror="this.closest('.quiz-picto').classList.add('hidden')"></div>
         <span id="quiz-prompt-label" class="word-label">Mot</span>
         <div class="word-line">
           <span id="quiz-word" class="word-value"></span>
