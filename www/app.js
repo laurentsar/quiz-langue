@@ -446,9 +446,9 @@ function launchFireworks() {
     const power = big ? 9.5 : 6.5;
     for (let i = 0; i < n; i++) {
       const a = Math.random() * Math.PI * 2, sp = (0.35 + Math.random()) * power;
-      parts.push({ x: bx, y: by, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, life: 1, decay: 0.007 + Math.random() * 0.011, col, r: 2 + Math.random() * 2.8 });
+      parts.push({ x: bx, y: by, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, life: 1, decay: 0.018 + Math.random() * 0.022, col, r: 2 + Math.random() * 2.8 });
     }
-    parts.push({ flash: true, x: bx, y: by, life: 1, decay: 0.07, col, r: big ? 110 : 70 }); // éclair de l'explosion
+    parts.push({ flash: true, x: bx, y: by, life: 1, decay: 0.13, col, r: big ? 110 : 70 }); // éclair de l'explosion
   }
   const t0 = performance.now();
   let last = 0, finale = false;
@@ -457,8 +457,8 @@ function launchFireworks() {
     // ciel nocturne + traînées lumineuses
     x.globalCompositeOperation = 'source-over';
     x.fillStyle = 'rgba(6,16,28,0.22)'; x.fillRect(0, 0, W, H);
-    if (el < 3400 && t - last > 280) { last = t; burst(W * (0.12 + Math.random() * 0.76), H * (0.12 + Math.random() * 0.42), Math.random() < 0.35); }
-    if (!finale && el > 3400) { finale = true; for (let k = 0; k < 6; k++) burst(W * (0.18 + Math.random() * 0.64), H * (0.15 + Math.random() * 0.45), true); } // bouquet final
+    if (el < 1100 && t - last > 190) { last = t; burst(W * (0.12 + Math.random() * 0.76), H * (0.12 + Math.random() * 0.42), Math.random() < 0.4); }
+    if (!finale && el > 1100) { finale = true; for (let k = 0; k < 6; k++) burst(W * (0.18 + Math.random() * 0.64), H * (0.15 + Math.random() * 0.45), true); } // bouquet final
     x.globalCompositeOperation = 'lighter';
     parts.forEach(p => {
       if (p.flash) {
@@ -475,7 +475,7 @@ function launchFireworks() {
     });
     x.globalAlpha = 1;
     parts = parts.filter(p => p.life > 0);
-    if (el < 6000 || parts.length) requestAnimationFrame(frame);
+    if (el < 2000) requestAnimationFrame(frame);
     else c.remove();
   }
   requestAnimationFrame(frame);
@@ -735,7 +735,8 @@ function parsePodcast(xmlText, source) {
   doc.querySelectorAll('item').forEach((it) => {
     const title = (it.querySelector('title') && it.querySelector('title').textContent || '').trim();
     const enc = it.querySelector('enclosure');
-    const audio = (enc && (enc.getAttribute('type') || '').startsWith('audio')) ? enc.getAttribute('url') : '';
+    let audio = (enc && (enc.getAttribute('type') || '').startsWith('audio')) ? (enc.getAttribute('url') || '') : '';
+    audio = audio.replace(/^http:\/\//, 'https://').replace('/proto/http/', '/proto/https/'); // Android refuse l'audio http
     const date = (it.querySelector('pubDate') && it.querySelector('pubDate').textContent || '').trim();
     let dur = '';
     for (const n of it.getElementsByTagName('*')) { if (n.tagName.toLowerCase() === 'itunes:duration') { dur = fmtDur(n.textContent); break; } }
@@ -782,14 +783,18 @@ function renderEpisodes(eps) {
 }
 function playEpisode(i) {
   const e = listenEps[i]; if (!e || !e.audio) return;
+  const src = e.audio.replace(/^http:\/\//, 'https://').replace('/proto/http/', '/proto/https/');
   const box = $('listen-episodes');
   const btn = box.querySelector(`.ep[data-i="${i}"]`); if (!btn) return;
   const old = $('listen-inline'); if (old) old.remove();
   const pl = document.createElement('div');
   pl.id = 'listen-inline'; pl.className = 'ep-player';
-  pl.innerHTML = `<div class="listen-now">▶ ${esc(e.title)}</div><audio id="listen-audio" controls preload="none" autoplay></audio>`;
+  pl.innerHTML = `<div class="listen-now">${esc(e.title)}</div>`
+    + `<audio id="listen-audio" controls src="${esc(src)}"></audio>`
+    + `<a class="ep-ext" href="${esc(src)}" target="_blank" rel="noopener">Ouvrir dans le navigateur ↗</a>`;
   btn.insertAdjacentElement('afterend', pl);
-  const au = pl.querySelector('#listen-audio'); au.src = e.audio; au.play().catch(() => {});
+  const au = pl.querySelector('#listen-audio');
+  try { au.load(); au.play().catch(() => {}); } catch (err) {}
   pl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
 $('btn-listen').addEventListener('click', openListen);

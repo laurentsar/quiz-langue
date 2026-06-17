@@ -301,3 +301,4 @@ html, body {
 
 /* ===== Feux d'artifice (série parfaite) ===== */
 #fx-canvas { position: fixed; inset: 0; z-index: 50; pointer-events: none; }
+.ep-ext { color: var(--sky); font-size: 13px; font-weight: 600; text-decoration: none; }
