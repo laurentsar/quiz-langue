@@ -16,6 +16,7 @@ const VERBS_FILE = 'data/verbs_en.json';
 const VERBS_KEY = 'verbs';   // espace stats/SRS dédié aux verbes irréguliers
 const GRAMMAR_QUIZ_FILE = 'data/grammar_quiz_en.json';
 const GRAMMAR_KEY = 'grammar'; // espace stats/SRS dédié aux exos de grammaire
+const KIND_COLORS = { vocab: '#27B3FF', verbs: '#4CE0D2', grammar: '#1B5CFF' }; // accent par type
 
 const state = {
   lang: 'en',
@@ -321,6 +322,11 @@ function renderQuestion() {
   const a = state.answers[state.index];
   $('quiz-progress').textContent = `Question ${state.index + 1}/${state.questions.length}`;
   $('quiz-level').textContent = (state.mode === 'review' ? '⟳ ' : '') + state.badge;
+  const accent = KIND_COLORS[state.kind] || '#27B3FF';
+  const bar = $('quiz-bar');
+  bar.style.background = accent;
+  bar.style.width = ((state.index + (a ? 1 : 0)) / state.questions.length * 100) + '%';
+  $('quiz-level').style.color = accent;
   $('quiz-prompt-label').textContent = q.promptLabel || (q.promptIsForeign ? 'Mot' : 'Traduire en ' + (state.lang === 'en' ? 'anglais' : 'espagnol'));
   $('quiz-word').textContent = q.promptText;
   $('quiz-word').classList.toggle('sentence', state.kind === 'grammar');
@@ -347,12 +353,13 @@ function renderQuestion() {
 
   const fb = $('quiz-feedback');
   if (a) {
-    let txt = a.correct ? '✅ Correct' : `❌ Faux — ${q.correctText}`;
-    if (state.kind === 'grammar' && q.fullSentence) txt += `\n${q.fullSentence}`;
-    if (state.kind === 'grammar' && q.hint) txt += `\n💡 ${q.hint}`;
-    fb.textContent = txt;
-    fb.className = 'feedback ' + (a.correct ? 'good' : 'bad');
-  } else { fb.textContent = ''; fb.className = 'feedback'; }
+    let html = `<div class="fb-head">${a.correct ? '✅ Correct' : '❌ Faux'}</div>`;
+    if (!a.correct) html += `<div class="fb-line">Réponse : <b>${esc(q.correctText)}</b></div>`;
+    if (state.kind === 'grammar' && q.fullSentence) html += `<div class="fb-line">📝 ${esc(q.fullSentence)}</div>`;
+    if (state.kind === 'grammar' && q.hint) html += `<div class="fb-line tip">💡 ${esc(q.hint)}</div>`;
+    fb.innerHTML = html;
+    fb.className = 'feedback show ' + (a.correct ? 'good' : 'bad');
+  } else { fb.innerHTML = ''; fb.className = 'feedback'; }
 
   const next = $('btn-next');
   next.disabled = !a;
