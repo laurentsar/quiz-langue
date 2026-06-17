@@ -153,8 +153,8 @@ html, body {
 .modal-head { display: flex; align-items: center; justify-content: space-between; font-weight: 700; font-size: 16px; }
 .modal-head .gear { width: 36px; height: 36px; font-size: 16px; }
 
-.top-actions { display: flex; gap: 10px; }
-.top-actions .secondary { flex: 1; padding: 12px 10px; font-size: 14px; }
+.top-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.top-actions .secondary { padding: 12px 10px; font-size: 14px; }
 
 .stats-tiles { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 .stile { background: var(--card-alt); border-radius: 14px; padding: 12px 8px; text-align: center; }

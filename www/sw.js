@@ -1,4 +1,4 @@
-const CACHE = 'quiz-langue-v11';
+const CACHE = 'quiz-langue-v12';
 const ASSETS = [
   './',
   'index.html',
