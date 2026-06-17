@@ -47,7 +47,7 @@ function lsGet(k, d) { try { const r = localStorage.getItem(k); return r ? JSON.
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 
 function loadSettings() {
-  return Object.assign({ audioAuto: true, autoNext: true, sound: true }, lsGet('quizlangue:settings:v1', {}));
+  return Object.assign({ audioAuto: true, autoNext: true, sound: true, closeDistractors: false }, lsGet('quizlangue:settings:v1', {}));
 }
 function saveSettings() { lsSet('quizlangue:settings:v1', settings); }
 
@@ -70,6 +70,33 @@ function shuffle(list) {
   const a = list.slice();
   for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
   return a;
+}
+
+// Score de proximité entre deux mots (pour l'option « distracteurs proches »).
+function similarity(a, b) {
+  a = String(a).toLowerCase(); b = String(b).toLowerCase();
+  if (a === b) return -1;
+  let s = 0;
+  if (a[0] === b[0]) s += 3;
+  s += Math.max(0, 3 - Math.abs(a.length - b.length));
+  const setB = new Set(b); let shared = 0;
+  new Set(a).forEach(ch => { if (setB.has(ch)) shared++; });
+  return s + shared * 0.5;
+}
+
+// Choisit OPTION_COUNT-1 distracteurs. Si « distracteurs proches » est actif, on
+// privilégie les candidats orthographiquement proches de la bonne réponse.
+function chooseDistractors(correct, primaryRaw, fallbackRaw) {
+  let cand = [...new Set(primaryRaw.map(display))].filter(v => v && v !== correct);
+  if (cand.length < OPTION_COUNT - 1 && fallbackRaw) {
+    cand = [...new Set(cand.concat(fallbackRaw.map(display)))].filter(v => v && v !== correct);
+  }
+  if (settings.closeDistractors) {
+    const ranked = cand.map(v => [v, similarity(correct, v)]).sort((x, y) => y[1] - x[1]);
+    const top = ranked.slice(0, Math.max(8, (OPTION_COUNT - 1) * 4)).map(x => x[0]);
+    return shuffle(top).slice(0, OPTION_COUNT - 1);
+  }
+  return shuffle(cand).slice(0, OPTION_COUNT - 1);
 }
 
 function levelWords() {
@@ -130,6 +157,7 @@ function buildGrammarQuestion(item) {
     options: opts,
     correctIndex: opts.indexOf(correct),
     correctText: correct,
+    hint: item.hint || '',
   };
 }
 
@@ -138,16 +166,7 @@ function buildVerbQuestion(item, words) {
   let form = state.verbForm === 'mix' ? (Math.random() < 0.5 ? 'pret' : 'pp') : state.verbForm;
   const correct = display(item[form]);
   const poolRaw = words.map(w => w[form]);
-
-  const options = [correct];
-  const used = new Set([correct]);
-  let guard = 0;
-  while (options.length < OPTION_COUNT && guard < 6000) {
-    const cand = display(poolRaw[Math.floor(Math.random() * poolRaw.length)]);
-    if (cand && !used.has(cand)) { used.add(cand); options.push(cand); }
-    guard++;
-  }
-  const shuffled = shuffle(options);
+  const shuffled = shuffle([correct, ...chooseDistractors(correct, poolRaw)]);
   return {
     word: item.word,                       // = infinitif (clé SRS)
     foreign: display(item.inf),            // infinitif (pour l'audio)
@@ -168,17 +187,11 @@ function buildQuestion(item, words) {
   const promptText = display(fwd ? item.word : item.fr);
   const correctRaw = fwd ? item.fr : item.word;
   const correct = display(correctRaw);
-  const poolRaw = fwd ? words.map(w => w.fr) : words.map(w => w.word);
-
-  const options = [correct];
-  const used = new Set([correct]);
-  let guard = 0;
-  while (options.length < OPTION_COUNT && guard < 6000) {
-    const cand = display(poolRaw[Math.floor(Math.random() * poolRaw.length)]);
-    if (cand && !used.has(cand)) { used.add(cand); options.push(cand); }
-    guard++;
-  }
-  const shuffled = shuffle(options);
+  // « distracteurs proches » : on restreint au même niveau, sinon tout le lexique.
+  const closePool = settings.closeDistractors ? words.filter(w => w.level === item.level) : words;
+  const poolRaw = fwd ? closePool.map(w => w.fr) : closePool.map(w => w.word);
+  const fallbackRaw = fwd ? words.map(w => w.fr) : words.map(w => w.word);
+  const shuffled = shuffle([correct, ...chooseDistractors(correct, poolRaw, fallbackRaw)]);
   return {
     word: item.word,                       // canonical key for SRS
     foreign: display(item.word),           // the EN/ES word (for audio)
@@ -231,7 +244,7 @@ function vibrate(ok) { try { navigator.vibrate && navigator.vibrate(ok ? 25 : [4
 
 // ---------- DOM ----------
 const $ = (id) => document.getElementById(id);
-const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar') };
+const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), learn: $('view-learn') };
 let autoNextTimer = null;
 
 function showView(name) {
@@ -336,6 +349,7 @@ function renderQuestion() {
   if (a) {
     let txt = a.correct ? '✅ Correct' : `❌ Faux — ${q.correctText}`;
     if (state.kind === 'grammar' && q.fullSentence) txt += `\n${q.fullSentence}`;
+    if (state.kind === 'grammar' && q.hint) txt += `\n💡 ${q.hint}`;
     fb.textContent = txt;
     fb.className = 'feedback ' + (a.correct ? 'good' : 'bad');
   } else { fb.textContent = ''; fb.className = 'feedback'; }
@@ -533,6 +547,72 @@ $('btn-grammar-quiz').addEventListener('click', () => startGrammarQuiz(null));
 $('btn-grammar-back').addEventListener('click', renderGrammarList);
 $('btn-grammar-home').addEventListener('click', () => showView('home'));
 
+// ---------- mode Apprendre (flashcards, partagé vocab / verbes / grammaire) ----------
+function buildCard(item) {
+  if (state.kind === 'verbs') {
+    return { key: item.word, label: 'Verbe', audio: display(item.inf),
+      front: display(item.inf) + ' — ' + display(item.fr),
+      backHtml: 'Prétérit : <b>' + esc(display(item.pret)) + '</b><br>Participe passé : <b>' + esc(display(item.pp)) + '</b>' };
+  }
+  if (state.kind === 'grammar') {
+    const full = item.q.replace('___', item.answer);
+    return { key: item.id, label: 'Complète la phrase', audio: full, front: item.q,
+      backHtml: '<b>' + esc(full) + '</b>' + (item.hint ? '<br>💡 ' + esc(item.hint) : '') };
+  }
+  return { key: item.word, label: 'Mot', audio: display(item.word),
+    front: display(item.word), backHtml: '<b>' + esc(display(item.fr)) + '</b>' };
+}
+
+const learnState = { cards: [], idx: 0 };
+function startLearn() {
+  learnState.cards = pickSession('srs').map(buildCard);
+  if (!learnState.cards.length) return;
+  learnState.idx = 0;
+  state.badge = state.kind === 'verbs' ? verbBadge() : state.level;
+  showView('learn'); renderCard();
+}
+function renderCard() {
+  clearTimeout(autoNextTimer);
+  const c = learnState.cards[learnState.idx];
+  $('learn-progress').textContent = `Carte ${learnState.idx + 1}/${learnState.cards.length}`;
+  $('learn-badge').textContent = state.kind === 'grammar' ? 'Grammaire' : (state.kind === 'verbs' ? 'Verbes' : state.badge);
+  $('flash-label').textContent = c.label;
+  $('flash-front').textContent = c.front;
+  $('flash-front').classList.toggle('sentence', state.kind === 'grammar');
+  const back = $('flash-back'); back.innerHTML = c.backHtml; back.classList.add('hidden');
+  $('btn-flash-speak').style.display = (state.kind === 'grammar') ? 'none' : '';
+  $('btn-flash-reveal').classList.remove('hidden');
+  $('flash-grade').classList.add('hidden');
+  if (state.kind !== 'grammar' && settings.audioAuto) speak(c.audio);
+}
+function revealCard() {
+  const c = learnState.cards[learnState.idx];
+  $('flash-back').classList.remove('hidden');
+  $('btn-flash-reveal').classList.add('hidden');
+  $('flash-grade').classList.remove('hidden');
+  if (settings.audioAuto && state.kind === 'grammar') speak(c.audio);
+}
+function gradeCard(ok) {
+  const c = learnState.cards[learnState.idx];
+  srsUpdate(quizKey(), c.key, ok); saveSrs(quizKey()); logDaily(quizKey(), ok);
+  if (learnState.idx < learnState.cards.length - 1) { learnState.idx++; renderCard(); }
+  else exitToHome();
+}
+
+$('btn-learn').addEventListener('click', () => { state.kind = 'vocab'; state.words = cache[state.lang] || state.words; startLearn(); });
+$('btn-verbs-learn').addEventListener('click', () => { if (!verbsData) return; state.kind = 'verbs'; state.level = 'Global'; state.words = verbsData; startLearn(); });
+$('btn-grammar-learn').addEventListener('click', async () => {
+  if (!grammarQuizData) grammarQuizData = await (await fetch(GRAMMAR_QUIZ_FILE)).json();
+  state.kind = 'grammar'; state.level = 'Global';
+  state.words = grammarQuizData.map(x => Object.assign({ word: x.id }, x));
+  startLearn();
+});
+$('btn-flash-reveal').addEventListener('click', revealCard);
+$('btn-flash-speak').addEventListener('click', () => { const c = learnState.cards[learnState.idx]; if (c) speak(c.audio); });
+$('btn-flash-ok').addEventListener('click', () => gradeCard(true));
+$('btn-flash-again').addEventListener('click', () => gradeCard(false));
+$('btn-learn-abort').addEventListener('click', exitToHome);
+
 function bindToggle(id, key) {
   const el = $(id); el.checked = settings[key];
   el.addEventListener('change', () => { settings[key] = el.checked; saveSettings(); });
@@ -540,6 +620,7 @@ function bindToggle(id, key) {
 bindToggle('opt-audio', 'audioAuto');
 bindToggle('opt-autonext', 'autoNext');
 bindToggle('opt-sound', 'sound');
+bindToggle('opt-close', 'closeDistractors');
 
 const settingsModal = $('settings-modal');
 $('btn-settings').addEventListener('click', () => settingsModal.classList.remove('hidden'));

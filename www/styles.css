@@ -244,3 +244,8 @@ html, body {
 }
 .gex-en { font-weight: 600; }
 .gex-fr { color: var(--text-dim); font-size: 14px; }
+
+/* ----- Flashcards (mode Apprendre) ----- */
+.flash-card { gap: 14px; }
+.flash-back { border-top: 1px solid rgba(255,255,255,.1); padding-top: 14px; font-size: 18px; color: var(--white); line-height: 1.4; }
+.flash-back b { color: var(--sky); }

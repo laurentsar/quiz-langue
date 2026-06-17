@@ -26,6 +26,7 @@
       </div>
 
       <div class="top-actions">
+        <button id="btn-learn" class="secondary">🎓 Apprendre (cartes)</button>
         <button id="btn-review" class="secondary">⟳ Mes erreurs (<span id="review-count">0</span>)</button>
         <button id="btn-stats" class="secondary">📊 Stats</button>
         <button id="btn-verbs" class="secondary">📘 Verbes irréguliers</button>
@@ -79,6 +80,7 @@
         <label class="toggle"><span>🔊 Lire le mot automatiquement</span><input type="checkbox" id="opt-audio" /></label>
         <label class="toggle"><span>⏭️ Question suivante automatique</span><input type="checkbox" id="opt-autonext" /></label>
         <label class="toggle"><span>🎵 Son juste / faux</span><input type="checkbox" id="opt-sound" /></label>
+        <label class="toggle"><span>🎯 Distracteurs proches (plus difficile)</span><input type="checkbox" id="opt-close" /></label>
       </div>
     </div>
 
@@ -143,6 +145,7 @@
       <div id="verbs-summary" class="card stats-tiles"></div>
 
       <button id="btn-verbs-start" class="primary">Démarrer</button>
+      <button id="btn-verbs-learn" class="secondary">🎓 Apprendre (cartes)</button>
       <button id="btn-verbs-review" class="secondary">⟳ Mes erreurs (<span id="verbs-review-count">0</span>)</button>
       <button id="btn-verbs-home" class="secondary">Accueil</button>
     </section>
@@ -155,9 +158,34 @@
       </div>
       <div id="grammar-list" class="grammar-list"></div>
       <button id="btn-grammar-quiz" class="primary">🧩 S'entraîner (phrases à compléter)</button>
+      <button id="btn-grammar-learn" class="secondary">🎓 Apprendre (cartes)</button>
       <div id="grammar-detail" class="hidden"></div>
       <button id="btn-grammar-back" class="secondary hidden">← Sommaire</button>
       <button id="btn-grammar-home" class="secondary">Accueil</button>
+    </section>
+
+    <!-- APPRENDRE (flashcards, branché sur le SRS) -->
+    <section id="view-learn" class="view hidden">
+      <div class="quiz-header">
+        <span id="learn-progress" class="quiz-progress">Carte 1/1</span>
+        <span id="learn-badge" class="quiz-level"></span>
+      </div>
+
+      <div class="card flash-card">
+        <span id="flash-label" class="word-label">Mot</span>
+        <div class="word-line">
+          <span id="flash-front" class="word-value"></span>
+          <button id="btn-flash-speak" class="speak-btn" title="Écouter">🔊</button>
+        </div>
+        <div id="flash-back" class="flash-back hidden"></div>
+      </div>
+
+      <button id="btn-flash-reveal" class="primary">Afficher la réponse</button>
+      <div id="flash-grade" class="quiz-footer hidden">
+        <button id="btn-flash-again" class="ghost grow">🔁 À revoir</button>
+        <button id="btn-flash-ok" class="primary grow">✅ Je savais</button>
+      </div>
+      <button id="btn-learn-abort" class="secondary">Quitter</button>
     </section>
 
     <!-- QUIZ -->
