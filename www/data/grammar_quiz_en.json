@@ -47,5 +47,80 @@
   { "id": "g-ger-1", "topic": "gerund-infinitive", "q": "I enjoy ___ books.", "options": ["reading", "to read", "read", "reads"], "answer": "reading", "hint": "Après enjoy → V-ing." },
   { "id": "g-ger-2", "topic": "gerund-infinitive", "q": "She wants ___ a doctor.", "options": ["to be", "being", "be", "been"], "answer": "to be", "hint": "Après want → to + verbe." },
   { "id": "g-ger-3", "topic": "gerund-infinitive", "q": "He's good at ___.", "options": ["cooking", "to cook", "cook", "cooked"], "answer": "cooking", "hint": "Après préposition → V-ing." },
-  { "id": "g-ger-4", "topic": "gerund-infinitive", "q": "They decided ___ early.", "options": ["to leave", "leaving", "leave", "left"], "answer": "to leave", "hint": "Après decide → to + verbe." }
+  { "id": "g-ger-4", "topic": "gerund-infinitive", "q": "They decided ___ early.", "options": ["to leave", "leaving", "leave", "left"], "answer": "to leave", "hint": "Après decide → to + verbe." },
+
+  { "id": "g-be-1", "topic": "be", "q": "I ___ a student.", "options": ["am", "is", "are", "be"], "answer": "am", "hint": "I → am." },
+  { "id": "g-be-2", "topic": "be", "q": "They ___ at home yesterday.", "options": ["were", "was", "are", "be"], "answer": "were", "hint": "Prétérit pluriel → were." },
+  { "id": "g-be-3", "topic": "be", "q": "___ she your sister?", "options": ["Is", "Does", "Are", "Do"], "answer": "Is", "hint": "Question avec be, 3ᵉ pers. → Is." },
+  { "id": "g-be-4", "topic": "be", "q": "I ___ hungry.", "options": ["am", "have", "is", "do"], "answer": "am", "hint": "be hungry = avoir faim." },
+
+  { "id": "g-have-1", "topic": "have", "q": "She ___ two brothers.", "options": ["has", "have", "haves", "is"], "answer": "has", "hint": "3ᵉ pers. → has." },
+  { "id": "g-have-2", "topic": "have", "q": "___ you have a car?", "options": ["Do", "Are", "Have", "Is"], "answer": "Do", "hint": "have verbe ordinaire → Do you have…?" },
+  { "id": "g-have-3", "topic": "have", "q": "I've ___ a great idea!", "options": ["got", "get", "have", "had"], "answer": "got", "hint": "have got → I've got." },
+  { "id": "g-have-4", "topic": "have", "q": "He ___ a job at the moment.", "options": ["doesn't have", "don't have", "hasn't", "isn't have"], "answer": "doesn't have", "hint": "Négation, 3ᵉ pers. → doesn't have." },
+
+  { "id": "g-pron-1", "topic": "personal-pronouns", "q": "Can you help ___?", "options": ["me", "I", "my", "mine"], "answer": "me", "hint": "Après le verbe → pronom complément." },
+  { "id": "g-pron-2", "topic": "personal-pronouns", "q": "___ are my best friends.", "options": ["They", "Them", "Their", "Theirs"], "answer": "They", "hint": "Sujet du verbe → They." },
+  { "id": "g-pron-3", "topic": "personal-pronouns", "q": "This pen is ___.", "options": ["mine", "my", "me", "I"], "answer": "mine", "hint": "Pronom possessif (sans nom) → mine." },
+  { "id": "g-pron-4", "topic": "personal-pronouns", "q": "I saw ___ at the party.", "options": ["her", "she", "hers", "he"], "answer": "her", "hint": "Complément → her." },
+
+  { "id": "g-noun-1", "topic": "nouns-plural", "q": "I have three ___.", "options": ["children", "childs", "childrens", "child"], "answer": "children", "hint": "child → children (irrégulier)." },
+  { "id": "g-noun-2", "topic": "nouns-plural", "q": "There are two ___ on the table.", "options": ["boxes", "boxs", "box", "boxies"], "answer": "boxes", "hint": "Après x → + es." },
+  { "id": "g-noun-3", "topic": "nouns-plural", "q": "The ___ is good today.", "options": ["news", "new", "newses", "news are"], "answer": "news", "hint": "news = indénombrable, verbe au singulier." },
+  { "id": "g-noun-4", "topic": "nouns-plural", "q": "She bought some ___.", "options": ["tomatoes", "tomatos", "tomatoe", "tomato"], "answer": "tomatoes", "hint": "Après o → + es." },
+
+  { "id": "g-poss-1", "topic": "possession", "q": "This is ___ car.", "options": ["Tom's", "Toms", "Tom", "of Tom"], "answer": "Tom's", "hint": "Possesseur animé → 's." },
+  { "id": "g-poss-2", "topic": "possession", "q": "___ bag is this?", "options": ["Whose", "Who's", "Who", "Whom"], "answer": "Whose", "hint": "À qui ? → Whose." },
+  { "id": "g-poss-3", "topic": "possession", "q": "That is ___ house (à eux).", "options": ["their", "theirs", "them", "they"], "answer": "their", "hint": "Adjectif possessif + nom → their." },
+  { "id": "g-poss-4", "topic": "possession", "q": "The ___ toys are everywhere.", "options": ["children's", "childrens'", "childrens", "children"], "answer": "children's", "hint": "Pluriel irrégulier → children's." },
+
+  { "id": "g-place-1", "topic": "prepositions-place", "q": "The book is ___ the table.", "options": ["on", "in", "at", "to"], "answer": "on", "hint": "Surface → on." },
+  { "id": "g-place-2", "topic": "prepositions-place", "q": "She lives ___ London.", "options": ["in", "on", "at", "to"], "answer": "in", "hint": "Ville → in." },
+  { "id": "g-place-3", "topic": "prepositions-place", "q": "I'll meet you ___ the bus stop.", "options": ["at", "in", "on", "to"], "answer": "at", "hint": "Point précis → at." },
+  { "id": "g-place-4", "topic": "prepositions-place", "q": "The cat is ___ the chair.", "options": ["under", "on", "over", "in"], "answer": "under", "hint": "Sous → under." },
+
+  { "id": "g-dem-1", "topic": "demonstratives", "q": "___ is my phone (dans ma main).", "options": ["This", "That", "These", "Those"], "answer": "This", "hint": "Proche, singulier → this." },
+  { "id": "g-dem-2", "topic": "demonstratives", "q": "___ books over there are old.", "options": ["Those", "These", "This", "That"], "answer": "Those", "hint": "Éloigné, pluriel → those." },
+  { "id": "g-dem-3", "topic": "demonstratives", "q": "Hello, who's ___? (au téléphone)", "options": ["this", "that", "these", "it"], "answer": "this", "hint": "Téléphone → this." },
+  { "id": "g-dem-4", "topic": "demonstratives", "q": "I'll take ___ shoes here.", "options": ["these", "those", "this", "that"], "answer": "these", "hint": "Proche, pluriel → these." },
+
+  { "id": "g-caus-1", "topic": "causative", "q": "I had my car ___.", "options": ["repaired", "repair", "repairing", "to repair"], "answer": "repaired", "hint": "have + objet + participe passé." },
+  { "id": "g-caus-2", "topic": "causative", "q": "The film made me ___.", "options": ["cry", "to cry", "crying", "cried"], "answer": "cry", "hint": "make + base verbale (sans to)." },
+  { "id": "g-caus-3", "topic": "causative", "q": "She got her hair ___.", "options": ["cut", "to cut", "cutting", "cuts"], "answer": "cut", "hint": "get + objet + participe passé." },
+  { "id": "g-caus-4", "topic": "causative", "q": "___ me help you.", "options": ["Let", "Make", "Get", "Have"], "answer": "Let", "hint": "let + base verbale = laisser." },
+
+  { "id": "g-ptime-1", "topic": "prepositions-time", "q": "See you ___ Monday.", "options": ["on", "in", "at", "for"], "answer": "on", "hint": "Jour → on." },
+  { "id": "g-ptime-2", "topic": "prepositions-time", "q": "I've been here ___ two hours.", "options": ["for", "since", "ago", "during"], "answer": "for", "hint": "Durée → for." },
+  { "id": "g-ptime-3", "topic": "prepositions-time", "q": "She was born ___ 1990.", "options": ["in", "on", "at", "for"], "answer": "in", "hint": "Année → in." },
+  { "id": "g-ptime-4", "topic": "prepositions-time", "q": "He left two days ___.", "options": ["ago", "since", "for", "before"], "answer": "ago", "hint": "Il y a (passé daté) → ago." },
+
+  { "id": "g-pass-1", "topic": "passive", "q": "The house ___ in 1990.", "options": ["was built", "built", "has built", "is building"], "answer": "was built", "hint": "Passif passé → was + participe passé." },
+  { "id": "g-pass-2", "topic": "passive", "q": "English ___ in many countries.", "options": ["is spoken", "speaks", "is speaking", "spoke"], "answer": "is spoken", "hint": "Passif présent → is + participe passé." },
+  { "id": "g-pass-3", "topic": "passive", "q": "My bike ___ last week.", "options": ["was stolen", "stole", "has stole", "is stolen"], "answer": "was stolen", "hint": "Passif passé → was + participe passé." },
+  { "id": "g-pass-4", "topic": "passive", "q": "The work ___ tomorrow.", "options": ["will be finished", "will finish", "finishes", "is finishing"], "answer": "will be finished", "hint": "Passif futur → will be + participe passé." },
+
+  { "id": "g-adv-1", "topic": "adverbs", "q": "She sings ___.", "options": ["beautifully", "beautiful", "beauty", "more beautiful"], "answer": "beautifully", "hint": "Adverbe de manière → adjectif + -ly." },
+  { "id": "g-adv-2", "topic": "adverbs", "q": "He ___ late for work.", "options": ["is never", "never is", "is not never", "never be"], "answer": "is never", "hint": "Fréquence APRÈS be → is never." },
+  { "id": "g-adv-3", "topic": "adverbs", "q": "They speak English ___.", "options": ["well", "good", "goodly", "better"], "answer": "well", "hint": "good → well (irrégulier)." },
+  { "id": "g-adv-4", "topic": "adverbs", "q": "I ___ drink coffee in the morning.", "options": ["always", "am always", "drink always", "always am"], "answer": "always", "hint": "Fréquence AVANT le verbe principal." },
+
+  { "id": "g-num-1", "topic": "numbers", "q": "13 is written ___.", "options": ["thirteen", "thirty", "threeteen", "thirdteen"], "answer": "thirteen", "hint": "13 → thirteen (en -teen)." },
+  { "id": "g-num-2", "topic": "numbers", "q": "45 is written ___.", "options": ["forty-five", "fourty-five", "fortyfive", "four-five"], "answer": "forty-five", "hint": "40 = forty (sans u) + trait d'union." },
+  { "id": "g-num-3", "topic": "numbers", "q": "250 = two hundred ___ fifty.", "options": ["and", "plus", "point", "with"], "answer": "and", "hint": "and après hundred." },
+  { "id": "g-num-4", "topic": "numbers", "q": "She has ___ books (200).", "options": ["two hundred", "two hundreds", "twos hundred", "two-hundreds"], "answer": "two hundred", "hint": "hundred reste invariable." },
+
+  { "id": "g-adjo-1", "topic": "adjective-order", "q": "She has two ___ cats.", "options": ["black", "blacks", "black ones", "black's"], "answer": "black", "hint": "L'adjectif est invariable." },
+  { "id": "g-adjo-2", "topic": "adjective-order", "q": "It's a ___ house.", "options": ["nice little old", "old little nice", "little old nice", "nice old little"], "answer": "nice little old", "hint": "Opinion → taille → âge." },
+  { "id": "g-adjo-3", "topic": "adjective-order", "q": "The film was ___. I fell asleep.", "options": ["boring", "bored", "bore", "boringly"], "answer": "boring", "hint": "Ce qui provoque → -ing." },
+  { "id": "g-adjo-4", "topic": "adjective-order", "q": "I'm ___ with this game.", "options": ["bored", "boring", "bore", "boringly"], "answer": "bored", "hint": "Ce qu'on ressent → -ed." },
+
+  { "id": "g-word-1", "topic": "word-formation", "q": "The opposite of 'happy' is ___.", "options": ["unhappy", "inhappy", "dishappy", "nonhappy"], "answer": "unhappy", "hint": "Préfixe un-." },
+  { "id": "g-word-2", "topic": "word-formation", "q": "A person who teaches is a ___.", "options": ["teacher", "teachor", "teachist", "teaching"], "answer": "teacher", "hint": "Suffixe -er = celui qui." },
+  { "id": "g-word-3", "topic": "word-formation", "q": "The opposite of 'possible' is ___.", "options": ["impossible", "unpossible", "dispossible", "inpossible"], "answer": "impossible", "hint": "Préfixe im- devant p." },
+  { "id": "g-word-4", "topic": "word-formation", "q": "Be ___! The floor is wet.", "options": ["careful", "carefull", "careless", "carely"], "answer": "careful", "hint": "Suffixe -ful = plein de." },
+
+  { "id": "g-ded-1", "topic": "deduction", "q": "The light is on. Someone ___ at home.", "options": ["must be", "can't be", "mustn't be", "might been"], "answer": "must be", "hint": "Quasi-certitude → must be." },
+  { "id": "g-ded-2", "topic": "deduction", "q": "It's only 5 a.m.! You ___ serious.", "options": ["can't be", "must be", "may be", "should be"], "answer": "can't be", "hint": "Impossible → can't be." },
+  { "id": "g-ded-3", "topic": "deduction", "q": "Take an umbrella, it ___ rain.", "options": ["might", "must", "can't", "should"], "answer": "might", "hint": "Possibilité → might." },
+  { "id": "g-ded-4", "topic": "deduction", "q": "He's not here. He ___ home already.", "options": ["must have gone", "must go", "must going", "can go"], "answer": "must have gone", "hint": "Déduction passée → must have + participe." }
 ]

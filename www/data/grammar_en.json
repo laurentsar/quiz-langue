@@ -367,5 +367,1323 @@
         ]
       }
     ]
+  },
+  {
+    "id": "be",
+    "title": "Le verbe be (être)",
+    "subtitle": "am / is / are, was / were",
+    "sections": [
+      {
+        "heading": "Présent : am / is / are",
+        "points": [
+          "I am ; he/she/it is ; you/we/they are.",
+          "Formes contractées : I'm, you're, he's, she's, it's, we're, they're.",
+          "be sert aussi d'auxiliaire (présent continu, passif)."
+        ],
+        "examples": [
+          { "en": "I am French.", "fr": "Je suis français." },
+          { "en": "She is tired.", "fr": "Elle est fatiguée." },
+          { "en": "They are at home.", "fr": "Ils sont à la maison." }
+        ]
+      },
+      {
+        "heading": "Négation et question",
+        "points": [
+          "Négation : be + not (I'm not, he isn't, they aren't). Pas de do.",
+          "Question : on inverse be et le sujet (Are you…? Is he…?)."
+        ],
+        "examples": [
+          { "en": "Are you ready?", "fr": "Es-tu prêt ?" },
+          { "en": "He isn't here.", "fr": "Il n'est pas là." }
+        ]
+      },
+      {
+        "heading": "Prétérit : was / were",
+        "points": [
+          "was : I / he / she / it ; were : you / we / they.",
+          "Négation : wasn't / weren't."
+        ],
+        "examples": [
+          { "en": "I was at school.", "fr": "J'étais à l'école." },
+          { "en": "They were happy.", "fr": "Ils étaient contents." }
+        ]
+      },
+      {
+        "heading": "Expressions avec be",
+        "points": [
+          "Là où le français dit « avoir » : be hungry (avoir faim), be cold, be right, be 20 years old.",
+          "There is / there are = il y a (singulier / pluriel)."
+        ],
+        "examples": [
+          { "en": "I am hungry.", "fr": "J'ai faim." },
+          { "en": "He is ten years old.", "fr": "Il a dix ans." },
+          { "en": "There is a problem.", "fr": "Il y a un problème." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "have",
+    "title": "Le verbe have (avoir)",
+    "subtitle": "have / has, have got",
+    "sections": [
+      {
+        "heading": "have / has",
+        "points": [
+          "Possession, relations : have (I/you/we/they), has (he/she/it).",
+          "Contracté en auxiliaire : 've / 's."
+        ],
+        "examples": [
+          { "en": "I have a car.", "fr": "J'ai une voiture." },
+          { "en": "She has two children.", "fr": "Elle a deux enfants." }
+        ]
+      },
+      {
+        "heading": "have got",
+        "points": [
+          "Surtout en anglais britannique pour la possession : I've got, he's got.",
+          "Question : Have you got…? Négation : haven't got / hasn't got."
+        ],
+        "examples": [
+          { "en": "I've got a headache.", "fr": "J'ai mal à la tête." },
+          { "en": "Have you got a pen?", "fr": "As-tu un stylo ?" }
+        ]
+      },
+      {
+        "heading": "Négation et question",
+        "points": [
+          "have « verbe ordinaire » → do / does : I don't have, Does she have…?",
+          "Avec have got → inversion directe (Has he got…?)."
+        ],
+        "examples": [
+          { "en": "Do you have time?", "fr": "As-tu le temps ?" },
+          { "en": "He doesn't have a job.", "fr": "Il n'a pas de travail." }
+        ]
+      },
+      {
+        "heading": "have comme auxiliaire",
+        "points": [
+          "have + participe passé = present perfect (≠ possession)."
+        ],
+        "examples": [
+          { "en": "I have finished.", "fr": "J'ai fini." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "personal-pronouns",
+    "title": "Les pronoms personnels",
+    "subtitle": "sujet, complément, possessif",
+    "sections": [
+      {
+        "heading": "Pronoms sujets",
+        "points": [
+          "I, you, he, she, it, we, they : toujours obligatoires devant le verbe.",
+          "I s'écrit toujours en majuscule. it remplace un objet, un animal, le temps."
+        ],
+        "examples": [
+          { "en": "They live in London.", "fr": "Ils habitent à Londres." },
+          { "en": "It is cold today.", "fr": "Il fait froid aujourd'hui." }
+        ]
+      },
+      {
+        "heading": "Pronoms compléments",
+        "points": [
+          "me, you, him, her, it, us, them.",
+          "Après le verbe ou après une préposition."
+        ],
+        "examples": [
+          { "en": "Call me tonight.", "fr": "Appelle-moi ce soir." },
+          { "en": "I gave it to her.", "fr": "Je le lui ai donné." }
+        ]
+      },
+      {
+        "heading": "Pronoms possessifs",
+        "points": [
+          "mine, yours, his, hers, ours, theirs : ils remplacent « adjectif + nom ».",
+          "Pas de nom derrière (≠ adjectif possessif my, your…)."
+        ],
+        "examples": [
+          { "en": "This book is mine.", "fr": "Ce livre est le mien." },
+          { "en": "Theirs is bigger.", "fr": "Le leur est plus grand." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "nouns-plural",
+    "title": "Le nom : genre et nombre",
+    "subtitle": "pluriels et indénombrables",
+    "sections": [
+      {
+        "heading": "Le pluriel régulier",
+        "points": [
+          "+ s en général ; + es après s, ss, sh, ch, x, o (boxes, tomatoes).",
+          "consonne + y → -ies (city → cities) ; f / fe → ves (knife → knives)."
+        ],
+        "examples": [
+          { "en": "one car, two cars", "fr": "une voiture, deux voitures" },
+          { "en": "one baby, two babies", "fr": "un bébé, deux bébés" }
+        ]
+      },
+      {
+        "heading": "Pluriels irréguliers",
+        "points": [
+          "man → men, woman → women, child → children, foot → feet, tooth → teeth.",
+          "person → people, mouse → mice. Invariables : sheep, fish, deer."
+        ],
+        "examples": [
+          { "en": "one child, two children", "fr": "un enfant, deux enfants" },
+          { "en": "ten sheep", "fr": "dix moutons" }
+        ]
+      },
+      {
+        "heading": "Dénombrables vs indénombrables",
+        "points": [
+          "Indénombrables (water, money, information, advice, news) : pas de pluriel, verbe au singulier, pas de a/an.",
+          "On les quantifie : a piece of advice, a glass of water."
+        ],
+        "examples": [
+          { "en": "The news is good.", "fr": "La nouvelle est bonne." },
+          { "en": "I need some information.", "fr": "J'ai besoin d'informations." }
+        ]
+      },
+      {
+        "heading": "Le genre",
+        "points": [
+          "Pas de genre grammatical : les objets sont it.",
+          "he / she surtout pour les personnes (et parfois les animaux familiers)."
+        ],
+        "examples": [
+          { "en": "The table is new — it is white.", "fr": "La table est neuve — elle est blanche." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "possession",
+    "title": "La possession",
+    "subtitle": "génitif 's, of, whose",
+    "sections": [
+      {
+        "heading": "Le génitif 's (possesseur animé)",
+        "points": [
+          "Personnes / animaux : possesseur + 's + chose.",
+          "Pluriel déjà en -s → apostrophe seule (the students' books)."
+        ],
+        "examples": [
+          { "en": "Tom's car", "fr": "la voiture de Tom" },
+          { "en": "the boys' room", "fr": "la chambre des garçons" }
+        ]
+      },
+      {
+        "heading": "of (possesseur inanimé)",
+        "points": [
+          "Objets, concepts : the + chose + of + the + possesseur."
+        ],
+        "examples": [
+          { "en": "the door of the car", "fr": "la portière de la voiture" },
+          { "en": "the end of the film", "fr": "la fin du film" }
+        ]
+      },
+      {
+        "heading": "Adjectifs possessifs",
+        "points": [
+          "my, your, his, her, its, our, their + nom.",
+          "Ils s'accordent avec le possesseur, pas avec la chose (her husband = le mari d'elle)."
+        ],
+        "examples": [
+          { "en": "her husband", "fr": "son mari (à elle)" },
+          { "en": "their house", "fr": "leur maison" }
+        ]
+      },
+      {
+        "heading": "whose (à qui ?)",
+        "points": [
+          "whose pour demander le possesseur."
+        ],
+        "examples": [
+          { "en": "Whose bag is this?", "fr": "À qui est ce sac ?" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepositions-place",
+    "title": "Les prépositions de lieu",
+    "subtitle": "in / on / at et les autres",
+    "sections": [
+      {
+        "heading": "in / on / at",
+        "points": [
+          "at : point précis (at the bus stop, at home, at work).",
+          "in : espace fermé / volume (in the box, in Paris, in a country).",
+          "on : surface, contact (on the table, on the wall)."
+        ],
+        "examples": [
+          { "en": "The keys are on the table.", "fr": "Les clés sont sur la table." },
+          { "en": "She lives in Paris.", "fr": "Elle vit à Paris." },
+          { "en": "Meet me at the station.", "fr": "Retrouve-moi à la gare." }
+        ]
+      },
+      {
+        "heading": "Autres prépositions",
+        "points": [
+          "under (sous), over / above (au-dessus), behind (derrière), in front of (devant).",
+          "between (entre), next to / beside (à côté de), near (près de), opposite (en face de)."
+        ],
+        "examples": [
+          { "en": "The cat is under the chair.", "fr": "Le chat est sous la chaise." },
+          { "en": "The bank is next to the shop.", "fr": "La banque est à côté du magasin." }
+        ]
+      },
+      {
+        "heading": "Mouvement",
+        "points": [
+          "to (vers), into (dans), out of (hors de), through (à travers), across, along."
+        ],
+        "examples": [
+          { "en": "I'm going to school.", "fr": "Je vais à l'école." },
+          { "en": "He walked into the room.", "fr": "Il est entré dans la pièce." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "demonstratives",
+    "title": "Les démonstratifs",
+    "subtitle": "this / that / these / those",
+    "sections": [
+      {
+        "heading": "Singulier : this / that",
+        "points": [
+          "this = proche (ici) ; that = éloigné (là-bas)."
+        ],
+        "examples": [
+          { "en": "This is my phone.", "fr": "Ceci est mon téléphone (proche)." },
+          { "en": "That is your car.", "fr": "Ça, c'est ta voiture (là-bas)." }
+        ]
+      },
+      {
+        "heading": "Pluriel : these / those",
+        "points": [
+          "these = proche (pluriel) ; those = éloigné (pluriel)."
+        ],
+        "examples": [
+          { "en": "These books are mine.", "fr": "Ces livres-ci sont à moi." },
+          { "en": "Those people are waiting.", "fr": "Ces gens-là attendent." }
+        ]
+      },
+      {
+        "heading": "Emplois",
+        "points": [
+          "Adjectif (this book) ou pronom (this is…).",
+          "Au téléphone : This is Tom (c'est Tom). Temps : this morning, those days."
+        ],
+        "examples": [
+          { "en": "Who's this?", "fr": "Qui est-ce ? (au téléphone)" },
+          { "en": "This morning I'm busy.", "fr": "Ce matin je suis occupé." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "causative",
+    "title": "Faire faire quelque chose",
+    "subtitle": "le causatif : have, get, make, let",
+    "sections": [
+      {
+        "heading": "have / get something done",
+        "points": [
+          "Faire faire l'action par quelqu'un d'autre : have / get + objet + participe passé."
+        ],
+        "examples": [
+          { "en": "I had my car repaired.", "fr": "J'ai fait réparer ma voiture." },
+          { "en": "She got her hair cut.", "fr": "Elle s'est fait couper les cheveux." }
+        ]
+      },
+      {
+        "heading": "make somebody do (obliger)",
+        "points": [
+          "make + complément + base verbale (sans to) = forcer, obliger."
+        ],
+        "examples": [
+          { "en": "The teacher made us work.", "fr": "Le professeur nous a fait travailler." },
+          { "en": "It makes me laugh.", "fr": "Ça me fait rire." }
+        ]
+      },
+      {
+        "heading": "let somebody do (laisser)",
+        "points": [
+          "let + complément + base verbale = laisser, permettre."
+        ],
+        "examples": [
+          { "en": "Let me help you.", "fr": "Laisse-moi t'aider." }
+        ]
+      },
+      {
+        "heading": "get somebody to do (convaincre)",
+        "points": [
+          "get + complément + to + verbe = réussir à faire faire, convaincre."
+        ],
+        "examples": [
+          { "en": "I got him to help me.", "fr": "Je l'ai convaincu de m'aider." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepositions-time",
+    "title": "Les prépositions de temps",
+    "subtitle": "at / on / in, for / since, ago",
+    "sections": [
+      {
+        "heading": "at / on / in",
+        "points": [
+          "at + heure / moment (at 5, at night, at the weekend, at Christmas).",
+          "on + jour / date (on Monday, on 5 May).",
+          "in + mois / année / saison / partie de journée (in May, in 2020, in the morning)."
+        ],
+        "examples": [
+          { "en": "at 7 o'clock", "fr": "à 7 heures" },
+          { "en": "on Friday", "fr": "vendredi" },
+          { "en": "in summer", "fr": "en été" }
+        ]
+      },
+      {
+        "heading": "for / since",
+        "points": [
+          "for + durée (for two hours, for ten years).",
+          "since + point de départ (since 2010, since Monday). Souvent avec le present perfect."
+        ],
+        "examples": [
+          { "en": "I've lived here for five years.", "fr": "J'habite ici depuis cinq ans." },
+          { "en": "She's been ill since Monday.", "fr": "Elle est malade depuis lundi." }
+        ]
+      },
+      {
+        "heading": "ago / during / while",
+        "points": [
+          "ago = il y a (two days ago), avec le prétérit.",
+          "during + nom (during the film) ; while + proposition (while I was eating)."
+        ],
+        "examples": [
+          { "en": "He left two hours ago.", "fr": "Il est parti il y a deux heures." },
+          { "en": "I fell asleep during the meeting.", "fr": "Je me suis endormi pendant la réunion." }
+        ]
+      },
+      {
+        "heading": "by / until / from… to",
+        "points": [
+          "by = au plus tard (by Friday) ; until / till = jusqu'à ; from… to / until = de… à."
+        ],
+        "examples": [
+          { "en": "Finish it by Monday.", "fr": "Termine-le pour lundi (au plus tard)." },
+          { "en": "We work from 9 to 5.", "fr": "Nous travaillons de 9 h à 17 h." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "passive",
+    "title": "Le passif",
+    "subtitle": "be + participe passé",
+    "sections": [
+      {
+        "heading": "Formation",
+        "points": [
+          "be (au temps voulu) + participe passé.",
+          "Le complément d'objet devient sujet ; l'auteur est introduit par by (souvent omis)."
+        ],
+        "examples": [
+          { "en": "The house was built in 1990.", "fr": "La maison a été construite en 1990." },
+          { "en": "English is spoken here.", "fr": "On parle anglais ici." }
+        ]
+      },
+      {
+        "heading": "À différents temps",
+        "points": [
+          "présent : is/are + pp ; prétérit : was/were + pp.",
+          "present perfect : has/have been + pp ; futur : will be + pp ; modal : can be + pp."
+        ],
+        "examples": [
+          { "en": "The car has been repaired.", "fr": "La voiture a été réparée." },
+          { "en": "It will be finished tomorrow.", "fr": "Ce sera terminé demain." }
+        ]
+      },
+      {
+        "heading": "Emploi",
+        "points": [
+          "Quand l'auteur est inconnu, évident ou sans importance.",
+          "Pour mettre en avant l'action ou l'objet plutôt que l'auteur."
+        ],
+        "examples": [
+          { "en": "My wallet was stolen.", "fr": "On m'a volé mon portefeuille." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "adverbs",
+    "title": "Les adverbes",
+    "subtitle": "formation et place",
+    "sections": [
+      {
+        "heading": "Formation",
+        "points": [
+          "adjectif + -ly (quick → quickly) ; -y → -ily (happy → happily).",
+          "Irréguliers : good → well, fast → fast, hard → hard (attention : hardly = à peine)."
+        ],
+        "examples": [
+          { "en": "She sings beautifully.", "fr": "Elle chante magnifiquement." },
+          { "en": "You speak English well.", "fr": "Tu parles bien anglais." }
+        ]
+      },
+      {
+        "heading": "Adverbes de fréquence",
+        "points": [
+          "always, usually, often, sometimes, rarely, never.",
+          "Place : AVANT le verbe principal, mais APRÈS be."
+        ],
+        "examples": [
+          { "en": "I always drink coffee.", "fr": "Je bois toujours du café." },
+          { "en": "She is never late.", "fr": "Elle n'est jamais en retard." }
+        ]
+      },
+      {
+        "heading": "Place des adverbes",
+        "points": [
+          "Adverbe de manière : souvent en fin de phrase, après le complément.",
+          "On ne sépare pas le verbe de son COD. Ordre courant : manière – lieu – temps."
+        ],
+        "examples": [
+          { "en": "He speaks English fluently.", "fr": "Il parle couramment anglais." },
+          { "en": "We went to London yesterday.", "fr": "Nous sommes allés à Londres hier." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "greetings",
+    "title": "Saluer les gens",
+    "subtitle": "bonjour, au revoir",
+    "sections": [
+      {
+        "heading": "Dire bonjour",
+        "points": [
+          "Hello / Hi (informel). Good morning / afternoon / evening selon l'heure.",
+          "How are you? → I'm fine, thanks. And you?"
+        ],
+        "examples": [
+          { "en": "Good morning! How are you?", "fr": "Bonjour ! Comment vas-tu ?" },
+          { "en": "Nice to meet you.", "fr": "Enchanté." }
+        ]
+      },
+      {
+        "heading": "Dire au revoir",
+        "points": [
+          "Goodbye / Bye. See you later / soon / tomorrow.",
+          "Good night : le soir, pour partir ou aller dormir."
+        ],
+        "examples": [
+          { "en": "See you later!", "fr": "À plus tard !" },
+          { "en": "Have a nice day!", "fr": "Bonne journée !" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "politeness",
+    "title": "Soyons polis !",
+    "subtitle": "please, thank you, sorry",
+    "sections": [
+      {
+        "heading": "Demander poliment",
+        "points": [
+          "please en fin de demande ; Could you…? / Would you mind…? sont plus polis que Can you…?"
+        ],
+        "examples": [
+          { "en": "Could you help me, please?", "fr": "Pourrais-tu m'aider, s'il te plaît ?" },
+          { "en": "Can I have a coffee, please?", "fr": "Puis-je avoir un café, s'il vous plaît ?" }
+        ]
+      },
+      {
+        "heading": "Remercier",
+        "points": [
+          "Thank you (very much) / Thanks (a lot).",
+          "Réponses : You're welcome / No problem / My pleasure."
+        ],
+        "examples": [
+          { "en": "Thank you very much.", "fr": "Merci beaucoup." },
+          { "en": "You're welcome.", "fr": "De rien." }
+        ]
+      },
+      {
+        "heading": "S'excuser",
+        "points": [
+          "Sorry = regret ; Excuse me = pour interpeller ou passer."
+        ],
+        "examples": [
+          { "en": "I'm sorry I'm late.", "fr": "Désolé d'être en retard." },
+          { "en": "Excuse me, where is the station?", "fr": "Excusez-moi, où est la gare ?" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "describe-people",
+    "title": "Décrire les personnes",
+    "subtitle": "apparence et caractère",
+    "sections": [
+      {
+        "heading": "L'apparence",
+        "points": [
+          "Taille : tall / short ; corpulence : slim / overweight ; âge : young / old.",
+          "Cheveux : long, short, blonde, dark ; yeux : blue, green, brown."
+        ],
+        "examples": [
+          { "en": "She is tall and has long dark hair.", "fr": "Elle est grande et a de longs cheveux bruns." },
+          { "en": "He has blue eyes.", "fr": "Il a les yeux bleus." }
+        ]
+      },
+      {
+        "heading": "Le caractère",
+        "points": [
+          "kind, friendly, funny, shy, serious, clever, lazy, generous."
+        ],
+        "examples": [
+          { "en": "He is very kind and friendly.", "fr": "Il est très gentil et sympathique." },
+          { "en": "She's a bit shy.", "fr": "Elle est un peu timide." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "introductions",
+    "title": "Les présentations",
+    "subtitle": "se présenter, présenter quelqu'un",
+    "sections": [
+      {
+        "heading": "Se présenter",
+        "points": [
+          "My name is… / I'm… ; I'm from… ; I'm 30 (years old)."
+        ],
+        "examples": [
+          { "en": "Hi, I'm Tom.", "fr": "Salut, moi c'est Tom." },
+          { "en": "My name is Anna and I'm from Spain.", "fr": "Je m'appelle Anna et je viens d'Espagne." }
+        ]
+      },
+      {
+        "heading": "Présenter quelqu'un",
+        "points": [
+          "This is… / Let me introduce… ; réponse : Nice to meet you / Pleased to meet you."
+        ],
+        "examples": [
+          { "en": "This is my colleague, Paul.", "fr": "Voici mon collègue, Paul." },
+          { "en": "Pleased to meet you.", "fr": "Ravi de vous rencontrer." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "numbers",
+    "title": "Les nombres",
+    "subtitle": "compter de 1 à un million",
+    "sections": [
+      {
+        "heading": "De 1 à 20",
+        "points": [
+          "one, two, three… twelve.",
+          "13 à 19 en -teen : thirteen, fifteen (attention à l'orthographe)."
+        ],
+        "examples": [
+          { "en": "thirteen (13)", "fr": "treize" },
+          { "en": "eighteen (18)", "fr": "dix-huit" }
+        ]
+      },
+      {
+        "heading": "Dizaines",
+        "points": [
+          "20, 30… 90 en -ty : twenty, thirty, forty (sans u), fifty…",
+          "21 = twenty-one (trait d'union)."
+        ],
+        "examples": [
+          { "en": "forty-five (45)", "fr": "quarante-cinq" },
+          { "en": "seventy-two (72)", "fr": "soixante-douze" }
+        ]
+      },
+      {
+        "heading": "Centaines et milliers",
+        "points": [
+          "100 = one hundred ; on ajoute and : one hundred and one.",
+          "1 000 = one thousand ; 1 000 000 = one million.",
+          "hundred / thousand / million restent invariables (two hundred, pas hundreds)."
+        ],
+        "examples": [
+          { "en": "two hundred and fifty (250)", "fr": "deux cent cinquante" },
+          { "en": "two thousand (2,000)", "fr": "deux mille" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "telling-time",
+    "title": "Dire l'heure",
+    "subtitle": "past, to, o'clock",
+    "sections": [
+      {
+        "heading": "L'heure pile et demie",
+        "points": [
+          "It's three o'clock (pile). half past three = 3 h 30.",
+          "quarter past = et quart ; quarter to = moins le quart."
+        ],
+        "examples": [
+          { "en": "It's half past seven.", "fr": "Il est 7 h 30." },
+          { "en": "It's a quarter to nine.", "fr": "Il est 9 h moins le quart." }
+        ]
+      },
+      {
+        "heading": "Les minutes",
+        "points": [
+          "past (jusqu'à 30) / to (après 30) + l'heure suivante.",
+          "a.m. = matin, p.m. = après-midi/soir. What time is it?"
+        ],
+        "examples": [
+          { "en": "ten past five (5:10)", "fr": "5 h 10" },
+          { "en": "twenty to six (5:40)", "fr": "6 h moins vingt" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "the-date",
+    "title": "Dire la date",
+    "subtitle": "jours, mois, ordinaux",
+    "sections": [
+      {
+        "heading": "Jours et mois",
+        "points": [
+          "Majuscule en anglais : Monday, January.",
+          "on + jour (on Monday), in + mois (in January)."
+        ],
+        "examples": [
+          { "en": "on Friday", "fr": "vendredi" },
+          { "en": "in December", "fr": "en décembre" }
+        ]
+      },
+      {
+        "heading": "Écrire la date",
+        "points": [
+          "Ordinaux : the 1st, the 2nd, the 3rd, the 4th…",
+          "GB : 5th May / US : May 5th. Années : 1998 = nineteen ninety-eight."
+        ],
+        "examples": [
+          { "en": "the third of May", "fr": "le 3 mai" },
+          { "en": "What's the date today?", "fr": "Quelle est la date aujourd'hui ?" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "being-guest",
+    "title": "Quand on est invité",
+    "subtitle": "remercier, à table",
+    "sections": [
+      {
+        "heading": "Arriver",
+        "points": [
+          "Thanks for inviting me. Here's a little something (un cadeau). Your home is lovely."
+        ],
+        "examples": [
+          { "en": "Thank you for having me.", "fr": "Merci de m'avoir invité." },
+          { "en": "What a lovely house!", "fr": "Quelle belle maison !" }
+        ]
+      },
+      {
+        "heading": "À table",
+        "points": [
+          "This is delicious. Could you pass the salt? I'm full, thank you."
+        ],
+        "examples": [
+          { "en": "It's really delicious!", "fr": "C'est vraiment délicieux !" },
+          { "en": "No more for me, thanks.", "fr": "Plus rien pour moi, merci." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "weather",
+    "title": "Parler du temps qu'il fait",
+    "subtitle": "sunny, rainy, forecast",
+    "sections": [
+      {
+        "heading": "Le temps",
+        "points": [
+          "It's sunny / cloudy / rainy / windy / cold / hot.",
+          "Action en cours : It's raining / snowing."
+        ],
+        "examples": [
+          { "en": "It's sunny today.", "fr": "Il fait soleil aujourd'hui." },
+          { "en": "It's raining heavily.", "fr": "Il pleut beaucoup." }
+        ]
+      },
+      {
+        "heading": "Questions et prévisions",
+        "points": [
+          "What's the weather like? The forecast says… ; It's going to rain."
+        ],
+        "examples": [
+          { "en": "What's the weather like?", "fr": "Quel temps fait-il ?" },
+          { "en": "It will be cold tomorrow.", "fr": "Il fera froid demain." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "restaurant",
+    "title": "Au restaurant",
+    "subtitle": "commander, payer",
+    "sections": [
+      {
+        "heading": "Commander",
+        "points": [
+          "A table for two, please. Can I see the menu? I'll have the…",
+          "starter (entrée), main course (plat), dessert."
+        ],
+        "examples": [
+          { "en": "I'll have the steak, please.", "fr": "Je prendrai le steak, s'il vous plaît." },
+          { "en": "Can we see the menu?", "fr": "Peut-on voir le menu ?" }
+        ]
+      },
+      {
+        "heading": "Payer",
+        "points": [
+          "Could we have the bill, please? Is service included? Can I pay by card?"
+        ],
+        "examples": [
+          { "en": "The bill, please.", "fr": "L'addition, s'il vous plaît." },
+          { "en": "Can I pay by card?", "fr": "Puis-je payer par carte ?" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pub",
+    "title": "Au pub",
+    "subtitle": "commander à boire",
+    "sections": [
+      {
+        "heading": "Commander à boire",
+        "points": [
+          "A pint of beer, please. A glass of wine. It's my round (c'est ma tournée). Cheers!"
+        ],
+        "examples": [
+          { "en": "Two pints, please.", "fr": "Deux pintes, s'il vous plaît." },
+          { "en": "What would you like to drink?", "fr": "Que veux-tu boire ?" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hotel",
+    "title": "À l'hôtel",
+    "subtitle": "réserver, services",
+    "sections": [
+      {
+        "heading": "Réserver / arriver",
+        "points": [
+          "I'd like to book a room. a single / double room. for two nights. I have a reservation."
+        ],
+        "examples": [
+          { "en": "I'd like a double room for two nights.", "fr": "Je voudrais une chambre double pour deux nuits." },
+          { "en": "Do you have any vacancies?", "fr": "Avez-vous des chambres libres ?" }
+        ]
+      },
+      {
+        "heading": "Services",
+        "points": [
+          "Is breakfast included? What time is check-out? The key, please."
+        ],
+        "examples": [
+          { "en": "Is breakfast included?", "fr": "Le petit-déjeuner est-il compris ?" },
+          { "en": "What time is check-out?", "fr": "À quelle heure faut-il libérer la chambre ?" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "directions",
+    "title": "Demander son chemin",
+    "subtitle": "où est… ? tournez à…",
+    "sections": [
+      {
+        "heading": "Demander",
+        "points": [
+          "Excuse me, how do I get to…? Where is the…? Is it far?"
+        ],
+        "examples": [
+          { "en": "How do I get to the station?", "fr": "Comment va-t-on à la gare ?" },
+          { "en": "Is the bank near here?", "fr": "La banque est-elle près d'ici ?" }
+        ]
+      },
+      {
+        "heading": "Indiquer",
+        "points": [
+          "Go straight on. Turn left / right. Take the first / second street.",
+          "It's on your left. next to / opposite."
+        ],
+        "examples": [
+          { "en": "Turn left at the lights.", "fr": "Tournez à gauche au feu." },
+          { "en": "It's opposite the church.", "fr": "C'est en face de l'église." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "likes",
+    "title": "Dire ce que l'on aime",
+    "subtitle": "like, love, hate, prefer",
+    "sections": [
+      {
+        "heading": "Aimer / ne pas aimer",
+        "points": [
+          "I like / love / enjoy + V-ing ; I don't like / hate + V-ing.",
+          "I prefer… to… (je préfère… à…)."
+        ],
+        "examples": [
+          { "en": "I love swimming.", "fr": "J'adore nager." },
+          { "en": "I don't like getting up early.", "fr": "Je n'aime pas me lever tôt." }
+        ]
+      },
+      {
+        "heading": "Réagir",
+        "points": [
+          "So do I / Me too (moi aussi). I don't (pas moi). What do you think of…?"
+        ],
+        "examples": [
+          { "en": "I really enjoy it.", "fr": "J'aime beaucoup ça." },
+          { "en": "Me too!", "fr": "Moi aussi !" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hobbies",
+    "title": "Parler de ses loisirs",
+    "subtitle": "play, go, be interested in",
+    "sections": [
+      {
+        "heading": "Le temps libre",
+        "points": [
+          "In my free time I… ; I'm interested in… ; I'm keen on…",
+          "play + sport (play tennis) / go + V-ing (go fishing)."
+        ],
+        "examples": [
+          { "en": "I play football on Sundays.", "fr": "Je joue au foot le dimanche." },
+          { "en": "I'm interested in photography.", "fr": "Je m'intéresse à la photographie." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "holidays",
+    "title": "En vacances",
+    "subtitle": "projets et souvenirs",
+    "sections": [
+      {
+        "heading": "Projets et lieux",
+        "points": [
+          "I'm going on holiday. by the sea, in the mountains. to go sightseeing, to sunbathe."
+        ],
+        "examples": [
+          { "en": "We're going to Italy this summer.", "fr": "Nous allons en Italie cet été." },
+          { "en": "I love going to the beach.", "fr": "J'adore aller à la plage." }
+        ]
+      },
+      {
+        "heading": "Souvenirs",
+        "points": [
+          "I had a great time. We stayed in a hotel. Did you enjoy your holiday?"
+        ],
+        "examples": [
+          { "en": "We had a wonderful time.", "fr": "Nous avons passé un super moment." },
+          { "en": "How was your holiday?", "fr": "Comment étaient tes vacances ?" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "clothes",
+    "title": "Les vêtements",
+    "subtitle": "wear, try on, size",
+    "sections": [
+      {
+        "heading": "Les habits",
+        "points": [
+          "a shirt, a T-shirt, trousers, jeans, a dress, a skirt, a jacket, a coat, shoes."
+        ],
+        "examples": [
+          { "en": "She's wearing a red dress.", "fr": "Elle porte une robe rouge." },
+          { "en": "I need a new coat.", "fr": "J'ai besoin d'un nouveau manteau." }
+        ]
+      },
+      {
+        "heading": "Essayer / acheter",
+        "points": [
+          "to wear (porter), to put on (enfiler), to try on (essayer). What size? Can I try it on?"
+        ],
+        "examples": [
+          { "en": "Can I try these on?", "fr": "Puis-je les essayer ?" },
+          { "en": "What size are you?", "fr": "Quelle taille faites-vous ?" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "adjective-order",
+    "title": "Décrire avec des adjectifs",
+    "subtitle": "place, ordre, -ed / -ing",
+    "sections": [
+      {
+        "heading": "L'adjectif est invariable",
+        "points": [
+          "Pas d'accord (a big house, two big houses).",
+          "Il se place AVANT le nom qu'il décrit."
+        ],
+        "examples": [
+          { "en": "a beautiful garden", "fr": "un beau jardin" },
+          { "en": "red cars", "fr": "des voitures rouges" }
+        ]
+      },
+      {
+        "heading": "L'ordre des adjectifs",
+        "points": [
+          "opinion → taille → âge → couleur → origine → matière + nom."
+        ],
+        "examples": [
+          { "en": "a nice little old house", "fr": "une jolie petite vieille maison" },
+          { "en": "a big black leather bag", "fr": "un grand sac en cuir noir" }
+        ]
+      },
+      {
+        "heading": "Adjectifs en -ed / -ing",
+        "points": [
+          "-ed = ce qu'on ressent (bored) ; -ing = ce qui provoque (boring)."
+        ],
+        "examples": [
+          { "en": "I'm bored.", "fr": "Je m'ennuie." },
+          { "en": "The film is boring.", "fr": "Le film est ennuyeux." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "letter",
+    "title": "Écrire une lettre",
+    "subtitle": "appel et formule de fin",
+    "sections": [
+      {
+        "heading": "Formule d'appel",
+        "points": [
+          "Dear Sir or Madam, / Dear Mr Smith, (formel) ; Dear Anna, (amical)."
+        ],
+        "examples": [
+          { "en": "Dear Mr Brown,", "fr": "Cher M. Brown," },
+          { "en": "Dear Anna,", "fr": "Chère Anna," }
+        ]
+      },
+      {
+        "heading": "Formule de fin",
+        "points": [
+          "Yours faithfully (sans le nom du destinataire), Yours sincerely (avec le nom).",
+          "Best regards (semi-formel) ; Best wishes (amical)."
+        ],
+        "examples": [
+          { "en": "Yours sincerely,", "fr": "Veuillez agréer mes salutations distinguées," },
+          { "en": "Best wishes,", "fr": "Amicalement," }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "postcard",
+    "title": "Écrire une carte postale",
+    "subtitle": "style court et chaleureux",
+    "sections": [
+      {
+        "heading": "Style télégraphique",
+        "points": [
+          "Phrases courtes ; on omet souvent le sujet.",
+          "Expressions : Having a great time! Wish you were here. The weather is lovely."
+        ],
+        "examples": [
+          { "en": "Greetings from Spain!", "fr": "Bonjour d'Espagne !" },
+          { "en": "Having a wonderful time!", "fr": "On passe un super moment !" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shopping",
+    "title": "Faire les courses",
+    "subtitle": "dans le magasin",
+    "sections": [
+      {
+        "heading": "Dans le magasin",
+        "points": [
+          "Can I help you? — I'm just looking. How much is it? Do you have this in…? I'll take it."
+        ],
+        "examples": [
+          { "en": "How much is this?", "fr": "Combien ça coûte ?" },
+          { "en": "I'm just looking, thanks.", "fr": "Je regarde seulement, merci." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "supermarket",
+    "title": "Au supermarché",
+    "subtitle": "quantités et rayons",
+    "sections": [
+      {
+        "heading": "Quantités et rayons",
+        "points": [
+          "a kilo of, a bottle of, a packet of, a tin of.",
+          "the checkout (la caisse), a trolley (un chariot), a basket (un panier)."
+        ],
+        "examples": [
+          { "en": "a kilo of apples", "fr": "un kilo de pommes" },
+          { "en": "Where is the checkout?", "fr": "Où est la caisse ?" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "phone",
+    "title": "Au téléphone",
+    "subtitle": "appeler, répondre",
+    "sections": [
+      {
+        "heading": "Appeler",
+        "points": [
+          "Hello, this is Tom. Can I speak to…? Who's calling? Hold on, please. I'll call you back."
+        ],
+        "examples": [
+          { "en": "Hello, this is Anna speaking.", "fr": "Allô, c'est Anna." },
+          { "en": "Can I speak to Mr Smith?", "fr": "Puis-je parler à M. Smith ?" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "texting",
+    "title": "Envoyer un SMS",
+    "subtitle": "abréviations courantes",
+    "sections": [
+      {
+        "heading": "Abréviations courantes",
+        "points": [
+          "u (you), r (are), 2 (to/too), 4 (for), thx (thanks), pls (please).",
+          "asap (au plus vite), lol, btw (au fait), cu (see you)."
+        ],
+        "examples": [
+          { "en": "See u 2morrow!", "fr": "À demain !" },
+          { "en": "Thx, cu later", "fr": "Merci, à plus tard" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "email",
+    "title": "Écrire un courriel",
+    "subtitle": "structure et formules",
+    "sections": [
+      {
+        "heading": "Structure",
+        "points": [
+          "Subject (objet) clair. Hi… / Dear… Corps bref. Best regards, / Kind regards,"
+        ],
+        "examples": [
+          { "en": "Subject: Meeting on Monday", "fr": "Objet : réunion de lundi" },
+          { "en": "Kind regards, Tom", "fr": "Cordialement, Tom" }
+        ]
+      },
+      {
+        "heading": "Formules utiles",
+        "points": [
+          "Please find attached… ; I look forward to hearing from you."
+        ],
+        "examples": [
+          { "en": "Please find attached the report.", "fr": "Veuillez trouver ci-joint le rapport." },
+          { "en": "I look forward to your reply.", "fr": "Dans l'attente de votre réponse." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "doctor",
+    "title": "Chez le médecin",
+    "subtitle": "symptômes et consultation",
+    "sections": [
+      {
+        "heading": "Dire ce qui ne va pas",
+        "points": [
+          "I don't feel well. I have a headache / a cold / a temperature. I've got a sore throat. It hurts here."
+        ],
+        "examples": [
+          { "en": "I have a terrible headache.", "fr": "J'ai un terrible mal de tête." },
+          { "en": "My stomach hurts.", "fr": "J'ai mal au ventre." }
+        ]
+      },
+      {
+        "heading": "La consultation",
+        "points": [
+          "What's the matter? Take this medicine twice a day. a prescription (une ordonnance)."
+        ],
+        "examples": [
+          { "en": "Take one pill after meals.", "fr": "Prenez un comprimé après les repas." },
+          { "en": "You should rest.", "fr": "Vous devriez vous reposer." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "station",
+    "title": "À la gare",
+    "subtitle": "billets et quais",
+    "sections": [
+      {
+        "heading": "Le train",
+        "points": [
+          "A return / single ticket to… Which platform? What time does the train leave? Is this seat free?"
+        ],
+        "examples": [
+          { "en": "A return ticket to London, please.", "fr": "Un aller-retour pour Londres, s'il vous plaît." },
+          { "en": "Which platform for Oxford?", "fr": "Quel quai pour Oxford ?" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "airport",
+    "title": "À l'aéroport",
+    "subtitle": "embarquement et bagages",
+    "sections": [
+      {
+        "heading": "Embarquement",
+        "points": [
+          "check-in (enregistrement), boarding pass (carte d'embarquement), gate (porte).",
+          "luggage / baggage (bagages), a delay (un retard), departures / arrivals."
+        ],
+        "examples": [
+          { "en": "Where is the check-in desk?", "fr": "Où est le comptoir d'enregistrement ?" },
+          { "en": "The flight is delayed.", "fr": "Le vol est retardé." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-formation",
+    "title": "Créer des mots",
+    "subtitle": "préfixes, suffixes, mots composés",
+    "sections": [
+      {
+        "heading": "Préfixes (négation)",
+        "points": [
+          "un- (unhappy), in- / im- (impossible), dis- (disagree), re- (refaire : redo)."
+        ],
+        "examples": [
+          { "en": "happy → unhappy", "fr": "heureux → malheureux" },
+          { "en": "possible → impossible", "fr": "possible → impossible" }
+        ]
+      },
+      {
+        "heading": "Suffixes",
+        "points": [
+          "-er / -or = celui qui (teacher) ; -tion = nom d'action ; -ness = nom abstrait (happiness).",
+          "-ful / -less = avec / sans (careful / careless) ; -ly = adverbe."
+        ],
+        "examples": [
+          { "en": "teach → teacher", "fr": "enseigner → enseignant" },
+          { "en": "care → careful → careless", "fr": "soin → soigneux → négligent" }
+        ]
+      },
+      {
+        "heading": "Noms composés",
+        "points": [
+          "Deux noms accolés : le premier décrit le second (a bus stop, a credit card)."
+        ],
+        "examples": [
+          { "en": "a toothbrush", "fr": "une brosse à dents" },
+          { "en": "a football match", "fr": "un match de foot" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "deduction",
+    "title": "Faire des suppositions",
+    "subtitle": "must, can't, may, might",
+    "sections": [
+      {
+        "heading": "Quasi-certitude (présent)",
+        "points": [
+          "must be = ce doit être (logique) ↔ can't be = ce ne peut pas être (impossible)."
+        ],
+        "examples": [
+          { "en": "He must be tired.", "fr": "Il doit être fatigué." },
+          { "en": "She can't be serious!", "fr": "Elle ne peut pas être sérieuse !" }
+        ]
+      },
+      {
+        "heading": "Possibilité",
+        "points": [
+          "may / might / could + base verbale = il se peut que."
+        ],
+        "examples": [
+          { "en": "It might rain.", "fr": "Il se pourrait qu'il pleuve." },
+          { "en": "They could be at home.", "fr": "Ils sont peut-être chez eux." }
+        ]
+      },
+      {
+        "heading": "Déduction sur le passé",
+        "points": [
+          "must / might / can't + have + participe passé."
+        ],
+        "examples": [
+          { "en": "He must have left.", "fr": "Il a dû partir." },
+          { "en": "She can't have known.", "fr": "Elle ne pouvait pas savoir." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "work",
+    "title": "Au travail",
+    "subtitle": "vocabulaire professionnel",
+    "sections": [
+      {
+        "heading": "Le monde du travail",
+        "points": [
+          "a job, a meeting, a deadline, a colleague, a boss, a salary.",
+          "to apply for a job (postuler), an interview (un entretien)."
+        ],
+        "examples": [
+          { "en": "I have a meeting at 10.", "fr": "J'ai une réunion à 10 h." },
+          { "en": "She applied for the job.", "fr": "Elle a postulé pour le poste." }
+        ]
+      },
+      {
+        "heading": "Au bureau",
+        "points": [
+          "to work full-time / part-time, a day off (un jour de congé), to be on a business trip."
+        ],
+        "examples": [
+          { "en": "I work full-time.", "fr": "Je travaille à plein temps." },
+          { "en": "He's on a business trip.", "fr": "Il est en voyage d'affaires." }
+        ]
+      }
+    ]
   }
 ]

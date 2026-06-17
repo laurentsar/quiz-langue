@@ -9,3 +9,6 @@ android/app/src/main/assets/capacitor.config.json
 android/app/src/main/assets/capacitor.plugins.json
 *.log
 .DS_Store
+
+# Photos sources (sommaire du livre)
+IMG_*.jpg
