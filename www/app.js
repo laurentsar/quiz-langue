@@ -518,7 +518,9 @@ function showGrammarTopic(idx) {
       ${(sec.examples && sec.examples.length) ? `<div class="gram-ex">${sec.examples.map(e => `<div class="gex-row"><span class="gex-en">${esc(e.en)}</span><span class="gex-fr">${esc(e.fr)}</span></div>`).join('')}</div>` : ''}
     </div>`
   ).join('') +
-    `<button class="primary gram-practice" data-topic="${esc(t.id)}">🧩 S'entraîner sur ce point</button>`;
+    ((grammarQuizTopics && grammarQuizTopics.has(t.id))
+      ? `<button class="primary gram-practice" data-topic="${esc(t.id)}">🧩 S'entraîner sur ce point</button>`
+      : '');
   const detail = $('grammar-detail');
   detail.innerHTML = html;
   const practice = detail.querySelector('.gram-practice');
@@ -531,6 +533,7 @@ function showGrammarTopic(idx) {
 }
 
 let grammarQuizData = null;
+let grammarQuizTopics = null;   // topics ayant des questions de quiz
 async function startGrammarQuiz(topicId) {
   if (!grammarQuizData) grammarQuizData = await (await fetch(GRAMMAR_QUIZ_FILE)).json();
   let pool = grammarQuizData;
@@ -545,6 +548,8 @@ async function startGrammarQuiz(topicId) {
 
 async function openGrammar() {
   if (!grammarData) grammarData = await (await fetch(GRAMMAR_FILE)).json();
+  if (!grammarQuizData) grammarQuizData = await (await fetch(GRAMMAR_QUIZ_FILE)).json();
+  grammarQuizTopics = new Set(grammarQuizData.map(x => x.topic));
   renderGrammarList();
   showView('grammar');
 }
