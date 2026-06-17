@@ -331,8 +331,8 @@ function renderQuestion() {
   $('quiz-word').textContent = q.promptText;
   $('quiz-word').classList.toggle('sentence', state.kind === 'grammar');
 
-  // pictogramme d'aide à la mémorisation (vocabulaire uniquement)
-  if (state.kind === 'vocab' && settings.pictos) showPicto(state.lang, q.foreign);
+  // pictogramme d'aide à la mémorisation (vocabulaire, APRÈS validation de la question)
+  if (state.kind === 'vocab' && settings.pictos && a) showPicto(state.lang, q.foreign);
   else { $('quiz-picto').classList.add('hidden'); pictoToken++; }
 
   // speak button: only meaningful for the foreign word
@@ -435,34 +435,47 @@ function launchFireworks() {
   let c = document.getElementById('fx-canvas');
   if (!c) { c = document.createElement('canvas'); c.id = 'fx-canvas'; document.body.appendChild(c); }
   const dpr = window.devicePixelRatio || 1;
-  c.width = innerWidth * dpr; c.height = innerHeight * dpr;
-  const x = c.getContext('2d'); x.scale(dpr, dpr);
   const W = innerWidth, H = innerHeight;
-  const colors = ['#FF6B81', '#27B3FF', '#35D07F', '#FFD166', '#9b5cff', '#4CE0D2', '#FF9F6B'];
+  c.width = W * dpr; c.height = H * dpr;
+  const x = c.getContext('2d'); x.scale(dpr, dpr);
+  const colors = ['#FF3B5C', '#27B3FF', '#35D07F', '#FFD166', '#B15CFF', '#4CE0D2', '#FF9F43', '#FF6BD6', '#FFFFFF'];
   let parts = [];
-  function burst(bx, by) {
+  function burst(bx, by, big) {
     const col = colors[Math.floor(Math.random() * colors.length)];
-    const n = 38 + Math.floor(Math.random() * 22);
+    const n = big ? 180 + Math.floor(Math.random() * 90) : 100 + Math.floor(Math.random() * 60);
+    const power = big ? 9.5 : 6.5;
     for (let i = 0; i < n; i++) {
-      const a = (Math.PI * 2 * i) / n, sp = 2 + Math.random() * 3.6;
-      parts.push({ x: bx, y: by, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, life: 1, col, r: 1.6 + Math.random() * 1.8 });
+      const a = Math.random() * Math.PI * 2, sp = (0.35 + Math.random()) * power;
+      parts.push({ x: bx, y: by, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, life: 1, decay: 0.007 + Math.random() * 0.011, col, r: 2 + Math.random() * 2.8 });
     }
+    parts.push({ flash: true, x: bx, y: by, life: 1, decay: 0.07, col, r: big ? 110 : 70 }); // éclair de l'explosion
   }
   const t0 = performance.now();
-  let last = 0;
+  let last = 0, finale = false;
   function frame(t) {
-    const elapsed = t - t0;
-    if (elapsed < 1700 && t - last > 230) { last = t; burst(W * (0.2 + Math.random() * 0.6), H * (0.2 + Math.random() * 0.35)); }
-    x.clearRect(0, 0, W, H);
-    parts.forEach(p => { p.vy += 0.045; p.x += p.vx; p.y += p.vy; p.life -= 0.012; });
-    parts = parts.filter(p => p.life > 0);
+    const el = t - t0;
+    // ciel nocturne + traînées lumineuses
+    x.globalCompositeOperation = 'source-over';
+    x.fillStyle = 'rgba(6,16,28,0.22)'; x.fillRect(0, 0, W, H);
+    if (el < 3400 && t - last > 280) { last = t; burst(W * (0.12 + Math.random() * 0.76), H * (0.12 + Math.random() * 0.42), Math.random() < 0.35); }
+    if (!finale && el > 3400) { finale = true; for (let k = 0; k < 6; k++) burst(W * (0.18 + Math.random() * 0.64), H * (0.15 + Math.random() * 0.45), true); } // bouquet final
+    x.globalCompositeOperation = 'lighter';
     parts.forEach(p => {
+      if (p.flash) {
+        p.life -= p.decay;
+        const g = x.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+        g.addColorStop(0, 'rgba(255,255,255,' + Math.max(0, p.life * 0.55) + ')');
+        g.addColorStop(1, 'rgba(255,255,255,0)');
+        x.fillStyle = g; x.beginPath(); x.arc(p.x, p.y, p.r, 0, 7); x.fill();
+        return;
+      }
+      p.vy += 0.055; p.vx *= 0.985; p.vy *= 0.985; p.x += p.vx; p.y += p.vy; p.life -= p.decay;
       x.globalAlpha = Math.max(0, p.life);
-      x.fillStyle = p.col;
-      x.beginPath(); x.arc(p.x, p.y, p.r, 0, Math.PI * 2); x.fill();
+      x.fillStyle = p.col; x.beginPath(); x.arc(p.x, p.y, p.r, 0, 7); x.fill();
     });
     x.globalAlpha = 1;
-    if (elapsed < 2600 || parts.length) requestAnimationFrame(frame);
+    parts = parts.filter(p => p.life > 0);
+    if (el < 6000 || parts.length) requestAnimationFrame(frame);
     else c.remove();
   }
   requestAnimationFrame(frame);
