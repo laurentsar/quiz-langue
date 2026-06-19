@@ -155,6 +155,7 @@ html, body {
 
 .top-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .top-actions .secondary { padding: 12px 10px; font-size: 14px; }
+.top-wide { grid-column: 1 / -1; }
 
 .stats-tiles { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 .stile { background: var(--card-alt); border-radius: 14px; padding: 12px 8px; text-align: center; }
@@ -299,6 +300,71 @@ html, body {
 .listen-now { font-weight: 700; font-size: 14px; }
 .ep-player audio { width: 100%; }
 
+/* ===== Prononciation ===== */
+.pronun-badge { color: #B15CFF !important; }
+.pronun-bar { background: #B15CFF !important; }
+.pronun-translation { color: var(--text-dim); font-size: 16px; margin-top: 2px; }
+
+.pronun-mic-area {
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  padding: 24px 0;
+}
+.mic-btn {
+  width: 84px; height: 84px; border-radius: 50%;
+  border: none; cursor: pointer; font-size: 34px;
+  background: rgba(177,92,255,0.15); color: #B15CFF;
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+.mic-btn:active { transform: scale(0.94); }
+.mic-active {
+  background: rgba(177,92,255,0.30);
+  animation: mic-pulse 1.2s ease-in-out infinite;
+}
+@keyframes mic-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(177,92,255,0.35); }
+  50%       { box-shadow: 0 0 0 18px rgba(177,92,255,0); }
+}
+.pronun-hint { color: var(--text-dim); font-size: 14px; text-align: center; }
+
+.pronun-recognized {
+  display: flex; flex-direction: column; gap: 4px;
+  background: rgba(255,255,255,0.06); border-radius: 14px; padding: 12px 16px;
+}
+.pronun-heard-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+#pronun-heard-text { font-size: 18px; font-weight: 600; color: var(--white); }
+
+.feedback.show.warn { border-left-color: var(--warn); }
+.feedback.show.warn .fb-head { color: var(--warn); }
+
 /* ===== Feux d'artifice (série parfaite) ===== */
 #fx-canvas { position: fixed; inset: 0; z-index: 50; pointer-events: none; }
 .ep-ext { color: var(--sky); font-size: 13px; font-weight: 600; text-decoration: none; }
+
+/* ===== Quiz personnalisé — panel de sélection des concepts ===== */
+.ai-panel { gap: 16px; }
+
+.concept-list {
+  display: flex; flex-direction: column; gap: 8px;
+  max-height: 240px; overflow-y: auto;
+  padding-right: 4px;
+}
+.concept-list::-webkit-scrollbar { width: 4px; }
+.concept-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+
+.concept-item {
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  padding: 8px 10px; border-radius: 10px;
+  transition: background 0.1s ease;
+}
+.concept-item:hover { background: rgba(255,255,255,0.06); }
+.concept-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--sky); flex-shrink: 0; cursor: pointer; }
+.concept-label { font-size: 14px; line-height: 1.3; }
+
+.concept-selall { display: flex; gap: 8px; }
+.ghost-sm {
+  border: 1px solid rgba(255,255,255,0.16); cursor: pointer;
+  padding: 6px 12px; border-radius: 12px;
+  background: transparent; color: var(--text-dim); font-size: 13px;
+}
+.ghost-sm:active { opacity: 0.7; }
+
