@@ -871,6 +871,7 @@ const pronunState = {
   words: [], index: 0, score: 0,
   results: [],  // verdict par mot : 'perfect' | 'good' | 'partial' | 'wrong' | null
   listening: false,
+  busy: false,   // vrai pendant 400ms après chaque changement de carte (évite les doubles appels)
 };
 
 function evaluatePronun(recognized, target) {
@@ -906,6 +907,9 @@ async function startPronunciation() {
 }
 
 function renderPronunCard() {
+  pronunState.busy = true;
+  clearTimeout(pronunState._autoTimer);
+  setTimeout(() => { pronunState.busy = false; }, 400);
   const w = pronunState.words[pronunState.index];
   const total = pronunState.words.length;
   $('pronun-progress').textContent = `Mot ${pronunState.index + 1}/${total}`;
@@ -923,7 +927,7 @@ function renderPronunCard() {
 }
 
 async function startListening() {
-  if (pronunState.listening) return;
+  if (pronunState.listening || pronunState.busy) return;
   if (!hasSpeechCapability()) {
     $('pronun-mic-hint').textContent = 'Reconnaissance vocale non disponible sur cet appareil.';
     return;
@@ -1052,8 +1056,18 @@ function showPronunFeedback(verdict, recognized) {
   $('pronun-heard-text').textContent = recognized || '—';
   $('pronun-recognized').classList.remove('hidden');
   $('btn-pronun-next').disabled = false;
-  $('pronun-mic-hint').textContent = 'Appuie pour réessayer';
+  $('pronun-mic-hint').textContent = verdict === 'perfect' ? 'Parfait ! Passage automatique…' : 'Appuie pour réessayer';
   beep(verdict !== 'wrong'); vibrate(verdict !== 'wrong');
+
+  if (verdict === 'perfect') {
+    pronunState._autoTimer = setTimeout(() => {
+      if (pronunState.index < pronunState.words.length - 1) {
+        pronunState.index++; renderPronunCard();
+      } else {
+        finishPronun();
+      }
+    }, 1200);
+  }
 }
 
 function finishPronun() {
@@ -1081,6 +1095,7 @@ $('btn-pronun-speak').addEventListener('click', () => {
 });
 $('btn-pronun-mic').addEventListener('click', startListening);
 $('btn-pronun-next').addEventListener('click', () => {
+  clearTimeout(pronunState._autoTimer);
   if (pronunState.index < pronunState.words.length - 1) {
     pronunState.index++; renderPronunCard();
   } else {
