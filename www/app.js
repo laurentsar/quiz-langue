@@ -34,6 +34,8 @@ const state = {
 };
 
 let verbsData = null;   // liste des verbes irréguliers (chargée à la demande)
+let verbSelectedWords = new Set();   // infinitifs sélectionnés pour le quiz personnalisé
+let verbSelectPanelOpen = false;
 
 // Clé de stats/SRS et voix TTS selon le mode courant.
 function quizKey() { return state.kind === 'verbs' ? VERBS_KEY : state.kind === 'grammar' ? GRAMMAR_KEY : state.lang; }
@@ -518,6 +520,25 @@ function renderVerbsMenu() {
   const wrong = wrongList(list, srs).length;
   $('verbs-review-count').textContent = wrong;
   $('btn-verbs-review').disabled = wrong === 0;
+  $('verbs-select-panel').classList.toggle('hidden', !verbSelectPanelOpen);
+}
+
+function renderVerbCheckboxes() {
+  const container = $('verbs-select-list');
+  if (!container || !verbsData) return;
+  if (verbSelectedWords.size === 0) verbsData.forEach(v => verbSelectedWords.add(v.inf));
+  container.innerHTML = verbsData.map(v =>
+    `<label class="concept-item">
+      <input type="checkbox" class="verb-cb" data-inf="${esc(v.inf)}" ${verbSelectedWords.has(v.inf) ? 'checked' : ''} />
+      <span class="concept-label"><b>${esc(display(v.inf))}</b> <span style="color:var(--text-dim);">— ${esc(display(v.fr))}</span></span>
+    </label>`
+  ).join('');
+  container.querySelectorAll('.verb-cb').forEach(cb => {
+    cb.addEventListener('change', () => {
+      if (cb.checked) verbSelectedWords.add(cb.dataset.inf);
+      else verbSelectedWords.delete(cb.dataset.inf);
+    });
+  });
 }
 
 async function openVerbs() {
@@ -526,6 +547,7 @@ async function openVerbs() {
     verbsData.forEach(v => { v.word = v.inf; });   // clé SRS = infinitif
   }
   renderVerbsMenu();
+  renderVerbCheckboxes();
   showView('verbs');
 }
 
@@ -542,6 +564,35 @@ document.querySelectorAll('.vcount-chip').forEach(c => c.addEventListener('click
 $('btn-verbs-start').addEventListener('click', () => startVerbs('srs'));
 $('btn-verbs-review').addEventListener('click', () => startVerbs('review'));
 $('btn-verbs-home').addEventListener('click', () => showView('home'));
+
+$('btn-toggle-vsel').addEventListener('click', () => {
+  verbSelectPanelOpen = !verbSelectPanelOpen;
+  $('verbs-select-panel').classList.toggle('hidden', !verbSelectPanelOpen);
+  $('btn-toggle-vsel').textContent = verbSelectPanelOpen ? '▲ Masquer la sélection' : '🎯 Quiz personnalisé — choisir les verbes';
+});
+$('btn-vsel-all').addEventListener('click', () => {
+  if (verbsData) verbsData.forEach(v => verbSelectedWords.add(v.inf));
+  renderVerbCheckboxes();
+});
+$('btn-vsel-none').addEventListener('click', () => {
+  verbSelectedWords.clear();
+  renderVerbCheckboxes();
+});
+$('btn-verbs-custom').addEventListener('click', () => {
+  if (!verbsData) return;
+  if (verbSelectedWords.size === 0) verbsData.forEach(v => verbSelectedWords.add(v.inf));
+  const items = shuffle(verbsData.filter(v => verbSelectedWords.has(v.inf))).slice(0, state.count);
+  if (!items.length) return;
+  state.kind = 'verbs';
+  state.level = 'Global';
+  state.badge = verbBadge();
+  state.mode = 'srs';
+  state.questions = items.map(it => buildVerbQuestion(it, verbsData));
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
+});
 
 // ---------- grammaire (menu dédié, contenu explicatif) ----------
 const GRAMMAR_FILE = 'data/grammar_en.json';
@@ -669,16 +720,18 @@ document.querySelectorAll('.gcount-chip').forEach(c => {
 
 $('btn-grammar-ai').addEventListener('click', async () => {
   if (!grammarQuizData) grammarQuizData = await (await fetch(GRAMMAR_QUIZ_FILE)).json();
-  if (grammarSelectedTopics.size === 0) {
-    grammarData.forEach(t => grammarSelectedTopics.add(t.id));
-  }
-  const pool = shuffle(grammarQuizData.filter(x => grammarSelectedTopics.has(x.topic)));
-  if (!pool.length) return;
+  if (grammarSelectedTopics.size === 0) grammarData.forEach(t => grammarSelectedTopics.add(t.id));
+  const items = shuffle(grammarQuizData.filter(x => grammarSelectedTopics.has(x.topic))).slice(0, grammarCustomCount);
+  if (!items.length) return;
   state.kind = 'grammar';
   state.level = 'Global';
-  state.words = pool.slice(0, grammarCustomCount).map(x => Object.assign({ word: x.id }, x));
   state.badge = 'Grammaire';
-  startSession('srs');
+  state.mode = 'srs';
+  state.questions = items.map(x => buildGrammarQuestion(x));
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
 });
 
 // ---------- mode Apprendre (flashcards, partagé vocab / verbes / grammaire) ----------

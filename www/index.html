@@ -146,7 +146,19 @@
 
       <div id="verbs-summary" class="card stats-tiles"></div>
 
-      <button id="btn-verbs-start" class="primary">Démarrer</button>
+      <!-- Panel sélection de verbes pour quiz personnalisé -->
+      <div id="verbs-select-panel" class="card ai-panel hidden">
+        <span class="hero-label">Verbes à réviser</span>
+        <div id="verbs-select-list" class="concept-list"></div>
+        <div class="concept-selall">
+          <button id="btn-vsel-all" class="ghost-sm">Tout sélectionner</button>
+          <button id="btn-vsel-none" class="ghost-sm">Tout désélectionner</button>
+        </div>
+        <button id="btn-verbs-custom" class="primary">🎯 Lancer le quiz</button>
+      </div>
+
+      <button id="btn-toggle-vsel" class="secondary">🎯 Quiz personnalisé — choisir les verbes</button>
+      <button id="btn-verbs-start" class="secondary">Démarrer (révision SRS)</button>
       <button id="btn-verbs-learn" class="secondary">🎓 Apprendre (cartes)</button>
       <button id="btn-verbs-review" class="secondary">⟳ Mes erreurs (<span id="verbs-review-count">0</span>)</button>
       <button id="btn-verbs-home" class="secondary">Accueil</button>
