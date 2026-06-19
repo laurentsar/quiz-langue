@@ -1,5 +1,6 @@
 'use strict';
 
+const APP_VERSION = '2.15';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -1322,4 +1323,5 @@ if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catc
 
 renderChips('.dir-chip', state.dir, 'dir');
 renderChips('.count-chip', state.count, 'count');
+$('app-version').textContent = 'v' + APP_VERSION;
 selectLang('en');
