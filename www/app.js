@@ -940,34 +940,31 @@ async function startListening() {
 
   if (capSR) {
     try {
-      // Capacitor 6 : checkPermissions/requestPermissions (auto-générés par @CapacitorPlugin)
-      let status = 'prompt';
+      // Demander la permission si nécessaire, puis démarrer
+      let result;
       try {
-        const check = await capSR.checkPermissions();
-        status = check.speechRecognition || 'prompt';
-      } catch (_) {}
-
-      if (status !== 'granted') {
-        try {
-          const req = await capSR.requestPermissions();
-          status = req.speechRecognition || 'denied';
-        } catch (_) { status = 'denied'; }
+        result = await capSR.start({
+          language: LANGS[state.lang].tts,
+          maxResults: 5,
+          partialResults: false,
+          popup: false,
+        });
+      } catch (startErr) {
+        const errCode = String(startErr && (startErr.message || startErr.code || startErr));
+        if (/missing.permission|permission/i.test(errCode)) {
+          // La permission manque — la demander et ré-essayer
+          try { await capSR.requestPermissions(); } catch (_) {}
+          result = await capSR.start({
+            language: LANGS[state.lang].tts,
+            maxResults: 5,
+            partialResults: false,
+            popup: false,
+          });
+        } else {
+          throw startErr;
+        }
       }
 
-      if (status !== 'granted') {
-        pronunState.listening = false;
-        $('btn-pronun-mic').className = 'mic-btn';
-        $('pronun-mic-hint').textContent = status === 'denied'
-          ? 'Micro refusé. Va dans Réglages → Applis → Quiz Langue → Autorisations → Micro.'
-          : 'Permission micro refusée — autorise le micro dans les réglages.';
-        return;
-      }
-      const result = await capSR.start({
-        language: LANGS[state.lang].tts,
-        maxResults: 5,
-        partialResults: false,
-        popup: false,
-      });
       pronunState.listening = false;
       const matches = result && result.matches ? Array.from(result.matches) : [];
       if (matches.length) {
@@ -983,13 +980,16 @@ async function startListening() {
     } catch (err) {
       pronunState.listening = false;
       $('btn-pronun-mic').className = 'mic-btn';
-      const code = err && (err.message || err.code || '');
-      if (/permission|not.allowed/i.test(code)) {
-        $('pronun-mic-hint').textContent = 'Permission micro refusée — autorise le micro dans les réglages.';
+      // Afficher le code d'erreur brut pour faciliter le diagnostic
+      const code = String(err && (err.message || err.code || err) || 'inconnue');
+      if (/missing.permission|permission/i.test(code)) {
+        $('pronun-mic-hint').textContent = 'Micro refusé. Réglages → Applis → Quiz Langue → Micro.';
+      } else if (/not.available|unavailable/i.test(code)) {
+        $('pronun-mic-hint').textContent = 'Reconnaissance vocale non disponible sur cet appareil.';
       } else if (/no.match|no.speech/i.test(code)) {
         $('pronun-mic-hint').textContent = 'Aucune voix détectée — réessaie.';
       } else {
-        $('pronun-mic-hint').textContent = 'Erreur micro : ' + (code || 'inconnue');
+        $('pronun-mic-hint').textContent = 'Erreur : ' + code;
       }
     }
     return;
