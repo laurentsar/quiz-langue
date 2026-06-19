@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.16';
+const APP_VERSION = '2.17';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -201,6 +201,7 @@ function buildQuestion(item, words) {
     foreign: display(item.word),           // the EN/ES word (for audio)
     promptText,
     promptIsForeign: fwd,
+    ipa: fwd ? (item.ipa || '') : '',      // IPA only when showing foreign word
     options: shuffled,
     correctIndex: shuffled.indexOf(correct),
     correctText: correct,
@@ -346,6 +347,7 @@ function renderQuestion() {
   $('quiz-prompt-label').textContent = q.promptLabel || (q.promptIsForeign ? 'Mot' : 'Traduire en ' + (state.lang === 'en' ? 'anglais' : 'espagnol'));
   $('quiz-word').textContent = q.promptText;
   $('quiz-word').classList.toggle('sentence', state.kind === 'grammar');
+  $('quiz-ipa').textContent = q.ipa ? '/' + q.ipa + '/' : '';
 
   // pictogramme d'aide à la mémorisation (vocabulaire, APRÈS validation de la question)
   if (state.kind === 'vocab' && settings.pictos && a) showPicto(state.lang, q.foreign);
@@ -773,7 +775,7 @@ function buildCard(item) {
     return { key: item.id, label: 'Complète la phrase', audio: full, front: item.q,
       backHtml: '<b>' + esc(full) + '</b>' + (item.hint ? '<br>💡 ' + esc(item.hint) : '') };
   }
-  return { key: item.word, label: 'Mot', audio: display(item.word),
+  return { key: item.word, label: 'Mot', audio: display(item.word), ipa: item.ipa || '',
     front: display(item.word), backHtml: '<b>' + esc(display(item.fr)) + '</b>' };
 }
 
@@ -793,6 +795,7 @@ function renderCard() {
   $('flash-label').textContent = c.label;
   $('flash-front').textContent = c.front;
   $('flash-front').classList.toggle('sentence', state.kind === 'grammar');
+  $('flash-ipa').textContent = c.ipa ? '/' + c.ipa + '/' : '';
   const back = $('flash-back'); back.innerHTML = c.backHtml; back.classList.add('hidden');
   $('btn-flash-speak').style.display = (state.kind === 'grammar') ? 'none' : '';
   $('btn-flash-reveal').classList.remove('hidden');
@@ -916,6 +919,7 @@ function renderPronunCard() {
   $('pronun-progress').textContent = `Mot ${pronunState.index + 1}/${total}`;
   $('pronun-bar').style.width = (pronunState.index / total * 100) + '%';
   $('pronun-word').textContent = display(w.word);
+  $('pronun-ipa').textContent = w.ipa ? '/' + w.ipa + '/' : '';
   $('pronun-translation').textContent = display(w.fr);
   $('pronun-feedback').className = 'feedback hidden';
   $('pronun-feedback').innerHTML = '';
@@ -951,21 +955,27 @@ async function startListening() {
       popup: false,
     });
 
+    const silentRetry = async (delay) => {
+      await new Promise(r => setTimeout(r, delay));
+      try { return await srStart(); } catch (_) { return null; }
+    };
+
     try {
       let result;
       try {
         result = await srStart();
       } catch (startErr) {
-        const errCode = String(startErr && (startErr.message || startErr.code || startErr));
-        if (/missing.permission|permission/i.test(errCode)) {
+        const errCode = String(startErr && (startErr.message || startErr.code || startErr)).toLowerCase();
+        if (/permission|missing/i.test(errCode)) {
           try { await capSR.requestPermissions(); } catch (_) {}
           result = await srStart();
         } else if (/no.match|no_match|speech.timeout/i.test(errCode)) {
           // Cold-start Android : le service Google Speech n'était pas prêt.
-          // On réessaie automatiquement après 400ms.
           $('pronun-mic-hint').textContent = 'Réessai…';
-          await new Promise(r => setTimeout(r, 400));
-          result = await srStart();
+          result = await silentRetry(400);
+        } else if (/busy|recognizer/i.test(errCode)) {
+          $('pronun-mic-hint').textContent = 'Réessai…';
+          result = await silentRetry(600);
         } else {
           throw startErr;
         }
@@ -986,16 +996,13 @@ async function startListening() {
     } catch (err) {
       pronunState.listening = false;
       $('btn-pronun-mic').className = 'mic-btn';
-      // Afficher le code d'erreur brut pour faciliter le diagnostic
-      const code = String(err && (err.message || err.code || err) || 'inconnue');
-      if (/missing.permission|permission/i.test(code)) {
-        $('pronun-mic-hint').textContent = 'Micro refusé. Réglages → Applis → Quiz Langue → Micro.';
+      const code = String(err && (err.message || err.code || err) || '').toLowerCase();
+      if (/permission|missing/i.test(code)) {
+        $('pronun-mic-hint').textContent = 'Micro refusé — Réglages → Applis → Quiz Langue → Micro.';
       } else if (/not.available|unavailable/i.test(code)) {
-        $('pronun-mic-hint').textContent = 'Reconnaissance vocale non disponible sur cet appareil.';
-      } else if (/no.match|no.speech/i.test(code)) {
-        $('pronun-mic-hint').textContent = 'Aucune voix détectée — réessaie.';
+        $('pronun-mic-hint').textContent = 'Reconnaissance vocale non disponible.';
       } else {
-        $('pronun-mic-hint').textContent = 'Erreur : ' + code;
+        $('pronun-mic-hint').textContent = 'Erreur micro — réessaie.';
       }
     }
     return;
