@@ -940,15 +940,27 @@ async function startListening() {
 
   if (capSR) {
     try {
-      let perm = await capSR.hasPermission().catch(() => ({ permission: false }));
-      if (!perm.permission) {
-        const req = await capSR.requestPermission().catch(() => ({ permission: false }));
-        if (!req.permission) {
-          pronunState.listening = false;
-          $('btn-pronun-mic').className = 'mic-btn';
-          $('pronun-mic-hint').textContent = 'Permission micro refusée — autorise le micro dans les réglages.';
-          return;
-        }
+      // Capacitor 6 : checkPermissions/requestPermissions (auto-générés par @CapacitorPlugin)
+      let status = 'prompt';
+      try {
+        const check = await capSR.checkPermissions();
+        status = check.speechRecognition || 'prompt';
+      } catch (_) {}
+
+      if (status !== 'granted') {
+        try {
+          const req = await capSR.requestPermissions();
+          status = req.speechRecognition || 'denied';
+        } catch (_) { status = 'denied'; }
+      }
+
+      if (status !== 'granted') {
+        pronunState.listening = false;
+        $('btn-pronun-mic').className = 'mic-btn';
+        $('pronun-mic-hint').textContent = status === 'denied'
+          ? 'Micro refusé. Va dans Réglages → Applis → Quiz Langue → Autorisations → Micro.'
+          : 'Permission micro refusée — autorise le micro dans les réglages.';
+        return;
       }
       const result = await capSR.start({
         language: LANGS[state.lang].tts,
