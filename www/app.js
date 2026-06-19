@@ -944,27 +944,28 @@ async function startListening() {
   const capSR = cap && cap.isNativePlatform && cap.isNativePlatform() && cap.Plugins && cap.Plugins.SpeechRecognition;
 
   if (capSR) {
+    const srStart = () => capSR.start({
+      language: LANGS[state.lang].tts,
+      maxResults: 5,
+      partialResults: false,
+      popup: false,
+    });
+
     try {
-      // Demander la permission si nécessaire, puis démarrer
       let result;
       try {
-        result = await capSR.start({
-          language: LANGS[state.lang].tts,
-          maxResults: 5,
-          partialResults: false,
-          popup: false,
-        });
+        result = await srStart();
       } catch (startErr) {
         const errCode = String(startErr && (startErr.message || startErr.code || startErr));
         if (/missing.permission|permission/i.test(errCode)) {
-          // La permission manque — la demander et ré-essayer
           try { await capSR.requestPermissions(); } catch (_) {}
-          result = await capSR.start({
-            language: LANGS[state.lang].tts,
-            maxResults: 5,
-            partialResults: false,
-            popup: false,
-          });
+          result = await srStart();
+        } else if (/no.match|no_match|speech.timeout/i.test(errCode)) {
+          // Cold-start Android : le service Google Speech n'était pas prêt.
+          // On réessaie automatiquement après 400ms.
+          $('pronun-mic-hint').textContent = 'Réessai…';
+          await new Promise(r => setTimeout(r, 400));
+          result = await srStart();
         } else {
           throw startErr;
         }
