@@ -32,6 +32,7 @@
         <button id="btn-verbs" class="secondary">📘 Verbes irréguliers</button>
         <button id="btn-grammar" class="secondary">📖 Grammaire</button>
         <button id="btn-listen" class="secondary">🎧 Écoute (accents)</button>
+        <button id="btn-pronun" class="secondary top-wide">🎤 Prononciation</button>
       </div>
 
       <div class="card hero">
@@ -234,6 +235,41 @@
       <div id="listen-accents" class="chip-row"></div>
       <div id="listen-episodes" class="listen-list"></div>
       <button id="btn-listen-home" class="secondary">Accueil</button>
+    </section>
+
+    <!-- PRONONCIATION -->
+    <section id="view-pronun" class="view hidden">
+      <div class="quiz-header">
+        <span id="pronun-progress" class="quiz-progress">Mot 1/10</span>
+        <span class="quiz-level pronun-badge">🎤 Prononciation</span>
+      </div>
+      <div class="progress"><div id="pronun-bar" class="progress-bar pronun-bar"></div></div>
+
+      <div class="card word-card">
+        <span class="word-label">Prononce ce mot</span>
+        <div class="word-line">
+          <span id="pronun-word" class="word-value"></span>
+          <button id="btn-pronun-speak" class="speak-btn" title="Écouter">🔊</button>
+        </div>
+        <span id="pronun-translation" class="pronun-translation"></span>
+      </div>
+
+      <div class="pronun-mic-area">
+        <button id="btn-pronun-mic" class="mic-btn">🎤</button>
+        <span id="pronun-mic-hint" class="pronun-hint">Appuie pour parler</span>
+      </div>
+
+      <div id="pronun-feedback" class="feedback hidden"></div>
+
+      <div id="pronun-recognized" class="pronun-recognized hidden">
+        <span class="pronun-heard-label">Reconnu :</span>
+        <span id="pronun-heard-text"></span>
+      </div>
+
+      <div class="quiz-footer sticky">
+        <button id="btn-pronun-abort" class="ghost">Quitter</button>
+        <button id="btn-pronun-next" class="primary grow" disabled>Suivant</button>
+      </div>
     </section>
 
     <!-- QUIZ -->

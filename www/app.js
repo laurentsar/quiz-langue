@@ -16,7 +16,7 @@ const VERBS_FILE = 'data/verbs_en.json';
 const VERBS_KEY = 'verbs';   // espace stats/SRS dédié aux verbes irréguliers
 const GRAMMAR_QUIZ_FILE = 'data/grammar_quiz_en.json';
 const GRAMMAR_KEY = 'grammar'; // espace stats/SRS dédié aux exos de grammaire
-const KIND_COLORS = { vocab: '#27B3FF', verbs: '#4CE0D2', grammar: '#1B5CFF' }; // accent par type
+const KIND_COLORS = { vocab: '#27B3FF', verbs: '#4CE0D2', grammar: '#1B5CFF', pronun: '#B15CFF' };
 
 const state = {
   lang: 'en',
@@ -247,7 +247,7 @@ function vibrate(ok) { try { navigator.vibrate && navigator.vibrate(ok ? 25 : [4
 
 // ---------- DOM ----------
 const $ = (id) => document.getElementById(id);
-const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), learn: $('view-learn'), listen: $('view-listen') };
+const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), learn: $('view-learn'), listen: $('view-listen'), pronun: $('view-pronun') };
 let autoNextTimer = null;
 
 function showView(name) {
@@ -500,7 +500,10 @@ $('btn-review').addEventListener('click', () => { state.kind = 'vocab'; startSes
 $('btn-next').addEventListener('click', goNext);
 $('btn-abort').addEventListener('click', exitToHome);
 $('btn-speak').addEventListener('click', () => { const q = state.questions[state.index]; if (q) speak(q.foreign); });
-$('btn-replay').addEventListener('click', () => startSession(state.mode));
+$('btn-replay').addEventListener('click', () => {
+  if (state.mode === 'pronun') { startPronunciation(); return; }
+  startSession(state.mode);
+});
 $('btn-home').addEventListener('click', exitToHome);
 
 // ---------- verbes irréguliers (menu dédié) ----------
@@ -837,6 +840,143 @@ async function showPicto(lang, word) {
   if (my !== pictoToken) return;               // la question a changé entre-temps
   if (id) { img.src = ARASAAC_IMG(id); wrap.classList.remove('hidden'); }
 }
+
+// ---------- prononciation ----------
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+const pronunState = {
+  words: [], index: 0, score: 0,
+  results: [],  // verdict par mot : 'perfect' | 'good' | 'partial' | 'wrong' | null
+  listening: false,
+};
+
+function evaluatePronun(recognized, target) {
+  const norm = s => s.toLowerCase().trim().replace(/[^\w\s']/g, '').replace(/\s+/g, ' ');
+  const r = norm(recognized), t = norm(target);
+  if (r === t) return 'perfect';
+  const rSet = new Set(r.split(' ')), tWords = t.split(' ');
+  if (tWords.every(w => rSet.has(w))) return 'good';
+  const hits = tWords.filter(w => rSet.has(w)).length;
+  return hits / tWords.length >= 0.5 ? 'partial' : 'wrong';
+}
+
+async function startPronunciation() {
+  if (!SR) { alert('La reconnaissance vocale n\'est pas disponible sur cet appareil.'); return; }
+  if (!cache[state.lang]) cache[state.lang] = await (await fetch(LANGS[state.lang].file)).json();
+  state.words = cache[state.lang];
+  const picks = shuffle(levelWords()).slice(0, state.count);
+  if (!picks.length) return;
+  pronunState.words = picks;
+  pronunState.index = 0;
+  pronunState.score = 0;
+  pronunState.results = picks.map(() => null);
+  pronunState.listening = false;
+  state.mode = 'pronun';
+  state.kind = 'vocab';
+  showView('pronun');
+  renderPronunCard();
+}
+
+function renderPronunCard() {
+  const w = pronunState.words[pronunState.index];
+  const total = pronunState.words.length;
+  $('pronun-progress').textContent = `Mot ${pronunState.index + 1}/${total}`;
+  $('pronun-bar').style.width = (pronunState.index / total * 100) + '%';
+  $('pronun-word').textContent = display(w.word);
+  $('pronun-translation').textContent = display(w.fr);
+  $('pronun-feedback').className = 'feedback hidden';
+  $('pronun-feedback').innerHTML = '';
+  $('pronun-recognized').classList.add('hidden');
+  $('btn-pronun-next').disabled = true;
+  $('btn-pronun-next').textContent = pronunState.index < total - 1 ? 'Suivant' : 'Voir le score';
+  $('btn-pronun-mic').className = 'mic-btn';
+  $('pronun-mic-hint').textContent = 'Appuie pour parler';
+  if (settings.audioAuto) speak(display(w.word));
+}
+
+function startListening() {
+  if (pronunState.listening) return;
+  const w = pronunState.words[pronunState.index];
+  const rec = new SR();
+  rec.lang = LANGS[state.lang].tts;
+  rec.continuous = false;
+  rec.interimResults = false;
+  rec.maxAlternatives = 5;
+  pronunState.listening = true;
+  $('btn-pronun-mic').className = 'mic-btn mic-active';
+  $('pronun-mic-hint').textContent = 'Écoute en cours…';
+
+  rec.onresult = (e) => {
+    const alts = Array.from(e.results[0]).map(a => a.transcript);
+    const target = display(w.word);
+    let best = alts[0];
+    for (const alt of alts) {
+      if (evaluatePronun(alt, target) !== 'wrong') { best = alt; break; }
+    }
+    pronunState.listening = false;
+    showPronunFeedback(evaluatePronun(best, target), best);
+  };
+  rec.onerror = (e) => {
+    pronunState.listening = false;
+    $('btn-pronun-mic').className = 'mic-btn';
+    $('pronun-mic-hint').textContent = e.error === 'no-speech' ? 'Aucune voix — réessaie.' : 'Erreur micro : ' + e.error;
+  };
+  rec.onend = () => { pronunState.listening = false; };
+  try { rec.start(); } catch (err) { pronunState.listening = false; }
+}
+
+function showPronunFeedback(verdict, recognized) {
+  $('btn-pronun-mic').className = 'mic-btn';
+  const rank = { perfect: 3, good: 2, partial: 1, wrong: 0 };
+  const prev = pronunState.results[pronunState.index];
+  if (rank[verdict] > rank[prev || 'wrong']) {
+    pronunState.results[pronunState.index] = verdict;
+    pronunState.score = pronunState.results.filter(r => r === 'perfect' || r === 'good').length;
+  }
+  const labels = { perfect: '🎯 Parfait !', good: '✅ Très bien !', partial: '🟡 Presque…', wrong: '❌ Essaie encore' };
+  const cls    = { perfect: 'good', good: 'good', partial: 'warn', wrong: 'bad' };
+  const fb = $('pronun-feedback');
+  fb.innerHTML = `<div class="fb-head">${labels[verdict]}</div>`;
+  fb.className = 'feedback show ' + cls[verdict];
+  $('pronun-heard-text').textContent = recognized || '—';
+  $('pronun-recognized').classList.remove('hidden');
+  $('btn-pronun-next').disabled = false;
+  $('pronun-mic-hint').textContent = 'Appuie pour réessayer';
+  beep(verdict !== 'wrong'); vibrate(verdict !== 'wrong');
+}
+
+function finishPronun() {
+  const total = pronunState.words.length;
+  const score = pronunState.score;
+  $('result-sub').textContent = 'Entraînement de prononciation terminé';
+  $('result-score').textContent = `${score}/${total}`;
+  const wrong = pronunState.words
+    .map((w, i) => ({ word: display(w.word), result: pronunState.results[i] }))
+    .filter(x => x.result !== 'perfect' && x.result !== 'good');
+  const wbox = $('result-wrong');
+  if (wrong.length) {
+    wbox.innerHTML = '<span class="wrong-title">À retravailler</span>' +
+      wrong.map(x => `<div class="wrong-row"><span class="wrong-word">${esc(x.word)}</span><span class="wrong-answer pronun-verdict">${x.result === 'partial' ? '🟡 Presque' : '❌ Raté'}</span></div>`).join('');
+  } else {
+    wbox.innerHTML = '<span class="wrong-title">Parfait 🎉</span><span class="wrong-answer">Prononciation impeccable !</span>';
+  }
+  showView('result');
+  if (score === total && total >= 3) launchFireworks();
+}
+
+$('btn-pronun').addEventListener('click', startPronunciation);
+$('btn-pronun-speak').addEventListener('click', () => {
+  const w = pronunState.words[pronunState.index]; if (w) speak(display(w.word));
+});
+$('btn-pronun-mic').addEventListener('click', startListening);
+$('btn-pronun-next').addEventListener('click', () => {
+  if (pronunState.index < pronunState.words.length - 1) {
+    pronunState.index++; renderPronunCard();
+  } else {
+    finishPronun();
+  }
+});
+$('btn-pronun-abort').addEventListener('click', exitToHome);
 
 // ---------- Écoute : podcasts par accent ----------
 const LISTEN_FILE = 'data/listen.json';

@@ -155,6 +155,7 @@ html, body {
 
 .top-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .top-actions .secondary { padding: 12px 10px; font-size: 14px; }
+.top-wide { grid-column: 1 / -1; }
 
 .stats-tiles { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 .stile { background: var(--card-alt); border-radius: 14px; padding: 12px 8px; text-align: center; }
@@ -298,6 +299,42 @@ html, body {
   background: rgba(39,179,255,0.10); border: 1px solid rgba(39,179,255,0.30); border-radius: 14px; }
 .listen-now { font-weight: 700; font-size: 14px; }
 .ep-player audio { width: 100%; }
+
+/* ===== Prononciation ===== */
+.pronun-badge { color: #B15CFF !important; }
+.pronun-bar { background: #B15CFF !important; }
+.pronun-translation { color: var(--text-dim); font-size: 16px; margin-top: 2px; }
+
+.pronun-mic-area {
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  padding: 24px 0;
+}
+.mic-btn {
+  width: 84px; height: 84px; border-radius: 50%;
+  border: none; cursor: pointer; font-size: 34px;
+  background: rgba(177,92,255,0.15); color: #B15CFF;
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+.mic-btn:active { transform: scale(0.94); }
+.mic-active {
+  background: rgba(177,92,255,0.30);
+  animation: mic-pulse 1.2s ease-in-out infinite;
+}
+@keyframes mic-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(177,92,255,0.35); }
+  50%       { box-shadow: 0 0 0 18px rgba(177,92,255,0); }
+}
+.pronun-hint { color: var(--text-dim); font-size: 14px; text-align: center; }
+
+.pronun-recognized {
+  display: flex; flex-direction: column; gap: 4px;
+  background: rgba(255,255,255,0.06); border-radius: 14px; padding: 12px 16px;
+}
+.pronun-heard-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+#pronun-heard-text { font-size: 18px; font-weight: 600; color: var(--white); }
+
+.feedback.show.warn { border-left-color: var(--warn); }
+.feedback.show.warn .fb-head { color: var(--warn); }
 
 /* ===== Feux d'artifice (série parfaite) ===== */
 #fx-canvas { position: fixed; inset: 0; z-index: 50; pointer-events: none; }
