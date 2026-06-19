@@ -83,6 +83,10 @@
         <label class="toggle"><span>🎵 Son juste / faux</span><input type="checkbox" id="opt-sound" /></label>
         <label class="toggle"><span>🎯 Distracteurs proches (plus difficile)</span><input type="checkbox" id="opt-close" /></label>
         <label class="toggle"><span>🖼️ Pictogrammes (vocabulaire)</span><input type="checkbox" id="opt-pictos" /></label>
+        <div class="api-key-row">
+          <span class="api-key-label">🔑 Clé API Claude (quiz IA)</span>
+          <input type="password" id="opt-apikey" class="api-key-input" placeholder="sk-ant-…" autocomplete="new-password" spellcheck="false" />
+        </div>
       </div>
     </div>
 
@@ -159,7 +163,27 @@
         <span id="grammar-crumb" class="quiz-level">Sommaire</span>
       </div>
       <div id="grammar-list" class="grammar-list"></div>
-      <button id="btn-grammar-quiz" class="primary">🧩 S'entraîner (phrases à compléter)</button>
+
+      <!-- Panel sélection de concepts pour quiz IA -->
+      <div id="grammar-ai-panel" class="card ai-panel hidden">
+        <span class="hero-label">Concepts à réviser</span>
+        <div id="grammar-concepts" class="concept-list"></div>
+        <div class="concept-selall">
+          <button id="btn-sel-all" class="ghost-sm">Tout sélectionner</button>
+          <button id="btn-sel-none" class="ghost-sm">Tout désélectionner</button>
+        </div>
+        <span class="hero-label">Nombre de questions</span>
+        <div class="chip-row">
+          <button class="chip gcount-chip active" data-count="5">5</button>
+          <button class="chip gcount-chip" data-count="10">10</button>
+          <button class="chip gcount-chip" data-count="20">20</button>
+        </div>
+        <button id="btn-grammar-ai" class="primary">✨ Générer le quiz</button>
+        <div id="gen-status" class="gen-status hidden"></div>
+      </div>
+
+      <button id="btn-toggle-ai" class="secondary">🤖 Quiz IA — choisir les concepts</button>
+      <button id="btn-grammar-quiz" class="secondary">🧩 S'entraîner (exercices classiques)</button>
       <button id="btn-grammar-learn" class="secondary">🎓 Apprendre (cartes)</button>
       <div id="grammar-detail" class="hidden"></div>
       <button id="btn-grammar-back" class="secondary hidden">← Sommaire</button>
