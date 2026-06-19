@@ -896,8 +896,16 @@ function renderPronunCard() {
 
 function startListening() {
   if (pronunState.listening) return;
+  if (!SR) {
+    $('pronun-mic-hint').textContent = 'Reconnaissance vocale non disponible sur cet appareil.';
+    return;
+  }
   const w = pronunState.words[pronunState.index];
-  const rec = new SR();
+  let rec;
+  try { rec = new SR(); } catch (err) {
+    $('pronun-mic-hint').textContent = 'Impossible d\'initialiser le micro : ' + err.message;
+    return;
+  }
   rec.lang = LANGS[state.lang].tts;
   rec.continuous = false;
   rec.interimResults = false;
@@ -919,10 +927,20 @@ function startListening() {
   rec.onerror = (e) => {
     pronunState.listening = false;
     $('btn-pronun-mic').className = 'mic-btn';
-    $('pronun-mic-hint').textContent = e.error === 'no-speech' ? 'Aucune voix — réessaie.' : 'Erreur micro : ' + e.error;
+    const msg = {
+      'not-allowed': 'Permission micro refusée — autorise le micro dans les réglages.',
+      'no-speech': 'Aucune voix détectée — réessaie.',
+      'network': 'Erreur réseau — la reconnaissance vocale nécessite une connexion.',
+      'service-not-allowed': 'Service vocal non autorisé sur cet appareil.',
+    };
+    $('pronun-mic-hint').textContent = msg[e.error] || ('Erreur micro : ' + e.error);
   };
   rec.onend = () => { pronunState.listening = false; };
-  try { rec.start(); } catch (err) { pronunState.listening = false; }
+  try { rec.start(); } catch (err) {
+    pronunState.listening = false;
+    $('btn-pronun-mic').className = 'mic-btn';
+    $('pronun-mic-hint').textContent = 'Impossible de démarrer le micro : ' + err.message;
+  }
 }
 
 function showPronunFeedback(verdict, recognized) {
