@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.15';
+const APP_VERSION = '2.16';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -52,7 +52,7 @@ function lsGet(k, d) { try { const r = localStorage.getItem(k); return r ? JSON.
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 
 function loadSettings() {
-  return Object.assign({ audioAuto: true, autoNext: true, sound: true, closeDistractors: false, pictos: true }, lsGet('quizlangue:settings:v1', {}));
+  return Object.assign({ audioAuto: true, autoNext: true, sound: true, closeDistractors: false, pictos: true, notifications: true }, lsGet('quizlangue:settings:v1', {}));
 }
 function saveSettings() { lsSet('quizlangue:settings:v1', settings); }
 
@@ -1188,6 +1188,48 @@ $('btn-listen').addEventListener('click', openListen);
 $('btn-listen-home').addEventListener('click', () => { const au = $('listen-audio'); if (au) { try { au.pause(); } catch (e) {} } showView('home'); });
 document.querySelectorAll('.slang2-chip').forEach(c => c.addEventListener('click', () => { listenLang = c.dataset.lang; listenAccent = 0; renderListen(); }));
 
+// ---------- smart review notifications ----------
+async function countDueWords() {
+  let due = 0;
+  const now = Date.now();
+  for (const lang of Object.keys(LANGS)) {
+    const srs = getSrs(lang);
+    Object.values(srs).forEach(e => {
+      if (!e || !e.seen) return;
+      const nextDue = (e.lastSeen || 0) + BOX_DAYS[Math.min(e.box, MAX_BOX)] * DAY;
+      if (nextDue <= now) due++;
+    });
+  }
+  return due;
+}
+
+async function scheduleReviewNotification() {
+  const LN = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.LocalNotifications;
+  if (!LN) return;
+  try {
+    const perm = await LN.checkPermissions();
+    if (perm.display !== 'granted') {
+      const req = await LN.requestPermissions();
+      if (req.display !== 'granted') return;
+    }
+    await LN.cancel({ notifications: [{ id: 1 }] });
+    const due = await countDueWords();
+    const msg = due > 0
+      ? `${due} mot${due > 1 ? 's' : ''} à réviser aujourd'hui !`
+      : 'Continue ta progression — lance un quiz !';
+    const now = new Date();
+    const trigger = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 9, 0, 0, 0);
+    if (trigger <= now) trigger.setDate(trigger.getDate() + 1);
+    await LN.schedule({ notifications: [{ id: 1, title: '📚 Quiz Langue', body: msg, schedule: { at: trigger, repeats: true, every: 'day' }, sound: null, attachments: null, actionTypeId: '', extra: null }] });
+  } catch (_) {}
+}
+
+async function cancelReviewNotification() {
+  const LN = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.LocalNotifications;
+  if (!LN) return;
+  try { await LN.cancel({ notifications: [{ id: 1 }] }); } catch (_) {}
+}
+
 function bindToggle(id, key) {
   const el = $(id); el.checked = settings[key];
   el.addEventListener('change', () => { settings[key] = el.checked; saveSettings(); });
@@ -1197,6 +1239,15 @@ bindToggle('opt-autonext', 'autoNext');
 bindToggle('opt-sound', 'sound');
 bindToggle('opt-close', 'closeDistractors');
 bindToggle('opt-pictos', 'pictos');
+
+const elNotif = $('opt-notifications');
+elNotif.checked = settings.notifications;
+elNotif.addEventListener('change', () => {
+  settings.notifications = elNotif.checked;
+  saveSettings();
+  if (settings.notifications) scheduleReviewNotification();
+  else cancelReviewNotification();
+});
 
 
 const settingsModal = $('settings-modal');
@@ -1326,3 +1377,5 @@ renderChips('.dir-chip', state.dir, 'dir');
 renderChips('.count-chip', state.count, 'count');
 $('app-version').textContent = 'v' + APP_VERSION;
 selectLang('en');
+
+if (settings.notifications) scheduleReviewNotification();
