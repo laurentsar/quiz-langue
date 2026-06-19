@@ -83,10 +83,6 @@
         <label class="toggle"><span>🎵 Son juste / faux</span><input type="checkbox" id="opt-sound" /></label>
         <label class="toggle"><span>🎯 Distracteurs proches (plus difficile)</span><input type="checkbox" id="opt-close" /></label>
         <label class="toggle"><span>🖼️ Pictogrammes (vocabulaire)</span><input type="checkbox" id="opt-pictos" /></label>
-        <div class="api-key-row">
-          <span class="api-key-label">🔑 Clé API Claude (quiz IA)</span>
-          <input type="password" id="opt-apikey" class="api-key-input" placeholder="sk-ant-…" autocomplete="new-password" spellcheck="false" />
-        </div>
       </div>
     </div>
 
@@ -164,7 +160,7 @@
       </div>
       <div id="grammar-list" class="grammar-list"></div>
 
-      <!-- Panel sélection de concepts pour quiz IA -->
+      <!-- Panel sélection de concepts pour quiz personnalisé -->
       <div id="grammar-ai-panel" class="card ai-panel hidden">
         <span class="hero-label">Concepts à réviser</span>
         <div id="grammar-concepts" class="concept-list"></div>
@@ -178,11 +174,10 @@
           <button class="chip gcount-chip" data-count="10">10</button>
           <button class="chip gcount-chip" data-count="20">20</button>
         </div>
-        <button id="btn-grammar-ai" class="primary">✨ Générer le quiz</button>
-        <div id="gen-status" class="gen-status hidden"></div>
+        <button id="btn-grammar-ai" class="primary">🎯 Lancer le quiz</button>
       </div>
 
-      <button id="btn-toggle-ai" class="secondary">🤖 Quiz IA — choisir les concepts</button>
+      <button id="btn-toggle-ai" class="secondary">🎯 Quiz personnalisé — choisir les concepts</button>
       <button id="btn-grammar-quiz" class="secondary">🧩 S'entraîner (exercices classiques)</button>
       <button id="btn-grammar-learn" class="secondary">🎓 Apprendre (cartes)</button>
       <div id="grammar-detail" class="hidden"></div>

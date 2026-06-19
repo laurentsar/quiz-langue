@@ -48,7 +48,7 @@ function lsGet(k, d) { try { const r = localStorage.getItem(k); return r ? JSON.
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 
 function loadSettings() {
-  return Object.assign({ audioAuto: true, autoNext: true, sound: true, closeDistractors: false, pictos: true, apiKey: '' }, lsGet('quizlangue:settings:v1', {}));
+  return Object.assign({ audioAuto: true, autoNext: true, sound: true, closeDistractors: false, pictos: true }, lsGet('quizlangue:settings:v1', {}));
 }
 function saveSettings() { lsSet('quizlangue:settings:v1', settings); }
 
@@ -556,7 +556,7 @@ function renderGrammarList() {
   $('btn-grammar-quiz').classList.remove('hidden');
   $('btn-grammar-learn').classList.remove('hidden');
   $('btn-toggle-ai').classList.remove('hidden');
-  $('grammar-ai-panel').classList.toggle('hidden', !grammarAiPanelOpen);
+  $('grammar-ai-panel').classList.toggle('hidden', !grammarCustomPanelOpen);
   const list = $('grammar-list');
   list.classList.remove('hidden');
   list.innerHTML = (grammarData || []).map((t, i) =>
@@ -596,99 +596,9 @@ function showGrammarTopic(idx) {
   window.scrollTo(0, 0);
 }
 
-let grammarAiCount = 5;
-let grammarSelectedTopics = new Set();  // IDs des topics sélectionnés pour l'IA
-let grammarAiPanelOpen = false;
-
-// ---------- génération IA de questions de grammaire ----------
-const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages';
-
-function showGenStatus(msg, type) {
-  const el = $('gen-status');
-  if (!el) return;
-  el.textContent = msg;
-  el.className = 'gen-status gen-' + (type || '');
-  el.classList.remove('hidden');
-}
-
-async function generateGrammarQuestions(topicIds, count) {
-  const apiKey = (settings.apiKey || '').trim();
-  if (!apiKey) {
-    showGenStatus('❌ Clé API Claude manquante — ajoute-la dans les Réglages ⚙️', 'error');
-    return null;
-  }
-  const topics = (grammarData || []).filter(t => topicIds.has(t.id));
-  if (!topics.length) {
-    showGenStatus('❌ Sélectionne au moins un concept.', 'error');
-    return null;
-  }
-  const topicList = topics.map(t => `- ${t.id}: ${t.title}${t.subtitle ? ' (' + t.subtitle + ')' : ''}`).join('\n');
-  const prompt = `Tu es un professeur d'anglais. Génère exactement ${count} exercices de grammaire anglaise à trou (fill-in-the-blank), en JSON.
-
-Concepts à tester (répartis équitablement) :
-${topicList}
-
-Retourne UNIQUEMENT un tableau JSON valide, sans texte avant ni après :
-[
-  {
-    "id": "ai-1",
-    "topic": "id-exact-du-concept",
-    "q": "Phrase avec ___ à compléter.",
-    "options": ["bonne réponse", "mauvaise1", "mauvaise2", "mauvaise3"],
-    "answer": "bonne réponse",
-    "hint": "Explication courte en français."
-  }
-]
-
-Règles :
-- ___ marque le seul mot manquant dans la phrase
-- Exactement 4 options, la bonne réponse doit figurer parmi elles
-- Les 3 distracteurs sont plausibles mais incorrects
-- Niveau B1-B2, phrases variées
-- hint en français, max 8 mots
-- topic = un des IDs donnés ci-dessus`;
-
-  showGenStatus('⏳ Génération en cours…', '');
-  $('btn-grammar-ai').disabled = true;
-  try {
-    const resp = await fetch(ANTHROPIC_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true',
-      },
-      body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
-        max_tokens: 4096,
-        messages: [{ role: 'user', content: prompt }],
-      }),
-    });
-    if (!resp.ok) {
-      const err = await resp.json().catch(() => ({}));
-      throw new Error((err.error && err.error.message) || ('Erreur API ' + resp.status));
-    }
-    const data = await resp.json();
-    const text = data.content[0].text;
-    const match = text.match(/\[[\s\S]*\]/);
-    if (!match) throw new Error('Réponse invalide du modèle');
-    const items = JSON.parse(match[0]);
-    if (!Array.isArray(items) || !items.length) throw new Error('Aucune question reçue');
-    const valid = items.filter(it => it.q && it.answer && Array.isArray(it.options) && it.options.includes(it.answer));
-    if (!valid.length) throw new Error('Questions invalides dans la réponse');
-    const ts = Date.now();
-    valid.forEach((it, i) => { it.id = `ai-${ts}-${i}`; });
-    const n = valid.length;
-    showGenStatus(`✅ ${n} question${n > 1 ? 's' : ''} générée${n > 1 ? 's' : ''} !`, 'ok');
-    return valid;
-  } catch (e) {
-    showGenStatus('❌ ' + (e.message || 'Erreur de génération'), 'error');
-    return null;
-  } finally {
-    $('btn-grammar-ai').disabled = false;
-  }
-}
+let grammarCustomCount = 5;
+let grammarSelectedTopics = new Set();  // IDs des topics sélectionnés
+let grammarCustomPanelOpen = false;
 
 function renderConceptCheckboxes() {
   const container = $('grammar-concepts');
@@ -736,13 +646,9 @@ $('btn-grammar-back').addEventListener('click', renderGrammarList);
 $('btn-grammar-home').addEventListener('click', () => showView('home'));
 
 $('btn-toggle-ai').addEventListener('click', () => {
-  grammarAiPanelOpen = !grammarAiPanelOpen;
-  $('grammar-ai-panel').classList.toggle('hidden', !grammarAiPanelOpen);
-  $('btn-toggle-ai').textContent = grammarAiPanelOpen ? '▲ Masquer le quiz IA' : '🤖 Quiz IA — choisir les concepts';
-  if (grammarAiPanelOpen) {
-    const statusEl = $('gen-status');
-    if (statusEl) statusEl.classList.add('hidden');
-  }
+  grammarCustomPanelOpen = !grammarCustomPanelOpen;
+  $('grammar-ai-panel').classList.toggle('hidden', !grammarCustomPanelOpen);
+  $('btn-toggle-ai').textContent = grammarCustomPanelOpen ? '▲ Masquer la sélection' : '🎯 Quiz personnalisé — choisir les concepts';
 });
 
 $('btn-sel-all').addEventListener('click', () => {
@@ -756,18 +662,22 @@ $('btn-sel-none').addEventListener('click', () => {
 
 document.querySelectorAll('.gcount-chip').forEach(c => {
   c.addEventListener('click', () => {
-    grammarAiCount = +c.dataset.count;
-    renderChips('.gcount-chip', grammarAiCount, 'count');
+    grammarCustomCount = +c.dataset.count;
+    renderChips('.gcount-chip', grammarCustomCount, 'count');
   });
 });
 
 $('btn-grammar-ai').addEventListener('click', async () => {
-  const questions = await generateGrammarQuestions(grammarSelectedTopics, grammarAiCount);
-  if (!questions) return;
+  if (!grammarQuizData) grammarQuizData = await (await fetch(GRAMMAR_QUIZ_FILE)).json();
+  if (grammarSelectedTopics.size === 0) {
+    grammarData.forEach(t => grammarSelectedTopics.add(t.id));
+  }
+  const pool = shuffle(grammarQuizData.filter(x => grammarSelectedTopics.has(x.topic)));
+  if (!pool.length) return;
   state.kind = 'grammar';
   state.level = 'Global';
-  state.words = questions.map(x => Object.assign({ word: x.id }, x));
-  state.badge = 'Grammaire IA';
+  state.words = pool.slice(0, grammarCustomCount).map(x => Object.assign({ word: x.id }, x));
+  state.badge = 'Grammaire';
   startSession('srs');
 });
 
@@ -967,9 +877,6 @@ bindToggle('opt-sound', 'sound');
 bindToggle('opt-close', 'closeDistractors');
 bindToggle('opt-pictos', 'pictos');
 
-const apiKeyInput = $('opt-apikey');
-apiKeyInput.value = settings.apiKey || '';
-apiKeyInput.addEventListener('input', () => { settings.apiKey = apiKeyInput.value; saveSettings(); });
 
 const settingsModal = $('settings-modal');
 $('btn-settings').addEventListener('click', () => settingsModal.classList.remove('hidden'));
