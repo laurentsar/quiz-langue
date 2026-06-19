@@ -883,8 +883,13 @@ function evaluatePronun(recognized, target) {
   return hits / tWords.length >= 0.5 ? 'partial' : 'wrong';
 }
 
+function hasSpeechCapability() {
+  const cap = window.Capacitor;
+  return !!(cap && cap.isNativePlatform && cap.isNativePlatform() && cap.Plugins && cap.Plugins.SpeechRecognition) || !!SR;
+}
+
 async function startPronunciation() {
-  if (!SR) { alert('La reconnaissance vocale n\'est pas disponible sur cet appareil.'); return; }
+  if (!hasSpeechCapability()) { alert('La reconnaissance vocale n\'est pas disponible sur cet appareil.'); return; }
   if (!cache[state.lang]) cache[state.lang] = await (await fetch(LANGS[state.lang].file)).json();
   state.words = cache[state.lang];
   const picks = shuffle(levelWords()).slice(0, state.count);
@@ -917,15 +922,72 @@ function renderPronunCard() {
   if (settings.audioAuto) speak(display(w.word));
 }
 
-function startListening() {
+async function startListening() {
   if (pronunState.listening) return;
-  if (!SR) {
+  if (!hasSpeechCapability()) {
     $('pronun-mic-hint').textContent = 'Reconnaissance vocale non disponible sur cet appareil.';
     return;
   }
+
   const w = pronunState.words[pronunState.index];
+  const target = display(w.word);
+  pronunState.listening = true;
+  $('btn-pronun-mic').className = 'mic-btn mic-active';
+  $('pronun-mic-hint').textContent = 'Écoute en cours…';
+
+  const cap = window.Capacitor;
+  const capSR = cap && cap.isNativePlatform && cap.isNativePlatform() && cap.Plugins && cap.Plugins.SpeechRecognition;
+
+  if (capSR) {
+    try {
+      let perm = await capSR.hasPermission().catch(() => ({ permission: false }));
+      if (!perm.permission) {
+        const req = await capSR.requestPermission().catch(() => ({ permission: false }));
+        if (!req.permission) {
+          pronunState.listening = false;
+          $('btn-pronun-mic').className = 'mic-btn';
+          $('pronun-mic-hint').textContent = 'Permission micro refusée — autorise le micro dans les réglages.';
+          return;
+        }
+      }
+      const result = await capSR.start({
+        language: LANGS[state.lang].tts,
+        maxResults: 5,
+        partialResults: false,
+        popup: false,
+      });
+      pronunState.listening = false;
+      const matches = result && result.matches ? Array.from(result.matches) : [];
+      if (matches.length) {
+        let best = matches[0];
+        for (const alt of matches) {
+          if (evaluatePronun(alt, target) !== 'wrong') { best = alt; break; }
+        }
+        showPronunFeedback(evaluatePronun(best, target), best);
+      } else {
+        $('btn-pronun-mic').className = 'mic-btn';
+        $('pronun-mic-hint').textContent = 'Aucune voix détectée — réessaie.';
+      }
+    } catch (err) {
+      pronunState.listening = false;
+      $('btn-pronun-mic').className = 'mic-btn';
+      const code = err && (err.message || err.code || '');
+      if (/permission|not.allowed/i.test(code)) {
+        $('pronun-mic-hint').textContent = 'Permission micro refusée — autorise le micro dans les réglages.';
+      } else if (/no.match|no.speech/i.test(code)) {
+        $('pronun-mic-hint').textContent = 'Aucune voix détectée — réessaie.';
+      } else {
+        $('pronun-mic-hint').textContent = 'Erreur micro : ' + (code || 'inconnue');
+      }
+    }
+    return;
+  }
+
+  // Fallback : Web Speech API (Chrome desktop/mobile)
   let rec;
   try { rec = new SR(); } catch (err) {
+    pronunState.listening = false;
+    $('btn-pronun-mic').className = 'mic-btn';
     $('pronun-mic-hint').textContent = 'Impossible d\'initialiser le micro : ' + err.message;
     return;
   }
@@ -933,13 +995,9 @@ function startListening() {
   rec.continuous = false;
   rec.interimResults = false;
   rec.maxAlternatives = 5;
-  pronunState.listening = true;
-  $('btn-pronun-mic').className = 'mic-btn mic-active';
-  $('pronun-mic-hint').textContent = 'Écoute en cours…';
 
   rec.onresult = (e) => {
     const alts = Array.from(e.results[0]).map(a => a.transcript);
-    const target = display(w.word);
     let best = alts[0];
     for (const alt of alts) {
       if (evaluatePronun(alt, target) !== 'wrong') { best = alt; break; }

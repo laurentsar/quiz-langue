@@ -268,11 +268,15 @@ html, body {
 .fb-line { font-weight: 500; line-height: 1.4; color: var(--text); }
 .fb-line.tip { color: var(--sky); }
 
+#view-quiz, #view-pronun { gap: 12px; }
+
 .quiz-footer.sticky {
   position: sticky; bottom: 0; z-index: 5;
   margin: 0 -22px -24px; padding: 12px 22px max(16px, env(safe-area-inset-bottom));
   background: linear-gradient(to top, var(--ocean) 70%, transparent);
 }
+
+.pronun-mic-area { padding: 10px 0; }
 
 @media (max-width: 380px) {
   .word-value.sentence { font-size: 19px; }
