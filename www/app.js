@@ -21,6 +21,7 @@ const KIND_COLORS = { vocab: '#27B3FF', verbs: '#4CE0D2', grammar: '#1B5CFF', pr
 const state = {
   lang: 'en',
   level: 'Global',
+  selectedLevels: new Set(),   // vide = Global (tous les niveaux)
   dir: 'fwd',       // 'fwd' = word->fr, 'rev' = fr->word
   count: 5,
   mode: 'srs',      // 'srs' | 'review'
@@ -103,8 +104,7 @@ function chooseDistractors(correct, primaryRaw, fallbackRaw) {
 }
 
 function levelWords() {
-  const lv = state.level;
-  return (lv && lv !== 'Global') ? state.words.filter(w => w.level === lv) : state.words;
+  return state.selectedLevels.size ? state.words.filter(w => state.selectedLevels.has(w.level)) : state.words;
 }
 
 // ---------- SRS scheduling ----------
@@ -263,9 +263,21 @@ function renderLevelChips() {
   const row = $('level-row'); row.innerHTML = '';
   LANGS[state.lang].levels.forEach(lv => {
     const b = document.createElement('button');
-    b.className = 'chip' + (lv === state.level ? ' active' : '');
+    const isGlobal = lv === 'Global';
+    const isActive = isGlobal ? !state.selectedLevels.size : state.selectedLevels.has(lv);
+    b.className = 'chip' + (isActive ? ' active' : '');
     b.textContent = lv;
-    b.addEventListener('click', () => { state.level = lv; renderLevelChips(); renderStats(); });
+    b.addEventListener('click', () => {
+      if (isGlobal) {
+        state.selectedLevels.clear();
+      } else if (state.selectedLevels.has(lv)) {
+        state.selectedLevels.delete(lv);
+      } else {
+        state.selectedLevels.add(lv);
+      }
+      state.level = state.selectedLevels.size ? [...state.selectedLevels].join('+') : 'Global';
+      renderLevelChips(); renderStats();
+    });
     row.appendChild(b);
   });
 }
@@ -297,6 +309,7 @@ async function loadWords(lang) {
 
 async function selectLang(lang) {
   state.lang = lang;
+  state.selectedLevels.clear();
   state.level = 'Global';
   state.words = await loadWords(lang);
   renderChips('.lang-chip', lang, 'lang');
@@ -487,6 +500,16 @@ function launchFireworks() {
 document.querySelectorAll('.lang-chip').forEach(c => c.addEventListener('click', () => selectLang(c.dataset.lang)));
 document.querySelectorAll('.dir-chip').forEach(c => c.addEventListener('click', () => { state.dir = c.dataset.dir; renderChips('.dir-chip', state.dir, 'dir'); }));
 document.querySelectorAll('.count-chip').forEach(c => c.addEventListener('click', () => { state.count = +c.dataset.count; renderChips('.count-chip', state.count, 'count'); }));
+$('btn-level-all').addEventListener('click', () => {
+  LANGS[state.lang].levels.filter(l => l !== 'Global').forEach(l => state.selectedLevels.add(l));
+  state.level = [...state.selectedLevels].join('+');
+  renderLevelChips(); renderStats();
+});
+$('btn-level-none').addEventListener('click', () => {
+  state.selectedLevels.clear();
+  state.level = 'Global';
+  renderLevelChips(); renderStats();
+});
 
 function exitToHome() {
   clearTimeout(autoNextTimer);
