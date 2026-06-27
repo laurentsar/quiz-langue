@@ -1,9 +1,10 @@
-const CACHE = 'quiz-langue-v15';
+const CACHE = 'quiz-langue-v16';
 const ASSETS = [
   './',
   'index.html',
   'styles.css',
   'app.js',
+  'update-check.js',
   'manifest.webmanifest',
   'data/wordlist_en.json',
   'data/wordlist_es.json',
