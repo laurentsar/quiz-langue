@@ -13,9 +13,18 @@
           "Mots clés : always, usually, often, every day, never."
         ],
         "examples": [
-          { "en": "I work from home.", "fr": "Je travaille à la maison." },
-          { "en": "She doesn't eat meat.", "fr": "Elle ne mange pas de viande." },
-          { "en": "Do you speak English?", "fr": "Parles-tu anglais ?" }
+          {
+            "en": "I work from home.",
+            "fr": "Je travaille à la maison."
+          },
+          {
+            "en": "She doesn't eat meat.",
+            "fr": "Elle ne mange pas de viande."
+          },
+          {
+            "en": "Do you speak English?",
+            "fr": "Parles-tu anglais ?"
+          }
         ]
       },
       {
@@ -27,11 +36,19 @@
           "Verbes d'état (like, know, want, believe) ne s'emploient normalement pas au continu."
         ],
         "examples": [
-          { "en": "I'm working right now.", "fr": "Je travaille en ce moment." },
-          { "en": "They are watching a film.", "fr": "Ils regardent un film." }
+          {
+            "en": "I'm working right now.",
+            "fr": "Je travaille en ce moment."
+          },
+          {
+            "en": "They are watching a film.",
+            "fr": "Ils regardent un film."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=xFsYrTIndhI",
+    "videoTitle": "Present Simple and Present Continuous – BBC Learning English"
   },
   {
     "id": "past-vs-present-perfect",
@@ -47,8 +64,14 @@
           "Mots clés : yesterday, last week, in 2010, ago."
         ],
         "examples": [
-          { "en": "I saw her yesterday.", "fr": "Je l'ai vue hier." },
-          { "en": "We didn't go out.", "fr": "Nous ne sommes pas sortis." }
+          {
+            "en": "I saw her yesterday.",
+            "fr": "Je l'ai vue hier."
+          },
+          {
+            "en": "We didn't go out.",
+            "fr": "Nous ne sommes pas sortis."
+          }
         ]
       },
       {
@@ -60,12 +83,23 @@
           "On ne précise PAS le moment exact (sinon → prétérit)."
         ],
         "examples": [
-          { "en": "I have lost my keys.", "fr": "J'ai perdu mes clés (et je ne les ai pas)." },
-          { "en": "Have you ever been to London?", "fr": "Es-tu déjà allé à Londres ?" },
-          { "en": "She has lived here for ten years.", "fr": "Elle habite ici depuis dix ans." }
+          {
+            "en": "I have lost my keys.",
+            "fr": "J'ai perdu mes clés (et je ne les ai pas)."
+          },
+          {
+            "en": "Have you ever been to London?",
+            "fr": "Es-tu déjà allé à Londres ?"
+          },
+          {
+            "en": "She has lived here for ten years.",
+            "fr": "Elle habite ici depuis dix ans."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=M6pkqTu8gbE",
+    "videoTitle": "Past Simple or Present Perfect? – English Grammar"
   },
   {
     "id": "future",
@@ -80,8 +114,14 @@
           "Souvent avec : I think, probably, maybe."
         ],
         "examples": [
-          { "en": "I'll help you.", "fr": "Je vais t'aider (décision immédiate)." },
-          { "en": "It will rain tomorrow.", "fr": "Il pleuvra demain." }
+          {
+            "en": "I'll help you.",
+            "fr": "Je vais t'aider (décision immédiate)."
+          },
+          {
+            "en": "It will rain tomorrow.",
+            "fr": "Il pleuvra demain."
+          }
         ]
       },
       {
@@ -91,8 +131,14 @@
           "Forme : am / is / are going to + verbe."
         ],
         "examples": [
-          { "en": "I'm going to study tonight.", "fr": "Je vais étudier ce soir (prévu)." },
-          { "en": "Look at those clouds — it's going to rain.", "fr": "Regarde ces nuages — il va pleuvoir." }
+          {
+            "en": "I'm going to study tonight.",
+            "fr": "Je vais étudier ce soir (prévu)."
+          },
+          {
+            "en": "Look at those clouds — it's going to rain.",
+            "fr": "Regarde ces nuages — il va pleuvoir."
+          }
         ]
       },
       {
@@ -101,10 +147,15 @@
           "Rendez-vous, arrangements planifiés avec une heure/date."
         ],
         "examples": [
-          { "en": "I'm meeting Tom at 5.", "fr": "Je vois Tom à 17 h (prévu)." }
+          {
+            "en": "I'm meeting Tom at 5.",
+            "fr": "Je vois Tom à 17 h (prévu)."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=VX95vEL-OdU",
+    "videoTitle": "FUTURE: will or going to? – engVid"
   },
   {
     "id": "articles",
@@ -119,8 +170,14 @@
           "Pas d'article avec un pluriel ou un indénombrable indéfini."
         ],
         "examples": [
-          { "en": "I bought a car.", "fr": "J'ai acheté une voiture." },
-          { "en": "She is an engineer.", "fr": "Elle est ingénieure." }
+          {
+            "en": "I bought a car.",
+            "fr": "J'ai acheté une voiture."
+          },
+          {
+            "en": "She is an engineer.",
+            "fr": "Elle est ingénieure."
+          }
         ]
       },
       {
@@ -130,8 +187,14 @@
           "Devant singulier, pluriel et indénombrables."
         ],
         "examples": [
-          { "en": "The car is red.", "fr": "La voiture est rouge (celle dont on parle)." },
-          { "en": "The sun is hot.", "fr": "Le soleil est chaud." }
+          {
+            "en": "The car is red.",
+            "fr": "La voiture est rouge (celle dont on parle)."
+          },
+          {
+            "en": "The sun is hot.",
+            "fr": "Le soleil est chaud."
+          }
         ]
       },
       {
@@ -141,11 +204,19 @@
           "Différence clé avec le français qui met souvent un article."
         ],
         "examples": [
-          { "en": "Dogs are loyal.", "fr": "Les chiens sont fidèles (en général)." },
-          { "en": "I like music.", "fr": "J'aime la musique." }
+          {
+            "en": "Dogs are loyal.",
+            "fr": "Les chiens sont fidèles (en général)."
+          },
+          {
+            "en": "I like music.",
+            "fr": "J'aime la musique."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=ryRu8zFCKZE",
+    "videoTitle": "Articles: a / an / the – BBC Learning English"
   },
   {
     "id": "comparatives",
@@ -160,8 +231,14 @@
           "Doublement de la consonne finale : big → bigger / biggest."
         ],
         "examples": [
-          { "en": "Tom is taller than me.", "fr": "Tom est plus grand que moi." },
-          { "en": "It's the cheapest one.", "fr": "C'est le moins cher." }
+          {
+            "en": "Tom is taller than me.",
+            "fr": "Tom est plus grand que moi."
+          },
+          {
+            "en": "It's the cheapest one.",
+            "fr": "C'est le moins cher."
+          }
         ]
       },
       {
@@ -171,8 +248,14 @@
           "Superlatif : the most + adjectif."
         ],
         "examples": [
-          { "en": "This book is more interesting.", "fr": "Ce livre est plus intéressant." },
-          { "en": "the most expensive hotel", "fr": "l'hôtel le plus cher" }
+          {
+            "en": "This book is more interesting.",
+            "fr": "Ce livre est plus intéressant."
+          },
+          {
+            "en": "the most expensive hotel",
+            "fr": "l'hôtel le plus cher"
+          }
         ]
       },
       {
@@ -181,10 +264,15 @@
           "good → better → the best ; bad → worse → the worst ; far → further."
         ],
         "examples": [
-          { "en": "Her English is better than mine.", "fr": "Son anglais est meilleur que le mien." }
+          {
+            "en": "Her English is better than mine.",
+            "fr": "Son anglais est meilleur que le mien."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=U2DxNgQqDgQ",
+    "videoTitle": "Comparatives and Superlatives – BBC Learning English"
   },
   {
     "id": "modals",
@@ -199,8 +287,14 @@
           "Négation : cannot/can't, must not/mustn't, shouldn't."
         ],
         "examples": [
-          { "en": "He can drive.", "fr": "Il sait conduire." },
-          { "en": "Can you help?", "fr": "Peux-tu aider ?" }
+          {
+            "en": "He can drive.",
+            "fr": "Il sait conduire."
+          },
+          {
+            "en": "Can you help?",
+            "fr": "Peux-tu aider ?"
+          }
         ]
       },
       {
@@ -212,12 +306,23 @@
           "mustn't = interdiction ; don't have to = pas obligé."
         ],
         "examples": [
-          { "en": "You should rest.", "fr": "Tu devrais te reposer." },
-          { "en": "You mustn't smoke here.", "fr": "Tu ne dois pas fumer ici (interdit)." },
-          { "en": "You don't have to come.", "fr": "Tu n'es pas obligé de venir." }
+          {
+            "en": "You should rest.",
+            "fr": "Tu devrais te reposer."
+          },
+          {
+            "en": "You mustn't smoke here.",
+            "fr": "Tu ne dois pas fumer ici (interdit)."
+          },
+          {
+            "en": "You don't have to come.",
+            "fr": "Tu n'es pas obligé de venir."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=36wG9pSYu7Q",
+    "videoTitle": "Modal Verbs: can, could, may, might, must, should… – English Grammar"
   },
   {
     "id": "conditionals",
@@ -231,8 +336,14 @@
           "Type 1 (futur probable) : If + présent, will + base verbale."
         ],
         "examples": [
-          { "en": "If you heat ice, it melts.", "fr": "Si on chauffe la glace, elle fond." },
-          { "en": "If it rains, I'll stay home.", "fr": "S'il pleut, je resterai à la maison." }
+          {
+            "en": "If you heat ice, it melts.",
+            "fr": "Si on chauffe la glace, elle fond."
+          },
+          {
+            "en": "If it rains, I'll stay home.",
+            "fr": "S'il pleut, je resterai à la maison."
+          }
         ]
       },
       {
@@ -242,8 +353,14 @@
           "On emploie were pour tout le monde (If I were…)."
         ],
         "examples": [
-          { "en": "If I had money, I would travel.", "fr": "Si j'avais de l'argent, je voyagerais." },
-          { "en": "If I were you, I'd wait.", "fr": "À ta place, j'attendrais." }
+          {
+            "en": "If I had money, I would travel.",
+            "fr": "Si j'avais de l'argent, je voyagerais."
+          },
+          {
+            "en": "If I were you, I'd wait.",
+            "fr": "À ta place, j'attendrais."
+          }
         ]
       },
       {
@@ -252,10 +369,15 @@
           "Regret/hypothèse passée : If + had + participe passé, would have + participe passé."
         ],
         "examples": [
-          { "en": "If I had known, I would have called.", "fr": "Si j'avais su, j'aurais appelé." }
+          {
+            "en": "If I had known, I would have called.",
+            "fr": "Si j'avais su, j'aurais appelé."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=vXp0ETWXbWo",
+    "videoTitle": "Conditionals 0, 1, 2 & 3 – English Grammar Lesson"
   },
   {
     "id": "questions-negation",
@@ -270,9 +392,18 @@
           "Question : Do/Does/Did + sujet + base verbale ?"
         ],
         "examples": [
-          { "en": "Do you like tea?", "fr": "Aimes-tu le thé ?" },
-          { "en": "She doesn't know.", "fr": "Elle ne sait pas." },
-          { "en": "Did they win?", "fr": "Ont-ils gagné ?" }
+          {
+            "en": "Do you like tea?",
+            "fr": "Aimes-tu le thé ?"
+          },
+          {
+            "en": "She doesn't know.",
+            "fr": "Elle ne sait pas."
+          },
+          {
+            "en": "Did they win?",
+            "fr": "Ont-ils gagné ?"
+          }
         ]
       },
       {
@@ -282,8 +413,14 @@
           "be : Are you ready? ; modal : Can he come? ; perfect : Have you finished?"
         ],
         "examples": [
-          { "en": "Is she coming?", "fr": "Est-ce qu'elle vient ?" },
-          { "en": "Have you eaten?", "fr": "As-tu mangé ?" }
+          {
+            "en": "Is she coming?",
+            "fr": "Est-ce qu'elle vient ?"
+          },
+          {
+            "en": "Have you eaten?",
+            "fr": "As-tu mangé ?"
+          }
         ]
       },
       {
@@ -292,10 +429,15 @@
           "what, where, when, who, why, how, which, whose + structure de question."
         ],
         "examples": [
-          { "en": "Where do you live?", "fr": "Où habites-tu ?" }
+          {
+            "en": "Where do you live?",
+            "fr": "Où habites-tu ?"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=j9b1CNN_rFU",
+    "videoTitle": "Asking Questions – BBC Learning English"
   },
   {
     "id": "quantifiers",
@@ -309,8 +451,14 @@
           "any : négations et questions."
         ],
         "examples": [
-          { "en": "I have some money.", "fr": "J'ai de l'argent." },
-          { "en": "Do you have any questions?", "fr": "As-tu des questions ?" }
+          {
+            "en": "I have some money.",
+            "fr": "J'ai de l'argent."
+          },
+          {
+            "en": "Do you have any questions?",
+            "fr": "As-tu des questions ?"
+          }
         ]
       },
       {
@@ -321,8 +469,14 @@
           "a lot of / lots of : les deux, surtout à l'affirmatif."
         ],
         "examples": [
-          { "en": "How much water?", "fr": "Combien d'eau ?" },
-          { "en": "There are many cars.", "fr": "Il y a beaucoup de voitures." }
+          {
+            "en": "How much water?",
+            "fr": "Combien d'eau ?"
+          },
+          {
+            "en": "There are many cars.",
+            "fr": "Il y a beaucoup de voitures."
+          }
         ]
       },
       {
@@ -332,11 +486,19 @@
           "a few = quelques (positif) ; few = peu (négatif)."
         ],
         "examples": [
-          { "en": "a little sugar", "fr": "un peu de sucre" },
-          { "en": "few friends", "fr": "peu d'amis" }
+          {
+            "en": "a little sugar",
+            "fr": "un peu de sucre"
+          },
+          {
+            "en": "few friends",
+            "fr": "peu d'amis"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=XxGzMZZ_Hjc",
+    "videoTitle": "Quantifiers: much, many, a lot of, some, any… – English Grammar"
   },
   {
     "id": "gerund-infinitive",
@@ -351,8 +513,14 @@
           "Comme sujet : Smoking is bad."
         ],
         "examples": [
-          { "en": "I enjoy reading.", "fr": "J'aime lire." },
-          { "en": "She's good at drawing.", "fr": "Elle est douée pour le dessin." }
+          {
+            "en": "I enjoy reading.",
+            "fr": "J'aime lire."
+          },
+          {
+            "en": "She's good at drawing.",
+            "fr": "Elle est douée pour le dessin."
+          }
         ]
       },
       {
@@ -362,11 +530,19 @@
           "Pour exprimer le but : I came to help."
         ],
         "examples": [
-          { "en": "I want to learn.", "fr": "Je veux apprendre." },
-          { "en": "He decided to leave.", "fr": "Il a décidé de partir." }
+          {
+            "en": "I want to learn.",
+            "fr": "Je veux apprendre."
+          },
+          {
+            "en": "He decided to leave.",
+            "fr": "Il a décidé de partir."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=zPzjJHKyNwc",
+    "videoTitle": "Gerund or Infinitive? – engVid"
   },
   {
     "id": "be",
@@ -381,9 +557,18 @@
           "be sert aussi d'auxiliaire (présent continu, passif)."
         ],
         "examples": [
-          { "en": "I am French.", "fr": "Je suis français." },
-          { "en": "She is tired.", "fr": "Elle est fatiguée." },
-          { "en": "They are at home.", "fr": "Ils sont à la maison." }
+          {
+            "en": "I am French.",
+            "fr": "Je suis français."
+          },
+          {
+            "en": "She is tired.",
+            "fr": "Elle est fatiguée."
+          },
+          {
+            "en": "They are at home.",
+            "fr": "Ils sont à la maison."
+          }
         ]
       },
       {
@@ -393,8 +578,14 @@
           "Question : on inverse be et le sujet (Are you…? Is he…?)."
         ],
         "examples": [
-          { "en": "Are you ready?", "fr": "Es-tu prêt ?" },
-          { "en": "He isn't here.", "fr": "Il n'est pas là." }
+          {
+            "en": "Are you ready?",
+            "fr": "Es-tu prêt ?"
+          },
+          {
+            "en": "He isn't here.",
+            "fr": "Il n'est pas là."
+          }
         ]
       },
       {
@@ -404,8 +595,14 @@
           "Négation : wasn't / weren't."
         ],
         "examples": [
-          { "en": "I was at school.", "fr": "J'étais à l'école." },
-          { "en": "They were happy.", "fr": "Ils étaient contents." }
+          {
+            "en": "I was at school.",
+            "fr": "J'étais à l'école."
+          },
+          {
+            "en": "They were happy.",
+            "fr": "Ils étaient contents."
+          }
         ]
       },
       {
@@ -415,12 +612,23 @@
           "There is / there are = il y a (singulier / pluriel)."
         ],
         "examples": [
-          { "en": "I am hungry.", "fr": "J'ai faim." },
-          { "en": "He is ten years old.", "fr": "Il a dix ans." },
-          { "en": "There is a problem.", "fr": "Il y a un problème." }
+          {
+            "en": "I am hungry.",
+            "fr": "J'ai faim."
+          },
+          {
+            "en": "He is ten years old.",
+            "fr": "Il a dix ans."
+          },
+          {
+            "en": "There is a problem.",
+            "fr": "Il y a un problème."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=5wvzgid7RvU",
+    "videoTitle": "Verb \"to BE\" – English Grammar Lesson"
   },
   {
     "id": "have",
@@ -434,8 +642,14 @@
           "Contracté en auxiliaire : 've / 's."
         ],
         "examples": [
-          { "en": "I have a car.", "fr": "J'ai une voiture." },
-          { "en": "She has two children.", "fr": "Elle a deux enfants." }
+          {
+            "en": "I have a car.",
+            "fr": "J'ai une voiture."
+          },
+          {
+            "en": "She has two children.",
+            "fr": "Elle a deux enfants."
+          }
         ]
       },
       {
@@ -445,8 +659,14 @@
           "Question : Have you got…? Négation : haven't got / hasn't got."
         ],
         "examples": [
-          { "en": "I've got a headache.", "fr": "J'ai mal à la tête." },
-          { "en": "Have you got a pen?", "fr": "As-tu un stylo ?" }
+          {
+            "en": "I've got a headache.",
+            "fr": "J'ai mal à la tête."
+          },
+          {
+            "en": "Have you got a pen?",
+            "fr": "As-tu un stylo ?"
+          }
         ]
       },
       {
@@ -456,8 +676,14 @@
           "Avec have got → inversion directe (Has he got…?)."
         ],
         "examples": [
-          { "en": "Do you have time?", "fr": "As-tu le temps ?" },
-          { "en": "He doesn't have a job.", "fr": "Il n'a pas de travail." }
+          {
+            "en": "Do you have time?",
+            "fr": "As-tu le temps ?"
+          },
+          {
+            "en": "He doesn't have a job.",
+            "fr": "Il n'a pas de travail."
+          }
         ]
       },
       {
@@ -466,10 +692,15 @@
           "have + participe passé = present perfect (≠ possession)."
         ],
         "examples": [
-          { "en": "I have finished.", "fr": "J'ai fini." }
+          {
+            "en": "I have finished.",
+            "fr": "J'ai fini."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=Nd4MScADY94",
+    "videoTitle": "Have, Has, Had – engVid"
   },
   {
     "id": "personal-pronouns",
@@ -483,8 +714,14 @@
           "I s'écrit toujours en majuscule. it remplace un objet, un animal, le temps."
         ],
         "examples": [
-          { "en": "They live in London.", "fr": "Ils habitent à Londres." },
-          { "en": "It is cold today.", "fr": "Il fait froid aujourd'hui." }
+          {
+            "en": "They live in London.",
+            "fr": "Ils habitent à Londres."
+          },
+          {
+            "en": "It is cold today.",
+            "fr": "Il fait froid aujourd'hui."
+          }
         ]
       },
       {
@@ -494,8 +731,14 @@
           "Après le verbe ou après une préposition."
         ],
         "examples": [
-          { "en": "Call me tonight.", "fr": "Appelle-moi ce soir." },
-          { "en": "I gave it to her.", "fr": "Je le lui ai donné." }
+          {
+            "en": "Call me tonight.",
+            "fr": "Appelle-moi ce soir."
+          },
+          {
+            "en": "I gave it to her.",
+            "fr": "Je le lui ai donné."
+          }
         ]
       },
       {
@@ -505,11 +748,19 @@
           "Pas de nom derrière (≠ adjectif possessif my, your…)."
         ],
         "examples": [
-          { "en": "This book is mine.", "fr": "Ce livre est le mien." },
-          { "en": "Theirs is bigger.", "fr": "Le leur est plus grand." }
+          {
+            "en": "This book is mine.",
+            "fr": "Ce livre est le mien."
+          },
+          {
+            "en": "Theirs is bigger.",
+            "fr": "Le leur est plus grand."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=AqA5oqRzhVo",
+    "videoTitle": "Personal Pronouns: I, You, He, She… – English Lesson"
   },
   {
     "id": "nouns-plural",
@@ -523,8 +774,14 @@
           "consonne + y → -ies (city → cities) ; f / fe → ves (knife → knives)."
         ],
         "examples": [
-          { "en": "one car, two cars", "fr": "une voiture, deux voitures" },
-          { "en": "one baby, two babies", "fr": "un bébé, deux bébés" }
+          {
+            "en": "one car, two cars",
+            "fr": "une voiture, deux voitures"
+          },
+          {
+            "en": "one baby, two babies",
+            "fr": "un bébé, deux bébés"
+          }
         ]
       },
       {
@@ -534,8 +791,14 @@
           "person → people, mouse → mice. Invariables : sheep, fish, deer."
         ],
         "examples": [
-          { "en": "one child, two children", "fr": "un enfant, deux enfants" },
-          { "en": "ten sheep", "fr": "dix moutons" }
+          {
+            "en": "one child, two children",
+            "fr": "un enfant, deux enfants"
+          },
+          {
+            "en": "ten sheep",
+            "fr": "dix moutons"
+          }
         ]
       },
       {
@@ -545,8 +808,14 @@
           "On les quantifie : a piece of advice, a glass of water."
         ],
         "examples": [
-          { "en": "The news is good.", "fr": "La nouvelle est bonne." },
-          { "en": "I need some information.", "fr": "J'ai besoin d'informations." }
+          {
+            "en": "The news is good.",
+            "fr": "La nouvelle est bonne."
+          },
+          {
+            "en": "I need some information.",
+            "fr": "J'ai besoin d'informations."
+          }
         ]
       },
       {
@@ -556,10 +825,15 @@
           "he / she surtout pour les personnes (et parfois les animaux familiers)."
         ],
         "examples": [
-          { "en": "The table is new — it is white.", "fr": "La table est neuve — elle est blanche." }
+          {
+            "en": "The table is new — it is white.",
+            "fr": "La table est neuve — elle est blanche."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=L4B7XxuJO6A",
+    "videoTitle": "Singular & Plural Nouns – English Grammar"
   },
   {
     "id": "possession",
@@ -573,8 +847,14 @@
           "Pluriel déjà en -s → apostrophe seule (the students' books)."
         ],
         "examples": [
-          { "en": "Tom's car", "fr": "la voiture de Tom" },
-          { "en": "the boys' room", "fr": "la chambre des garçons" }
+          {
+            "en": "Tom's car",
+            "fr": "la voiture de Tom"
+          },
+          {
+            "en": "the boys' room",
+            "fr": "la chambre des garçons"
+          }
         ]
       },
       {
@@ -583,8 +863,14 @@
           "Objets, concepts : the + chose + of + the + possesseur."
         ],
         "examples": [
-          { "en": "the door of the car", "fr": "la portière de la voiture" },
-          { "en": "the end of the film", "fr": "la fin du film" }
+          {
+            "en": "the door of the car",
+            "fr": "la portière de la voiture"
+          },
+          {
+            "en": "the end of the film",
+            "fr": "la fin du film"
+          }
         ]
       },
       {
@@ -594,8 +880,14 @@
           "Ils s'accordent avec le possesseur, pas avec la chose (her husband = le mari d'elle)."
         ],
         "examples": [
-          { "en": "her husband", "fr": "son mari (à elle)" },
-          { "en": "their house", "fr": "leur maison" }
+          {
+            "en": "her husband",
+            "fr": "son mari (à elle)"
+          },
+          {
+            "en": "their house",
+            "fr": "leur maison"
+          }
         ]
       },
       {
@@ -604,10 +896,15 @@
           "whose pour demander le possesseur."
         ],
         "examples": [
-          { "en": "Whose bag is this?", "fr": "À qui est ce sac ?" }
+          {
+            "en": "Whose bag is this?",
+            "fr": "À qui est ce sac ?"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=1LmIxiETWgM",
+    "videoTitle": "Apostrophe S – Possessive Nouns in English"
   },
   {
     "id": "prepositions-place",
@@ -622,9 +919,18 @@
           "on : surface, contact (on the table, on the wall)."
         ],
         "examples": [
-          { "en": "The keys are on the table.", "fr": "Les clés sont sur la table." },
-          { "en": "She lives in Paris.", "fr": "Elle vit à Paris." },
-          { "en": "Meet me at the station.", "fr": "Retrouve-moi à la gare." }
+          {
+            "en": "The keys are on the table.",
+            "fr": "Les clés sont sur la table."
+          },
+          {
+            "en": "She lives in Paris.",
+            "fr": "Elle vit à Paris."
+          },
+          {
+            "en": "Meet me at the station.",
+            "fr": "Retrouve-moi à la gare."
+          }
         ]
       },
       {
@@ -634,8 +940,14 @@
           "between (entre), next to / beside (à côté de), near (près de), opposite (en face de)."
         ],
         "examples": [
-          { "en": "The cat is under the chair.", "fr": "Le chat est sous la chaise." },
-          { "en": "The bank is next to the shop.", "fr": "La banque est à côté du magasin." }
+          {
+            "en": "The cat is under the chair.",
+            "fr": "Le chat est sous la chaise."
+          },
+          {
+            "en": "The bank is next to the shop.",
+            "fr": "La banque est à côté du magasin."
+          }
         ]
       },
       {
@@ -644,11 +956,19 @@
           "to (vers), into (dans), out of (hors de), through (à travers), across, along."
         ],
         "examples": [
-          { "en": "I'm going to school.", "fr": "Je vais à l'école." },
-          { "en": "He walked into the room.", "fr": "Il est entré dans la pièce." }
+          {
+            "en": "I'm going to school.",
+            "fr": "Je vais à l'école."
+          },
+          {
+            "en": "He walked into the room.",
+            "fr": "Il est entré dans la pièce."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=92XBCRYZ1S8",
+    "videoTitle": "IN / ON / AT – Prepositions of Place & Time"
   },
   {
     "id": "demonstratives",
@@ -661,8 +981,14 @@
           "this = proche (ici) ; that = éloigné (là-bas)."
         ],
         "examples": [
-          { "en": "This is my phone.", "fr": "Ceci est mon téléphone (proche)." },
-          { "en": "That is your car.", "fr": "Ça, c'est ta voiture (là-bas)." }
+          {
+            "en": "This is my phone.",
+            "fr": "Ceci est mon téléphone (proche)."
+          },
+          {
+            "en": "That is your car.",
+            "fr": "Ça, c'est ta voiture (là-bas)."
+          }
         ]
       },
       {
@@ -671,8 +997,14 @@
           "these = proche (pluriel) ; those = éloigné (pluriel)."
         ],
         "examples": [
-          { "en": "These books are mine.", "fr": "Ces livres-ci sont à moi." },
-          { "en": "Those people are waiting.", "fr": "Ces gens-là attendent." }
+          {
+            "en": "These books are mine.",
+            "fr": "Ces livres-ci sont à moi."
+          },
+          {
+            "en": "Those people are waiting.",
+            "fr": "Ces gens-là attendent."
+          }
         ]
       },
       {
@@ -682,11 +1014,19 @@
           "Au téléphone : This is Tom (c'est Tom). Temps : this morning, those days."
         ],
         "examples": [
-          { "en": "Who's this?", "fr": "Qui est-ce ? (au téléphone)" },
-          { "en": "This morning I'm busy.", "fr": "Ce matin je suis occupé." }
+          {
+            "en": "Who's this?",
+            "fr": "Qui est-ce ? (au téléphone)"
+          },
+          {
+            "en": "This morning I'm busy.",
+            "fr": "Ce matin je suis occupé."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=RDVsQWJLlpM",
+    "videoTitle": "This, That, These, Those – Demonstratives"
   },
   {
     "id": "causative",
@@ -699,8 +1039,14 @@
           "Faire faire l'action par quelqu'un d'autre : have / get + objet + participe passé."
         ],
         "examples": [
-          { "en": "I had my car repaired.", "fr": "J'ai fait réparer ma voiture." },
-          { "en": "She got her hair cut.", "fr": "Elle s'est fait couper les cheveux." }
+          {
+            "en": "I had my car repaired.",
+            "fr": "J'ai fait réparer ma voiture."
+          },
+          {
+            "en": "She got her hair cut.",
+            "fr": "Elle s'est fait couper les cheveux."
+          }
         ]
       },
       {
@@ -709,8 +1055,14 @@
           "make + complément + base verbale (sans to) = forcer, obliger."
         ],
         "examples": [
-          { "en": "The teacher made us work.", "fr": "Le professeur nous a fait travailler." },
-          { "en": "It makes me laugh.", "fr": "Ça me fait rire." }
+          {
+            "en": "The teacher made us work.",
+            "fr": "Le professeur nous a fait travailler."
+          },
+          {
+            "en": "It makes me laugh.",
+            "fr": "Ça me fait rire."
+          }
         ]
       },
       {
@@ -719,7 +1071,10 @@
           "let + complément + base verbale = laisser, permettre."
         ],
         "examples": [
-          { "en": "Let me help you.", "fr": "Laisse-moi t'aider." }
+          {
+            "en": "Let me help you.",
+            "fr": "Laisse-moi t'aider."
+          }
         ]
       },
       {
@@ -728,10 +1083,15 @@
           "get + complément + to + verbe = réussir à faire faire, convaincre."
         ],
         "examples": [
-          { "en": "I got him to help me.", "fr": "Je l'ai convaincu de m'aider." }
+          {
+            "en": "I got him to help me.",
+            "fr": "Je l'ai convaincu de m'aider."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=bQt2jl2BCrg",
+    "videoTitle": "The Causative: HAVE / GET something done"
   },
   {
     "id": "prepositions-time",
@@ -746,9 +1106,18 @@
           "in + mois / année / saison / partie de journée (in May, in 2020, in the morning)."
         ],
         "examples": [
-          { "en": "at 7 o'clock", "fr": "à 7 heures" },
-          { "en": "on Friday", "fr": "vendredi" },
-          { "en": "in summer", "fr": "en été" }
+          {
+            "en": "at 7 o'clock",
+            "fr": "à 7 heures"
+          },
+          {
+            "en": "on Friday",
+            "fr": "vendredi"
+          },
+          {
+            "en": "in summer",
+            "fr": "en été"
+          }
         ]
       },
       {
@@ -758,8 +1127,14 @@
           "since + point de départ (since 2010, since Monday). Souvent avec le present perfect."
         ],
         "examples": [
-          { "en": "I've lived here for five years.", "fr": "J'habite ici depuis cinq ans." },
-          { "en": "She's been ill since Monday.", "fr": "Elle est malade depuis lundi." }
+          {
+            "en": "I've lived here for five years.",
+            "fr": "J'habite ici depuis cinq ans."
+          },
+          {
+            "en": "She's been ill since Monday.",
+            "fr": "Elle est malade depuis lundi."
+          }
         ]
       },
       {
@@ -769,8 +1144,14 @@
           "during + nom (during the film) ; while + proposition (while I was eating)."
         ],
         "examples": [
-          { "en": "He left two hours ago.", "fr": "Il est parti il y a deux heures." },
-          { "en": "I fell asleep during the meeting.", "fr": "Je me suis endormi pendant la réunion." }
+          {
+            "en": "He left two hours ago.",
+            "fr": "Il est parti il y a deux heures."
+          },
+          {
+            "en": "I fell asleep during the meeting.",
+            "fr": "Je me suis endormi pendant la réunion."
+          }
         ]
       },
       {
@@ -779,11 +1160,19 @@
           "by = au plus tard (by Friday) ; until / till = jusqu'à ; from… to / until = de… à."
         ],
         "examples": [
-          { "en": "Finish it by Monday.", "fr": "Termine-le pour lundi (au plus tard)." },
-          { "en": "We work from 9 to 5.", "fr": "Nous travaillons de 9 h à 17 h." }
+          {
+            "en": "Finish it by Monday.",
+            "fr": "Termine-le pour lundi (au plus tard)."
+          },
+          {
+            "en": "We work from 9 to 5.",
+            "fr": "Nous travaillons de 9 h à 17 h."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=Y_2WPOJKZaI",
+    "videoTitle": "Prepositions in / on / at – BBC Learning English (20 min)"
   },
   {
     "id": "passive",
@@ -797,8 +1186,14 @@
           "Le complément d'objet devient sujet ; l'auteur est introduit par by (souvent omis)."
         ],
         "examples": [
-          { "en": "The house was built in 1990.", "fr": "La maison a été construite en 1990." },
-          { "en": "English is spoken here.", "fr": "On parle anglais ici." }
+          {
+            "en": "The house was built in 1990.",
+            "fr": "La maison a été construite en 1990."
+          },
+          {
+            "en": "English is spoken here.",
+            "fr": "On parle anglais ici."
+          }
         ]
       },
       {
@@ -808,8 +1203,14 @@
           "present perfect : has/have been + pp ; futur : will be + pp ; modal : can be + pp."
         ],
         "examples": [
-          { "en": "The car has been repaired.", "fr": "La voiture a été réparée." },
-          { "en": "It will be finished tomorrow.", "fr": "Ce sera terminé demain." }
+          {
+            "en": "The car has been repaired.",
+            "fr": "La voiture a été réparée."
+          },
+          {
+            "en": "It will be finished tomorrow.",
+            "fr": "Ce sera terminé demain."
+          }
         ]
       },
       {
@@ -819,10 +1220,15 @@
           "Pour mettre en avant l'action ou l'objet plutôt que l'auteur."
         ],
         "examples": [
-          { "en": "My wallet was stolen.", "fr": "On m'a volé mon portefeuille." }
+          {
+            "en": "My wallet was stolen.",
+            "fr": "On m'a volé mon portefeuille."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=nI5zaB6QL-o",
+    "videoTitle": "Present and Past Passives – BBC Learning English"
   },
   {
     "id": "adverbs",
@@ -836,8 +1242,14 @@
           "Irréguliers : good → well, fast → fast, hard → hard (attention : hardly = à peine)."
         ],
         "examples": [
-          { "en": "She sings beautifully.", "fr": "Elle chante magnifiquement." },
-          { "en": "You speak English well.", "fr": "Tu parles bien anglais." }
+          {
+            "en": "She sings beautifully.",
+            "fr": "Elle chante magnifiquement."
+          },
+          {
+            "en": "You speak English well.",
+            "fr": "Tu parles bien anglais."
+          }
         ]
       },
       {
@@ -847,8 +1259,14 @@
           "Place : AVANT le verbe principal, mais APRÈS be."
         ],
         "examples": [
-          { "en": "I always drink coffee.", "fr": "Je bois toujours du café." },
-          { "en": "She is never late.", "fr": "Elle n'est jamais en retard." }
+          {
+            "en": "I always drink coffee.",
+            "fr": "Je bois toujours du café."
+          },
+          {
+            "en": "She is never late.",
+            "fr": "Elle n'est jamais en retard."
+          }
         ]
       },
       {
@@ -858,11 +1276,19 @@
           "On ne sépare pas le verbe de son COD. Ordre courant : manière – lieu – temps."
         ],
         "examples": [
-          { "en": "He speaks English fluently.", "fr": "Il parle couramment anglais." },
-          { "en": "We went to London yesterday.", "fr": "Nous sommes allés à Londres hier." }
+          {
+            "en": "He speaks English fluently.",
+            "fr": "Il parle couramment anglais."
+          },
+          {
+            "en": "We went to London yesterday.",
+            "fr": "Nous sommes allés à Londres hier."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=iTd0gcR_VVM",
+    "videoTitle": "Adverbs of Frequency – BBC English In A Minute"
   },
   {
     "id": "greetings",
@@ -876,8 +1302,14 @@
           "How are you? → I'm fine, thanks. And you?"
         ],
         "examples": [
-          { "en": "Good morning! How are you?", "fr": "Bonjour ! Comment vas-tu ?" },
-          { "en": "Nice to meet you.", "fr": "Enchanté." }
+          {
+            "en": "Good morning! How are you?",
+            "fr": "Bonjour ! Comment vas-tu ?"
+          },
+          {
+            "en": "Nice to meet you.",
+            "fr": "Enchanté."
+          }
         ]
       },
       {
@@ -887,11 +1319,19 @@
           "Good night : le soir, pour partir ou aller dormir."
         ],
         "examples": [
-          { "en": "See you later!", "fr": "À plus tard !" },
-          { "en": "Have a nice day!", "fr": "Bonne journée !" }
+          {
+            "en": "See you later!",
+            "fr": "À plus tard !"
+          },
+          {
+            "en": "Have a nice day!",
+            "fr": "Bonne journée !"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=aI_fREymNjI",
+    "videoTitle": "How to Greet People Informally – BBC Learning English"
   },
   {
     "id": "politeness",
@@ -904,8 +1344,14 @@
           "please en fin de demande ; Could you…? / Would you mind…? sont plus polis que Can you…?"
         ],
         "examples": [
-          { "en": "Could you help me, please?", "fr": "Pourrais-tu m'aider, s'il te plaît ?" },
-          { "en": "Can I have a coffee, please?", "fr": "Puis-je avoir un café, s'il vous plaît ?" }
+          {
+            "en": "Could you help me, please?",
+            "fr": "Pourrais-tu m'aider, s'il te plaît ?"
+          },
+          {
+            "en": "Can I have a coffee, please?",
+            "fr": "Puis-je avoir un café, s'il vous plaît ?"
+          }
         ]
       },
       {
@@ -915,8 +1361,14 @@
           "Réponses : You're welcome / No problem / My pleasure."
         ],
         "examples": [
-          { "en": "Thank you very much.", "fr": "Merci beaucoup." },
-          { "en": "You're welcome.", "fr": "De rien." }
+          {
+            "en": "Thank you very much.",
+            "fr": "Merci beaucoup."
+          },
+          {
+            "en": "You're welcome.",
+            "fr": "De rien."
+          }
         ]
       },
       {
@@ -925,11 +1377,19 @@
           "Sorry = regret ; Excuse me = pour interpeller ou passer."
         ],
         "examples": [
-          { "en": "I'm sorry I'm late.", "fr": "Désolé d'être en retard." },
-          { "en": "Excuse me, where is the station?", "fr": "Excusez-moi, où est la gare ?" }
+          {
+            "en": "I'm sorry I'm late.",
+            "fr": "Désolé d'être en retard."
+          },
+          {
+            "en": "Excuse me, where is the station?",
+            "fr": "Excusez-moi, où est la gare ?"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=VA9w14sFZww",
+    "videoTitle": "How to Make Polite Requests – English Conversation"
   },
   {
     "id": "describe-people",
@@ -943,8 +1403,14 @@
           "Cheveux : long, short, blonde, dark ; yeux : blue, green, brown."
         ],
         "examples": [
-          { "en": "She is tall and has long dark hair.", "fr": "Elle est grande et a de longs cheveux bruns." },
-          { "en": "He has blue eyes.", "fr": "Il a les yeux bleus." }
+          {
+            "en": "She is tall and has long dark hair.",
+            "fr": "Elle est grande et a de longs cheveux bruns."
+          },
+          {
+            "en": "He has blue eyes.",
+            "fr": "Il a les yeux bleus."
+          }
         ]
       },
       {
@@ -953,11 +1419,19 @@
           "kind, friendly, funny, shy, serious, clever, lazy, generous."
         ],
         "examples": [
-          { "en": "He is very kind and friendly.", "fr": "Il est très gentil et sympathique." },
-          { "en": "She's a bit shy.", "fr": "Elle est un peu timide." }
+          {
+            "en": "He is very kind and friendly.",
+            "fr": "Il est très gentil et sympathique."
+          },
+          {
+            "en": "She's a bit shy.",
+            "fr": "Elle est un peu timide."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=Jq9juAScEdg",
+    "videoTitle": "Describing People's Appearance – English Vocabulary"
   },
   {
     "id": "introductions",
@@ -970,8 +1444,14 @@
           "My name is… / I'm… ; I'm from… ; I'm 30 (years old)."
         ],
         "examples": [
-          { "en": "Hi, I'm Tom.", "fr": "Salut, moi c'est Tom." },
-          { "en": "My name is Anna and I'm from Spain.", "fr": "Je m'appelle Anna et je viens d'Espagne." }
+          {
+            "en": "Hi, I'm Tom.",
+            "fr": "Salut, moi c'est Tom."
+          },
+          {
+            "en": "My name is Anna and I'm from Spain.",
+            "fr": "Je m'appelle Anna et je viens d'Espagne."
+          }
         ]
       },
       {
@@ -980,11 +1460,19 @@
           "This is… / Let me introduce… ; réponse : Nice to meet you / Pleased to meet you."
         ],
         "examples": [
-          { "en": "This is my colleague, Paul.", "fr": "Voici mon collègue, Paul." },
-          { "en": "Pleased to meet you.", "fr": "Ravi de vous rencontrer." }
+          {
+            "en": "This is my colleague, Paul.",
+            "fr": "Voici mon collègue, Paul."
+          },
+          {
+            "en": "Pleased to meet you.",
+            "fr": "Ravi de vous rencontrer."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=V7Dvcy0gq-U",
+    "videoTitle": "How to Introduce People in English"
   },
   {
     "id": "numbers",
@@ -998,8 +1486,14 @@
           "13 à 19 en -teen : thirteen, fifteen (attention à l'orthographe)."
         ],
         "examples": [
-          { "en": "thirteen (13)", "fr": "treize" },
-          { "en": "eighteen (18)", "fr": "dix-huit" }
+          {
+            "en": "thirteen (13)",
+            "fr": "treize"
+          },
+          {
+            "en": "eighteen (18)",
+            "fr": "dix-huit"
+          }
         ]
       },
       {
@@ -1009,8 +1503,14 @@
           "21 = twenty-one (trait d'union)."
         ],
         "examples": [
-          { "en": "forty-five (45)", "fr": "quarante-cinq" },
-          { "en": "seventy-two (72)", "fr": "soixante-douze" }
+          {
+            "en": "forty-five (45)",
+            "fr": "quarante-cinq"
+          },
+          {
+            "en": "seventy-two (72)",
+            "fr": "soixante-douze"
+          }
         ]
       },
       {
@@ -1021,11 +1521,19 @@
           "hundred / thousand / million restent invariables (two hundred, pas hundreds)."
         ],
         "examples": [
-          { "en": "two hundred and fifty (250)", "fr": "deux cent cinquante" },
-          { "en": "two thousand (2,000)", "fr": "deux mille" }
+          {
+            "en": "two hundred and fifty (250)",
+            "fr": "deux cent cinquante"
+          },
+          {
+            "en": "two thousand (2,000)",
+            "fr": "deux mille"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=iLbNZLQwk74",
+    "videoTitle": "Ordinal Numbers: First, Second, Third… – BBC Learning English"
   },
   {
     "id": "telling-time",
@@ -1039,8 +1547,14 @@
           "quarter past = et quart ; quarter to = moins le quart."
         ],
         "examples": [
-          { "en": "It's half past seven.", "fr": "Il est 7 h 30." },
-          { "en": "It's a quarter to nine.", "fr": "Il est 9 h moins le quart." }
+          {
+            "en": "It's half past seven.",
+            "fr": "Il est 7 h 30."
+          },
+          {
+            "en": "It's a quarter to nine.",
+            "fr": "Il est 9 h moins le quart."
+          }
         ]
       },
       {
@@ -1050,11 +1564,19 @@
           "a.m. = matin, p.m. = après-midi/soir. What time is it?"
         ],
         "examples": [
-          { "en": "ten past five (5:10)", "fr": "5 h 10" },
-          { "en": "twenty to six (5:40)", "fr": "6 h moins vingt" }
+          {
+            "en": "ten past five (5:10)",
+            "fr": "5 h 10"
+          },
+          {
+            "en": "twenty to six (5:40)",
+            "fr": "6 h moins vingt"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=oB3eiXCJbwA",
+    "videoTitle": "How to Tell the Time in English – Learn English with Cambridge"
   },
   {
     "id": "the-date",
@@ -1068,8 +1590,14 @@
           "on + jour (on Monday), in + mois (in January)."
         ],
         "examples": [
-          { "en": "on Friday", "fr": "vendredi" },
-          { "en": "in December", "fr": "en décembre" }
+          {
+            "en": "on Friday",
+            "fr": "vendredi"
+          },
+          {
+            "en": "in December",
+            "fr": "en décembre"
+          }
         ]
       },
       {
@@ -1079,11 +1607,19 @@
           "GB : 5th May / US : May 5th. Années : 1998 = nineteen ninety-eight."
         ],
         "examples": [
-          { "en": "the third of May", "fr": "le 3 mai" },
-          { "en": "What's the date today?", "fr": "Quelle est la date aujourd'hui ?" }
+          {
+            "en": "the third of May",
+            "fr": "le 3 mai"
+          },
+          {
+            "en": "What's the date today?",
+            "fr": "Quelle est la date aujourd'hui ?"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=uN9WuHSnr8Q",
+    "videoTitle": "How to Say & Write Dates in British English"
   },
   {
     "id": "being-guest",
@@ -1096,8 +1632,14 @@
           "Thanks for inviting me. Here's a little something (un cadeau). Your home is lovely."
         ],
         "examples": [
-          { "en": "Thank you for having me.", "fr": "Merci de m'avoir invité." },
-          { "en": "What a lovely house!", "fr": "Quelle belle maison !" }
+          {
+            "en": "Thank you for having me.",
+            "fr": "Merci de m'avoir invité."
+          },
+          {
+            "en": "What a lovely house!",
+            "fr": "Quelle belle maison !"
+          }
         ]
       },
       {
@@ -1106,11 +1648,19 @@
           "This is delicious. Could you pass the salt? I'm full, thank you."
         ],
         "examples": [
-          { "en": "It's really delicious!", "fr": "C'est vraiment délicieux !" },
-          { "en": "No more for me, thanks.", "fr": "Plus rien pour moi, merci." }
+          {
+            "en": "It's really delicious!",
+            "fr": "C'est vraiment délicieux !"
+          },
+          {
+            "en": "No more for me, thanks.",
+            "fr": "Plus rien pour moi, merci."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=Snp6njwtA0E",
+    "videoTitle": "7 Phrases to Be a Great Guest – English Speaking Lesson"
   },
   {
     "id": "weather",
@@ -1124,8 +1674,14 @@
           "Action en cours : It's raining / snowing."
         ],
         "examples": [
-          { "en": "It's sunny today.", "fr": "Il fait soleil aujourd'hui." },
-          { "en": "It's raining heavily.", "fr": "Il pleut beaucoup." }
+          {
+            "en": "It's sunny today.",
+            "fr": "Il fait soleil aujourd'hui."
+          },
+          {
+            "en": "It's raining heavily.",
+            "fr": "Il pleut beaucoup."
+          }
         ]
       },
       {
@@ -1134,11 +1690,19 @@
           "What's the weather like? The forecast says… ; It's going to rain."
         ],
         "examples": [
-          { "en": "What's the weather like?", "fr": "Quel temps fait-il ?" },
-          { "en": "It will be cold tomorrow.", "fr": "Il fera froid demain." }
+          {
+            "en": "What's the weather like?",
+            "fr": "Quel temps fait-il ?"
+          },
+          {
+            "en": "It will be cold tomorrow.",
+            "fr": "Il fera froid demain."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=hy61DIGMOsY",
+    "videoTitle": "Talking About the Weather in English"
   },
   {
     "id": "restaurant",
@@ -1152,8 +1716,14 @@
           "starter (entrée), main course (plat), dessert."
         ],
         "examples": [
-          { "en": "I'll have the steak, please.", "fr": "Je prendrai le steak, s'il vous plaît." },
-          { "en": "Can we see the menu?", "fr": "Peut-on voir le menu ?" }
+          {
+            "en": "I'll have the steak, please.",
+            "fr": "Je prendrai le steak, s'il vous plaît."
+          },
+          {
+            "en": "Can we see the menu?",
+            "fr": "Peut-on voir le menu ?"
+          }
         ]
       },
       {
@@ -1162,11 +1732,19 @@
           "Could we have the bill, please? Is service included? Can I pay by card?"
         ],
         "examples": [
-          { "en": "The bill, please.", "fr": "L'addition, s'il vous plaît." },
-          { "en": "Can I pay by card?", "fr": "Puis-je payer par carte ?" }
+          {
+            "en": "The bill, please.",
+            "fr": "L'addition, s'il vous plaît."
+          },
+          {
+            "en": "Can I pay by card?",
+            "fr": "Puis-je payer par carte ?"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=ReBTlHSN1dw",
+    "videoTitle": "Dining Out: 28 Words & Phrases – BBC Learning English"
   },
   {
     "id": "pub",
@@ -1179,11 +1757,19 @@
           "A pint of beer, please. A glass of wine. It's my round (c'est ma tournée). Cheers!"
         ],
         "examples": [
-          { "en": "Two pints, please.", "fr": "Deux pintes, s'il vous plaît." },
-          { "en": "What would you like to drink?", "fr": "Que veux-tu boire ?" }
+          {
+            "en": "Two pints, please.",
+            "fr": "Deux pintes, s'il vous plaît."
+          },
+          {
+            "en": "What would you like to drink?",
+            "fr": "Que veux-tu boire ?"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=f9sRoqQohWk",
+    "videoTitle": "How to Survive in a British Pub – Learn English with Cambridge"
   },
   {
     "id": "hotel",
@@ -1196,8 +1782,14 @@
           "I'd like to book a room. a single / double room. for two nights. I have a reservation."
         ],
         "examples": [
-          { "en": "I'd like a double room for two nights.", "fr": "Je voudrais une chambre double pour deux nuits." },
-          { "en": "Do you have any vacancies?", "fr": "Avez-vous des chambres libres ?" }
+          {
+            "en": "I'd like a double room for two nights.",
+            "fr": "Je voudrais une chambre double pour deux nuits."
+          },
+          {
+            "en": "Do you have any vacancies?",
+            "fr": "Avez-vous des chambres libres ?"
+          }
         ]
       },
       {
@@ -1206,11 +1798,19 @@
           "Is breakfast included? What time is check-out? The key, please."
         ],
         "examples": [
-          { "en": "Is breakfast included?", "fr": "Le petit-déjeuner est-il compris ?" },
-          { "en": "What time is check-out?", "fr": "À quelle heure faut-il libérer la chambre ?" }
+          {
+            "en": "Is breakfast included?",
+            "fr": "Le petit-déjeuner est-il compris ?"
+          },
+          {
+            "en": "What time is check-out?",
+            "fr": "À quelle heure faut-il libérer la chambre ?"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=zKeIMFMlae0",
+    "videoTitle": "Hotel: Check In & Check Out – English Lesson"
   },
   {
     "id": "directions",
@@ -1223,8 +1823,14 @@
           "Excuse me, how do I get to…? Where is the…? Is it far?"
         ],
         "examples": [
-          { "en": "How do I get to the station?", "fr": "Comment va-t-on à la gare ?" },
-          { "en": "Is the bank near here?", "fr": "La banque est-elle près d'ici ?" }
+          {
+            "en": "How do I get to the station?",
+            "fr": "Comment va-t-on à la gare ?"
+          },
+          {
+            "en": "Is the bank near here?",
+            "fr": "La banque est-elle près d'ici ?"
+          }
         ]
       },
       {
@@ -1234,11 +1840,19 @@
           "It's on your left. next to / opposite."
         ],
         "examples": [
-          { "en": "Turn left at the lights.", "fr": "Tournez à gauche au feu." },
-          { "en": "It's opposite the church.", "fr": "C'est en face de l'église." }
+          {
+            "en": "Turn left at the lights.",
+            "fr": "Tournez à gauche au feu."
+          },
+          {
+            "en": "It's opposite the church.",
+            "fr": "C'est en face de l'église."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=I8PqBxVmpE4",
+    "videoTitle": "How to Ask for Directions & Understand the Answer – English"
   },
   {
     "id": "likes",
@@ -1252,8 +1866,14 @@
           "I prefer… to… (je préfère… à…)."
         ],
         "examples": [
-          { "en": "I love swimming.", "fr": "J'adore nager." },
-          { "en": "I don't like getting up early.", "fr": "Je n'aime pas me lever tôt." }
+          {
+            "en": "I love swimming.",
+            "fr": "J'adore nager."
+          },
+          {
+            "en": "I don't like getting up early.",
+            "fr": "Je n'aime pas me lever tôt."
+          }
         ]
       },
       {
@@ -1262,11 +1882,19 @@
           "So do I / Me too (moi aussi). I don't (pas moi). What do you think of…?"
         ],
         "examples": [
-          { "en": "I really enjoy it.", "fr": "J'aime beaucoup ça." },
-          { "en": "Me too!", "fr": "Moi aussi !" }
+          {
+            "en": "I really enjoy it.",
+            "fr": "J'aime beaucoup ça."
+          },
+          {
+            "en": "Me too!",
+            "fr": "Moi aussi !"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=Da6MVHpabQY",
+    "videoTitle": "Talking About Likes and Dislikes in English"
   },
   {
     "id": "hobbies",
@@ -1280,11 +1908,19 @@
           "play + sport (play tennis) / go + V-ing (go fishing)."
         ],
         "examples": [
-          { "en": "I play football on Sundays.", "fr": "Je joue au foot le dimanche." },
-          { "en": "I'm interested in photography.", "fr": "Je m'intéresse à la photographie." }
+          {
+            "en": "I play football on Sundays.",
+            "fr": "Je joue au foot le dimanche."
+          },
+          {
+            "en": "I'm interested in photography.",
+            "fr": "Je m'intéresse à la photographie."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=hoyhPZDp3dE",
+    "videoTitle": "How to Talk About Hobbies & Free Time in English"
   },
   {
     "id": "holidays",
@@ -1297,8 +1933,14 @@
           "I'm going on holiday. by the sea, in the mountains. to go sightseeing, to sunbathe."
         ],
         "examples": [
-          { "en": "We're going to Italy this summer.", "fr": "Nous allons en Italie cet été." },
-          { "en": "I love going to the beach.", "fr": "J'adore aller à la plage." }
+          {
+            "en": "We're going to Italy this summer.",
+            "fr": "Nous allons en Italie cet été."
+          },
+          {
+            "en": "I love going to the beach.",
+            "fr": "J'adore aller à la plage."
+          }
         ]
       },
       {
@@ -1307,11 +1949,19 @@
           "I had a great time. We stayed in a hotel. Did you enjoy your holiday?"
         ],
         "examples": [
-          { "en": "We had a wonderful time.", "fr": "Nous avons passé un super moment." },
-          { "en": "How was your holiday?", "fr": "Comment étaient tes vacances ?" }
+          {
+            "en": "We had a wonderful time.",
+            "fr": "Nous avons passé un super moment."
+          },
+          {
+            "en": "How was your holiday?",
+            "fr": "Comment étaient tes vacances ?"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=7U5c3bWQRVM",
+    "videoTitle": "Talking About Holidays and Travel – English Vocabulary"
   },
   {
     "id": "clothes",
@@ -1324,8 +1974,14 @@
           "a shirt, a T-shirt, trousers, jeans, a dress, a skirt, a jacket, a coat, shoes."
         ],
         "examples": [
-          { "en": "She's wearing a red dress.", "fr": "Elle porte une robe rouge." },
-          { "en": "I need a new coat.", "fr": "J'ai besoin d'un nouveau manteau." }
+          {
+            "en": "She's wearing a red dress.",
+            "fr": "Elle porte une robe rouge."
+          },
+          {
+            "en": "I need a new coat.",
+            "fr": "J'ai besoin d'un nouveau manteau."
+          }
         ]
       },
       {
@@ -1334,11 +1990,19 @@
           "to wear (porter), to put on (enfiler), to try on (essayer). What size? Can I try it on?"
         ],
         "examples": [
-          { "en": "Can I try these on?", "fr": "Puis-je les essayer ?" },
-          { "en": "What size are you?", "fr": "Quelle taille faites-vous ?" }
+          {
+            "en": "Can I try these on?",
+            "fr": "Puis-je les essayer ?"
+          },
+          {
+            "en": "What size are you?",
+            "fr": "Quelle taille faites-vous ?"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=uF2AcMFSEjU",
+    "videoTitle": "Clothes: 26 Words & Phrases – BBC Learning English"
   },
   {
     "id": "adjective-order",
@@ -1352,8 +2016,14 @@
           "Il se place AVANT le nom qu'il décrit."
         ],
         "examples": [
-          { "en": "a beautiful garden", "fr": "un beau jardin" },
-          { "en": "red cars", "fr": "des voitures rouges" }
+          {
+            "en": "a beautiful garden",
+            "fr": "un beau jardin"
+          },
+          {
+            "en": "red cars",
+            "fr": "des voitures rouges"
+          }
         ]
       },
       {
@@ -1362,8 +2032,14 @@
           "opinion → taille → âge → couleur → origine → matière + nom."
         ],
         "examples": [
-          { "en": "a nice little old house", "fr": "une jolie petite vieille maison" },
-          { "en": "a big black leather bag", "fr": "un grand sac en cuir noir" }
+          {
+            "en": "a nice little old house",
+            "fr": "une jolie petite vieille maison"
+          },
+          {
+            "en": "a big black leather bag",
+            "fr": "un grand sac en cuir noir"
+          }
         ]
       },
       {
@@ -1372,11 +2048,19 @@
           "-ed = ce qu'on ressent (bored) ; -ing = ce qui provoque (boring)."
         ],
         "examples": [
-          { "en": "I'm bored.", "fr": "Je m'ennuie." },
-          { "en": "The film is boring.", "fr": "Le film est ennuyeux." }
+          {
+            "en": "I'm bored.",
+            "fr": "Je m'ennuie."
+          },
+          {
+            "en": "The film is boring.",
+            "fr": "Le film est ennuyeux."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=0XPMnKm5fTU",
+    "videoTitle": "Adjective Order in English – BBC Learning English"
   },
   {
     "id": "letter",
@@ -1389,8 +2073,14 @@
           "Dear Sir or Madam, / Dear Mr Smith, (formel) ; Dear Anna, (amical)."
         ],
         "examples": [
-          { "en": "Dear Mr Brown,", "fr": "Cher M. Brown," },
-          { "en": "Dear Anna,", "fr": "Chère Anna," }
+          {
+            "en": "Dear Mr Brown,",
+            "fr": "Cher M. Brown,"
+          },
+          {
+            "en": "Dear Anna,",
+            "fr": "Chère Anna,"
+          }
         ]
       },
       {
@@ -1400,11 +2090,19 @@
           "Best regards (semi-formel) ; Best wishes (amical)."
         ],
         "examples": [
-          { "en": "Yours sincerely,", "fr": "Veuillez agréer mes salutations distinguées," },
-          { "en": "Best wishes,", "fr": "Amicalement," }
+          {
+            "en": "Yours sincerely,",
+            "fr": "Veuillez agréer mes salutations distinguées,"
+          },
+          {
+            "en": "Best wishes,",
+            "fr": "Amicalement,"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=G0EXT89D4Jk",
+    "videoTitle": "How to Write a Formal Letter in English"
   },
   {
     "id": "postcard",
@@ -1418,11 +2116,19 @@
           "Expressions : Having a great time! Wish you were here. The weather is lovely."
         ],
         "examples": [
-          { "en": "Greetings from Spain!", "fr": "Bonjour d'Espagne !" },
-          { "en": "Having a wonderful time!", "fr": "On passe un super moment !" }
+          {
+            "en": "Greetings from Spain!",
+            "fr": "Bonjour d'Espagne !"
+          },
+          {
+            "en": "Having a wonderful time!",
+            "fr": "On passe un super moment !"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=1JC5Ig5Ik_g",
+    "videoTitle": "Emma's Holiday Postcard – BBC Learning English"
   },
   {
     "id": "shopping",
@@ -1435,11 +2141,19 @@
           "Can I help you? — I'm just looking. How much is it? Do you have this in…? I'll take it."
         ],
         "examples": [
-          { "en": "How much is this?", "fr": "Combien ça coûte ?" },
-          { "en": "I'm just looking, thanks.", "fr": "Je regarde seulement, merci." }
+          {
+            "en": "How much is this?",
+            "fr": "Combien ça coûte ?"
+          },
+          {
+            "en": "I'm just looking, thanks.",
+            "fr": "Je regarde seulement, merci."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=5otanR_Jg2M",
+    "videoTitle": "Going Shopping in English – Spoken English for Travel"
   },
   {
     "id": "supermarket",
@@ -1453,11 +2167,19 @@
           "the checkout (la caisse), a trolley (un chariot), a basket (un panier)."
         ],
         "examples": [
-          { "en": "a kilo of apples", "fr": "un kilo de pommes" },
-          { "en": "Where is the checkout?", "fr": "Où est la caisse ?" }
+          {
+            "en": "a kilo of apples",
+            "fr": "un kilo de pommes"
+          },
+          {
+            "en": "Where is the checkout?",
+            "fr": "Où est la caisse ?"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=UK3jgQ0gQcM",
+    "videoTitle": "Shopping at the Supermarket – English Vocabulary"
   },
   {
     "id": "phone",
@@ -1470,11 +2192,19 @@
           "Hello, this is Tom. Can I speak to…? Who's calling? Hold on, please. I'll call you back."
         ],
         "examples": [
-          { "en": "Hello, this is Anna speaking.", "fr": "Allô, c'est Anna." },
-          { "en": "Can I speak to Mr Smith?", "fr": "Puis-je parler à M. Smith ?" }
+          {
+            "en": "Hello, this is Anna speaking.",
+            "fr": "Allô, c'est Anna."
+          },
+          {
+            "en": "Can I speak to Mr Smith?",
+            "fr": "Puis-je parler à M. Smith ?"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=zNpmtVZFXS0",
+    "videoTitle": "Talking on the Phone in English – Phone Vocabulary"
   },
   {
     "id": "texting",
@@ -1488,11 +2218,19 @@
           "asap (au plus vite), lol, btw (au fait), cu (see you)."
         ],
         "examples": [
-          { "en": "See u 2morrow!", "fr": "À demain !" },
-          { "en": "Thx, cu later", "fr": "Merci, à plus tard" }
+          {
+            "en": "See u 2morrow!",
+            "fr": "À demain !"
+          },
+          {
+            "en": "Thx, cu later",
+            "fr": "Merci, à plus tard"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=IevjXzC_zYY",
+    "videoTitle": "17 English Abbreviations for SMS & Texting (OMG, BRB, LMAO…)"
   },
   {
     "id": "email",
@@ -1505,8 +2243,14 @@
           "Subject (objet) clair. Hi… / Dear… Corps bref. Best regards, / Kind regards,"
         ],
         "examples": [
-          { "en": "Subject: Meeting on Monday", "fr": "Objet : réunion de lundi" },
-          { "en": "Kind regards, Tom", "fr": "Cordialement, Tom" }
+          {
+            "en": "Subject: Meeting on Monday",
+            "fr": "Objet : réunion de lundi"
+          },
+          {
+            "en": "Kind regards, Tom",
+            "fr": "Cordialement, Tom"
+          }
         ]
       },
       {
@@ -1515,11 +2259,19 @@
           "Please find attached… ; I look forward to hearing from you."
         ],
         "examples": [
-          { "en": "Please find attached the report.", "fr": "Veuillez trouver ci-joint le rapport." },
-          { "en": "I look forward to your reply.", "fr": "Dans l'attente de votre réponse." }
+          {
+            "en": "Please find attached the report.",
+            "fr": "Veuillez trouver ci-joint le rapport."
+          },
+          {
+            "en": "I look forward to your reply.",
+            "fr": "Dans l'attente de votre réponse."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=aO3Det4ir8U",
+    "videoTitle": "Writing a Professional Email – BBC English at Work"
   },
   {
     "id": "doctor",
@@ -1532,8 +2284,14 @@
           "I don't feel well. I have a headache / a cold / a temperature. I've got a sore throat. It hurts here."
         ],
         "examples": [
-          { "en": "I have a terrible headache.", "fr": "J'ai un terrible mal de tête." },
-          { "en": "My stomach hurts.", "fr": "J'ai mal au ventre." }
+          {
+            "en": "I have a terrible headache.",
+            "fr": "J'ai un terrible mal de tête."
+          },
+          {
+            "en": "My stomach hurts.",
+            "fr": "J'ai mal au ventre."
+          }
         ]
       },
       {
@@ -1542,11 +2300,19 @@
           "What's the matter? Take this medicine twice a day. a prescription (une ordonnance)."
         ],
         "examples": [
-          { "en": "Take one pill after meals.", "fr": "Prenez un comprimé après les repas." },
-          { "en": "You should rest.", "fr": "Vous devriez vous reposer." }
+          {
+            "en": "Take one pill after meals.",
+            "fr": "Prenez un comprimé après les repas."
+          },
+          {
+            "en": "You should rest.",
+            "fr": "Vous devriez vous reposer."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=Qn9QKZrNbeo",
+    "videoTitle": "At the Doctor: Describing Symptoms in English"
   },
   {
     "id": "station",
@@ -1559,11 +2325,19 @@
           "A return / single ticket to… Which platform? What time does the train leave? Is this seat free?"
         ],
         "examples": [
-          { "en": "A return ticket to London, please.", "fr": "Un aller-retour pour Londres, s'il vous plaît." },
-          { "en": "Which platform for Oxford?", "fr": "Quel quai pour Oxford ?" }
+          {
+            "en": "A return ticket to London, please.",
+            "fr": "Un aller-retour pour Londres, s'il vous plaît."
+          },
+          {
+            "en": "Which platform for Oxford?",
+            "fr": "Quel quai pour Oxford ?"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=ZzJVYDQK824",
+    "videoTitle": "Using English at the Train Station – English Conversation"
   },
   {
     "id": "airport",
@@ -1577,11 +2351,19 @@
           "luggage / baggage (bagages), a delay (un retard), departures / arrivals."
         ],
         "examples": [
-          { "en": "Where is the check-in desk?", "fr": "Où est le comptoir d'enregistrement ?" },
-          { "en": "The flight is delayed.", "fr": "Le vol est retardé." }
+          {
+            "en": "Where is the check-in desk?",
+            "fr": "Où est le comptoir d'enregistrement ?"
+          },
+          {
+            "en": "The flight is delayed.",
+            "fr": "Le vol est retardé."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=FBk5v1HYsZc",
+    "videoTitle": "Airport Check-in – Everyday English for Travel"
   },
   {
     "id": "word-formation",
@@ -1594,8 +2376,14 @@
           "un- (unhappy), in- / im- (impossible), dis- (disagree), re- (refaire : redo)."
         ],
         "examples": [
-          { "en": "happy → unhappy", "fr": "heureux → malheureux" },
-          { "en": "possible → impossible", "fr": "possible → impossible" }
+          {
+            "en": "happy → unhappy",
+            "fr": "heureux → malheureux"
+          },
+          {
+            "en": "possible → impossible",
+            "fr": "possible → impossible"
+          }
         ]
       },
       {
@@ -1605,8 +2393,14 @@
           "-ful / -less = avec / sans (careful / careless) ; -ly = adverbe."
         ],
         "examples": [
-          { "en": "teach → teacher", "fr": "enseigner → enseignant" },
-          { "en": "care → careful → careless", "fr": "soin → soigneux → négligent" }
+          {
+            "en": "teach → teacher",
+            "fr": "enseigner → enseignant"
+          },
+          {
+            "en": "care → careful → careless",
+            "fr": "soin → soigneux → négligent"
+          }
         ]
       },
       {
@@ -1615,11 +2409,19 @@
           "Deux noms accolés : le premier décrit le second (a bus stop, a credit card)."
         ],
         "examples": [
-          { "en": "a toothbrush", "fr": "une brosse à dents" },
-          { "en": "a football match", "fr": "un match de foot" }
+          {
+            "en": "a toothbrush",
+            "fr": "une brosse à dents"
+          },
+          {
+            "en": "a football match",
+            "fr": "un match de foot"
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=sNMdx0yTPgw",
+    "videoTitle": "Word Building: Prefixes and Suffixes – English Grammar"
   },
   {
     "id": "deduction",
@@ -1632,8 +2434,14 @@
           "must be = ce doit être (logique) ↔ can't be = ce ne peut pas être (impossible)."
         ],
         "examples": [
-          { "en": "He must be tired.", "fr": "Il doit être fatigué." },
-          { "en": "She can't be serious!", "fr": "Elle ne peut pas être sérieuse !" }
+          {
+            "en": "He must be tired.",
+            "fr": "Il doit être fatigué."
+          },
+          {
+            "en": "She can't be serious!",
+            "fr": "Elle ne peut pas être sérieuse !"
+          }
         ]
       },
       {
@@ -1642,8 +2450,14 @@
           "may / might / could + base verbale = il se peut que."
         ],
         "examples": [
-          { "en": "It might rain.", "fr": "Il se pourrait qu'il pleuve." },
-          { "en": "They could be at home.", "fr": "Ils sont peut-être chez eux." }
+          {
+            "en": "It might rain.",
+            "fr": "Il se pourrait qu'il pleuve."
+          },
+          {
+            "en": "They could be at home.",
+            "fr": "Ils sont peut-être chez eux."
+          }
         ]
       },
       {
@@ -1652,11 +2466,19 @@
           "must / might / can't + have + participe passé."
         ],
         "examples": [
-          { "en": "He must have left.", "fr": "Il a dû partir." },
-          { "en": "She can't have known.", "fr": "Elle ne pouvait pas savoir." }
+          {
+            "en": "He must have left.",
+            "fr": "Il a dû partir."
+          },
+          {
+            "en": "She can't have known.",
+            "fr": "Elle ne pouvait pas savoir."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=u6hEQdGGMuc",
+    "videoTitle": "Modal Verbs of Deduction – BBC English In A Minute"
   },
   {
     "id": "work",
@@ -1670,8 +2492,14 @@
           "to apply for a job (postuler), an interview (un entretien)."
         ],
         "examples": [
-          { "en": "I have a meeting at 10.", "fr": "J'ai une réunion à 10 h." },
-          { "en": "She applied for the job.", "fr": "Elle a postulé pour le poste." }
+          {
+            "en": "I have a meeting at 10.",
+            "fr": "J'ai une réunion à 10 h."
+          },
+          {
+            "en": "She applied for the job.",
+            "fr": "Elle a postulé pour le poste."
+          }
         ]
       },
       {
@@ -1680,10 +2508,18 @@
           "to work full-time / part-time, a day off (un jour de congé), to be on a business trip."
         ],
         "examples": [
-          { "en": "I work full-time.", "fr": "Je travaille à plein temps." },
-          { "en": "He's on a business trip.", "fr": "Il est en voyage d'affaires." }
+          {
+            "en": "I work full-time.",
+            "fr": "Je travaille à plein temps."
+          },
+          {
+            "en": "He's on a business trip.",
+            "fr": "Il est en voyage d'affaires."
+          }
         ]
       }
-    ]
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=Aj-EnsvU5Q0",
+    "videoTitle": "English at Work – BBC Learning English Series"
   }
 ]

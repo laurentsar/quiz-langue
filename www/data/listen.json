@@ -2,23 +2,39 @@
  "en": [
   { "accent": "🇬🇧 Britannique", "feeds": [
      { "name": "BBC 6 Minute English", "url": "https://podcasts.files.bbci.co.uk/p02pc9zn.rss" },
-     { "name": "BBC The English We Speak", "url": "https://podcasts.files.bbci.co.uk/p02pc9x6.rss" }
+     { "name": "BBC The English We Speak", "url": "https://podcasts.files.bbci.co.uk/p02pc9x6.rss" },
+     { "name": "BBC Global News", "url": "https://podcasts.files.bbci.co.uk/p02nq0gn.rss" },
+     { "name": "BBC In Our Time", "url": "https://podcasts.files.bbci.co.uk/b006qykl.rss" },
+     { "name": "The Guardian Daily", "url": "https://www.theguardian.com/news/series/the-guardian-daily-podcast/podcast.xml" }
   ]},
   { "accent": "🇺🇸 Américain", "feeds": [
      { "name": "All Ears English", "url": "https://allearsenglish.libsyn.com/rss" },
-     { "name": "NPR Up First", "url": "https://feeds.npr.org/510318/podcast.xml" }
+     { "name": "NPR Up First", "url": "https://feeds.npr.org/510318/podcast.xml" },
+     { "name": "VOA Learning English", "url": "https://learningenglish.voanews.com/podcast/?zoneId=1728" },
+     { "name": "NPR Planet Money", "url": "https://feeds.npr.org/510289/podcast.xml" },
+     { "name": "This American Life", "url": "https://www.thisamericanlife.org/podcast/rss.xml" }
   ]},
   { "accent": "🇦🇺 Australien", "feeds": [
-     { "name": "Aussie English", "url": "https://aussieenglish.libsyn.com/rss" }
+     { "name": "Aussie English", "url": "https://aussieenglish.libsyn.com/rss" },
+     { "name": "ABC News Daily (AU)", "url": "https://feeds.acast.com/public/shows/abc-news-daily" },
+     { "name": "Conversations (ABC)", "url": "https://feeds.acast.com/public/shows/conversations-abc" }
+  ]},
+  { "accent": "🇨🇦 Canadien", "feeds": [
+     { "name": "CBC Front Burner", "url": "https://www.cbc.ca/podcasting/includes/frontburner.xml" },
+     { "name": "CBC Quirks & Quarks", "url": "https://www.cbc.ca/podcasting/includes/quirksaio.xml" }
   ]}
  ],
  "es": [
   { "accent": "🇪🇸 Espagne", "feeds": [
      { "name": "Hoy Hablamos", "url": "https://hoyhablamos.com/feed/podcast/" },
-     { "name": "Coffee Break Spanish", "url": "https://rss.acast.com/coffeebreakspanish" }
+     { "name": "Coffee Break Spanish", "url": "https://rss.acast.com/coffeebreakspanish" },
+     { "name": "Notes in Spanish", "url": "https://www.notesinspanish.com/feed/podcast/" },
+     { "name": "Radio Nacional de España", "url": "https://api.rtve.es/api/programas/36022/audios.xml" }
   ]},
   { "accent": "🌎 Amérique latine", "feeds": [
-     { "name": "Radio Ambulante", "url": "https://feeds.npr.org/510311/podcast.xml" }
+     { "name": "Radio Ambulante", "url": "https://feeds.npr.org/510311/podcast.xml" },
+     { "name": "Español con Juan", "url": "https://anchor.fm/s/1e3b3c34/podcast/rss" },
+     { "name": "CNN en Español", "url": "https://feeds.megaphone.fm/CNN5658786557" }
   ]}
  ]
 }

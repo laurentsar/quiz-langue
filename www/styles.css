@@ -235,6 +235,14 @@ html, body {
 .gi-title { font-weight: 700; font-size: 16px; }
 .gi-sub { font-size: 13px; color: var(--text-dim); }
 
+.btn-video {
+  display: flex; align-items: center; gap: 10px;
+  background: #FF0000; color: #fff; border-radius: 12px;
+  padding: 13px 18px; font-size: 14px; font-weight: 600;
+  text-decoration: none; cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255,0,0,0.35);
+}
+.btn-video:active { opacity: 0.85; }
 .gram-section { gap: 12px; }
 .gram-h3 { margin: 0; font-size: 16px; color: var(--sky); }
 .gram-points { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
