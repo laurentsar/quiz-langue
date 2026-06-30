@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.19';
+const APP_VERSION = '2.20';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -310,6 +310,26 @@ async function loadWords(lang) {
   return cache[lang];
 }
 
+// ---------- magazine Vocable (Cafeyn) selon la langue ----------
+const MAG_BY_LANG = {
+  en: { title: 'Vocable Anglais',  url: 'https://www.cafeyn.co/fr/magazines/vocable-anglais' },
+  es: { title: 'Vocable Espagnol', url: 'https://www.cafeyn.co/fr/magazines/vocable-espagnol' },
+};
+function openExternal(url) {
+  const cap = window.Capacitor;
+  if (cap && cap.Plugins && cap.Plugins.Browser) cap.Plugins.Browser.open({ url });
+  else window.open(url, '_blank', 'noopener');
+}
+function updateMagazineBtn() {
+  const btn = $('btn-magazine');
+  if (!btn) return;
+  const mag = MAG_BY_LANG[state.lang];
+  if (!mag) { btn.hidden = true; return; }
+  btn.hidden = false;
+  btn.querySelector('b').textContent = mag.title;
+  btn.dataset.url = mag.url;
+}
+
 async function selectLang(lang) {
   state.lang = lang;
   state.selectedLevels.clear();
@@ -318,6 +338,7 @@ async function selectLang(lang) {
   renderChips('.lang-chip', lang, 'lang');
   renderLevelChips();
   renderStats();
+  updateMagazineBtn();
 }
 
 // ---------- quiz flow ----------
@@ -502,6 +523,7 @@ function launchFireworks() {
 
 // ---------- wire up ----------
 document.querySelectorAll('.lang-chip').forEach(c => c.addEventListener('click', () => selectLang(c.dataset.lang)));
+$('btn-magazine').addEventListener('click', () => { const u = $('btn-magazine').dataset.url; if (u) openExternal(u); });
 document.querySelectorAll('.dir-chip').forEach(c => c.addEventListener('click', () => { state.dir = c.dataset.dir; renderChips('.dir-chip', state.dir, 'dir'); }));
 document.querySelectorAll('.count-chip').forEach(c => c.addEventListener('click', () => { state.count = +c.dataset.count; renderChips('.count-chip', state.count, 'count'); }));
 $('btn-level-all').addEventListener('click', () => {
