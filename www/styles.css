@@ -255,6 +255,7 @@ html, body {
   box-shadow: 0 4px 14px rgba(255,0,0,0.35);
 }
 .btn-video:active { opacity: 0.85; }
+.btn-video-fr { background: #1565C0; box-shadow: 0 4px 14px rgba(21,101,192,0.35); margin-top: 8px; }
 .gram-section { gap: 12px; }
 .gram-h3 { margin: 0; font-size: 16px; color: var(--sky); }
 .gram-points { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }

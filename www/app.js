@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.19';
+const APP_VERSION = '2.20';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -666,9 +666,12 @@ function showGrammarTopic(idx) {
   $('btn-grammar-quiz').classList.add('hidden');
   $('btn-grammar-learn').classList.add('hidden');
   const videoBtn = t.videoUrl
-    ? `<a class="btn-video" href="${esc(t.videoUrl)}" target="_blank" rel="noopener">▶ ${esc(t.videoTitle || 'Voir la vidéo')}</a>`
+    ? `<a class="btn-video" href="${esc(t.videoUrl)}" target="_blank" rel="noopener">🇬🇧 ${esc(t.videoTitle || 'Voir la vidéo')}</a>`
     : '';
-  const html = videoBtn +
+  const videoBtnFr = t.videoUrlFr
+    ? `<a class="btn-video btn-video-fr" href="${esc(t.videoUrlFr)}" target="_blank" rel="noopener">🇫🇷 ${esc(t.videoTitleFr || 'Voir la vidéo en français')}</a>`
+    : '';
+  const html = videoBtn + videoBtnFr +
     (t.sections || []).map(sec =>
     `<div class="card gram-section">
       <h3 class="gram-h3">${esc(sec.heading)}</h3>
@@ -683,15 +686,16 @@ function showGrammarTopic(idx) {
   detail.innerHTML = html;
   const practice = detail.querySelector('.gram-practice');
   if (practice) practice.addEventListener('click', () => startGrammarQuiz(t.id));
-  const vlink = detail.querySelector('.btn-video');
-  if (vlink) vlink.addEventListener('click', e => {
-    e.preventDefault();
-    const url = vlink.href;
-    if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Browser) {
-      window.Capacitor.Plugins.Browser.open({ url });
-    } else {
-      window.open(url, '_blank');
-    }
+  detail.querySelectorAll('.btn-video').forEach(vlink => {
+    vlink.addEventListener('click', e => {
+      e.preventDefault();
+      const url = vlink.href;
+      if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Browser) {
+        window.Capacitor.Plugins.Browser.open({ url });
+      } else {
+        window.open(url, '_blank');
+      }
+    });
   });
   detail.classList.remove('hidden');
   $('grammar-list').classList.add('hidden');

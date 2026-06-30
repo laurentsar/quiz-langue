@@ -48,7 +48,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=xFsYrTIndhI",
-    "videoTitle": "Present Simple and Present Continuous – BBC Learning English"
+    "videoTitle": "Present Simple and Present Continuous – BBC Learning English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=tELXF_O5VxY",
+    "videoTitleFr": "La différence entre présent simple et présent continu en anglais"
   },
   {
     "id": "past-vs-present-perfect",
@@ -99,7 +101,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=M6pkqTu8gbE",
-    "videoTitle": "Past Simple or Present Perfect? – English Grammar"
+    "videoTitle": "Past Simple or Present Perfect? – English Grammar",
+    "videoUrlFr": "https://www.youtube.com/watch?v=TjUweD_UfJY",
+    "videoTitleFr": "Comprendre la différence entre present perfect et prétérit"
   },
   {
     "id": "future",
@@ -155,7 +159,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=VX95vEL-OdU",
-    "videoTitle": "FUTURE: will or going to? – engVid"
+    "videoTitle": "FUTURE: will or going to? – engVid",
+    "videoUrlFr": "https://www.youtube.com/watch?v=Tv7oMUij8DM",
+    "videoTitleFr": "Will et Be Going To : Ne Mélangez Plus les Temps du Futur"
   },
   {
     "id": "articles",
@@ -216,7 +222,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=ryRu8zFCKZE",
-    "videoTitle": "Articles: a / an / the – BBC Learning English"
+    "videoTitle": "Articles: a / an / the – BBC Learning English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=Gkrc455vpmc",
+    "videoTitleFr": "Les articles en anglais : a, an, the ou l'article zéro"
   },
   {
     "id": "comparatives",
@@ -272,7 +280,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=U2DxNgQqDgQ",
-    "videoTitle": "Comparatives and Superlatives – BBC Learning English"
+    "videoTitle": "Comparatives and Superlatives – BBC Learning English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=zxYsY4DMMKY",
+    "videoTitleFr": "Comparatif et superlatif en anglais"
   },
   {
     "id": "modals",
@@ -322,7 +332,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=36wG9pSYu7Q",
-    "videoTitle": "Modal Verbs: can, could, may, might, must, should… – English Grammar"
+    "videoTitle": "Modal Verbs: can, could, may, might, must, should… – English Grammar",
+    "videoUrlFr": "https://www.youtube.com/watch?v=jjqhUNu_jbg",
+    "videoTitleFr": "LE COURS COMPLET SUR LES VERBES MODAUX"
   },
   {
     "id": "conditionals",
@@ -377,7 +389,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=vXp0ETWXbWo",
-    "videoTitle": "Conditionals 0, 1, 2 & 3 – English Grammar Lesson"
+    "videoTitle": "Conditionals 0, 1, 2 & 3 – English Grammar Lesson",
+    "videoUrlFr": "https://www.youtube.com/watch?v=jKOX3xx7M4E",
+    "videoTitleFr": "Les 4 conditionnels en anglais"
   },
   {
     "id": "questions-negation",
@@ -437,7 +451,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=j9b1CNN_rFU",
-    "videoTitle": "Asking Questions – BBC Learning English"
+    "videoTitle": "Asking Questions – BBC Learning English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=HAtL0fEXz70",
+    "videoTitleFr": "Négation en Anglais : Toutes les Règles"
   },
   {
     "id": "quantifiers",
@@ -498,7 +514,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=XxGzMZZ_Hjc",
-    "videoTitle": "Quantifiers: much, many, a lot of, some, any… – English Grammar"
+    "videoTitle": "Quantifiers: much, many, a lot of, some, any… – English Grammar",
+    "videoUrlFr": "https://www.youtube.com/watch?v=rc7f7FqEnaE",
+    "videoTitleFr": "Some, any, no, much, many"
   },
   {
     "id": "gerund-infinitive",
@@ -542,7 +560,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=zPzjJHKyNwc",
-    "videoTitle": "Gerund or Infinitive? – engVid"
+    "videoTitle": "Gerund or Infinitive? – engVid",
+    "videoUrlFr": "https://www.youtube.com/watch?v=PsXOiRiae2k",
+    "videoTitleFr": "Gérondif ou Infinitif : La Clé"
   },
   {
     "id": "be",
@@ -628,7 +648,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=5wvzgid7RvU",
-    "videoTitle": "Verb \"to BE\" – English Grammar Lesson"
+    "videoTitle": "Verb \"to BE\" – English Grammar Lesson",
+    "videoUrlFr": "https://www.youtube.com/watch?v=oIPgzx4Gig4",
+    "videoTitleFr": "Verbe ÊTRE en ANGLAIS : TO BE"
   },
   {
     "id": "have",
@@ -700,7 +722,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=Nd4MScADY94",
-    "videoTitle": "Have, Has, Had – engVid"
+    "videoTitle": "Have, Has, Had – engVid",
+    "videoUrlFr": "https://www.youtube.com/watch?v=TAHTKKLgcAs",
+    "videoTitleFr": "Have, Have Got, et Got en Anglais"
   },
   {
     "id": "personal-pronouns",
@@ -760,7 +784,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=AqA5oqRzhVo",
-    "videoTitle": "Personal Pronouns: I, You, He, She… – English Lesson"
+    "videoTitle": "Personal Pronouns: I, You, He, She… – English Lesson",
+    "videoUrlFr": "https://www.youtube.com/watch?v=jTvgZ1FQ4-o",
+    "videoTitleFr": "LES PRONOMS PERSONNELS"
   },
   {
     "id": "nouns-plural",
@@ -833,7 +859,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=L4B7XxuJO6A",
-    "videoTitle": "Singular & Plural Nouns – English Grammar"
+    "videoTitle": "Singular & Plural Nouns – English Grammar",
+    "videoUrlFr": "https://www.youtube.com/watch?v=9Zlfdk8WOnU",
+    "videoTitleFr": "Le pluriel des noms en anglais"
   },
   {
     "id": "possession",
@@ -904,7 +932,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=1LmIxiETWgM",
-    "videoTitle": "Apostrophe S – Possessive Nouns in English"
+    "videoTitle": "Apostrophe S – Possessive Nouns in English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=EViyfHOZbdI",
+    "videoTitleFr": "L'apostrophe S en anglais"
   },
   {
     "id": "prepositions-place",
@@ -968,7 +998,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=92XBCRYZ1S8",
-    "videoTitle": "IN / ON / AT – Prepositions of Place & Time"
+    "videoTitle": "IN / ON / AT – Prepositions of Place & Time",
+    "videoUrlFr": "https://www.youtube.com/watch?v=NmozcEWqAHs",
+    "videoTitleFr": "AT IN ON : Prépositions de Lieu"
   },
   {
     "id": "demonstratives",
@@ -1026,7 +1058,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=RDVsQWJLlpM",
-    "videoTitle": "This, That, These, Those – Demonstratives"
+    "videoTitle": "This, That, These, Those – Demonstratives",
+    "videoUrlFr": "https://www.youtube.com/watch?v=NhMMmLOxS8I",
+    "videoTitleFr": "this/that/these/those"
   },
   {
     "id": "causative",
@@ -1091,7 +1125,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=bQt2jl2BCrg",
-    "videoTitle": "The Causative: HAVE / GET something done"
+    "videoTitle": "The Causative: HAVE / GET something done",
+    "videoUrlFr": "https://www.youtube.com/watch?v=vRM2J9C45Qg",
+    "videoTitleFr": "Les structures causatives"
   },
   {
     "id": "prepositions-time",
@@ -1172,7 +1208,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=Y_2WPOJKZaI",
-    "videoTitle": "Prepositions in / on / at – BBC Learning English (20 min)"
+    "videoTitle": "Prepositions in / on / at – BBC Learning English (20 min)",
+    "videoUrlFr": "https://www.youtube.com/watch?v=oXS_SA4_KUU",
+    "videoTitleFr": "Prépositions de Temps In, At, On"
   },
   {
     "id": "passive",
@@ -1228,7 +1266,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=nI5zaB6QL-o",
-    "videoTitle": "Present and Past Passives – BBC Learning English"
+    "videoTitle": "Present and Past Passives – BBC Learning English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=emdlvPAgBlw",
+    "videoTitleFr": "Le Passif Anglais - La Voix Passive Facile"
   },
   {
     "id": "adverbs",
@@ -1288,7 +1328,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=iTd0gcR_VVM",
-    "videoTitle": "Adverbs of Frequency – BBC English In A Minute"
+    "videoTitle": "Adverbs of Frequency – BBC English In A Minute",
+    "videoUrlFr": "https://www.youtube.com/watch?v=DQRhvGWZPoM",
+    "videoTitleFr": "Les adverbes de fréquence en anglais"
   },
   {
     "id": "greetings",
@@ -1331,7 +1373,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=aI_fREymNjI",
-    "videoTitle": "How to Greet People Informally – BBC Learning English"
+    "videoTitle": "How to Greet People Informally – BBC Learning English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=B4ocy6tOkr8",
+    "videoTitleFr": "Comment SALUER en anglais"
   },
   {
     "id": "politeness",
@@ -1389,7 +1433,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=VA9w14sFZww",
-    "videoTitle": "How to Make Polite Requests – English Conversation"
+    "videoTitle": "How to Make Polite Requests – English Conversation",
+    "videoUrlFr": "https://www.youtube.com/watch?v=pBvPmzdp5Fc",
+    "videoTitleFr": "Formules de politesse en anglais"
   },
   {
     "id": "describe-people",
@@ -1431,7 +1477,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=Jq9juAScEdg",
-    "videoTitle": "Describing People's Appearance – English Vocabulary"
+    "videoTitle": "Describing People's Appearance – English Vocabulary",
+    "videoUrlFr": "https://www.youtube.com/watch?v=ydM6QyoffYY",
+    "videoTitleFr": "La DESCRIPTION PHYSIQUE en anglais"
   },
   {
     "id": "introductions",
@@ -1472,7 +1520,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=V7Dvcy0gq-U",
-    "videoTitle": "How to Introduce People in English"
+    "videoTitle": "How to Introduce People in English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=g_bhg-5yXqM",
+    "videoTitleFr": "SE PRESENTER EN ANGLAIS"
   },
   {
     "id": "numbers",
@@ -1533,7 +1583,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=iLbNZLQwk74",
-    "videoTitle": "Ordinal Numbers: First, Second, Third… – BBC Learning English"
+    "videoTitle": "Ordinal Numbers: First, Second, Third… – BBC Learning English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=Rls2eCaPTPk",
+    "videoTitleFr": "Comment Compter les Nombres en Anglais"
   },
   {
     "id": "telling-time",
@@ -1576,7 +1628,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=oB3eiXCJbwA",
-    "videoTitle": "How to Tell the Time in English – Learn English with Cambridge"
+    "videoTitle": "How to Tell the Time in English – Learn English with Cambridge",
+    "videoUrlFr": "https://www.youtube.com/watch?v=WhuVoH7B-As",
+    "videoTitleFr": "Comment dire l'heure en anglais"
   },
   {
     "id": "the-date",
@@ -1619,7 +1673,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=uN9WuHSnr8Q",
-    "videoTitle": "How to Say & Write Dates in British English"
+    "videoTitle": "How to Say & Write Dates in British English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=TAo_ZYKBu9c",
+    "videoTitleFr": "Dire la Date en Anglais"
   },
   {
     "id": "being-guest",
@@ -1660,7 +1716,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=Snp6njwtA0E",
-    "videoTitle": "7 Phrases to Be a Great Guest – English Speaking Lesson"
+    "videoTitle": "7 Phrases to Be a Great Guest – English Speaking Lesson",
+    "videoUrlFr": "https://www.youtube.com/watch?v=zooo6FrJWGw",
+    "videoTitleFr": "Invite someone to dinner"
   },
   {
     "id": "weather",
@@ -1702,7 +1760,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=hy61DIGMOsY",
-    "videoTitle": "Talking About the Weather in English"
+    "videoTitle": "Talking About the Weather in English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=QYRlEbShkVc",
+    "videoTitleFr": "Météo en Anglais : Tout le Vocabulaire"
   },
   {
     "id": "restaurant",
@@ -1744,7 +1804,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=ReBTlHSN1dw",
-    "videoTitle": "Dining Out: 28 Words & Phrases – BBC Learning English"
+    "videoTitle": "Dining Out: 28 Words & Phrases – BBC Learning English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=wFZbzM5yw9I",
+    "videoTitleFr": "Commander au restaurant en anglais"
   },
   {
     "id": "pub",
@@ -1769,7 +1831,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=f9sRoqQohWk",
-    "videoTitle": "How to Survive in a British Pub – Learn English with Cambridge"
+    "videoTitle": "How to Survive in a British Pub – Learn English with Cambridge",
+    "videoUrlFr": "https://www.youtube.com/watch?v=M9STbuMJAK0",
+    "videoTitleFr": "Aller au pub en anglais"
   },
   {
     "id": "hotel",
@@ -1810,7 +1874,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=zKeIMFMlae0",
-    "videoTitle": "Hotel: Check In & Check Out – English Lesson"
+    "videoTitle": "Hotel: Check In & Check Out – English Lesson",
+    "videoUrlFr": "https://www.youtube.com/watch?v=7XW9CqWkXUY",
+    "videoTitleFr": "Parler Anglais à l'Hôtel"
   },
   {
     "id": "directions",
@@ -1852,7 +1918,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=I8PqBxVmpE4",
-    "videoTitle": "How to Ask for Directions & Understand the Answer – English"
+    "videoTitle": "How to Ask for Directions & Understand the Answer – English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=3rqg3rhNpak",
+    "videoTitleFr": "Demander et Indiquer le Chemin en Anglais"
   },
   {
     "id": "likes",
@@ -1894,7 +1962,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=Da6MVHpabQY",
-    "videoTitle": "Talking About Likes and Dislikes in English"
+    "videoTitle": "Talking About Likes and Dislikes in English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=F0FL6oQCU3A",
+    "videoTitleFr": "Les verbes de goût en anglais"
   },
   {
     "id": "hobbies",
@@ -1920,7 +1990,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=hoyhPZDp3dE",
-    "videoTitle": "How to Talk About Hobbies & Free Time in English"
+    "videoTitle": "How to Talk About Hobbies & Free Time in English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=auu9w2jWo78",
+    "videoTitleFr": "Comment Parler de ses Loisirs"
   },
   {
     "id": "holidays",
@@ -1961,7 +2033,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=7U5c3bWQRVM",
-    "videoTitle": "Talking About Holidays and Travel – English Vocabulary"
+    "videoTitle": "Talking About Holidays and Travel – English Vocabulary",
+    "videoUrlFr": "https://www.youtube.com/watch?v=c5M9dnalG-I",
+    "videoTitleFr": "Vocabulaire des voyages et des vacances"
   },
   {
     "id": "clothes",
@@ -2002,7 +2076,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=uF2AcMFSEjU",
-    "videoTitle": "Clothes: 26 Words & Phrases – BBC Learning English"
+    "videoTitle": "Clothes: 26 Words & Phrases – BBC Learning English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=f3SvIZHNJYA",
+    "videoTitleFr": "Les vêtements en anglais"
   },
   {
     "id": "adjective-order",
@@ -2060,7 +2136,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=0XPMnKm5fTU",
-    "videoTitle": "Adjective Order in English – BBC Learning English"
+    "videoTitle": "Adjective Order in English – BBC Learning English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=Epel5-WKVWc",
+    "videoTitleFr": "L'ORDRE des ADJECTIFS en ANGLAIS"
   },
   {
     "id": "letter",
@@ -2102,7 +2180,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=G0EXT89D4Jk",
-    "videoTitle": "How to Write a Formal Letter in English"
+    "videoTitle": "How to Write a Formal Letter in English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=Vsm9FETMpXY",
+    "videoTitleFr": "Lettre Formelle en Anglais"
   },
   {
     "id": "postcard",
@@ -2128,7 +2208,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=1JC5Ig5Ik_g",
-    "videoTitle": "Emma's Holiday Postcard – BBC Learning English"
+    "videoTitle": "Emma's Holiday Postcard – BBC Learning English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=CGAQbKUbG84",
+    "videoTitleFr": "How to write a postcard"
   },
   {
     "id": "shopping",
@@ -2153,7 +2235,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=5otanR_Jg2M",
-    "videoTitle": "Going Shopping in English – Spoken English for Travel"
+    "videoTitle": "Going Shopping in English – Spoken English for Travel",
+    "videoUrlFr": "https://www.youtube.com/watch?v=5dwplS2s1l8",
+    "videoTitleFr": "FAIRE DES ACHATS = SHOPPING"
   },
   {
     "id": "supermarket",
@@ -2179,7 +2263,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=UK3jgQ0gQcM",
-    "videoTitle": "Shopping at the Supermarket – English Vocabulary"
+    "videoTitle": "Shopping at the Supermarket – English Vocabulary",
+    "videoUrlFr": "https://www.youtube.com/watch?v=wVFfmVrwMIo",
+    "videoTitleFr": "Supermarché en Anglais"
   },
   {
     "id": "phone",
@@ -2204,7 +2290,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=zNpmtVZFXS0",
-    "videoTitle": "Talking on the Phone in English – Phone Vocabulary"
+    "videoTitle": "Talking on the Phone in English – Phone Vocabulary",
+    "videoUrlFr": "https://www.youtube.com/watch?v=Rm8Kox55hZE",
+    "videoTitleFr": "20 Expressions pour Téléphoner en Anglais"
   },
   {
     "id": "texting",
@@ -2230,7 +2318,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=IevjXzC_zYY",
-    "videoTitle": "17 English Abbreviations for SMS & Texting (OMG, BRB, LMAO…)"
+    "videoTitle": "17 English Abbreviations for SMS & Texting (OMG, BRB, LMAO…)",
+    "videoUrlFr": "https://www.youtube.com/watch?v=uDOMiVZAXn8",
+    "videoTitleFr": "Sigles et abréviations SMS en anglais"
   },
   {
     "id": "email",
@@ -2271,7 +2361,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=aO3Det4ir8U",
-    "videoTitle": "Writing a Professional Email – BBC English at Work"
+    "videoTitle": "Writing a Professional Email – BBC English at Work",
+    "videoUrlFr": "https://www.youtube.com/watch?v=1luuYVRCQmg",
+    "videoTitleFr": "Rédiger un e-mail professionnel en anglais"
   },
   {
     "id": "doctor",
@@ -2312,7 +2404,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=Qn9QKZrNbeo",
-    "videoTitle": "At the Doctor: Describing Symptoms in English"
+    "videoTitle": "At the Doctor: Describing Symptoms in English",
+    "videoUrlFr": "https://www.youtube.com/watch?v=Je35s1qEkSE",
+    "videoTitleFr": "Chez le médecin en anglais"
   },
   {
     "id": "station",
@@ -2337,7 +2431,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=ZzJVYDQK824",
-    "videoTitle": "Using English at the Train Station – English Conversation"
+    "videoTitle": "Using English at the Train Station – English Conversation",
+    "videoUrlFr": "https://www.youtube.com/watch?v=yUMJSSwUd6c",
+    "videoTitleFr": "Dialogue en anglais : À la gare"
   },
   {
     "id": "airport",
@@ -2363,7 +2459,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=FBk5v1HYsZc",
-    "videoTitle": "Airport Check-in – Everyday English for Travel"
+    "videoTitle": "Airport Check-in – Everyday English for Travel",
+    "videoUrlFr": "https://www.youtube.com/watch?v=iZA-J19VN8s",
+    "videoTitleFr": "Prendre l'avion en anglais"
   },
   {
     "id": "word-formation",
@@ -2421,7 +2519,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=sNMdx0yTPgw",
-    "videoTitle": "Word Building: Prefixes and Suffixes – English Grammar"
+    "videoTitle": "Word Building: Prefixes and Suffixes – English Grammar",
+    "videoUrlFr": "https://www.youtube.com/watch?v=Uw5Ae6thckM",
+    "videoTitleFr": "Les principaux suffixes en anglais"
   },
   {
     "id": "deduction",
@@ -2478,7 +2578,9 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=u6hEQdGGMuc",
-    "videoTitle": "Modal Verbs of Deduction – BBC English In A Minute"
+    "videoTitle": "Modal Verbs of Deduction – BBC English In A Minute",
+    "videoUrlFr": "https://www.youtube.com/watch?v=j07xAcXz1Rw",
+    "videoTitleFr": "Must, May et Might en Anglais"
   },
   {
     "id": "work",
@@ -2520,6 +2622,8 @@
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=Aj-EnsvU5Q0",
-    "videoTitle": "English at Work – BBC Learning English Series"
+    "videoTitle": "English at Work – BBC Learning English Series",
+    "videoUrlFr": "https://www.youtube.com/watch?v=Ttswwoky4Cg",
+    "videoTitleFr": "40 formules pour parler anglais au travail"
   }
 ]
