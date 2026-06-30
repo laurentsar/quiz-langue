@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.20';
+const APP_VERSION = '2.21';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -311,14 +311,68 @@ async function loadWords(lang) {
 }
 
 // ---------- magazine Vocable (Cafeyn) selon la langue ----------
+// Accès natif (WebView in-app + biométrie + creds chiffrés + reprise lecture),
+// même méthode que l'app Flux RSS. Repli navigateur en PWA.
 const MAG_BY_LANG = {
-  en: { title: 'Vocable Anglais',  url: 'https://www.cafeyn.co/fr/magazines/vocable-anglais' },
-  es: { title: 'Vocable Espagnol', url: 'https://www.cafeyn.co/fr/magazines/vocable-espagnol' },
+  en: { id: 'en', title: 'Vocable Anglais',  url: 'https://www.cafeyn.co/fr/magazines/vocable-anglais' },
+  es: { id: 'es', title: 'Vocable Espagnol', url: 'https://www.cafeyn.co/fr/magazines/vocable-espagnol' },
 };
 function openExternal(url) {
   const cap = window.Capacitor;
   if (cap && cap.Plugins && cap.Plugins.Browser) cap.Plugins.Browser.open({ url });
   else window.open(url, '_blank', 'noopener');
+}
+// URL de lecture exploitable pour « reprendre » (pas l'accueil / la home)
+function isResumableCafeyn(u) {
+  if (!u || u.indexOf('cafeyn.co') < 0) return false;
+  if (/\/(home|accueil)/.test(u)) return false;
+  if (/cafeyn\.co\/fr\/?(\?|#|$)/.test(u)) return false;
+  return true;
+}
+// Mini-menu Reprendre / Dernier numéro (résout 'resume' | 'latest' | null)
+function magazineChoice(title) {
+  return new Promise(resolve => {
+    const ov = document.createElement('div');
+    ov.className = 'mag-modal';
+    ov.innerHTML =
+      '<div class="mag-modal-card">' +
+        '<div class="mag-modal-head"><span>📖 ' + esc(title) + '</span><button data-act="cancel" aria-label="Fermer">✕</button></div>' +
+        '<button data-act="resume">▶ Reprendre la lecture</button>' +
+        '<button data-act="latest">🗞 Dernier numéro</button>' +
+      '</div>';
+    const done = v => { ov.remove(); resolve(v); };
+    ov.addEventListener('click', e => {
+      if (e.target === ov) return done(null);
+      const b = e.target.closest('[data-act]'); if (!b) return;
+      done(b.dataset.act === 'cancel' ? null : b.dataset.act);
+    });
+    document.body.appendChild(ov);
+  });
+}
+async function openMagazine(mag) {
+  if (!mag) return;
+  const cap = window.Capacitor;
+  const UP = cap && cap.Plugins && cap.Plugins.UpdatePlugin;
+  const isNative = !!(cap && cap.isNativePlatform && cap.isNativePlatform());
+  const lastKey = 'cafeynLast_' + mag.id;
+  let resume = null;
+  try { resume = localStorage.getItem(lastKey); } catch (e) {}
+  let target = mag.url;
+  if (resume) {
+    const choice = await magazineChoice(mag.title);   // menu seulement si une lecture en cours existe
+    if (choice === null) return;
+    target = choice === 'resume' ? resume : mag.url;
+  }
+  if (isNative && UP) {
+    try { await UP.authenticate({ reason: 'Accès à ' + mag.title }); }
+    catch (e) { return; }
+    try {
+      const res = await UP.openInAppWebView({ url: target, title: '📖 ' + mag.title, barColor: '#7B3F00' });
+      if (res && isResumableCafeyn(res.lastUrl)) { try { localStorage.setItem(lastKey, res.lastUrl); } catch (e) {} }
+    } catch (e) {}
+  } else {
+    openExternal(target);
+  }
 }
 function updateMagazineBtn() {
   const btn = $('btn-magazine');
@@ -327,7 +381,6 @@ function updateMagazineBtn() {
   if (!mag) { btn.hidden = true; return; }
   btn.hidden = false;
   btn.querySelector('b').textContent = mag.title;
-  btn.dataset.url = mag.url;
 }
 
 async function selectLang(lang) {
@@ -523,7 +576,7 @@ function launchFireworks() {
 
 // ---------- wire up ----------
 document.querySelectorAll('.lang-chip').forEach(c => c.addEventListener('click', () => selectLang(c.dataset.lang)));
-$('btn-magazine').addEventListener('click', () => { const u = $('btn-magazine').dataset.url; if (u) openExternal(u); });
+$('btn-magazine').addEventListener('click', () => openMagazine(MAG_BY_LANG[state.lang]));
 document.querySelectorAll('.dir-chip').forEach(c => c.addEventListener('click', () => { state.dir = c.dataset.dir; renderChips('.dir-chip', state.dir, 'dir'); }));
 document.querySelectorAll('.count-chip').forEach(c => c.addEventListener('click', () => { state.count = +c.dataset.count; renderChips('.count-chip', state.count, 'count'); }));
 $('btn-level-all').addEventListener('click', () => {

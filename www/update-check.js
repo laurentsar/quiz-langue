@@ -83,6 +83,25 @@
     var dl = document.createElement('a');
     dl.href = url; dl.target = '_blank'; dl.rel = 'noopener';
     dl.textContent = 'Télécharger';
+    // Installation native in-app si le plugin est présent (comme Flux RSS) :
+    // télécharge l'APK et lance l'installeur via FileProvider, sinon repli lien.
+    dl.addEventListener('click', function (e) {
+      var cap = window.Capacitor;
+      var UP = cap && cap.Plugins && cap.Plugins.UpdatePlugin;
+      var isNative = cap && cap.isNativePlatform && cap.isNativePlatform();
+      if (!(isNative && UP && UP.downloadAndInstall)) return; // PWA : comportement lien normal
+      e.preventDefault();
+      dl.textContent = '⏳…';
+      UP.downloadAndInstall({ url: url }).catch(function (err) {
+        dl.textContent = 'Télécharger';
+        var msg = (err && err.message) || '';
+        if (msg.indexOf('permission') >= 0) {
+          alert("Autorise l'installation d'apps depuis cette source dans les réglages Android, puis réessaie.");
+        } else {
+          alert('Erreur : ' + (msg || err));
+        }
+      });
+    });
     var x = document.createElement('button');
     x.setAttribute('aria-label', 'Ignorer'); x.textContent = '✕';
     x.onclick = function () { ls(false, KEY_DISMISS, version); b.remove(); };
