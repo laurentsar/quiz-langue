@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.18';
+const APP_VERSION = '2.19';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -255,6 +255,7 @@ let autoNextTimer = null;
 function showView(name) {
   Object.entries(views).forEach(([k, el]) => el.classList.toggle('hidden', k !== name));
   window.scrollTo(0, 0);
+  $('btn-fab-home').classList.toggle('hidden', name === 'home');
 }
 
 function renderChips(selector, current, attr) {
@@ -624,26 +625,35 @@ $('btn-verbs-custom').addEventListener('click', () => {
 });
 
 // ---------- grammaire (menu dédié, contenu explicatif) ----------
-const GRAMMAR_FILE = 'data/grammar_en.json';
+const GRAMMAR_FILES = { en: 'data/grammar_en.json', es: 'data/grammar_es.json' };
+const GRAMMAR_LABELS = { en: '🇬🇧 Grammaire anglaise', es: '🇪🇸 Grammaire espagnole' };
+let grammarLang = 'en';
 let grammarData = null;
+let grammarCache = {};
+let grammarScrollY = 0;
 
 function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
-function renderGrammarList() {
+function renderGrammarList(restoreScroll) {
+  $('grammar-title').textContent = GRAMMAR_LABELS[grammarLang] || '📖 Grammaire';
   $('grammar-crumb').textContent = 'Sommaire';
   $('grammar-detail').classList.add('hidden');
   $('btn-grammar-back').classList.add('hidden');
-  $('btn-grammar-quiz').classList.remove('hidden');
-  $('btn-grammar-learn').classList.remove('hidden');
-  $('btn-toggle-ai').classList.remove('hidden');
-  $('grammar-ai-panel').classList.toggle('hidden', !grammarCustomPanelOpen);
+  const isEn = grammarLang === 'en';
+  $('btn-grammar-quiz').classList.toggle('hidden', !isEn);
+  $('btn-grammar-learn').classList.toggle('hidden', !isEn);
+  $('btn-toggle-ai').classList.toggle('hidden', !isEn);
+  if (!isEn) $('grammar-ai-panel').classList.add('hidden');
+  else $('grammar-ai-panel').classList.toggle('hidden', !grammarCustomPanelOpen);
+  document.querySelectorAll('.glang-chip').forEach(c => c.classList.toggle('active', c.dataset.lang === grammarLang));
   const list = $('grammar-list');
   list.classList.remove('hidden');
   list.innerHTML = (grammarData || []).map((t, i) =>
     `<button class="grammar-item" data-idx="${i}"><span class="gi-title">${esc(t.title)}</span><span class="gi-sub">${esc(t.subtitle || '')}</span></button>`
   ).join('');
   list.querySelectorAll('.grammar-item').forEach(b =>
-    b.addEventListener('click', () => showGrammarTopic(+b.dataset.idx)));
+    b.addEventListener('click', () => { grammarScrollY = window.scrollY; showGrammarTopic(+b.dataset.idx); }));
+  if (restoreScroll) requestAnimationFrame(() => window.scrollTo(0, grammarScrollY));
   renderConceptCheckboxes();
 }
 
@@ -726,17 +736,33 @@ async function startGrammarQuiz(topicId) {
   startSession('srs');
 }
 
-async function openGrammar() {
-  if (!grammarData) grammarData = await (await fetch(GRAMMAR_FILE)).json();
+async function loadGrammarLang(lang) {
+  grammarLang = lang;
+  if (!grammarCache[lang]) {
+    grammarCache[lang] = await (await fetch(GRAMMAR_FILES[lang])).json();
+  }
+  grammarData = grammarCache[lang];
   if (!grammarQuizData) grammarQuizData = await (await fetch(GRAMMAR_QUIZ_FILE)).json();
   grammarQuizTopics = new Set(grammarQuizData.map(x => x.topic));
-  renderGrammarList();
+}
+
+async function openGrammar() {
+  await loadGrammarLang(grammarLang);
+  grammarScrollY = 0;
+  renderGrammarList(false);
   showView('grammar');
 }
 
+document.querySelectorAll('.glang-chip').forEach(c => c.addEventListener('click', async () => {
+  if (c.dataset.lang === grammarLang) return;
+  await loadGrammarLang(c.dataset.lang);
+  grammarScrollY = 0;
+  renderGrammarList(false);
+}));
+
 $('btn-grammar').addEventListener('click', openGrammar);
 $('btn-grammar-quiz').addEventListener('click', () => startGrammarQuiz(null));
-$('btn-grammar-back').addEventListener('click', renderGrammarList);
+$('btn-grammar-back').addEventListener('click', () => renderGrammarList(true));
 $('btn-grammar-home').addEventListener('click', () => showView('home'));
 
 $('btn-toggle-ai').addEventListener('click', () => {
@@ -1398,5 +1424,7 @@ renderChips('.dir-chip', state.dir, 'dir');
 renderChips('.count-chip', state.count, 'count');
 $('app-version').textContent = 'v' + APP_VERSION;
 selectLang('en');
+
+$('btn-fab-home').addEventListener('click', () => showView('home'));
 
 if (settings.notifications) scheduleReviewNotification();

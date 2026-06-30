@@ -1,0 +1,1282 @@
+[
+  {
+    "id": "ser-estar",
+    "title": "Ser vs Estar (être)",
+    "subtitle": "Deux façons de dire « être » en espagnol",
+    "sections": [
+      {
+        "heading": "Ser — être permanent",
+        "points": [
+          "Identité, origine, profession, caractéristiques permanentes.",
+          "Conjugaison : soy, eres, es, somos, sois, son.",
+          "Utilisé avec des noms, des nationalités, des matières."
+        ],
+        "examples": [
+          {
+            "en": "Soy francés.",
+            "fr": "Je suis français."
+          },
+          {
+            "en": "Ella es médica.",
+            "fr": "Elle est médecin."
+          },
+          {
+            "en": "La mesa es de madera.",
+            "fr": "La table est en bois."
+          }
+        ]
+      },
+      {
+        "heading": "Estar — être temporaire",
+        "points": [
+          "État, condition temporaire, localisation, résultat d'une action.",
+          "Conjugaison : estoy, estás, está, estamos, estáis, están.",
+          "Toujours utilisé pour la localisation (même permanente)."
+        ],
+        "examples": [
+          {
+            "en": "Estoy cansado.",
+            "fr": "Je suis fatigué."
+          },
+          {
+            "en": "¿Dónde está el banco?",
+            "fr": "Où est la banque ?"
+          },
+          {
+            "en": "El café está frío.",
+            "fr": "Le café est froid."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=WXIOah9nb84",
+    "videoTitle": "SER ou ESTAR : maîtriser enfin le verbe être en espagnol"
+  },
+  {
+    "id": "present-indicative",
+    "title": "Le présent de l'indicatif",
+    "subtitle": "Actions habituelles et faits présents",
+    "sections": [
+      {
+        "heading": "Verbes réguliers en -AR",
+        "points": [
+          "Terminaisons : -o, -as, -a, -amos, -áis, -an.",
+          "Ex. : hablar → hablo, hablas, habla, hablamos, habláis, hablan."
+        ],
+        "examples": [
+          {
+            "en": "Hablo español todos los días.",
+            "fr": "Je parle espagnol tous les jours."
+          },
+          {
+            "en": "¿Hablas inglés?",
+            "fr": "Tu parles anglais ?"
+          }
+        ]
+      },
+      {
+        "heading": "Verbes réguliers en -ER / -IR",
+        "points": [
+          "-ER : -o, -es, -e, -emos, -éis, -en. Ex. : comer → como, comes…",
+          "-IR : -o, -es, -e, -imos, -ís, -en. Ex. : vivir → vivo, vives…"
+        ],
+        "examples": [
+          {
+            "en": "Como en casa.",
+            "fr": "Je mange à la maison."
+          },
+          {
+            "en": "Vivo en Madrid.",
+            "fr": "J'habite à Madrid."
+          }
+        ]
+      },
+      {
+        "heading": "Verbes irréguliers courants",
+        "points": [
+          "Tener (avoir) : tengo, tienes, tiene, tenemos, tenéis, tienen.",
+          "Ir (aller) : voy, vas, va, vamos, vais, van.",
+          "Hacer (faire) : hago, haces, hace, hacemos, hacéis, hacen."
+        ],
+        "examples": [
+          {
+            "en": "Tengo dos hermanos.",
+            "fr": "J'ai deux frères."
+          },
+          {
+            "en": "Voy al trabajo en metro.",
+            "fr": "Je vais au travail en métro."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=57A7X3_mY14",
+    "videoTitle": "Tout sur le présent de l'indicatif en espagnol en 10 min"
+  },
+  {
+    "id": "preterito-indefinido",
+    "title": "Le prétérit indéfini",
+    "subtitle": "Actions passées terminées et datées",
+    "sections": [
+      {
+        "heading": "Usage",
+        "points": [
+          "Action passée terminée, à un moment précis ou un nombre de fois défini.",
+          "Mots clés : ayer, el lunes pasado, en 2020, una vez, de repente."
+        ],
+        "examples": [
+          {
+            "en": "Ayer comí paella.",
+            "fr": "Hier j'ai mangé de la paella."
+          },
+          {
+            "en": "Llegué a las ocho.",
+            "fr": "Je suis arrivé à huit heures."
+          }
+        ]
+      },
+      {
+        "heading": "Conjugaison régulière",
+        "points": [
+          "-AR : -é, -aste, -ó, -amos, -asteis, -aron. Ex. : hablé, hablaste…",
+          "-ER/-IR : -í, -iste, -ió, -imos, -isteis, -ieron. Ex. : comí, comiste…"
+        ],
+        "examples": [
+          {
+            "en": "Hablé con María.",
+            "fr": "J'ai parlé avec María."
+          },
+          {
+            "en": "Comieron en un restaurante.",
+            "fr": "Ils ont mangé au restaurant."
+          }
+        ]
+      },
+      {
+        "heading": "Irréguliers importants",
+        "points": [
+          "Ser/Ir (mêmes formes) : fui, fuiste, fue, fuimos, fuisteis, fueron.",
+          "Tener : tuve, tuviste, tuvo… — Hacer : hice, hiciste, hizo…",
+          "Estar : estuve, estuviste, estuvo… — Poder : pude, pudiste…"
+        ],
+        "examples": [
+          {
+            "en": "Fui al médico ayer.",
+            "fr": "Je suis allé chez le médecin hier."
+          },
+          {
+            "en": "Hizo buen tiempo.",
+            "fr": "Il a fait beau."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=Gydr0444J3w",
+    "videoTitle": "Le passé simple en espagnol — pretérito indefinido"
+  },
+  {
+    "id": "preterito-imperfecto",
+    "title": "L'imparfait (pretérito imperfecto)",
+    "subtitle": "Descriptions et habitudes dans le passé",
+    "sections": [
+      {
+        "heading": "Usage",
+        "points": [
+          "Description d'un état ou d'une situation dans le passé.",
+          "Habitude répétée dans le passé (équivalent de « j'avais l'habitude de »).",
+          "Mots clés : siempre, antes, cuando era niño, normalmente, todos los días."
+        ],
+        "examples": [
+          {
+            "en": "Cuando era pequeño, jugaba al fútbol.",
+            "fr": "Quand j'étais petit, je jouais au foot."
+          },
+          {
+            "en": "El cielo estaba nublado.",
+            "fr": "Le ciel était nuageux."
+          }
+        ]
+      },
+      {
+        "heading": "Conjugaison",
+        "points": [
+          "-AR : -aba, -abas, -aba, -ábamos, -abais, -aban.",
+          "-ER/-IR : -ía, -ías, -ía, -íamos, -íais, -ían.",
+          "Irréguliers : ser → era ; ir → iba ; ver → veía."
+        ],
+        "examples": [
+          {
+            "en": "Vivíamos cerca del mar.",
+            "fr": "Nous habitions près de la mer."
+          },
+          {
+            "en": "Iba al trabajo en bici.",
+            "fr": "J'allais au travail en vélo."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=ICOdRZ5hFUM",
+    "videoTitle": "L'imparfait en espagnol — pretérito imperfecto"
+  },
+  {
+    "id": "indefinido-vs-imperfecto",
+    "title": "Indéfini vs Imparfait",
+    "subtitle": "Choisir entre les deux passés",
+    "sections": [
+      {
+        "heading": "Prétérit indéfini = action",
+        "points": [
+          "Action terminée, précise, qui interrompt ou se produit une seule fois.",
+          "Fait avancer le récit."
+        ],
+        "examples": [
+          {
+            "en": "Sonó el teléfono.",
+            "fr": "Le téléphone a sonné."
+          },
+          {
+            "en": "Me caí.",
+            "fr": "Je suis tombé."
+          }
+        ]
+      },
+      {
+        "heading": "Imparfait = décor / contexte",
+        "points": [
+          "Décrit le contexte, l'arrière-plan, les habitudes passées.",
+          "Ne fait pas avancer le récit."
+        ],
+        "examples": [
+          {
+            "en": "Llovía cuando salí.",
+            "fr": "Il pleuvait quand je suis sorti."
+          },
+          {
+            "en": "Leía cuando llegaste.",
+            "fr": "Je lisais quand tu es arrivé."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=hFcrk1vBZGk",
+    "videoTitle": "Imparfait vs passé simple en espagnol : comment les différencier ?"
+  },
+  {
+    "id": "future",
+    "title": "Le futur",
+    "subtitle": "Futur simple et futur périphrastique",
+    "sections": [
+      {
+        "heading": "Futur périphrastique : ir a + infinitif",
+        "points": [
+          "Plan prévu, intention proche : voy a + infinitif.",
+          "Équivalent de « aller faire quelque chose »."
+        ],
+        "examples": [
+          {
+            "en": "Voy a estudiar esta tarde.",
+            "fr": "Je vais étudier cet après-midi."
+          },
+          {
+            "en": "¿Qué vas a hacer mañana?",
+            "fr": "Qu'est-ce que tu vas faire demain ?"
+          }
+        ]
+      },
+      {
+        "heading": "Futur simple",
+        "points": [
+          "Même terminaisons pour -AR/-ER/-IR : -é, -ás, -á, -emos, -éis, -án.",
+          "S'ajoute directement à l'infinitif.",
+          "Irréguliers : tener → tendr-, hacer → har-, poder → podr-, venir → vendr-."
+        ],
+        "examples": [
+          {
+            "en": "Hablaré con él mañana.",
+            "fr": "Je lui parlerai demain."
+          },
+          {
+            "en": "Tendremos una reunión.",
+            "fr": "Nous aurons une réunion."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=9ovoXyExrvo",
+    "videoTitle": "Le futur simple en espagnol"
+  },
+  {
+    "id": "conditional",
+    "title": "Le conditionnel",
+    "subtitle": "Hypothèses et politesse",
+    "sections": [
+      {
+        "heading": "Formation et usage",
+        "points": [
+          "Terminaisons : -ía, -ías, -ía, -íamos, -íais, -ían (s'ajoutent à l'infinitif).",
+          "Mêmes irréguliers qu'au futur : tendr-, har-, podr-…",
+          "Utilisé pour la politesse, les hypothèses, le conditionnel passé."
+        ],
+        "examples": [
+          {
+            "en": "¿Podrías ayudarme?",
+            "fr": "Pourrais-tu m'aider ?"
+          },
+          {
+            "en": "Me gustaría un café.",
+            "fr": "Je voudrais un café."
+          },
+          {
+            "en": "Lo haría si tuviera tiempo.",
+            "fr": "Je le ferais si j'avais le temps."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=u33XyclmMog",
+    "videoTitle": "El condicional — le conditionnel en espagnol"
+  },
+  {
+    "id": "subjunctive-present",
+    "title": "Le subjonctif présent",
+    "subtitle": "Doute, souhait, émotion, obligation",
+    "sections": [
+      {
+        "heading": "Quand utiliser le subjonctif",
+        "points": [
+          "Après des verbes de volonté, souhait, émotion : querer que, esperar que, alegrarse de que.",
+          "Après des expressions de doute ou négation : no creo que, dudo que.",
+          "Après certaines conjonctions : para que, cuando (futur), aunque, antes de que."
+        ],
+        "examples": [
+          {
+            "en": "Quiero que vengas.",
+            "fr": "Je veux que tu viennes."
+          },
+          {
+            "en": "No creo que sea verdad.",
+            "fr": "Je ne crois pas que ce soit vrai."
+          }
+        ]
+      },
+      {
+        "heading": "Conjugaison",
+        "points": [
+          "-AR → terminaisons en -e : hable, hables, hable, hablemos, habléis, hablen.",
+          "-ER/-IR → terminaisons en -a : coma, comas, coma, comamos, comáis, coman.",
+          "Irréguliers courants : ser → sea, estar → esté, ir → vaya, tener → tenga."
+        ],
+        "examples": [
+          {
+            "en": "Espero que tengas suerte.",
+            "fr": "J'espère que tu auras de la chance."
+          },
+          {
+            "en": "Llámame cuando llegues.",
+            "fr": "Appelle-moi quand tu arriveras."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=86v90z3eVyY",
+    "videoTitle": "Le subjonctif présent en espagnol : construction et emplois"
+  },
+  {
+    "id": "articles",
+    "title": "Les articles",
+    "subtitle": "el / la / los / las / un / una",
+    "sections": [
+      {
+        "heading": "Articles définis",
+        "points": [
+          "el (masc. sing.), la (fém. sing.), los (masc. plur.), las (fém. plur.).",
+          "Contraction : a + el → al ; de + el → del.",
+          "el devant les noms féminins commençant par a/ha tonique : el agua, el hacha."
+        ],
+        "examples": [
+          {
+            "en": "El libro está en la mesa.",
+            "fr": "Le livre est sur la table."
+          },
+          {
+            "en": "Voy al mercado.",
+            "fr": "Je vais au marché."
+          }
+        ]
+      },
+      {
+        "heading": "Articles indéfinis",
+        "points": [
+          "un (masc. sing.), una (fém. sing.), unos (masc. plur.), unas (fém. plur.).",
+          "Omis après ser avec les professions : Soy médico (pas « un médico »).",
+          "Omis après certains quantificateurs."
+        ],
+        "examples": [
+          {
+            "en": "Tengo un gato y unas plantas.",
+            "fr": "J'ai un chat et des plantes."
+          },
+          {
+            "en": "Soy estudiante.",
+            "fr": "Je suis étudiant."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=UvFMsmnLswA",
+    "videoTitle": "Les articles en espagnol — cours pour débutants"
+  },
+  {
+    "id": "adjectives",
+    "title": "Les adjectifs",
+    "subtitle": "Accord et position",
+    "sections": [
+      {
+        "heading": "Accord en genre et nombre",
+        "points": [
+          "Les adjectifs s'accordent avec le nom en genre (masc./fém.) et nombre (sing./plur.).",
+          "-o/-a pour le genre : grande → invariable ; español → española.",
+          "Pluriel : +s après voyelle, +es après consonne."
+        ],
+        "examples": [
+          {
+            "en": "Un chico alto / una chica alta.",
+            "fr": "Un grand garçon / une grande fille."
+          },
+          {
+            "en": "Los coches rojos.",
+            "fr": "Les voitures rouges."
+          }
+        ]
+      },
+      {
+        "heading": "Position de l'adjectif",
+        "points": [
+          "En général, l'adjectif se place APRÈS le nom (contraire du français).",
+          "Quelques adjectifs courants se placent avant : bueno, malo, grande, pequeño, primero, último.",
+          "Bueno/malo/grande perdent leur dernière syllabe devant un nom masc. sing. : buen, mal, gran."
+        ],
+        "examples": [
+          {
+            "en": "Un buen amigo.",
+            "fr": "Un bon ami."
+          },
+          {
+            "en": "Una casa grande.",
+            "fr": "Une grande maison."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=FdMaUbPhMto",
+    "videoTitle": "Les adjectifs en espagnol (accord et position)"
+  },
+  {
+    "id": "pronouns",
+    "title": "Les pronoms personnels",
+    "subtitle": "Sujet, COD, COI",
+    "sections": [
+      {
+        "heading": "Pronoms sujets",
+        "points": [
+          "yo, tú, él/ella/usted, nosotros/as, vosotros/as, ellos/ellas/ustedes.",
+          "Souvent omis car la conjugaison suffit à identifier la personne.",
+          "Usted (Ud.) est la forme de politesse, se conjugue comme él/ella."
+        ],
+        "examples": [
+          {
+            "en": "¿Hablas español? — Sí, hablo un poco.",
+            "fr": "Tu parles espagnol ? — Oui, un peu."
+          }
+        ]
+      },
+      {
+        "heading": "Pronoms toniques",
+        "points": [
+          "S'utilisent après les prépositions : para mí, contigo, sin él, entre tú y yo.",
+          "Formes spéciales après con : conmigo, contigo, consigo."
+        ],
+        "examples": [
+          {
+            "en": "Este regalo es para ti.",
+            "fr": "Ce cadeau est pour toi."
+          },
+          {
+            "en": "Ven conmigo.",
+            "fr": "Viens avec moi."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=cm8N2fyYcSw",
+    "videoTitle": "Pronoms personnels espagnols & différence tú / usted"
+  },
+  {
+    "id": "reflexive",
+    "title": "Les verbes réflexifs",
+    "subtitle": "Se laver, se lever, se sentir…",
+    "sections": [
+      {
+        "heading": "Formation",
+        "points": [
+          "Pronoms : me, te, se, nos, os, se (placés avant le verbe conjugué).",
+          "À l'infinitif, le pronom est attaché : lavarse, levantarse.",
+          "Beaucoup de verbes de routine quotidienne sont réflexifs."
+        ],
+        "examples": [
+          {
+            "en": "Me levanto a las siete.",
+            "fr": "Je me lève à sept heures."
+          },
+          {
+            "en": "Ella se llama María.",
+            "fr": "Elle s'appelle María."
+          }
+        ]
+      },
+      {
+        "heading": "Verbes réflexifs courants",
+        "points": [
+          "llamarse (s'appeler), levantarse (se lever), acostarse (se coucher).",
+          "ducharse (se doucher), vestirse (s'habiller), sentirse (se sentir).",
+          "Certains changent de sens : ir (aller) → irse (s'en aller)."
+        ],
+        "examples": [
+          {
+            "en": "Me siento bien hoy.",
+            "fr": "Je me sens bien aujourd'hui."
+          },
+          {
+            "en": "¿A qué hora te acuestas?",
+            "fr": "À quelle heure tu te couches ?"
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=tSK4LjGJqcE",
+    "videoTitle": "Les verbes réfléchis en espagnol"
+  },
+  {
+    "id": "por-para",
+    "title": "Por vs Para",
+    "subtitle": "Deux prépositions souvent confondues",
+    "sections": [
+      {
+        "heading": "Para — but, destination, destinataire",
+        "points": [
+          "But / objectif : Estudio para aprender.",
+          "Destination : El tren para Barcelona.",
+          "Destinataire : Este regalo es para ti.",
+          "Échéance : Lo necesito para el lunes."
+        ],
+        "examples": [
+          {
+            "en": "Trabajo para vivir.",
+            "fr": "Je travaille pour vivre."
+          },
+          {
+            "en": "Este café es para usted.",
+            "fr": "Ce café est pour vous."
+          }
+        ]
+      },
+      {
+        "heading": "Por — cause, échange, durée, moyen",
+        "points": [
+          "Cause / motif : Lo hice por amor.",
+          "Échange : Te cambio esto por aquello.",
+          "Durée : Estudié por dos horas.",
+          "Moyen de communication : Hablo por teléfono."
+        ],
+        "examples": [
+          {
+            "en": "Gracias por tu ayuda.",
+            "fr": "Merci pour ton aide."
+          },
+          {
+            "en": "Lo compré por veinte euros.",
+            "fr": "Je l'ai acheté pour vingt euros."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=Z_xSZmQA7lw",
+    "videoTitle": "Por vs Para en espagnol : 5 astuces pour ne plus se tromper"
+  },
+  {
+    "id": "prepositions",
+    "title": "Les prépositions essentielles",
+    "subtitle": "en / a / de / con / sin / sobre…",
+    "sections": [
+      {
+        "heading": "A — direction, heure, COD animé",
+        "points": [
+          "Direction : Voy a Madrid.",
+          "Heure : a las tres.",
+          "COD animé (a personnel) : Veo a María."
+        ],
+        "examples": [
+          {
+            "en": "Llamo a mi madre.",
+            "fr": "J'appelle ma mère."
+          },
+          {
+            "en": "Llegamos a las cinco.",
+            "fr": "Nous arrivons à cinq heures."
+          }
+        ]
+      },
+      {
+        "heading": "En — lieu statique, moyen de transport",
+        "points": [
+          "Lieu où l'on se trouve : Estoy en casa.",
+          "Moyen de transport : en coche, en avión, en metro.",
+          "Temps approximatif : en verano, en enero."
+        ],
+        "examples": [
+          {
+            "en": "Vivo en Francia.",
+            "fr": "Je vis en France."
+          },
+          {
+            "en": "Viajamos en tren.",
+            "fr": "Nous voyageons en train."
+          }
+        ]
+      },
+      {
+        "heading": "De — origine, matière, possession",
+        "points": [
+          "Origine : Soy de París.",
+          "Matière : una mesa de madera.",
+          "Possession : el coche de Ana."
+        ],
+        "examples": [
+          {
+            "en": "El libro de historia.",
+            "fr": "Le livre d'histoire."
+          },
+          {
+            "en": "Vengo de trabajar.",
+            "fr": "Je reviens du travail."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=TZlzU4rHduQ",
+    "videoTitle": "A ou EN en espagnol ? La préposition au bon endroit"
+  },
+  {
+    "id": "comparatives",
+    "title": "Comparatifs et superlatifs",
+    "subtitle": "Más, menos, tan… como",
+    "sections": [
+      {
+        "heading": "Comparatif",
+        "points": [
+          "Supériorité : más + adjectif + que → más alto que.",
+          "Infériorité : menos + adjectif + que → menos caro que.",
+          "Égalité : tan + adjectif + como → tan rápido como."
+        ],
+        "examples": [
+          {
+            "en": "Madrid es más grande que Sevilla.",
+            "fr": "Madrid est plus grande que Séville."
+          },
+          {
+            "en": "Corro tan rápido como tú.",
+            "fr": "Je cours aussi vite que toi."
+          }
+        ]
+      },
+      {
+        "heading": "Superlatif",
+        "points": [
+          "el/la/los/las + más/menos + adjectif + de.",
+          "Irréguliers : bueno → mejor, malo → peor, grande → mayor, pequeño → menor."
+        ],
+        "examples": [
+          {
+            "en": "Es el mejor restaurante de la ciudad.",
+            "fr": "C'est le meilleur restaurant de la ville."
+          },
+          {
+            "en": "Es la película más aburrida.",
+            "fr": "C'est le film le plus ennuyeux."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=eQtU84dOTFM",
+    "videoTitle": "Comparer en espagnol — comparatifs et superlatifs"
+  },
+  {
+    "id": "negation",
+    "title": "La négation",
+    "subtitle": "No, nunca, nada, nadie…",
+    "sections": [
+      {
+        "heading": "Négation simple",
+        "points": [
+          "No se place directement avant le verbe.",
+          "La double négation est normale en espagnol : No veo nada."
+        ],
+        "examples": [
+          {
+            "en": "No hablo chino.",
+            "fr": "Je ne parle pas chinois."
+          },
+          {
+            "en": "No tengo nada.",
+            "fr": "Je n'ai rien."
+          }
+        ]
+      },
+      {
+        "heading": "Mots négatifs",
+        "points": [
+          "nada (rien), nadie (personne), nunca/jamás (jamais), ningún/ninguna (aucun).",
+          "tampoco (non plus) ↔ también (aussi).",
+          "Peuvent se placer avant ou après le verbe (avec no si après)."
+        ],
+        "examples": [
+          {
+            "en": "Nunca he estado en Japón.",
+            "fr": "Je ne suis jamais allé au Japon."
+          },
+          {
+            "en": "No viene nadie.",
+            "fr": "Personne ne vient."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=b4bUrl-MZ_Q",
+    "videoTitle": "La négation en espagnol"
+  },
+  {
+    "id": "questions",
+    "title": "Poser des questions",
+    "subtitle": "Mots interrogatifs et intonation",
+    "sections": [
+      {
+        "heading": "Mots interrogatifs",
+        "points": [
+          "¿Qué? (quoi/que), ¿Quién/Quiénes? (qui), ¿Dónde? (où), ¿Cuándo? (quand).",
+          "¿Cómo? (comment), ¿Cuánto/a/os/as? (combien), ¿Por qué? (pourquoi), ¿Cuál/es? (quel/lequel).",
+          "Tous portent un accent écrit : qué, quién, dónde, cómo…"
+        ],
+        "examples": [
+          {
+            "en": "¿Cómo te llamas?",
+            "fr": "Comment tu t'appelles ?"
+          },
+          {
+            "en": "¿De dónde eres?",
+            "fr": "Tu viens d'où ?"
+          }
+        ]
+      },
+      {
+        "heading": "Questions oui/non",
+        "points": [
+          "Même ordre que l'affirmation, mais avec intonation montante.",
+          "Ou inversion verbe-sujet possible : ¿Habla usted español?",
+          "Encadré par ¿ … ?"
+        ],
+        "examples": [
+          {
+            "en": "¿Tienes hermanos?",
+            "fr": "Tu as des frères et sœurs ?"
+          },
+          {
+            "en": "¿Es usted el señor García?",
+            "fr": "Êtes-vous M. García ?"
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=Y4N-6iVfuuI",
+    "videoTitle": "Les questions en espagnol — cours débutants"
+  },
+  {
+    "id": "gustar",
+    "title": "Gustar et verbes similaires",
+    "subtitle": "Aimer, plaire, manquer…",
+    "sections": [
+      {
+        "heading": "Construction de gustar",
+        "points": [
+          "Le sujet grammatical est CE qui plaît, pas la personne.",
+          "me/te/le/nos/os/les + gusta (sing.) ou gustan (plur.).",
+          "me gusta = ça me plaît (j'aime) ; me gustan = j'aime (plur.)"
+        ],
+        "examples": [
+          {
+            "en": "Me gusta el café.",
+            "fr": "J'aime le café."
+          },
+          {
+            "en": "¿Te gustan las películas de acción?",
+            "fr": "Tu aimes les films d'action ?"
+          }
+        ]
+      },
+      {
+        "heading": "Verbes similaires",
+        "points": [
+          "encantar (adorer) : Me encanta bailar.",
+          "interesar (intéresser) : Me interesa la historia.",
+          "molestar (déranger) : Me molesta el ruido.",
+          "faltar (manquer) : Me falta dinero."
+        ],
+        "examples": [
+          {
+            "en": "Nos encanta viajar.",
+            "fr": "On adore voyager."
+          },
+          {
+            "en": "Le falta una semana.",
+            "fr": "Il lui manque une semaine."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=9kICPoCY4n0",
+    "videoTitle": "Gustar et les verbes qui se conjuguent comme lui"
+  },
+  {
+    "id": "direct-indirect-pronouns",
+    "title": "Pronoms COD et COI",
+    "subtitle": "Le, la, lo, les / me, te, le, nos…",
+    "sections": [
+      {
+        "heading": "Pronoms COD (complément d'objet direct)",
+        "points": [
+          "me, te, lo/la, nos, os, los/las.",
+          "Se placent avant le verbe conjugué ou attachés à l'infinitif/gérondif.",
+          "lo/la pour les personnes et les choses au singulier."
+        ],
+        "examples": [
+          {
+            "en": "Lo veo todos los días.",
+            "fr": "Je le vois tous les jours."
+          },
+          {
+            "en": "¿La has llamado?",
+            "fr": "Tu l'as appelée ?"
+          }
+        ]
+      },
+      {
+        "heading": "Pronoms COI (complément d'objet indirect)",
+        "points": [
+          "me, te, le, nos, os, les.",
+          "le/les → se devant lo/la/los/las : se lo doy (je le lui donne).",
+          "Ordre : COI + COD + verbe."
+        ],
+        "examples": [
+          {
+            "en": "Le doy el libro.",
+            "fr": "Je lui donne le livre."
+          },
+          {
+            "en": "Se lo explico mañana.",
+            "fr": "Je le lui explique demain."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=GoU8rEwUQks",
+    "videoTitle": "COD et COI en espagnol — pronoms directs et indirects"
+  },
+  {
+    "id": "imperative",
+    "title": "L'impératif",
+    "subtitle": "Donner des ordres et des conseils",
+    "sections": [
+      {
+        "heading": "Impératif affirmatif",
+        "points": [
+          "Tú : prend la forme de la 3e personne du présent pour les réguliers.",
+          "Ex. : habla, come, vive, ven (venir), haz (hacer), sé (ser), ve (ir).",
+          "Usted/Ustedes : même forme que le subjonctif présent."
+        ],
+        "examples": [
+          {
+            "en": "Habla más despacio, por favor.",
+            "fr": "Parle plus lentement, s'il te plaît."
+          },
+          {
+            "en": "Venga usted aquí.",
+            "fr": "Venez ici."
+          }
+        ]
+      },
+      {
+        "heading": "Impératif négatif",
+        "points": [
+          "Toujours formé avec le subjonctif présent.",
+          "No hables, no comas, no vengas, no hagas…"
+        ],
+        "examples": [
+          {
+            "en": "No hables tan alto.",
+            "fr": "Ne parle pas si fort."
+          },
+          {
+            "en": "No te preocupes.",
+            "fr": "Ne t'inquiète pas."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=9U8k_FfZ3LA",
+    "videoTitle": "L'impératif en espagnol — donner des ordres"
+  },
+  {
+    "id": "perfect-tense",
+    "title": "Le passé composé (pretérito perfecto)",
+    "subtitle": "haber + participe passé",
+    "sections": [
+      {
+        "heading": "Formation",
+        "points": [
+          "he/has/ha/hemos/habéis/han + participe passé.",
+          "Participe en -AR : -ado (hablado). Participe en -ER/-IR : -ido (comido, vivido).",
+          "Irréguliers : hecho (hacer), dicho (decir), visto (ver), puesto (poner), vuelto (volver)."
+        ],
+        "examples": [
+          {
+            "en": "He comido en un restaurante hoy.",
+            "fr": "J'ai mangé au restaurant aujourd'hui."
+          },
+          {
+            "en": "¿Has visto esa película?",
+            "fr": "Tu as vu ce film ?"
+          }
+        ]
+      },
+      {
+        "heading": "Différence avec l'indéfini",
+        "points": [
+          "Perfecto : actions récentes liées au présent (hoy, esta semana, este año, ya, nunca).",
+          "Indéfini : actions datées et coupées du présent (ayer, el año pasado, en 2020).",
+          "En Amérique latine, l'indéfini remplace souvent le perfecto."
+        ],
+        "examples": [
+          {
+            "en": "Esta semana he trabajado mucho.",
+            "fr": "Cette semaine j'ai beaucoup travaillé."
+          },
+          {
+            "en": "El año pasado viajé a México.",
+            "fr": "L'année dernière j'ai voyagé au Mexique."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=9--B9s9ylH8",
+    "videoTitle": "Le passé composé en espagnol — pretérito perfecto"
+  },
+  {
+    "id": "gerund",
+    "title": "Le gérondif",
+    "subtitle": "Estar + -ando/-iendo",
+    "sections": [
+      {
+        "heading": "Formation",
+        "points": [
+          "-AR → -ando : hablando, trabajando.",
+          "-ER/-IR → -iendo : comiendo, viviendo.",
+          "Irréguliers : leyendo (leer), durmiendo (dormir), diciendo (decir)."
+        ],
+        "examples": [
+          {
+            "en": "Estoy hablando por teléfono.",
+            "fr": "Je suis en train de parler au téléphone."
+          },
+          {
+            "en": "Está durmiendo.",
+            "fr": "Il est en train de dormir."
+          }
+        ]
+      },
+      {
+        "heading": "Autres usages",
+        "points": [
+          "Action simultanée : Llegó cantando. (Il est arrivé en chantant.)",
+          "Avec seguir/continuar : Sigue trabajando. (Il continue de travailler.)",
+          "Ne s'utilise jamais comme sujet ou après préposition (on utilise l'infinitif)."
+        ],
+        "examples": [
+          {
+            "en": "Salió corriendo.",
+            "fr": "Il est parti en courant."
+          },
+          {
+            "en": "Sigue lloviendo.",
+            "fr": "Il continue à pleuvoir."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=0KUz6qzvW9w",
+    "videoTitle": "Tout sur le gérondif en espagnol"
+  },
+  {
+    "id": "numbers",
+    "title": "Les nombres",
+    "subtitle": "Cardinaux et ordinaux",
+    "sections": [
+      {
+        "heading": "Nombres cardinaux",
+        "points": [
+          "1–10 : uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve, diez.",
+          "11–15 : once, doce, trece, catorce, quince.",
+          "16–19 : dieciséis, diecisiete, dieciocho, diecinueve.",
+          "20, 30, 40… : veinte, treinta, cuarenta, cincuenta, sesenta, setenta, ochenta, noventa.",
+          "100 : cien (seul), ciento (+ nombre) — 200 : doscientos/as."
+        ],
+        "examples": [
+          {
+            "en": "Tengo treinta y dos años.",
+            "fr": "J'ai trente-deux ans."
+          },
+          {
+            "en": "Son ciento cincuenta euros.",
+            "fr": "C'est cent cinquante euros."
+          }
+        ]
+      },
+      {
+        "heading": "Ordinaux et accord",
+        "points": [
+          "1º primero/a, 2º segundo/a, 3º tercero/a, 4º cuarto/a, 5º quinto/a.",
+          "Primero/tercero perdent le -o devant un nom masc. sing. : el primer día.",
+          "uno → un devant nom masc. ; una devant nom fém."
+        ],
+        "examples": [
+          {
+            "en": "El primer piso.",
+            "fr": "Le premier étage."
+          },
+          {
+            "en": "Vivo en la tercera planta.",
+            "fr": "J'habite au troisième étage."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=EdIulWGzQMg",
+    "videoTitle": "Les nombres en espagnol — compter de 0 à 100"
+  },
+  {
+    "id": "time",
+    "title": "Dire l'heure",
+    "subtitle": "¿Qué hora es?",
+    "sections": [
+      {
+        "heading": "Formules essentielles",
+        "points": [
+          "Es la una. / Son las dos, las tres… (ser au pluriel sauf pour une heure).",
+          "et quart : y cuarto ; et demi : y media ; moins le quart : menos cuarto.",
+          "¿A qué hora? → A las tres y media."
+        ],
+        "examples": [
+          {
+            "en": "Son las nueve y cuarto.",
+            "fr": "Il est neuf heures et quart."
+          },
+          {
+            "en": "El tren sale a las ocho menos veinte.",
+            "fr": "Le train part à huit heures moins vingt."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=zm4ZrBo3rBA",
+    "videoTitle": "Dire l'heure en espagnol — ¿Qué hora es?"
+  },
+  {
+    "id": "weather",
+    "title": "La météo",
+    "subtitle": "¿Qué tiempo hace?",
+    "sections": [
+      {
+        "heading": "Expressions avec hacer",
+        "points": [
+          "Hace calor / frío / viento / sol / buen tiempo / mal tiempo.",
+          "Hay niebla / tormenta / nubes.",
+          "Llueve (llover), nieva (nevar), truena (tronar) — verbes impersonnels."
+        ],
+        "examples": [
+          {
+            "en": "Hoy hace mucho calor.",
+            "fr": "Il fait très chaud aujourd'hui."
+          },
+          {
+            "en": "Está lloviendo a cántaros.",
+            "fr": "Il pleut des cordes."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=I_J6gq7Eyzg",
+    "videoTitle": "Vocabulaire de la météo en espagnol"
+  },
+  {
+    "id": "greetings",
+    "title": "Salutations et présentations",
+    "subtitle": "Hola, ¿cómo estás?",
+    "sections": [
+      {
+        "heading": "Salutations",
+        "points": [
+          "Hola (salut), Buenos días (bonjour matin), Buenas tardes (bonjour après-midi), Buenas noches (bonsoir).",
+          "¿Cómo estás? (tú) / ¿Cómo está usted? (formel).",
+          "Réponses : Bien, gracias. / Muy bien. / Más o menos. / Regular."
+        ],
+        "examples": [
+          {
+            "en": "¡Hola! ¿Qué tal?",
+            "fr": "Salut ! Comment ça va ?"
+          },
+          {
+            "en": "Encantado/a de conocerte.",
+            "fr": "Ravi(e) de te rencontrer."
+          }
+        ]
+      },
+      {
+        "heading": "Se présenter",
+        "points": [
+          "Me llamo… / Mi nombre es… (je m'appelle…).",
+          "Tengo… años. (j'ai … ans).",
+          "Soy de… / Vivo en… (je viens de… / je vis à…)."
+        ],
+        "examples": [
+          {
+            "en": "Me llamo Luisa y soy de Barcelona.",
+            "fr": "Je m'appelle Luisa et je suis de Barcelone."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=umY5_Jyhc0A",
+    "videoTitle": "Dire bonjour, au revoir et se présenter en espagnol"
+  },
+  {
+    "id": "family",
+    "title": "La famille",
+    "subtitle": "La famille et les relations",
+    "sections": [
+      {
+        "heading": "Vocabulaire de la famille",
+        "points": [
+          "Padre/madre (père/mère), hijo/hija (fils/fille), hermano/hermana (frère/sœur).",
+          "Abuelo/abuela (grand-père/grand-mère), nieto/nieta (petit-fils/petite-fille).",
+          "Tío/tía (oncle/tante), primo/prima (cousin/cousine), sobrino/sobrina (neveu/nièce).",
+          "Marido/mujer ou esposo/esposa (mari/femme), novio/novia (petit ami/petite amie)."
+        ],
+        "examples": [
+          {
+            "en": "Tengo dos hermanos y una hermana.",
+            "fr": "J'ai deux frères et une sœur."
+          },
+          {
+            "en": "Mis abuelos viven en el campo.",
+            "fr": "Mes grands-parents vivent à la campagne."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=RJkPSW5colA",
+    "videoTitle": "Vocabulaire de la famille en espagnol"
+  },
+  {
+    "id": "restaurant",
+    "title": "Au restaurant",
+    "subtitle": "Commander et payer",
+    "sections": [
+      {
+        "heading": "Expressions utiles",
+        "points": [
+          "Una mesa para dos, por favor. (Une table pour deux.)",
+          "¿Qué nos recomienda? (Qu'est-ce que vous nous recommandez ?)",
+          "Quisiera… / Me pone… / Me trae… (Je voudrais… / Apportez-moi…).",
+          "La cuenta, por favor. (L'addition, s'il vous plaît.)"
+        ],
+        "examples": [
+          {
+            "en": "¿Tienen menú del día?",
+            "fr": "Avez-vous un menu du jour ?"
+          },
+          {
+            "en": "Para mí, el pescado.",
+            "fr": "Pour moi, le poisson."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=Vw8LFfXzrec",
+    "videoTitle": "Commander au restaurant en espagnol"
+  },
+  {
+    "id": "directions",
+    "title": "Demander son chemin",
+    "subtitle": "¿Dónde está…?",
+    "sections": [
+      {
+        "heading": "Expressions",
+        "points": [
+          "¿Dónde está…? / ¿Cómo llego a…? (Comment on va à…?)",
+          "Gira a la derecha/izquierda. (Tourne à droite/gauche.)",
+          "Sigue todo recto. (Continue tout droit.) — Cruza la calle. (Traverse la rue.)",
+          "Está a dos manzanas. (C'est à deux pâtés de maisons.)"
+        ],
+        "examples": [
+          {
+            "en": "¿Hay una farmacia cerca de aquí?",
+            "fr": "Y a-t-il une pharmacie près d'ici ?"
+          },
+          {
+            "en": "Gire a la izquierda en el semáforo.",
+            "fr": "Tournez à gauche au feu rouge."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=du1qmB4_G2M",
+    "videoTitle": "Directions en espagnol — demander son chemin"
+  },
+  {
+    "id": "work",
+    "title": "Au travail",
+    "subtitle": "Vocabulaire professionnel",
+    "sections": [
+      {
+        "heading": "Expressions professionnelles",
+        "points": [
+          "¿En qué trabajas? (Tu fais quoi comme travail ?) — Trabajo de… (Je travaille comme…).",
+          "Tengo una reunión. (J'ai une réunion.) — Mando un correo. (J'envoie un e-mail.)",
+          "El jefe / la jefa (le/la chef), el empleado / la empleada (l'employé/e).",
+          "El sueldo (le salaire), la empresa (l'entreprise), el despacho (le bureau)."
+        ],
+        "examples": [
+          {
+            "en": "Trabajo en una empresa de informática.",
+            "fr": "Je travaille dans une entreprise informatique."
+          },
+          {
+            "en": "Tenemos una reunión a las diez.",
+            "fr": "Nous avons une réunion à dix heures."
+          }
+        ]
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=8hXROa4iZiQ",
+    "videoTitle": "Vocabulaire du travail en espagnol — 50 mots essentiels"
+  }
+]

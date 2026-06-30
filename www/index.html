@@ -174,8 +174,12 @@
     <!-- GRAMMAIRE (menu dédié, contenu explicatif) -->
     <section id="view-grammar" class="view hidden">
       <div class="quiz-header">
-        <span class="quiz-progress">📖 Grammaire anglaise</span>
+        <span id="grammar-title" class="quiz-progress">📖 Grammaire</span>
         <span id="grammar-crumb" class="quiz-level">Sommaire</span>
+      </div>
+      <div id="grammar-lang-chips" class="chip-row">
+        <button class="chip glang-chip active" data-lang="en">🇬🇧 Anglais</button>
+        <button class="chip glang-chip" data-lang="es">🇪🇸 Espagnol</button>
       </div>
       <div id="grammar-list" class="grammar-list"></div>
 
@@ -325,6 +329,7 @@
     </section>
   </main>
 
+  <button id="btn-fab-home" class="fab-home hidden" title="Accueil">🏠</button>
   <script src="app.js"></script>
   <script>window.UPDATE_REPO='laurentsar/quiz-langue';window.APP_VERSION='2.18';</script>
   <script src="update-check.js" defer></script>

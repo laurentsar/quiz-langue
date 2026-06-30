@@ -48,6 +48,18 @@ html, body {
 .view { display: flex; flex-direction: column; gap: 18px; }
 .hidden { display: none !important; }
 
+/* Bouton flottant Accueil */
+.fab-home {
+  position: fixed; bottom: 22px; right: 18px; z-index: 200;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--card); border: 1.5px solid rgba(255,255,255,0.12);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+  font-size: 22px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.15s, opacity 0.15s;
+}
+.fab-home:active { transform: scale(0.9); opacity: 0.8; }
+
 .title { font-size: 34px; margin: 4px 0 0; letter-spacing: 0.4px; font-weight: 700; }
 .subtitle { font-size: 15px; color: var(--text-dim); margin: 0; }
 .app-version { font-size: 11px; color: var(--text-dim); opacity: 0.5; margin: 2px 0 0; }
