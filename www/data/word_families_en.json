@@ -1,0 +1,374 @@
+[
+  {
+    "id": "act",
+    "root": "act",
+    "fr_root": "acte / agir",
+    "words": [
+      {"word": "act", "pos": "v/n", "fr": "agir / un acte"},
+      {"word": "action", "pos": "n", "fr": "une action"},
+      {"word": "active", "pos": "adj", "fr": "actif"},
+      {"word": "activity", "pos": "n", "fr": "une activité"},
+      {"word": "activate", "pos": "v", "fr": "activer"},
+      {"word": "actor", "pos": "n", "fr": "un acteur"},
+      {"word": "react", "pos": "v", "fr": "réagir"},
+      {"word": "reaction", "pos": "n", "fr": "une réaction"}
+    ],
+    "tip": "Du latin 'agere' = faire, agir"
+  },
+  {
+    "id": "create",
+    "root": "create",
+    "fr_root": "créer / création",
+    "words": [
+      {"word": "create", "pos": "v", "fr": "créer"},
+      {"word": "creation", "pos": "n", "fr": "une création"},
+      {"word": "creative", "pos": "adj", "fr": "créatif"},
+      {"word": "creativity", "pos": "n", "fr": "la créativité"},
+      {"word": "creator", "pos": "n", "fr": "un créateur"},
+      {"word": "creature", "pos": "n", "fr": "une créature"},
+      {"word": "recreate", "pos": "v", "fr": "recréer / se détendre"}
+    ],
+    "tip": "Du latin 'creare' = faire naître, produire"
+  },
+  {
+    "id": "form",
+    "root": "form",
+    "fr_root": "forme / former",
+    "words": [
+      {"word": "form", "pos": "n/v", "fr": "une forme / former"},
+      {"word": "formal", "pos": "adj", "fr": "formel, officiel"},
+      {"word": "format", "pos": "n", "fr": "un format"},
+      {"word": "inform", "pos": "v", "fr": "informer"},
+      {"word": "information", "pos": "n", "fr": "une information"},
+      {"word": "reform", "pos": "v/n", "fr": "réformer / une réforme"},
+      {"word": "transform", "pos": "v", "fr": "transformer"},
+      {"word": "uniform", "pos": "n/adj", "fr": "un uniforme / uniforme"}
+    ],
+    "tip": "Du latin 'forma' = forme, apparence"
+  },
+  {
+    "id": "move",
+    "root": "move / mot",
+    "fr_root": "mouvoir / mouvement",
+    "words": [
+      {"word": "move", "pos": "v/n", "fr": "bouger / un déménagement"},
+      {"word": "movement", "pos": "n", "fr": "un mouvement"},
+      {"word": "motion", "pos": "n", "fr": "un mouvement, une motion"},
+      {"word": "emotion", "pos": "n", "fr": "une émotion"},
+      {"word": "motivate", "pos": "v", "fr": "motiver"},
+      {"word": "motivation", "pos": "n", "fr": "la motivation"},
+      {"word": "promote", "pos": "v", "fr": "promouvoir"},
+      {"word": "remote", "pos": "adj", "fr": "lointain, distant"}
+    ],
+    "tip": "Du latin 'movere' = se déplacer"
+  },
+  {
+    "id": "press",
+    "root": "press",
+    "fr_root": "presser / pression",
+    "words": [
+      {"word": "press", "pos": "v/n", "fr": "appuyer / la presse"},
+      {"word": "pressure", "pos": "n", "fr": "la pression"},
+      {"word": "impress", "pos": "v", "fr": "impressionner"},
+      {"word": "impression", "pos": "n", "fr": "une impression"},
+      {"word": "express", "pos": "v/adj", "fr": "exprimer / express"},
+      {"word": "expression", "pos": "n", "fr": "une expression"},
+      {"word": "depress", "pos": "v", "fr": "déprimer"},
+      {"word": "depression", "pos": "n", "fr": "la dépression"}
+    ],
+    "tip": "Du latin 'premere' = appuyer, presser"
+  },
+  {
+    "id": "produce",
+    "root": "produce / prod",
+    "fr_root": "produire / production",
+    "words": [
+      {"word": "produce", "pos": "v/n", "fr": "produire / des produits frais"},
+      {"word": "product", "pos": "n", "fr": "un produit"},
+      {"word": "production", "pos": "n", "fr": "la production"},
+      {"word": "productive", "pos": "adj", "fr": "productif"},
+      {"word": "reproduce", "pos": "v", "fr": "reproduire"},
+      {"word": "introduction", "pos": "n", "fr": "une introduction"},
+      {"word": "reduce", "pos": "v", "fr": "réduire"}
+    ],
+    "tip": "Du latin 'ducere' = conduire, mener"
+  },
+  {
+    "id": "struct",
+    "root": "struct / stroy",
+    "fr_root": "structurer / construire",
+    "words": [
+      {"word": "structure", "pos": "n/v", "fr": "une structure / structurer"},
+      {"word": "construct", "pos": "v", "fr": "construire"},
+      {"word": "construction", "pos": "n", "fr": "la construction"},
+      {"word": "instruction", "pos": "n", "fr": "une instruction"},
+      {"word": "instruct", "pos": "v", "fr": "instruire, donner des instructions"},
+      {"word": "destroy", "pos": "v", "fr": "détruire"},
+      {"word": "destruction", "pos": "n", "fr": "la destruction"}
+    ],
+    "tip": "Du latin 'struere' = empiler, construire"
+  },
+  {
+    "id": "port",
+    "root": "port",
+    "fr_root": "porter / transporter",
+    "words": [
+      {"word": "port", "pos": "n", "fr": "un port"},
+      {"word": "transport", "pos": "v/n", "fr": "transporter / le transport"},
+      {"word": "import", "pos": "v/n", "fr": "importer / une importation"},
+      {"word": "export", "pos": "v/n", "fr": "exporter / une exportation"},
+      {"word": "report", "pos": "v/n", "fr": "rapporter / un rapport"},
+      {"word": "support", "pos": "v/n", "fr": "soutenir / un soutien"},
+      {"word": "portable", "pos": "adj", "fr": "portable, portatif"}
+    ],
+    "tip": "Du latin 'portare' = porter, transporter"
+  },
+  {
+    "id": "vent",
+    "root": "vent / ven",
+    "fr_root": "venir / inventer",
+    "words": [
+      {"word": "invent", "pos": "v", "fr": "inventer"},
+      {"word": "invention", "pos": "n", "fr": "une invention"},
+      {"word": "event", "pos": "n", "fr": "un événement"},
+      {"word": "prevent", "pos": "v", "fr": "empêcher, prévenir"},
+      {"word": "prevention", "pos": "n", "fr": "la prévention"},
+      {"word": "adventure", "pos": "n", "fr": "une aventure"},
+      {"word": "convention", "pos": "n", "fr": "une convention"}
+    ],
+    "tip": "Du latin 'venire' = venir"
+  },
+  {
+    "id": "spect",
+    "root": "spect / spec",
+    "fr_root": "voir / observer",
+    "words": [
+      {"word": "inspect", "pos": "v", "fr": "inspecter"},
+      {"word": "inspection", "pos": "n", "fr": "une inspection"},
+      {"word": "expect", "pos": "v", "fr": "s'attendre à"},
+      {"word": "respect", "pos": "v/n", "fr": "respecter / le respect"},
+      {"word": "perspective", "pos": "n", "fr": "une perspective"},
+      {"word": "spectacle", "pos": "n", "fr": "un spectacle"},
+      {"word": "aspect", "pos": "n", "fr": "un aspect"}
+    ],
+    "tip": "Du latin 'specere' = regarder, voir"
+  },
+  {
+    "id": "ceive",
+    "root": "ceive / cept",
+    "fr_root": "recevoir / accepter",
+    "words": [
+      {"word": "receive", "pos": "v", "fr": "recevoir"},
+      {"word": "reception", "pos": "n", "fr": "une réception"},
+      {"word": "conceive", "pos": "v", "fr": "concevoir"},
+      {"word": "concept", "pos": "n", "fr": "un concept"},
+      {"word": "perceive", "pos": "v", "fr": "percevoir"},
+      {"word": "accept", "pos": "v", "fr": "accepter"},
+      {"word": "except", "pos": "prep", "fr": "sauf, excepté"}
+    ],
+    "tip": "Du latin 'capere' = prendre, saisir"
+  },
+  {
+    "id": "rupt",
+    "root": "rupt",
+    "fr_root": "rompre / briser",
+    "words": [
+      {"word": "interrupt", "pos": "v", "fr": "interrompre"},
+      {"word": "corrupt", "pos": "v/adj", "fr": "corrompre / corrompu"},
+      {"word": "disrupt", "pos": "v", "fr": "perturber"},
+      {"word": "disruption", "pos": "n", "fr": "une perturbation"},
+      {"word": "erupt", "pos": "v", "fr": "entrer en éruption"},
+      {"word": "eruption", "pos": "n", "fr": "une éruption"},
+      {"word": "bankrupt", "pos": "adj", "fr": "en faillite"}
+    ],
+    "tip": "Du latin 'rumpere' = briser, rompre"
+  },
+  {
+    "id": "vis",
+    "root": "vis / vid",
+    "fr_root": "voir / visible",
+    "words": [
+      {"word": "visible", "pos": "adj", "fr": "visible"},
+      {"word": "vision", "pos": "n", "fr": "la vision, la vue"},
+      {"word": "video", "pos": "n", "fr": "une vidéo"},
+      {"word": "provide", "pos": "v", "fr": "fournir"},
+      {"word": "divide", "pos": "v", "fr": "diviser"},
+      {"word": "evidence", "pos": "n", "fr": "des preuves"},
+      {"word": "television", "pos": "n", "fr": "la télévision"}
+    ],
+    "tip": "Du latin 'videre' = voir"
+  },
+  {
+    "id": "tend",
+    "root": "tend / tent",
+    "fr_root": "tendre / étendre",
+    "words": [
+      {"word": "attend", "pos": "v", "fr": "assister à"},
+      {"word": "attention", "pos": "n", "fr": "l'attention"},
+      {"word": "extend", "pos": "v", "fr": "étendre, prolonger"},
+      {"word": "intend", "pos": "v", "fr": "avoir l'intention de"},
+      {"word": "intention", "pos": "n", "fr": "une intention"},
+      {"word": "pretend", "pos": "v", "fr": "faire semblant"},
+      {"word": "content", "pos": "adj/n", "fr": "satisfait / le contenu"}
+    ],
+    "tip": "Du latin 'tendere' = tendre, étirer"
+  },
+  {
+    "id": "pose",
+    "root": "pose / posit",
+    "fr_root": "poser / placer",
+    "words": [
+      {"word": "compose", "pos": "v", "fr": "composer"},
+      {"word": "composition", "pos": "n", "fr": "une composition"},
+      {"word": "expose", "pos": "v", "fr": "exposer"},
+      {"word": "propose", "pos": "v", "fr": "proposer"},
+      {"word": "impose", "pos": "v", "fr": "imposer"},
+      {"word": "oppose", "pos": "v", "fr": "s'opposer"},
+      {"word": "opposite", "pos": "adj/n", "fr": "opposé / le contraire"},
+      {"word": "position", "pos": "n", "fr": "une position"}
+    ],
+    "tip": "Du latin 'ponere' = placer, poser"
+  },
+  {
+    "id": "serve",
+    "root": "serve / serv",
+    "fr_root": "servir / conserver",
+    "words": [
+      {"word": "serve", "pos": "v", "fr": "servir"},
+      {"word": "service", "pos": "n", "fr": "un service"},
+      {"word": "preserve", "pos": "v", "fr": "préserver, conserver"},
+      {"word": "deserve", "pos": "v", "fr": "mériter"},
+      {"word": "observe", "pos": "v", "fr": "observer"},
+      {"word": "observation", "pos": "n", "fr": "une observation"},
+      {"word": "reserve", "pos": "v/n", "fr": "réserver / une réserve"}
+    ],
+    "tip": "Du latin 'servare' = garder, conserver"
+  },
+  {
+    "id": "sign",
+    "root": "sign",
+    "fr_root": "signe / signifier",
+    "words": [
+      {"word": "sign", "pos": "n/v", "fr": "un signe / signer"},
+      {"word": "signal", "pos": "n/v", "fr": "un signal / signaler"},
+      {"word": "assign", "pos": "v", "fr": "assigner, attribuer"},
+      {"word": "design", "pos": "n/v", "fr": "un design / concevoir"},
+      {"word": "resign", "pos": "v", "fr": "démissionner"},
+      {"word": "significant", "pos": "adj", "fr": "significatif, important"}
+    ],
+    "tip": "Du latin 'signum' = marque, signe"
+  },
+  {
+    "id": "tract",
+    "root": "tract",
+    "fr_root": "tirer / attirer",
+    "words": [
+      {"word": "attract", "pos": "v", "fr": "attirer"},
+      {"word": "attraction", "pos": "n", "fr": "une attraction"},
+      {"word": "contract", "pos": "n/v", "fr": "un contrat / contracter"},
+      {"word": "extract", "pos": "v/n", "fr": "extraire / un extrait"},
+      {"word": "distract", "pos": "v", "fr": "distraire"},
+      {"word": "subtract", "pos": "v", "fr": "soustraire"},
+      {"word": "abstract", "pos": "adj/n", "fr": "abstrait / un résumé"}
+    ],
+    "tip": "Du latin 'trahere' = tirer, traîner"
+  },
+  {
+    "id": "mit",
+    "root": "mit / miss",
+    "fr_root": "envoyer / permettre",
+    "words": [
+      {"word": "admit", "pos": "v", "fr": "admettre, avouer"},
+      {"word": "commit", "pos": "v", "fr": "commettre, s'engager"},
+      {"word": "submit", "pos": "v", "fr": "soumettre"},
+      {"word": "permit", "pos": "v/n", "fr": "permettre / un permis"},
+      {"word": "transmit", "pos": "v", "fr": "transmettre"},
+      {"word": "mission", "pos": "n", "fr": "une mission"},
+      {"word": "omit", "pos": "v", "fr": "omettre"}
+    ],
+    "tip": "Du latin 'mittere' = envoyer, laisser aller"
+  },
+  {
+    "id": "claim",
+    "root": "claim",
+    "fr_root": "réclamer / proclamer",
+    "words": [
+      {"word": "claim", "pos": "v/n", "fr": "prétendre / une réclamation"},
+      {"word": "exclaim", "pos": "v", "fr": "s'exclamer"},
+      {"word": "proclaim", "pos": "v", "fr": "proclamer"},
+      {"word": "reclaim", "pos": "v", "fr": "récupérer, revendiquer"},
+      {"word": "disclaim", "pos": "v", "fr": "nier, se désolidariser"}
+    ],
+    "tip": "Du latin 'clamare' = crier"
+  },
+  {
+    "id": "cover",
+    "root": "cover",
+    "fr_root": "couvrir / découvrir",
+    "words": [
+      {"word": "cover", "pos": "v/n", "fr": "couvrir / une couverture"},
+      {"word": "discover", "pos": "v", "fr": "découvrir"},
+      {"word": "discovery", "pos": "n", "fr": "une découverte"},
+      {"word": "recover", "pos": "v", "fr": "récupérer, se remettre"},
+      {"word": "recovery", "pos": "n", "fr": "la récupération, le rétablissement"},
+      {"word": "uncover", "pos": "v", "fr": "dévoiler, révéler"}
+    ],
+    "tip": "Du vieux français 'covrir' → 'couvrir'"
+  },
+  {
+    "id": "fuse",
+    "root": "fuse / fus",
+    "fr_root": "fondre / fusionner",
+    "words": [
+      {"word": "refuse", "pos": "v/n", "fr": "refuser / les déchets"},
+      {"word": "confuse", "pos": "v", "fr": "confondre"},
+      {"word": "confusion", "pos": "n", "fr": "la confusion"},
+      {"word": "infuse", "pos": "v", "fr": "infuser"},
+      {"word": "diffuse", "pos": "v/adj", "fr": "diffuser / diffus"},
+      {"word": "transfuse", "pos": "v", "fr": "transfuser"}
+    ],
+    "tip": "Du latin 'fundere' = verser, répandre"
+  },
+  {
+    "id": "scrib",
+    "root": "scrib / script",
+    "fr_root": "écrire / décrire",
+    "words": [
+      {"word": "describe", "pos": "v", "fr": "décrire"},
+      {"word": "description", "pos": "n", "fr": "une description"},
+      {"word": "prescribe", "pos": "v", "fr": "prescrire"},
+      {"word": "subscribe", "pos": "v", "fr": "s'abonner"},
+      {"word": "subscription", "pos": "n", "fr": "un abonnement"},
+      {"word": "script", "pos": "n", "fr": "un script, un scénario"},
+      {"word": "manuscript", "pos": "n", "fr": "un manuscrit"}
+    ],
+    "tip": "Du latin 'scribere' = écrire"
+  },
+  {
+    "id": "place",
+    "root": "place",
+    "fr_root": "placer / endroit",
+    "words": [
+      {"word": "place", "pos": "n/v", "fr": "un endroit / placer"},
+      {"word": "replace", "pos": "v", "fr": "remplacer"},
+      {"word": "replacement", "pos": "n", "fr": "un remplacement"},
+      {"word": "misplace", "pos": "v", "fr": "égarer, mal ranger"},
+      {"word": "displace", "pos": "v", "fr": "déplacer"},
+      {"word": "placement", "pos": "n", "fr": "un placement, un stage"}
+    ],
+    "tip": "Du vieux français 'place' → 'place'"
+  },
+  {
+    "id": "view",
+    "root": "view",
+    "fr_root": "voir / vue",
+    "words": [
+      {"word": "view", "pos": "n/v", "fr": "une vue / voir, regarder"},
+      {"word": "review", "pos": "n/v", "fr": "un avis, une révision / réviser"},
+      {"word": "preview", "pos": "n/v", "fr": "un aperçu / prévisualiser"},
+      {"word": "interview", "pos": "n/v", "fr": "un entretien / interviewer"},
+      {"word": "overview", "pos": "n", "fr": "un aperçu général"}
+    ],
+    "tip": "Du latin 'videre' = voir"
+  }
+]

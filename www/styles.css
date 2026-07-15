@@ -269,6 +269,26 @@ html, body {
 .fa-correct-word { font-size: 20px; font-weight: 700; color: var(--success); }
 .fa-example { margin-top: 4px; }
 .fa-tip { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--text-dim); font-style: italic; }
+
+/* Familles de mots */
+.fam-card { display: flex; flex-direction: column; gap: 14px; }
+.fam-root { font-size: 24px; font-weight: 700; color: #A855F7; }
+.fam-fr-root { font-size: 14px; color: var(--text-dim); margin-top: -8px; }
+.fam-words { display: flex; flex-direction: column; gap: 8px; }
+.fam-word-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; background: rgba(168,85,247,0.08); border-radius: 10px; padding: 8px 12px; }
+.fam-word { font-weight: 700; color: var(--text); }
+.fam-pos { font-size: 11px; color: #A855F7; font-style: italic; text-align: center; }
+.fam-fr { color: var(--text-dim); font-size: 14px; text-align: right; }
+
+/* Vrais cognates */
+.cog-card { display: flex; flex-direction: column; gap: 14px; }
+.cog-pattern { font-size: 22px; font-weight: 700; color: #10B981; }
+.cog-rule { font-size: 14px; color: var(--text-dim); }
+.cog-examples { display: flex; flex-direction: column; gap: 6px; }
+.cog-ex-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; background: rgba(16,185,129,0.08); border-radius: 10px; padding: 8px 12px; }
+.cog-en { font-weight: 700; color: var(--text); }
+.cog-arrow { color: #10B981; font-weight: 700; text-align: center; }
+.cog-fr { color: #10B981; font-weight: 600; text-align: right; }
 .gram-section { gap: 12px; }
 .gram-h3 { margin: 0; font-size: 16px; color: var(--sky); }
 .gram-points { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }

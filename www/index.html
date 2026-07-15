@@ -33,6 +33,8 @@
         <button id="btn-verbs" class="secondary">📘 Verbes irréguliers</button>
         <button id="btn-grammar" class="secondary">📖 Grammaire</button>
         <button id="btn-faux-amis" class="secondary">⚠️ Faux amis</button>
+        <button id="btn-familles" class="secondary">🔤 Familles de mots</button>
+        <button id="btn-cognates" class="secondary">✅ Vrais cognates</button>
         <button id="btn-listen" class="secondary">🎧 Écoute (accents)</button>
         <button id="btn-pronun" class="secondary top-wide">🎤 Prononciation</button>
       </div>
@@ -350,11 +352,53 @@
       <button id="btn-faux-amis-back" class="secondary hidden">← Liste</button>
       <button id="btn-faux-amis-home" class="secondary">Accueil</button>
     </section>
+
+    <!-- FAMILLES DE MOTS -->
+    <section id="view-familles" class="view hidden">
+      <div class="quiz-header">
+        <span class="quiz-progress">🔤 Familles de mots</span>
+        <span class="quiz-level">🇬🇧 Anglais</span>
+      </div>
+      <div class="card hero">
+        <span class="hero-label">Questions</span>
+        <div class="chip-row">
+          <button class="chip famcount-chip" data-count="5">5</button>
+          <button class="chip famcount-chip" data-count="10">10</button>
+          <button class="chip famcount-chip" data-count="20">20</button>
+        </div>
+      </div>
+      <div id="familles-list" class="grammar-list"></div>
+      <div id="familles-detail" class="hidden"></div>
+      <button id="btn-familles-quiz" class="secondary">🧩 Quiz familles</button>
+      <button id="btn-familles-back" class="secondary hidden">← Liste</button>
+      <button id="btn-familles-home" class="secondary">Accueil</button>
+    </section>
+
+    <!-- VRAIS COGNATES -->
+    <section id="view-cognates" class="view hidden">
+      <div class="quiz-header">
+        <span class="quiz-progress">✅ Vrais cognates</span>
+        <span class="quiz-level">🇬🇧 Anglais</span>
+      </div>
+      <div class="card hero">
+        <span class="hero-label">Questions</span>
+        <div class="chip-row">
+          <button class="chip cogcount-chip" data-count="5">5</button>
+          <button class="chip cogcount-chip" data-count="10">10</button>
+          <button class="chip cogcount-chip" data-count="20">20</button>
+        </div>
+      </div>
+      <div id="cognates-list" class="grammar-list"></div>
+      <div id="cognates-detail" class="hidden"></div>
+      <button id="btn-cognates-quiz" class="secondary">🧩 Quiz cognates</button>
+      <button id="btn-cognates-back" class="secondary hidden">← Liste</button>
+      <button id="btn-cognates-home" class="secondary">Accueil</button>
+    </section>
   </main>
 
   <button id="btn-fab-home" class="fab-home hidden" title="Accueil">🏠</button>
   <script src="app.js"></script>
-  <script>window.UPDATE_REPO='laurentsar/quiz-langue';window.APP_VERSION='2.21';</script>
+  <script>window.UPDATE_REPO='laurentsar/quiz-langue';window.APP_VERSION='2.22';</script>
   <script src="update-check.js" defer></script>
 </body>
 </html>
