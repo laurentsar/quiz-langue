@@ -1,0 +1,186 @@
+[
+  {
+    "id": "tion",
+    "pattern": "-tion → -tion",
+    "rule": "Les mots anglais en -tion sont identiques en français",
+    "examples": [
+      {"en": "nation", "fr": "nation"},
+      {"en": "station", "fr": "station"},
+      {"en": "information", "fr": "information"},
+      {"en": "solution", "fr": "solution"},
+      {"en": "conversation", "fr": "conversation"},
+      {"en": "action", "fr": "action"},
+      {"en": "attention", "fr": "attention"},
+      {"en": "direction", "fr": "direction"}
+    ],
+    "quiz_en": "communication",
+    "quiz_fr": "communication",
+    "distractors": ["commutation", "commande", "commentaire"],
+    "tip": "Des centaines de mots en -tion sont identiques ! Confiance !"
+  },
+  {
+    "id": "sion",
+    "pattern": "-sion → -sion",
+    "rule": "Les mots en -sion s'écrivent pareil en anglais et en français",
+    "examples": [
+      {"en": "mission", "fr": "mission"},
+      {"en": "passion", "fr": "passion"},
+      {"en": "tension", "fr": "tension"},
+      {"en": "expression", "fr": "expression"},
+      {"en": "impression", "fr": "impression"},
+      {"en": "television", "fr": "télévision"},
+      {"en": "decision", "fr": "décision"}
+    ],
+    "quiz_en": "discussion",
+    "quiz_fr": "discussion",
+    "distractors": ["disgression", "discours", "dispute"],
+    "tip": "Seul l'accent peut différer (télévision ≠ television)"
+  },
+  {
+    "id": "ment",
+    "pattern": "-ment → -ment",
+    "rule": "Les mots en -ment sont quasi identiques en anglais et en français",
+    "examples": [
+      {"en": "moment", "fr": "moment"},
+      {"en": "document", "fr": "document"},
+      {"en": "monument", "fr": "monument"},
+      {"en": "department", "fr": "département"},
+      {"en": "environment", "fr": "environnement"},
+      {"en": "development", "fr": "développement"},
+      {"en": "movement", "fr": "mouvement"}
+    ],
+    "quiz_en": "government",
+    "quiz_fr": "gouvernement",
+    "distractors": ["souveraineté", "autorité", "garde"],
+    "tip": "En anglais pas d'accent, mais la forme est la même"
+  },
+  {
+    "id": "al",
+    "pattern": "-al → -al",
+    "rule": "Les adjectifs en -al sont identiques en anglais et en français",
+    "examples": [
+      {"en": "national", "fr": "national"},
+      {"en": "local", "fr": "local"},
+      {"en": "general", "fr": "général"},
+      {"en": "natural", "fr": "naturel"},
+      {"en": "original", "fr": "original"},
+      {"en": "final", "fr": "final"},
+      {"en": "social", "fr": "social"},
+      {"en": "normal", "fr": "normal"}
+    ],
+    "quiz_en": "international",
+    "quiz_fr": "international",
+    "distractors": ["mondial", "étranger", "planétaire"],
+    "tip": "animal, hospital, festival… aussi identiques !"
+  },
+  {
+    "id": "ity",
+    "pattern": "-ity → -ité",
+    "rule": "Les mots anglais en -ity se traduisent par -ité en français",
+    "examples": [
+      {"en": "quality", "fr": "qualité"},
+      {"en": "university", "fr": "université"},
+      {"en": "creativity", "fr": "créativité"},
+      {"en": "majority", "fr": "majorité"},
+      {"en": "nationality", "fr": "nationalité"},
+      {"en": "possibility", "fr": "possibilité"},
+      {"en": "electricity", "fr": "électricité"}
+    ],
+    "quiz_en": "curiosity",
+    "quiz_fr": "curiosité",
+    "distractors": ["curiosité (→ curiosity ✓)", "envie", "désir"],
+    "quiz_fr_clean": "curiosité",
+    "tip": "Règle fiable : -ity → -ité dans presque tous les cas"
+  },
+  {
+    "id": "ist",
+    "pattern": "-ist → -iste",
+    "rule": "Les mots en -ist correspondent à -iste en français",
+    "examples": [
+      {"en": "artist", "fr": "artiste"},
+      {"en": "tourist", "fr": "touriste"},
+      {"en": "journalist", "fr": "journaliste"},
+      {"en": "optimist", "fr": "optimiste"},
+      {"en": "specialist", "fr": "spécialiste"},
+      {"en": "pianist", "fr": "pianiste"},
+      {"en": "guitarist", "fr": "guitariste"}
+    ],
+    "quiz_en": "novelist",
+    "quiz_fr": "romancier / noveliste",
+    "quiz_fr_clean": "romancier",
+    "distractors": ["auteur", "écrivain", "poète"],
+    "tip": "On ajoute un -e final en français : artist → artiste"
+  },
+  {
+    "id": "ism",
+    "pattern": "-ism → -isme",
+    "rule": "Les mots en -ism correspondent à -isme en français",
+    "examples": [
+      {"en": "capitalism", "fr": "capitalisme"},
+      {"en": "tourism", "fr": "tourisme"},
+      {"en": "optimism", "fr": "optimisme"},
+      {"en": "feminism", "fr": "féminisme"},
+      {"en": "terrorism", "fr": "terrorisme"},
+      {"en": "realism", "fr": "réalisme"},
+      {"en": "criticism", "fr": "criticisme / critique"}
+    ],
+    "quiz_en": "journalism",
+    "quiz_fr": "journalisme",
+    "distractors": ["journalistique", "reportage", "presse"],
+    "tip": "On ajoute -e final en français : tourism → tourisme"
+  },
+  {
+    "id": "ous",
+    "pattern": "-ous → -eux/-euse",
+    "rule": "Les adjectifs anglais en -ous se traduisent souvent par -eux en français",
+    "examples": [
+      {"en": "curious", "fr": "curieux"},
+      {"en": "nervous", "fr": "nerveux"},
+      {"en": "serious", "fr": "sérieux"},
+      {"en": "dangerous", "fr": "dangereux"},
+      {"en": "famous", "fr": "fameux / célèbre"},
+      {"en": "generous", "fr": "généreux"},
+      {"en": "furious", "fr": "furieux"}
+    ],
+    "quiz_en": "ambitious",
+    "quiz_fr": "ambitieux",
+    "distractors": ["motivé", "déterminé", "volontaire"],
+    "tip": "-ous → -eux (masc.) / -euse (fém.) : curious → curieux/curieuse"
+  },
+  {
+    "id": "able",
+    "pattern": "-able → -able",
+    "rule": "Les adjectifs en -able sont identiques en anglais et en français",
+    "examples": [
+      {"en": "capable", "fr": "capable"},
+      {"en": "comfortable", "fr": "confortable"},
+      {"en": "considerable", "fr": "considérable"},
+      {"en": "remarkable", "fr": "remarquable"},
+      {"en": "reasonable", "fr": "raisonnable"},
+      {"en": "probable", "fr": "probable"},
+      {"en": "comparable", "fr": "comparable"}
+    ],
+    "quiz_en": "responsible",
+    "quiz_fr": "responsable",
+    "distractors": ["coupable", "sérieux", "fiable"],
+    "tip": "-able/-ible → même mot en français (ou presque)"
+  },
+  {
+    "id": "ence",
+    "pattern": "-ence/-ance → -ence/-ance",
+    "rule": "Les mots en -ence/-ance sont souvent identiques en anglais et en français",
+    "examples": [
+      {"en": "science", "fr": "science"},
+      {"en": "difference", "fr": "différence"},
+      {"en": "experience", "fr": "expérience"},
+      {"en": "confidence", "fr": "confiance / confidence"},
+      {"en": "distance", "fr": "distance"},
+      {"en": "substance", "fr": "substance"},
+      {"en": "intelligence", "fr": "intelligence"}
+    ],
+    "quiz_en": "importance",
+    "quiz_fr": "importance",
+    "distractors": ["priorité", "valeur", "poids"],
+    "tip": "Attention : confidence = confiance (pas un faux ami total !)"
+  }
+]

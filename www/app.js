@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.21';
+const APP_VERSION = '2.22';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -17,8 +17,10 @@ const VERBS_FILE = 'data/verbs_en.json';
 const VERBS_KEY = 'verbs';   // espace stats/SRS dédié aux verbes irréguliers
 const GRAMMAR_QUIZ_FILE = 'data/grammar_quiz_en.json';
 const GRAMMAR_KEY = 'grammar'; // espace stats/SRS dédié aux exos de grammaire
-const FAUX_AMIS_KEY = 'faux-amis'; // espace stats/SRS dédié aux faux amis
-const KIND_COLORS = { vocab: '#27B3FF', verbs: '#4CE0D2', grammar: '#1B5CFF', pronun: '#B15CFF', 'faux-amis': '#FF6B35' };
+const FAUX_AMIS_KEY = 'faux-amis';
+const FAMILLES_KEY = 'familles';
+const COGNATES_KEY = 'cognates';
+const KIND_COLORS = { vocab: '#27B3FF', verbs: '#4CE0D2', grammar: '#1B5CFF', pronun: '#B15CFF', 'faux-amis': '#FF6B35', familles: '#A855F7', cognates: '#10B981' };
 
 const state = {
   lang: 'en',
@@ -41,8 +43,8 @@ let verbSelectedWords = new Set();   // infinitifs sélectionnés pour le quiz p
 let verbSelectPanelOpen = false;
 
 // Clé de stats/SRS et voix TTS selon le mode courant.
-function quizKey() { return state.kind === 'verbs' ? VERBS_KEY : state.kind === 'grammar' ? GRAMMAR_KEY : state.kind === 'faux-amis' ? FAUX_AMIS_KEY : state.lang; }
-function quizTts() { return (state.kind === 'verbs' || state.kind === 'grammar' || state.kind === 'faux-amis') ? 'en-US' : LANGS[state.lang].tts; }
+function quizKey() { return state.kind === 'verbs' ? VERBS_KEY : state.kind === 'grammar' ? GRAMMAR_KEY : state.kind === 'faux-amis' ? FAUX_AMIS_KEY : state.kind === 'familles' ? FAMILLES_KEY : state.kind === 'cognates' ? COGNATES_KEY : state.lang; }
+function quizTts() { return (state.kind === 'verbs' || state.kind === 'grammar' || state.kind === 'faux-amis' || state.kind === 'familles' || state.kind === 'cognates') ? 'en-US' : LANGS[state.lang].tts; }
 
 const settings = loadSettings();
 const cache = {};   // lang -> words
@@ -250,7 +252,7 @@ function vibrate(ok) { try { navigator.vibrate && navigator.vibrate(ok ? 25 : [4
 
 // ---------- DOM ----------
 const $ = (id) => document.getElementById(id);
-const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), 'faux-amis': $('view-faux-amis'), learn: $('view-learn'), listen: $('view-listen'), pronun: $('view-pronun') };
+const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), 'faux-amis': $('view-faux-amis'), familles: $('view-familles'), cognates: $('view-cognates'), learn: $('view-learn'), listen: $('view-listen'), pronun: $('view-pronun') };
 let autoNextTimer = null;
 
 function showView(name) {
@@ -454,7 +456,7 @@ function renderQuestion() {
     let html = `<div class="fb-head">${a.correct ? '✅ Correct' : '❌ Faux'}</div>`;
     if (!a.correct) html += `<div class="fb-line">Réponse : <b>${esc(q.correctText)}</b></div>`;
     if (state.kind === 'grammar' && q.fullSentence) html += `<div class="fb-line">📝 ${esc(q.fullSentence)}</div>`;
-    if ((state.kind === 'grammar' || state.kind === 'faux-amis') && q.hint) html += `<div class="fb-line tip">💡 ${esc(q.hint)}</div>`;
+    if (['grammar', 'faux-amis', 'familles', 'cognates'].includes(state.kind) && q.hint) html += `<div class="fb-line tip">💡 ${esc(q.hint)}</div>`;
     fb.innerHTML = html;
     fb.className = 'feedback show ' + (a.correct ? 'good' : 'bad');
   } else { fb.innerHTML = ''; fb.className = 'feedback'; }
@@ -594,7 +596,7 @@ $('btn-level-none').addEventListener('click', () => {
 function exitToHome() {
   clearTimeout(autoNextTimer);
   try { speechSynthesis && speechSynthesis.cancel(); } catch (e) {}
-  if (state.kind === 'verbs' || state.kind === 'grammar' || state.kind === 'faux-amis') { state.kind = 'vocab'; state.words = cache[state.lang] || state.words; }
+  if (['verbs', 'grammar', 'faux-amis', 'familles', 'cognates'].includes(state.kind)) { state.kind = 'vocab'; state.words = cache[state.lang] || state.words; }
   showView('home'); renderStats();
 }
 
@@ -980,6 +982,197 @@ $('btn-faux-amis-quiz').addEventListener('click', startFauxAmisQuiz);
 document.querySelectorAll('.facount-chip').forEach(c => c.addEventListener('click', () => {
   state.count = +c.dataset.count;
   renderChips('.facount-chip', state.count, 'count');
+}));
+
+// ---------- familles de mots ----------
+const FAMILLES_FILE = 'data/word_families_en.json';
+let famillesData = null;
+let famillesScrollY = 0;
+
+function renderFamillesList(restoreScroll) {
+  $('familles-detail').classList.add('hidden');
+  $('btn-familles-back').classList.add('hidden');
+  $('btn-familles-quiz').classList.remove('hidden');
+  const list = $('familles-list');
+  list.classList.remove('hidden');
+  list.innerHTML = (famillesData || []).map((f, i) =>
+    `<button class="grammar-item" data-idx="${i}"><span class="gi-title">${esc(f.root)}</span><span class="gi-sub">${esc(f.fr_root)}</span></button>`
+  ).join('');
+  list.querySelectorAll('.grammar-item').forEach(b =>
+    b.addEventListener('click', () => { famillesScrollY = window.scrollY; showFamille(+b.dataset.idx); })
+  );
+  if (restoreScroll) requestAnimationFrame(() => window.scrollTo(0, famillesScrollY));
+}
+
+function showFamille(idx) {
+  const f = famillesData[idx];
+  if (!f) return;
+  $('btn-familles-back').classList.remove('hidden');
+  $('btn-familles-quiz').classList.add('hidden');
+  $('familles-list').classList.add('hidden');
+  const detail = $('familles-detail');
+  detail.innerHTML = `
+    <div class="card fam-card">
+      <div class="fam-root">🔤 ${esc(f.root)}</div>
+      <div class="fam-fr-root">${esc(f.fr_root)}</div>
+      <div class="fam-words">
+        ${f.words.map(w => `
+          <div class="fam-word-row">
+            <span class="fam-word">${esc(w.word)}</span>
+            <span class="fam-pos">${esc(w.pos)}</span>
+            <span class="fam-fr">${esc(w.fr)}</span>
+          </div>
+        `).join('')}
+      </div>
+      ${f.tip ? `<div class="fa-tip">💡 ${esc(f.tip)}</div>` : ''}
+    </div>
+  `;
+  detail.classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+function buildFamilleQuestion(family, allFamilies) {
+  const wordObj = family.words[Math.floor(Math.random() * family.words.length)];
+  const correct = wordObj.word;
+  const others = shuffle(
+    allFamilies.filter(f => f.id !== family.id).flatMap(f => f.words.map(w => w.word)).filter(w => w !== correct)
+  ).slice(0, 3);
+  const options = shuffle([correct, ...others]);
+  return {
+    word: family.id + '_' + correct,
+    foreign: correct,
+    promptText: wordObj.fr,
+    promptLabel: 'Quel mot anglais correspond à…',
+    promptIsForeign: false,
+    options,
+    correctIndex: options.indexOf(correct),
+    correctText: correct,
+    hint: family.tip,
+  };
+}
+
+async function openFamilles() {
+  if (!famillesData) famillesData = await (await fetch(FAMILLES_FILE)).json();
+  renderFamillesList();
+  renderChips('.famcount-chip', state.count, 'count');
+  showView('familles');
+}
+
+function startFamillesQuiz() {
+  if (!famillesData || !famillesData.length) return;
+  state.kind = 'familles';
+  state.badge = 'Familles de mots';
+  state.mode = 'srs';
+  const picks = shuffle(famillesData).slice(0, state.count);
+  state.questions = picks.map(item => buildFamilleQuestion(item, famillesData));
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
+}
+
+$('btn-familles').addEventListener('click', openFamilles);
+$('btn-familles-home').addEventListener('click', () => showView('home'));
+$('btn-familles-back').addEventListener('click', () => renderFamillesList(true));
+$('btn-familles-quiz').addEventListener('click', startFamillesQuiz);
+document.querySelectorAll('.famcount-chip').forEach(c => c.addEventListener('click', () => {
+  state.count = +c.dataset.count;
+  renderChips('.famcount-chip', state.count, 'count');
+}));
+
+// ---------- vrais cognates ----------
+const COGNATES_FILE = 'data/cognates_en.json';
+let cognatesData = null;
+let cognatesScrollY = 0;
+
+function renderCognatesList(restoreScroll) {
+  $('cognates-detail').classList.add('hidden');
+  $('btn-cognates-back').classList.add('hidden');
+  $('btn-cognates-quiz').classList.remove('hidden');
+  const list = $('cognates-list');
+  list.classList.remove('hidden');
+  list.innerHTML = (cognatesData || []).map((c, i) =>
+    `<button class="grammar-item" data-idx="${i}"><span class="gi-title">${esc(c.pattern)}</span><span class="gi-sub">${esc(c.examples.slice(0, 3).map(e => e.en).join(', '))}…</span></button>`
+  ).join('');
+  list.querySelectorAll('.grammar-item').forEach(b =>
+    b.addEventListener('click', () => { cognatesScrollY = window.scrollY; showCognate(+b.dataset.idx); })
+  );
+  if (restoreScroll) requestAnimationFrame(() => window.scrollTo(0, cognatesScrollY));
+}
+
+function showCognate(idx) {
+  const c = cognatesData[idx];
+  if (!c) return;
+  $('btn-cognates-back').classList.remove('hidden');
+  $('btn-cognates-quiz').classList.add('hidden');
+  $('cognates-list').classList.add('hidden');
+  const detail = $('cognates-detail');
+  detail.innerHTML = `
+    <div class="card cog-card">
+      <div class="cog-pattern">${esc(c.pattern)}</div>
+      <div class="cog-rule">${esc(c.rule)}</div>
+      <div class="cog-examples">
+        ${c.examples.map(e => `
+          <div class="cog-ex-row">
+            <span class="cog-en">${esc(e.en)}</span>
+            <span class="cog-arrow">→</span>
+            <span class="cog-fr">${esc(e.fr)}</span>
+          </div>
+        `).join('')}
+      </div>
+      ${c.tip ? `<div class="fa-tip">💡 ${esc(c.tip)}</div>` : ''}
+    </div>
+  `;
+  detail.classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+function buildCognateQuestion(item, allItems) {
+  const correct = item.quiz_fr_clean || item.quiz_fr;
+  const others = shuffle(
+    allItems.filter(x => x.id !== item.id).map(x => x.quiz_fr_clean || x.quiz_fr).filter(v => v !== correct)
+  ).slice(0, 3);
+  const options = shuffle([correct, ...others]);
+  return {
+    word: item.id,
+    foreign: item.quiz_en,
+    promptText: item.quiz_en,
+    promptLabel: 'Que veut dire…',
+    promptIsForeign: true,
+    options,
+    correctIndex: options.indexOf(correct),
+    correctText: correct,
+    hint: item.tip,
+  };
+}
+
+async function openCognates() {
+  if (!cognatesData) cognatesData = await (await fetch(COGNATES_FILE)).json();
+  renderCognatesList();
+  renderChips('.cogcount-chip', state.count, 'count');
+  showView('cognates');
+}
+
+function startCognatesQuiz() {
+  if (!cognatesData || !cognatesData.length) return;
+  state.kind = 'cognates';
+  state.badge = 'Cognates';
+  state.mode = 'srs';
+  const picks = shuffle(cognatesData).slice(0, state.count);
+  state.questions = picks.map(item => buildCognateQuestion(item, cognatesData));
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
+}
+
+$('btn-cognates').addEventListener('click', openCognates);
+$('btn-cognates-home').addEventListener('click', () => showView('home'));
+$('btn-cognates-back').addEventListener('click', () => renderCognatesList(true));
+$('btn-cognates-quiz').addEventListener('click', startCognatesQuiz);
+document.querySelectorAll('.cogcount-chip').forEach(c => c.addEventListener('click', () => {
+  state.count = +c.dataset.count;
+  renderChips('.cogcount-chip', state.count, 'count');
 }));
 
 // ---------- mode Apprendre (flashcards, partagé vocab / verbes / grammaire) ----------
