@@ -17,7 +17,8 @@ const VERBS_FILE = 'data/verbs_en.json';
 const VERBS_KEY = 'verbs';   // espace stats/SRS dédié aux verbes irréguliers
 const GRAMMAR_QUIZ_FILE = 'data/grammar_quiz_en.json';
 const GRAMMAR_KEY = 'grammar'; // espace stats/SRS dédié aux exos de grammaire
-const KIND_COLORS = { vocab: '#27B3FF', verbs: '#4CE0D2', grammar: '#1B5CFF', pronun: '#B15CFF' };
+const FAUX_AMIS_KEY = 'faux-amis'; // espace stats/SRS dédié aux faux amis
+const KIND_COLORS = { vocab: '#27B3FF', verbs: '#4CE0D2', grammar: '#1B5CFF', pronun: '#B15CFF', 'faux-amis': '#FF6B35' };
 
 const state = {
   lang: 'en',
@@ -40,8 +41,8 @@ let verbSelectedWords = new Set();   // infinitifs sélectionnés pour le quiz p
 let verbSelectPanelOpen = false;
 
 // Clé de stats/SRS et voix TTS selon le mode courant.
-function quizKey() { return state.kind === 'verbs' ? VERBS_KEY : state.kind === 'grammar' ? GRAMMAR_KEY : state.lang; }
-function quizTts() { return (state.kind === 'verbs' || state.kind === 'grammar') ? 'en-US' : LANGS[state.lang].tts; }
+function quizKey() { return state.kind === 'verbs' ? VERBS_KEY : state.kind === 'grammar' ? GRAMMAR_KEY : state.kind === 'faux-amis' ? FAUX_AMIS_KEY : state.lang; }
+function quizTts() { return (state.kind === 'verbs' || state.kind === 'grammar' || state.kind === 'faux-amis') ? 'en-US' : LANGS[state.lang].tts; }
 
 const settings = loadSettings();
 const cache = {};   // lang -> words
@@ -249,7 +250,7 @@ function vibrate(ok) { try { navigator.vibrate && navigator.vibrate(ok ? 25 : [4
 
 // ---------- DOM ----------
 const $ = (id) => document.getElementById(id);
-const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), learn: $('view-learn'), listen: $('view-listen'), pronun: $('view-pronun') };
+const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), 'faux-amis': $('view-faux-amis'), learn: $('view-learn'), listen: $('view-listen'), pronun: $('view-pronun') };
 let autoNextTimer = null;
 
 function showView(name) {
@@ -453,7 +454,7 @@ function renderQuestion() {
     let html = `<div class="fb-head">${a.correct ? '✅ Correct' : '❌ Faux'}</div>`;
     if (!a.correct) html += `<div class="fb-line">Réponse : <b>${esc(q.correctText)}</b></div>`;
     if (state.kind === 'grammar' && q.fullSentence) html += `<div class="fb-line">📝 ${esc(q.fullSentence)}</div>`;
-    if (state.kind === 'grammar' && q.hint) html += `<div class="fb-line tip">💡 ${esc(q.hint)}</div>`;
+    if ((state.kind === 'grammar' || state.kind === 'faux-amis') && q.hint) html += `<div class="fb-line tip">💡 ${esc(q.hint)}</div>`;
     fb.innerHTML = html;
     fb.className = 'feedback show ' + (a.correct ? 'good' : 'bad');
   } else { fb.innerHTML = ''; fb.className = 'feedback'; }
@@ -593,7 +594,7 @@ $('btn-level-none').addEventListener('click', () => {
 function exitToHome() {
   clearTimeout(autoNextTimer);
   try { speechSynthesis && speechSynthesis.cancel(); } catch (e) {}
-  if (state.kind === 'verbs' || state.kind === 'grammar') { state.kind = 'vocab'; state.words = cache[state.lang] || state.words; }
+  if (state.kind === 'verbs' || state.kind === 'grammar' || state.kind === 'faux-amis') { state.kind = 'vocab'; state.words = cache[state.lang] || state.words; }
   showView('home'); renderStats();
 }
 
@@ -741,9 +742,12 @@ function showGrammarTopic(idx) {
   $('btn-grammar-quiz').classList.add('hidden');
   $('btn-grammar-learn').classList.add('hidden');
   const videoBtn = t.videoUrl
-    ? `<a class="btn-video" href="${esc(t.videoUrl)}" target="_blank" rel="noopener">▶ ${esc(t.videoTitle || 'Voir la vidéo')}</a>`
+    ? `<a class="btn-video" href="${esc(t.videoUrl)}" target="_blank" rel="noopener">🇬🇧 ${esc(t.videoTitle || 'Voir la vidéo')}</a>`
     : '';
-  const html = videoBtn +
+  const videoBtnFr = t.videoUrlFr
+    ? `<a class="btn-video btn-video-fr" href="${esc(t.videoUrlFr)}" target="_blank" rel="noopener">🇫🇷 ${esc(t.videoTitleFr || 'Voir la vidéo en français')}</a>`
+    : '';
+  const html = videoBtn + videoBtnFr +
     (t.sections || []).map(sec =>
     `<div class="card gram-section">
       <h3 class="gram-h3">${esc(sec.heading)}</h3>
@@ -758,15 +762,16 @@ function showGrammarTopic(idx) {
   detail.innerHTML = html;
   const practice = detail.querySelector('.gram-practice');
   if (practice) practice.addEventListener('click', () => startGrammarQuiz(t.id));
-  const vlink = detail.querySelector('.btn-video');
-  if (vlink) vlink.addEventListener('click', e => {
-    e.preventDefault();
-    const url = vlink.href;
-    if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Browser) {
-      window.Capacitor.Plugins.Browser.open({ url });
-    } else {
-      window.open(url, '_blank');
-    }
+  detail.querySelectorAll('.btn-video').forEach(vlink => {
+    vlink.addEventListener('click', e => {
+      e.preventDefault();
+      const url = vlink.href;
+      if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Browser) {
+        window.Capacitor.Plugins.Browser.open({ url });
+      } else {
+        window.open(url, '_blank');
+      }
+    });
   });
   detail.classList.remove('hidden');
   $('grammar-list').classList.add('hidden');
@@ -877,6 +882,105 @@ $('btn-grammar-ai').addEventListener('click', async () => {
   showView('quiz');
   renderQuestion();
 });
+
+// ---------- faux amis ----------
+const FAUX_AMIS_FILE = 'data/faux_amis_en.json';
+let fauxAmisData = null;
+let fauxAmisScrollY = 0;
+
+function renderFauxAmisList(restoreScroll) {
+  $('faux-amis-detail').classList.add('hidden');
+  $('btn-faux-amis-back').classList.add('hidden');
+  $('btn-faux-amis-quiz').classList.remove('hidden');
+  const list = $('faux-amis-list');
+  list.classList.remove('hidden');
+  list.innerHTML = (fauxAmisData || []).map((f, i) =>
+    `<button class="grammar-item" data-idx="${i}"><span class="gi-title">${esc(f.en)}</span><span class="gi-sub">≠ ${esc(f.trap)}</span></button>`
+  ).join('');
+  list.querySelectorAll('.grammar-item').forEach(b =>
+    b.addEventListener('click', () => { fauxAmisScrollY = window.scrollY; showFauxAmi(+b.dataset.idx); })
+  );
+  if (restoreScroll) requestAnimationFrame(() => window.scrollTo(0, fauxAmisScrollY));
+}
+
+function showFauxAmi(idx) {
+  const f = fauxAmisData[idx];
+  if (!f) return;
+  $('btn-faux-amis-back').classList.remove('hidden');
+  $('btn-faux-amis-quiz').classList.add('hidden');
+  $('faux-amis-list').classList.add('hidden');
+  const detail = $('faux-amis-detail');
+  detail.innerHTML = `
+    <div class="card fa-card">
+      <div class="fa-word">${esc(f.en)}</div>
+      <div class="fa-trap">
+        <span class="fa-trap-label">⚠️ Confusion fréquente</span>
+        <span class="fa-trap-word">${esc(f.trap)}</span>
+        <span class="fa-trap-meaning">qui veut dire : ${esc(f.trap_en)}</span>
+      </div>
+      <div class="fa-correct">
+        <span class="fa-correct-label">✅ Traduction correcte</span>
+        <span class="fa-correct-word">${esc(f.fr)}</span>
+      </div>
+      <div class="gex-row fa-example">
+        <span class="gex-en">${esc(f.example.en)}</span>
+        <span class="gex-fr">${esc(f.example.fr)}</span>
+      </div>
+      ${f.tip ? `<div class="fa-tip">💡 ${esc(f.tip)}</div>` : ''}
+    </div>
+  `;
+  detail.classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+function buildFauxAmiQuestion(item, allItems) {
+  const correct = item.fr.split(' / ')[0].trim();
+  const trap = item.trap;
+  const others = shuffle(
+    allItems.filter(f => f.id !== item.id).map(f => f.fr.split(' / ')[0].trim()).filter(v => v !== correct && v !== trap)
+  ).slice(0, 2);
+  const options = shuffle([correct, trap, ...others]);
+  return {
+    word: item.id,
+    foreign: item.en,
+    promptText: item.en,
+    promptLabel: 'Que veut dire…',
+    promptIsForeign: true,
+    options,
+    correctIndex: options.indexOf(correct),
+    correctText: correct,
+    hint: item.tip || `"${item.trap}" = ${item.trap_en}`,
+  };
+}
+
+async function openFauxAmis() {
+  if (!fauxAmisData) fauxAmisData = await (await fetch(FAUX_AMIS_FILE)).json();
+  renderFauxAmisList();
+  renderChips('.facount-chip', state.count, 'count');
+  showView('faux-amis');
+}
+
+function startFauxAmisQuiz() {
+  if (!fauxAmisData || !fauxAmisData.length) return;
+  state.kind = 'faux-amis';
+  state.badge = 'Faux amis';
+  state.mode = 'srs';
+  const picks = shuffle(fauxAmisData).slice(0, state.count);
+  state.questions = picks.map(item => buildFauxAmiQuestion(item, fauxAmisData));
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
+}
+
+$('btn-faux-amis').addEventListener('click', openFauxAmis);
+$('btn-faux-amis-home').addEventListener('click', () => showView('home'));
+$('btn-faux-amis-back').addEventListener('click', () => renderFauxAmisList(true));
+$('btn-faux-amis-quiz').addEventListener('click', startFauxAmisQuiz);
+document.querySelectorAll('.facount-chip').forEach(c => c.addEventListener('click', () => {
+  state.count = +c.dataset.count;
+  renderChips('.facount-chip', state.count, 'count');
+}));
 
 // ---------- mode Apprendre (flashcards, partagé vocab / verbes / grammaire) ----------
 function buildCard(item) {

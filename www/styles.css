@@ -255,6 +255,20 @@ html, body {
   box-shadow: 0 4px 14px rgba(255,0,0,0.35);
 }
 .btn-video:active { opacity: 0.85; }
+.btn-video-fr { background: #1565C0; box-shadow: 0 4px 14px rgba(21,101,192,0.35); margin-top: 8px; }
+
+/* Faux amis */
+.fa-card { display: flex; flex-direction: column; gap: 16px; }
+.fa-word { font-size: 26px; font-weight: 700; color: var(--sky); }
+.fa-trap { display: flex; flex-direction: column; gap: 4px; background: rgba(255,107,53,0.12); border-left: 3px solid #FF6B35; border-radius: 8px; padding: 10px 14px; }
+.fa-trap-label { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: #FF6B35; font-weight: 700; }
+.fa-trap-word { font-size: 18px; font-weight: 700; color: #FF6B35; text-decoration: line-through; }
+.fa-trap-meaning { font-size: 13px; color: var(--text-dim); }
+.fa-correct { display: flex; flex-direction: column; gap: 4px; background: rgba(53,208,127,0.1); border-left: 3px solid var(--success); border-radius: 8px; padding: 10px 14px; }
+.fa-correct-label { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--success); font-weight: 700; }
+.fa-correct-word { font-size: 20px; font-weight: 700; color: var(--success); }
+.fa-example { margin-top: 4px; }
+.fa-tip { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--text-dim); font-style: italic; }
 .gram-section { gap: 12px; }
 .gram-h3 { margin: 0; font-size: 16px; color: var(--sky); }
 .gram-points { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }

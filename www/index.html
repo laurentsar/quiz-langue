@@ -32,6 +32,7 @@
         <button id="btn-stats" class="secondary">📊 Stats</button>
         <button id="btn-verbs" class="secondary">📘 Verbes irréguliers</button>
         <button id="btn-grammar" class="secondary">📖 Grammaire</button>
+        <button id="btn-faux-amis" class="secondary">⚠️ Faux amis</button>
         <button id="btn-listen" class="secondary">🎧 Écoute (accents)</button>
         <button id="btn-pronun" class="secondary top-wide">🎤 Prononciation</button>
       </div>
@@ -327,6 +328,27 @@
 
       <button id="btn-replay" class="primary">Nouvelle révision</button>
       <button id="btn-home" class="secondary">Accueil</button>
+    </section>
+
+    <!-- FAUX AMIS -->
+    <section id="view-faux-amis" class="view hidden">
+      <div class="quiz-header">
+        <span class="quiz-progress">⚠️ Faux amis</span>
+        <span class="quiz-level">🇬🇧 Anglais</span>
+      </div>
+      <div class="card hero">
+        <span class="hero-label">Questions</span>
+        <div class="chip-row">
+          <button class="chip facount-chip" data-count="5">5</button>
+          <button class="chip facount-chip" data-count="10">10</button>
+          <button class="chip facount-chip" data-count="20">20</button>
+        </div>
+      </div>
+      <div id="faux-amis-list" class="grammar-list"></div>
+      <div id="faux-amis-detail" class="hidden"></div>
+      <button id="btn-faux-amis-quiz" class="secondary">🧩 Quiz faux amis</button>
+      <button id="btn-faux-amis-back" class="secondary hidden">← Liste</button>
+      <button id="btn-faux-amis-home" class="secondary">Accueil</button>
     </section>
   </main>
 
