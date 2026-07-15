@@ -1,0 +1,560 @@
+[
+  {
+    "id": "actually",
+    "en": "actually",
+    "trap": "actuellement",
+    "fr": "en fait / en réalité",
+    "trap_en": "currently / nowadays",
+    "example": { "en": "I actually love jazz.", "fr": "En fait, j'adore le jazz." },
+    "tip": "\"actuellement\" = currently · \"actually\" = en fait"
+  },
+  {
+    "id": "eventually",
+    "en": "eventually",
+    "trap": "éventuellement",
+    "fr": "finalement / un jour",
+    "trap_en": "possibly / if need be",
+    "example": { "en": "He eventually agreed.", "fr": "Il a finalement accepté." },
+    "tip": "\"éventuellement\" = possibly · \"eventually\" = finalement"
+  },
+  {
+    "id": "sensible",
+    "en": "sensible",
+    "trap": "sensible",
+    "fr": "raisonnable / sensé",
+    "trap_en": "sensitive / touchy",
+    "example": { "en": "That's a very sensible idea.", "fr": "C'est une idée très raisonnable." },
+    "tip": "\"sensible\" (FR) = sensitive · \"sensible\" (EN) = raisonnable"
+  },
+  {
+    "id": "sensitive",
+    "en": "sensitive",
+    "trap": "sensitif",
+    "fr": "sensible",
+    "trap_en": "not a real word in standard French",
+    "example": { "en": "She is very sensitive.", "fr": "Elle est très sensible." },
+    "tip": "\"sensitive\" (EN) = sensible (FR) — ne pas dire \"sensitif\""
+  },
+  {
+    "id": "sympathetic",
+    "en": "sympathetic",
+    "trap": "sympathique",
+    "fr": "compréhensif / compatissant",
+    "trap_en": "nice / friendly / likeable",
+    "example": { "en": "He was very sympathetic.", "fr": "Il s'est montré très compréhensif." },
+    "tip": "\"sympathique\" = nice · \"sympathetic\" = compréhensif"
+  },
+  {
+    "id": "library",
+    "en": "library",
+    "trap": "librairie",
+    "fr": "bibliothèque",
+    "trap_en": "bookshop / bookstore",
+    "example": { "en": "I borrowed a book from the library.", "fr": "J'ai emprunté un livre à la bibliothèque." },
+    "tip": "\"librairie\" = bookshop · \"library\" = bibliothèque"
+  },
+  {
+    "id": "lecture",
+    "en": "lecture",
+    "trap": "lecture",
+    "fr": "conférence / cours magistral",
+    "trap_en": "reading",
+    "example": { "en": "The lecture lasted two hours.", "fr": "Le cours magistral a duré deux heures." },
+    "tip": "\"lecture\" (FR) = reading · \"lecture\" (EN) = conférence"
+  },
+  {
+    "id": "deception",
+    "en": "deception",
+    "trap": "déception",
+    "fr": "tromperie / duperie",
+    "trap_en": "disappointment",
+    "example": { "en": "It was a clever deception.", "fr": "C'était une tromperie habile." },
+    "tip": "\"déception\" = disappointment · \"deception\" = tromperie"
+  },
+  {
+    "id": "disappointed",
+    "en": "disappointed",
+    "trap": "déçu",
+    "fr": "déçu",
+    "trap_en": "deceived / cheated",
+    "example": { "en": "I was very disappointed.", "fr": "J'étais très déçu." },
+    "tip": "Ici même traduction — mais \"déception\" ≠ \"deception\" !"
+  },
+  {
+    "id": "delay",
+    "en": "delay",
+    "trap": "délai",
+    "fr": "retard",
+    "trap_en": "deadline / timeframe",
+    "example": { "en": "The flight has a two-hour delay.", "fr": "Le vol a deux heures de retard." },
+    "tip": "\"délai\" = deadline · \"delay\" = retard"
+  },
+  {
+    "id": "demand",
+    "en": "to demand",
+    "trap": "demander",
+    "fr": "exiger / réclamer",
+    "trap_en": "to ask / to request",
+    "example": { "en": "She demanded an explanation.", "fr": "Elle a exigé une explication." },
+    "tip": "\"demander\" = to ask · \"to demand\" = exiger"
+  },
+  {
+    "id": "assist",
+    "en": "to assist",
+    "trap": "assister à",
+    "fr": "aider / assister",
+    "trap_en": "to attend / to be present at",
+    "example": { "en": "Can you assist me?", "fr": "Peux-tu m'aider ?" },
+    "tip": "\"assister à\" = to attend · \"to assist\" = aider"
+  },
+  {
+    "id": "attend",
+    "en": "to attend",
+    "trap": "attendre",
+    "fr": "assister à / participer à",
+    "trap_en": "to wait",
+    "example": { "en": "Did you attend the meeting?", "fr": "As-tu assisté à la réunion ?" },
+    "tip": "\"attendre\" = to wait · \"to attend\" = assister à"
+  },
+  {
+    "id": "brave",
+    "en": "brave",
+    "trap": "brave",
+    "fr": "courageux",
+    "trap_en": "good / decent (informal)",
+    "example": { "en": "She was very brave.", "fr": "Elle était très courageuse." },
+    "tip": "\"brave\" (FR, fam.) = good/decent · \"brave\" (EN) = courageux"
+  },
+  {
+    "id": "cave",
+    "en": "cave",
+    "trap": "cave",
+    "fr": "grotte / caverne",
+    "trap_en": "cellar / wine cellar",
+    "example": { "en": "We explored the cave.", "fr": "Nous avons exploré la grotte." },
+    "tip": "\"cave\" (FR) = cellar · \"cave\" (EN) = grotte"
+  },
+  {
+    "id": "college",
+    "en": "college",
+    "trap": "collège",
+    "fr": "université / fac",
+    "trap_en": "middle school (fr. grades 6–9)",
+    "example": { "en": "She goes to college.", "fr": "Elle va à l'université." },
+    "tip": "\"collège\" (FR) = middle school · \"college\" (EN) = université"
+  },
+  {
+    "id": "coin",
+    "en": "coin",
+    "trap": "coin",
+    "fr": "pièce de monnaie",
+    "trap_en": "corner",
+    "example": { "en": "Have you got a coin?", "fr": "Tu as une pièce ?" },
+    "tip": "\"coin\" (FR) = corner · \"coin\" (EN) = pièce de monnaie"
+  },
+  {
+    "id": "large",
+    "en": "large",
+    "trap": "large",
+    "fr": "grand / gros",
+    "trap_en": "wide / broad",
+    "example": { "en": "A large crowd gathered.", "fr": "Une grande foule s'est rassemblée." },
+    "tip": "\"large\" (FR) = wide · \"large\" (EN) = grand"
+  },
+  {
+    "id": "location",
+    "en": "location",
+    "trap": "location",
+    "fr": "emplacement / lieu",
+    "trap_en": "rental / hire",
+    "example": { "en": "It's a great location.", "fr": "C'est un super emplacement." },
+    "tip": "\"location\" (FR) = rental · \"location\" (EN) = emplacement"
+  },
+  {
+    "id": "terrific",
+    "en": "terrific",
+    "trap": "terrifiant",
+    "fr": "fantastique / formidable",
+    "trap_en": "terrifying / frightening",
+    "example": { "en": "What a terrific idea!", "fr": "Quelle idée formidable !" },
+    "tip": "\"terrifiant\" = terrifying · \"terrific\" = fantastique"
+  },
+  {
+    "id": "genial",
+    "en": "genial",
+    "trap": "génial",
+    "fr": "jovial / affable / chaleureux",
+    "trap_en": "brilliant / great (informal)",
+    "example": { "en": "He was a genial host.", "fr": "C'était un hôte très affable." },
+    "tip": "\"génial\" = brilliant/great · \"genial\" = jovial"
+  },
+  {
+    "id": "miserable",
+    "en": "miserable",
+    "trap": "misérable",
+    "fr": "malheureux / déprimé / affreux",
+    "trap_en": "wretched / poor / contemptible",
+    "example": { "en": "The weather was miserable.", "fr": "Le temps était affreux." },
+    "tip": "\"misérable\" = wretched/poor · \"miserable\" = affreux/malheureux"
+  },
+  {
+    "id": "infant",
+    "en": "infant",
+    "trap": "enfant",
+    "fr": "nourrisson / bébé",
+    "trap_en": "child (any age)",
+    "example": { "en": "The infant was sleeping.", "fr": "Le nourrisson dormait." },
+    "tip": "\"enfant\" = child · \"infant\" = nourrisson"
+  },
+  {
+    "id": "injury",
+    "en": "injury",
+    "trap": "injure",
+    "fr": "blessure",
+    "trap_en": "insult / abuse",
+    "example": { "en": "He had a knee injury.", "fr": "Il avait une blessure au genou." },
+    "tip": "\"injure\" (FR) = insult · \"injury\" (EN) = blessure"
+  },
+  {
+    "id": "issue",
+    "en": "issue",
+    "trap": "issue",
+    "fr": "problème / sujet / numéro",
+    "trap_en": "exit / way out",
+    "example": { "en": "There's an issue with the system.", "fr": "Il y a un problème avec le système." },
+    "tip": "\"issue\" (FR) = exit · \"issue\" (EN) = problème"
+  },
+  {
+    "id": "pain",
+    "en": "pain",
+    "trap": "pain",
+    "fr": "douleur",
+    "trap_en": "bread",
+    "example": { "en": "She felt a sharp pain.", "fr": "Elle a ressenti une douleur aiguë." },
+    "tip": "\"pain\" (FR) = bread · \"pain\" (EN) = douleur"
+  },
+  {
+    "id": "phrase",
+    "en": "phrase",
+    "trap": "phrase",
+    "fr": "expression / locution",
+    "trap_en": "sentence",
+    "example": { "en": "That's a useful phrase.", "fr": "C'est une expression utile." },
+    "tip": "\"phrase\" (FR) = sentence · \"phrase\" (EN) = expression"
+  },
+  {
+    "id": "preservative",
+    "en": "preservative",
+    "trap": "préservatif",
+    "fr": "conservateur (alimentaire)",
+    "trap_en": "condom",
+    "example": { "en": "This food has no preservatives.", "fr": "Cet aliment n'a pas de conservateurs." },
+    "tip": "Faux ami classique ! \"préservatif\" = condom"
+  },
+  {
+    "id": "prune",
+    "en": "prune",
+    "trap": "prune",
+    "fr": "pruneau / élaguer (verbe)",
+    "trap_en": "plum",
+    "example": { "en": "We need to prune the tree.", "fr": "Nous devons élaguer l'arbre." },
+    "tip": "\"prune\" (FR) = plum · \"prune\" (EN) = pruneau ou élaguer"
+  },
+  {
+    "id": "raisin",
+    "en": "raisin",
+    "trap": "raisin",
+    "fr": "raisin sec",
+    "trap_en": "grape",
+    "example": { "en": "I like raisins in cakes.", "fr": "J'aime les raisins secs dans les gâteaux." },
+    "tip": "\"raisin\" (FR) = grape · \"raisin\" (EN) = raisin sec"
+  },
+  {
+    "id": "rest",
+    "en": "to rest",
+    "trap": "rester",
+    "fr": "se reposer",
+    "trap_en": "to stay / to remain",
+    "example": { "en": "You need to rest.", "fr": "Tu as besoin de te reposer." },
+    "tip": "\"rester\" = to stay · \"to rest\" = se reposer"
+  },
+  {
+    "id": "store",
+    "en": "store",
+    "trap": "store",
+    "fr": "magasin / entrepôt",
+    "trap_en": "blind / shade (window covering)",
+    "example": { "en": "I'll go to the store.", "fr": "Je vais au magasin." },
+    "tip": "\"store\" (FR) = blind/shade · \"store\" (EN) = magasin"
+  },
+  {
+    "id": "suburb",
+    "en": "suburb",
+    "trap": "suburb",
+    "fr": "banlieue résidentielle",
+    "trap_en": "no direct equivalent (banlieue is broader)",
+    "example": { "en": "They live in the suburbs.", "fr": "Ils habitent en banlieue résidentielle." },
+    "tip": "\"suburb\" évoque une banlieue calme et aisée, pas forcément péjoratif"
+  },
+  {
+    "id": "comprehensive",
+    "en": "comprehensive",
+    "trap": "compréhensif",
+    "fr": "complet / exhaustif / global",
+    "trap_en": "understanding / tolerant",
+    "example": { "en": "A comprehensive guide.", "fr": "Un guide complet." },
+    "tip": "\"compréhensif\" = understanding · \"comprehensive\" = complet"
+  },
+  {
+    "id": "conductor",
+    "en": "conductor",
+    "trap": "conducteur",
+    "fr": "chef d'orchestre / contrôleur",
+    "trap_en": "driver",
+    "example": { "en": "The conductor raised his baton.", "fr": "Le chef d'orchestre a levé sa baguette." },
+    "tip": "\"conducteur\" = driver · \"conductor\" = chef d'orchestre"
+  },
+  {
+    "id": "editor",
+    "en": "editor",
+    "trap": "éditeur",
+    "fr": "rédacteur en chef / correcteur",
+    "trap_en": "publisher",
+    "example": { "en": "The editor corrected my article.", "fr": "Le rédacteur en chef a corrigé mon article." },
+    "tip": "\"éditeur\" = publisher · \"editor\" = rédacteur en chef"
+  },
+  {
+    "id": "fabric",
+    "en": "fabric",
+    "trap": "fabrique",
+    "fr": "tissu / étoffe",
+    "trap_en": "factory / manufacture",
+    "example": { "en": "This fabric is very soft.", "fr": "Ce tissu est très doux." },
+    "tip": "\"fabrique\" = factory · \"fabric\" = tissu"
+  },
+  {
+    "id": "figure",
+    "en": "figure",
+    "trap": "figure",
+    "fr": "chiffre / personnage / silhouette",
+    "trap_en": "face",
+    "example": { "en": "The sales figure is good.", "fr": "Le chiffre des ventes est bon." },
+    "tip": "\"figure\" (FR) = face · \"figure\" (EN) = chiffre/personnage"
+  },
+  {
+    "id": "grave",
+    "en": "grave",
+    "trap": "grave",
+    "fr": "tombe / tombeau",
+    "trap_en": "serious / severe",
+    "example": { "en": "He stood at the grave.", "fr": "Il se tenait devant la tombe." },
+    "tip": "\"grave\" (FR) = serious · \"grave\" (EN) = tombe (comme nom)"
+  },
+  {
+    "id": "chance",
+    "en": "chance",
+    "trap": "chance",
+    "fr": "occasion / hasard / probabilité",
+    "trap_en": "luck / good fortune",
+    "example": { "en": "Give me a chance!", "fr": "Donne-moi une chance !" },
+    "tip": "\"chance\" (FR) = luck · \"chance\" (EN) = occasion ou hasard"
+  },
+  {
+    "id": "character",
+    "en": "character",
+    "trap": "caractère",
+    "fr": "personnage / caractère / nature",
+    "trap_en": "temper / temperament",
+    "example": { "en": "He's an interesting character.", "fr": "C'est un personnage intéressant." },
+    "tip": "\"caractère\" (FR) = temper · \"character\" (EN) souvent = personnage"
+  },
+  {
+    "id": "current",
+    "en": "current",
+    "trap": "courant",
+    "fr": "actuel / en cours",
+    "trap_en": "common / ordinary / everyday",
+    "example": { "en": "The current situation is difficult.", "fr": "La situation actuelle est difficile." },
+    "tip": "\"courant\" (FR adj.) = common · \"current\" (EN adj.) = actuel"
+  },
+  {
+    "id": "pathetic",
+    "en": "pathetic",
+    "trap": "pathétique",
+    "fr": "lamentable / pitoyable / minable",
+    "trap_en": "moving / touching / poignant",
+    "example": { "en": "What a pathetic excuse!", "fr": "Quelle excuse lamentable !" },
+    "tip": "\"pathétique\" (FR) = touching · \"pathetic\" (EN) = lamentable"
+  },
+  {
+    "id": "pension",
+    "en": "pension",
+    "trap": "pension",
+    "fr": "retraite",
+    "trap_en": "boarding house / B&B",
+    "example": { "en": "She receives a pension.", "fr": "Elle touche une retraite." },
+    "tip": "\"pension\" (FR) = boarding house · \"pension\" (EN) = retraite"
+  },
+  {
+    "id": "seat",
+    "en": "seat",
+    "trap": "site",
+    "fr": "siège / place (assise)",
+    "trap_en": "website / archaeological site",
+    "example": { "en": "Is this seat free?", "fr": "Cette place est-elle libre ?" },
+    "tip": "\"site\" = website/location · \"seat\" = siège/place"
+  },
+  {
+    "id": "photograph",
+    "en": "photographer",
+    "trap": "photographe",
+    "fr": "photographe",
+    "trap_en": "photographe (same word, same meaning!)",
+    "example": { "en": "She is a photographer.", "fr": "Elle est photographe." },
+    "tip": "Vrai ami ! \"photographe\" et \"photographer\" ont le même sens — mais attention à la prononciation."
+  },
+  {
+    "id": "journey",
+    "en": "journey",
+    "trap": "journée",
+    "fr": "voyage / trajet",
+    "trap_en": "day / daytime",
+    "example": { "en": "It was a long journey.", "fr": "C'était un long voyage." },
+    "tip": "\"journée\" = daytime · \"journey\" = voyage/trajet"
+  },
+  {
+    "id": "nursery",
+    "en": "nursery",
+    "trap": "nurserie",
+    "fr": "crèche / chambre d'enfant / pépinière",
+    "trap_en": "(not a standard French word)",
+    "example": { "en": "The baby is in the nursery.", "fr": "Le bébé est dans la chambre d'enfant." },
+    "tip": "\"nursery\" = crèche ou chambre d'enfant, pas \"nurserie\""
+  },
+  {
+    "id": "occasion",
+    "en": "occasion",
+    "trap": "occasion",
+    "fr": "occasion / circonstance",
+    "trap_en": "second-hand bargain / opportunity",
+    "example": { "en": "On special occasions.", "fr": "Dans des circonstances particulières." },
+    "tip": "\"occasion\" existe en FR aussi, mais souvent = second-hand deal"
+  },
+  {
+    "id": "gentle",
+    "en": "gentle",
+    "trap": "gentil",
+    "fr": "doux / délicat / aimable",
+    "trap_en": "kind / sweet / nice",
+    "example": { "en": "Be gentle, please.", "fr": "Sois doux, s'il te plaît." },
+    "tip": "\"gentil\" = kind · \"gentle\" = doux/délicat"
+  },
+  {
+    "id": "confident",
+    "en": "confident",
+    "trap": "confident",
+    "fr": "sûr de soi / confiant",
+    "trap_en": "confidant (trusted person)",
+    "example": { "en": "She's a confident speaker.", "fr": "C'est une oratrice sûre d'elle." },
+    "tip": "\"confident\" (EN adj.) = sûr de soi · \"confident\" (FR nom) = trusted friend"
+  },
+  {
+    "id": "experience",
+    "en": "experience",
+    "trap": "expérience",
+    "fr": "expérience / expérience professionnelle",
+    "trap_en": "experiment / experience",
+    "example": { "en": "She has a lot of experience.", "fr": "Elle a beaucoup d'expérience." },
+    "tip": "\"expérience\" (FR) souvent = experiment · \"experience\" (EN) souvent = professional background"
+  },
+  {
+    "id": "engine",
+    "en": "engine",
+    "trap": "engin",
+    "fr": "moteur",
+    "trap_en": "machine / device / vehicle (informal)",
+    "example": { "en": "The engine broke down.", "fr": "Le moteur est tombé en panne." },
+    "tip": "\"engin\" (FR) = machine/device · \"engine\" (EN) = moteur"
+  },
+  {
+    "id": "car",
+    "en": "car",
+    "trap": "car",
+    "fr": "voiture",
+    "trap_en": "because / for (conjunction)",
+    "example": { "en": "I drive a red car.", "fr": "Je conduis une voiture rouge." },
+    "tip": "\"car\" (FR conj.) = because · \"car\" (EN noun) = voiture"
+  },
+  {
+    "id": "control",
+    "en": "to control",
+    "trap": "contrôler",
+    "fr": "contrôler / maîtriser",
+    "trap_en": "to check / to inspect",
+    "example": { "en": "Can you control your anger?", "fr": "Peux-tu maîtriser ta colère ?" },
+    "tip": "\"contrôler\" (FR) souvent = to check/inspect · \"to control\" = maîtriser"
+  },
+  {
+    "id": "formation",
+    "en": "formation",
+    "trap": "formation",
+    "fr": "formation / dispositif",
+    "trap_en": "training / education",
+    "example": { "en": "Flying in formation.", "fr": "Voler en formation." },
+    "tip": "\"formation\" (FR) souvent = training/cours · \"formation\" (EN) souvent = dispositif/agencement"
+  },
+  {
+    "id": "horrible",
+    "en": "horrible",
+    "trap": "horrible",
+    "fr": "horrible / affreux",
+    "trap_en": "horrible (same, but stronger in EN)",
+    "example": { "en": "What horrible weather!", "fr": "Quel temps horrible !" },
+    "tip": "Vrai faux ami de degré : \"horrible\" (EN) = très fort, presque insupportable"
+  },
+  {
+    "id": "surgeon",
+    "en": "surgeon",
+    "trap": "chirurgien",
+    "fr": "chirurgien",
+    "trap_en": "(chirurgien = surgeon, no trick here)",
+    "example": { "en": "The surgeon operated for six hours.", "fr": "Le chirurgien a opéré pendant six heures." },
+    "tip": "Aucun faux ami ici — mais la forme est très différente en anglais"
+  },
+  {
+    "id": "office",
+    "en": "office",
+    "trap": "officieux",
+    "fr": "bureau",
+    "trap_en": "unofficial / informal",
+    "example": { "en": "I'll be in my office.", "fr": "Je serai dans mon bureau." },
+    "tip": "\"officieux\" = unofficial · \"office\" = bureau"
+  },
+  {
+    "id": "pass",
+    "en": "to pass an exam",
+    "trap": "passer un examen",
+    "fr": "réussir un examen",
+    "trap_en": "to take / to sit an exam",
+    "example": { "en": "Did you pass?", "fr": "Tu as réussi ?" },
+    "tip": "\"passer un examen\" = to sit/take an exam, pas to pass"
+  },
+  {
+    "id": "concurrence",
+    "en": "concurrence",
+    "trap": "concurrence",
+    "fr": "coïncidence / accord simultané",
+    "trap_en": "competition",
+    "example": { "en": "There was concurrence of opinions.", "fr": "Il y avait une coïncidence d'opinions." },
+    "tip": "\"concurrence\" (FR) = competition · \"concurrence\" (EN) = accord/coïncidence"
+  },
+  {
+    "id": "sympathize",
+    "en": "to sympathize",
+    "trap": "sympathiser",
+    "fr": "compatir / comprendre",
+    "trap_en": "to get along / to bond",
+    "example": { "en": "I sympathize with you.", "fr": "Je compatis avec toi." },
+    "tip": "\"sympathiser\" (FR) = to get along · \"to sympathize\" = compatir"
+  }
+]
