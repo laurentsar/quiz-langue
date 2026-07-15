@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.22';
+const APP_VERSION = '2.23';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -55,7 +55,7 @@ function lsGet(k, d) { try { const r = localStorage.getItem(k); return r ? JSON.
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 
 function loadSettings() {
-  return Object.assign({ audioAuto: true, autoNext: true, sound: true, closeDistractors: false, pictos: true, notifications: true }, lsGet('quizlangue:settings:v1', {}));
+  return Object.assign({ audioAuto: true, autoNext: true, sound: true, closeDistractors: false, pictos: true, notifications: true, dailyGoal: 10, notifHour: 8 }, lsGet('quizlangue:settings:v1', {}));
 }
 function saveSettings() { lsSet('quizlangue:settings:v1', settings); }
 
@@ -289,6 +289,7 @@ function renderLevelChips() {
 }
 
 function renderStats() {
+  renderMotivBar();
   const s = loadStats(state.lang);
   $('stat-last').textContent = `${s.lastScore}/5`;
   $('stat-total').textContent = `${s.totalCompleted} · ${s.totalPoints}`;
@@ -1607,6 +1608,48 @@ $('btn-listen').addEventListener('click', openListen);
 $('btn-listen-home').addEventListener('click', () => { const au = $('listen-audio'); if (au) { try { au.pause(); } catch (e) {} } showView('home'); });
 document.querySelectorAll('.slang2-chip').forEach(c => c.addEventListener('click', () => { listenLang = c.dataset.lang; listenAccent = 0; renderListen(); }));
 
+// ---------- motivation : streak quotidien + objectif du jour ----------
+const ALL_DAILY_KEYS = () => ['en', 'es', VERBS_KEY, GRAMMAR_KEY, FAUX_AMIS_KEY, FAMILLES_KEY, COGNATES_KEY];
+
+function todayTotalQuestions() {
+  const today = todayStr();
+  let total = 0;
+  ALL_DAILY_KEYS().forEach(k => {
+    total += (lsGet(dailyKey(k), {})[today] || {}).q || 0;
+  });
+  return total;
+}
+
+function dailyStreak() {
+  const merged = {};
+  ALL_DAILY_KEYS().forEach(k => {
+    Object.entries(lsGet(dailyKey(k), {})).forEach(([day, data]) => {
+      merged[day] = (merged[day] || 0) + (data.q || 0);
+    });
+  });
+  let streak = 0;
+  const d = new Date();
+  while (true) {
+    const k = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    if ((merged[k] || 0) > 0) { streak++; d.setDate(d.getDate() - 1); }
+    else break;
+  }
+  return streak;
+}
+
+function renderMotivBar() {
+  const streak = dailyStreak();
+  const done = todayTotalQuestions();
+  const goal = settings.dailyGoal;
+  const pct = Math.min(100, Math.round(done / goal * 100));
+  $('motiv-streak-count').textContent = streak;
+  $('motiv-flame').textContent = streak > 0 ? '🔥' : '💤';
+  $('motiv-today').textContent = done;
+  $('motiv-target').textContent = goal;
+  $('motiv-progress-bar').style.width = pct + '%';
+  $('motiv-progress-bar').style.background = pct >= 100 ? 'var(--success)' : 'var(--sky)';
+}
+
 // ---------- smart review notifications ----------
 async function countDueWords() {
   let due = 0;
@@ -1632,14 +1675,20 @@ async function scheduleReviewNotification() {
       if (req.display !== 'granted') return;
     }
     await LN.cancel({ notifications: [{ id: 1 }] });
+    const done = todayTotalQuestions();
+    const goal = settings.dailyGoal;
+    if (done >= goal) return; // objectif atteint : pas de rappel inutile
+    const streak = dailyStreak();
     const due = await countDueWords();
-    const msg = due > 0
-      ? `${due} mot${due > 1 ? 's' : ''} à réviser aujourd'hui !`
-      : 'Continue ta progression — lance un quiz !';
+    let msg;
+    if (streak >= 2) msg = `🔥 ${streak} jours de suite ! Plus que ${Math.max(0, goal - done)} questions pour aujourd'hui.`;
+    else if (due > 0) msg = `${due} mot${due > 1 ? 's' : ''} à réviser — objectif : ${goal} questions aujourd'hui !`;
+    else msg = `Continue ta progression — ${goal} questions aujourd'hui !`;
+    const hour = settings.notifHour || 8;
     const now = new Date();
-    const trigger = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 9, 0, 0, 0);
+    const trigger = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, 0, 0, 0);
     if (trigger <= now) trigger.setDate(trigger.getDate() + 1);
-    await LN.schedule({ notifications: [{ id: 1, title: '📚 Quiz Langue', body: msg, schedule: { at: trigger, repeats: true, every: 'day' }, sound: null, attachments: null, actionTypeId: '', extra: null }] });
+    await LN.schedule({ notifications: [{ id: 1, title: '📚 Quiz Langue', body: msg, schedule: { at: trigger, repeats: false }, sound: null, attachments: null, actionTypeId: '', extra: null }] });
   } catch (_) {}
 }
 
@@ -1678,6 +1727,7 @@ settingsModal.addEventListener('click', (e) => { if (e.target === settingsModal)
 function dailyKey(lang) { return `quizlangue:daily:${lang}:v1`; }
 function todayStr() { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 function logDaily(lang, correct) {
+  const prevTotal = todayTotalQuestions();
   const m = lsGet(dailyKey(lang), {});
   const t = todayStr();
   const e = m[t] || { q: 0, c: 0 };
@@ -1687,6 +1737,11 @@ function logDaily(lang, correct) {
   const keys = Object.keys(m).sort();
   while (keys.length > 90) delete m[keys.shift()];
   lsSet(dailyKey(lang), m);
+  // mise à jour du widget + notification si objectif atteint
+  if (views.home && !views.home.classList.contains('hidden')) renderMotivBar();
+  if (prevTotal < settings.dailyGoal && prevTotal + 1 >= settings.dailyGoal) {
+    if (settings.notifications) cancelReviewNotification();
+  }
 }
 function lastNDays(lang, n) {
   const m = lsGet(dailyKey(lang), {});
@@ -1798,5 +1853,22 @@ $('app-version').textContent = 'v' + APP_VERSION;
 selectLang('en');
 
 $('btn-fab-home').addEventListener('click', () => showView('home'));
+
+// chips objectif quotidien et heure de rappel
+renderChips('.goalcount-chip', settings.dailyGoal, 'count');
+document.querySelectorAll('.goalcount-chip').forEach(c => c.addEventListener('click', () => {
+  settings.dailyGoal = +c.dataset.count;
+  saveSettings();
+  renderChips('.goalcount-chip', settings.dailyGoal, 'count');
+  renderMotivBar();
+  if (settings.notifications) scheduleReviewNotification();
+}));
+renderChips('.notifhour-chip', settings.notifHour, 'hour');
+document.querySelectorAll('.notifhour-chip').forEach(c => c.addEventListener('click', () => {
+  settings.notifHour = +c.dataset.hour;
+  saveSettings();
+  renderChips('.notifhour-chip', settings.notifHour, 'hour');
+  if (settings.notifications) scheduleReviewNotification();
+}));
 
 if (settings.notifications) scheduleReviewNotification();
