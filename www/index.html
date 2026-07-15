@@ -26,6 +26,19 @@
         <button id="btn-settings" class="gear" title="Réglages">⚙️</button>
       </div>
 
+      <!-- Widget motivation -->
+      <div id="motivation-bar" class="card motiv-bar">
+        <div class="motiv-streak">
+          <span id="motiv-flame">🔥</span>
+          <span id="motiv-streak-count">0</span>
+          <span class="motiv-label">jour(s)</span>
+        </div>
+        <div class="motiv-goal">
+          <div class="motiv-goal-text"><span id="motiv-today">0</span>/<span id="motiv-target">10</span> aujourd'hui</div>
+          <div class="motiv-progress-track"><div id="motiv-progress-bar" class="motiv-progress-fill"></div></div>
+        </div>
+      </div>
+
       <div class="top-actions">
         <button id="btn-learn" class="secondary">🎓 Apprendre (cartes)</button>
         <button id="btn-review" class="secondary">⟳ Mes erreurs (<span id="review-count">0</span>)</button>
@@ -94,6 +107,24 @@
         <label class="toggle"><span>🎯 Distracteurs proches (plus difficile)</span><input type="checkbox" id="opt-close" /></label>
         <label class="toggle"><span>🖼️ Pictogrammes (vocabulaire)</span><input type="checkbox" id="opt-pictos" /></label>
         <label class="toggle"><span>🔔 Rappels de révision</span><input type="checkbox" id="opt-notifications" /></label>
+        <div class="setting-row">
+          <span class="setting-label">🎯 Objectif quotidien</span>
+          <div class="chip-row">
+            <button class="chip goalcount-chip" data-count="5">5</button>
+            <button class="chip goalcount-chip" data-count="10">10</button>
+            <button class="chip goalcount-chip" data-count="20">20</button>
+            <button class="chip goalcount-chip" data-count="30">30</button>
+          </div>
+        </div>
+        <div class="setting-row">
+          <span class="setting-label">🕗 Heure du rappel</span>
+          <div class="chip-row">
+            <button class="chip notifhour-chip" data-hour="8">8h</button>
+            <button class="chip notifhour-chip" data-hour="12">12h</button>
+            <button class="chip notifhour-chip" data-hour="19">19h</button>
+            <button class="chip notifhour-chip" data-hour="21">21h</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -398,7 +429,7 @@
 
   <button id="btn-fab-home" class="fab-home hidden" title="Accueil">🏠</button>
   <script src="app.js"></script>
-  <script>window.UPDATE_REPO='laurentsar/quiz-langue';window.APP_VERSION='2.22';</script>
+  <script>window.UPDATE_REPO='laurentsar/quiz-langue';window.APP_VERSION='2.23';</script>
   <script src="update-check.js" defer></script>
 </body>
 </html>
