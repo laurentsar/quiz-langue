@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.24';
+const APP_VERSION = '2.25';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -577,6 +577,14 @@ function launchFireworks() {
 }
 
 // ---------- wire up ----------
+$('btn-toggle-modules').addEventListener('click', () => {
+  const panel = $('modules-panel');
+  const arrow = $('modules-arrow');
+  const opening = panel.classList.contains('hidden');
+  panel.classList.toggle('hidden', !opening);
+  arrow.classList.toggle('open', opening);
+});
+
 document.querySelectorAll('.lang-chip').forEach(c => c.addEventListener('click', () => selectLang(c.dataset.lang)));
 $('btn-magazine').addEventListener('click', () => openMagazine(MAG_BY_LANG[state.lang]));
 document.querySelectorAll('.dir-chip').forEach(c => c.addEventListener('click', () => { state.dir = c.dataset.dir; renderChips('.dir-chip', state.dir, 'dir'); }));
