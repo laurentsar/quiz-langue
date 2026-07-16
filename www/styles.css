@@ -170,6 +170,29 @@ html, body {
 .top-actions .secondary { padding: 12px 10px; font-size: 14px; }
 .top-wide { grid-column: 1 / -1; }
 
+/* Accordéon modules */
+.modules-toggle {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 13px 16px;
+  background: var(--card); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px; color: var(--text); font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: background 0.15s;
+}
+.modules-toggle:active { background: var(--card-alt); }
+.modules-arrow { font-size: 18px; transition: transform 0.2s; }
+.modules-arrow.open { transform: rotate(180deg); }
+.modules-panel { display: flex; flex-direction: column; gap: 14px; padding: 4px 0 2px; }
+.modules-group { display: flex; flex-direction: column; gap: 8px; }
+.modules-group-label { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--text-dim); padding-left: 2px; font-weight: 600; }
+.modules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mod-btn {
+  padding: 12px 10px; font-size: 14px; text-align: center;
+  background: var(--card); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; color: var(--text); cursor: pointer;
+  transition: background 0.15s;
+}
+.mod-btn:active { background: var(--card-alt); }
+
 .stats-tiles { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 .stile { background: var(--card-alt); border-radius: 14px; padding: 12px 8px; text-align: center; }
 .stile b { display: block; font-size: 20px; color: var(--white); }
@@ -356,9 +379,6 @@ html, body {
   .option { font-size: 15px; padding: 13px 15px; }
 }
 
-/* ===== Pictogramme vocabulaire ===== */
-.quiz-picto { display: flex; justify-content: center; margin-bottom: 8px; }
-.quiz-picto img { height: 116px; width: auto; max-width: 62%; background: #fff; border-radius: 14px; padding: 6px; object-fit: contain; }
 
 /* ===== Écoute (podcasts) ===== */
 .listen-list { display: flex; flex-direction: column; gap: 10px; }

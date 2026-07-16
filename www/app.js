@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.24';
+const APP_VERSION = '2.25';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -57,7 +57,7 @@ function lsGet(k, d) { try { const r = localStorage.getItem(k); return r ? JSON.
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 
 function loadSettings() {
-  return Object.assign({ audioAuto: true, autoNext: true, sound: true, closeDistractors: false, pictos: true, notifications: true, dailyGoal: 10, notifHour: 8 }, lsGet('quizlangue:settings:v1', {}));
+  return Object.assign({ audioAuto: true, autoNext: true, sound: true, closeDistractors: false, notifications: true, dailyGoal: 10, notifHour: 8 }, lsGet('quizlangue:settings:v1', {}));
 }
 function saveSettings() { lsSet('quizlangue:settings:v1', settings); }
 
@@ -430,10 +430,6 @@ function renderQuestion() {
   $('quiz-word').classList.toggle('sentence', state.kind === 'grammar' || state.kind === 'tenses' || (state.kind === 'phrases' && !!q.fullSentence));
   $('quiz-ipa').textContent = q.ipa ? '/' + q.ipa + '/' : '';
 
-  // pictogramme d'aide à la mémorisation (vocabulaire, APRÈS validation de la question)
-  if (state.kind === 'vocab' && settings.pictos && a) showPicto(state.lang, q.foreign);
-  else { $('quiz-picto').classList.add('hidden'); pictoToken++; }
-
   // speak button: only meaningful for the foreign word
   const speakBtn = $('btn-speak');
   speakBtn.style.display = q.promptIsForeign ? '' : 'none';
@@ -581,6 +577,14 @@ function launchFireworks() {
 }
 
 // ---------- wire up ----------
+$('btn-toggle-modules').addEventListener('click', () => {
+  const panel = $('modules-panel');
+  const arrow = $('modules-arrow');
+  const opening = panel.classList.contains('hidden');
+  panel.classList.toggle('hidden', !opening);
+  arrow.classList.toggle('open', opening);
+});
+
 document.querySelectorAll('.lang-chip').forEach(c => c.addEventListener('click', () => selectLang(c.dataset.lang)));
 $('btn-magazine').addEventListener('click', () => openMagazine(MAG_BY_LANG[state.lang]));
 document.querySelectorAll('.dir-chip').forEach(c => c.addEventListener('click', () => { state.dir = c.dataset.dir; renderChips('.dir-chip', state.dir, 'dir'); }));
@@ -1256,32 +1260,6 @@ async function httpGetText(url) {
   catch (e) { const r = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(url)); return await r.text(); }
 }
 
-// ---------- pictogrammes ARASAAC (aide mémorisation vocabulaire) ----------
-const ARASAAC_IMG = (id) => `https://static.arasaac.org/pictograms/${id}/${id}_300.png`;
-let pictoToken = 0;
-async function resolvePicto(lang, word) {
-  const w = String(word || '').trim().toLowerCase();
-  if (!w) return null;
-  const key = `quizlangue:picto:${lang}:${w}`;
-  const cached = lsGet(key, undefined);
-  if (cached !== undefined) return cached;     // id (number) ou null
-  let id = null;
-  try {
-    const txt = await httpGetText(`https://api.arasaac.org/api/pictograms/${lang}/search/${encodeURIComponent(w)}`);
-    const arr = JSON.parse(txt);
-    if (Array.isArray(arr) && arr.length) id = arr[0]._id;
-  } catch (e) {}
-  lsSet(key, id);
-  return id;
-}
-async function showPicto(lang, word) {
-  const wrap = $('quiz-picto'), img = $('quiz-picto-img');
-  wrap.classList.add('hidden'); img.removeAttribute('src');
-  const my = ++pictoToken;
-  const id = await resolvePicto(lang, word);
-  if (my !== pictoToken) return;               // la question a changé entre-temps
-  if (id) { img.src = ARASAAC_IMG(id); wrap.classList.remove('hidden'); }
-}
 
 // ---------- prononciation ----------
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -1811,7 +1789,6 @@ bindToggle('opt-audio', 'audioAuto');
 bindToggle('opt-autonext', 'autoNext');
 bindToggle('opt-sound', 'sound');
 bindToggle('opt-close', 'closeDistractors');
-bindToggle('opt-pictos', 'pictos');
 
 const elNotif = $('opt-notifications');
 elNotif.checked = settings.notifications;
