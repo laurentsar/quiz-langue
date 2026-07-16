@@ -48,6 +48,8 @@
         <button id="btn-faux-amis" class="secondary">⚠️ Faux amis</button>
         <button id="btn-familles" class="secondary">🔤 Familles de mots</button>
         <button id="btn-cognates" class="secondary">✅ Vrais cognates</button>
+        <button id="btn-tenses" class="secondary">⏱️ Temps verbaux</button>
+        <button id="btn-phrases" class="secondary top-wide">🧩 Phrases à compléter</button>
         <button id="btn-listen" class="secondary">🎧 Écoute (accents)</button>
         <button id="btn-pronun" class="secondary top-wide">🎤 Prononciation</button>
       </div>
@@ -425,11 +427,46 @@
       <button id="btn-cognates-back" class="secondary hidden">← Liste</button>
       <button id="btn-cognates-home" class="secondary">Accueil</button>
     </section>
+
+    <!-- TEMPS VERBAUX -->
+    <section id="view-tenses" class="view hidden">
+      <div class="quiz-header">
+        <span class="quiz-progress">⏱️ Temps verbaux</span>
+        <span class="quiz-level">🇬🇧 Anglais</span>
+      </div>
+      <div class="chip-row">
+        <button class="chip tcount-chip" data-count="5">5</button>
+        <button class="chip tcount-chip" data-count="10">10</button>
+        <button class="chip tcount-chip" data-count="20">20</button>
+      </div>
+      <div id="tenses-list" class="grammar-list"></div>
+      <button id="btn-tenses-quiz" class="primary">▶ Tous les temps (révision)</button>
+      <button id="btn-tenses-home" class="secondary">Accueil</button>
+    </section>
+
+    <!-- PHRASES À COMPLÉTER -->
+    <section id="view-phrases" class="view hidden">
+      <div class="quiz-header">
+        <span class="quiz-progress">🧩 Phrases à compléter</span>
+        <span class="quiz-level">Mix tous concepts</span>
+      </div>
+      <div class="card hero">
+        <span class="hero-label">Questions</span>
+        <div class="chip-row">
+          <button class="chip pcount-chip" data-count="5">5</button>
+          <button class="chip pcount-chip" data-count="10">10</button>
+          <button class="chip pcount-chip" data-count="20">20</button>
+        </div>
+        <p class="phrases-desc">Pioche dans tous les modes : grammaire, temps verbaux, faux amis, familles de mots et cognates.</p>
+      </div>
+      <button id="btn-phrases-start" class="primary">Démarrer</button>
+      <button id="btn-phrases-home" class="secondary">Accueil</button>
+    </section>
   </main>
 
   <button id="btn-fab-home" class="fab-home hidden" title="Accueil">🏠</button>
   <script src="app.js"></script>
-  <script>window.UPDATE_REPO='laurentsar/quiz-langue';window.APP_VERSION='2.23';</script>
+  <script>window.UPDATE_REPO='laurentsar/quiz-langue';window.APP_VERSION='2.24';</script>
   <script src="update-check.js" defer></script>
 </body>
 </html>

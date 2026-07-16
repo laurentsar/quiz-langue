@@ -468,3 +468,6 @@ html, body {
 .mag-modal-head button { background: transparent; border: 0; color: var(--text-dim, #B8C7E3); font-size: 20px; cursor: pointer; }
 .mag-modal-card > button[data-act] { display: block; width: 100%; margin: 0 0 10px; padding: 14px; border: none; border-radius: 12px; background: var(--card-alt, #0F3A66); color: var(--text, #EAF2FF); font-size: 15px; text-align: left; cursor: pointer; }
 .mag-modal-card > button[data-act]:active { transform: scale(0.99); }
+
+/* Phrases à compléter — description */
+.phrases-desc { font-size: 13px; color: var(--text-dim); margin-top: 12px; line-height: 1.5; }
