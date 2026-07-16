@@ -356,9 +356,6 @@ html, body {
   .option { font-size: 15px; padding: 13px 15px; }
 }
 
-/* ===== Pictogramme vocabulaire ===== */
-.quiz-picto { display: flex; justify-content: center; margin-bottom: 8px; }
-.quiz-picto img { height: 116px; width: auto; max-width: 62%; background: #fff; border-radius: 14px; padding: 6px; object-fit: contain; }
 
 /* ===== Écoute (podcasts) ===== */
 .listen-list { display: flex; flex-direction: column; gap: 10px; }
