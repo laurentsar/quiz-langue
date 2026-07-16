@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.23';
+const APP_VERSION = '2.24';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -20,7 +20,9 @@ const GRAMMAR_KEY = 'grammar'; // espace stats/SRS dédié aux exos de grammaire
 const FAUX_AMIS_KEY = 'faux-amis';
 const FAMILLES_KEY = 'familles';
 const COGNATES_KEY = 'cognates';
-const KIND_COLORS = { vocab: '#27B3FF', verbs: '#4CE0D2', grammar: '#1B5CFF', pronun: '#B15CFF', 'faux-amis': '#FF6B35', familles: '#A855F7', cognates: '#10B981' };
+const TENSES_KEY  = 'tenses';
+const PHRASES_KEY = 'phrases';
+const KIND_COLORS = { vocab: '#27B3FF', verbs: '#4CE0D2', grammar: '#1B5CFF', pronun: '#B15CFF', 'faux-amis': '#FF6B35', familles: '#A855F7', cognates: '#10B981', tenses: '#EF4444', phrases: '#F59E0B' };
 
 const state = {
   lang: 'en',
@@ -43,8 +45,8 @@ let verbSelectedWords = new Set();   // infinitifs sélectionnés pour le quiz p
 let verbSelectPanelOpen = false;
 
 // Clé de stats/SRS et voix TTS selon le mode courant.
-function quizKey() { return state.kind === 'verbs' ? VERBS_KEY : state.kind === 'grammar' ? GRAMMAR_KEY : state.kind === 'faux-amis' ? FAUX_AMIS_KEY : state.kind === 'familles' ? FAMILLES_KEY : state.kind === 'cognates' ? COGNATES_KEY : state.lang; }
-function quizTts() { return (state.kind === 'verbs' || state.kind === 'grammar' || state.kind === 'faux-amis' || state.kind === 'familles' || state.kind === 'cognates') ? 'en-US' : LANGS[state.lang].tts; }
+function quizKey() { return state.kind === 'verbs' ? VERBS_KEY : state.kind === 'grammar' ? GRAMMAR_KEY : state.kind === 'faux-amis' ? FAUX_AMIS_KEY : state.kind === 'familles' ? FAMILLES_KEY : state.kind === 'cognates' ? COGNATES_KEY : state.kind === 'tenses' ? TENSES_KEY : state.kind === 'phrases' ? PHRASES_KEY : state.lang; }
+function quizTts() { return (state.kind === 'verbs' || state.kind === 'grammar' || state.kind === 'faux-amis' || state.kind === 'familles' || state.kind === 'cognates' || state.kind === 'tenses' || state.kind === 'phrases') ? 'en-US' : LANGS[state.lang].tts; }
 
 const settings = loadSettings();
 const cache = {};   // lang -> words
@@ -187,7 +189,7 @@ function buildVerbQuestion(item, words) {
 }
 
 function buildQuestion(item, words) {
-  if (state.kind === 'grammar') return buildGrammarQuestion(item);
+  if (state.kind === 'grammar' || state.kind === 'tenses') return buildGrammarQuestion(item);
   if (state.kind === 'verbs') return buildVerbQuestion(item, words);
   // prompt/answer depend on direction
   const fwd = state.dir === 'fwd';
@@ -252,7 +254,7 @@ function vibrate(ok) { try { navigator.vibrate && navigator.vibrate(ok ? 25 : [4
 
 // ---------- DOM ----------
 const $ = (id) => document.getElementById(id);
-const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), 'faux-amis': $('view-faux-amis'), familles: $('view-familles'), cognates: $('view-cognates'), learn: $('view-learn'), listen: $('view-listen'), pronun: $('view-pronun') };
+const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), 'faux-amis': $('view-faux-amis'), familles: $('view-familles'), cognates: $('view-cognates'), tenses: $('view-tenses'), phrases: $('view-phrases'), learn: $('view-learn'), listen: $('view-listen'), pronun: $('view-pronun') };
 let autoNextTimer = null;
 
 function showView(name) {
@@ -425,7 +427,7 @@ function renderQuestion() {
   $('quiz-level').style.color = accent;
   $('quiz-prompt-label').textContent = q.promptLabel || (q.promptIsForeign ? 'Mot' : 'Traduire en ' + (state.lang === 'en' ? 'anglais' : 'espagnol'));
   $('quiz-word').textContent = q.promptText;
-  $('quiz-word').classList.toggle('sentence', state.kind === 'grammar');
+  $('quiz-word').classList.toggle('sentence', state.kind === 'grammar' || state.kind === 'tenses' || (state.kind === 'phrases' && !!q.fullSentence));
   $('quiz-ipa').textContent = q.ipa ? '/' + q.ipa + '/' : '';
 
   // pictogramme d'aide à la mémorisation (vocabulaire, APRÈS validation de la question)
@@ -456,8 +458,8 @@ function renderQuestion() {
   if (a) {
     let html = `<div class="fb-head">${a.correct ? '✅ Correct' : '❌ Faux'}</div>`;
     if (!a.correct) html += `<div class="fb-line">Réponse : <b>${esc(q.correctText)}</b></div>`;
-    if (state.kind === 'grammar' && q.fullSentence) html += `<div class="fb-line">📝 ${esc(q.fullSentence)}</div>`;
-    if (['grammar', 'faux-amis', 'familles', 'cognates'].includes(state.kind) && q.hint) html += `<div class="fb-line tip">💡 ${esc(q.hint)}</div>`;
+    if (['grammar', 'tenses', 'phrases'].includes(state.kind) && q.fullSentence) html += `<div class="fb-line">📝 ${esc(q.fullSentence)}</div>`;
+    if (['grammar', 'faux-amis', 'familles', 'cognates', 'tenses', 'phrases'].includes(state.kind) && q.hint) html += `<div class="fb-line tip">💡 ${esc(q.hint)}</div>`;
     fb.innerHTML = html;
     fb.className = 'feedback show ' + (a.correct ? 'good' : 'bad');
   } else { fb.innerHTML = ''; fb.className = 'feedback'; }
@@ -478,7 +480,7 @@ function selectOption(idx) {
   beep(correct); vibrate(correct);
   // prononce la bonne réponse après coup : mot étranger (sens inverse) ou forme correcte (verbes)
   if (settings.audioAuto) {
-    if (state.kind === 'grammar') speak(q.fullSentence);
+    if (state.kind === 'grammar' || state.kind === 'tenses' || (state.kind === 'phrases' && q.fullSentence)) speak(q.fullSentence || q.correctText);
     else if (state.kind === 'verbs') speak(q.correctText);
     else if (!q.promptIsForeign) speak(q.foreign);
   }
@@ -597,7 +599,7 @@ $('btn-level-none').addEventListener('click', () => {
 function exitToHome() {
   clearTimeout(autoNextTimer);
   try { speechSynthesis && speechSynthesis.cancel(); } catch (e) {}
-  if (['verbs', 'grammar', 'faux-amis', 'familles', 'cognates'].includes(state.kind)) { state.kind = 'vocab'; state.words = cache[state.lang] || state.words; }
+  if (['verbs', 'grammar', 'faux-amis', 'familles', 'cognates', 'tenses', 'phrases'].includes(state.kind)) { state.kind = 'vocab'; state.words = cache[state.lang] || state.words; }
   showView('home'); renderStats();
 }
 
@@ -1608,8 +1610,111 @@ $('btn-listen').addEventListener('click', openListen);
 $('btn-listen-home').addEventListener('click', () => { const au = $('listen-audio'); if (au) { try { au.pause(); } catch (e) {} } showView('home'); });
 document.querySelectorAll('.slang2-chip').forEach(c => c.addEventListener('click', () => { listenLang = c.dataset.lang; listenAccent = 0; renderListen(); }));
 
+// ---------- temps verbaux ----------
+const TENSES_FILE = 'data/tenses_en.json';
+const TENSES_TOPIC_LABELS = {
+  'present-simple':     'Présent simple',
+  'present-continuous': 'Présent continu',
+  'past-simple':        'Prétérit simple',
+  'past-continuous':    'Prétérit continu',
+  'present-perfect':    'Present perfect',
+  'past-perfect':       'Plus-que-parfait',
+  'future-will':        'Futur — will',
+  'future-going-to':    'Futur — be going to',
+  'conditional':        'Conditionnel (would)',
+  'passive':            'Voix passive',
+};
+let tensesData = null;
+
+function renderTensesList() {
+  const list = $('tenses-list');
+  const topics = [...new Set((tensesData || []).map(x => x.topic))];
+  list.innerHTML = topics.map(topic => {
+    const count = (tensesData || []).filter(x => x.topic === topic).length;
+    const label = TENSES_TOPIC_LABELS[topic] || topic;
+    return `<button class="grammar-item" data-topic="${esc(topic)}"><span class="gi-title">${esc(label)}</span><span class="gi-sub">${count} exercice${count > 1 ? 's' : ''}</span></button>`;
+  }).join('');
+  list.querySelectorAll('.grammar-item').forEach(b =>
+    b.addEventListener('click', () => startTensesQuiz(b.dataset.topic))
+  );
+  renderChips('.tcount-chip', state.count, 'count');
+}
+
+async function openTenses() {
+  if (!tensesData) tensesData = await (await fetch(TENSES_FILE)).json();
+  renderTensesList();
+  showView('tenses');
+}
+
+function startTensesQuiz(topicId) {
+  if (!tensesData || !tensesData.length) return;
+  const pool = topicId ? tensesData.filter(x => x.topic === topicId) : tensesData;
+  if (!pool.length) return;
+  state.kind = 'tenses';
+  state.level = 'Global';
+  state.badge = topicId ? (TENSES_TOPIC_LABELS[topicId] || topicId) : 'Temps verbaux';
+  state.words = pool.map(x => Object.assign({ word: x.id }, x));
+  startSession('srs');
+}
+
+$('btn-tenses').addEventListener('click', openTenses);
+$('btn-tenses-quiz').addEventListener('click', () => startTensesQuiz(null));
+$('btn-tenses-home').addEventListener('click', () => showView('home'));
+document.querySelectorAll('.tcount-chip').forEach(c => c.addEventListener('click', () => {
+  state.count = +c.dataset.count;
+  renderChips('.tcount-chip', state.count, 'count');
+}));
+
+// ---------- phrases à compléter (méga-quiz cross-mode) ----------
+let phrasesPool = null;
+
+async function loadPhrasesPool() {
+  if (phrasesPool) return phrasesPool;
+  if (!grammarQuizData) grammarQuizData = await (await fetch(GRAMMAR_QUIZ_FILE)).json();
+  if (!tensesData)     tensesData     = await (await fetch(TENSES_FILE)).json();
+  if (!fauxAmisData)   fauxAmisData   = await (await fetch(FAUX_AMIS_FILE)).json();
+  if (!famillesData)   famillesData   = await (await fetch(FAMILLES_FILE)).json();
+  if (!cognatesData)   cognatesData   = await (await fetch(COGNATES_FILE)).json();
+  phrasesPool = [
+    ...grammarQuizData.map(x => ({ type: 'grammar',    data: x })),
+    ...tensesData.map(x      => ({ type: 'tenses',     data: x })),
+    ...fauxAmisData.map(x    => ({ type: 'faux-amis',  data: x })),
+    ...famillesData.map(x    => ({ type: 'familles',   data: x })),
+    ...cognatesData.map(x    => ({ type: 'cognates',   data: x })),
+  ];
+  return phrasesPool;
+}
+
+async function startPhrasesQuiz() {
+  const pool = await loadPhrasesPool();
+  const count = state.count || 10;
+  const picks = shuffle(pool).slice(0, count);
+  state.kind = 'phrases';
+  state.badge = 'Tout en un';
+  state.mode = 'srs';
+  state.questions = picks.map(p => {
+    if (p.type === 'grammar' || p.type === 'tenses') return buildGrammarQuestion(p.data);
+    if (p.type === 'faux-amis')  return buildFauxAmiQuestion(p.data, fauxAmisData);
+    if (p.type === 'familles')   return buildFamilleQuestion(p.data, famillesData);
+    if (p.type === 'cognates')   return buildCognateQuestion(p.data, cognatesData);
+    return null;
+  }).filter(Boolean);
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
+}
+
+$('btn-phrases').addEventListener('click', () => { renderChips('.pcount-chip', state.count, 'count'); showView('phrases'); });
+$('btn-phrases-start').addEventListener('click', startPhrasesQuiz);
+$('btn-phrases-home').addEventListener('click', () => showView('home'));
+document.querySelectorAll('.pcount-chip').forEach(c => c.addEventListener('click', () => {
+  state.count = +c.dataset.count;
+  renderChips('.pcount-chip', state.count, 'count');
+}));
+
 // ---------- motivation : streak quotidien + objectif du jour ----------
-const ALL_DAILY_KEYS = () => ['en', 'es', VERBS_KEY, GRAMMAR_KEY, FAUX_AMIS_KEY, FAMILLES_KEY, COGNATES_KEY];
+const ALL_DAILY_KEYS = () => ['en', 'es', VERBS_KEY, GRAMMAR_KEY, FAUX_AMIS_KEY, FAMILLES_KEY, COGNATES_KEY, TENSES_KEY, PHRASES_KEY];
 
 function todayTotalQuestions() {
   const today = todayStr();
