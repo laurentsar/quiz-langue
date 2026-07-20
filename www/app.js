@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.25';
+const APP_VERSION = '2.26';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -15,7 +15,6 @@ const DAY = 86400000;
 
 const VERBS_FILE = 'data/verbs_en.json';
 const VERBS_KEY = 'verbs';   // espace stats/SRS dédié aux verbes irréguliers
-const GRAMMAR_QUIZ_FILE = 'data/grammar_quiz_en.json';
 const GRAMMAR_KEY = 'grammar'; // espace stats/SRS dédié aux exos de grammaire
 const FAUX_AMIS_KEY = 'faux-amis';
 const FAMILLES_KEY = 'familles';
@@ -811,18 +810,30 @@ function renderConceptCheckboxes() {
   });
 }
 
-let grammarQuizData = null;
-let grammarQuizTopics = null;   // topics ayant des questions de quiz
-async function startGrammarQuiz(topicId) {
-  if (!grammarQuizData) grammarQuizData = await (await fetch(GRAMMAR_QUIZ_FILE)).json();
-  let pool = grammarQuizData;
-  if (topicId) pool = pool.filter(x => x.topic === topicId);
-  if (!pool.length) return;
+let grammarQuizTopics = null;   // topics ayant des questions de quiz (initialisé après le générateur)
+function startGrammarQuiz(topicId) {
+  const topics = topicId ? [topicId] : Object.keys(_GFIX);
+  const count = state.count;
+  const items = [];
+  for (let i = 0; i < count; i++) {
+    const t = topics[i % topics.length];
+    const item = generateGrammarItem(t);
+    if (item) items.push(item);
+  }
+  if (!items.length) return;
   state.kind = 'grammar';
   state.level = 'Global';
-  state.words = pool.map(x => Object.assign({ word: x.id }, x));
-  state.badge = 'Grammaire';
-  startSession('srs');
+  state.badge = topicId ? (grammarData && grammarData.find(t => t.id === topicId) ? grammarData.find(t => t.id === topicId).title : topicId) : 'Grammaire';
+  state.mode = 'srs';
+  state.questions = shuffle(items).map(item => {
+    const q = buildGrammarQuestion(item);
+    q.word = 'gen-' + item.topic;
+    return q;
+  });
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
 }
 
 async function loadGrammarLang(lang) {
@@ -831,8 +842,7 @@ async function loadGrammarLang(lang) {
     grammarCache[lang] = await (await fetch(GRAMMAR_FILES[lang])).json();
   }
   grammarData = grammarCache[lang];
-  if (!grammarQuizData) grammarQuizData = await (await fetch(GRAMMAR_QUIZ_FILE)).json();
-  grammarQuizTopics = new Set(grammarQuizData.map(x => x.topic));
+  grammarQuizTopics = new Set(Object.keys(_GFIX));
 }
 
 async function openGrammar() {
@@ -876,16 +886,25 @@ document.querySelectorAll('.gcount-chip').forEach(c => {
   });
 });
 
-$('btn-grammar-ai').addEventListener('click', async () => {
-  if (!grammarQuizData) grammarQuizData = await (await fetch(GRAMMAR_QUIZ_FILE)).json();
+$('btn-grammar-ai').addEventListener('click', () => {
   if (grammarSelectedTopics.size === 0) grammarData.forEach(t => grammarSelectedTopics.add(t.id));
-  const items = shuffle(grammarQuizData.filter(x => grammarSelectedTopics.has(x.topic))).slice(0, grammarCustomCount);
+  const topics = [...grammarSelectedTopics].filter(t => _GFIX[t]);
+  if (!topics.length) return;
+  const items = [];
+  for (let i = 0; i < grammarCustomCount; i++) {
+    const item = generateGrammarItem(topics[i % topics.length]);
+    if (item) items.push(item);
+  }
   if (!items.length) return;
   state.kind = 'grammar';
   state.level = 'Global';
   state.badge = 'Grammaire';
   state.mode = 'srs';
-  state.questions = items.map(x => buildGrammarQuestion(x));
+  state.questions = shuffle(items).map(item => {
+    const q = buildGrammarQuestion(item);
+    q.word = 'gen-' + item.topic;
+    return q;
+  });
   state.answers = [];
   state.index = 0;
   showView('quiz');
@@ -1237,10 +1256,11 @@ function gradeCard(ok) {
 
 $('btn-learn').addEventListener('click', () => { state.kind = 'vocab'; state.words = cache[state.lang] || state.words; startLearn(); });
 $('btn-verbs-learn').addEventListener('click', () => { if (!verbsData) return; state.kind = 'verbs'; state.level = 'Global'; state.words = verbsData; startLearn(); });
-$('btn-grammar-learn').addEventListener('click', async () => {
-  if (!grammarQuizData) grammarQuizData = await (await fetch(GRAMMAR_QUIZ_FILE)).json();
+$('btn-grammar-learn').addEventListener('click', () => {
   state.kind = 'grammar'; state.level = 'Global';
-  state.words = grammarQuizData.map(x => Object.assign({ word: x.id }, x));
+  state.words = Object.keys(_GFIX).flatMap(topic =>
+    _GFIX[topic].map(t => Object.assign({ word: 'gen-' + topic }, _mkItem(topic, t.q, t.opts, t.ans, t.hint)))
+  );
   startLearn();
 });
 $('btn-flash-reveal').addEventListener('click', revealCard);
@@ -1588,8 +1608,395 @@ $('btn-listen').addEventListener('click', openListen);
 $('btn-listen-home').addEventListener('click', () => { const au = $('listen-audio'); if (au) { try { au.pause(); } catch (e) {} } showView('home'); });
 document.querySelectorAll('.slang2-chip').forEach(c => c.addEventListener('click', () => { listenLang = c.dataset.lang; listenAccent = 0; renderListen(); }));
 
+// ═══════════════════════════════════════════════════════════════
+// GÉNÉRATEUR TEMPS VERBAUX + GRAMMAIRE — questions à la volée
+// ═══════════════════════════════════════════════════════════════
+
+// Verbe : [base, 3ps, -ing, past, pp]
+const _V = [
+  ['go','goes','going','went','gone'],
+  ['eat','eats','eating','ate','eaten'],
+  ['drink','drinks','drinking','drank','drunk'],
+  ['write','writes','writing','wrote','written'],
+  ['read','reads','reading','read','read'],
+  ['speak','speaks','speaking','spoke','spoken'],
+  ['take','takes','taking','took','taken'],
+  ['make','makes','making','made','made'],
+  ['come','comes','coming','came','come'],
+  ['see','sees','seeing','saw','seen'],
+  ['know','knows','knowing','knew','known'],
+  ['think','thinks','thinking','thought','thought'],
+  ['work','works','working','worked','worked'],
+  ['play','plays','playing','played','played'],
+  ['watch','watches','watching','watched','watched'],
+  ['study','studies','studying','studied','studied'],
+  ['travel','travels','traveling','traveled','traveled'],
+  ['sleep','sleeps','sleeping','slept','slept'],
+  ['leave','leaves','leaving','left','left'],
+  ['buy','buys','buying','bought','bought'],
+  ['bring','brings','bringing','brought','brought'],
+  ['teach','teaches','teaching','taught','taught'],
+  ['learn','learns','learning','learned','learned'],
+  ['finish','finishes','finishing','finished','finished'],
+  ['start','starts','starting','started','started'],
+  ['live','lives','living','lived','lived'],
+  ['move','moves','moving','moved','moved'],
+  ['open','opens','opening','opened','opened'],
+  ['close','closes','closing','closed','closed'],
+  ['call','calls','calling','called','called'],
+  ['walk','walks','walking','walked','walked'],
+  ['drive','drives','driving','drove','driven'],
+  ['swim','swims','swimming','swam','swum'],
+  ['sing','sings','singing','sang','sung'],
+  ['cook','cooks','cooking','cooked','cooked'],
+  ['clean','cleans','cleaning','cleaned','cleaned'],
+  ['help','helps','helping','helped','helped'],
+  ['visit','visits','visiting','visited','visited'],
+  ['meet','meets','meeting','met','met'],
+  ['run','runs','running','ran','run'],
+];
+
+// Sujet : [pronom, est3ps, be-présent, be-passé]
+const _SP = [
+  ['I',    false, 'am',  'was'],
+  ['you',  false, 'are', 'were'],
+  ['he',   true,  'is',  'was'],
+  ['she',  true,  'is',  'was'],
+  ['we',   false, 'are', 'were'],
+  ['they', false, 'are', 'were'],
+];
+
+function _rnd(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function _cap(s)   { return s.charAt(0).toUpperCase() + s.slice(1); }
+let _genSeq = 0;
+function _mkItem(topic, q, opts, ans, hint) {
+  return { id: `gen-${topic}-${++_genSeq}`, topic, q, options: opts, answer: ans, hint };
+}
+
+// Générateurs paramétriques (sujet × verbe aléatoires)
+const _TGEN = {
+  'present-simple': () => {
+    const v = _rnd(_V); const sp = _rnd(_SP);
+    const [subj, is3ps] = sp; const [base, s3, ing, past] = v;
+    const correct = is3ps ? s3 : base;
+    const ctx = _rnd(['every day','every morning','on weekdays','usually','often']);
+    const q = `${_cap(subj)} ___ (${base}) ${ctx}.`;
+    const wrongs = shuffle([is3ps ? base : s3, ing, past].filter(f => f !== correct));
+    return _mkItem('present-simple', q, shuffle([correct, ...wrongs.slice(0,3)]), correct,
+      `Habitude régulière → présent simple. ${is3ps ? `(${subj} → ${s3})` : `(${subj} → base)`}`);
+  },
+  'present-continuous': () => {
+    const v = _rnd(_V); const sp = _rnd(_SP);
+    const [subj, , auxPres] = sp; const [base, s3, ing, past] = v;
+    const correct = `${auxPres} ${ing}`;
+    const wrongAux = ['am','is','are'].filter(a => a !== auxPres);
+    const wrongs = shuffle([`${wrongAux[0]} ${ing}`, `${wrongAux[1]} ${ing}`, s3, past]);
+    const ctx = _rnd(['right now','at the moment']);
+    const q = `${_cap(subj)} ___ (${base}) ${ctx}.`;
+    return _mkItem('present-continuous', q, shuffle([correct, ...wrongs.slice(0,3)]), correct,
+      `Action en cours → ${subj} ${auxPres} + ${ing}.`);
+  },
+  'past-simple': () => {
+    const v = _rnd(_V); const sp = _rnd(_SP);
+    const [subj] = sp; const [base, s3, ing, past, pp] = v;
+    const ctx = _rnd(['yesterday','last week','last night','two days ago']);
+    const q = `${_cap(subj)} ___ (${base}) ${ctx}.`;
+    const wrongs = shuffle([base, ing, pp].filter(f => f !== past));
+    return _mkItem('past-simple', q, shuffle([past, ...wrongs.slice(0,3)]), past,
+      `Moment passé défini (${ctx}) → prétérit : ${past}.`);
+  },
+  'past-continuous': () => {
+    const v = _rnd(_V); const sp = _rnd(_SP);
+    const [subj, , , auxPast] = sp; const [base, s3, ing, past] = v;
+    const correct = `${auxPast} ${ing}`;
+    const wrongAux = auxPast === 'was' ? 'were' : 'was';
+    const wrongs = shuffle([`${wrongAux} ${ing}`, past, `${auxPast} ${past}`]);
+    const ctx = _rnd(['when the phone rang','when she arrived','at 9 p.m. yesterday']);
+    const q = `${_cap(subj)} ___ (${base}) ${ctx}.`;
+    return _mkItem('past-continuous', q, shuffle([correct, ...wrongs.slice(0,3)]), correct,
+      `Action en cours dans le passé → ${subj} ${auxPast} + ${ing}.`);
+  },
+  'present-perfect': () => {
+    const v = _rnd(_V); const sp = _rnd(_SP);
+    const [subj, is3ps] = sp; const [base, s3, ing, past, pp] = v;
+    const hv = is3ps ? 'has' : 'have';
+    const ctx = _rnd(['just','already','recently']);
+    const q = `${_cap(subj)} ${hv} ${ctx} ___ (${base}).`;
+    const wrongs = shuffle([past, ing, base].filter((f, i, a) => a.indexOf(f) === i && f !== pp));
+    return _mkItem('present-perfect', q, shuffle([pp, ...wrongs.slice(0,3)]), pp,
+      `${ctx} → present perfect : ${hv} ${ctx} + participe passé (${pp}).`);
+  },
+  'past-perfect': () => {
+    const v = _rnd(_V); const sp = _rnd(_SP);
+    const [subj] = sp; const [base, s3, ing, past, pp] = v;
+    const correct = `had ${pp}`;
+    const wrongs = shuffle([past, `has ${pp}`, `had ${ing}`].filter(f => f !== correct));
+    const ctx = _rnd(['before I arrived','by the time she came','when we got there']);
+    const q = `${_cap(subj)} ___ (${base}) ${ctx}.`;
+    return _mkItem('past-perfect', q, shuffle([correct, ...wrongs.slice(0,3)]), correct,
+      `Antériorité dans le passé → had + participe passé (${pp}).`);
+  },
+};
+
+// Banques fixes pour les temps dont la forme ne dépend pas du sujet
+const _TFIX = {
+  'future-will': [
+    { q: "I'm tired. I think I ___ go to bed.", opts: ['will','am going to','go','would'], ans: 'will', hint: 'Décision spontanée → will.' },
+    { q: "It's cold. I ___ close the window.", opts: ['will','am going to','close','would close'], ans: 'will', hint: 'Réaction immédiate → will.' },
+    { q: 'She ___ be 30 next year.', opts: ['will','is going to','would','is'], ans: 'will', hint: 'Prédiction sans indice visible → will.' },
+    { q: "Don't worry, I ___ help you.", opts: ['will','am going to','would','shall'], ans: 'will', hint: 'Promesse/offre spontanée → will.' },
+    { q: 'The test ___ probably be difficult.', opts: ['will','is going to','would','going to'], ans: 'will', hint: 'Prédiction basée sur opinion → will.' },
+    { q: 'I promise I ___ call you tomorrow.', opts: ['will','am going to','would','shall'], ans: 'will', hint: 'Promesse → will.' },
+  ],
+  'future-going-to': [
+    { q: 'Look at the sky! It ___ rain.', opts: ['is going to','will','goes to','shall'], ans: 'is going to', hint: 'Indice présent visible → be going to.' },
+    { q: 'She ___ have a baby in March. (prévu)', opts: ['is going to','will','is','would'], ans: 'is going to', hint: 'Événement futur planifié → be going to.' },
+    { q: 'I ___ visit my parents this weekend. (décidé)', opts: ['am going to','will','am visiting','would'], ans: 'am going to', hint: 'Intention déjà décidée → be going to.' },
+    { q: 'Be careful! You ___ fall!', opts: ['are going to','will','go to','would'], ans: 'are going to', hint: 'Situation imminente visible → be going to.' },
+    { q: 'They ___ open a new restaurant next month.', opts: ['are going to','will','going to','are'], ans: 'are going to', hint: 'Projet annoncé → be going to.' },
+    { q: 'He ___ resign. He told me yesterday.', opts: ['is going to','will','would','shall'], ans: 'is going to', hint: 'Décision déjà prise → be going to.' },
+  ],
+  'conditional': [
+    { q: 'If I had more time, I ___ travel more.', opts: ['would','will','am going to','should'], ans: 'would', hint: 'Hypothèse irréelle (type 2) → would + infinitif.' },
+    { q: 'She ___ help if you asked her.', opts: ['would','will','should','is going to'], ans: 'would', hint: 'Condition non réalisée → would.' },
+    { q: 'I ___ buy a car if I had the money.', opts: ['would','will','should','might'], ans: 'would', hint: 'If + prétérit → would dans la principale.' },
+    { q: 'If it rained, we ___ stay indoors.', opts: ['would','will','should','are going to'], ans: 'would', hint: 'Conditionnel présent (type 2) → would.' },
+    { q: 'He ___ come if you invited him.', opts: ['would','will','could','should'], ans: 'would', hint: 'Invitation hypothétique → would.' },
+    { q: 'They ___ be happy if they knew the truth.', opts: ['would','will','should','are'], ans: 'would', hint: 'Condition irréelle → would dans la principale.' },
+  ],
+  'passive': [
+    { q: 'English ___ all over the world.', opts: ['is spoken','speaks','is speaking','has spoken'], ans: 'is spoken', hint: 'Passif présent → is/are + participe passé.' },
+    { q: 'The letter ___ sent yesterday.', opts: ['was','is','has been','had been'], ans: 'was', hint: 'Passif passé → was/were + participe passé.' },
+    { q: 'The film ___ directed by Spielberg.', opts: ['was','is','has been','had been'], ans: 'was', hint: 'Passif avec by → was + participe passé.' },
+    { q: 'This building ___ in 1920.', opts: ['was built','built','is built','has built'], ans: 'was built', hint: 'Date passée → passif au prétérit : was built.' },
+    { q: 'The results ___ announced tomorrow.', opts: ['will be','are','were','have been'], ans: 'will be', hint: 'Passif futur → will be + participe passé.' },
+    { q: 'The cake ___ by my mother every Sunday.', opts: ['is made','made','was made','has made'], ans: 'is made', hint: 'Passif présent habituel → is made.' },
+  ],
+};
+
+// Banques de questions pour les topics de grammaire
+const _GFIX = {
+  'present-simple-continuous': [
+    { q: 'She ___ to work by bus every day.', opts: ['goes','is going','go','going'], ans: 'goes', hint: 'Habitude → présent simple (she → -s).' },
+    { q: 'Listen! The baby ___.', opts: ['is crying','cries','cry','cried'], ans: 'is crying', hint: 'Action en cours → présent continu.' },
+    { q: 'Water ___ at 100 degrees Celsius.', opts: ['boils','is boiling','boil','boiled'], ans: 'boils', hint: 'Vérité générale → présent simple.' },
+    { q: "I can't talk now, I ___ dinner.", opts: ['am cooking','cook','cooked','cooks'], ans: 'am cooking', hint: 'Maintenant → be + V-ing.' },
+    { q: 'Look! It ___.', opts: ['is raining','rains','rained','rain'], ans: 'is raining', hint: 'Look! → action visible maintenant → présent continu.' },
+    { q: 'The train ___ at nine every morning.', opts: ['leaves','is leaving','left','leave'], ans: 'leaves', hint: 'Horaire fixe → présent simple.' },
+  ],
+  'past-vs-present-perfect': [
+    { q: 'She ___ to France last summer.', opts: ['went','goes','has gone','go'], ans: 'went', hint: 'Moment daté dans le passé → prétérit.' },
+    { q: "I ___ my keys. I can't find them.", opts: ['have lost','lost','lose','am losing'], ans: 'have lost', hint: 'Résultat présent → present perfect.' },
+    { q: 'She ___ here since 2010.', opts: ['has lived','lived','lives','living'], ans: 'has lived', hint: 'since → present perfect.' },
+    { q: 'He ___ us a funny story at dinner.', opts: ['told','tells','has told','tell'], ans: 'told', hint: 'Action achevée à un moment précis → prétérit.' },
+    { q: 'They ___ three films this week.', opts: ['have watched','watched','watch','are watching'], ans: 'have watched', hint: 'this week (non terminée) → present perfect.' },
+    { q: 'I ___ him three times today.', opts: ['have called','called','call','am calling'], ans: 'have called', hint: 'today (journée en cours) → present perfect.' },
+  ],
+  'future': [
+    { q: "I'm tired. I think I ___ go to bed.", opts: ['will','am going to','go','would'], ans: 'will', hint: 'Décision spontanée → will.' },
+    { q: 'Look at the sky! It ___ rain.', opts: ['is going to','will','goes to','shall'], ans: 'is going to', hint: 'Indice présent visible → be going to.' },
+    { q: 'We ___ to Paris next Friday. (plan arrangé)', opts: ['are flying','fly','flew','flies'], ans: 'are flying', hint: 'Plan futur déjà organisé → présent continu.' },
+    { q: 'She ___ be 30 next year.', opts: ['will','is going to','would','is'], ans: 'will', hint: 'Prédiction sans indice visible → will.' },
+    { q: 'I ___ visit my parents this weekend. (décidé)', opts: ['am going to','will','am visiting','would'], ans: 'am going to', hint: 'Intention déjà décidée → be going to.' },
+    { q: "Don't worry, I ___ help you.", opts: ['will','am going to','would','shall'], ans: 'will', hint: 'Promesse/offre spontanée → will.' },
+  ],
+  'articles': [
+    { q: 'She is ___ engineer.', opts: ['an','a','the','—'], ans: 'an', hint: 'Avant voyelle → an.' },
+    { q: 'Can you pass me ___ salt, please?', opts: ['the','a','an','—'], ans: 'the', hint: 'Élément unique/connu → the.' },
+    { q: 'He plays ___ tennis every weekend.', opts: ['—','the','a','an'], ans: '—', hint: 'Sports → zéro article.' },
+    { q: 'I saw ___ bird in the garden.', opts: ['a','an','the','—'], ans: 'a', hint: 'Première mention, consonne → a.' },
+    { q: '___ Eiffel Tower is in Paris.', opts: ['The','A','An','—'], ans: 'The', hint: 'Monument unique → the.' },
+    { q: 'She goes to ___ school by bus.', opts: ['—','the','a','an'], ans: '—', hint: 'Institutions (school/church) sans article = fonction.' },
+  ],
+  'comparatives': [
+    { q: 'This book is ___ than that one.', opts: ['more interesting','interestinger','most interesting','interesting'], ans: 'more interesting', hint: 'Adjectif long (≥ 2 syll.) → more + adj.' },
+    { q: "She is ___ student in the class.", opts: ['the best','the most good','better','the better'], ans: 'the best', hint: 'Superlatif irrégulier de good → the best.' },
+    { q: 'He runs ___ than his brother.', opts: ['faster','more fast','fastest','most fast'], ans: 'faster', hint: 'Adjectif court → -er au comparatif.' },
+    { q: "This is ___ film I've ever seen.", opts: ['the worst','the most bad','worse','more bad'], ans: 'the worst', hint: 'Superlatif de bad → the worst.' },
+    { q: 'London is ___ expensive ___ New York.', opts: ['as / as','more / than','less / that','the most / —'], ans: 'as / as', hint: 'Égalité → as + adjectif + as.' },
+    { q: 'The ___ you practise, the ___ you become.', opts: ['more / better','most / best','much / good','more / more'], ans: 'more / better', hint: 'Comparatif parallèle → the more … the better.' },
+  ],
+  'modals': [
+    { q: "You ___ wear a seatbelt. It's the law.", opts: ['must','might','could','would'], ans: 'must', hint: 'Obligation → must.' },
+    { q: 'She ___ speak three languages when she was young.', opts: ['could','can','must','should'], ans: 'could', hint: 'Capacité passée → could.' },
+    { q: 'You ___ eat more vegetables. Good advice.', opts: ['should','must','can','might'], ans: 'should', hint: 'Conseil → should.' },
+    { q: 'It ___ rain later — the clouds look dark.', opts: ['might','must','should','could'], ans: 'might', hint: 'Possibilité incertaine → might.' },
+    { q: '___ I borrow your pen?', opts: ['May','Must','Should','Would'], ans: 'May', hint: 'Permission polie → may.' },
+    { q: "You ___ park here. It's forbidden.", opts: ["mustn't","can't","shouldn't",'might not'], ans: "mustn't", hint: 'Interdiction → mustn\'t.' },
+  ],
+  'conditionals': [
+    { q: 'If you heat water to 100°C, it ___.', opts: ['boils','would boil','will boil','boiled'], ans: 'boils', hint: 'Type 0 (vérité générale) → présent + présent.' },
+    { q: 'If it rains tomorrow, we ___ stay indoors.', opts: ['will','would','should','can'], ans: 'will', hint: 'Type 1 (situation réelle) → if + présent, will + base.' },
+    { q: 'If I had more time, I ___ travel more.', opts: ['would','will','am going to','should'], ans: 'would', hint: 'Type 2 (hypothèse irréelle) → if + prétérit, would + base.' },
+    { q: "If she had studied harder, she ___ passed.", opts: ['would have','will have','had','should have'], ans: 'would have', hint: 'Type 3 (regret passé) → if + past perfect, would have + pp.' },
+    { q: 'I ___ call you if I need help.', opts: ['will','would','shall','might'], ans: 'will', hint: 'Type 1 → will dans la principale.' },
+    { q: 'Unless you hurry, you ___ miss the train.', opts: ['will','would','shall','might'], ans: 'will', hint: 'Unless = if not → type 1, will.' },
+  ],
+  'questions-negation': [
+    { q: '___ she speak French?', opts: ['Does','Do','Is','Has'], ans: 'Does', hint: '3e pers. sing. au présent simple → Does.' },
+    { q: "He ___ like coffee.", opts: ["doesn't","don't","isn't","hasn't"], ans: "doesn't", hint: "3e pers. sing. → doesn't." },
+    { q: '___ you watching TV when I called?', opts: ['Were','Was','Did','Are'], ans: 'Were', hint: 'Prétérit continu (you) → Were.' },
+    { q: 'They ___ arrived yet.', opts: ["haven't","didn't","aren't","don't"], ans: "haven't", hint: 'yet avec present perfect → haven\'t.' },
+    { q: 'Where ___ she go last night?', opts: ['did','does','was','has'], ans: 'did', hint: 'Question au prétérit → did.' },
+    { q: 'What ___ you doing right now?', opts: ['are','do','did','have'], ans: 'are', hint: 'Action en cours → are (present continuous).' },
+  ],
+  'quantifiers': [
+    { q: "There isn't ___ milk left.", opts: ['any','some','much','many'], ans: 'any', hint: 'Négatif → any (indénombrable).' },
+    { q: 'I have ___ friends in London — about five.', opts: ['a few','a little','few','little'], ans: 'a few', hint: 'Dénombrable, quantité positive petite → a few.' },
+    { q: 'Would you like ___ tea?', opts: ['some','any','many','few'], ans: 'some', hint: 'Offre → some (même en question).' },
+    { q: 'There is ___ water in the desert.', opts: ['little','few','a few','some'], ans: 'little', hint: 'Indénombrable, presque rien → little.' },
+    { q: 'How ___ students are in the class?', opts: ['many','much','few','little'], ans: 'many', hint: 'Dénombrable + question → How many.' },
+    { q: 'She has ___ experience — she just started.', opts: ['little','few','a little','a few'], ans: 'little', hint: 'Indénombrable (experience) + quantité insuffisante → little.' },
+  ],
+  'gerund-infinitive': [
+    { q: 'She enjoys ___ in the park.', opts: ['walking','to walk','walk','walked'], ans: 'walking', hint: 'enjoy + gérondif (-ing).' },
+    { q: 'He decided ___ a new car.', opts: ['to buy','buying','buy','bought'], ans: 'to buy', hint: 'decide + infinitif (to).' },
+    { q: 'They stopped ___ when I arrived.', opts: ['talking','to talk','talk','talked'], ans: 'talking', hint: 'stop + -ing = arrêter de faire qqch.' },
+    { q: 'I want ___ a doctor.', opts: ['to be','being','be','been'], ans: 'to be', hint: 'want + infinitif (to).' },
+    { q: 'Would you mind ___ the window?', opts: ['closing','to close','close','closed'], ans: 'closing', hint: 'mind + gérondif (-ing).' },
+    { q: "She's looking forward to ___ you.", opts: ['seeing','see','to see','seen'], ans: 'seeing', hint: 'look forward to + -ing (to est une préposition ici).' },
+  ],
+  'be': [
+    { q: 'They ___ very tired after the race.', opts: ['were','was','are','be'], ans: 'were', hint: 'They au prétérit → were.' },
+    { q: 'She ___ a teacher when she was young.', opts: ['was','were','is','be'], ans: 'was', hint: 'She au prétérit → was.' },
+    { q: 'By next year, he ___ 30 years old.', opts: ['will be','is','was','be'], ans: 'will be', hint: 'Futur → will be.' },
+    { q: "I ___ at home when you called.", opts: ["wasn't","weren't","didn't be","isn't"], ans: "wasn't", hint: 'Négatif prétérit singulier → wasn\'t.' },
+    { q: 'The books ___ on the table.', opts: ['are','is','were','be'], ans: 'are', hint: 'Books (pluriel) → are.' },
+    { q: '___ you tired yesterday?', opts: ['Were','Was','Did','Are'], ans: 'Were', hint: 'Question prétérit (you) → Were.' },
+  ],
+  'have': [
+    { q: 'She ___ a headache this morning.', opts: ['had','has had','have','is having'], ans: 'had', hint: 'this morning (passé défini) → had (prétérit).' },
+    { q: 'They ___ lunch when I arrived.', opts: ['were having','had','have','are having'], ans: 'were having', hint: 'Action en cours dans le passé → were having.' },
+    { q: 'He ___ three cars.', opts: ['has','have','is having','had'], ans: 'has', hint: 'Possession (he) → has.' },
+    { q: 'Do you ___ any brothers or sisters?', opts: ['have','has','had','having'], ans: 'have', hint: 'Do you ___ → base form (have).' },
+    { q: 'She ___ her hair cut every month.', opts: ['has','have','is having','gets'], ans: 'has', hint: 'Causatif have → has + object + past participle.' },
+    { q: 'I ___ a great time at the party last night.', opts: ['had','have','was having','am having'], ans: 'had', hint: 'last night → prétérit : had.' },
+  ],
+  'personal-pronouns': [
+    { q: "Can you help ___? I can't open this jar.", opts: ['me','I','my','mine'], ans: 'me', hint: 'Pronom objet après verbe → me.' },
+    { q: 'The tickets are for her and ___.', opts: ['me','I','my','myself'], ans: 'me', hint: 'Après préposition → pronom objet (me).' },
+    { q: '___ is a lovely day today.', opts: ['It','He','She','This'], ans: 'It', hint: 'Temps/météo → it.' },
+    { q: 'She did it by ___.', opts: ['herself','her','she','hers'], ans: 'herself', hint: 'Seule, sans aide → by + pronom réfléchi.' },
+    { q: 'Give this to ___ — it belongs to them.', opts: ['them','they','their','theirs'], ans: 'them', hint: 'Pronom objet → them.' },
+    { q: "Is this book ___? No, it's mine.", opts: ['yours','your','you','yourself'], ans: 'yours', hint: 'Pronom possessif indépendant → yours.' },
+  ],
+  'nouns-plural': [
+    { q: 'There are three ___ in the garden.', opts: ['children','childs','childrens','child'], ans: 'children', hint: 'Pluriel irrégulier : child → children.' },
+    { q: 'The ___ are on the shelf.', opts: ['books','book','bookes','bookies'], ans: 'books', hint: 'Pluriel régulier → + s.' },
+    { q: 'I saw two ___ in the park.', opts: ['geese','gooses','goose','goosed'], ans: 'geese', hint: 'Pluriel irrégulier : goose → geese.' },
+    { q: 'She has three ___.', opts: ['knives','knifes','knife','knivs'], ans: 'knives', hint: 'Noms en -fe → -ves (knife → knives).' },
+    { q: 'The ___ are very tall.', opts: ['men','mans','mens','man'], ans: 'men', hint: 'Pluriel irrégulier : man → men.' },
+    { q: 'She has two ___ (studio).', opts: ['studios','studioes','studious','studio'], ans: 'studios', hint: 'Noms en -io → + s (studios).' },
+  ],
+  'possession': [
+    { q: "That is ___ book. (belonging to Mary)", opts: ["Mary's",'Mary','of Mary','Marys'], ans: "Mary's", hint: 'Génitif possessif → nom + \'s.' },
+    { q: "The ___ toys are everywhere. (the children)", opts: ["children's","childrens'","children",'of children'], ans: "children's", hint: "Pluriel irrégulier → + 's (children's)." },
+    { q: 'This is a friend ___ mine.', opts: ['of',"'s",'from','—'], ans: 'of', hint: 'a friend of mine = construction avec pronom possessif.' },
+    { q: 'Is this pen ___? (belonging to you)', opts: ['yours','your','you','yourself'], ans: 'yours', hint: 'Pronom possessif indépendant → yours.' },
+    { q: "The end ___ the film was surprising.", opts: ['of',"'s",'—','from'], ans: 'of', hint: 'Choses (non-personnes) → of (the end of the film).' },
+    { q: "My ___ car is new. (my parents' car)", opts: ["parents'","parent's",'parents','of parents'], ans: "parents'", hint: "Pluriel régulier → apostrophe après le s (parents')." },
+  ],
+  'prepositions-place': [
+    { q: 'The book is ___ the table.', opts: ['on','in','at','under'], ans: 'on', hint: 'Surface → on.' },
+    { q: 'She lives ___ London.', opts: ['in','at','on','by'], ans: 'in', hint: 'Ville → in.' },
+    { q: 'Meet me ___ the entrance.', opts: ['at','in','on','by'], ans: 'at', hint: 'Point précis → at.' },
+    { q: 'The cat is ___ the bed.', opts: ['under','on','in','at'], ans: 'under', hint: 'En dessous → under.' },
+    { q: 'The painting is ___ the wall.', opts: ['on','in','at','by'], ans: 'on', hint: 'Accroché à une surface → on.' },
+    { q: 'We sat ___ the fire to keep warm.', opts: ['by','on','in','at'], ans: 'by', hint: 'À côté de → by.' },
+  ],
+  'demonstratives': [
+    { q: '___ is my friend Tom. (ici, près de moi)', opts: ['This','That','These','Those'], ans: 'This', hint: 'Proche, singulier → this.' },
+    { q: '___ are my keys. (ici)', opts: ['These','Those','This','That'], ans: 'These', hint: 'Proche, pluriel → these.' },
+    { q: 'Look at ___ mountains over there!', opts: ['those','these','this','that'], ans: 'those', hint: 'Loin, pluriel → those.' },
+    { q: '___ was a great film. (the one we just saw)', opts: ['That','This','Those','These'], ans: 'That', hint: 'Chose venant d\'être mentionnée (distante) → that.' },
+    { q: 'Can I try ___ shoes? (in the shop window)', opts: ['those','these','that','this'], ans: 'those', hint: 'Chaussures dans la vitrine (loin) → those.' },
+    { q: "___ is a great idea! (the one you just said)", opts: ['That','This','Those','These'], ans: 'That', hint: 'Idée venant d\'être dite → that.' },
+  ],
+  'causative': [
+    { q: 'She ___ her car repaired last week.', opts: ['had','has','got','did'], ans: 'had', hint: 'Causatif have → had + object + pp.' },
+    { q: 'I need to ___ my hair cut.', opts: ['get','have','make','let'], ans: 'get', hint: 'get + object + pp = faire faire qqch (familier).' },
+    { q: 'They ___ the house painted every two years.', opts: ['have','get','make','let'], ans: 'have', hint: 'have + object + pp = faire faire qqch.' },
+    { q: "I'm going to ___ my computer fixed.", opts: ['get','have','make','let'], ans: 'get', hint: 'get + object + pp (familier/oral).' },
+    { q: 'She ___ her nails done at the salon.', opts: ['has','have','got','made'], ans: 'has', hint: 'have (présent) + object + pp.' },
+    { q: 'We must ___ this contract signed today.', opts: ['get','have','make','do'], ans: 'get', hint: 'get + object + pp pour résultat nécessaire.' },
+  ],
+  'prepositions-time': [
+    { q: 'I was born ___ 1995.', opts: ['in','on','at','by'], ans: 'in', hint: 'Années → in.' },
+    { q: 'The meeting is ___ Monday.', opts: ['on','in','at','by'], ans: 'on', hint: 'Jours → on.' },
+    { q: 'She arrives ___ noon.', opts: ['at','in','on','by'], ans: 'at', hint: 'Heure précise / midi / minuit → at.' },
+    { q: 'I always study ___ the evening.', opts: ['in','on','at','during'], ans: 'in', hint: 'Parties du jour → in the morning/afternoon/evening.' },
+    { q: 'He left ___ Christmas.', opts: ['at','on','in','by'], ans: 'at', hint: 'Fêtes (Noël, Pâques) → at.' },
+    { q: 'She was born ___ a cold winter morning.', opts: ['on','in','at','during'], ans: 'on', hint: 'Matins/après-midis/soirs avec adjectif → on.' },
+  ],
+  'passive': [
+    { q: 'English ___ all over the world.', opts: ['is spoken','speaks','is speaking','has spoken'], ans: 'is spoken', hint: 'Passif présent → is/are + participe passé.' },
+    { q: 'The letter ___ sent yesterday.', opts: ['was','is','has been','had been'], ans: 'was', hint: 'Passif passé → was/were + participe passé.' },
+    { q: 'This building ___ in 1920.', opts: ['was built','built','is built','has built'], ans: 'was built', hint: 'Date passée → was built.' },
+    { q: 'The results ___ announced tomorrow.', opts: ['will be','are','were','have been'], ans: 'will be', hint: 'Passif futur → will be + participe passé.' },
+    { q: 'Coffee ___ grown in Brazil.', opts: ['is','was','are','be'], ans: 'is', hint: 'Passif présent simple → is + pp.' },
+    { q: 'The email had ___ sent before I arrived.', opts: ['been','be','being','was'], ans: 'been', hint: 'Past perfect passif → had been + pp.' },
+  ],
+  'adverbs': [
+    { q: 'She sings ___ (beautiful).', opts: ['beautifully','beautiful','more beautiful','beautifuly'], ans: 'beautifully', hint: 'Adverbe de manière → adj + -ly.' },
+    { q: 'He drives very ___.', opts: ['carefully','careful','more careful','care'], ans: 'carefully', hint: 'careful → carefully.' },
+    { q: 'She ___ arrives late. (toujours)', opts: ['always','never','sometimes','usually'], ans: 'always', hint: 'toujours → always.' },
+    { q: 'I ___ watch TV before bed. (parfois)', opts: ['sometimes','always','never','often'], ans: 'sometimes', hint: 'parfois → sometimes.' },
+    { q: 'He worked ___ (dur).', opts: ['hard','hardly','hardily','hardy'], ans: 'hard', hint: 'hard = dur (adverbe) ; hardly = à peine.' },
+    { q: 'I arrived ___ for the meeting. (juste à l\'heure)', opts: ['just in time','in time','on time','timely'], ans: 'just in time', hint: 'juste à l\'heure → just in time.' },
+  ],
+  'numbers': [
+    { q: 'She finished in ___ place. (3rd)', opts: ['third','three','thirdly','the third'], ans: 'third', hint: 'Ordinal : 3 → third.' },
+    { q: '___ of the students passed the exam. (50%)', opts: ['Half','A half','The half','Halves'], ans: 'Half', hint: '50% → half (sans article).' },
+    { q: 'It costs ___ euros. (21)', opts: ['twenty-one','twenty one','twentyone','twenty-first'], ans: 'twenty-one', hint: 'Nombres composés 21-99 → trait d\'union.' },
+    { q: 'This is my ___ birthday. (40th)', opts: ['fortieth','fortyth','fortith','forty'], ans: 'fortieth', hint: 'forty → fortieth (-y → -ieth).' },
+    { q: '___ the class got an A. (⅔)', opts: ['Two thirds of','Two third of','The two thirds','Second third of'], ans: 'Two thirds of', hint: 'Fractions : cardinal + ordinal pluriel.' },
+    { q: 'The ___ century saw many inventions. (19th)', opts: ['nineteenth','ninteenth','ninetheen','ninetieth'], ans: 'nineteenth', hint: 'nine + teen + th → nineteenth.' },
+  ],
+  'adjective-order': [
+    { q: 'She bought a ___ dress.', opts: ['beautiful long red','long beautiful red','beautiful red long','red long beautiful'], ans: 'beautiful long red', hint: 'Ordre : opinion → taille → couleur.' },
+    { q: 'He drives an ___ car.', opts: ['old red Italian','old Italian red','red old Italian','Italian old red'], ans: 'old red Italian', hint: 'Ordre : âge → couleur → origine.' },
+    { q: 'I found a ___ box.', opts: ['small old wooden','small wooden old','old small wooden','wooden small old'], ans: 'small old wooden', hint: 'Ordre : taille → âge → matière.' },
+    { q: 'She wore a ___ hat.', opts: ['lovely big black','big lovely black','black big lovely','big black lovely'], ans: 'lovely big black', hint: 'Ordre : opinion → taille → couleur.' },
+    { q: 'They live in a ___ house.', opts: ['big old French','old big French','French big old','big French old'], ans: 'big old French', hint: 'Ordre : taille → âge → origine.' },
+    { q: 'He bought a ___ watch.', opts: ['beautiful small gold','small beautiful gold','gold small beautiful','small gold beautiful'], ans: 'beautiful small gold', hint: 'Ordre : opinion → taille → matière.' },
+  ],
+  'word-formation': [
+    { q: 'She is very ___. (care)', opts: ['careful','caring','careless','care'], ans: 'careful', hint: '-ful = plein de → careful = prudent.' },
+    { q: 'It was an ___ result. (expect)', opts: ['unexpected','expected','unexopected','expectful'], ans: 'unexpected', hint: 'un- + expected = inattendu.' },
+    { q: 'He works ___ (heavy).', opts: ['heavily','heavy','heavyly','more heavy'], ans: 'heavily', hint: '-y → -ily : heavy → heavily.' },
+    { q: 'She is a great ___. (sing)', opts: ['singer','singing','singor','song'], ans: 'singer', hint: '-er = agent → singer = chanteur.' },
+    { q: 'The film was ___. (bore)', opts: ['boring','bored','boreful','boresome'], ans: 'boring', hint: '-ing → cause de l\'ennui → boring = ennuyeux.' },
+    { q: 'He showed great ___. (kind)', opts: ['kindness','kindful','kindom','kindly'], ans: 'kindness', hint: '-ness = qualité abstraite → kindness = gentillesse.' },
+  ],
+  'deduction': [
+    { q: "She ___ be at home — her lights are on.", opts: ['must','might',"can't",'should'], ans: 'must', hint: 'Déduction quasi-certaine (positive) → must.' },
+    { q: "He ___ be English — he speaks with a French accent.", opts: ["can't","mustn't",'might',"shouldn't"], ans: "can't", hint: "Déduction quasi-certaine (négative) → can't." },
+    { q: 'She ___ be tired — she worked all night.', opts: ['must','can','might','could'], ans: 'must', hint: 'Déduction logique forte → must.' },
+    { q: "I'm not sure where he is. He ___ be at the gym.", opts: ['might','must',"can't",'should'], ans: 'might', hint: 'Possibilité incertaine → might.' },
+    { q: "That ___ be Tom — Tom is in London!", opts: ["can't",'must','might',"shouldn't"], ans: "can't", hint: 'Impossibilité logique → can\'t.' },
+    { q: "She's been studying for 10 hours. She ___ be exhausted.", opts: ['must','might',"can't",'could'], ans: 'must', hint: 'Déduction forte → must.' },
+  ],
+};
+
+function generateTenseItem(topicId) {
+  if (_TGEN[topicId]) return _TGEN[topicId]();
+  if (_TFIX[topicId]) {
+    const t = _rnd(_TFIX[topicId]);
+    return _mkItem(topicId, t.q, shuffle([...t.opts]), t.ans, t.hint);
+  }
+  return null;
+}
+
+function generateGrammarItem(topicId) {
+  const bank = _GFIX[topicId];
+  if (!bank) return null;
+  const t = _rnd(bank);
+  return _mkItem(topicId, t.q, shuffle([...t.opts]), t.ans, t.hint);
+}
+
+const TENSES_TOPIC_ORDER = [...Object.keys(_TGEN), ...Object.keys(_TFIX)];
+
 // ---------- temps verbaux ----------
-const TENSES_FILE = 'data/tenses_en.json';
 const TENSES_TOPIC_LABELS = {
   'present-simple':     'Présent simple',
   'present-continuous': 'Présent continu',
@@ -1602,15 +2009,12 @@ const TENSES_TOPIC_LABELS = {
   'conditional':        'Conditionnel (would)',
   'passive':            'Voix passive',
 };
-let tensesData = null;
 
 function renderTensesList() {
   const list = $('tenses-list');
-  const topics = [...new Set((tensesData || []).map(x => x.topic))];
-  list.innerHTML = topics.map(topic => {
-    const count = (tensesData || []).filter(x => x.topic === topic).length;
+  list.innerHTML = TENSES_TOPIC_ORDER.map(topic => {
     const label = TENSES_TOPIC_LABELS[topic] || topic;
-    return `<button class="grammar-item" data-topic="${esc(topic)}"><span class="gi-title">${esc(label)}</span><span class="gi-sub">${count} exercice${count > 1 ? 's' : ''}</span></button>`;
+    return `<button class="grammar-item" data-topic="${esc(topic)}"><span class="gi-title">${esc(label)}</span><span class="gi-sub">Génération aléatoire</span></button>`;
   }).join('');
   list.querySelectorAll('.grammar-item').forEach(b =>
     b.addEventListener('click', () => startTensesQuiz(b.dataset.topic))
@@ -1618,21 +2022,34 @@ function renderTensesList() {
   renderChips('.tcount-chip', state.count, 'count');
 }
 
-async function openTenses() {
-  if (!tensesData) tensesData = await (await fetch(TENSES_FILE)).json();
+function openTenses() {
   renderTensesList();
   showView('tenses');
 }
 
 function startTensesQuiz(topicId) {
-  if (!tensesData || !tensesData.length) return;
-  const pool = topicId ? tensesData.filter(x => x.topic === topicId) : tensesData;
-  if (!pool.length) return;
+  const topics = topicId ? [topicId] : TENSES_TOPIC_ORDER;
+  const count = state.count;
+  const items = [];
+  for (let i = 0; i < count; i++) {
+    const t = topics[i % topics.length];
+    const item = generateTenseItem(t);
+    if (item) items.push(item);
+  }
+  if (!items.length) return;
   state.kind = 'tenses';
   state.level = 'Global';
   state.badge = topicId ? (TENSES_TOPIC_LABELS[topicId] || topicId) : 'Temps verbaux';
-  state.words = pool.map(x => Object.assign({ word: x.id }, x));
-  startSession('srs');
+  state.mode = 'srs';
+  state.questions = shuffle(items).map(item => {
+    const q = buildGrammarQuestion(item);
+    q.word = 'gen-' + item.topic;
+    return q;
+  });
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
 }
 
 $('btn-tenses').addEventListener('click', openTenses);
@@ -1647,15 +2064,18 @@ document.querySelectorAll('.tcount-chip').forEach(c => c.addEventListener('click
 let phrasesPool = null;
 
 async function loadPhrasesPool() {
-  if (phrasesPool) return phrasesPool;
-  if (!grammarQuizData) grammarQuizData = await (await fetch(GRAMMAR_QUIZ_FILE)).json();
-  if (!tensesData)     tensesData     = await (await fetch(TENSES_FILE)).json();
   if (!fauxAmisData)   fauxAmisData   = await (await fetch(FAUX_AMIS_FILE)).json();
   if (!famillesData)   famillesData   = await (await fetch(FAMILLES_FILE)).json();
   if (!cognatesData)   cognatesData   = await (await fetch(COGNATES_FILE)).json();
   phrasesPool = [
-    ...grammarQuizData.map(x => ({ type: 'grammar',    data: x })),
-    ...tensesData.map(x      => ({ type: 'tenses',     data: x })),
+    ...Object.entries(_GFIX).flatMap(([topic, bank]) =>
+      bank.map(t => ({ type: 'grammar', data: _mkItem(topic, t.q, [...t.opts], t.ans, t.hint) }))
+    ),
+    ...TENSES_TOPIC_ORDER.flatMap(topic => {
+      const fixed = (_TFIX[topic] || []).map(t => ({ type: 'tenses', data: _mkItem(topic, t.q, [...t.opts], t.ans, t.hint) }));
+      const param = _TGEN[topic] ? Array.from({ length: 8 }, () => ({ type: 'tenses', data: _TGEN[topic]() })) : [];
+      return [...fixed, ...param];
+    }),
     ...fauxAmisData.map(x    => ({ type: 'faux-amis',  data: x })),
     ...famillesData.map(x    => ({ type: 'familles',   data: x })),
     ...cognatesData.map(x    => ({ type: 'cognates',   data: x })),
