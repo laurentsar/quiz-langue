@@ -1,6 +1,6 @@
 {
   "name": "quiz-langue",
-  "version": "2.27",
+  "version": "2.28",
   "private": true,
   "description": "Quiz de vocabulaire anglais et espagnol (offline)",
   "scripts": {
