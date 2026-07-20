@@ -1,10 +1,11 @@
-const CACHE = 'quiz-app-v2.26';
+const CACHE = 'quiz-app-v2.27';
 const ASSETS = [
   './',
   'index.html',
   'styles.css',
   'app.js',
   'update-check.js',
+  'autobackup.js',
   'manifest.webmanifest',
   'data/wordlist_en.json',
   'data/wordlist_es.json',

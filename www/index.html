@@ -145,6 +145,13 @@
             <button class="chip notifhour-chip" data-hour="21">21h</button>
           </div>
         </div>
+        <div class="setting-row" style="display:block">
+          <span class="setting-label">💾 Sauvegarde de la progression</span>
+          <p class="muted" style="font-size:13px;margin:6px 0">Ta progression SRS vit sur ce
+          téléphone : désinstaller l'app l'efface. Renseigne Home Assistant et la sauvegarde
+          devient automatique.</p>
+          <div id="backup-panel"></div>
+        </div>
       </div>
     </div>
 
@@ -483,7 +490,10 @@
 
   <button id="btn-fab-home" class="fab-home hidden" title="Accueil">🏠</button>
   <script src="app.js"></script>
-  <script>window.UPDATE_REPO='laurentsar/quiz-langue';window.APP_VERSION='2.26';</script>
+  <script>window.UPDATE_REPO='laurentsar/quiz-langue';window.APP_VERSION='2.27';</script>
   <script src="update-check.js" defer></script>
+  <script>window.BACKUP_APP = 'quiz-langue';</script>
+  <script src="autobackup.js"></script>
+  <script>AutoBackup.mount(document.getElementById('backup-panel'));</script>
 </body>
 </html>
