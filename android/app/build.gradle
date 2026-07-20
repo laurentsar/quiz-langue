@@ -7,7 +7,7 @@ android {
         applicationId "com.laurent.quizlangue"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 37
+        versionCode 22600
         versionName "2.26"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
@@ -18,10 +18,10 @@ android {
     }
     signingConfigs {
         stable {
-            storeFile file('quizlangue.p12')
-            storePassword 'quizlangue'
-            keyAlias 'quizlangue'
-            keyPassword 'quizlangue'
+            storeFile file('signing.p12')
+            storePassword System.getenv('ANDROID_KEYSTORE_PASSWORD')
+            keyAlias 'app'
+            keyPassword System.getenv('ANDROID_KEYSTORE_PASSWORD')
             storeType 'PKCS12'
         }
     }

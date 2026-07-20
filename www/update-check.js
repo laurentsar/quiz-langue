@@ -69,9 +69,10 @@
       'max-width:520px;margin:0 auto}' +
       '#update-banner .ub-txt{flex:1;min-width:0}' +
       '#update-banner b{color:#fff}' +
-      '#update-banner a{flex:none;background:#22c55e;color:#06210f;text-decoration:none;' +
-      'font-weight:700;padding:8px 14px;border-radius:10px}' +
-      '#update-banner button{flex:none;background:transparent;border:0;color:#9ca3af;' +
+      '#update-banner a.ub-act,#update-banner button.ub-act{flex:none;background:#22c55e;' +
+      'color:#06210f;text-decoration:none;border:0;font-weight:700;font-size:14px;' +
+      'padding:8px 14px;border-radius:10px;cursor:pointer}' +
+      '#update-banner button.ub-x{flex:none;background:transparent;border:0;color:#9ca3af;' +
       'font-size:18px;line-height:1;cursor:pointer;padding:4px}';
     document.head.appendChild(css);
 
@@ -80,32 +81,34 @@
     var txt = document.createElement('span');
     txt.className = 'ub-txt';
     txt.innerHTML = '🔄 Nouvelle version <b>v' + version + '</b> disponible';
-    var dl = document.createElement('a');
-    dl.href = url; dl.target = '_blank'; dl.rel = 'noopener';
-    dl.textContent = 'Télécharger';
-    // Installation native in-app si le plugin est présent (comme Flux RSS) :
-    // télécharge l'APK et lance l'installeur via FileProvider, sinon repli lien.
-    dl.addEventListener('click', function (e) {
-      var cap = window.Capacitor;
-      var UP = cap && cap.Plugins && cap.Plugins.UpdatePlugin;
-      var isNative = cap && cap.isNativePlatform && cap.isNativePlatform();
-      if (!(isNative && UP && UP.downloadAndInstall)) return; // PWA : comportement lien normal
-      e.preventDefault();
-      dl.textContent = '⏳…';
-      UP.downloadAndInstall({ url: url }).catch(function (err) {
-        dl.textContent = 'Télécharger';
-        var msg = (err && err.message) || '';
-        if (msg.indexOf('permission') >= 0) {
-          alert("Autorise l'installation d'apps depuis cette source dans les réglages Android, puis réessaie.");
-        } else {
-          alert('Erreur : ' + (msg || err));
-        }
-      });
-    });
+
+    // Si le plugin natif est présent (APK) : bouton qui télécharge + INSTALLE
+    // directement. Sinon lien de téléchargement navigateur (PWA).
+    var canInstall = typeof window.installApkUpdate === 'function' &&
+      window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.UpdatePlugin;
+    var act;
+    if (canInstall) {
+      act = document.createElement('button');
+      act.className = 'ub-act';
+      act.textContent = '⬇ Installer';
+      act.onclick = function () {
+        act.disabled = true; act.textContent = '⏳ Installation…';
+        window.installApkUpdate(url, act, function () {
+          act.disabled = false; act.textContent = '⬇ Installer';
+        });
+      };
+    } else {
+      act = document.createElement('a');
+      act.className = 'ub-act';
+      act.href = url; act.target = '_blank'; act.rel = 'noopener';
+      act.textContent = 'Télécharger';
+    }
+
     var x = document.createElement('button');
+    x.className = 'ub-x';
     x.setAttribute('aria-label', 'Ignorer'); x.textContent = '✕';
     x.onclick = function () { ls(false, KEY_DISMISS, version); b.remove(); };
-    b.appendChild(txt); b.appendChild(dl); b.appendChild(x);
+    b.appendChild(txt); b.appendChild(act); b.appendChild(x);
     (document.body || document.documentElement).appendChild(b);
   }
 })();

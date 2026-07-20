@@ -12,3 +12,7 @@ android/app/src/main/assets/capacitor.plugins.json
 
 # Photos sources (sommaire du livre)
 IMG_*.jpg
+
+# signing keystores never live in the repo
+*.p12
+*.jks
