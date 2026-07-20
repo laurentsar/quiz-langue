@@ -14,9 +14,16 @@
  * Ce module sauvegarde l'INTÉGRALITÉ du localStorage de l'app, sans connaître
  * son schéma — impossible d'oublier une clé lors d'une évolution de l'app.
  *
+ * LIMITE CONNUE : un état posé via /api/states n'est pas persistant côté Home
+ * Assistant — il vit dans la state machine et disparaît au redémarrage de HA.
+ * L'app republie donc à chaque lancement, ce qui recrée l'entité. Fenêtre de
+ * risque résiduelle : HA redémarre, puis on désinstalle l'app sans l'avoir
+ * rouverte. Vérifier que sensor.<app>_sauvegarde existe AVANT de désinstaller.
+ *
  * Config (avant ce script) :
  *   window.BACKUP_APP    = 'bornes-ve';        // obligatoire, préfixe des clés
  *   window.BACKUP_ENTITY = 'sensor.bornes_ve_sauvegarde';  // optionnel
+ *   window.BACKUP_SKIP   = [/^feedcache:/];    // optionnel : caches régénérables
  *
  * API :
  *   AutoBackup.mount(el)   injecte le panneau de réglages (URL + jeton + boutons)
@@ -38,6 +45,48 @@
 
   // Clés purement locales : les restaurer n'aurait pas de sens.
   var SKIP = /^(updPoll:|updDismiss:|dismissedUpdate$|_localforage)/;
+
+  // Caches régénérables propres à l'app (gros et sans valeur en sauvegarde).
+  var EXTRA_SKIP = global.BACKUP_SKIP || [];
+
+  function skipped(k) {
+    if (k === CFG_KEY || k === META_KEY || SKIP.test(k)) return true;
+    for (var i = 0; i < EXTRA_SKIP.length; i++) {
+      if (EXTRA_SKIP[i].test(k)) return true;
+    }
+    return false;
+  }
+
+  // Certaines apps (mabiblio) stockent via Capacitor Preferences dans l'APK et
+  // ne touchent le localStorage qu'en navigateur : il faut couvrir les deux.
+  function prefsPlugin() {
+    return global.Capacitor && global.Capacitor.Plugins &&
+      global.Capacitor.Plugins.Preferences;
+  }
+
+  function readPrefs() {
+    var P = prefsPlugin();
+    if (!P) return Promise.resolve({});
+    return P.keys().then(function (r) {
+      var keys = (r && r.keys ? r.keys : []).filter(function (k) { return !skipped(k); });
+      return Promise.all(keys.map(function (k) {
+        return P.get({ key: k }).then(function (v) { return [k, v && v.value]; });
+      })).then(function (pairs) {
+        var out = {};
+        pairs.forEach(function (p) { if (p[1] != null) out[p[0]] = p[1]; });
+        return out;
+      });
+    }).catch(function () { return {}; });
+  }
+
+  function writePrefs(obj) {
+    var P = prefsPlugin();
+    if (!P || !obj) return Promise.resolve(0);
+    var keys = Object.keys(obj);
+    return Promise.all(keys.map(function (k) {
+      return P.set({ key: k, value: String(obj[k]) });
+    })).then(function () { return keys.length; }).catch(function () { return 0; });
+  }
 
   function cfg() {
     try { return JSON.parse(localStorage.getItem(CFG_KEY) || '{}'); }
@@ -66,14 +115,22 @@
     });
   }
 
-  function snapshot() {
+  function snapshotLocal() {
     var out = {};
     for (var i = 0; i < localStorage.length; i++) {
       var k = localStorage.key(i);
-      if (k === CFG_KEY || k === META_KEY || SKIP.test(k)) continue;
+      if (skipped(k)) continue;
       out[k] = localStorage.getItem(k);
     }
     return out;
+  }
+
+  // Payload versionné : { v, ls: {...}, prefs: {...} }. L'ancien format (objet
+  // plat de clés localStorage) reste lisible à la restauration.
+  function snapshot() {
+    return readPrefs().then(function (prefs) {
+      return { v: 2, ls: snapshotLocal(), prefs: prefs };
+    });
   }
 
   function meta() {
@@ -86,28 +143,31 @@
   }
 
   function now() {
-    var data = JSON.stringify(snapshot());
-    if (data.length > MAX_BYTES) {
-      return Promise.reject(new Error(
-        'sauvegarde trop volumineuse (' + Math.round(data.length / 1024) + ' ko)'));
-    }
-    var stamp = new Date().toISOString();
-    return req('/api/states/' + ENTITY, {
-      method: 'POST',
-      body: {
-        state: stamp.slice(0, 19).replace('T', ' '),
-        attributes: {
-          friendly_name: APP + ' sauvegarde',
-          icon: 'mdi:cloud-upload-outline',
-          app: APP,
-          taille_ko: Math.round(data.length / 102.4) / 10,
-          cles: Object.keys(snapshot()).length,
-          data: data
-        }
+    return snapshot().then(function (snap) {
+      var data = JSON.stringify(snap);
+      var count = Object.keys(snap.ls).length + Object.keys(snap.prefs).length;
+      if (data.length > MAX_BYTES) {
+        throw new Error('sauvegarde trop volumineuse (' +
+          Math.round(data.length / 1024) + ' ko) — exclure les caches via BACKUP_SKIP');
       }
-    }).then(function () {
-      setMeta({ at: stamp, size: data.length });
-      return { size: data.length, at: stamp };
+      var stamp = new Date().toISOString();
+      return req('/api/states/' + ENTITY, {
+        method: 'POST',
+        body: {
+          state: stamp.slice(0, 19).replace('T', ' '),
+          attributes: {
+            friendly_name: APP + ' sauvegarde',
+            icon: 'mdi:cloud-upload-outline',
+            app: APP,
+            taille_ko: Math.round(data.length / 102.4) / 10,
+            cles: count,
+            data: data
+          }
+        }
+      }).then(function () {
+        setMeta({ at: stamp, size: data.length });
+        return { size: data.length, at: stamp, count: count };
+      });
     });
   }
 
@@ -121,11 +181,17 @@
 
   function restore() {
     return read().then(function (r) {
+      var d = r.data;
+      // v1 : objet plat de clés localStorage. v2 : { ls, prefs }.
+      var ls = (d && d.v === 2) ? d.ls : d;
+      var prefs = (d && d.v === 2) ? d.prefs : {};
       var n = 0;
-      Object.keys(r.data).forEach(function (k) {
-        try { localStorage.setItem(k, r.data[k]); n++; } catch (e) {}
+      Object.keys(ls || {}).forEach(function (k) {
+        try { rawSet(k, ls[k]); n++; } catch (e) {}
       });
-      return { count: n, at: r.at };
+      return writePrefs(prefs).then(function (m) {
+        return { count: n + m, at: r.at };
+      });
     });
   }
 
@@ -138,9 +204,11 @@
     if (!enabled()) return;
     clearTimeout(timer);
     timer = setTimeout(function () {
-      var cur = JSON.stringify(snapshot());
-      if (cur === lastSaved) return;          // rien n'a bougé
-      now().then(function () { lastSaved = cur; }).catch(function () { });
+      snapshot().then(function (snap) {
+        var cur = JSON.stringify(snap);
+        if (cur === lastSaved) return;        // rien n'a bougé
+        return now().then(function () { lastSaved = cur; });
+      }).catch(function () { });
     }, DEBOUNCE);
   }
 
@@ -156,9 +224,11 @@
   // Passage en arrière-plan : dernier moment fiable avant que l'app disparaisse.
   function flush() {
     if (!enabled()) return;
-    var cur = JSON.stringify(snapshot());
-    if (cur === lastSaved) return;
-    now().then(function () { lastSaved = cur; }).catch(function () { });
+    snapshot().then(function (snap) {
+      var cur = JSON.stringify(snap);
+      if (cur === lastSaved) return;
+      return now().then(function () { lastSaved = cur; });
+    }).catch(function () { });
   }
   global.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden') flush();
@@ -241,7 +311,12 @@
   // avec la désinstallation, alors que la sauvegarde distante subsiste.
   function offerRestoreIfFresh() {
     if (!enabled()) return;
-    if (meta().at) return;                 // cette install a déjà sauvegardé
+    if (meta().at) {
+      // L'entité HA n'étant pas persistante, un redémarrage de HA l'efface :
+      // republier au lancement la recrée.
+      flush();
+      return;
+    }
     read().then(function (r) {
       if (!confirm('Une sauvegarde du ' + new Date(r.at).toLocaleString('fr-FR') +
                    ' a été trouvée sur Home Assistant.\n\nLa restaurer ? ' +
