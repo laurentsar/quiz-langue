@@ -2064,9 +2064,6 @@ document.querySelectorAll('.tcount-chip').forEach(c => c.addEventListener('click
 let phrasesPool = null;
 
 async function loadPhrasesPool() {
-  if (!fauxAmisData)   fauxAmisData   = await (await fetch(FAUX_AMIS_FILE)).json();
-  if (!famillesData)   famillesData   = await (await fetch(FAMILLES_FILE)).json();
-  if (!cognatesData)   cognatesData   = await (await fetch(COGNATES_FILE)).json();
   phrasesPool = [
     ...Object.entries(_GFIX).flatMap(([topic, bank]) =>
       bank.map(t => ({ type: 'grammar', data: _mkItem(topic, t.q, [...t.opts], t.ans, t.hint) }))
@@ -2076,9 +2073,6 @@ async function loadPhrasesPool() {
       const param = _TGEN[topic] ? Array.from({ length: 8 }, () => ({ type: 'tenses', data: _TGEN[topic]() })) : [];
       return [...fixed, ...param];
     }),
-    ...fauxAmisData.map(x    => ({ type: 'faux-amis',  data: x })),
-    ...famillesData.map(x    => ({ type: 'familles',   data: x })),
-    ...cognatesData.map(x    => ({ type: 'cognates',   data: x })),
   ];
   return phrasesPool;
 }
