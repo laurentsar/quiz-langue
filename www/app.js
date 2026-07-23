@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.32';
+const APP_VERSION = '2.33';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -390,7 +390,7 @@ async function installApkUpdate(apkUrl, statusEl, onEnd) {
     } catch (e) {
       const msg = (e && e.message) || String(e);
       if (/permission/i.test(msg)) {
-        alert("Autorise « Installer des applis inconnues » pour Quiz Langue dans les réglages Android, puis réessaie.");
+        alert("Autorise « Installer des applis inconnues » pour VocaLang dans les réglages Android, puis réessaie.");
       } else {
         alert('Échec de la mise à jour : ' + msg);
       }
@@ -1434,7 +1434,7 @@ async function startListening() {
       $('btn-pronun-mic').className = 'mic-btn';
       const code = String(err && (err.message || err.code || err) || '').toLowerCase();
       if (/permission|missing/i.test(code)) {
-        $('pronun-mic-hint').textContent = 'Micro refusé — Réglages → Applis → Quiz Langue → Micro.';
+        $('pronun-mic-hint').textContent = 'Micro refusé — Réglages → Applis → VocaLang → Micro.';
       } else if (/not.available|unavailable/i.test(code)) {
         $('pronun-mic-hint').textContent = 'Reconnaissance vocale non disponible.';
       } else {
@@ -2210,7 +2210,7 @@ async function scheduleReviewNotification() {
     const now = new Date();
     const trigger = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, 0, 0, 0);
     if (trigger <= now) trigger.setDate(trigger.getDate() + 1);
-    await LN.schedule({ notifications: [{ id: 1, title: '📚 Quiz Langue', body: msg, schedule: { at: trigger, repeats: false }, sound: null, attachments: null, actionTypeId: '', extra: null }] });
+    await LN.schedule({ notifications: [{ id: 1, title: '📚 VocaLang', body: msg, schedule: { at: trigger, repeats: false }, sound: null, attachments: null, actionTypeId: '', extra: null }] });
   } catch (_) {}
 }
 

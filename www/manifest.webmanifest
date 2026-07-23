@@ -1,6 +1,6 @@
 {
-  "name": "Quiz Langue",
-  "short_name": "Quiz Langue",
+  "name": "VocaLang",
+  "short_name": "VocaLang",
   "description": "Quiz de vocabulaire anglais et espagnol, hors-ligne.",
   "start_url": ".",
   "scope": ".",
