@@ -238,6 +238,38 @@
     });
   }
 
+  // --- sauvegarde par FICHIER (sans Home Assistant) ------------------------
+  // Pour les personnes qui n'ont pas HA : exporter un .json à garder/envoyer,
+  // et le réimporter après réinstallation. Fonctionne en APK (partage natif)
+  // comme en PWA (téléchargement).
+  function exportToFile() {
+    return snapshot().then(function (snap) {
+      var text = JSON.stringify(snap);
+      var name = APP + '-sauvegarde-' + new Date().toISOString().slice(0, 10) + '.json';
+      var blob = new Blob([text], { type: 'application/json' });
+      try {
+        var file = new File([blob], name, { type: 'application/json' });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          return navigator.share({ files: [file], title: name }).then(function () { return 'shared'; });
+        }
+      } catch (e) { /* pas de partage de fichier : on télécharge */ }
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = name;
+      document.body.appendChild(a); a.click();
+      setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 1500);
+      return 'downloaded';
+    });
+  }
+  function importFromText(text) {
+    var d = JSON.parse(text);
+    return applyData(d).then(function (count) {
+      setMeta({ at: new Date().toISOString(), size: 0, imported: true });
+      restoreState = 'done';
+      return count;
+    });
+  }
+
   // --- sauvegarde automatique (verrouillée par savingAllowed) --------------
   var timer = null;
   var lastSaved = '';
@@ -308,13 +340,22 @@
     var m = meta();
     el.innerHTML =
       '<div class="ab-box">' +
+      '<div class="ab-hint">📁 Sauvegarde par fichier — sans rien installer. Exporte un fichier à garder (ou à t\'envoyer par mail/cloud), puis réimporte-le après réinstallation.</div>' +
+      '<div class="ab-row">' +
+      '<button id="abExport" type="button">📤 Exporter</button>' +
+      '<button id="abImport" type="button">📥 Importer</button>' +
+      '</div>' +
+      '<input id="abFile" type="file" accept="application/json,.json" style="display:none">' +
+      '<p id="abLocalMsg" class="ab-msg"></p>' +
+      '<details class="ab-ha"><summary>⚙️ Sauvegarde automatique via Home Assistant (avancé)</summary>' +
       '<label>URL Home Assistant<input id="abUrl" type="url" placeholder="http://192.168.1.172:8123"></label>' +
       '<label>Jeton longue durée<input id="abTok" type="password" placeholder="eyJ…"></label>' +
       '<div class="ab-row">' +
       '<button id="abSave" type="button">Enregistrer</button>' +
       '<button id="abRest" type="button">Restaurer</button>' +
       '<button id="abNow" type="button">Sauvegarder maintenant</button>' +
-      '</div><p id="abMsg" class="ab-msg"></p></div>';
+      '</div><p id="abMsg" class="ab-msg"></p>' +
+      '</details></div>';
 
     var css = document.createElement('style');
     css.textContent =
@@ -324,7 +365,10 @@
       '.ab-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}' +
       '.ab-row button{flex:1 1 auto;padding:9px 12px;border:0;border-radius:9px;' +
       'background:#2563eb;color:#fff;font-weight:600;cursor:pointer}' +
-      '.ab-msg{font-size:13px;opacity:.85;margin-top:8px;min-height:1.2em}';
+      '.ab-msg{font-size:13px;opacity:.85;margin-top:8px;min-height:1.2em}' +
+      '.ab-hint{font-size:13px;opacity:.8;margin:2px 0 10px;line-height:1.4}' +
+      '.ab-ha{margin-top:14px}' +
+      '.ab-ha summary{cursor:pointer;font-size:13px;opacity:.75;padding:6px 0}';
     el.appendChild(css);
 
     var $ = function (id) { return el.querySelector('#' + id); };
@@ -374,6 +418,31 @@
           Math.round(r.size / 102.4) / 10 + ' ko) le ' +
           new Date(r.at).toLocaleString('fr-FR') + '.';
       }).catch(function (e) { $('abMsg').textContent = 'Échec : ' + e.message; });
+    };
+
+    // --- Export / Import par fichier (sans Home Assistant) ---
+    $('abExport').onclick = function () {
+      $('abLocalMsg').textContent = 'Préparation…';
+      exportToFile().then(function (how) {
+        $('abLocalMsg').textContent = how === 'shared'
+          ? 'Fichier prêt à enregistrer / envoyer.'
+          : 'Fichier téléchargé — garde-le en lieu sûr.';
+      }).catch(function (e) { $('abLocalMsg').textContent = 'Échec : ' + e.message; });
+    };
+    $('abImport').onclick = function () { $('abFile').click(); };
+    $('abFile').onchange = function () {
+      var f = this.files && this.files[0];
+      if (!f) return;
+      var reader = new FileReader();
+      reader.onload = function () {
+        if (!confirm('Importer cette sauvegarde ? Les données actuelles de cette app seront remplacées.')) return;
+        $('abLocalMsg').textContent = 'Import…';
+        importFromText(String(reader.result)).then(function (count) {
+          $('abLocalMsg').textContent = count + ' entrées importées. Rechargement…';
+          setTimeout(function () { location.reload(); }, 900);
+        }).catch(function (e) { $('abLocalMsg').textContent = 'Fichier invalide : ' + e.message; });
+      };
+      reader.readAsText(f);
     };
   }
 
