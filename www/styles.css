@@ -153,7 +153,7 @@ html, body {
 
 .modal {
   position: fixed; inset: 0; z-index: 10;
-  background: rgba(3,10,20,0.6); backdrop-filter: blur(3px);
+  background: rgba(3,10,20,0.78);
   display: flex; align-items: flex-end; justify-content: center;
   padding: 16px;
 }

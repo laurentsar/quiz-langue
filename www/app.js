@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.30';
+const APP_VERSION = '2.31';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -379,6 +379,29 @@ async function openMagazine(mag) {
     openExternal(target);
   }
 }
+// Mise à jour en un tap : télécharge + installe l'APK via le plugin natif
+// (utilisé par update-check.js). Repli navigateur en PWA / sans plugin.
+async function installApkUpdate(apkUrl, statusEl, onEnd) {
+  const UP = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.UpdatePlugin;
+  if (UP && apkUrl) {
+    if (statusEl) statusEl.textContent = '⏳ Téléchargement…';
+    try {
+      await UP.downloadAndInstall({ url: apkUrl });
+    } catch (e) {
+      const msg = (e && e.message) || String(e);
+      if (/permission/i.test(msg)) {
+        alert("Autorise « Installer des applis inconnues » pour Quiz Langue dans les réglages Android, puis réessaie.");
+      } else {
+        alert('Échec de la mise à jour : ' + msg);
+      }
+      if (onEnd) onEnd();
+    }
+    return;
+  }
+  window.open(apkUrl, '_blank');  // PWA / pas de plugin : téléchargement navigateur
+  if (onEnd) onEnd();
+}
+window.installApkUpdate = installApkUpdate;  // utilisé aussi par update-check.js
 function updateMagazineBtn() {
   const btn = $('btn-magazine');
   if (!btn) return;
