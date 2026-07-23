@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.31';
+const APP_VERSION = '2.32';
 const OPTION_COUNT = 4;
 
 const LANGS = {
