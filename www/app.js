@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.36';
+const APP_VERSION = '2.37';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2126,6 +2126,44 @@ const _TOEIC_P5 = {
     { q: 'The company decided to ___ with a local supplier.', opts: ['partner','participate','perform','pursue'], ans: 'partner', hint: 'partner with = s\'associer avec.' },
     { q: 'The board approved the ___ of three new branches.', opts: ['expansion','expense','exposure','expertise'], ans: 'expansion', hint: 'expansion = expansion/développement (here: ouverture de nouvelles agences).' },
     { q: 'We must ___ costs without affecting product quality.', opts: ['reduce','refuse','refund','retain'], ans: 'reduce', hint: 'reduce costs = réduire les coûts.' },
+    { q: 'The supplier failed to ___ the order on time.', opts: ['deliver','delay','deny','deposit'], ans: 'deliver', hint: 'deliver an order = livrer une commande.' },
+    { q: 'Please ___ the following documents to your application.', opts: ['attach','add','apply','appeal'], ans: 'attach', hint: 'attach documents = joindre des documents.' },
+    { q: 'The company decided to ___ its partnership with the vendor.', opts: ['extend','expand','express','exceed'], ans: 'extend', hint: 'extend a partnership = prolonger un partenariat.' },
+    { q: 'The new conference centre will ___ up to 300 delegates.', opts: ['accommodate','accompany','accomplish','account'], ans: 'accommodate', hint: 'accommodate = accueillir/avoir la capacité pour.' },
+    { q: 'We need to ___ our resources more effectively across departments.', opts: ['allocate','allow','adapt','assign'], ans: 'allocate', hint: 'allocate resources = allouer/répartir les ressources.' },
+    { q: 'The company plans to ___ its headquarters to a larger building.', opts: ['relocate','replace','remove','return'], ans: 'relocate', hint: 'relocate = déménager/délocaliser.' },
+    { q: 'The sales team managed to ___ its annual target by 10%.', opts: ['exceed','extend','expose','exhaust'], ans: 'exceed', hint: 'exceed a target = dépasser un objectif.' },
+    { q: 'All employees are encouraged to ___ to the company wellness programme.', opts: ['contribute','attribute','distribute','constitute'], ans: 'contribute', hint: 'contribute to = contribuer à.' },
+  ],
+  'finance': [
+    { q: "The company's annual ___ increased by 12% this quarter.", opts: ['revenue','salary','income','cost'], ans: 'revenue', hint: 'revenue = chiffre d\'affaires (total des recettes brutes).' },
+    { q: 'All travel expenses will be ___ within 10 business days.', opts: ['reimbursed','returned','refunded','reviewed'], ans: 'reimbursed', hint: 'reimburse = rembourser des frais professionnels.' },
+    { q: 'The project was delivered two weeks early and ___ budget.', opts: ['under','below','within','beneath'], ans: 'under', hint: 'under budget = en dessous du budget prévu.' },
+    { q: 'The government awarded a ___ to support the research programme.', opts: ['grant','loan','bonus','fund'], ans: 'grant', hint: 'grant = subvention accordée sans obligation de remboursement.' },
+    { q: 'The auditors discovered a significant ___ in the accounts.', opts: ['discrepancy','difference','dispute','defect'], ans: 'discrepancy', hint: 'discrepancy = écart/anomalie dans les comptes.' },
+    { q: 'The new ___ plan outlines spending for the next fiscal year.', opts: ['budget','billing','balance','base'], ans: 'budget', hint: 'budget plan = plan de budgétisation.' },
+    { q: 'Please submit all receipts to accounting for ___.', opts: ['reimbursement','return','refusal','recovery'], ans: 'reimbursement', hint: 'reimbursement = remboursement de frais professionnels.' },
+    { q: 'We need to closely ___ our expenses this quarter.', opts: ['monitor','control','manage','observe'], ans: 'monitor', hint: 'monitor expenses = surveiller/suivre les dépenses de près.' },
+  ],
+  'ressources-humaines': [
+    { q: 'The company plans to ___ 30 new engineers this year.', opts: ['recruit','record','recover','reduce'], ans: 'recruit', hint: 'recruit = recruter.' },
+    { q: 'New employees must complete a two-week ___ programme.', opts: ['induction','introduction','instruction','inspection'], ans: 'induction', hint: 'induction programme = programme d\'intégration des nouveaux employés.' },
+    { q: 'The position requires ___ experience in project management.', opts: ['extensive','expensive','explicit','exceptional'], ans: 'extensive', hint: 'extensive experience = une solide et vaste expérience.' },
+    { q: 'The manager will ___ a team of 15 sales representatives.', opts: ['oversee','overlook','overcome','override'], ans: 'oversee', hint: 'oversee = superviser/gérer une équipe.' },
+    { q: 'Employees who meet their targets will receive an annual ___.', opts: ['bonus','prize','award','pension'], ans: 'bonus', hint: 'bonus = prime annuelle liée aux performances.' },
+    { q: 'The HR department is responsible for ___ disputes between staff.', opts: ['resolving','refusing','removing','reducing'], ans: 'resolving', hint: 'resolve disputes = résoudre des conflits au sein de l\'équipe.' },
+    { q: 'All candidates will be ___ based on their skills and experience.', opts: ['evaluated','elevated','eliminated','elaborated'], ans: 'evaluated', hint: 'evaluate candidates = évaluer les candidats.' },
+    { q: 'The company offers a competitive ___ package to attract top talent.', opts: ['compensation','commission','contribution','condition'], ans: 'compensation', hint: 'compensation package = ensemble de la rémunération (salaire + avantages).' },
+  ],
+  'communication': [
+    { q: 'The meeting has been ___ until further notice.', opts: ['postponed','proposed','prepared','prevented'], ans: 'postponed', hint: 'postpone = reporter/remettre à une date ultérieure.' },
+    { q: "Please find the ___ for tomorrow's board meeting attached.", opts: ['agenda','schedule','program','summary'], ans: 'agenda', hint: 'agenda = ordre du jour d\'une réunion.' },
+    { q: 'The secretary was asked to take ___ during the conference.', opts: ['minutes','notes','records','reports'], ans: 'minutes', hint: 'take the minutes = rédiger le compte rendu officiel de la réunion.' },
+    { q: 'Could you please ___ receipt of this email?', opts: ['acknowledge','accept','agree','announce'], ans: 'acknowledge', hint: 'acknowledge receipt = accuser réception.' },
+    { q: "The CEO gave a brief ___ of the company's new direction.", opts: ['overview','overlook','outcome','output'], ans: 'overview', hint: 'overview = aperçu/présentation générale.' },
+    { q: 'Please ___ your attendance for the training session by Monday.', opts: ['confirm','correct','convey','consider'], ans: 'confirm', hint: 'confirm attendance = confirmer sa présence.' },
+    { q: 'I would like to ___ a meeting with your team for next week.', opts: ['arrange','attend','avoid','address'], ans: 'arrange', hint: 'arrange a meeting = organiser/planifier une réunion.' },
+    { q: 'The report was ___ to all department heads before the meeting.', opts: ['circulated','considered','completed','confirmed'], ans: 'circulated', hint: 'circulate a report = diffuser/distribuer un rapport en interne.' },
   ],
   'collocations': [
     { q: 'She needs to ___ a decision before the deadline.', opts: ['make','do','take','have'], ans: 'make', hint: 'make a decision = prendre une décision.' },
@@ -2140,11 +2178,14 @@ const _TOEIC_P5 = {
 };
 
 const TOEIC_P5_LABELS = {
-  'word-forms':   'Formes de mots (nom/verbe/adj/adv)',
-  'prepositions': 'Prépositions business',
-  'conjunctions': 'Connecteurs logiques',
-  'vocabulary':   'Vocabulaire en contexte',
-  'collocations': 'Collocations courantes',
+  'word-forms':          'Formes de mots (nom/verbe/adj/adv)',
+  'prepositions':        'Prépositions business',
+  'conjunctions':        'Connecteurs logiques',
+  'vocabulary':          'Vocabulaire en contexte',
+  'finance':             'Vocabulaire finance & comptabilité',
+  'ressources-humaines': 'Vocabulaire RH & recrutement',
+  'communication':       'Vocabulaire communication & réunions',
+  'collocations':        'Collocations courantes',
 };
 
 function generateToeicItem(topicId) {
