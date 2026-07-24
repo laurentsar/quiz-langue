@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.37';
+const APP_VERSION = '2.38';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -255,7 +255,7 @@ function vibrate(ok) { try { navigator.vibrate && navigator.vibrate(ok ? 25 : [4
 
 // ---------- DOM ----------
 const $ = (id) => document.getElementById(id);
-const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), 'faux-amis': $('view-faux-amis'), familles: $('view-familles'), cognates: $('view-cognates'), tenses: $('view-tenses'), phrases: $('view-phrases'), learn: $('view-learn'), listen: $('view-listen'), pronun: $('view-pronun') };
+const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), 'faux-amis': $('view-faux-amis'), familles: $('view-familles'), cognates: $('view-cognates'), tenses: $('view-tenses'), toeic: $('view-toeic'), phrases: $('view-phrases'), learn: $('view-learn'), listen: $('view-listen'), pronun: $('view-pronun') };
 let autoNextTimer = null;
 
 function showView(name) {
