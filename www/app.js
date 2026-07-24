@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.34';
+const APP_VERSION = '2.35';
 const OPTION_COUNT = 4;
 
 const LANGS = {
@@ -44,8 +44,9 @@ let verbSelectedWords = new Set();   // infinitifs sélectionnés pour le quiz p
 let verbSelectPanelOpen = false;
 
 // Clé de stats/SRS et voix TTS selon le mode courant.
-function quizKey() { return state.kind === 'verbs' ? VERBS_KEY : state.kind === 'grammar' ? GRAMMAR_KEY : state.kind === 'faux-amis' ? FAUX_AMIS_KEY : state.kind === 'familles' ? FAMILLES_KEY : state.kind === 'cognates' ? COGNATES_KEY : state.kind === 'tenses' ? TENSES_KEY : state.kind === 'phrases' ? PHRASES_KEY : state.lang; }
-function quizTts() { return (state.kind === 'verbs' || state.kind === 'grammar' || state.kind === 'faux-amis' || state.kind === 'familles' || state.kind === 'cognates' || state.kind === 'tenses' || state.kind === 'phrases') ? 'en-US' : LANGS[state.lang].tts; }
+const TOEIC_KEY = 'toeic';
+function quizKey() { return state.kind === 'verbs' ? VERBS_KEY : state.kind === 'grammar' ? GRAMMAR_KEY : state.kind === 'faux-amis' ? FAUX_AMIS_KEY : state.kind === 'familles' ? FAMILLES_KEY : state.kind === 'cognates' ? COGNATES_KEY : state.kind === 'tenses' ? TENSES_KEY : state.kind === 'phrases' ? PHRASES_KEY : state.kind === 'toeic' ? TOEIC_KEY : state.lang; }
+function quizTts() { return (state.kind === 'verbs' || state.kind === 'grammar' || state.kind === 'faux-amis' || state.kind === 'familles' || state.kind === 'cognates' || state.kind === 'tenses' || state.kind === 'phrases' || state.kind === 'toeic') ? 'en-US' : LANGS[state.lang].tts; }
 
 const settings = loadSettings();
 const cache = {};   // lang -> words
@@ -625,7 +626,7 @@ $('btn-level-none').addEventListener('click', () => {
 function exitToHome() {
   clearTimeout(autoNextTimer);
   try { speechSynthesis && speechSynthesis.cancel(); } catch (e) {}
-  if (['verbs', 'grammar', 'faux-amis', 'familles', 'cognates', 'tenses', 'phrases'].includes(state.kind)) { state.kind = 'vocab'; state.words = cache[state.lang] || state.words; }
+  if (['verbs', 'grammar', 'faux-amis', 'familles', 'cognates', 'tenses', 'phrases', 'toeic'].includes(state.kind)) { state.kind = 'vocab'; state.words = cache[state.lang] || state.words; }
   showView('home'); renderStats();
 }
 
@@ -2081,6 +2082,137 @@ $('btn-tenses-home').addEventListener('click', () => showView('home'));
 document.querySelectorAll('.tcount-chip').forEach(c => c.addEventListener('click', () => {
   state.count = +c.dataset.count;
   renderChips('.tcount-chip', state.count, 'count');
+}));
+
+// ---------- TOEIC ----------
+const _TOEIC_P5 = {
+  'word-forms': [
+    { q: 'The ___ of the meeting was confirmed yesterday.', opts: ['cancellation','cancel','cancelled','cancelling'], ans: 'cancellation', hint: 'Sujet de phrase → nom : cancellation.' },
+    { q: 'She is ___ for managing the entire sales team.', opts: ['responsible','responsibility','responsibly','respond'], ans: 'responsible', hint: 'Attribut après be → adjectif : responsible.' },
+    { q: 'We need to ___ the budget before the deadline.', opts: ['finalise','final','finally','finalisation'], ans: 'finalise', hint: 'Après to → verbe : finalise.' },
+    { q: 'He gave a very ___ presentation to the board.', opts: ['impressive','impression','impress','impressively'], ans: 'impressive', hint: 'Épithète avant nom → adjectif : impressive.' },
+    { q: "The company's ___ has increased by 20% this year.", opts: ['productivity','productive','productively','produce'], ans: 'productivity', hint: 'Sujet de phrase → nom : productivity.' },
+    { q: 'All employees must attend the ___ safety training.', opts: ['mandatory','mandate','mandatorily','mandated'], ans: 'mandatory', hint: 'Épithète devant nom → adjectif : mandatory.' },
+    { q: 'The contract was signed with the ___ of both parties.', opts: ['approval','approve','approved','approvingly'], ans: 'approval', hint: 'Après préposition with → nom : approval.' },
+    { q: 'Please handle this matter as ___ as possible.', opts: ['efficiently','efficient','efficiency','efficience'], ans: 'efficiently', hint: 'Modifie un verbe → adverbe : efficiently.' },
+  ],
+  'prepositions': [
+    { q: 'She is ___ charge of the marketing department.', opts: ['in','on','at','for'], ans: 'in', hint: 'in charge of = responsable de.' },
+    { q: 'Please submit your report ___ Friday at the latest.', opts: ['by','on','at','until'], ans: 'by', hint: 'by = au plus tard (deadline) → by Friday.' },
+    { q: 'The CEO is responsible ___ the final decision.', opts: ['for','of','to','about'], ans: 'for', hint: 'responsible for = responsable de.' },
+    { q: '___ the latest report, sales are up 12%.', opts: ['According to','Despite','In spite of','Owing'], ans: 'According to', hint: 'According to = selon (source de donnée).' },
+    { q: 'We are looking ___ a new warehouse manager.', opts: ['for','at','into','to'], ans: 'for', hint: 'look for = chercher.' },
+    { q: 'The meeting was postponed ___ short notice.', opts: ['at','on','with','by'], ans: 'at', hint: 'at short notice = au dernier moment.' },
+    { q: 'The invoice must be paid ___ 30 days.', opts: ['within','by','for','until'], ans: 'within', hint: 'within 30 days = dans un délai de 30 jours.' },
+    { q: 'The merger was completed ahead ___ schedule.', opts: ['of','to','for','on'], ans: 'of', hint: 'ahead of schedule = en avance sur le calendrier.' },
+  ],
+  'conjunctions': [
+    { q: 'Sales were down last quarter; ___, profits increased.', opts: ['however','therefore','moreover','although'], ans: 'however', hint: 'Contraste entre deux idées → however (cependant).' },
+    { q: '___ the bad weather, the conference was a great success.', opts: ['Despite','Although','However','Therefore'], ans: 'Despite', hint: 'Despite + nom/gérondif = malgré.' },
+    { q: 'She worked extremely hard; ___, she was promoted.', opts: ['therefore','however','despite','unless'], ans: 'therefore', hint: 'Conséquence logique → therefore (donc).' },
+    { q: '___ the project is delayed, we will miss the launch date.', opts: ['If','Unless','Although','Despite'], ans: 'If', hint: 'Condition → if (si).' },
+    { q: 'The contract was signed; ___, work can begin immediately.', opts: ['therefore','however','despite','whereas'], ans: 'therefore', hint: 'Conséquence → therefore.' },
+    { q: 'The results were positive, ___ there is still room for improvement.', opts: ['although','despite','however','therefore'], ans: 'although', hint: 'although + proposition = bien que.' },
+    { q: '___ you complete the form, your application will be processed.', opts: ['Once','Unless','Despite','However'], ans: 'Once', hint: 'Once = dès que (cause déclencheur).' },
+    { q: 'The new policy applies to all staff, ___ their seniority.', opts: ['regardless of','in spite','however','despite to'], ans: 'regardless of', hint: 'regardless of = quelle que soit.' },
+  ],
+  'vocabulary': [
+    { q: 'Please ___ the attached document before the meeting.', opts: ['review','revise','renew','recall'], ans: 'review', hint: 'review a document = examiner/relire un document.' },
+    { q: 'We need to ___ a new strategy for next fiscal year.', opts: ['develop','deliver','decline','deduct'], ans: 'develop', hint: 'develop a strategy = élaborer une stratégie.' },
+    { q: 'The manager will ___ the results at the annual conference.', opts: ['present','prevent','pretend','preserve'], ans: 'present', hint: 'present results = présenter les résultats.' },
+    { q: 'All applications must be ___ by 5 p.m. on Friday.', opts: ['submitted','subscribed','subtracted','substituted'], ans: 'submitted', hint: 'submit an application = déposer/soumettre une candidature.' },
+    { q: 'Could you please ___ the meeting to next Monday?', opts: ['reschedule','resume','recall','replace'], ans: 'reschedule', hint: 'reschedule = reporter/reprogrammer.' },
+    { q: 'The company decided to ___ with a local supplier.', opts: ['partner','participate','perform','pursue'], ans: 'partner', hint: 'partner with = s\'associer avec.' },
+    { q: 'The board approved the ___ of three new branches.', opts: ['expansion','expense','exposure','expertise'], ans: 'expansion', hint: 'expansion = expansion/développement (here: ouverture de nouvelles agences).' },
+    { q: 'We must ___ costs without affecting product quality.', opts: ['reduce','refuse','refund','retain'], ans: 'reduce', hint: 'reduce costs = réduire les coûts.' },
+  ],
+  'collocations': [
+    { q: 'She needs to ___ a decision before the deadline.', opts: ['make','do','take','have'], ans: 'make', hint: 'make a decision = prendre une décision.' },
+    { q: 'The team will ___ a detailed report on the findings.', opts: ['submit','send','say','show'], ans: 'submit', hint: 'submit a report = soumettre un rapport.' },
+    { q: 'We need to ___ a contract with the new client.', opts: ['sign','make','do','write'], ans: 'sign', hint: 'sign a contract = signer un contrat.' },
+    { q: 'Can you ___ an appointment for next Tuesday?', opts: ['make','do','take','have'], ans: 'make', hint: 'make an appointment = prendre un rendez-vous.' },
+    { q: 'The company plans to ___ costs by 15% next year.', opts: ['cut','make','do','lower'], ans: 'cut', hint: 'cut costs = réduire les coûts.' },
+    { q: 'We will ___ a meeting to discuss the annual budget.', opts: ['hold','make','do','take'], ans: 'hold', hint: 'hold a meeting = organiser/tenir une réunion.' },
+    { q: 'The HR department will ___ interviews next week.', opts: ['conduct','make','do','perform'], ans: 'conduct', hint: 'conduct interviews = mener des entretiens.' },
+    { q: 'Please ___ the attached files before closing the document.', opts: ['save','keep','store','record'], ans: 'save', hint: 'save files = enregistrer les fichiers.' },
+  ],
+};
+
+const TOEIC_P5_LABELS = {
+  'word-forms':   'Formes de mots (nom/verbe/adj/adv)',
+  'prepositions': 'Prépositions business',
+  'conjunctions': 'Connecteurs logiques',
+  'vocabulary':   'Vocabulaire en contexte',
+  'collocations': 'Collocations courantes',
+};
+
+function generateToeicItem(topicId) {
+  const bank = _TOEIC_P5[topicId];
+  if (!bank) return null;
+  const t = _rnd(bank);
+  return _mkItem(topicId, t.q, shuffle([...t.opts]), t.ans, t.hint);
+}
+
+function renderToeicMenu() {
+  const list = $('toeic-list');
+  list.innerHTML = Object.keys(_TOEIC_P5).map(topic => {
+    const label = TOEIC_P5_LABELS[topic] || topic;
+    return `<button class="grammar-item" data-topic="${esc(topic)}"><span class="gi-title">${esc(label)}</span><span class="gi-sub">Génération aléatoire</span></button>`;
+  }).join('');
+  list.querySelectorAll('.grammar-item').forEach(b =>
+    b.addEventListener('click', () => startToeicPart5(b.dataset.topic))
+  );
+  renderChips('.toeic-chip', state.count, 'count');
+}
+
+function openToeic() {
+  renderToeicMenu();
+  showView('toeic');
+}
+
+function startToeicPart5(topicId) {
+  const topics = topicId ? [topicId] : Object.keys(_TOEIC_P5);
+  const count = state.count;
+  const items = [];
+  for (let i = 0; i < count; i++) {
+    const t = topics[i % topics.length];
+    const item = generateToeicItem(t);
+    if (item) items.push(item);
+  }
+  if (!items.length) return;
+  state.kind = 'toeic';
+  state.level = 'Global';
+  state.badge = topicId ? (TOEIC_P5_LABELS[topicId] || topicId) : 'TOEIC Part 5';
+  state.mode = 'srs';
+  state.questions = shuffle(items).map(item => {
+    const q = buildGrammarQuestion(item);
+    q.word = 'toeic-' + item.topic;
+    return q;
+  });
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
+}
+
+async function startToeicVocab() {
+  if (!cache['en']) cache['en'] = await (await fetch(LANGS['en'].file)).json();
+  const b1b2 = cache['en'].filter(w => w.level === 'B1' || w.level === 'B2');
+  state.kind = 'vocab';
+  state.lang = 'en';
+  state.level = 'B1/B2';
+  state.badge = 'Vocabulaire B1/B2';
+  state.words = b1b2;
+  startSession('srs');
+}
+
+$('btn-toeic').addEventListener('click', openToeic);
+$('btn-toeic-p5').addEventListener('click', () => startToeicPart5(null));
+$('btn-toeic-vocab').addEventListener('click', startToeicVocab);
+$('btn-toeic-home').addEventListener('click', () => showView('home'));
+document.querySelectorAll('.toeic-chip').forEach(c => c.addEventListener('click', () => {
+  state.count = +c.dataset.count;
+  renderChips('.toeic-chip', state.count, 'count');
 }));
 
 // ---------- phrases à compléter (méga-quiz cross-mode) ----------
