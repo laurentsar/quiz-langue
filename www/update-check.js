@@ -1,14 +1,12 @@
 /*
- * update-check.js — vérification de mise à jour applicative (générique).
- * Interroge la dernière Release GitHub, compare au numéro embarqué et affiche
- * une bannière de téléchargement si une version plus récente est publiée.
+ * update-check.js — vérification de mise à jour via le flux Atom des releases GitHub.
+ * Plus fiable que l'API REST : pas de rate-limit, pas de token, CDN GitHub.
  *
  * Config (dans index.html, avant ce script) :
- *   window.UPDATE_REPO = 'laurentsar/<repo>';   // obligatoire
- *   window.APP_VERSION = '1.2';                  // obligatoire (version installée)
+ *   window.UPDATE_REPO = 'owner/repo';   // obligatoire
  *
- * Autonome : aucune dépendance, styles injectés. Anti-spam : 1 requête / 6 h,
- * mémorise la version ignorée. Échec réseau silencieux.
+ * window.APP_VERSION est lu depuis app.js (window.APP_VERSION = APP_VERSION).
+ * Anti-spam : 1 requête / 6 h. Mémorise la version ignorée. Échec silencieux.
  */
 (function () {
   'use strict';
@@ -16,8 +14,8 @@
   var CURRENT = window.APP_VERSION;
   if (!REPO || !CURRENT) return;
 
-  var POLL_INTERVAL = 6 * 3600 * 1000; // 6 h
-  var KEY_POLL = 'updPoll:' + REPO;
+  var POLL_INTERVAL = 6 * 3600 * 1000;
+  var KEY_POLL    = 'updPoll:'    + REPO;
   var KEY_DISMISS = 'updDismiss:' + REPO;
 
   function ls(get, k, v) {
@@ -25,7 +23,6 @@
     catch (e) { return null; }
   }
 
-  // Compare deux versions "a.b.c" → >0 si va plus récente que vb.
   function cmp(va, vb) {
     var a = String(va).replace(/^v/, '').split('.');
     var b = String(vb).replace(/^v/, '').split('.');
@@ -39,22 +36,30 @@
   var last = parseInt(ls(true, KEY_POLL), 10) || 0;
   if (Date.now() - last < POLL_INTERVAL) return;
 
-  // Cache-buster (_) : évite qu'un service worker "cache-first" serve une
-  // réponse d'API périmée. GitHub ignore les paramètres inconnus.
-  fetch('https://api.github.com/repos/' + REPO + '/releases/latest?_=' + Date.now(), {
-    headers: { Accept: 'application/vnd.github+json' }
+  // Flux Atom GitHub releases — format stable, sans auth, sans rate-limit
+  fetch('https://github.com/' + REPO + '/releases.atom', {
+    headers: { Accept: 'application/atom+xml,application/xml,text/xml' }
   })
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (rel) {
-      if (!rel || !rel.tag_name) return;
+    .then(function (r) { return r.ok ? r.text() : null; })
+    .then(function (xml) {
+      if (!xml) return;
       ls(false, KEY_POLL, Date.now());
-      var latest = String(rel.tag_name).replace(/^v/, '');
-      if (cmp(latest, CURRENT) <= 0) return;          // déjà à jour
-      if (ls(true, KEY_DISMISS) === latest) return;    // version déjà ignorée
-      var apk = (rel.assets || []).filter(function (a) {
-        return /\.apk$/i.test(a.name);
-      })[0];
-      showBanner(latest, apk ? apk.browser_download_url : rel.html_url);
+
+      // Extrait le tag depuis l'<id> de la première <entry> :
+      // <id>tag:github.com,2008:Repository/123/v2.35</id>
+      var m = xml.match(/<entry>[\s\S]*?<id>[^<]*\/([^/<]+)<\/id>/);
+      if (!m) return;
+      var latest = m[1].replace(/^v/, '').trim();
+      if (!latest || cmp(latest, CURRENT) <= 0) return;
+      if (ls(true, KEY_DISMISS) === latest) return;
+
+      // URL de l'APK dérivée du numéro de version (pattern constant dans ce repo)
+      var repoName = REPO.split('/')[1];
+      var apkUrl = 'https://github.com/' + REPO +
+                   '/releases/download/v' + latest +
+                   '/' + repoName + '-' + latest + '.apk';
+
+      showBanner(latest, apkUrl);
     })
     .catch(function () { /* hors-ligne : silencieux */ });
 
@@ -82,8 +87,6 @@
     txt.className = 'ub-txt';
     txt.innerHTML = '🔄 Nouvelle version <b>v' + version + '</b> disponible';
 
-    // Si le plugin natif est présent (APK) : bouton qui télécharge + INSTALLE
-    // directement. Sinon lien de téléchargement navigateur (PWA).
     var canInstall = typeof window.installApkUpdate === 'function' &&
       window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.UpdatePlugin;
     var act;
