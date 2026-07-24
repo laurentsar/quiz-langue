@@ -7,8 +7,8 @@ android {
         applicationId "com.laurent.quizlangue"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 23500
-        versionName "2.35"
+        versionCode 23600
+        versionName "2.36"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
