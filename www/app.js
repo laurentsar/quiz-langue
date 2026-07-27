@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.39';
+const APP_VERSION = '2.40';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -10,7 +10,7 @@ const LANGS = {
 };
 
 // Leitner box -> days until due
-const BOX_DAYS = [0, 1, 2, 4, 8, 16];
+const BOX_DAYS = [0, 1, 1, 3, 7, 14];
 const MAX_BOX = BOX_DAYS.length - 1;
 const DAY = 86400000;
 
@@ -120,7 +120,7 @@ function srsUpdate(lang, word, correct) {
   const e = srs[word] || { box: 0, due: 0, seen: 0, correct: 0, wrong: 0, last: '' };
   e.seen++;
   if (correct) { e.correct++; e.box = Math.min(e.box + 1, MAX_BOX); e.last = 'ok'; }
-  else { e.wrong++; e.box = 0; e.last = 'ko'; }
+  else { e.wrong++; e.box = Math.max(e.box - 2, 0); e.last = 'ko'; }
   e.due = Date.now() + BOX_DAYS[e.box] * DAY;
   srs[word] = e;
 }
@@ -144,8 +144,17 @@ function pickSession(mode) {
   } else {
     const due = dueList(words, srs, now);
     const fresh = newList(words, srs);
-    picks = due.concat(fresh).slice(0, state.count);
-    if (picks.length < state.count) picks = picks.concat(shuffle(words)).slice(0, state.count);
+    // ① quota minimum de nouveaux mots : 40 % des slots (arrondi haut)
+    const newSlots = Math.ceil(state.count * 0.4);
+    const dueSlots = state.count - newSlots;
+    picks = due.slice(0, dueSlots).concat(fresh.slice(0, newSlots));
+    // complète si l'un des deux pools est vide
+    if (picks.length < state.count) {
+      const remaining = due.slice(dueSlots).concat(fresh.slice(newSlots));
+      picks = picks.concat(remaining);
+    }
+    if (picks.length < state.count) picks = picks.concat(shuffle(words));
+    picks = picks.slice(0, state.count);
     // de-dup while keeping order
     const used = new Set(); picks = picks.filter(w => !used.has(w.word) && used.add(w.word));
   }
