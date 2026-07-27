@@ -6,14 +6,12 @@
  *   window.UPDATE_REPO = 'owner/repo';   // obligatoire
  *
  * window.APP_VERSION est lu depuis app.js (window.APP_VERSION = APP_VERSION).
- * Anti-spam : 1 requête / 6 h. Mémorise la version ignorée. Échec silencieux.
+ * Anti-spam automatique : 1 requête / 6 h. Vérification manuelle disponible via
+ * window.checkForUpdate(statusEl) — ignore le délai anti-spam.
  */
 (function () {
   'use strict';
   var REPO = window.UPDATE_REPO;
-  var CURRENT = window.APP_VERSION;
-  if (!REPO || !CURRENT) return;
-
   var POLL_INTERVAL = 6 * 3600 * 1000;
   var KEY_POLL    = 'updPoll:'    + REPO;
   var KEY_DISMISS = 'updDismiss:' + REPO;
@@ -33,35 +31,62 @@
     return 0;
   }
 
-  var last = parseInt(ls(true, KEY_POLL), 10) || 0;
-  if (Date.now() - last < POLL_INTERVAL) return;
+  function fetchLatest(statusEl, force) {
+    var CURRENT = window.APP_VERSION;
+    if (!REPO || !CURRENT) return;
 
-  // Flux Atom GitHub releases — format stable, sans auth, sans rate-limit
-  fetch('https://github.com/' + REPO + '/releases.atom', {
-    headers: { Accept: 'application/atom+xml,application/xml,text/xml' }
-  })
-    .then(function (r) { return r.ok ? r.text() : null; })
-    .then(function (xml) {
-      if (!xml) return;
-      ls(false, KEY_POLL, Date.now());
+    if (!force) {
+      var last = parseInt(ls(true, KEY_POLL), 10) || 0;
+      if (Date.now() - last < POLL_INTERVAL) return;
+    }
 
-      // Extrait le tag depuis l'<id> de la première <entry> :
-      // <id>tag:github.com,2008:Repository/123/v2.35</id>
-      var m = xml.match(/<entry>[\s\S]*?<id>[^<]*\/([^/<]+)<\/id>/);
-      if (!m) return;
-      var latest = m[1].replace(/^v/, '').trim();
-      if (!latest || cmp(latest, CURRENT) <= 0) return;
-      if (ls(true, KEY_DISMISS) === latest) return;
+    if (statusEl) { statusEl.textContent = '🔄 Vérification…'; statusEl.disabled = true; }
 
-      // URL de l'APK dérivée du numéro de version (pattern constant dans ce repo)
-      var repoName = REPO.split('/')[1];
-      var apkUrl = 'https://github.com/' + REPO +
-                   '/releases/download/v' + latest +
-                   '/' + repoName + '-' + latest + '.apk';
-
-      showBanner(latest, apkUrl);
+    fetch('https://github.com/' + REPO + '/releases.atom', {
+      headers: { Accept: 'application/atom+xml,application/xml,text/xml' }
     })
-    .catch(function () { /* hors-ligne : silencieux */ });
+      .then(function (r) { return r.ok ? r.text() : null; })
+      .then(function (xml) {
+        if (!xml) {
+          if (statusEl) { statusEl.textContent = '⚠️ Erreur réseau'; statusEl.disabled = false; }
+          return;
+        }
+        ls(false, KEY_POLL, Date.now());
+
+        var m = xml.match(/<entry>[\s\S]*?<id>[^<]*\/([^/<]+)<\/id>/);
+        if (!m) {
+          if (statusEl) { statusEl.textContent = '⚠️ Flux indisponible'; statusEl.disabled = false; }
+          return;
+        }
+        var latest = m[1].replace(/^v/, '').trim();
+
+        if (!latest || cmp(latest, CURRENT) <= 0) {
+          if (statusEl) { statusEl.textContent = '✅ Déjà à jour (v' + CURRENT + ')'; statusEl.disabled = false; }
+          return;
+        }
+        if (!force && ls(true, KEY_DISMISS) === latest) {
+          if (statusEl) { statusEl.textContent = '✅ Déjà à jour'; statusEl.disabled = false; }
+          return;
+        }
+
+        if (statusEl) { statusEl.textContent = '🔄 Vérifier les mises à jour'; statusEl.disabled = false; }
+
+        var repoName = REPO.split('/')[1];
+        var apkUrl = 'https://github.com/' + REPO +
+                     '/releases/download/v' + latest +
+                     '/' + repoName + '-' + latest + '.apk';
+        showBanner(latest, apkUrl);
+      })
+      .catch(function () {
+        if (statusEl) { statusEl.textContent = '⚠️ Hors ligne'; statusEl.disabled = false; }
+      });
+  }
+
+  // Vérification manuelle depuis les Réglages
+  window.checkForUpdate = function (statusEl) { fetchLatest(statusEl, true); };
+
+  // Vérification automatique au démarrage (anti-spam 6h)
+  if (REPO) fetchLatest(null, false);
 
   function showBanner(version, url) {
     if (document.getElementById('update-banner')) return;

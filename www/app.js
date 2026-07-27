@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.41';
+const APP_VERSION = '2.42';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2582,5 +2582,8 @@ document.querySelectorAll('.newratio-chip').forEach(c => c.addEventListener('cli
   saveSettings();
   renderChips('.newratio-chip', settings.newRatio, 'ratio');
 }));
+$('btn-check-update').addEventListener('click', function () {
+  if (typeof window.checkForUpdate === 'function') window.checkForUpdate(this);
+});
 
 if (settings.notifications) scheduleReviewNotification();
