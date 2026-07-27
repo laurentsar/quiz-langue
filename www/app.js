@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.44';
+const APP_VERSION = '2.45';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -22,7 +22,7 @@ const FAMILLES_KEY = 'familles';
 const COGNATES_KEY = 'cognates';
 const TENSES_KEY  = 'tenses';
 const PHRASES_KEY = 'phrases';
-const KIND_COLORS = { vocab: '#27B3FF', verbs: '#4CE0D2', grammar: '#1B5CFF', pronun: '#B15CFF', 'faux-amis': '#FF6B35', familles: '#A855F7', cognates: '#10B981', tenses: '#EF4444', phrases: '#F59E0B' };
+const KIND_COLORS = { vocab: '#27B3FF', verbs: '#4CE0D2', grammar: '#1B5CFF', 'faux-amis': '#FF6B35', familles: '#A855F7', cognates: '#10B981', tenses: '#EF4444', phrases: '#F59E0B', toeic: '#F97316' };
 
 const state = {
   lang: 'en',
@@ -636,7 +636,8 @@ $('btn-level-none').addEventListener('click', () => {
 function exitToHome() {
   clearTimeout(autoNextTimer);
   try { speechSynthesis && speechSynthesis.cancel(); } catch (e) {}
-  if (['verbs', 'grammar', 'faux-amis', 'familles', 'cognates', 'tenses', 'phrases', 'toeic'].includes(state.kind)) { state.kind = 'vocab'; state.words = cache[state.lang] || state.words; }
+  if (['verbs', 'grammar', 'faux-amis', 'familles', 'cognates', 'tenses', 'phrases', 'toeic'].includes(state.kind)) state.kind = 'vocab';
+  state.words = cache[state.lang] || state.words;
   showView('home'); renderStats();
 }
 
@@ -2316,7 +2317,7 @@ document.querySelectorAll('.pcount-chip').forEach(c => c.addEventListener('click
 }));
 
 // ---------- motivation : streak quotidien + objectif du jour ----------
-const ALL_DAILY_KEYS = () => ['en', 'es', VERBS_KEY, GRAMMAR_KEY, FAUX_AMIS_KEY, FAMILLES_KEY, COGNATES_KEY, TENSES_KEY, PHRASES_KEY];
+const ALL_DAILY_KEYS = () => ['en', 'es', VERBS_KEY, GRAMMAR_KEY, FAUX_AMIS_KEY, FAMILLES_KEY, COGNATES_KEY, TENSES_KEY, PHRASES_KEY, TOEIC_KEY];
 
 function todayTotalQuestions() {
   const today = todayStr();

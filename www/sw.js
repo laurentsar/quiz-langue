@@ -1,4 +1,4 @@
-const CACHE = 'quiz-app-v2.44';
+const CACHE = 'quiz-app-v2.45';
 const ASSETS = [
   './',
   'index.html',
@@ -11,7 +11,10 @@ const ASSETS = [
   'data/wordlist_es.json',
   'data/verbs_en.json',
   'data/grammar_en.json',
-  'data/grammar_quiz_en.json',
+  'data/grammar_es.json',
+  'data/faux_amis_en.json',
+  'data/word_families_en.json',
+  'data/cognates_en.json',
   'data/listen.json',
   'img/icon-192.png',
   'img/icon-512.png',
