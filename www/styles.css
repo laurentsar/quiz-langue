@@ -505,3 +505,63 @@ html, body {
 
 /* Phrases à compléter — description */
 .phrases-desc { font-size: 13px; color: var(--text-dim); margin-top: 12px; line-height: 1.5; }
+
+/* ==================== MOTS CROISÉS ==================== */
+.cw-grid-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.cw-grid { border-collapse: collapse; margin: 0 auto; user-select: none; }
+.cw-grid td { padding: 1px; vertical-align: top; }
+.cw-cell {
+  display: flex; align-items: center; justify-content: center;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: var(--card);
+  color: var(--text);
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 700;
+  position: relative;
+  transition: background 0.1s, border-color 0.1s;
+}
+.cw-cell.selected { background: var(--card-alt); border-color: var(--sky); }
+.cw-cell.cursor { background: var(--sky); color: var(--ink); border-color: var(--sky); }
+.cw-cell.correct { background: rgba(53,208,127,0.18); border-color: var(--success); color: var(--success); }
+.cw-cell.error { background: rgba(255,107,129,0.18); border-color: var(--danger); color: var(--danger); }
+.cw-cell.cursor.correct { background: var(--sky); color: var(--ink); }
+.cw-cell.cursor.error { background: var(--sky); color: var(--ink); }
+.cw-num {
+  position: absolute; top: 1px; left: 2px;
+  font-size: 7px; font-weight: 600;
+  color: var(--text-dim); line-height: 1;
+  pointer-events: none;
+}
+.cw-clue {
+  background: var(--card);
+  border: 1px solid var(--sky);
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-size: 15px;
+  color: var(--text);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cw-clue-word { font-weight: 700; color: var(--sky); flex-shrink: 0; }
+.cw-words-list { display: flex; flex-direction: column; gap: 6px; }
+.cw-dir-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--text-dim); margin-top: 4px;
+}
+.cw-word-tag {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 10px;
+  padding: 7px 12px;
+  font-size: 13px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.cw-word-tag:active { background: rgba(255,255,255,0.10); }
+.cw-word-tag.solved { background: rgba(53,208,127,0.12); border-color: var(--success); color: var(--success); }
+.cw-word-num { font-weight: 700; color: var(--sky); font-size: 12px; min-width: 26px; }

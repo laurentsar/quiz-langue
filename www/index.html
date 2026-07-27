@@ -77,6 +77,7 @@
             <button id="btn-cognates" class="mod-btn">✅ Vrais cognates</button>
             <button id="btn-tenses" class="mod-btn">⏱️ Temps verbaux</button>
             <button id="btn-toeic" class="mod-btn">🎯 TOEIC</button>
+            <button id="btn-crossword" class="mod-btn">🔤 Mots croisés</button>
           </div>
         </div>
         <div class="modules-group">
@@ -554,6 +555,28 @@
       </div>
       <button id="btn-phrases-start" class="primary">Démarrer</button>
       <button id="btn-phrases-home" class="secondary">Accueil</button>
+    </section>
+
+    <!-- MOTS CROISÉS -->
+    <section id="view-crossword" class="view hidden">
+      <div class="quiz-header">
+        <span class="quiz-progress">🔤 Mots croisés</span>
+        <span id="cw-progress" class="quiz-level"></span>
+      </div>
+      <div class="chip-row">
+        <button class="chip cwcount-chip" data-count="5">5 mots</button>
+        <button class="chip cwcount-chip" data-count="8">8 mots</button>
+        <button class="chip cwcount-chip" data-count="10">10 mots</button>
+      </div>
+      <button id="btn-cw-start" class="primary">▶ Générer la grille</button>
+      <div id="cw-clue-box" class="cw-clue hidden">Sélectionnez une case</div>
+      <div id="cw-grid-wrap" class="cw-grid-wrap hidden">
+        <table id="cw-grid" class="cw-grid"></table>
+      </div>
+      <div id="cw-words-list" class="cw-words-list hidden"></div>
+      <input id="cw-input" type="text" inputmode="text" autocomplete="off" autocorrect="off" autocapitalize="characters" style="position:fixed;opacity:0;pointer-events:none;width:1px;height:1px;top:0;left:0;" />
+      <button id="btn-cw-new" class="secondary hidden">🔄 Nouvelle grille</button>
+      <button id="btn-cw-home" class="secondary">Accueil</button>
     </section>
   </main>
 
