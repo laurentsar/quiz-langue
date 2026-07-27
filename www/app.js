@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.45';
+const APP_VERSION = '2.46';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2982,13 +2982,14 @@ cwInput.addEventListener('keydown', function (e) {
 });
 
 // ==================== MOTS À RELIER ====================
-let mrWords = [], mrLeft = [], mrRight = [], mrSelected = null, mrPaired = new Set(), mrWordCount = 5, mrSrsLang;
+const MR_COLORS = ['#27B3FF','#4CE0D2','#35D07F','#A855F7','#FF6B35','#F97316','#EF4444','#F59E0B','#10B981','#1B5CFF'];
+let mrWords = [], mrLeft = [], mrRight = [], mrSelected = null, mrPaired = new Map(), mrColorIdx = 0, mrWordCount = 5, mrSrsLang;
 
 function openMatching() {
   mrSrsLang = state.lang;
   showView('matching');
   renderChips('.mrcount-chip', mrWordCount, 'count');
-  $('mr-grid').classList.add('hidden');
+  $('mr-container').classList.add('hidden');
   $('mr-result').classList.add('hidden');
   $('btn-mr-new').classList.add('hidden');
   $('btn-mr-start').classList.remove('hidden');
@@ -3002,51 +3003,80 @@ function startMatching() {
   mrLeft = shuffle(mrWords.map((w, i) => ({word: w.word, fr: w.fr, idx: i})));
   mrRight = shuffle(mrWords.map((w, i) => ({word: w.word, fr: w.fr, idx: i})));
   mrSelected = null;
-  mrPaired = new Set();
-  renderMatchingGrid();
-  $('mr-grid').classList.remove('hidden');
+  mrPaired = new Map();
+  mrColorIdx = 0;
+  mrRenderCols();
+  $('mr-container').classList.remove('hidden');
   $('mr-result').classList.add('hidden');
   $('btn-mr-new').classList.remove('hidden');
   $('btn-mr-start').classList.add('hidden');
   $('mr-progress').textContent = `0/${mrWords.length} reliés`;
 }
 
-function renderMatchingGrid() {
-  const grid = $('mr-grid');
-  grid.innerHTML = '';
-  const n = Math.max(mrLeft.length, mrRight.length);
-  for (let i = 0; i < n; i++) {
-    const lw = mrLeft[i], rw = mrRight[i];
-    const row = document.createElement('div');
-    row.className = 'mr-row';
-
-    [['left', lw, display(lw.word)], ['right', rw, display(rw.fr)]].forEach(([side, w, label]) => {
+function mrRenderCols() {
+  [['mr-col-left', mrLeft, 'left', w => display(w.word)],
+   ['mr-col-right', mrRight, 'right', w => display(w.fr)]].forEach(([colId, list, side, label]) => {
+    const col = $(colId);
+    col.innerHTML = '';
+    list.forEach(w => {
       const btn = document.createElement('button');
-      btn.className = 'mr-cell';
-      btn.dataset.side = side;
+      btn.className = `mr-cell mr-${side}`;
       btn.dataset.idx = w.idx;
-      btn.textContent = label;
-      if (mrPaired.has(w.idx)) btn.classList.add('paired');
-      else if (mrSelected && mrSelected.side === side && mrSelected.idx === w.idx) btn.classList.add('selected');
-      btn.addEventListener('click', () => mrCellClick(side, w.idx));
-      row.appendChild(btn);
+      btn.textContent = label(w);
+      const ci = mrPaired.get(w.idx);
+      if (ci !== undefined) {
+        btn.classList.add('paired');
+        btn.style.borderColor = MR_COLORS[ci];
+        btn.style.color = MR_COLORS[ci];
+      } else if (mrSelected?.side === side && mrSelected.idx === w.idx) {
+        btn.classList.add('selected');
+      }
+      btn.addEventListener('click', () => mrClick(side, w.idx));
+      col.appendChild(btn);
     });
-    grid.appendChild(row);
-  }
+  });
+  requestAnimationFrame(mrDrawLines);
 }
 
-function mrCellClick(side, idx) {
+function mrDrawLines() {
+  const svg = $('mr-svg');
+  const container = $('mr-container');
+  svg.innerHTML = '';
+  const cRect = container.getBoundingClientRect();
+  if (!cRect.width) return;
+  svg.setAttribute('width', cRect.width);
+  svg.setAttribute('height', cRect.height);
+  svg.setAttribute('viewBox', `0 0 ${cRect.width} ${cRect.height}`);
+
+  mrPaired.forEach((ci, wordIdx) => {
+    const lEl = document.querySelector(`.mr-left[data-idx="${wordIdx}"]`);
+    const rEl = document.querySelector(`.mr-right[data-idx="${wordIdx}"]`);
+    if (!lEl || !rEl) return;
+    const lR = lEl.getBoundingClientRect();
+    const rR = rEl.getBoundingClientRect();
+    const x1 = lR.right - cRect.left;
+    const y1 = lR.top + lR.height / 2 - cRect.top;
+    const x2 = rR.left - cRect.left;
+    const y2 = rR.top + rR.height / 2 - cRect.top;
+    const cx = (x1 + x2) / 2;
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', `M ${x1} ${y1} C ${cx} ${y1} ${cx} ${y2} ${x2} ${y2}`);
+    path.setAttribute('stroke', MR_COLORS[ci]);
+    path.setAttribute('stroke-width', '2.5');
+    path.setAttribute('stroke-linecap', 'round');
+    path.setAttribute('fill', 'none');
+    svg.appendChild(path);
+  });
+}
+
+function mrClick(side, idx) {
   if (mrPaired.has(idx)) return;
 
-  if (!mrSelected) {
-    mrSelected = {side, idx};
-    renderMatchingGrid();
-    return;
-  }
+  if (!mrSelected) { mrSelected = {side, idx}; mrRenderCols(); return; }
 
   if (mrSelected.side === side) {
     mrSelected = mrSelected.idx === idx ? null : {side, idx};
-    renderMatchingGrid();
+    mrRenderCols();
     return;
   }
 
@@ -3054,28 +3084,23 @@ function mrCellClick(side, idx) {
   mrSelected = null;
 
   if (a.idx === idx) {
-    mrPaired.add(idx);
+    mrPaired.set(idx, mrColorIdx % MR_COLORS.length);
+    mrColorIdx++;
     srsUpdate(mrSrsLang, mrWords[idx].word, true);
     saveSrs(mrSrsLang);
-    beep(true);
-    vibrate(true);
-    renderMatchingGrid();
+    beep(true); vibrate(true);
+    mrRenderCols();
     const done = mrPaired.size;
     $('mr-progress').textContent = `${done}/${mrWords.length} reliés`;
     if (done === mrWords.length) {
-      setTimeout(() => {
-        $('mr-result').textContent = '🎉 Tous les mots sont reliés !';
-        $('mr-result').classList.remove('hidden');
-      }, 300);
+      setTimeout(() => { $('mr-result').textContent = '🎉 Tous les mots sont reliés !'; $('mr-result').classList.remove('hidden'); }, 400);
     }
   } else {
-    beep(false);
-    vibrate(false);
-    renderMatchingGrid();
+    beep(false); vibrate(false);
+    mrRenderCols();
     setTimeout(() => {
-      const selA = document.querySelector(`.mr-cell[data-side="${a.side}"][data-idx="${a.idx}"]`);
-      const selB = document.querySelector(`.mr-cell[data-side="${side}"][data-idx="${idx}"]`);
-      [selA, selB].forEach(el => { if (el) el.classList.add('error'); });
+      [document.querySelector(`.mr-${a.side}[data-idx="${a.idx}"]`),
+       document.querySelector(`.mr-${side}[data-idx="${idx}"]`)].forEach(el => el && el.classList.add('error'));
       setTimeout(() => document.querySelectorAll('.mr-cell.error').forEach(el => el.classList.remove('error')), 500);
     }, 10);
   }
