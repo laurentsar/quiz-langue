@@ -506,6 +506,32 @@ html, body {
 /* Phrases à compléter — description */
 .phrases-desc { font-size: 13px; color: var(--text-dim); margin-top: 12px; line-height: 1.5; }
 
+/* ==================== MOTS À RELIER ==================== */
+.mr-grid { display: flex; flex-direction: column; gap: 8px; }
+.mr-row { display: flex; gap: 10px; }
+.mr-cell {
+  flex: 1; min-width: 0;
+  padding: 11px 10px;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.3;
+  min-height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.1s, border-color 0.1s, color 0.1s;
+  word-break: break-word;
+}
+.mr-cell:active:not(.paired) { transform: scale(0.97); }
+.mr-cell.selected { background: var(--card-alt); border-color: var(--sky); color: var(--sky); }
+.mr-cell.paired { background: rgba(53,208,127,0.15); border-color: var(--success); color: var(--success); pointer-events: none; }
+.mr-cell.error { background: rgba(255,107,129,0.18); border-color: var(--danger); color: var(--danger); }
+.mr-result { text-align: center; font-size: 18px; font-weight: 700; color: var(--success); padding: 12px; }
+
 /* ==================== MOTS CROISÉS ==================== */
 .cw-grid-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .cw-grid { border-collapse: collapse; margin: 0 auto; user-select: none; }

@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.43';
+const APP_VERSION = '2.44';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -264,7 +264,7 @@ function vibrate(ok) { try { navigator.vibrate && navigator.vibrate(ok ? 25 : [4
 
 // ---------- DOM ----------
 const $ = (id) => document.getElementById(id);
-const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), 'faux-amis': $('view-faux-amis'), familles: $('view-familles'), cognates: $('view-cognates'), tenses: $('view-tenses'), toeic: $('view-toeic'), phrases: $('view-phrases'), learn: $('view-learn'), listen: $('view-listen'), pronun: $('view-pronun'), crossword: $('view-crossword') };
+const views = { home: $('view-home'), quiz: $('view-quiz'), result: $('view-result'), stats: $('view-stats'), verbs: $('view-verbs'), grammar: $('view-grammar'), 'faux-amis': $('view-faux-amis'), familles: $('view-familles'), cognates: $('view-cognates'), tenses: $('view-tenses'), toeic: $('view-toeic'), phrases: $('view-phrases'), learn: $('view-learn'), listen: $('view-listen'), pronun: $('view-pronun'), crossword: $('view-crossword'), matching: $('view-matching') };
 let autoNextTimer = null;
 
 function showView(name) {
@@ -2979,3 +2979,112 @@ cwInput.addEventListener('keydown', function (e) {
     if (cwSelectedId !== null) { cwSelectedId = (cwSelectedId + 1) % cwPlaced.length; cwCursorPos = 0; cwUpdateClue(); cwUpdateHighlight(); }
   }
 });
+
+// ==================== MOTS À RELIER ====================
+let mrWords = [], mrLeft = [], mrRight = [], mrSelected = null, mrPaired = new Set(), mrWordCount = 5, mrSrsLang;
+
+function openMatching() {
+  mrSrsLang = state.lang;
+  showView('matching');
+  renderChips('.mrcount-chip', mrWordCount, 'count');
+  $('mr-grid').classList.add('hidden');
+  $('mr-result').classList.add('hidden');
+  $('btn-mr-new').classList.add('hidden');
+  $('btn-mr-start').classList.remove('hidden');
+  $('mr-progress').textContent = '';
+}
+
+function startMatching() {
+  const pool = levelWords().filter(w => w.fr && w.word);
+  if (pool.length < 2) return;
+  mrWords = shuffle(pool).slice(0, Math.min(mrWordCount, pool.length));
+  mrLeft = shuffle(mrWords.map((w, i) => ({word: w.word, fr: w.fr, idx: i})));
+  mrRight = shuffle(mrWords.map((w, i) => ({word: w.word, fr: w.fr, idx: i})));
+  mrSelected = null;
+  mrPaired = new Set();
+  renderMatchingGrid();
+  $('mr-grid').classList.remove('hidden');
+  $('mr-result').classList.add('hidden');
+  $('btn-mr-new').classList.remove('hidden');
+  $('btn-mr-start').classList.add('hidden');
+  $('mr-progress').textContent = `0/${mrWords.length} reliés`;
+}
+
+function renderMatchingGrid() {
+  const grid = $('mr-grid');
+  grid.innerHTML = '';
+  const n = Math.max(mrLeft.length, mrRight.length);
+  for (let i = 0; i < n; i++) {
+    const lw = mrLeft[i], rw = mrRight[i];
+    const row = document.createElement('div');
+    row.className = 'mr-row';
+
+    [['left', lw, display(lw.word)], ['right', rw, display(rw.fr)]].forEach(([side, w, label]) => {
+      const btn = document.createElement('button');
+      btn.className = 'mr-cell';
+      btn.dataset.side = side;
+      btn.dataset.idx = w.idx;
+      btn.textContent = label;
+      if (mrPaired.has(w.idx)) btn.classList.add('paired');
+      else if (mrSelected && mrSelected.side === side && mrSelected.idx === w.idx) btn.classList.add('selected');
+      btn.addEventListener('click', () => mrCellClick(side, w.idx));
+      row.appendChild(btn);
+    });
+    grid.appendChild(row);
+  }
+}
+
+function mrCellClick(side, idx) {
+  if (mrPaired.has(idx)) return;
+
+  if (!mrSelected) {
+    mrSelected = {side, idx};
+    renderMatchingGrid();
+    return;
+  }
+
+  if (mrSelected.side === side) {
+    mrSelected = mrSelected.idx === idx ? null : {side, idx};
+    renderMatchingGrid();
+    return;
+  }
+
+  const a = mrSelected;
+  mrSelected = null;
+
+  if (a.idx === idx) {
+    mrPaired.add(idx);
+    srsUpdate(mrSrsLang, mrWords[idx].word, true);
+    saveSrs(mrSrsLang);
+    beep(true);
+    vibrate(true);
+    renderMatchingGrid();
+    const done = mrPaired.size;
+    $('mr-progress').textContent = `${done}/${mrWords.length} reliés`;
+    if (done === mrWords.length) {
+      setTimeout(() => {
+        $('mr-result').textContent = '🎉 Tous les mots sont reliés !';
+        $('mr-result').classList.remove('hidden');
+      }, 300);
+    }
+  } else {
+    beep(false);
+    vibrate(false);
+    renderMatchingGrid();
+    setTimeout(() => {
+      const selA = document.querySelector(`.mr-cell[data-side="${a.side}"][data-idx="${a.idx}"]`);
+      const selB = document.querySelector(`.mr-cell[data-side="${side}"][data-idx="${idx}"]`);
+      [selA, selB].forEach(el => { if (el) el.classList.add('error'); });
+      setTimeout(() => document.querySelectorAll('.mr-cell.error').forEach(el => el.classList.remove('error')), 500);
+    }, 10);
+  }
+}
+
+$('btn-matching').addEventListener('click', () => openMatching());
+$('btn-mr-start').addEventListener('click', () => startMatching());
+$('btn-mr-new').addEventListener('click', () => startMatching());
+$('btn-mr-home').addEventListener('click', () => exitToHome());
+document.querySelectorAll('.mrcount-chip').forEach(c => c.addEventListener('click', () => {
+  mrWordCount = +c.dataset.count;
+  renderChips('.mrcount-chip', mrWordCount, 'count');
+}));
