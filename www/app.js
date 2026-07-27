@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.40';
+const APP_VERSION = '2.41';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -58,7 +58,7 @@ function lsGet(k, d) { try { const r = localStorage.getItem(k); return r ? JSON.
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 
 function loadSettings() {
-  return Object.assign({ audioAuto: true, autoNext: true, sound: true, closeDistractors: false, notifications: true, dailyGoal: 10, notifHour: 8 }, lsGet('quizlangue:settings:v1', {}));
+  return Object.assign({ audioAuto: true, autoNext: true, sound: true, closeDistractors: false, notifications: true, dailyGoal: 10, notifHour: 8, newRatio: 40 }, lsGet('quizlangue:settings:v1', {}));
 }
 function saveSettings() { lsSet('quizlangue:settings:v1', settings); }
 
@@ -144,8 +144,8 @@ function pickSession(mode) {
   } else {
     const due = dueList(words, srs, now);
     const fresh = newList(words, srs);
-    // ① quota minimum de nouveaux mots : 40 % des slots (arrondi haut)
-    const newSlots = Math.ceil(state.count * 0.4);
+    // ① quota minimum de nouveaux mots : configurable via settings.newRatio (%)
+    const newSlots = Math.ceil(state.count * (settings.newRatio / 100));
     const dueSlots = state.count - newSlots;
     picks = due.slice(0, dueSlots).concat(fresh.slice(0, newSlots));
     // complète si l'un des deux pools est vide
@@ -2575,6 +2575,12 @@ document.querySelectorAll('.notifhour-chip').forEach(c => c.addEventListener('cl
   saveSettings();
   renderChips('.notifhour-chip', settings.notifHour, 'hour');
   if (settings.notifications) scheduleReviewNotification();
+}));
+renderChips('.newratio-chip', settings.newRatio, 'ratio');
+document.querySelectorAll('.newratio-chip').forEach(c => c.addEventListener('click', () => {
+  settings.newRatio = +c.dataset.ratio;
+  saveSettings();
+  renderChips('.newratio-chip', settings.newRatio, 'ratio');
 }));
 
 if (settings.notifications) scheduleReviewNotification();

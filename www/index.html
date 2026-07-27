@@ -160,6 +160,15 @@
             <button class="chip notifhour-chip" data-hour="21">21h</button>
           </div>
         </div>
+        <div class="setting-row">
+          <span class="setting-label">🆕 Part de nouveaux mots par session</span>
+          <div class="chip-row">
+            <button class="chip newratio-chip" data-ratio="20" title="80 % révisions / 20 % nouveaux">Révisions +</button>
+            <button class="chip newratio-chip" data-ratio="40" title="60 % révisions / 40 % nouveaux">Équilibré</button>
+            <button class="chip newratio-chip" data-ratio="60" title="40 % révisions / 60 % nouveaux">Nouveaux +</button>
+            <button class="chip newratio-chip" data-ratio="80" title="20 % révisions / 80 % nouveaux">Immersion</button>
+          </div>
+        </div>
         <div class="setting-row" style="display:block">
           <span class="setting-label">💾 Sauvegarde de la progression</span>
           <p class="muted" style="font-size:13px;margin:6px 0">Ta progression SRS vit sur ce
@@ -186,7 +195,7 @@
           <ul class="srs-rules">
             <li>✅ <strong>Bonne réponse</strong> → monte d'une boîte</li>
             <li>❌ <strong>Mauvaise réponse</strong> → recule de 2 boîtes (minimum 0)</li>
-            <li>📋 <strong>Session SRS</strong> : 60 % mots en retard + 40 % nouveaux mots</li>
+            <li>📋 <strong>Session SRS</strong> : ratio révisions/nouveaux réglable ci-dessus</li>
             <li>🔁 <strong>Mode Révision</strong> : uniquement les mots ratés</li>
             <li>⭐ <strong>Maîtrisé</strong> = boîte 5, revient seulement après 14 jours</li>
           </ul>
