@@ -160,12 +160,49 @@
             <button class="chip notifhour-chip" data-hour="21">21h</button>
           </div>
         </div>
+        <div class="setting-row">
+          <span class="setting-label">🆕 Part de nouveaux mots par session</span>
+          <div class="chip-row">
+            <button class="chip newratio-chip" data-ratio="20" title="80 % révisions / 20 % nouveaux">Révisions +</button>
+            <button class="chip newratio-chip" data-ratio="40" title="60 % révisions / 40 % nouveaux">Équilibré</button>
+            <button class="chip newratio-chip" data-ratio="60" title="40 % révisions / 60 % nouveaux">Nouveaux +</button>
+            <button class="chip newratio-chip" data-ratio="80" title="20 % révisions / 80 % nouveaux">Immersion</button>
+          </div>
+        </div>
         <div class="setting-row" style="display:block">
           <span class="setting-label">💾 Sauvegarde de la progression</span>
           <p class="muted" style="font-size:13px;margin:6px 0">Ta progression SRS vit sur ce
           téléphone : désinstaller l'app l'efface. Renseigne Home Assistant et la sauvegarde
           devient automatique.</p>
           <div id="backup-panel"></div>
+        </div>
+        <div class="setting-row" style="display:block">
+          <span class="setting-label">📲 Mise à jour de l'application</span>
+          <button id="btn-check-update" class="update-check-btn">🔄 Vérifier les mises à jour</button>
+        </div>
+        <div class="setting-row" style="display:block">
+          <span class="setting-label">📖 Comment fonctionne la révision espacée</span>
+          <p class="muted" style="font-size:13px;margin:6px 0 4px">
+            Chaque mot progresse dans <strong>6 boîtes</strong> selon tes réponses :
+          </p>
+          <table class="srs-table">
+            <thead><tr><th>Boîte</th><th>Réapparaît après</th></tr></thead>
+            <tbody>
+              <tr><td>0 — Débutant</td><td>Immédiatement</td></tr>
+              <tr><td>1</td><td>1 jour</td></tr>
+              <tr><td>2</td><td>1 jour</td></tr>
+              <tr><td>3</td><td>3 jours</td></tr>
+              <tr><td>4</td><td>7 jours</td></tr>
+              <tr><td>5 — Maîtrisé ✓</td><td>14 jours</td></tr>
+            </tbody>
+          </table>
+          <ul class="srs-rules">
+            <li>✅ <strong>Bonne réponse</strong> → monte d'une boîte</li>
+            <li>❌ <strong>Mauvaise réponse</strong> → recule de 2 boîtes (minimum 0)</li>
+            <li>📋 <strong>Session SRS</strong> : ratio révisions/nouveaux réglable ci-dessus</li>
+            <li>🔁 <strong>Mode Révision</strong> : uniquement les mots ratés</li>
+            <li>⭐ <strong>Maîtrisé</strong> = boîte 5, revient seulement après 14 jours</li>
+          </ul>
         </div>
       </div>
     </div>

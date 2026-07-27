@@ -1,4 +1,4 @@
-const CACHE = 'quiz-app-v2.38';
+const CACHE = 'quiz-app-v2.42';
 const ASSETS = [
   './',
   'index.html',

@@ -302,6 +302,14 @@ html, body {
 /* Réglages objectif/heure */
 .setting-row { display: flex; flex-direction: column; gap: 8px; }
 .setting-label { font-size: 14px; color: var(--text-dim); }
+.update-check-btn { margin-top: 8px; width: 100%; padding: 10px 14px; border: none; border-radius: 10px; background: var(--card-alt, #0F3A66); color: var(--text, #EAF2FF); font-size: 14px; font-weight: 500; cursor: pointer; text-align: left; }
+.update-check-btn:disabled { opacity: 0.6; cursor: default; }
+.srs-table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 4px 0 8px; }
+.srs-table th { text-align: left; color: var(--text-dim); font-weight: 600; padding: 3px 6px; border-bottom: 1px solid var(--border, #1e3a5f); }
+.srs-table td { padding: 4px 6px; color: var(--text, #eaf2ff); }
+.srs-table tr:last-child td { color: var(--sky, #27B3FF); font-weight: 600; }
+.srs-rules { margin: 0; padding: 0 0 0 4px; list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.srs-rules li { font-size: 12px; color: var(--text-dim); }
 
 /* Faux amis */
 .fa-card { display: flex; flex-direction: column; gap: 16px; }
