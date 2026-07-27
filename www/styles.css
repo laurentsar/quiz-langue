@@ -507,10 +507,11 @@ html, body {
 .phrases-desc { font-size: 13px; color: var(--text-dim); margin-top: 12px; line-height: 1.5; }
 
 /* ==================== MOTS À RELIER ==================== */
-.mr-grid { display: flex; flex-direction: column; gap: 8px; }
-.mr-row { display: flex; gap: 10px; }
+.mr-container { position: relative; display: flex; gap: 24px; }
+.mr-col { flex: 1; display: flex; flex-direction: column; gap: 8px; position: relative; z-index: 1; }
+.mr-svg { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: visible; }
 .mr-cell {
-  flex: 1; min-width: 0;
+  width: 100%;
   padding: 11px 10px;
   border: 1.5px solid rgba(255,255,255,0.12);
   border-radius: 12px;
@@ -525,10 +526,10 @@ html, body {
   display: flex; align-items: center; justify-content: center;
   transition: background 0.1s, border-color 0.1s, color 0.1s;
   word-break: break-word;
+  box-sizing: border-box;
 }
-.mr-cell:active:not(.paired) { transform: scale(0.97); }
+.mr-cell:active:not([style*="border-color"]) { transform: scale(0.97); }
 .mr-cell.selected { background: var(--card-alt); border-color: var(--sky); color: var(--sky); }
-.mr-cell.paired { background: rgba(53,208,127,0.15); border-color: var(--success); color: var(--success); pointer-events: none; }
 .mr-cell.error { background: rgba(255,107,129,0.18); border-color: var(--danger); color: var(--danger); }
 .mr-result { text-align: center; font-size: 18px; font-weight: 700; color: var(--success); padding: 12px; }
 
