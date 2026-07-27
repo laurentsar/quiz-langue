@@ -167,6 +167,30 @@
           devient automatique.</p>
           <div id="backup-panel"></div>
         </div>
+        <div class="setting-row" style="display:block">
+          <span class="setting-label">📖 Comment fonctionne la révision espacée</span>
+          <p class="muted" style="font-size:13px;margin:6px 0 4px">
+            Chaque mot progresse dans <strong>6 boîtes</strong> selon tes réponses :
+          </p>
+          <table class="srs-table">
+            <thead><tr><th>Boîte</th><th>Réapparaît après</th></tr></thead>
+            <tbody>
+              <tr><td>0 — Débutant</td><td>Immédiatement</td></tr>
+              <tr><td>1</td><td>1 jour</td></tr>
+              <tr><td>2</td><td>2 jours</td></tr>
+              <tr><td>3</td><td>4 jours</td></tr>
+              <tr><td>4</td><td>8 jours</td></tr>
+              <tr><td>5 — Maîtrisé ✓</td><td>16 jours</td></tr>
+            </tbody>
+          </table>
+          <ul class="srs-rules">
+            <li>✅ <strong>Bonne réponse</strong> → monte d'une boîte</li>
+            <li>❌ <strong>Mauvaise réponse</strong> → retour en boîte 0</li>
+            <li>📋 <strong>Session SRS</strong> : d'abord les mots en retard, puis les nouveaux</li>
+            <li>🔁 <strong>Mode Révision</strong> : uniquement les mots ratés (boîte 0)</li>
+            <li>⭐ <strong>Maîtrisé</strong> = boîte 5, revient seulement après 16 jours</li>
+          </ul>
+        </div>
       </div>
     </div>
 
