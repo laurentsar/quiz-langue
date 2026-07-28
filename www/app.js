@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.50';
+const APP_VERSION = '2.51';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -1880,6 +1880,14 @@ const _GFIX = {
     { q: 'I ___ call you if I need help.', opts: ['will','would','shall','might'], ans: 'will', hint: 'Type 1 → will dans la principale.' },
     { q: 'Unless you hurry, you ___ miss the train.', opts: ['will','would','shall','might'], ans: 'will', hint: 'Unless = if not → type 1, will.' },
   ],
+  'how-questions': [
+    { q: '___ books do you have? (quantité dénombrable)', opts: ['How many','How much','How often','How long'], ans: 'How many', hint: 'Dénombrable → How many.' },
+    { q: '___ does it cost? (prix)', opts: ['How much','How many','How far','How often'], ans: 'How much', hint: 'Prix / indénombrable → How much.' },
+    { q: '___ can you run? (vitesse)', opts: ['How fast','How far','How well','How long'], ans: 'How fast', hint: 'Vitesse → How fast.' },
+    { q: '___ is the station? (distance)', opts: ['How far','How long','How fast','How often'], ans: 'How far', hint: 'Distance → How far.' },
+    { q: '___ do you go to the gym? (fréquence)', opts: ['How often','How long','How many','How much'], ans: 'How often', hint: 'Fréquence → How often.' },
+    { q: '___ have you been waiting? (durée)', opts: ['How long','How often','How much','How many'], ans: 'How long', hint: 'Durée → How long.' },
+  ],
   'questions-negation': [
     { q: '___ she speak French?', opts: ['Does','Do','Is','Has'], ans: 'Does', hint: '3e pers. sing. au présent simple → Does.' },
     { q: "He ___ like coffee.", opts: ["doesn't","don't","isn't","hasn't"], ans: "doesn't", hint: "3e pers. sing. → doesn't." },
@@ -2152,6 +2160,24 @@ const _GFIX_SERIES = {
       { q: 'She treats me as though I ___ stupid.', opts: ['were','am','was','would be'], ans: 'were', hint: 'as though + subjonctif → were (hypothèse).' },
       { q: '___ you need help, don\'t hesitate to call.', opts: ['Should','Would','If','Were'], ans: 'Should', hint: 'Inversion modale : Should you = If you should (formel).' },
       { q: 'Even if he ___, I won\'t believe him.', opts: ['apologises','apologised','would apologise','had apologised'], ans: 'apologises', hint: 'Even if → type 1 → présent.' },
+    ],
+  ],
+  'how-questions': [
+    [
+      { q: '___ do you exercise? Once a week.', opts: ['How often','How long','How many','How much'], ans: 'How often', hint: 'Fréquence → How often.' },
+      { q: '___ sugar do you take? (indénombrable)', opts: ['How much','How many','How often','How well'], ans: 'How much', hint: 'Indénombrable → How much.' },
+      { q: '___ is it from London to Paris? (distance)', opts: ['How far','How long','How fast','How often'], ans: 'How far', hint: 'Distance → How far.' },
+      { q: '___ is your sister? She\'s 25.', opts: ['How old','How long','How well','How far'], ans: 'How old', hint: 'Âge → How old.' },
+      { q: '___ did the ceremony last? (durée)', opts: ['How long','How often','How far','How much'], ans: 'How long', hint: 'Durée → How long.' },
+      { q: '___ do you speak French? (qualité)', opts: ['How well','How fast','How much','How often'], ans: 'How well', hint: 'Qualité / niveau → How well.' },
+    ],
+    [
+      { q: '___ people came to the event? (dénombrable)', opts: ['How many','How much','How often','How well'], ans: 'How many', hint: 'Dénombrable (people) → How many.' },
+      { q: '___ is it from here to the airport? About 20km.', opts: ['How far','How fast','How long','How often'], ans: 'How far', hint: 'Distance → How far.' },
+      { q: '___ does the train travel? 300 km/h.', opts: ['How fast','How far','How long','How often'], ans: 'How fast', hint: 'Vitesse → How fast.' },
+      { q: '___ time does it take? (durée)', opts: ['How long','How much','How often','How many'], ans: 'How long', hint: 'How long = combien de temps (durée).' },
+      { q: '___ did you sleep last night? (qualité)', opts: ['How well','How much','How long','How often'], ans: 'How well', hint: 'Qualité du sommeil → How well.' },
+      { q: '___ does this phone cost? (prix)', opts: ['How much','How many','How often','How far'], ans: 'How much', hint: 'Prix → How much.' },
     ],
   ],
   'questions-negation': [
