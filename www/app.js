@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.55';
+const APP_VERSION = '2.57';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -302,8 +302,130 @@ function renderLevelChips() {
   });
 }
 
+const LESSON_CATS = ['grammar', 'faux-amis', 'word-family', 'cognates', 'verbs'];
+const LESSON_FILES = {
+  grammar: 'data/grammar_en.json',
+  'faux-amis': 'data/faux_amis_en.json',
+  'word-family': 'data/word_families_en.json',
+  cognates: 'data/cognates_en.json',
+  verbs: 'data/verbs_en.json',
+};
+const lessonCache = {};
+
+function _lessonHeader(label) {
+  return `<div class="lesson-header"><span class="lesson-label">${label}</span><span class="lesson-5min">≤ 5 min</span></div>`;
+}
+function _lessonExamples(exs) {
+  if (!exs || !exs.length) return '';
+  return `<div class="lesson-examples">${exs.map(e =>
+    `<div class="lesson-ex"><span class="lesson-ex-en">${esc(e.en)}</span><span class="lesson-ex-fr">${esc(e.fr)}</span></div>`
+  ).join('')}</div>`;
+}
+
+function drawGrammarLesson(topics, n) {
+  const topic = topics[n % topics.length];
+  if (!topic?.sections?.length) return '';
+  const sec = topic.sections[0];
+  const pts = (sec.points || []).slice(0, 3).map(p => `<li>${esc(p)}</li>`).join('');
+  return `${_lessonHeader('📘 Grammaire du jour')}
+    <div class="lesson-title">${esc(topic.title)}</div>
+    ${topic.subtitle ? `<div class="lesson-sub">${esc(topic.subtitle)}</div>` : ''}
+    <div class="lesson-sec-heading">${esc(sec.heading)}</div>
+    <ul class="lesson-points">${pts}</ul>
+    ${_lessonExamples((sec.examples || []).slice(0, 2))}
+    <button class="lesson-more-btn secondary">📖 Cours complet →</button>`;
+}
+
+function drawFauxAmisLesson(items, n) {
+  const start = (n * 3) % items.length;
+  const batch = [0, 1, 2].map(i => items[(start + i) % items.length]);
+  const rows = batch.map(it =>
+    `<div class="fa-row"><span class="fa-word">${esc(it.en)}</span><span class="fa-arrow">≠</span><span class="fa-trap">« ${esc(it.trap)} »</span><span class="fa-meaning">→ ${esc(it.fr)}</span></div>`
+  ).join('');
+  return `${_lessonHeader('⚠️ Faux amis du jour')}
+    <div class="lesson-sub">3 mots à ne pas confondre</div>
+    <div class="fa-list">${rows}</div>
+    ${batch[0].example ? _lessonExamples([batch[0].example]) : ''}
+    <button class="lesson-more-btn secondary">⚠️ Voir tous les faux amis →</button>`;
+}
+
+function drawWordFamilyLesson(families, n) {
+  const fam = families[n % families.length];
+  if (!fam) return '';
+  const wordRows = (fam.words || []).slice(0, 6).map(w =>
+    `<div class="wf-row"><span class="wf-word">${esc(w.word)}</span><span class="wf-pos">${esc(w.pos)}</span><span class="wf-fr">${esc(w.fr)}</span></div>`
+  ).join('');
+  return `${_lessonHeader('🔤 Famille de mots')}
+    <div class="lesson-title">${esc(fam.root.toUpperCase())} <span class="lesson-sub-inline">(${esc(fam.fr_root)})</span></div>
+    <div class="wf-grid">${wordRows}</div>
+    ${fam.tip ? `<div class="lesson-tip">💡 ${esc(fam.tip)}</div>` : ''}
+    <button class="lesson-more-btn secondary">🔤 Explorer les familles →</button>`;
+}
+
+function drawCognatesLesson(patterns, n) {
+  const p = patterns[n % patterns.length];
+  if (!p) return '';
+  const exStr = (p.examples || []).slice(0, 5).map(e => esc(e.en)).join(', ');
+  return `${_lessonHeader('✅ Vrais cognates')}
+    <div class="lesson-title">${esc(p.pattern)}</div>
+    <div class="lesson-sub">${esc(p.rule)}</div>
+    <div class="lesson-examples"><div class="lesson-ex"><span class="lesson-ex-en">${exStr}</span></div></div>
+    ${p.tip ? `<div class="lesson-tip">💡 ${esc(p.tip)}</div>` : ''}
+    <button class="lesson-more-btn secondary">✅ Voir tous les cognates →</button>`;
+}
+
+function drawVerbsLesson(verbs, n) {
+  const start = (n * 6) % verbs.length;
+  const batch = verbs.slice(start, start + 6);
+  if (batch.length < 6) batch.push(...verbs.slice(0, 6 - batch.length));
+  const rows = batch.map(v =>
+    `<tr><td>${esc(v.inf)}</td><td>${esc(v.pret)}</td><td>${esc(v.pp)}</td><td class="verb-fr">${esc(v.fr)}</td></tr>`
+  ).join('');
+  return `${_lessonHeader('📘 Verbes irréguliers')}
+    <div class="lesson-sub">6 verbes essentiels</div>
+    <table class="verb-table"><thead><tr><th>Base</th><th>Prétérit</th><th>Participe</th><th>FR</th></tr></thead><tbody>${rows}</tbody></table>
+    <button class="lesson-more-btn secondary">📘 S'entraîner →</button>`;
+}
+
+function renderHomeLessonCard() {
+  const card = $('home-lesson-card');
+  if (!card) return;
+  const dayNum = Math.floor(Date.now() / 86400000);
+  const cat = LESSON_CATS[dayNum % LESSON_CATS.length];
+  const n = Math.floor(dayNum / LESSON_CATS.length);
+
+  const draw = (data) => {
+    const drawFns = { grammar: drawGrammarLesson, 'faux-amis': drawFauxAmisLesson, 'word-family': drawWordFamilyLesson, cognates: drawCognatesLesson, verbs: drawVerbsLesson };
+    const html = drawFns[cat](data, n);
+    if (!html) { card.classList.add('hidden'); return; }
+    card.innerHTML = html;
+    card.classList.remove('hidden');
+    card.querySelector('.lesson-more-btn')?.addEventListener('click', async () => {
+      if (cat === 'grammar') { await loadGrammarLang('en'); showView('grammar'); showGrammarTopic(n % data.length); }
+      else if (cat === 'faux-amis') openFauxAmis();
+      else if (cat === 'word-family') openFamilles();
+      else if (cat === 'cognates') openCognates();
+      else if (cat === 'verbs') openVerbs();
+    });
+  };
+
+  const cached = lessonCache[cat] || (cat === 'grammar' && grammarCache['en']);
+  if (cached) { lessonCache[cat] = cached; draw(cached); return; }
+
+  fetch(LESSON_FILES[cat]).then(r => r.json()).then(data => {
+    lessonCache[cat] = data;
+    if (cat === 'grammar') grammarCache['en'] = data;
+    if (cat === 'verbs' && !verbsData) { verbsData = data; data.forEach(v => { v.word = v.inf; }); }
+    if (cat === 'faux-amis' && !fauxAmisData) fauxAmisData = data;
+    if (cat === 'word-family' && !famillesData) famillesData = data;
+    if (cat === 'cognates' && !cognatesData) cognatesData = data;
+    draw(data);
+  }).catch(() => card.classList.add('hidden'));
+}
+
 function renderStats() {
   renderMotivBar();
+  renderHomeLessonCard();
   const s = loadStats(state.lang);
   $('stat-last').textContent = `${s.lastScore}/5`;
   $('stat-total').textContent = `${s.totalCompleted} · ${s.totalPoints}`;
