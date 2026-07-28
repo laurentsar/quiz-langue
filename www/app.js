@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.52';
+const APP_VERSION = '2.55';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -39,6 +39,7 @@ const state = {
   answers: [],
   index: 0,
   grammarSeriesKey: null,
+  dailySession: null,
 };
 
 let verbsData = null;   // liste des verbes irréguliers (chargée à la demande)
@@ -547,7 +548,33 @@ function finishQuiz() {
   saveStats(quizKey(), next);
   if (state.grammarSeriesKey) { markSeriesDone(state.grammarSeriesKey); state.grammarSeriesKey = null; }
 
-  $('result-sub').textContent = state.mode === 'review' ? 'Révision des erreurs terminée' : 'Quiz terminé';
+  // Daily session: mark topic done and wire up continue button
+  const _dailyCtx = state.dailySession ? { ...state.dailySession } : null;
+  state.dailySession = null;
+  const existingContinue = $('btn-daily-continue');
+  if (existingContinue) existingContinue.remove();
+  let _dailyResultSub = null;
+  if (_dailyCtx) {
+    const { session, topicIdx } = _dailyCtx;
+    session.done[topicIdx] = true;
+    saveDailySession(session);
+    const nextIdx = session.done.findIndex(d => !d);
+    if (nextIdx !== -1) {
+      _dailyResultSub = `Session du jour — ${topicIdx + 1}/3 terminé`;
+      const nTitle = grammarData?.find(t => t.id === session.topics[nextIdx])?.title || session.topics[nextIdx];
+      const btn = document.createElement('button');
+      btn.id = 'btn-daily-continue';
+      btn.className = 'primary';
+      btn.textContent = `▶ ${nTitle} (${nextIdx + 1}/3)`;
+      btn.addEventListener('click', () => { btn.remove(); startDailyTopicAtIdx(session, nextIdx); });
+      $('btn-replay').insertAdjacentElement('beforebegin', btn);
+    } else {
+      _dailyResultSub = '🎉 Session du jour complétée !';
+    }
+  }
+
+  $('result-sub').textContent = _dailyResultSub
+    || (state.mode === 'review' ? 'Révision des erreurs terminée' : 'Quiz terminé');
   $('result-score').textContent = `${score}/${total}`;
   const wbox = $('result-wrong');
   if (wrong.length) {
@@ -776,6 +803,7 @@ function renderGrammarList(restoreScroll) {
     b.addEventListener('click', () => { grammarScrollY = window.scrollY; showGrammarTopic(+b.dataset.idx); }));
   if (restoreScroll) requestAnimationFrame(() => window.scrollTo(0, grammarScrollY));
   renderConceptCheckboxes();
+  renderDailySessionCard();
 }
 
 function showGrammarTopic(idx) {
@@ -2455,6 +2483,14 @@ const _GFIX_SERIES = {
       { q: 'The train arrived two hours ___ .', opts: ['late','lately','later','last'], ans: 'late', hint: 'late = adverbe (en retard) ; lately = récemment.' },
       { q: 'He ___ finished when the alarm went off. (à peine)', opts: ['had barely','barely had','had scarcely','scarcely had'], ans: 'had barely', hint: 'À peine avait-il fini → had barely + pp.' },
     ],
+    [
+      { q: "'Cependant' en anglais ?", opts: ['However','Therefore','Meanwhile','Instead'], ans: 'However', hint: 'Cependant → however.' },
+      { q: "'Donc / Par conséquent' en anglais ?", opts: ['Therefore','However','Anyway','Although'], ans: 'Therefore', hint: 'Donc → therefore.' },
+      { q: "'Pendant ce temps' en anglais ?", opts: ['Meanwhile','Instead','Anyway','However'], ans: 'Meanwhile', hint: 'Pendant ce temps → meanwhile.' },
+      { q: "'Absolument' en anglais ?", opts: ['Absolutely','Generally','Exactly','Certainly'], ans: 'Absolutely', hint: 'Absolument → absolutely.' },
+      { q: "'À la place' en anglais ?", opts: ['Instead','Anyway','However','Therefore'], ans: 'Instead', hint: 'À la place → instead.' },
+      { q: "'Surtout / Particulièrement' en anglais ?", opts: ['Especially','Generally','Totally','Probably'], ans: 'Especially', hint: 'Surtout → especially.' },
+    ],
   ],
   'numbers': [
     [
@@ -2545,6 +2581,14 @@ const _GFIX_SERIES = {
       { q: "'Fatigué' en anglais ?", opts: ['tired','bored','sad','angry'], ans: 'tired', hint: 'Fatigué → tired (attention : bored = qui s\'ennuie).' },
       { q: "I ___ calm during the argument. (rester)", opts: ['stayed','felt','seemed','looked'], ans: 'stayed', hint: 'I stayed calm = je suis resté calme.' },
     ],
+    [
+      { q: "'Sans blague !' en anglais ?", opts: ['No way!','For real?','So what?','Go ahead!'], ans: 'No way!', hint: "Sans blague ! → No way!" },
+      { q: "'Je n'arrive pas à y croire' en anglais ?", opts: ["I can't believe it","I'm shocked","No way","What a surprise"], ans: "I can't believe it", hint: "Je n'arrive pas à y croire → I can't believe it." },
+      { q: "'Tu plaisantes !' en anglais ?", opts: ["You're joking!","No way!","Unbelievable!","For real?"], ans: "You're joking!", hint: "Tu plaisantes ! → You're joking!" },
+      { q: "'Je suis bouche bée' en anglais ?", opts: ["I'm speechless","I'm shocked","I'm amazed","I can't believe it"], ans: "I'm speechless", hint: "Je suis bouche bée → I'm speechless." },
+      { q: "'C'est dingue !' en anglais ?", opts: ["That's crazy!","No way!","Unbelievable!","What a surprise!"], ans: "That's crazy!", hint: "C'est dingue ! → That's crazy!" },
+      { q: "'Incroyable !' en anglais ?", opts: ['Unbelievable!','Incredible!','Amazing!','No way!'], ans: 'Unbelievable!', hint: "Incroyable ! → Unbelievable!" },
+    ],
   ],
   'daily-phrases': [
     [
@@ -2562,6 +2606,22 @@ const _GFIX_SERIES = {
       { q: "C'est faux. → That's ___.", opts: ['wrong','bad','false','incorrect'], ans: 'wrong', hint: "That's wrong = c'est faux." },
       { q: "Peut-être. → ___.", opts: ['Maybe','Perhaps','Probably','Possibly'], ans: 'Maybe', hint: 'Peut-être → Maybe (ou Perhaps).' },
       { q: "Je reviens tout de suite. → I'll be right ___.", opts: ['back','here','there','soon'], ans: 'back', hint: "I'll be right back = je reviens tout de suite." },
+    ],
+    [
+      { q: "'Quoi de neuf ?' en anglais ?", opts: ["What's up?","No worries","Let's go","For sure"], ans: "What's up?", hint: "Quoi de neuf ? → What's up?" },
+      { q: "'Ça roule' en anglais ?", opts: ["It's all good","We'll see","Got it","Go ahead"], ans: "It's all good", hint: "Ça roule → It's all good." },
+      { q: "'Laisse tomber' en anglais ?", opts: ["Never mind","Totally","Alright","Catch you later"], ans: "Never mind", hint: "Laisse tomber → Never mind." },
+      { q: "'C'est parti' en anglais ?", opts: ["Let's go","Go ahead","That's clear","It's possible"], ans: "Let's go", hint: "C'est parti → Let's go." },
+      { q: "'À tout à l'heure' en anglais ?", opts: ["Catch you later","We'll see","No worries","For sure"], ans: "Catch you later", hint: "À tout à l'heure → Catch you later." },
+      { q: "'D'accord' en anglais ?", opts: ["Alright","Totally","Got it","I got this"], ans: "Alright", hint: "D'accord → Alright." },
+    ],
+    [
+      { q: "'En fait' en anglais ?", opts: ['Actually','Generally','Anyway','However'], ans: 'Actually', hint: "En fait → Actually." },
+      { q: "'En résumé' en anglais ?", opts: ['To sum up','To be honest','Not to mention','In other words'], ans: 'To sum up', hint: "En résumé → To sum up." },
+      { q: "'De toute façon' en anglais ?", opts: ['Anyway','Meanwhile','Instead','Therefore'], ans: 'Anyway', hint: "De toute façon → Anyway." },
+      { q: "'Tu peux répéter ?' en anglais ?", opts: ['Say that again?','What do you mean?','Is that all?','Why not?'], ans: 'Say that again?', hint: "Tu peux répéter ? → Say that again?" },
+      { q: "'À la prochaine' en anglais ?", opts: ['Until next time','Take it easy','Have a good one','Good night'], ans: 'Until next time', hint: "À la prochaine → Until next time." },
+      { q: "'Ça me va' en anglais ?", opts: ['Works for me','I got it','No problem','Right away'], ans: 'Works for me', hint: "Ça me va → Works for me." },
     ],
   ],
   'key-verbs': [
@@ -2600,6 +2660,99 @@ function markSeriesDone(key) {
   const done = getSeriesDone();
   done.add(key);
   localStorage.setItem('grammar_series_done', JSON.stringify([...done]));
+}
+
+function getDailySession() {
+  const today = new Date().toISOString().slice(0, 10);
+  try {
+    const stored = JSON.parse(localStorage.getItem('grammar_daily') || 'null');
+    if (stored?.date === today) return stored;
+  } catch {}
+  const allTopics = Object.keys(_GFIX);
+  const done = getSeriesDone();
+  const dayNum = Math.floor(Date.now() / 86400000);
+  const scored = allTopics.map((id, i) => ({
+    id,
+    doneCount: [...done].filter(k => k.startsWith(id + ':')).length,
+    order: (i + dayNum) % allTopics.length,
+  }));
+  scored.sort((a, b) => a.doneCount - b.doneCount || a.order - b.order);
+  const topics = scored.slice(0, 3).map(t => t.id);
+  const session = { date: today, topics, done: [false, false, false] };
+  localStorage.setItem('grammar_daily', JSON.stringify(session));
+  return session;
+}
+
+function saveDailySession(session) {
+  localStorage.setItem('grammar_daily', JSON.stringify(session));
+}
+
+function getDailyTopicSeriesIdx(topicId) {
+  const done = getSeriesDone();
+  const series = getTopicSeries(topicId);
+  for (let i = 0; i < series.length; i++) {
+    if (!done.has(`${topicId}:${i}`)) return i;
+  }
+  return 0;
+}
+
+function startDailySession() {
+  const session = getDailySession();
+  const nextIdx = session.done.findIndex(d => !d);
+  if (nextIdx !== -1) startDailyTopicAtIdx(session, nextIdx);
+}
+
+function startDailyTopicAtIdx(session, idx) {
+  const topicId = session.topics[idx];
+  const seriesIdx = getDailyTopicSeriesIdx(topicId);
+  const series = getTopicSeries(topicId);
+  const bank = series[seriesIdx];
+  if (!bank) return;
+  const topicTitle = (grammarData && grammarData.find(t => t.id === topicId))?.title || topicId;
+  state.kind = 'grammar';
+  state.level = 'Global';
+  state.badge = `${topicTitle} — S${seriesIdx + 1}`;
+  state.mode = 'srs';
+  state.grammarSeriesKey = `${topicId}:${seriesIdx}`;
+  state.dailySession = { session, topicIdx: idx };
+  state.questions = bank.map(t => {
+    const item = _mkItem(topicId, t.q, shuffle([...t.opts]), t.ans, t.hint);
+    const q = buildGrammarQuestion(item);
+    q.word = 'gen-' + topicId;
+    return q;
+  });
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
+}
+
+function renderDailySessionCard() {
+  const card = $('grammar-daily-card');
+  if (!card || grammarLang !== 'en') { if (card) card.classList.add('hidden'); return; }
+  const session = getDailySession();
+  const doneCount = session.done.filter(Boolean).length;
+  const allDone = doneCount === 3;
+  const rows = session.topics.map((id, i) => {
+    const t = grammarData && grammarData.find(t => t.id === id);
+    const isDone = session.done[i];
+    return `<div class="daily-topic-row">
+      <span class="daily-topic-badge${isDone ? ' done' : ''}">${isDone ? '✓' : i + 1}</span>
+      <span class="daily-topic-label${isDone ? ' done' : ''}">${esc(t ? t.title : id)}</span>
+    </div>`;
+  }).join('');
+  card.innerHTML = `
+    <div class="daily-header">
+      <span class="daily-title">📅 Session du jour</span>
+      <span class="daily-progress">${doneCount}/3</span>
+    </div>
+    <div class="daily-topics">${rows}</div>
+    ${allDone
+      ? `<p class="daily-done-msg">✅ Complétée — à demain !</p>`
+      : `<button id="btn-start-daily" class="primary daily-start-btn">${doneCount > 0 ? '▶ Continuer' : '▶ Commencer'}</button>`
+    }`;
+  card.classList.remove('hidden');
+  if (!allDone) $('btn-start-daily').addEventListener('click', startDailySession);
 }
 
 function startGrammarQuizSeries(topicId, seriesIdx) {
