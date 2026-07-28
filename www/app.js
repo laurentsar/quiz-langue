@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.53';
+const APP_VERSION = '2.54';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2483,6 +2483,14 @@ const _GFIX_SERIES = {
       { q: 'The train arrived two hours ___ .', opts: ['late','lately','later','last'], ans: 'late', hint: 'late = adverbe (en retard) ; lately = récemment.' },
       { q: 'He ___ finished when the alarm went off. (à peine)', opts: ['had barely','barely had','had scarcely','scarcely had'], ans: 'had barely', hint: 'À peine avait-il fini → had barely + pp.' },
     ],
+    [
+      { q: "'Cependant' en anglais ?", opts: ['However','Therefore','Meanwhile','Instead'], ans: 'However', hint: 'Cependant → however.' },
+      { q: "'Donc / Par conséquent' en anglais ?", opts: ['Therefore','However','Anyway','Although'], ans: 'Therefore', hint: 'Donc → therefore.' },
+      { q: "'Pendant ce temps' en anglais ?", opts: ['Meanwhile','Instead','Anyway','However'], ans: 'Meanwhile', hint: 'Pendant ce temps → meanwhile.' },
+      { q: "'Absolument' en anglais ?", opts: ['Absolutely','Generally','Exactly','Certainly'], ans: 'Absolutely', hint: 'Absolument → absolutely.' },
+      { q: "'À la place' en anglais ?", opts: ['Instead','Anyway','However','Therefore'], ans: 'Instead', hint: 'À la place → instead.' },
+      { q: "'Surtout / Particulièrement' en anglais ?", opts: ['Especially','Generally','Totally','Probably'], ans: 'Especially', hint: 'Surtout → especially.' },
+    ],
   ],
   'numbers': [
     [
@@ -2573,6 +2581,14 @@ const _GFIX_SERIES = {
       { q: "'Fatigué' en anglais ?", opts: ['tired','bored','sad','angry'], ans: 'tired', hint: 'Fatigué → tired (attention : bored = qui s\'ennuie).' },
       { q: "I ___ calm during the argument. (rester)", opts: ['stayed','felt','seemed','looked'], ans: 'stayed', hint: 'I stayed calm = je suis resté calme.' },
     ],
+    [
+      { q: "'Sans blague !' en anglais ?", opts: ['No way!','For real?','So what?','Go ahead!'], ans: 'No way!', hint: "Sans blague ! → No way!" },
+      { q: "'Je n'arrive pas à y croire' en anglais ?", opts: ["I can't believe it","I'm shocked","No way","What a surprise"], ans: "I can't believe it", hint: "Je n'arrive pas à y croire → I can't believe it." },
+      { q: "'Tu plaisantes !' en anglais ?", opts: ["You're joking!","No way!","Unbelievable!","For real?"], ans: "You're joking!", hint: "Tu plaisantes ! → You're joking!" },
+      { q: "'Je suis bouche bée' en anglais ?", opts: ["I'm speechless","I'm shocked","I'm amazed","I can't believe it"], ans: "I'm speechless", hint: "Je suis bouche bée → I'm speechless." },
+      { q: "'C'est dingue !' en anglais ?", opts: ["That's crazy!","No way!","Unbelievable!","What a surprise!"], ans: "That's crazy!", hint: "C'est dingue ! → That's crazy!" },
+      { q: "'Incroyable !' en anglais ?", opts: ['Unbelievable!','Incredible!','Amazing!','No way!'], ans: 'Unbelievable!', hint: "Incroyable ! → Unbelievable!" },
+    ],
   ],
   'daily-phrases': [
     [
@@ -2590,6 +2606,22 @@ const _GFIX_SERIES = {
       { q: "C'est faux. → That's ___.", opts: ['wrong','bad','false','incorrect'], ans: 'wrong', hint: "That's wrong = c'est faux." },
       { q: "Peut-être. → ___.", opts: ['Maybe','Perhaps','Probably','Possibly'], ans: 'Maybe', hint: 'Peut-être → Maybe (ou Perhaps).' },
       { q: "Je reviens tout de suite. → I'll be right ___.", opts: ['back','here','there','soon'], ans: 'back', hint: "I'll be right back = je reviens tout de suite." },
+    ],
+    [
+      { q: "'Quoi de neuf ?' en anglais ?", opts: ["What's up?","No worries","Let's go","For sure"], ans: "What's up?", hint: "Quoi de neuf ? → What's up?" },
+      { q: "'Ça roule' en anglais ?", opts: ["It's all good","We'll see","Got it","Go ahead"], ans: "It's all good", hint: "Ça roule → It's all good." },
+      { q: "'Laisse tomber' en anglais ?", opts: ["Never mind","Totally","Alright","Catch you later"], ans: "Never mind", hint: "Laisse tomber → Never mind." },
+      { q: "'C'est parti' en anglais ?", opts: ["Let's go","Go ahead","That's clear","It's possible"], ans: "Let's go", hint: "C'est parti → Let's go." },
+      { q: "'À tout à l'heure' en anglais ?", opts: ["Catch you later","We'll see","No worries","For sure"], ans: "Catch you later", hint: "À tout à l'heure → Catch you later." },
+      { q: "'D'accord' en anglais ?", opts: ["Alright","Totally","Got it","I got this"], ans: "Alright", hint: "D'accord → Alright." },
+    ],
+    [
+      { q: "'En fait' en anglais ?", opts: ['Actually','Generally','Anyway','However'], ans: 'Actually', hint: "En fait → Actually." },
+      { q: "'En résumé' en anglais ?", opts: ['To sum up','To be honest','Not to mention','In other words'], ans: 'To sum up', hint: "En résumé → To sum up." },
+      { q: "'De toute façon' en anglais ?", opts: ['Anyway','Meanwhile','Instead','Therefore'], ans: 'Anyway', hint: "De toute façon → Anyway." },
+      { q: "'Tu peux répéter ?' en anglais ?", opts: ['Say that again?','What do you mean?','Is that all?','Why not?'], ans: 'Say that again?', hint: "Tu peux répéter ? → Say that again?" },
+      { q: "'À la prochaine' en anglais ?", opts: ['Until next time','Take it easy','Have a good one','Good night'], ans: 'Until next time', hint: "À la prochaine → Until next time." },
+      { q: "'Ça me va' en anglais ?", opts: ['Works for me','I got it','No problem','Right away'], ans: 'Works for me', hint: "Ça me va → Works for me." },
     ],
   ],
   'key-verbs': [
