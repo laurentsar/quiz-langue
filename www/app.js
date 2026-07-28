@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.48';
+const APP_VERSION = '2.49';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2862,8 +2862,8 @@ function cwTypeChar(ch) {
     if (wid !== null && !cwPlaced[wid].solved && cwIsWordComplete(wid)) {
       cwPlaced[wid].solved = true;
       anyNewlySolved = true;
-      srsUpdate(cwSrsLang, cwPlaced[wid].word, true);
-      saveSrs(cwSrsLang);
+      srsUpdate(state.lang, cwPlaced[wid].word, true);
+      saveSrs(state.lang);
       logDaily(cwSrsLang, true);
       beep(true);
       vibrate(true);
@@ -3120,8 +3120,8 @@ function mrClick(side, idx) {
   if (a.idx === idx) {
     mrPaired.set(idx, mrColorIdx % MR_COLORS.length);
     mrColorIdx++;
-    srsUpdate(mrSrsLang, mrWords[idx].word, true);
-    saveSrs(mrSrsLang);
+    srsUpdate(state.lang, mrWords[idx].word, true);
+    saveSrs(state.lang);
     logDaily(mrSrsLang, true);
     beep(true); vibrate(true);
     mrRenderCols();
