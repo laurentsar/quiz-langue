@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.52';
+const APP_VERSION = '2.53';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -39,6 +39,7 @@ const state = {
   answers: [],
   index: 0,
   grammarSeriesKey: null,
+  dailySession: null,
 };
 
 let verbsData = null;   // liste des verbes irréguliers (chargée à la demande)
@@ -547,7 +548,33 @@ function finishQuiz() {
   saveStats(quizKey(), next);
   if (state.grammarSeriesKey) { markSeriesDone(state.grammarSeriesKey); state.grammarSeriesKey = null; }
 
-  $('result-sub').textContent = state.mode === 'review' ? 'Révision des erreurs terminée' : 'Quiz terminé';
+  // Daily session: mark topic done and wire up continue button
+  const _dailyCtx = state.dailySession ? { ...state.dailySession } : null;
+  state.dailySession = null;
+  const existingContinue = $('btn-daily-continue');
+  if (existingContinue) existingContinue.remove();
+  let _dailyResultSub = null;
+  if (_dailyCtx) {
+    const { session, topicIdx } = _dailyCtx;
+    session.done[topicIdx] = true;
+    saveDailySession(session);
+    const nextIdx = session.done.findIndex(d => !d);
+    if (nextIdx !== -1) {
+      _dailyResultSub = `Session du jour — ${topicIdx + 1}/3 terminé`;
+      const nTitle = grammarData?.find(t => t.id === session.topics[nextIdx])?.title || session.topics[nextIdx];
+      const btn = document.createElement('button');
+      btn.id = 'btn-daily-continue';
+      btn.className = 'primary';
+      btn.textContent = `▶ ${nTitle} (${nextIdx + 1}/3)`;
+      btn.addEventListener('click', () => { btn.remove(); startDailyTopicAtIdx(session, nextIdx); });
+      $('btn-replay').insertAdjacentElement('beforebegin', btn);
+    } else {
+      _dailyResultSub = '🎉 Session du jour complétée !';
+    }
+  }
+
+  $('result-sub').textContent = _dailyResultSub
+    || (state.mode === 'review' ? 'Révision des erreurs terminée' : 'Quiz terminé');
   $('result-score').textContent = `${score}/${total}`;
   const wbox = $('result-wrong');
   if (wrong.length) {
@@ -776,6 +803,7 @@ function renderGrammarList(restoreScroll) {
     b.addEventListener('click', () => { grammarScrollY = window.scrollY; showGrammarTopic(+b.dataset.idx); }));
   if (restoreScroll) requestAnimationFrame(() => window.scrollTo(0, grammarScrollY));
   renderConceptCheckboxes();
+  renderDailySessionCard();
 }
 
 function showGrammarTopic(idx) {
@@ -2600,6 +2628,99 @@ function markSeriesDone(key) {
   const done = getSeriesDone();
   done.add(key);
   localStorage.setItem('grammar_series_done', JSON.stringify([...done]));
+}
+
+function getDailySession() {
+  const today = new Date().toISOString().slice(0, 10);
+  try {
+    const stored = JSON.parse(localStorage.getItem('grammar_daily') || 'null');
+    if (stored?.date === today) return stored;
+  } catch {}
+  const allTopics = Object.keys(_GFIX);
+  const done = getSeriesDone();
+  const dayNum = Math.floor(Date.now() / 86400000);
+  const scored = allTopics.map((id, i) => ({
+    id,
+    doneCount: [...done].filter(k => k.startsWith(id + ':')).length,
+    order: (i + dayNum) % allTopics.length,
+  }));
+  scored.sort((a, b) => a.doneCount - b.doneCount || a.order - b.order);
+  const topics = scored.slice(0, 3).map(t => t.id);
+  const session = { date: today, topics, done: [false, false, false] };
+  localStorage.setItem('grammar_daily', JSON.stringify(session));
+  return session;
+}
+
+function saveDailySession(session) {
+  localStorage.setItem('grammar_daily', JSON.stringify(session));
+}
+
+function getDailyTopicSeriesIdx(topicId) {
+  const done = getSeriesDone();
+  const series = getTopicSeries(topicId);
+  for (let i = 0; i < series.length; i++) {
+    if (!done.has(`${topicId}:${i}`)) return i;
+  }
+  return 0;
+}
+
+function startDailySession() {
+  const session = getDailySession();
+  const nextIdx = session.done.findIndex(d => !d);
+  if (nextIdx !== -1) startDailyTopicAtIdx(session, nextIdx);
+}
+
+function startDailyTopicAtIdx(session, idx) {
+  const topicId = session.topics[idx];
+  const seriesIdx = getDailyTopicSeriesIdx(topicId);
+  const series = getTopicSeries(topicId);
+  const bank = series[seriesIdx];
+  if (!bank) return;
+  const topicTitle = (grammarData && grammarData.find(t => t.id === topicId))?.title || topicId;
+  state.kind = 'grammar';
+  state.level = 'Global';
+  state.badge = `${topicTitle} — S${seriesIdx + 1}`;
+  state.mode = 'srs';
+  state.grammarSeriesKey = `${topicId}:${seriesIdx}`;
+  state.dailySession = { session, topicIdx: idx };
+  state.questions = bank.map(t => {
+    const item = _mkItem(topicId, t.q, shuffle([...t.opts]), t.ans, t.hint);
+    const q = buildGrammarQuestion(item);
+    q.word = 'gen-' + topicId;
+    return q;
+  });
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
+}
+
+function renderDailySessionCard() {
+  const card = $('grammar-daily-card');
+  if (!card || grammarLang !== 'en') { if (card) card.classList.add('hidden'); return; }
+  const session = getDailySession();
+  const doneCount = session.done.filter(Boolean).length;
+  const allDone = doneCount === 3;
+  const rows = session.topics.map((id, i) => {
+    const t = grammarData && grammarData.find(t => t.id === id);
+    const isDone = session.done[i];
+    return `<div class="daily-topic-row">
+      <span class="daily-topic-badge${isDone ? ' done' : ''}">${isDone ? '✓' : i + 1}</span>
+      <span class="daily-topic-label${isDone ? ' done' : ''}">${esc(t ? t.title : id)}</span>
+    </div>`;
+  }).join('');
+  card.innerHTML = `
+    <div class="daily-header">
+      <span class="daily-title">📅 Session du jour</span>
+      <span class="daily-progress">${doneCount}/3</span>
+    </div>
+    <div class="daily-topics">${rows}</div>
+    ${allDone
+      ? `<p class="daily-done-msg">✅ Complétée — à demain !</p>`
+      : `<button id="btn-start-daily" class="primary daily-start-btn">${doneCount > 0 ? '▶ Continuer' : '▶ Commencer'}</button>`
+    }`;
+  card.classList.remove('hidden');
+  if (!allDone) $('btn-start-daily').addEventListener('click', startDailySession);
 }
 
 function startGrammarQuizSeries(topicId, seriesIdx) {
