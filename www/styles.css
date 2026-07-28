@@ -383,6 +383,22 @@ html, body {
 .daily-start-btn { width: 100%; }
 .daily-done-msg { text-align: center; font-size: 14px; font-weight: 600; color: var(--success); margin: 0; }
 
+/* ----- Cours du jour (home) ----- */
+.lesson-card { padding: 16px; margin-bottom: 12px; }
+.lesson-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.lesson-label { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .5px; }
+.lesson-5min { font-size: 11px; color: var(--text-dim); background: var(--card-alt); padding: 2px 8px; border-radius: 10px; }
+.lesson-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.lesson-sub { font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+.lesson-sec-heading { font-size: 13px; font-weight: 600; color: var(--text); margin: 8px 0 4px; }
+.lesson-points { margin: 0 0 8px 18px; padding: 0; }
+.lesson-points li { font-size: 13px; color: var(--text); line-height: 1.5; margin-bottom: 2px; }
+.lesson-examples { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+.lesson-ex { display: flex; flex-direction: column; background: var(--card-alt); border-radius: 6px; padding: 6px 10px; }
+.lesson-ex-en { font-size: 13px; font-weight: 600; color: var(--text); }
+.lesson-ex-fr { font-size: 12px; color: var(--text-dim); }
+.lesson-more-btn { width: 100%; margin-top: 4px; }
+
 /* ----- Flashcards (mode Apprendre) ----- */
 .flash-card { gap: 14px; }
 .flash-back { border-top: 1px solid rgba(255,255,255,.1); padding-top: 14px; font-size: 18px; color: var(--white); line-height: 1.4; }

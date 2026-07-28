@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.55';
+const APP_VERSION = '2.56';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -302,8 +302,53 @@ function renderLevelChips() {
   });
 }
 
+function renderHomeLessonCard() {
+  const card = $('home-lesson-card');
+  if (!card) return;
+
+  const draw = (topics) => {
+    if (!topics || !topics.length) { card.classList.add('hidden'); return; }
+    const dayNum = Math.floor(Date.now() / 86400000);
+    const topic = topics[dayNum % topics.length];
+    if (!topic || !topic.sections || !topic.sections.length) { card.classList.add('hidden'); return; }
+    const sec = topic.sections[0];
+    const pts = (sec.points || []).slice(0, 3).map(p => `<li>${esc(p)}</li>`).join('');
+    const exs = (sec.examples || []).slice(0, 2).map(e =>
+      `<div class="lesson-ex"><span class="lesson-ex-en">${esc(e.en)}</span><span class="lesson-ex-fr">${esc(e.fr)}</span></div>`
+    ).join('');
+    const topicIdx = topics.indexOf(topic);
+    card.innerHTML = `
+      <div class="lesson-header">
+        <span class="lesson-label">📘 Cours du jour</span>
+        <span class="lesson-5min">≤ 5 min</span>
+      </div>
+      <div class="lesson-title">${esc(topic.title)}</div>
+      ${topic.subtitle ? `<div class="lesson-sub">${esc(topic.subtitle)}</div>` : ''}
+      <div class="lesson-sec-heading">${esc(sec.heading)}</div>
+      <ul class="lesson-points">${pts}</ul>
+      ${exs ? `<div class="lesson-examples">${exs}</div>` : ''}
+      <button class="lesson-more-btn secondary">📖 Cours complet →</button>`;
+    card.classList.remove('hidden');
+    card.querySelector('.lesson-more-btn').addEventListener('click', async () => {
+      await loadGrammarLang('en');
+      showView('grammar');
+      showGrammarTopic(topicIdx);
+    });
+  };
+
+  if (grammarCache['en']) {
+    draw(grammarCache['en']);
+  } else {
+    fetch(GRAMMAR_FILES['en']).then(r => r.json()).then(data => {
+      grammarCache['en'] = data;
+      draw(data);
+    }).catch(() => card.classList.add('hidden'));
+  }
+}
+
 function renderStats() {
   renderMotivBar();
+  renderHomeLessonCard();
   const s = loadStats(state.lang);
   $('stat-last').textContent = `${s.lastScore}/5`;
   $('stat-total').textContent = `${s.totalCompleted} · ${s.totalPoints}`;
