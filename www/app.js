@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.47';
+const APP_VERSION = '2.48';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2589,9 +2589,33 @@ $('btn-check-update').addEventListener('click', function () {
 
 if (settings.notifications) scheduleReviewNotification();
 
+// ==================== MODULES VOCABULAIRE (crossword + matching) ====================
+function getModeKey(mode) {
+  if (mode === 'toeic') return TOEIC_KEY;
+  if (mode === 'faux-amis') return FAUX_AMIS_KEY;
+  if (mode === 'familles') return FAMILLES_KEY;
+  return state.lang;
+}
+
+async function getModeWords(mode) {
+  if (mode === 'toeic') {
+    if (!cache['en']) cache['en'] = await (await fetch(LANGS['en'].file)).json();
+    return cache['en'].filter(w => w.level === 'B1' || w.level === 'B2');
+  }
+  if (mode === 'faux-amis') {
+    if (!fauxAmisData) fauxAmisData = await (await fetch(FAUX_AMIS_FILE)).json();
+    return fauxAmisData.map(f => ({ word: f.en, fr: f.fr }));
+  }
+  if (mode === 'familles') {
+    if (!famillesData) famillesData = await (await fetch(FAMILLES_FILE)).json();
+    return famillesData.flatMap(f => f.words);
+  }
+  return levelWords();
+}
+
 // ==================== MOTS CROISÉS ====================
 const CW_ROWS = 13, CW_COLS = 13;
-let cwGrid, cwPlaced, cwSelectedId = null, cwCursorPos = 0, cwWordCount = 5, cwSrsLang;
+let cwGrid, cwPlaced, cwSelectedId = null, cwCursorPos = 0, cwWordCount = 5, cwSrsLang, cwMode = 'vocab';
 
 function cwInitGrid() {
   cwGrid = Array.from({length: CW_ROWS}, () => Array(CW_COLS).fill(null));
@@ -2913,9 +2937,10 @@ function cwRenderWordList() {
 }
 
 function openCrossword() {
-  cwSrsLang = state.lang;
+  cwSrsLang = getModeKey(cwMode);
   showView('crossword');
   renderChips('.cwcount-chip', cwWordCount, 'count');
+  renderChips('.cwmode-chip', cwMode, 'mode');
   $('cw-grid-wrap').classList.add('hidden');
   $('cw-clue-box').classList.add('hidden');
   $('cw-words-list').classList.add('hidden');
@@ -2926,8 +2951,9 @@ function openCrossword() {
   cwCursorPos = 0;
 }
 
-function startCrossword() {
-  const words = levelWords();
+async function startCrossword() {
+  const words = await getModeWords(cwMode);
+  cwSrsLang = getModeKey(cwMode);
   let ok = false;
   for (let t = 0; t < 15 && !ok; t++) ok = cwGenerate(words);
   if (!ok) {
@@ -2957,6 +2983,11 @@ document.querySelectorAll('.cwcount-chip').forEach(c => c.addEventListener('clic
   cwWordCount = +c.dataset.count;
   renderChips('.cwcount-chip', cwWordCount, 'count');
 }));
+document.querySelectorAll('.cwmode-chip').forEach(c => c.addEventListener('click', () => {
+  cwMode = c.dataset.mode;
+  cwSrsLang = getModeKey(cwMode);
+  renderChips('.cwmode-chip', cwMode, 'mode');
+}));
 
 const cwInput = $('cw-input');
 cwInput.addEventListener('input', function () {
@@ -2984,12 +3015,13 @@ cwInput.addEventListener('keydown', function (e) {
 
 // ==================== MOTS À RELIER ====================
 const MR_COLORS = ['#27B3FF','#4CE0D2','#35D07F','#A855F7','#FF6B35','#F97316','#EF4444','#F59E0B','#10B981','#1B5CFF'];
-let mrWords = [], mrLeft = [], mrRight = [], mrSelected = null, mrPaired = new Map(), mrColorIdx = 0, mrWordCount = 5, mrSrsLang;
+let mrWords = [], mrLeft = [], mrRight = [], mrSelected = null, mrPaired = new Map(), mrColorIdx = 0, mrWordCount = 5, mrSrsLang, mrMode = 'vocab';
 
 function openMatching() {
-  mrSrsLang = state.lang;
+  mrSrsLang = getModeKey(mrMode);
   showView('matching');
   renderChips('.mrcount-chip', mrWordCount, 'count');
+  renderChips('.mrmode-chip', mrMode, 'mode');
   $('mr-container').classList.add('hidden');
   $('mr-result').classList.add('hidden');
   $('btn-mr-new').classList.add('hidden');
@@ -2997,8 +3029,9 @@ function openMatching() {
   $('mr-progress').textContent = '';
 }
 
-function startMatching() {
-  const pool = levelWords().filter(w => w.fr && w.word);
+async function startMatching() {
+  const pool = (await getModeWords(mrMode)).filter(w => w.fr && w.word);
+  mrSrsLang = getModeKey(mrMode);
   if (pool.length < 2) return;
   mrWords = shuffle(pool).slice(0, Math.min(mrWordCount, pool.length));
   mrLeft = shuffle(mrWords.map((w, i) => ({word: w.word, fr: w.fr, idx: i})));
@@ -3115,4 +3148,9 @@ $('btn-mr-home').addEventListener('click', () => exitToHome());
 document.querySelectorAll('.mrcount-chip').forEach(c => c.addEventListener('click', () => {
   mrWordCount = +c.dataset.count;
   renderChips('.mrcount-chip', mrWordCount, 'count');
+}));
+document.querySelectorAll('.mrmode-chip').forEach(c => c.addEventListener('click', () => {
+  mrMode = c.dataset.mode;
+  mrSrsLang = getModeKey(mrMode);
+  renderChips('.mrmode-chip', mrMode, 'mode');
 }));
