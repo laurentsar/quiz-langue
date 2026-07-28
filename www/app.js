@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.49';
+const APP_VERSION = '2.52';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -38,6 +38,7 @@ const state = {
   questions: [],
   answers: [],
   index: 0,
+  grammarSeriesKey: null,
 };
 
 let verbsData = null;   // liste des verbes irréguliers (chargée à la demande)
@@ -544,6 +545,7 @@ function finishQuiz() {
     lastScore: score,
   };
   saveStats(quizKey(), next);
+  if (state.grammarSeriesKey) { markSeriesDone(state.grammarSeriesKey); state.grammarSeriesKey = null; }
 
   $('result-sub').textContent = state.mode === 'review' ? 'Révision des erreurs terminée' : 'Quiz terminé';
   $('result-score').textContent = `${score}/${total}`;
@@ -798,13 +800,24 @@ function showGrammarTopic(idx) {
       ${(sec.examples && sec.examples.length) ? `<div class="gram-ex">${sec.examples.map(e => `<div class="gex-row"><span class="gex-en">${esc(e.en)}</span><span class="gex-fr">${esc(e.fr)}</span></div>`).join('')}</div>` : ''}
     </div>`
   ).join('') +
-    ((grammarQuizTopics && grammarQuizTopics.has(t.id))
-      ? `<button class="primary gram-practice" data-topic="${esc(t.id)}">🧩 S'entraîner sur ce point</button>`
-      : '');
+    (() => {
+      const topicSeries = getTopicSeries(t.id);
+      if (!topicSeries.length) return '';
+      const done = getSeriesDone();
+      return `<div class="series-list">${topicSeries.map((s, i) => {
+        const key = `${t.id}:${i}`;
+        const isDone = done.has(key);
+        return `<div class="series-row">
+          <span class="series-badge${isDone ? ' done' : ''}">${isDone ? '✓' : i + 1}</span>
+          <span class="series-label">Série ${i + 1} — ${s.length} questions</span>
+          <button class="chip series-btn" data-topic="${esc(t.id)}" data-series="${i}">▶ Pratiquer</button>
+        </div>`;
+      }).join('')}</div>`;
+    })();
   const detail = $('grammar-detail');
   detail.innerHTML = html;
-  const practice = detail.querySelector('.gram-practice');
-  if (practice) practice.addEventListener('click', () => startGrammarQuiz(t.id));
+  detail.querySelectorAll('.series-btn').forEach(btn =>
+    btn.addEventListener('click', () => startGrammarQuizSeries(btn.dataset.topic, +btn.dataset.series)));
   detail.querySelectorAll('.btn-video').forEach(vlink => {
     vlink.addEventListener('click', e => {
       e.preventDefault();
@@ -1867,6 +1880,14 @@ const _GFIX = {
     { q: 'I ___ call you if I need help.', opts: ['will','would','shall','might'], ans: 'will', hint: 'Type 1 → will dans la principale.' },
     { q: 'Unless you hurry, you ___ miss the train.', opts: ['will','would','shall','might'], ans: 'will', hint: 'Unless = if not → type 1, will.' },
   ],
+  'how-questions': [
+    { q: '___ books do you have? (quantité dénombrable)', opts: ['How many','How much','How often','How long'], ans: 'How many', hint: 'Dénombrable → How many.' },
+    { q: '___ does it cost? (prix)', opts: ['How much','How many','How far','How often'], ans: 'How much', hint: 'Prix / indénombrable → How much.' },
+    { q: '___ can you run? (vitesse)', opts: ['How fast','How far','How well','How long'], ans: 'How fast', hint: 'Vitesse → How fast.' },
+    { q: '___ is the station? (distance)', opts: ['How far','How long','How fast','How often'], ans: 'How far', hint: 'Distance → How far.' },
+    { q: '___ do you go to the gym? (fréquence)', opts: ['How often','How long','How many','How much'], ans: 'How often', hint: 'Fréquence → How often.' },
+    { q: '___ have you been waiting? (durée)', opts: ['How long','How often','How much','How many'], ans: 'How long', hint: 'Durée → How long.' },
+  ],
   'questions-negation': [
     { q: '___ she speak French?', opts: ['Does','Do','Is','Has'], ans: 'Does', hint: '3e pers. sing. au présent simple → Does.' },
     { q: "He ___ like coffee.", opts: ["doesn't","don't","isn't","hasn't"], ans: "doesn't", hint: "3e pers. sing. → doesn't." },
@@ -2011,7 +2032,597 @@ const _GFIX = {
     { q: "That ___ be Tom — Tom is in London!", opts: ["can't",'must','might',"shouldn't"], ans: "can't", hint: 'Impossibilité logique → can\'t.' },
     { q: "She's been studying for 10 hours. She ___ be exhausted.", opts: ['must','might',"can't",'could'], ans: 'must', hint: 'Déduction forte → must.' },
   ],
+  'emotions': [
+    { q: "I'm ___ because I failed the test. (triste)", opts: ['sad','happy','proud','bored'], ans: 'sad', hint: 'Triste → sad.' },
+    { q: "She was ___ when she got the job. (heureuse)", opts: ['happy','lonely','nervous','tired'], ans: 'happy', hint: 'Heureuse → happy.' },
+    { q: "He feels ___ — he has a lot of work. (stressé)", opts: ['stressed','relaxed','grateful','amazed'], ans: 'stressed', hint: 'Stressé → stressed.' },
+    { q: "I'm ___ of you — you did so well! (fier)", opts: ['proud','scared','confused','bored'], ans: 'proud', hint: 'Fier → proud.' },
+    { q: "She was ___ by the magic show. (stupéfaite)", opts: ['amazed','nervous','disappointed','angry'], ans: 'amazed', hint: 'Stupéfait(e) → amazed.' },
+    { q: "I feel ___ — I don't understand anything. (confus)", opts: ['confused','grateful','relaxed','surprised'], ans: 'confused', hint: 'Confus → confused.' },
+  ],
+  'daily-phrases': [
+    { q: "J'ai compris. → I ___ it.", opts: ['got','did','made','took'], ans: 'got', hint: "I got it = j'ai compris." },
+    { q: "Ce n'est pas grave. → It's not a big ___.", opts: ['deal','thing','issue','matter'], ans: 'deal', hint: "It's not a big deal = ce n'est pas grave." },
+    { q: "Je reviens tout de suite. → I'll be ___ back.", opts: ['right','just','soon','quickly'], ans: 'right', hint: "I'll be right back = je reviens tout de suite." },
+    { q: "Ça a du sens. → That ___ sense.", opts: ['makes','does','has','gives'], ans: 'makes', hint: 'Make sense = avoir du sens.' },
+    { q: "Je m'en occupe. → I'll ___ it.", opts: ['handle','make','do','fix'], ans: 'handle', hint: "I'll handle it = je m'en occupe." },
+    { q: "Je suis partant(e). → I'm ___.", opts: ['down','up','in','on'], ans: 'down', hint: "I'm down = je suis partant(e) (familier)." },
+  ],
+  'key-verbs': [
+    { q: "'Éviter' en anglais ?", opts: ['avoid','blame','deny','ignore'], ans: 'avoid', hint: 'Éviter → avoid.' },
+    { q: "'Accomplir' en anglais ?", opts: ['achieve','boost','commit','ensure'], ans: 'achieve', hint: 'Accomplir → achieve.' },
+    { q: "'Impliquer' en anglais ?", opts: ['involve','deliver','offer','happen'], ans: 'involve', hint: 'Impliquer → involve.' },
+    { q: "'Convaincre' en anglais ?", opts: ['convince','confirm','compare','consider'], ans: 'convince', hint: 'Convaincre → convince.' },
+    { q: "'Admettre' en anglais ?", opts: ['admit','avoid','achieve','advise'], ans: 'admit', hint: 'Admettre → admit.' },
+    { q: "'Se concentrer' en anglais ?", opts: ['focus','complain','compare','commit'], ans: 'focus', hint: 'Se concentrer → focus.' },
+  ],
 };
+
+// ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
+const _GFIX_SERIES = {
+  'present-simple-continuous': [
+    [
+      { q: 'He ___ a novel at the moment.', opts: ['is writing','writes','write','wrote'], ans: 'is writing', hint: 'at the moment → présent continu.' },
+      { q: 'She ___ her teeth twice a day.', opts: ['brushes','is brushing','brush','brushed'], ans: 'brushes', hint: 'Habitude régulière → présent simple.' },
+      { q: 'Ice ___ at 0°C.', opts: ['melts','is melting','melt','has melted'], ans: 'melts', hint: 'Vérité scientifique → présent simple.' },
+      { q: 'They ___ a new house right now.', opts: ['are building','build','built','builds'], ans: 'are building', hint: 'right now → présent continu.' },
+      { q: 'He always ___ to loud music. It\'s annoying.', opts: ['listens','is listening','listened','listen'], ans: 'listens', hint: 'always + habitude → présent simple.' },
+      { q: 'Why ___ you wearing a coat indoors?', opts: ['are','do','is','did'], ans: 'are', hint: 'Question sur action en cours → be + -ing.' },
+    ],
+    [
+      { q: 'I ___ you understand — it\'s really hard.', opts: ['know','am knowing','knew','have known'], ans: 'know', hint: 'know = verbe d\'état → pas de continu.' },
+      { q: 'We ___ to Australia next month. (arranged)', opts: ['are flying','fly','flew','will fly'], ans: 'are flying', hint: 'Plan futur arrangé → présent continu.' },
+      { q: 'This coffee ___  bitter.', opts: ['tastes','is tasting','taste','tasted'], ans: 'tastes', hint: 'Verbe de perception (taste) → présent simple.' },
+      { q: 'The company ___ its profits year by year.', opts: ['is increasing','increases','increased','increase'], ans: 'is increasing', hint: 'Tendance en cours → présent continu.' },
+      { q: 'He ___ five languages — impressive!', opts: ['speaks','is speaking','spoke','speak'], ans: 'speaks', hint: 'Capacité permanente → présent simple.' },
+      { q: 'She ___ her driving test on Friday. (arranged)', opts: ['is taking','takes','took','will take'], ans: 'is taking', hint: 'Rendez-vous futur arrangé → présent continu.' },
+    ],
+  ],
+  'past-vs-present-perfect': [
+    [
+      { q: 'I ___ to Japan twice in my life.', opts: ['have been','went','was','have gone'], ans: 'have been', hint: 'Expérience de vie → present perfect.' },
+      { q: '___ you watch the match last night?', opts: ['Did','Have','Do','Had'], ans: 'Did', hint: 'last night = passé défini → did.' },
+      { q: 'She ___ in this house for ten years.', opts: ['has lived','lived','lives','was living'], ans: 'has lived', hint: 'for + durée encore en cours → present perfect.' },
+      { q: 'We ___ the film before dinner last Tuesday.', opts: ['watched','have watched','watch','had watched'], ans: 'watched', hint: 'last Tuesday → date précise → prétérit.' },
+      { q: 'This is the first time she ___ sushi.', opts: ['has tried','tried','tries','had tried'], ans: 'has tried', hint: 'First time + present perfect → has tried.' },
+      { q: 'They ___ the meeting until noon yesterday.', opts: ['postponed','have postponed','postpone','had postponed'], ans: 'postponed', hint: 'yesterday = date précise → prétérit.' },
+    ],
+    [
+      { q: 'By the time he arrived, she ___ already left.', opts: ['had','has','was','did'], ans: 'had', hint: 'Antériorité dans le passé → past perfect (had).' },
+      { q: '___ you ever tried bungee jumping?', opts: ['Have','Did','Do','Had'], ans: 'Have', hint: 'Expérience avec ever → have + pp.' },
+      { q: 'The train ___ five minutes ago.', opts: ['left','has left','leave','had left'], ans: 'left', hint: 'five minutes ago → moment daté → prétérit.' },
+      { q: 'I ___ here since I was a child.', opts: ['have lived','lived','was living','live'], ans: 'have lived', hint: 'since → present perfect.' },
+      { q: 'She ___ Shakespeare many times before she graduated.', opts: ['had read','read','has read','reads'], ans: 'had read', hint: 'Antériorité → past perfect (had read).' },
+      { q: 'How long ___ for the bus?', opts: ['have you been waiting','did you wait','were you waiting','do you wait'], ans: 'have you been waiting', hint: 'Durée en cours → present perfect continuous.' },
+    ],
+  ],
+  'future': [
+    [
+      { q: 'She looks pale. I think she ___ faint.', opts: ['is going to','will','goes to','would'], ans: 'is going to', hint: 'Indice présent visible → be going to.' },
+      { q: 'Don\'t worry, I ___ call you tonight.', opts: ['will','am going to','shall','am calling'], ans: 'will', hint: 'Promesse spontanée → will.' },
+      { q: 'We ___ the Smiths for dinner on Saturday. (arranged)', opts: ['are meeting','will meet','meet','met'], ans: 'are meeting', hint: 'Arrangement futur fixé → présent continu.' },
+      { q: 'I think it ___ a great success.', opts: ['will be','is going to be','is','would be'], ans: 'will be', hint: 'Prédiction sans preuve → will.' },
+      { q: 'He ___ apply for that job — he made up his mind.', opts: ['is going to','will','would','is applying'], ans: 'is going to', hint: 'Intention décidée → be going to.' },
+      { q: 'The flight ___ at 7:15 tomorrow. (horaire officiel)', opts: ['leaves','is leaving','will leave','left'], ans: 'leaves', hint: 'Horaire officiel → présent simple.' },
+    ],
+    [
+      { q: 'By this time next year, she ___ finished her studies.', opts: ['will have','is going to have','will be','would have'], ans: 'will have', hint: 'Accomplissement futur avant un moment → future perfect.' },
+      { q: 'At 10 pm tonight, I ___ sleep soundly.', opts: ['will be sleeping','will sleep','am going to sleep','sleep'], ans: 'will be sleeping', hint: 'Action en cours à un moment futur → future continuous.' },
+      { q: 'Watch out! The vase ___  fall!', opts: ['is going to','will','would','is falling'], ans: 'is going to', hint: 'Danger imminent visible → be going to.' },
+      { q: 'If you need anything, I ___ happy to help.', opts: ['will be','am going to be','am','would be'], ans: 'will be', hint: 'Offre conditionnelle → will.' },
+      { q: 'She ___ do it herself — she\'s already hired someone.', opts: ["isn't going to",'won\'t','doesn\'t','isn\'t'], ans: "isn't going to", hint: 'Plan décidé (négatif) → isn\'t going to.' },
+      { q: 'The conference ___ from 9 to 5 tomorrow. (programme)', opts: ['runs','will run','is running','ran'], ans: 'runs', hint: 'Programme officiel → présent simple.' },
+    ],
+  ],
+  'articles': [
+    [
+      { q: 'He is ___ honest man.', opts: ['an','a','the','—'], ans: 'an', hint: 'honest commence par voyelle → an.' },
+      { q: 'She plays ___ piano beautifully.', opts: ['the','a','an','—'], ans: 'the', hint: 'Instruments de musique → the.' },
+      { q: 'We need ___ milk.', opts: ['—','the','a','an'], ans: '—', hint: 'Indénombrable sans référence précise → zéro article.' },
+      { q: '___ life is full of surprises.', opts: ['—','The','A','An'], ans: '—', hint: 'Généralisation abstraite → zéro article.' },
+      { q: 'She\'s ___ CEO of a big company.', opts: ['the','a','an','—'], ans: 'the', hint: 'Poste unique dans l\'entreprise → the.' },
+      { q: 'I\'d like ___ coffee and ___ biscuit please.', opts: ['a / a','the / the','an / a','a / the'], ans: 'a / a', hint: 'Première mention, singulier → a.' },
+    ],
+    [
+      { q: 'He goes to ___ church every Sunday.', opts: ['—','the','a','an'], ans: '—', hint: 'Institution dans sa fonction → zéro article.' },
+      { q: '___ Pacific is the largest ocean.', opts: ['The','A','An','—'], ans: 'The', hint: 'Noms d\'océans → the.' },
+      { q: 'She has ___ headache.', opts: ['a','an','the','—'], ans: 'a', hint: 'h aspiré → a (a headache).' },
+      { q: 'He is in ___ hospital. (as a patient)', opts: ['—','the','a','an'], ans: '—', hint: 'Institution dans sa fonction → zéro article (hospital).' },
+      { q: '___ news is bad today.', opts: ['The','A','—','An'], ans: 'The', hint: 'news est indénombrable mais défini → the.' },
+      { q: 'It\'s ___ pleasure to meet you.', opts: ['a','an','the','—'], ans: 'a', hint: 'Première mention, singulier → a pleasure.' },
+    ],
+  ],
+  'comparatives': [
+    [
+      { q: 'She is ___ person in the room. (tall)', opts: ['the tallest','the taller','the most tall','tallest'], ans: 'the tallest', hint: 'Superlatif court → the + adj + -est.' },
+      { q: 'This test is ___ than the last one. (difficult)', opts: ['more difficult','difficulter','most difficult','the most difficult'], ans: 'more difficult', hint: 'Adjectif long → more + adj.' },
+      { q: 'He earns ___ money than his sister.', opts: ['less','fewer','little','least'], ans: 'less', hint: 'Indénombrable inférieur → less.' },
+      { q: 'The ___ I study, the ___ I remember.', opts: ['more / more','most / most','much / more','most / more'], ans: 'more / more', hint: 'Comparatif parallèle → the more … the more.' },
+      { q: 'This is ___ solution. (good)', opts: ['the best','the better','the most good','the goodest'], ans: 'the best', hint: 'Superlatif irrégulier de good → the best.' },
+      { q: 'There are ___ students this year than last year.', opts: ['fewer','less','least','few'], ans: 'fewer', hint: 'Dénombrable inférieur → fewer.' },
+    ],
+    [
+      { q: 'It\'s getting ___ and ___ hot.', opts: ['hotter / hotter','more hot / more hot','hottest / hottest','more / more'], ans: 'hotter / hotter', hint: 'Double comparatif → hotter and hotter (adj court).' },
+      { q: 'She\'s ___ as her mother. (tall)', opts: ['as tall','taller','the tallest','most tall'], ans: 'as tall', hint: 'Égalité → as + adj + as.' },
+      { q: 'He\'s ___ less experienced than I thought.', opts: ['far','very','the','more'], ans: 'far', hint: 'Intensificateur de comparatif → far less.' },
+      { q: 'The situation is ___ than we expected. (bad)', opts: ['worse','more bad','the worst','badder'], ans: 'worse', hint: 'Comparatif irrégulier de bad → worse.' },
+      { q: 'She\'s by ___ the smartest in the team.', opts: ['far','much','very','most'], ans: 'far', hint: 'by far + superlatif → de loin la plus intelligente.' },
+      { q: 'This car is no ___ than the other one. (cheap)', opts: ['cheaper','cheapest','more cheap','cheap'], ans: 'cheaper', hint: 'no + comparatif + than → pas moins cher que.' },
+    ],
+  ],
+  'modals': [
+    [
+      { q: 'You ___ be tired — you haven\'t slept!', opts: ['must','might','should','could'], ans: 'must', hint: 'Déduction logique forte → must.' },
+      { q: '___ I use your phone?', opts: ['Could','Should','Would','Must'], ans: 'Could', hint: 'Requête polie → could.' },
+      { q: 'We ___ arrive on time — the boss will be angry otherwise.', opts: ['must','might','could','should'], ans: 'must', hint: 'Obligation forte → must.' },
+      { q: 'She ___ speak Spanish when she was little.', opts: ['could','can','must','should'], ans: 'could', hint: 'Capacité passée → could.' },
+      { q: 'You ___ eat so much sugar. It\'s bad for you.', opts: ["shouldn't",'mustn\'t','can\'t','wouldn\'t'], ans: "shouldn't", hint: 'Conseil négatif → shouldn\'t.' },
+      { q: 'He ___ be at home — I\'m not sure.', opts: ['might','must','should','can'], ans: 'might', hint: 'Incertitude → might.' },
+    ],
+    [
+      { q: 'You ___ have told me earlier! I\'m upset.', opts: ['should','must','could','would'], ans: 'should', hint: 'Reproche passé → should have + pp.' },
+      { q: 'She ___ have left — her bag is still here.', opts: ["can't","mustn't",'might not','shouldn\'t'], ans: "can't", hint: 'Impossibilité passée → can\'t have + pp.' },
+      { q: 'We ___ wait — the doctor will see us now.', opts: ["needn't",'mustn\'t',"shouldn't","can't"], ans: "needn't", hint: 'Absence d\'obligation → needn\'t.' },
+      { q: 'They ___ have won — they played so well!', opts: ['could','must','should','would'], ans: 'could', hint: 'Possibilité non réalisée → could have + pp.' },
+      { q: 'You ___ be kidding! That\'s incredible.', opts: ['must','might','should','could'], ans: 'must', hint: 'Réaction de surprise → must (you must be kidding).' },
+      { q: 'She ___ have studied abroad — her accent is perfect.', opts: ['must','might','should','could'], ans: 'must', hint: 'Déduction passée forte → must have + pp.' },
+    ],
+  ],
+  'conditionals': [
+    [
+      { q: 'If you ___ earlier, you\'d catch the train.', opts: ['left','leave','will leave','would leave'], ans: 'left', hint: 'Type 2 → if + prétérit, would + base.' },
+      { q: 'She would have passed if she ___ harder.', opts: ['had studied','studied','would study','studies'], ans: 'had studied', hint: 'Type 3 → if + past perfect.' },
+      { q: 'If it ___ fine tomorrow, we\'ll go to the beach.', opts: ['is','was','will be','would be'], ans: 'is', hint: 'Type 1 → if + présent, will + base.' },
+      { q: 'Mix blue and yellow, you ___ green. (loi)', opts: ['get','will get','would get','got'], ans: 'get', hint: 'Type 0 → présent + présent (vérité).' },
+      { q: 'I wish I ___ speak Italian.', opts: ['could','can','would','should'], ans: 'could', hint: 'Wish + prétérit → regret présent.' },
+      { q: 'If only she ___ listened to me!', opts: ['had','has','would have','could have'], ans: 'had', hint: 'If only + past perfect → regret du passé.' },
+    ],
+    [
+      { q: 'Were I you, I ___ accept.', opts: ['would','will','should','could'], ans: 'would', hint: 'Inversion formelle : Were I you → would (= If I were you).' },
+      { q: 'Had she known, she ___ told you.', opts: ['would have','will have','had','should have'], ans: 'would have', hint: 'Inversion past perfect → type 3 formel.' },
+      { q: 'Provided that you ___ hard, you\'ll pass.', opts: ['work','worked','would work','will work'], ans: 'work', hint: 'Provided that = if → type 1 → présent.' },
+      { q: 'She treats me as though I ___ stupid.', opts: ['were','am','was','would be'], ans: 'were', hint: 'as though + subjonctif → were (hypothèse).' },
+      { q: '___ you need help, don\'t hesitate to call.', opts: ['Should','Would','If','Were'], ans: 'Should', hint: 'Inversion modale : Should you = If you should (formel).' },
+      { q: 'Even if he ___, I won\'t believe him.', opts: ['apologises','apologised','would apologise','had apologised'], ans: 'apologises', hint: 'Even if → type 1 → présent.' },
+    ],
+  ],
+  'how-questions': [
+    [
+      { q: '___ do you exercise? Once a week.', opts: ['How often','How long','How many','How much'], ans: 'How often', hint: 'Fréquence → How often.' },
+      { q: '___ sugar do you take? (indénombrable)', opts: ['How much','How many','How often','How well'], ans: 'How much', hint: 'Indénombrable → How much.' },
+      { q: '___ is it from London to Paris? (distance)', opts: ['How far','How long','How fast','How often'], ans: 'How far', hint: 'Distance → How far.' },
+      { q: '___ is your sister? She\'s 25.', opts: ['How old','How long','How well','How far'], ans: 'How old', hint: 'Âge → How old.' },
+      { q: '___ did the ceremony last? (durée)', opts: ['How long','How often','How far','How much'], ans: 'How long', hint: 'Durée → How long.' },
+      { q: '___ do you speak French? (qualité)', opts: ['How well','How fast','How much','How often'], ans: 'How well', hint: 'Qualité / niveau → How well.' },
+    ],
+    [
+      { q: '___ people came to the event? (dénombrable)', opts: ['How many','How much','How often','How well'], ans: 'How many', hint: 'Dénombrable (people) → How many.' },
+      { q: '___ is it from here to the airport? About 20km.', opts: ['How far','How fast','How long','How often'], ans: 'How far', hint: 'Distance → How far.' },
+      { q: '___ does the train travel? 300 km/h.', opts: ['How fast','How far','How long','How often'], ans: 'How fast', hint: 'Vitesse → How fast.' },
+      { q: '___ time does it take? (durée)', opts: ['How long','How much','How often','How many'], ans: 'How long', hint: 'How long = combien de temps (durée).' },
+      { q: '___ did you sleep last night? (qualité)', opts: ['How well','How much','How long','How often'], ans: 'How well', hint: 'Qualité du sommeil → How well.' },
+      { q: '___ does this phone cost? (prix)', opts: ['How much','How many','How often','How far'], ans: 'How much', hint: 'Prix → How much.' },
+    ],
+  ],
+  'questions-negation': [
+    [
+      { q: 'She ___ to school yesterday.', opts: ["didn't go","don't go","hasn't gone","wasn't going"], ans: "didn't go", hint: 'Négatif prétérit → didn\'t + base.' },
+      { q: '___ they living in Paris?', opts: ['Are','Do','Were','Did'], ans: 'Are', hint: 'Question présent continu → are + they + -ing.' },
+      { q: 'He has never ___ to China.', opts: ['been','went','gone','be'], ans: 'been', hint: 'never + present perfect → never been.' },
+      { q: 'Where ___ she work?', opts: ['does','do','is','has'], ans: 'does', hint: 'Question présent simple (she) → does.' },
+      { q: 'They ___ watching TV when I called.', opts: ["weren't",'don\'t','didn\'t','aren\'t'], ans: "weren't", hint: 'Négatif prétérit continu → weren\'t.' },
+      { q: '___ she spoken to him yet?', opts: ['Has','Did','Is','Does'], ans: 'Has', hint: 'Question au present perfect → has.' },
+    ],
+    [
+      { q: 'Seldom ___ he made such a mistake.', opts: ['has','does','did','had'], ans: 'has', hint: 'Inversion après adverbe négatif (seldom) → has he made.' },
+      { q: 'You like jazz, ___?', opts: ['don\'t you','do you','aren\'t you','didn\'t you'], ans: 'don\'t you', hint: 'Question tag : affirmative → tag négatif (don\'t you).' },
+      { q: 'She understood neither the question ___ the answer.', opts: ['nor','or','neither','and'], ans: 'nor', hint: 'neither … nor (ni … ni).' },
+      { q: 'Little ___ she know what awaited her.', opts: ['did','does','has','had'], ans: 'did', hint: 'Inversion après little → did she know.' },
+      { q: 'Not only ___ she rude, but she also lied.', opts: ['was','is','did','has'], ans: 'was', hint: 'Not only → inversion → was she.' },
+      { q: 'She hasn\'t arrived yet, ___?', opts: ['has she','hasn\'t she','did she','does she'], ans: 'has she', hint: 'Tag après présent perfect négatif → has she.' },
+    ],
+  ],
+  'quantifiers': [
+    [
+      { q: 'There is ___ point arguing — it\'s decided.', opts: ['no','any','some','not'], ans: 'no', hint: 'no + nom = aucun(e).' },
+      { q: 'Could you give me ___ information?', opts: ['some','any','a','many'], ans: 'some', hint: 'Demande polie → some.' },
+      { q: 'She has ___ friends in the city — maybe two.', opts: ['a few','few','a little','little'], ans: 'a few', hint: 'Dénombrable, petit nombre positif → a few.' },
+      { q: 'He drank ___ water during the race.', opts: ['too much','too many','enough','several'], ans: 'too much', hint: 'Indénombrable en excès → too much.' },
+      { q: 'There weren\'t ___ guests at the party.', opts: ['many','much','some','any'], ans: 'many', hint: 'Négatif + dénombrable → many.' },
+      { q: 'I need ___ more time to finish. (un peu)', opts: ['a little','a few','little','few'], ans: 'a little', hint: 'Indénombrable, petite quantité positive → a little.' },
+    ],
+    [
+      { q: 'There are ___ students absent today. (aucun)', opts: ['no','none','any','not any'], ans: 'no', hint: 'No + nom → aucun étudiant.' },
+      { q: '___ of my friends speak Spanish. (aucun)', opts: ['None','No','Neither','Any'], ans: 'None', hint: 'None of + groupe nominal → aucun de.' },
+      { q: 'She ate ___ the food on her plate. (tout)', opts: ['all of','all the','most of','some of'], ans: 'all of', hint: 'all of + pronom/déterminant → tout le contenu.' },
+      { q: 'He\'s had ___ practice lately. (insuffisant)', opts: ['too little','too few','a little','a few'], ans: 'too little', hint: 'Indénombrable insuffisant → too little.' },
+      { q: 'There\'s ___ milk left — we need to buy more.', opts: ['hardly any','few','a few','many'], ans: 'hardly any', hint: 'Presque aucun (indénombrable) → hardly any.' },
+      { q: 'I have ___ time for a coffee. (suffisamment)', opts: ['enough','plenty','much','many'], ans: 'enough', hint: 'Suffisamment → enough.' },
+    ],
+  ],
+  'gerund-infinitive': [
+    [
+      { q: 'I\'ve always wanted ___ the world.', opts: ['to travel','travelling','travel','have travelled'], ans: 'to travel', hint: 'want + infinitif → to travel.' },
+      { q: 'He admitted ___ the money.', opts: ['stealing','to steal','steal','stolen'], ans: 'stealing', hint: 'admit + gérondif (-ing).' },
+      { q: 'She can\'t help ___ when she sees cats.', opts: ['smiling','to smile','smile','smiled'], ans: 'smiling', hint: 'can\'t help + gérondif.' },
+      { q: 'They agreed ___ the proposal.', opts: ['to accept','accepting','accept','accepted'], ans: 'to accept', hint: 'agree + infinitif (to).' },
+      { q: 'He regrets not ___ harder at school.', opts: ['studying','to study','study','studied'], ans: 'studying', hint: 'regret + gérondif → regret not studying.' },
+      { q: 'She avoided ___ him after the argument.', opts: ['meeting','to meet','meet','met'], ans: 'meeting', hint: 'avoid + gérondif (-ing).' },
+    ],
+    [
+      { q: 'I remember ___ her somewhere before.', opts: ['seeing','to see','see','saw'], ans: 'seeing', hint: 'remember + -ing → souvenir d\'une action passée.' },
+      { q: 'Don\'t forget ___ the lights before you leave.', opts: ['to turn off','turning off','turn off','turned off'], ans: 'to turn off', hint: 'forget + to → tâche future à accomplir.' },
+      { q: 'He tried ___ the door, but it was locked.', opts: ['to open','opening','open','opened'], ans: 'to open', hint: 'try + to = tenter de (effort).' },
+      { q: 'We stopped ___ at a nice restaurant.', opts: ['to eat','eating','eat','eaten'], ans: 'to eat', hint: 'stop + to = s\'arrêter pour (but).' },
+      { q: 'She is used to ___ early. (habitude)', opts: ['getting up','get up','got up','get'], ans: 'getting up', hint: 'used to doing = habitude actuelle → -ing.' },
+      { q: 'I\'d rather ___ home tonight.', opts: ['stay','staying','to stay','stayed'], ans: 'stay', hint: 'would rather + base (sans to).' },
+    ],
+  ],
+  'be': [
+    [
+      { q: 'It ___ a beautiful day yesterday.', opts: ['was','were','is','been'], ans: 'was', hint: 'Prétérit singulier → was.' },
+      { q: 'They ___ at the concert when I arrived.', opts: ['were','was','are','be'], ans: 'were', hint: 'They au prétérit → were.' },
+      { q: 'Where ___ you last night?', opts: ['were','was','did','are'], ans: 'were', hint: 'Question prétérit (you) → were.' },
+      { q: 'The meeting ___ postponed.', opts: ['has been','had','is being','have been'], ans: 'has been', hint: 'Passif present perfect → has been + pp.' },
+      { q: 'She ___ born in Lyon in 1990.', opts: ['was','is','were','has been'], ans: 'was', hint: 'Naissance → was born.' },
+      { q: '___ there any problems?', opts: ['Were','Was','Are','Is'], ans: 'Were', hint: 'Question prétérit + there + pluriel → Were there.' },
+    ],
+    [
+      { q: 'There ___ to be a better solution.', opts: ['has','have','had','is'], ans: 'has', hint: 'There has to be = il doit y avoir (singulier).' },
+      { q: 'She ___ known for her kindness.', opts: ['is','was','were','has'], ans: 'is', hint: 'Passif présent (connue pour) → is known.' },
+      { q: 'What time ___ the last train?', opts: ['is','are','was','were'], ans: 'is', hint: 'Horaire (singulier) → is.' },
+      { q: 'They ___ said to be the best team in the league.', opts: ['are','were','have been','is'], ans: 'are', hint: 'Passif présent (they) → are said.' },
+      { q: 'It ___ raining when we left.', opts: ['was','is','were','had'], ans: 'was', hint: 'Prétérit continu → was raining.' },
+      { q: 'The door ___ painted blue last year.', opts: ['was','is','were','has'], ans: 'was', hint: 'Passif prétérit (singulier) → was.' },
+    ],
+  ],
+  'have': [
+    [
+      { q: 'She ___ her computer serviced every year.', opts: ['has','have','gets','is having'], ans: 'has', hint: 'Causatif have → has + objet + pp.' },
+      { q: 'Do you ___ any idea where he is?', opts: ['have','has','had','having'], ans: 'have', hint: 'Do you + base form → have.' },
+      { q: 'We ___ a lovely time at the party.', opts: ['had','have','are having','has'], ans: 'had', hint: 'Expression au prétérit → had a lovely time.' },
+      { q: 'She ___ a shower when the phone rang.', opts: ['was having','had','has had','is having'], ans: 'was having', hint: 'Action en cours → prétérit continu (was having).' },
+      { q: 'He ___ nothing to do with it.', opts: ['had','has','have','is having'], ans: 'had', hint: 'Contexte passé → had nothing to do with it.' },
+      { q: 'I ___ my eyes tested every two years.', opts: ['have','has','get','am having'], ans: 'have', hint: 'Causatif have (présent, I) → have.' },
+    ],
+    [
+      { q: 'She wouldn\'t ___ done it without help.', opts: ['have','had','has','be'], ans: 'have', hint: 'Would + have + pp → conditional perfect.' },
+      { q: 'He ___ his passport renewed last week.', opts: ['had','has had','got','was having'], ans: 'had', hint: 'Causatif passé → had + objet + pp.' },
+      { q: '___ you ever had your car stolen?', opts: ['Have','Has','Had','Were'], ans: 'Have', hint: 'Question present perfect → Have you + pp.' },
+      { q: 'She ___ to stop — the pain was unbearable.', opts: ['had','has had','was having','have'], ans: 'had', hint: 'have to (obligation) au prétérit → had to.' },
+      { q: 'I ___ a go at fixing it before calling a plumber.', opts: ['had','have','has had','am having'], ans: 'had', hint: 'have a go (essayer) au prétérit → had a go.' },
+      { q: 'They ___ trouble finding a hotel that night.', opts: ['had','have had','are having','have'], ans: 'had', hint: 'Prétérit narratif → had trouble -ing.' },
+    ],
+  ],
+  'personal-pronouns': [
+    [
+      { q: 'That\'s her over there — my sister and ___.', opts: ['me','I','my','myself'], ans: 'me', hint: 'Après and, pronom complément → me.' },
+      { q: 'He taught ___ how to cook.', opts: ['himself','him','his','he'], ans: 'himself', hint: 'Sujet = complément → réfléchi (himself).' },
+      { q: 'They introduced ___ as the new manager.', opts: ['themselves','them','their','they'], ans: 'themselves', hint: 'Sujet = complément → réfléchi (themselves).' },
+      { q: 'Between you and ___, this is a secret.', opts: ['me','I','myself','mine'], ans: 'me', hint: 'Après préposition → pronom objet (me).' },
+      { q: 'We did it all by ___.', opts: ['ourselves','us','our','ours'], ans: 'ourselves', hint: 'Seuls, sans aide → by + réfléchi (ourselves).' },
+      { q: 'Is this bag ___? No, mine is blue.', opts: ['yours','your','you','yourself'], ans: 'yours', hint: 'Pronom possessif indépendant → yours.' },
+    ],
+    [
+      { q: 'They blamed ___ for the mistake.', opts: ['us','we','our','ourselves'], ans: 'us', hint: 'Pronom complément après blame → us.' },
+      { q: 'She hurt ___ while running.', opts: ['herself','her','she','hers'], ans: 'herself', hint: 'Même sujet et objet → réfléchi (herself).' },
+      { q: 'It\'s ___ birthday today! (belonging to us)', opts: ['our','ours','us','we'], ans: 'our', hint: 'Possessif adjectival devant nom → our.' },
+      { q: 'Neither he nor ___ was invited.', opts: ['she','her','hers','herself'], ans: 'she', hint: 'Sujet dans neither … nor → she.' },
+      { q: 'We enjoyed ___ at the festival.', opts: ['ourselves','us','our','ours'], ans: 'ourselves', hint: 'Pronom réfléchi → ourselves.' },
+      { q: 'Give ___ a hand — they can\'t carry it alone.', opts: ['them','they','their','theirs'], ans: 'them', hint: 'Pronom objet → them.' },
+    ],
+  ],
+  'nouns-plural': [
+    [
+      { q: 'There are two ___ in the pond.', opts: ['fish','fishes','fishs','fishies'], ans: 'fish', hint: 'fish reste identique au pluriel.' },
+      { q: 'The ___ are beautiful in autumn.', opts: ['leaves','leafs','leafes','leifs'], ans: 'leaves', hint: '-f → -ves : leaf → leaves.' },
+      { q: 'They hired three ___ last month.', opts: ['assistants','assistant','assistantes','assistantess'], ans: 'assistants', hint: 'Pluriel régulier → + s.' },
+      { q: 'The ___ left the meeting early.', opts: ['women','womans','womens','woman'], ans: 'women', hint: 'Pluriel irrégulier : woman → women.' },
+      { q: 'She has two ___ at home. (piano)', opts: ['pianos','pianoes','piano','pianis'], ans: 'pianos', hint: 'Noms en -o courants → + s (pianos).' },
+      { q: 'She has two ___ (criterion).', opts: ['criteria','criterions','criterias','criterion'], ans: 'criteria', hint: 'Pluriel latin : criterion → criteria.' },
+    ],
+    [
+      { q: 'The phenomenon was explained by two ___.', opts: ['phenomena','phenomenons','phenomenon','phenomenas'], ans: 'phenomena', hint: 'Pluriel grec : phenomenon → phenomena.' },
+      { q: 'All the ___ were present. (mouse)', opts: ['mice','mouses','mouse','mices'], ans: 'mice', hint: 'Pluriel irrégulier : mouse → mice.' },
+      { q: 'These ___ are very old. (tooth)', opts: ['teeth','tooths','toothes','tooth'], ans: 'teeth', hint: 'Pluriel irrégulier : tooth → teeth.' },
+      { q: 'She counted several ___. (sheep)', opts: ['sheep','sheeps','sheepes','sheepies'], ans: 'sheep', hint: 'sheep → invariable au pluriel.' },
+      { q: 'The data ___ not conclusive.', opts: ['are','is','was','were'], ans: 'are', hint: 'data = pluriel de datum → are.' },
+      { q: 'Several ___ were damaged in the storm. (roof)', opts: ['roofs','rooves','roof','roofes'], ans: 'roofs', hint: 'roof → roofs (exception : pas de -ves).' },
+    ],
+  ],
+  'possession': [
+    [
+      { q: 'Is this ___ umbrella?', opts: ['James\'s','James\'','James','of James'], ans: 'James\'s', hint: 'Noms se terminant par s → + \'s (James\'s).' },
+      { q: 'The ___ office is on the first floor. (managers, plural)', opts: ["managers'",'manager\'s','managers\'s','of the managers'], ans: "managers'", hint: 'Pluriel régulier → apostrophe seule après s.' },
+      { q: 'That\'s a friend ___ mine.', opts: ['of','—','\'s','from'], ans: 'of', hint: 'a friend of + pronom possessif.' },
+      { q: 'Those are ___ books. (belonging to them)', opts: ['their','theirs','them','they\'s'], ans: 'their', hint: 'Possessif adjectival (devant nom) → their.' },
+      { q: 'The end ___ the film was surprising.', opts: ['of','\'s','—','from'], ans: 'of', hint: 'Choses non-animées → of (the end of the film).' },
+      { q: 'My ___ car is new. (my parents\')', opts: ["parents'","parent's",'parents','of parents'], ans: "parents'", hint: 'Pluriel régulier → apostrophe après le s.' },
+    ],
+    [
+      { q: 'The ___ bark kept us awake. (dog)', opts: ["dog's","dogs'",'dogs','of dog'], ans: "dog's", hint: 'Singulier → génitif saxon : dog\'s.' },
+      { q: 'She read two ___ books.', opts: ['Shakespeare\'s','Shakespeares\'','of Shakespeare','Shakespeare'], ans: 'Shakespeare\'s', hint: 'Auteur → génitif possessif.' },
+      { q: 'That is ___ problem, not mine.', opts: ['your','yours','you','yourself'], ans: 'your', hint: 'Possessif devant nom → your (adjectif).' },
+      { q: 'This bag is ___ . (belonging to the woman)', opts: ["the woman's","the woman'","of the woman",'the women\'s'], ans: "the woman's", hint: 'Singulier → génitif saxon.' },
+      { q: 'The team ___ performance was outstanding.', opts: ["'s","s'","s's",'—'], ans: "'s", hint: 'team (singulier) → team\'s.' },
+      { q: 'Those results are ___. (belonging to us)', opts: ['ours','our','us','ourselves'], ans: 'ours', hint: 'Pronom possessif indépendant → ours.' },
+    ],
+  ],
+  'prepositions-place': [
+    [
+      { q: 'He arrived ___ the airport two hours early.', opts: ['at','in','on','by'], ans: 'at', hint: 'Lieu de transit → at.' },
+      { q: 'The keys are ___ the drawer.', opts: ['in','on','at','under'], ans: 'in', hint: 'À l\'intérieur d\'un espace fermé → in.' },
+      { q: 'She sat ___ the window and looked out.', opts: ['by','on','at','in'], ans: 'by', hint: 'Tout près de → by.' },
+      { q: 'He lives ___ the third floor.', opts: ['on','in','at','by'], ans: 'on', hint: 'Étages → on the third floor.' },
+      { q: 'The station is ___ the bank and the post office.', opts: ['between','among','in','at'], ans: 'between', hint: 'Entre deux choses précises → between.' },
+      { q: 'The poster is ___ the wall.', opts: ['on','in','at','by'], ans: 'on', hint: 'Surface verticale → on.' },
+    ],
+    [
+      { q: 'She hid the key ___ the mat.', opts: ['under','below','beneath','on'], ans: 'under', hint: 'Directement en dessous → under.' },
+      { q: 'The plane flew ___ the clouds.', opts: ['above','over','through','across'], ans: 'above', hint: 'Plus haut que, sans traverser → above.' },
+      { q: 'He walked ___ the room to open the window.', opts: ['across','through','along','over'], ans: 'across', hint: 'D\'un côté à l\'autre → across.' },
+      { q: 'She was standing ___ me. (face à face)', opts: ['opposite','against','among','towards'], ans: 'opposite', hint: 'En face de → opposite.' },
+      { q: 'The books were scattered ___ the floor.', opts: ['all over','in','on','across'], ans: 'all over', hint: 'Éparpillé partout sur → all over.' },
+      { q: 'We live ___ the park. (de l\'autre côté)', opts: ['across from','opposite to','against','by'], ans: 'across from', hint: 'De l\'autre côté de → across from.' },
+    ],
+  ],
+  'demonstratives': [
+    [
+      { q: '___ is my favourite photo. (close, singular)', opts: ['This','That','These','Those'], ans: 'This', hint: 'Proche, singulier → this.' },
+      { q: '___ were the days! (le bon vieux temps)', opts: ['Those','These','That','This'], ans: 'Those', hint: 'Époque révolue (loin dans le temps) → those.' },
+      { q: 'Are ___ your glasses on the desk? (near)', opts: ['these','those','this','that'], ans: 'these', hint: 'Proche, pluriel → these.' },
+      { q: 'I prefer ___ shoes here to ___ over there.', opts: ['these / those','those / these','this / that','that / this'], ans: 'these / those', hint: 'Proche → these, loin → those.' },
+      { q: '___ is a difficult question. (just asked)', opts: ['That','This','Those','These'], ans: 'That', hint: 'Question venant d\'être posée → that.' },
+      { q: 'What is ___ smell? (strange, nearby)', opts: ['that','this','those','these'], ans: 'that', hint: 'Odeur perçue avec distance/surprise → that.' },
+    ],
+    [
+      { q: '___ who cheat will be disqualified. (référence générale)', opts: ['Those','These','That','This'], ans: 'Those', hint: 'Référence générale (ceux qui) → Those who.' },
+      { q: 'Her results were good, but ___ of her brother were better.', opts: ['those','these','this','that'], ans: 'those', hint: 'Pronom de substitution pour éviter la répétition → those.' },
+      { q: '___ said, I agree with your conclusion.', opts: ['That','This','Those','These'], ans: 'That', hint: 'Expression figée : that said (cela dit).' },
+      { q: 'We had ___ big presentation today. (proche dans le temps)', opts: ['this','that','these','those'], ans: 'this', hint: 'Événement d\'aujourd\'hui → this.' },
+      { q: '___ information is confidential.', opts: ['This','That','These','Those'], ans: 'This', hint: 'information (indénombrable, singulier) → this.' },
+      { q: 'Of all the options, ___ seems the most viable.', opts: ['this','that','these','those'], ans: 'this', hint: 'Option évoquée juste avant → this (proche mentalement).' },
+    ],
+  ],
+  'causative': [
+    [
+      { q: 'I need to ___ this document translated.', opts: ['have','get','make','let'], ans: 'have', hint: 'have + objet + pp = faire faire (formel).' },
+      { q: 'She ___ her house cleaned every week.', opts: ['gets','has','makes','lets'], ans: 'gets', hint: 'get + objet + pp (courant/oral).' },
+      { q: 'The teacher made the students ___ the text again.', opts: ['read','to read','reading','reads'], ans: 'read', hint: 'make + objet + base = obliger (sans to).' },
+      { q: 'He let his son ___ the car.', opts: ['take','to take','taking','took'], ans: 'take', hint: 'let + objet + base = permettre.' },
+      { q: 'She ___ her nails painted at the salon.', opts: ['had','has had','gets','got'], ans: 'had', hint: 'Causatif passé → had + objet + pp.' },
+      { q: 'They ___ their luggage sent ahead.', opts: ['had','have','got','made'], ans: 'had', hint: 'Causatif : had + objet + pp.' },
+    ],
+    [
+      { q: 'He ___ us stay late. (forced us)', opts: ['made','let','had','got'], ans: 'made', hint: 'make + objet + base (forcer) → made us stay.' },
+      { q: 'She got the mechanic ___ the car.', opts: ['to fix','fix','fixing','fixed'], ans: 'to fix', hint: 'get + personne + to + base → to fix.' },
+      { q: 'They wouldn\'t ___ us in.', opts: ['let','make','have','get'], ans: 'let', hint: 'let = permettre → let us in.' },
+      { q: 'She had her tooth ___ at the dentist.', opts: ['pulled out','pull out','pulling out','to pull out'], ans: 'pulled out', hint: 'have + objet + pp → pulled out.' },
+      { q: 'He got his application ___ quickly.', opts: ['processed','process','processing','to process'], ans: 'processed', hint: 'get + objet + pp (résultat).' },
+      { q: 'The manager had the team ___ the report.', opts: ['rewrite','rewritten','to rewrite','rewriting'], ans: 'rewrite', hint: 'have + personne + base (sans to) → rewrite.' },
+    ],
+  ],
+  'prepositions-time': [
+    [
+      { q: 'We\'ll meet ___ Tuesday afternoon.', opts: ['on','in','at','by'], ans: 'on', hint: 'Jour + partie du jour → on Tuesday afternoon.' },
+      { q: 'She started her job ___ the beginning of March.', opts: ['at','in','on','by'], ans: 'at', hint: 'at the beginning of = au début de.' },
+      { q: 'He works best ___ night.', opts: ['at','in','on','during'], ans: 'at', hint: 'at night (la nuit).' },
+      { q: 'We lived there ___ the nineties.', opts: ['in','on','at','during'], ans: 'in', hint: 'Décennie → in the nineties.' },
+      { q: 'She must finish ___ 5 pm. (pas plus tard que)', opts: ['by','at','until','on'], ans: 'by', hint: 'Au plus tard → by.' },
+      { q: 'I\'ve been studying ___ this morning.', opts: ['since','for','during','from'], ans: 'since', hint: 'Depuis un point de départ → since.' },
+    ],
+    [
+      { q: 'She works ___ 9 ___ 5 every day.', opts: ['from / to','from / until','since / until','at / to'], ans: 'from / to', hint: 'Plage horaire → from … to.' },
+      { q: 'He was stuck in traffic ___ an hour.', opts: ['for','since','during','by'], ans: 'for', hint: 'Durée → for.' },
+      { q: 'They arrived ___ the middle of the night.', opts: ['in','at','on','during'], ans: 'in', hint: 'in the middle of = au milieu de.' },
+      { q: 'I haven\'t seen her ___ ages.', opts: ['for','since','during','in'], ans: 'for', hint: 'Durée non précise → for ages.' },
+      { q: 'We stayed ___ the end of the concert.', opts: ['until','by','for','since'], ans: 'until', hint: 'Jusqu\'à → until.' },
+      { q: 'She graduated ___ the summer of 2022.', opts: ['in','on','at','during'], ans: 'in', hint: 'Saison → in the summer.' },
+    ],
+  ],
+  'passive': [
+    [
+      { q: 'The report ___ by the secretary every week.', opts: ['is typed','types','has typed','is typing'], ans: 'is typed', hint: 'Passif présent → is + pp.' },
+      { q: 'They ___ told about the meeting.', opts: ['were','was','are','had been'], ans: 'were', hint: 'Passif prétérit (they) → were + pp.' },
+      { q: 'The bridge ___ for six months.', opts: ['has been closed','was closed','closes','has closed'], ans: 'has been closed', hint: 'Depuis → present perfect passif → has been + pp.' },
+      { q: 'This problem ___ deal with immediately.', opts: ['must be','must have been','has to','is being'], ans: 'must be', hint: 'Obligation au passif → must be + pp.' },
+      { q: 'He ___ arrested when I called.', opts: ['was being','is being','was','had been'], ans: 'was being', hint: 'Action en cours dans le passé → passif continu prétérit.' },
+      { q: 'The documents ___ by tomorrow.', opts: ['will have been signed','will sign','are signed','are being signed'], ans: 'will have been signed', hint: 'Passif futur antérieur → will have been + pp.' },
+    ],
+    [
+      { q: 'It ___ that the CEO will resign.', opts: ['is reported','reports','is reporting','was reported'], ans: 'is reported', hint: 'Construction impersonnelle passive → It is reported that.' },
+      { q: 'By the time it opened, the road ___ for years.', opts: ['had been planned','was planned','has been planned','had planned'], ans: 'had been planned', hint: 'Passif past perfect → had been + pp.' },
+      { q: 'Nothing ___ to improve the situation.', opts: ['was done','did','has done','were done'], ans: 'was done', hint: 'Passif prétérit (nothing) → was done.' },
+      { q: 'He ___ believed to have fled the country.', opts: ['is','was','has been','were'], ans: 'is', hint: 'Passif présent impersonnel → He is believed to.' },
+      { q: 'The thief ___ hiding in the basement.', opts: ['was found','found','is found','has found'], ans: 'was found', hint: 'Passif prétérit (découverte) → was found.' },
+      { q: 'The criminals ___ caught red-handed.', opts: ['were','are','have','had'], ans: 'were', hint: 'Passif prétérit (pluriel) → were caught.' },
+    ],
+  ],
+  'adverbs': [
+    [
+      { q: 'She plays the piano ___ . (good → adverbe)', opts: ['well','good','goodly','greatly'], ans: 'well', hint: 'Adverbe de good → well.' },
+      { q: 'He ___ watches TV. He prefers reading. (rarement)', opts: ['rarely','always','often','usually'], ans: 'rarely', hint: 'rarement → rarely.' },
+      { q: 'She finished the exam ___ quickly.', opts: ['surprisingly','surprising','surprise','surprised'], ans: 'surprisingly', hint: 'Modifie un adverbe → adverbe en -ly.' },
+      { q: 'She ___ finished her essay. (presque)', opts: ['nearly','near','close','almost nearly'], ans: 'nearly', hint: 'Presque → nearly.' },
+      { q: 'He arrived ___ after the meeting started.', opts: ['shortly','short','shortly after','short after'], ans: 'shortly', hint: 'Peu après → shortly.' },
+      { q: 'He treats everyone ___ . (polite → adverbe)', opts: ['politely','politly','polite','in a polite'], ans: 'politely', hint: '-ite + ly → politely.' },
+    ],
+    [
+      { q: 'He can ___ wait — he\'s very patient. (à peine)', opts: ['hardly','hard','never','rarely'], ans: 'hardly', hint: 'À peine → hardly (≠ hard = dur).' },
+      { q: 'She ___ forgets things. She\'s very organised.', opts: ['never','always','often','usually'], ans: 'never', hint: 'ne … jamais → never.' },
+      { q: 'He drives ___ carefully when it rains.', opts: ['more','most','very','so'], ans: 'more', hint: 'Comparatif d\'adverbe → more carefully.' },
+      { q: 'She speaks French ___ well.', opts: ['incredibly','incredible','incrediblily','incrediblly'], ans: 'incredibly', hint: '-ible → -ibly : incredible → incredibly.' },
+      { q: 'The train arrived two hours ___ .', opts: ['late','lately','later','last'], ans: 'late', hint: 'late = adverbe (en retard) ; lately = récemment.' },
+      { q: 'He ___ finished when the alarm went off. (à peine)', opts: ['had barely','barely had','had scarcely','scarcely had'], ans: 'had barely', hint: 'À peine avait-il fini → had barely + pp.' },
+    ],
+  ],
+  'numbers': [
+    [
+      { q: 'There were ___ people at the event. (1 542)', opts: ['one thousand five hundred and forty-two','fifteen forty-two','one thousand and five forty-two','fifteen hundred forty-two'], ans: 'one thousand five hundred and forty-two', hint: 'Millier + centaine + dizaine + unité.' },
+      { q: 'She came ___. (2nd)', opts: ['second','two','twoth','secondary'], ans: 'second', hint: 'Ordinal : 2 → second.' },
+      { q: '___ of the candidates were selected. (1/3)', opts: ['A third','The third','One thirds','A thirds'], ans: 'A third', hint: 'Fraction : 1/3 → a third.' },
+      { q: 'He scored ___ on the test. (5th)', opts: ['fifth','fiveth','five','fiftieth'], ans: 'fifth', hint: 'five → fifth (irrégulier).' },
+      { q: 'The population is ___ million. (3.5)', opts: ['three and a half','three point five','three and five','three-five'], ans: 'three and a half', hint: '3,5 → three and a half.' },
+      { q: 'She ran the race in ___ minutes. (42)', opts: ['forty-two','forty two','fourty-two','forty-second'], ans: 'forty-two', hint: 'Dizaine + unité → trait d\'union (forty-two).' },
+    ],
+    [
+      { q: 'The meeting is on the ___ of July. (4th)', opts: ['fourth','four','forty','fourteen'], ans: 'fourth', hint: 'four → fourth (ordinal).' },
+      { q: '___ the students passed. (75%)', opts: ['Three quarters of','Three quarter of','The three quarters','Three-quarter'], ans: 'Three quarters of', hint: '3/4 → three quarters of.' },
+      { q: 'It costs ___ pounds. (£12.50)', opts: ['twelve pounds fifty','twelve and fifty pence','twelve fifty pence','twelve-five pounds'], ans: 'twelve pounds fifty', hint: 'Prix → twelve pounds fifty.' },
+      { q: 'He lives on the ___ floor. (12th)', opts: ['twelfth','twelft','twelve','twelve-th'], ans: 'twelfth', hint: 'twelve → twelfth (irrégulier).' },
+      { q: 'The team won ___ . (3-1)', opts: ['three to one','three by one','three against one','three one'], ans: 'three to one', hint: 'Score → three to one.' },
+      { q: 'She rang ___ times. (0)', opts: ['zero','nil','nought','oh'], ans: 'zero', hint: 'Zéro général → zero.' },
+    ],
+  ],
+  'adjective-order': [
+    [
+      { q: 'She has ___ cat.', opts: ['a lovely small white','a small lovely white','a white small lovely','a lovely white small'], ans: 'a lovely small white', hint: 'Opinion → taille → couleur.' },
+      { q: 'He wore ___ shoes.', opts: ['old brown leather','brown old leather','leather brown old','old leather brown'], ans: 'old brown leather', hint: 'Âge → couleur → matière.' },
+      { q: 'She drove a ___ car.', opts: ['big red French','red big French','French big red','big French red'], ans: 'big red French', hint: 'Taille → couleur → origine.' },
+      { q: 'They live in a ___ house.', opts: ['beautiful old stone','old beautiful stone','stone beautiful old','beautiful stone old'], ans: 'beautiful old stone', hint: 'Opinion → âge → matière.' },
+      { q: 'He found a ___ coin.', opts: ['rare tiny gold','tiny rare gold','gold tiny rare','rare gold tiny'], ans: 'rare tiny gold', hint: 'Opinion → taille → matière.' },
+      { q: 'I saw a ___ dog.', opts: ['large furry black','furry large black','black large furry','large black furry'], ans: 'large furry black', hint: 'Taille → qualificateur → couleur.' },
+    ],
+    [
+      { q: 'She wore a ___ scarf.', opts: ['long blue silk','blue long silk','silk long blue','long silk blue'], ans: 'long blue silk', hint: 'Taille → couleur → matière.' },
+      { q: 'He drives a ___ vehicle.', opts: ['powerful new Japanese','new powerful Japanese','Japanese powerful new','powerful Japanese new'], ans: 'powerful new Japanese', hint: 'Qualificateur → âge → origine.' },
+      { q: 'We have a ___ table.', opts: ['round old wooden','old round wooden','wooden old round','round wooden old'], ans: 'round old wooden', hint: 'Forme → âge → matière.' },
+      { q: 'She bought ___ earrings.', opts: ['beautiful small pearl','small beautiful pearl','pearl beautiful small','beautiful pearl small'], ans: 'beautiful small pearl', hint: 'Opinion → taille → matière.' },
+      { q: 'He has a ___ building.', opts: ['massive old Victorian','old massive Victorian','Victorian massive old','massive Victorian old'], ans: 'massive old Victorian', hint: 'Taille → âge → style/origine.' },
+      { q: 'They chose ___ fabric.', opts: ['an exquisite thin red Italian','a red thin exquisite Italian','a thin Italian red exquisite','an Italian exquisite red thin'], ans: 'an exquisite thin red Italian', hint: 'Opinion → taille → couleur → origine.' },
+    ],
+  ],
+  'word-formation': [
+    [
+      { q: 'She showed great ___ in the competition. (strong)', opts: ['strength','strong','strongly','strongness'], ans: 'strength', hint: 'strong → strength (nom irrégulier).' },
+      { q: 'It was ___ to hear such news. (shock)', opts: ['shocking','shocked','shockful','shockingly'], ans: 'shocking', hint: '-ing = source de choc → shocking.' },
+      { q: 'He ___ the safety rules. (not obey)', opts: ['disobeyed','unobeyed','inobeyed','disbeyed'], ans: 'disobeyed', hint: 'dis- = contraire → disobeyed.' },
+      { q: 'The project was a great ___. (succeed)', opts: ['success','succeeding','successful','succession'], ans: 'success', hint: 'succeed → success (nom).' },
+      { q: 'She\'s a very ___ player. (skill)', opts: ['skilful','skilling','skilled','skillful'], ans: 'skilful', hint: '-ful = qui a → skilful (BrE).' },
+      { q: 'This machine is very ___. (use)', opts: ['useful','usable','using','usely'], ans: 'useful', hint: '-ful → utile → useful.' },
+    ],
+    [
+      { q: 'They reached an ___ after long talks. (agree)', opts: ['agreement','agreeing','agreed','agreeance'], ans: 'agreement', hint: 'agree → agreement (-ment = nom).' },
+      { q: 'He was ___ of the risks. (aware)', opts: ['unaware','nonaware','disaware','misaware'], ans: 'unaware', hint: 'un- + aware = inconscient de.' },
+      { q: 'Her ___ surprised everyone. (generous)', opts: ['generosity','generousness','generousity','generous'], ans: 'generosity', hint: 'generous → generosity.' },
+      { q: 'The decision was ___. (reverse + not possible)', opts: ['irreversible','unversible','not reversible','disreversible'], ans: 'irreversible', hint: 'ir- + reversible = ne pouvant pas être annulé.' },
+      { q: 'He gave a ___ answer. (thought)', opts: ['thoughtful','thinkful','thoughted','thought'], ans: 'thoughtful', hint: 'thought + -ful = réfléchi.' },
+      { q: 'She spoke ___ at the ceremony. (emotion)', opts: ['emotionally','emotional','emotive','emotioned'], ans: 'emotionally', hint: 'emotion → emotional → emotionally.' },
+    ],
+  ],
+  'deduction': [
+    [
+      { q: 'She passed all her exams. She ___ very hard.', opts: ['must have studied','might study','should study','could study'], ans: 'must have studied', hint: 'Déduction sur le passé (positive) → must have + pp.' },
+      { q: 'He looks exhausted. He ___ slept well last night.', opts: ["can't have","must have",'should have','would have'], ans: "can't have", hint: 'Déduction négative sur le passé → can\'t have + pp.' },
+      { q: 'She ___ be happy — she got the promotion.', opts: ['must','might','could','should'], ans: 'must', hint: 'Déduction certaine présent → must.' },
+      { q: 'The lights are off. They ___ gone out.', opts: ['must have','can\'t have','might have','should have'], ans: 'must have', hint: 'Déduction sur passé (positive) → must have gone.' },
+      { q: 'He ___ be a doctor — he can\'t stand the sight of blood.', opts: ["can't",'must','might','should'], ans: "can't", hint: 'Impossibilité logique présente → can\'t.' },
+      { q: 'She ___ arrived by now — it\'s been two hours.', opts: ['must have','can\'t have','should have','might have'], ans: 'must have', hint: 'Déduction raisonnée → must have + pp.' },
+    ],
+    [
+      { q: 'There\'s a light on upstairs. Someone ___ home.', opts: ['must be','might be','should be','would be'], ans: 'must be', hint: 'Preuve visible → déduction forte → must be.' },
+      { q: 'He answered immediately. He ___ the email.', opts: ['must have seen','can\'t have seen','might have seen','should have seen'], ans: 'must have seen', hint: 'Réponse immédiate → déduction passée → must have seen.' },
+      { q: 'That ___ be Sarah — she\'s in New York!', opts: ["can't",'must','might','could'], ans: "can't", hint: 'Impossibilité → can\'t be her.' },
+      { q: 'Nobody answered. They ___ out.', opts: ['must be','can\'t be','might be','should be'], ans: 'must be', hint: 'Déduction présente → must be out.' },
+      { q: 'The test was easy for everyone. She ___ passed.', opts: ['should have','must have','would have','could have'], ans: 'should have', hint: 'Aurait dû logiquement réussir → should have + pp.' },
+      { q: 'He never misses it. He ___ forgotten.', opts: ["can't have",'must have','might have','should have'], ans: "can't have", hint: 'Déduction négative passée → can\'t have + pp.' },
+    ],
+  ],
+  'emotions': [
+    [
+      { q: "'Reconnaissant' en anglais ?", opts: ['grateful','nervous','lonely','bored'], ans: 'grateful', hint: 'Reconnaissant → grateful.' },
+      { q: "'Déçu' en anglais ?", opts: ['disappointed','surprised','scared','angry'], ans: 'disappointed', hint: 'Déçu → disappointed.' },
+      { q: "She felt ___ before the interview. (nerveuse)", opts: ['nervous','proud','relaxed','amazed'], ans: 'nervous', hint: 'Nerveuse → nervous.' },
+      { q: "I ___ better now, thanks. (se sentir)", opts: ['feel','am','look','seem'], ans: 'feel', hint: 'Se sentir → feel.' },
+      { q: "'Gêné' en anglais ?", opts: ['embarrassed','confused','stressed','lonely'], ans: 'embarrassed', hint: 'Gêné → embarrassed.' },
+      { q: "I must ___ — it's getting late. (partir)", opts: ['go now','go later','stay calm','try again'], ans: 'go now', hint: 'I must go now = je dois partir maintenant.' },
+    ],
+    [
+      { q: "Let's ___ — we've been working for hours. (faire une pause)", opts: ['take a break','start now','try again','stay calm'], ans: 'take a break', hint: 'Faire une pause → take a break.' },
+      { q: "'Motivé' en anglais ?", opts: ['motivated','amazed','relaxed','confused'], ans: 'motivated', hint: 'Motivé → motivated.' },
+      { q: "I ___ my idea — it was a bad plan. (changer d'avis)", opts: ['changed','lost','forgot','kept'], ans: 'changed', hint: 'I changed my idea = j\'ai changé d\'avis.' },
+      { q: "I can ___ — it makes sense. (comprendre)", opts: ['understand','decide','wait','learn'], ans: 'understand', hint: 'Je peux comprendre → I can understand.' },
+      { q: "'Fatigué' en anglais ?", opts: ['tired','bored','sad','angry'], ans: 'tired', hint: 'Fatigué → tired (attention : bored = qui s\'ennuie).' },
+      { q: "I ___ calm during the argument. (rester)", opts: ['stayed','felt','seemed','looked'], ans: 'stayed', hint: 'I stayed calm = je suis resté calme.' },
+    ],
+  ],
+  'daily-phrases': [
+    [
+      { q: "Je ne comprends pas. → I ___ get it.", opts: ["don't","can't","won't","didn't"], ans: "don't", hint: "I don't get it = je ne comprends pas." },
+      { q: "Et maintenant ? → What ___?", opts: ['now','next','then','after'], ans: 'now', hint: 'What now? = et maintenant ?' },
+      { q: "C'est bizarre. → That's ___.", opts: ['weird','wrong','funny','strange'], ans: 'weird', hint: "That's weird = c'est bizarre." },
+      { q: "J'ai besoin d'une pause. → I need a ___.", opts: ['break','rest','stop','pause'], ans: 'break', hint: 'I need a break = j\'ai besoin d\'une pause.' },
+      { q: "Je jure. → I ___.", opts: ['swear','promise','vow','say'], ans: 'swear', hint: 'I swear = je jure.' },
+      { q: "C'est drôle. → That's ___.", opts: ['funny','weird','silly','nice'], ans: 'funny', hint: "That's funny = c'est drôle." },
+    ],
+    [
+      { q: "Je suis prêt. → I'm all ___.", opts: ['set','done','good','ready'], ans: 'set', hint: "I'm all set = je suis prêt." },
+      { q: "Je vais y réfléchir. → I'll ___ about it.", opts: ['think','talk','ask','read'], ans: 'think', hint: "I'll think about it = je vais y réfléchir." },
+      { q: "C'est fini. → I'm ___.", opts: ['done','over','finished','complete'], ans: 'done', hint: "I'm done = c'est fini / j'ai terminé." },
+      { q: "C'est faux. → That's ___.", opts: ['wrong','bad','false','incorrect'], ans: 'wrong', hint: "That's wrong = c'est faux." },
+      { q: "Peut-être. → ___.", opts: ['Maybe','Perhaps','Probably','Possibly'], ans: 'Maybe', hint: 'Peut-être → Maybe (ou Perhaps).' },
+      { q: "Je reviens tout de suite. → I'll be right ___.", opts: ['back','here','there','soon'], ans: 'back', hint: "I'll be right back = je reviens tout de suite." },
+    ],
+  ],
+  'key-verbs': [
+    [
+      { q: "'Livrer' en anglais ?", opts: ['deliver','avoid','deny','plan'], ans: 'deliver', hint: 'Livrer → deliver.' },
+      { q: "'Blâmer' en anglais ?", opts: ['blame','boost','commit','compare'], ans: 'blame', hint: 'Blâmer → blame.' },
+      { q: "'Découvrir' en anglais ?", opts: ['discover','deny','deliver','encourage'], ans: 'discover', hint: 'Découvrir → discover.' },
+      { q: "'Assurer' en anglais ?", opts: ['ensure','offer','ignore','identify'], ans: 'ensure', hint: 'Assurer → ensure.' },
+      { q: "'Planifier' en anglais ?", opts: ['plan','praise','push','provide'], ans: 'plan', hint: 'Planifier → plan.' },
+      { q: "'Se plaindre' en anglais ?", opts: ['complain','compare','commit','consider'], ans: 'complain', hint: 'Se plaindre → complain.' },
+    ],
+    [
+      { q: "'Stimuler' en anglais ?", opts: ['boost','blame','build','break'], ans: 'boost', hint: 'Stimuler → boost.' },
+      { q: "'Défier' en anglais ?", opts: ['challenge','confirm','consider','convince'], ans: 'challenge', hint: 'Défier → challenge.' },
+      { q: "'Nier' en anglais ?", opts: ['deny','deliver','discover','decide'], ans: 'deny', hint: 'Nier → deny.' },
+      { q: "'Identifier' en anglais ?", opts: ['identify','ignore','involve','imagine'], ans: 'identify', hint: 'Identifier → identify.' },
+      { q: "'Encourager' en anglais ?", opts: ['encourage','ensure','examine','evaluate'], ans: 'encourage', hint: 'Encourager → encourage.' },
+      { q: "'Comparer' en anglais ?", opts: ['compare','confirm','consider','commit'], ans: 'compare', hint: 'Comparer → compare.' },
+    ],
+  ],
+};
+
+function getTopicSeries(topicId) {
+  const s1 = _GFIX[topicId];
+  if (!s1) return [];
+  const extra = _GFIX_SERIES[topicId] || [];
+  return [s1, ...extra];
+}
+
+function getSeriesDone() {
+  try { return new Set(JSON.parse(localStorage.getItem('grammar_series_done') || '[]')); }
+  catch { return new Set(); }
+}
+
+function markSeriesDone(key) {
+  const done = getSeriesDone();
+  done.add(key);
+  localStorage.setItem('grammar_series_done', JSON.stringify([...done]));
+}
+
+function startGrammarQuizSeries(topicId, seriesIdx) {
+  const series = getTopicSeries(topicId);
+  const bank = series[seriesIdx];
+  if (!bank) return;
+  const topicTitle = (grammarData && grammarData.find(t => t.id === topicId))?.title || topicId;
+  state.kind = 'grammar';
+  state.level = 'Global';
+  state.badge = `${topicTitle} — S${seriesIdx + 1}`;
+  state.mode = 'srs';
+  state.grammarSeriesKey = `${topicId}:${seriesIdx}`;
+  state.questions = bank.map(t => {
+    const item = _mkItem(topicId, t.q, shuffle([...t.opts]), t.ans, t.hint);
+    const q = buildGrammarQuestion(item);
+    q.word = 'gen-' + topicId;
+    return q;
+  });
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
+}
 
 function generateTenseItem(topicId) {
   if (_TGEN[topicId]) return _TGEN[topicId]();
