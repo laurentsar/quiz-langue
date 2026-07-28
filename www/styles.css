@@ -398,6 +398,23 @@ html, body {
 .lesson-ex-en { font-size: 13px; font-weight: 600; color: var(--text); }
 .lesson-ex-fr { font-size: 12px; color: var(--text-dim); }
 .lesson-more-btn { width: 100%; margin-top: 4px; }
+.lesson-sub-inline { font-size: 13px; font-weight: normal; color: var(--text-dim); }
+.lesson-tip { font-size: 12px; color: var(--text-dim); font-style: italic; margin: 2px 0 10px; }
+.fa-list { display: flex; flex-direction: column; gap: 5px; margin: 6px 0 10px; }
+.fa-row { display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap; font-size: 13px; }
+.fa-word { font-weight: 700; color: var(--text); }
+.fa-arrow { color: #e05; font-weight: 700; }
+.fa-trap { color: #e05; }
+.fa-meaning { color: var(--success); }
+.wf-grid { display: flex; flex-direction: column; gap: 3px; margin: 6px 0 8px; }
+.wf-row { display: flex; gap: 8px; align-items: baseline; }
+.wf-word { font-weight: 700; color: var(--text); font-size: 13px; min-width: 90px; }
+.wf-pos { font-size: 11px; color: var(--text-dim); min-width: 28px; }
+.wf-fr { font-size: 13px; color: var(--text-dim); }
+.verb-table { width: 100%; border-collapse: collapse; margin: 6px 0 12px; font-size: 13px; }
+.verb-table th { text-align: left; color: var(--text-dim); font-weight: 600; font-size: 11px; border-bottom: 1px solid var(--border, #ddd); padding: 2px 4px; }
+.verb-table td { padding: 4px; color: var(--text); border-bottom: 1px solid var(--border, #ddd); }
+.verb-table .verb-fr { color: var(--text-dim); }
 
 /* ----- Flashcards (mode Apprendre) ----- */
 .flash-card { gap: 14px; }
