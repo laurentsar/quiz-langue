@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.51';
+const APP_VERSION = '2.52';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2032,6 +2032,30 @@ const _GFIX = {
     { q: "That ___ be Tom — Tom is in London!", opts: ["can't",'must','might',"shouldn't"], ans: "can't", hint: 'Impossibilité logique → can\'t.' },
     { q: "She's been studying for 10 hours. She ___ be exhausted.", opts: ['must','might',"can't",'could'], ans: 'must', hint: 'Déduction forte → must.' },
   ],
+  'emotions': [
+    { q: "I'm ___ because I failed the test. (triste)", opts: ['sad','happy','proud','bored'], ans: 'sad', hint: 'Triste → sad.' },
+    { q: "She was ___ when she got the job. (heureuse)", opts: ['happy','lonely','nervous','tired'], ans: 'happy', hint: 'Heureuse → happy.' },
+    { q: "He feels ___ — he has a lot of work. (stressé)", opts: ['stressed','relaxed','grateful','amazed'], ans: 'stressed', hint: 'Stressé → stressed.' },
+    { q: "I'm ___ of you — you did so well! (fier)", opts: ['proud','scared','confused','bored'], ans: 'proud', hint: 'Fier → proud.' },
+    { q: "She was ___ by the magic show. (stupéfaite)", opts: ['amazed','nervous','disappointed','angry'], ans: 'amazed', hint: 'Stupéfait(e) → amazed.' },
+    { q: "I feel ___ — I don't understand anything. (confus)", opts: ['confused','grateful','relaxed','surprised'], ans: 'confused', hint: 'Confus → confused.' },
+  ],
+  'daily-phrases': [
+    { q: "J'ai compris. → I ___ it.", opts: ['got','did','made','took'], ans: 'got', hint: "I got it = j'ai compris." },
+    { q: "Ce n'est pas grave. → It's not a big ___.", opts: ['deal','thing','issue','matter'], ans: 'deal', hint: "It's not a big deal = ce n'est pas grave." },
+    { q: "Je reviens tout de suite. → I'll be ___ back.", opts: ['right','just','soon','quickly'], ans: 'right', hint: "I'll be right back = je reviens tout de suite." },
+    { q: "Ça a du sens. → That ___ sense.", opts: ['makes','does','has','gives'], ans: 'makes', hint: 'Make sense = avoir du sens.' },
+    { q: "Je m'en occupe. → I'll ___ it.", opts: ['handle','make','do','fix'], ans: 'handle', hint: "I'll handle it = je m'en occupe." },
+    { q: "Je suis partant(e). → I'm ___.", opts: ['down','up','in','on'], ans: 'down', hint: "I'm down = je suis partant(e) (familier)." },
+  ],
+  'key-verbs': [
+    { q: "'Éviter' en anglais ?", opts: ['avoid','blame','deny','ignore'], ans: 'avoid', hint: 'Éviter → avoid.' },
+    { q: "'Accomplir' en anglais ?", opts: ['achieve','boost','commit','ensure'], ans: 'achieve', hint: 'Accomplir → achieve.' },
+    { q: "'Impliquer' en anglais ?", opts: ['involve','deliver','offer','happen'], ans: 'involve', hint: 'Impliquer → involve.' },
+    { q: "'Convaincre' en anglais ?", opts: ['convince','confirm','compare','consider'], ans: 'convince', hint: 'Convaincre → convince.' },
+    { q: "'Admettre' en anglais ?", opts: ['admit','avoid','achieve','advise'], ans: 'admit', hint: 'Admettre → admit.' },
+    { q: "'Se concentrer' en anglais ?", opts: ['focus','complain','compare','commit'], ans: 'focus', hint: 'Se concentrer → focus.' },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -2502,6 +2526,60 @@ const _GFIX_SERIES = {
       { q: 'Nobody answered. They ___ out.', opts: ['must be','can\'t be','might be','should be'], ans: 'must be', hint: 'Déduction présente → must be out.' },
       { q: 'The test was easy for everyone. She ___ passed.', opts: ['should have','must have','would have','could have'], ans: 'should have', hint: 'Aurait dû logiquement réussir → should have + pp.' },
       { q: 'He never misses it. He ___ forgotten.', opts: ["can't have",'must have','might have','should have'], ans: "can't have", hint: 'Déduction négative passée → can\'t have + pp.' },
+    ],
+  ],
+  'emotions': [
+    [
+      { q: "'Reconnaissant' en anglais ?", opts: ['grateful','nervous','lonely','bored'], ans: 'grateful', hint: 'Reconnaissant → grateful.' },
+      { q: "'Déçu' en anglais ?", opts: ['disappointed','surprised','scared','angry'], ans: 'disappointed', hint: 'Déçu → disappointed.' },
+      { q: "She felt ___ before the interview. (nerveuse)", opts: ['nervous','proud','relaxed','amazed'], ans: 'nervous', hint: 'Nerveuse → nervous.' },
+      { q: "I ___ better now, thanks. (se sentir)", opts: ['feel','am','look','seem'], ans: 'feel', hint: 'Se sentir → feel.' },
+      { q: "'Gêné' en anglais ?", opts: ['embarrassed','confused','stressed','lonely'], ans: 'embarrassed', hint: 'Gêné → embarrassed.' },
+      { q: "I must ___ — it's getting late. (partir)", opts: ['go now','go later','stay calm','try again'], ans: 'go now', hint: 'I must go now = je dois partir maintenant.' },
+    ],
+    [
+      { q: "Let's ___ — we've been working for hours. (faire une pause)", opts: ['take a break','start now','try again','stay calm'], ans: 'take a break', hint: 'Faire une pause → take a break.' },
+      { q: "'Motivé' en anglais ?", opts: ['motivated','amazed','relaxed','confused'], ans: 'motivated', hint: 'Motivé → motivated.' },
+      { q: "I ___ my idea — it was a bad plan. (changer d'avis)", opts: ['changed','lost','forgot','kept'], ans: 'changed', hint: 'I changed my idea = j\'ai changé d\'avis.' },
+      { q: "I can ___ — it makes sense. (comprendre)", opts: ['understand','decide','wait','learn'], ans: 'understand', hint: 'Je peux comprendre → I can understand.' },
+      { q: "'Fatigué' en anglais ?", opts: ['tired','bored','sad','angry'], ans: 'tired', hint: 'Fatigué → tired (attention : bored = qui s\'ennuie).' },
+      { q: "I ___ calm during the argument. (rester)", opts: ['stayed','felt','seemed','looked'], ans: 'stayed', hint: 'I stayed calm = je suis resté calme.' },
+    ],
+  ],
+  'daily-phrases': [
+    [
+      { q: "Je ne comprends pas. → I ___ get it.", opts: ["don't","can't","won't","didn't"], ans: "don't", hint: "I don't get it = je ne comprends pas." },
+      { q: "Et maintenant ? → What ___?", opts: ['now','next','then','after'], ans: 'now', hint: 'What now? = et maintenant ?' },
+      { q: "C'est bizarre. → That's ___.", opts: ['weird','wrong','funny','strange'], ans: 'weird', hint: "That's weird = c'est bizarre." },
+      { q: "J'ai besoin d'une pause. → I need a ___.", opts: ['break','rest','stop','pause'], ans: 'break', hint: 'I need a break = j\'ai besoin d\'une pause.' },
+      { q: "Je jure. → I ___.", opts: ['swear','promise','vow','say'], ans: 'swear', hint: 'I swear = je jure.' },
+      { q: "C'est drôle. → That's ___.", opts: ['funny','weird','silly','nice'], ans: 'funny', hint: "That's funny = c'est drôle." },
+    ],
+    [
+      { q: "Je suis prêt. → I'm all ___.", opts: ['set','done','good','ready'], ans: 'set', hint: "I'm all set = je suis prêt." },
+      { q: "Je vais y réfléchir. → I'll ___ about it.", opts: ['think','talk','ask','read'], ans: 'think', hint: "I'll think about it = je vais y réfléchir." },
+      { q: "C'est fini. → I'm ___.", opts: ['done','over','finished','complete'], ans: 'done', hint: "I'm done = c'est fini / j'ai terminé." },
+      { q: "C'est faux. → That's ___.", opts: ['wrong','bad','false','incorrect'], ans: 'wrong', hint: "That's wrong = c'est faux." },
+      { q: "Peut-être. → ___.", opts: ['Maybe','Perhaps','Probably','Possibly'], ans: 'Maybe', hint: 'Peut-être → Maybe (ou Perhaps).' },
+      { q: "Je reviens tout de suite. → I'll be right ___.", opts: ['back','here','there','soon'], ans: 'back', hint: "I'll be right back = je reviens tout de suite." },
+    ],
+  ],
+  'key-verbs': [
+    [
+      { q: "'Livrer' en anglais ?", opts: ['deliver','avoid','deny','plan'], ans: 'deliver', hint: 'Livrer → deliver.' },
+      { q: "'Blâmer' en anglais ?", opts: ['blame','boost','commit','compare'], ans: 'blame', hint: 'Blâmer → blame.' },
+      { q: "'Découvrir' en anglais ?", opts: ['discover','deny','deliver','encourage'], ans: 'discover', hint: 'Découvrir → discover.' },
+      { q: "'Assurer' en anglais ?", opts: ['ensure','offer','ignore','identify'], ans: 'ensure', hint: 'Assurer → ensure.' },
+      { q: "'Planifier' en anglais ?", opts: ['plan','praise','push','provide'], ans: 'plan', hint: 'Planifier → plan.' },
+      { q: "'Se plaindre' en anglais ?", opts: ['complain','compare','commit','consider'], ans: 'complain', hint: 'Se plaindre → complain.' },
+    ],
+    [
+      { q: "'Stimuler' en anglais ?", opts: ['boost','blame','build','break'], ans: 'boost', hint: 'Stimuler → boost.' },
+      { q: "'Défier' en anglais ?", opts: ['challenge','confirm','consider','convince'], ans: 'challenge', hint: 'Défier → challenge.' },
+      { q: "'Nier' en anglais ?", opts: ['deny','deliver','discover','decide'], ans: 'deny', hint: 'Nier → deny.' },
+      { q: "'Identifier' en anglais ?", opts: ['identify','ignore','involve','imagine'], ans: 'identify', hint: 'Identifier → identify.' },
+      { q: "'Encourager' en anglais ?", opts: ['encourage','ensure','examine','evaluate'], ans: 'encourage', hint: 'Encourager → encourage.' },
+      { q: "'Comparer' en anglais ?", opts: ['compare','confirm','consider','commit'], ans: 'compare', hint: 'Comparer → compare.' },
     ],
   ],
 };

@@ -1151,6 +1151,30 @@
             "fr": "Il est entré dans la pièce."
           }
         ]
+      },
+      {
+        "heading": "Vocabulaire : prépositions courantes (EN ↔ FR)",
+        "points": [
+          "around / autour de — near / près de — across / à travers — beyond / au-delà de",
+          "next to / à côté de — against / contre — below / en dessous de — within / dans",
+          "outside / à l'extérieur de — opposite / en face de — above / au-dessus de",
+          "towards / vers — underneath / en dessous de — in front of / devant — behind / derrière",
+          "among / parmi — without / sans — about / à propos de"
+        ],
+        "examples": [
+          {
+            "en": "The park is next to the school.",
+            "fr": "Le parc est à côté de l'école."
+          },
+          {
+            "en": "She stood in front of the door.",
+            "fr": "Elle se tenait devant la porte."
+          },
+          {
+            "en": "The village is beyond the hill.",
+            "fr": "Le village est au-delà de la colline."
+          }
+        ]
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=92XBCRYZ1S8",
@@ -1479,6 +1503,31 @@
           {
             "en": "We went to London yesterday.",
             "fr": "Nous sommes allés à Londres hier."
+          }
+        ]
+      },
+      {
+        "heading": "Vocabulaire : adverbes courants (EN ↔ FR)",
+        "points": [
+          "often / souvent — very / très — always / toujours — almost / presque",
+          "everywhere / partout — now / maintenant — enough / assez — already / déjà",
+          "frequently / fréquemment — so / tellement — later / plus tard — quickly / rapidement",
+          "here / ici — slowly / lentement — early / tôt — somewhere / quelque part",
+          "yesterday / hier — late / tard — sometimes / parfois — nowhere / nulle part",
+          "easily / facilement — again / encore — usually / habituellement"
+        ],
+        "examples": [
+          {
+            "en": "She is already at the office.",
+            "fr": "Elle est déjà au bureau."
+          },
+          {
+            "en": "He arrived early for the meeting.",
+            "fr": "Il est arrivé tôt pour la réunion."
+          },
+          {
+            "en": "I go there sometimes.",
+            "fr": "J'y vais parfois."
           }
         ]
       }
@@ -2781,5 +2830,193 @@
     "videoTitle": "English at Work – BBC Learning English Series",
     "videoUrlFr": "https://www.youtube.com/watch?v=Ttswwoky4Cg",
     "videoTitleFr": "40 formules pour parler anglais au travail"
+  },
+  {
+    "id": "emotions",
+    "title": "Les émotions",
+    "subtitle": "exprimer ce que l'on ressent",
+    "sections": [
+      {
+        "heading": "Adjectifs d'émotion",
+        "points": [
+          "happy / heureux — sad / triste — angry / en colère — scared / effrayé",
+          "stressed / stressé — tired / fatigué — surprised / surpris — disappointed / déçu",
+          "confused / confus — lonely / seul(e) — nervous / nerveux — proud / fier",
+          "grateful / reconnaissant — bored / ennuyé — embarrassed / gêné — relaxed / détendu",
+          "amazed / stupéfait — motivated / motivé"
+        ],
+        "examples": [
+          {
+            "en": "I'm happy for you!",
+            "fr": "Je suis content(e) pour toi !"
+          },
+          {
+            "en": "She felt nervous before the exam.",
+            "fr": "Elle était nerveuse avant l'examen."
+          },
+          {
+            "en": "He's proud of his work.",
+            "fr": "Il est fier de son travail."
+          }
+        ]
+      },
+      {
+        "heading": "Exprimer ses émotions : I feel / I'm",
+        "points": [
+          "I feel good / bad — Je me sens bien / mal",
+          "I feel better — Je me sens mieux",
+          "I'm amazed — Je suis stupéfait(e)",
+          "I'm embarrassed — Je suis gêné(e)",
+          "I'm relaxed — Je suis détendu(e)",
+          "I'm motivated — Je suis motivé(e)",
+          "I'm ready — Je suis prêt(e)"
+        ],
+        "examples": [
+          {
+            "en": "I feel much better today.",
+            "fr": "Je me sens bien mieux aujourd'hui."
+          },
+          {
+            "en": "I'm amazed by her performance.",
+            "fr": "Je suis stupéfait(e) par sa performance."
+          }
+        ]
+      },
+      {
+        "heading": "Phrases avec émotions : réactions et intentions",
+        "points": [
+          "I'll try again — Je vais réessayer",
+          "I'll wait — J'attendrai",
+          "I must decide — Je dois décider",
+          "I can understand — Je peux comprendre",
+          "I want to learn — Je veux apprendre",
+          "I stay calm — Je reste calme",
+          "I change my idea — Je change d'avis",
+          "Let's start now — Commençons maintenant",
+          "Let's take a break — Faisons une pause",
+          "Do it quickly — Fais-le rapidement"
+        ],
+        "examples": [
+          {
+            "en": "I'll try again tomorrow.",
+            "fr": "Je vais réessayer demain."
+          },
+          {
+            "en": "Let's take a break — I'm tired.",
+            "fr": "Faisons une pause — je suis fatigué(e)."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "daily-phrases",
+    "title": "Le quotidien",
+    "subtitle": "expressions du quotidien en anglais",
+    "sections": [
+      {
+        "heading": "Réactions et commentaires",
+        "points": [
+          "I'm done. / C'est fini.",
+          "That's funny. / C'est drôle.",
+          "Maybe. / Peut-être.",
+          "I got it. / J'ai compris.",
+          "That's wrong. / C'est faux.",
+          "That's weird. / C'est bizarre.",
+          "That makes sense. / Ça a du sens.",
+          "It's not a big deal. / Ce n'est pas grave."
+        ],
+        "examples": [
+          {
+            "en": "That makes sense — good idea!",
+            "fr": "Ça a du sens — bonne idée !"
+          },
+          {
+            "en": "It's not a big deal, don't worry.",
+            "fr": "Ce n'est pas grave, ne t'inquiète pas."
+          }
+        ]
+      },
+      {
+        "heading": "Disponibilité et action",
+        "points": [
+          "I'll think about it. / Je vais y réfléchir.",
+          "I'll handle it. / Je m'en occupe.",
+          "I don't get it. / Je ne comprends pas.",
+          "What now? / Et maintenant ?",
+          "I'm down. / Je suis partant(e).",
+          "I need a break. / J'ai besoin d'une pause.",
+          "I'm all set. / Je suis prêt(e).",
+          "I swear. / Je jure.",
+          "I'll be right back. / Je reviens tout de suite."
+        ],
+        "examples": [
+          {
+            "en": "I'll handle it — leave it to me.",
+            "fr": "Je m'en occupe — laisse-moi faire."
+          },
+          {
+            "en": "I'm down! Let's do it.",
+            "fr": "Je suis partant ! Allons-y."
+          },
+          {
+            "en": "I'll be right back.",
+            "fr": "Je reviens tout de suite."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "key-verbs",
+    "title": "Verbes essentiels",
+    "subtitle": "vocabulaire verbal avancé",
+    "sections": [
+      {
+        "heading": "Verbes d'action et de communication",
+        "points": [
+          "deliver / livrer — avoid / éviter — blame / blâmer — imagine / imaginer",
+          "commit / s'engager — discover / découvrir — challenge / défier — involve / impliquer",
+          "deny / nier — identify / identifier — ensure / assurer — consider / considérer",
+          "treat / traiter — offer / offrir — convince / convaincre — boost / stimuler"
+        ],
+        "examples": [
+          {
+            "en": "She convinced him to join the team.",
+            "fr": "Elle l'a convaincu de rejoindre l'équipe."
+          },
+          {
+            "en": "We need to identify the problem first.",
+            "fr": "Nous devons d'abord identifier le problème."
+          },
+          {
+            "en": "He denied any involvement.",
+            "fr": "Il a nié toute implication."
+          }
+        ]
+      },
+      {
+        "heading": "Verbes de planification et réflexion",
+        "points": [
+          "plan / planifier — confirm / confirmer — ignore / ignorer — achieve / accomplir",
+          "encourage / encourager — admit / admettre — happen / arriver — compare / comparer",
+          "complain / se plaindre — focus / se concentrer"
+        ],
+        "examples": [
+          {
+            "en": "He achieved his goal after years of work.",
+            "fr": "Il a accompli son objectif après des années de travail."
+          },
+          {
+            "en": "Don't ignore the warning signs.",
+            "fr": "Ne pas ignorer les signes d'alerte."
+          },
+          {
+            "en": "Focus on what matters.",
+            "fr": "Concentre-toi sur ce qui compte."
+          }
+        ]
+      }
+    ]
   }
 ]
