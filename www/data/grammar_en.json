@@ -3530,5 +3530,64 @@
         ]
       }
     ]
+  },
+  {
+    "id": "practical-phrases",
+    "title": "Phrases pratiques essentielles",
+    "subtitle": "Assertions, besoins et états du quotidien",
+    "sections": [
+      {
+        "heading": "Assertions (C'est / Ce n'est pas)",
+        "points": [
+          "That's what I wanted = C'est ce que je voulais",
+          "That's enough = C'est suffisant",
+          "It's too late = C'est trop tard",
+          "It's urgent for me = C'est urgent pour moi",
+          "It's obvious = C'est évident",
+          "It's a risk = C'est un risque",
+          "That's a good idea = C'est une bonne idée",
+          "It doesn't matter = Ce n'est pas grave"
+        ],
+        "examples": [
+          {"en": "That's what I wanted — perfect!", "fr": "C'est ce que je voulais — parfait !"},
+          {"en": "It's too late now, we missed the train.", "fr": "C'est trop tard maintenant, on a raté le train."},
+          {"en": "It doesn't matter — we'll try again.", "fr": "Ce n'est pas grave — on va réessayer."}
+        ]
+      },
+      {
+        "heading": "Besoins et volontés (Je dois / Je veux / Je ne peux pas)",
+        "points": [
+          "I haven't finished yet = Je n'ai pas encore fini",
+          "I have nothing to say = Je n'ai rien à dire",
+          "I don't want to wait = Je ne veux pas attendre",
+          "I still don't understand = Je ne comprends toujours pas",
+          "I can't decide = Je ne peux pas décider",
+          "I need to find a solution = Je dois trouver une solution",
+          "I need to stay focused = Je dois rester concentré",
+          "I want to know why = Je veux savoir pourquoi",
+          "I want to call you = Je veux t'appeler",
+          "I want to leave quickly = Je veux partir vite"
+        ],
+        "examples": [
+          {"en": "I haven't finished yet — give me five more minutes.", "fr": "Je n'ai pas encore fini — donne-moi encore cinq minutes."},
+          {"en": "I still don't understand — can you explain again?", "fr": "Je ne comprends toujours pas — tu peux réexpliquer ?"},
+          {"en": "I need to stay focused — no distractions!", "fr": "Je dois rester concentré — pas de distractions !"}
+        ]
+      },
+      {
+        "heading": "États (Je suis...)",
+        "points": [
+          "I'm available = Je suis disponible",
+          "I'm serious = Je suis sérieux / sérieuse",
+          "I'm stuck = Je suis bloqué(e)",
+          "I'm back = Je suis de retour"
+        ],
+        "examples": [
+          {"en": "I'm stuck — can you help me?", "fr": "Je suis bloqué — tu peux m'aider ?"},
+          {"en": "I'm back! Did I miss anything?", "fr": "Je suis de retour ! J'ai raté quelque chose ?"},
+          {"en": "I'm serious — this needs to stop.", "fr": "Je suis sérieux — ça doit s'arrêter."}
+        ]
+      }
+    ]
   }
 ]
