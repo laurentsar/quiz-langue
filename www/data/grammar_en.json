@@ -3589,5 +3589,55 @@
         ]
       }
     ]
+  },
+  {
+    "id": "use-of-else",
+    "title": "L'utilisation de 'ELSE'",
+    "subtitle": "Anything else, what else, or else...",
+    "sections": [
+      {
+        "heading": "Définition et usage",
+        "points": [
+          "'Else' signifie : autre / d'autre / différent / supplémentaire",
+          "S'utilise après les pronoms en any-, every-, no-, some-",
+          "S'utilise après les mots interrogatifs : how, what, where, who, why",
+          "'Or else' = sinon (conséquence si quelque chose ne se produit pas)"
+        ],
+        "examples": [
+          {"en": "Would you like anything else?", "fr": "Voulez-vous autre chose ?"},
+          {"en": "Everything else is too expensive.", "fr": "Tout le reste est trop cher."},
+          {"en": "Hurry up, or else we'll be late.", "fr": "Dépêche-toi, sinon on va être en retard."}
+        ]
+      },
+      {
+        "heading": "Avec les pronoms composés (any/every/no/some)",
+        "points": [
+          "anything else = autre chose — something else = autre chose (affirmatif)",
+          "nothing else = rien d'autre — everything else = tout le reste",
+          "anyone/anybody else = quelqu'un d'autre — someone else = quelqu'un d'autre",
+          "everyone/everybody else = tout le monde d'autre — nobody/no one else = personne d'autre",
+          "nowhere else = nulle part ailleurs — somewhere else = ailleurs"
+        ],
+        "examples": [
+          {"en": "I don't know the answer — ask someone else.", "fr": "Je ne connais pas la réponse — demande à quelqu'un d'autre."},
+          {"en": "Have you got nothing else to do?", "fr": "Tu n'as rien d'autre à faire ?"},
+          {"en": "Some animals can be found nowhere else in the world.", "fr": "Certains animaux ne se trouvent nulle part ailleurs dans le monde."}
+        ]
+      },
+      {
+        "heading": "Avec les mots interrogatifs (how/what/where/who/why)",
+        "points": [
+          "What else? = Quoi d'autre ? — Who else? = Qui d'autre ?",
+          "Where else? = Où d'autre / Ailleurs ? — How else? = Comment d'autre ?",
+          "Why else? = Pourquoi d'autre / Sinon pourquoi ?",
+          "Or else = sinon (implique une conséquence négative)"
+        ],
+        "examples": [
+          {"en": "What else do we need?", "fr": "De quoi d'autre avons-nous besoin ?"},
+          {"en": "Where else could they be?", "fr": "Où d'autre pourraient-ils être ?"},
+          {"en": "We eat whatever we find, or else we go shopping.", "fr": "On mange ce qu'on trouve, sinon on fait les courses."}
+        ]
+      }
+    ]
   }
 ]
