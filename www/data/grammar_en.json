@@ -3013,7 +3013,14 @@
           "Je ne m'y attendais pas → I didn't expect that",
           "Je suis bouche bée → I'm speechless (aïme spitche-lèsse)",
           "Tu m'as époustouflé → You blew my mind (you blou maï maïnde)",
-          "C'est vrai ? → Is that true? — Ça alors ! → Well I'll be!"
+          "C'est vrai ? → Is that true? — Ça alors ! → Well I'll be!",
+          "Mon Dieu ! → Oh my God! (o maï gode)",
+          "C'est quoi ça ? → What is this? (watt iz zisse)",
+          "Je n'en crois pas mes yeux → I can't believe my eyes",
+          "Tu te moques de moi ? → Are you kidding me?",
+          "C'est hallucinant ! → That's mind-blowing!",
+          "Je suis sans voix → I'm at a loss for words",
+          "Je n'ai jamais vu ça ! → I've never seen that before!"
         ],
         "examples": [
           {
@@ -3027,6 +3034,14 @@
           {
             "en": "I'm speechless — you blew my mind!",
             "fr": "Je suis bouche bée — tu m'as époustouflé !"
+          },
+          {
+            "en": "Are you kidding me? That's mind-blowing!",
+            "fr": "Tu te moques de moi ? C'est hallucinant !"
+          },
+          {
+            "en": "Oh my God — I've never seen that before!",
+            "fr": "Mon Dieu — je n'ai jamais vu ça !"
           }
         ]
       }
@@ -3378,6 +3393,40 @@
           {"en": "I'm gonna pass on this one.", "fr": "Je vais passer sur celui-ci."},
           {"en": "It's not really for me.", "fr": "C'est pas vraiment pour moi."},
           {"en": "It's complicated — let me think about it.", "fr": "C'est compliqué — laisse-moi y réfléchir."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "polite-refusals",
+    "title": "Refus diplomatiques",
+    "subtitle": "Dire non avec élégance et tact",
+    "sections": [
+      {
+        "heading": "Refus directs mais polis",
+        "points": [
+          "That doesn't work for me = Ça ne m'arrange pas",
+          "I'd rather not = Je préfèrerais pas (plus doux que 'no')",
+          "I'm afraid I can't = J'ai bien peur de ne pas pouvoir (très poli)",
+          "I'm not really up for it = Je n'en ai pas vraiment envie"
+        ],
+        "examples": [
+          {"en": "That doesn't work for me, sorry.", "fr": "Ça ne m'arrange pas, désolé."},
+          {"en": "I'd rather not, if that's okay.", "fr": "Je préfèrerais pas, si ça ne te dérange pas."},
+          {"en": "I'm afraid I can't make it.", "fr": "J'ai bien peur de ne pas pouvoir venir."}
+        ]
+      },
+      {
+        "heading": "Refus chaleureux (avec excuse gracieuse)",
+        "points": [
+          "I'd love to, but... = J'adorerais, mais... (refus regretté)",
+          "Thanks for thinking of me, but... = Merci d'avoir pensé à moi, mais...",
+          "I've already got plans = J'ai déjà quelque chose de prévu",
+          "I'm going to sit this one out = Je vais passer mon tour (informel)"
+        ],
+        "examples": [
+          {"en": "I'd love to, but I've already got plans.", "fr": "J'adorerais, mais j'ai déjà quelque chose de prévu."},
+          {"en": "Thanks for thinking of me, but I'm going to sit this one out.", "fr": "Merci d'avoir pensé à moi, mais je vais passer mon tour."}
         ]
       }
     ]
