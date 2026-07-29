@@ -416,6 +416,19 @@ html, body {
 .verb-table td { padding: 4px; color: var(--text); border-bottom: 1px solid var(--border, #ddd); }
 .verb-table .verb-fr { color: var(--text-dim); }
 
+/* ----- Série du matin + Révisions express ----- */
+.morning-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.morning-label { font-size: 12px; font-weight: 700; color: var(--sky); text-transform: uppercase; letter-spacing: .5px; }
+.morning-progress { font-size: 12px; font-weight: 700; color: var(--text-dim); background: var(--card-alt); padding: 2px 8px; border-radius: 10px; }
+.morning-wordlist { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+.morning-word { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; }
+.morning-en { font-weight: 600; color: var(--text); }
+.morning-done-word { text-decoration: line-through; color: var(--text-dim); }
+.morning-fr { color: var(--text-dim); }
+.morning-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.morning-chip { background: var(--card-alt); padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 600; color: var(--text); }
+.morning-done-msg { text-align: center; font-size: 14px; font-weight: 600; color: var(--success); margin: 0; }
+
 /* ----- Flashcards (mode Apprendre) ----- */
 .flash-card { gap: 14px; }
 .flash-back { border-top: 1px solid rgba(255,255,255,.1); padding-top: 14px; font-size: 18px; color: var(--white); line-height: 1.4; }
