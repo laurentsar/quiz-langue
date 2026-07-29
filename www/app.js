@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.61';
+const APP_VERSION = '2.62';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2856,6 +2856,14 @@ const _GFIX_SERIES = {
       { q: "'Je suis bouche bée' en anglais ?", opts: ["I'm speechless","I'm shocked","I'm amazed","I can't believe it"], ans: "I'm speechless", hint: "Je suis bouche bée → I'm speechless." },
       { q: "'C'est dingue !' en anglais ?", opts: ["That's crazy!","No way!","Unbelievable!","What a surprise!"], ans: "That's crazy!", hint: "C'est dingue ! → That's crazy!" },
       { q: "'Incroyable !' en anglais ?", opts: ['Unbelievable!','Incredible!','Amazing!','No way!'], ans: 'Unbelievable!', hint: "Incroyable ! → Unbelievable!" },
+    ],
+    [
+      { q: "'Mon Dieu !' en anglais ?", opts: ['Oh my God!','Oh my Gosh!','My God!','Good Lord!'], ans: 'Oh my God!', hint: "Mon Dieu ! → Oh my God!" },
+      { q: "'Tu te moques de moi ?' en anglais ?", opts: ['Are you kidding me?','Are you joking me?','You mock me?','Is this a joke?'], ans: 'Are you kidding me?', hint: "Tu te moques de moi ? → Are you kidding me?" },
+      { q: "'C'est hallucinant !' en anglais ?", opts: ["That's mind-blowing!","That's amazing!","That's incredible!","That's unreal!"], ans: "That's mind-blowing!", hint: "C'est hallucinant ! → That's mind-blowing!" },
+      { q: "'Je suis sans voix' en anglais ?", opts: ["I'm at a loss for words","I'm speechless","I've lost my voice","I can't speak"], ans: "I'm at a loss for words", hint: "Je suis sans voix → I'm at a loss for words." },
+      { q: "'Je n'en crois pas mes yeux' en anglais ?", opts: ["I can't believe my eyes","I don't trust my eyes","I can't see it","My eyes can't believe"], ans: "I can't believe my eyes", hint: "Je n'en crois pas mes yeux → I can't believe my eyes." },
+      { q: "'Je n'ai jamais vu ça !' en anglais ?", opts: ["I've never seen that before!","I never saw that!","I haven't seen this!","Never seen before!"], ans: "I've never seen that before!", hint: "Je n'ai jamais vu ça ! → I've never seen that before!" },
     ],
   ],
   'daily-phrases': [

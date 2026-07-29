@@ -3013,7 +3013,14 @@
           "Je ne m'y attendais pas → I didn't expect that",
           "Je suis bouche bée → I'm speechless (aïme spitche-lèsse)",
           "Tu m'as époustouflé → You blew my mind (you blou maï maïnde)",
-          "C'est vrai ? → Is that true? — Ça alors ! → Well I'll be!"
+          "C'est vrai ? → Is that true? — Ça alors ! → Well I'll be!",
+          "Mon Dieu ! → Oh my God! (o maï gode)",
+          "C'est quoi ça ? → What is this? (watt iz zisse)",
+          "Je n'en crois pas mes yeux → I can't believe my eyes",
+          "Tu te moques de moi ? → Are you kidding me?",
+          "C'est hallucinant ! → That's mind-blowing!",
+          "Je suis sans voix → I'm at a loss for words",
+          "Je n'ai jamais vu ça ! → I've never seen that before!"
         ],
         "examples": [
           {
@@ -3027,6 +3034,14 @@
           {
             "en": "I'm speechless — you blew my mind!",
             "fr": "Je suis bouche bée — tu m'as époustouflé !"
+          },
+          {
+            "en": "Are you kidding me? That's mind-blowing!",
+            "fr": "Tu te moques de moi ? C'est hallucinant !"
+          },
+          {
+            "en": "Oh my God — I've never seen that before!",
+            "fr": "Mon Dieu — je n'ai jamais vu ça !"
           }
         ]
       }
