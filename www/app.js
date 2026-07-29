@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.66';
+const APP_VERSION = '2.67';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2368,6 +2368,14 @@ const _GFIX = {
     { q: "Comment dire 'Je dois rester concentré' ?", opts: ["I need to stay focused","I must stay focused","I have to be focused","I need to focus more"], ans: "I need to stay focused", hint: "Je dois rester concentré → I need to stay focused." },
     { q: "Comment dire 'Je suis de retour' ?", opts: ["I'm back","I'm returned","I came back","I'm here again"], ans: "I'm back", hint: "Je suis de retour → I'm back." },
   ],
+  'use-of-else': [
+    { q: "'Autre chose ?' en anglais (question au restaurant)", opts: ["Anything else?","Something else?","What else?","Other thing?"], ans: "Anything else?", hint: "En question → anything else (pas something)." },
+    { q: "'Quelqu'un d'autre' en anglais", opts: ["Someone else","Anyone else","Nobody else","Other person"], ans: "Someone else", hint: "Quelqu'un d'autre → someone else (affirmatif)." },
+    { q: "'Rien d'autre' en anglais", opts: ["Nothing else","Anything else","No else","Not else"], ans: "Nothing else", hint: "Rien d'autre → nothing else." },
+    { q: "'Quoi d'autre ?' en anglais", opts: ["What else?","Which else?","What other?","How else?"], ans: "What else?", hint: "Quoi d'autre ? → What else?" },
+    { q: "'Sinon' (conséquence) en anglais", opts: ["Or else","If not","Otherwise else","Or other"], ans: "Or else", hint: "Sinon (conséquence) → or else." },
+    { q: "'Nulle part ailleurs' en anglais", opts: ["Nowhere else","No else where","Not elsewhere","Anywhere else not"], ans: "Nowhere else", hint: "Nulle part ailleurs → nowhere else." },
+  ],
   'compliments': [
     { q: "Comment dire 'Tu es magnifique aujourd'hui' ?", opts: ["You look amazing today","You are amazing today","You look beautiful today","You seem amazing today"], ans: "You look amazing today", hint: "Magnifique → You look amazing (look + adjectif)." },
     { q: "Comment dire 'J'adore ton style' ?", opts: ["I love your style","I like your style","I adore your style","I enjoy your style"], ans: "I love your style", hint: "J'adore → I love (plus naturel qu'I adore en anglais)." },
@@ -3074,6 +3082,24 @@ const _GFIX_SERIES = {
       { q: "Traduction : 'Je suis bloqué — tu peux m'aider ?'", opts: ["I'm stuck — can you help me?","I'm blocked — can you help?","I'm frozen — help me?","I'm stuck — help me please?"], ans: "I'm stuck — can you help me?", hint: "Bloqué → stuck + can you help me?" },
       { q: "Traduction : 'Je ne veux pas attendre.'", opts: ["I don't want to wait","I won't wait","I don't want waiting","I can't wait"], ans: "I don't want to wait", hint: "Je ne veux pas + attendre → don't want to + wait." },
       { q: "Traduction : 'Je suis de retour ! J'ai raté quelque chose ?'", opts: ["I'm back! Did I miss anything?","I'm back! Did I miss something?","I returned! Miss anything?","I'm back! Have I missed anything?"], ans: "I'm back! Did I miss anything?", hint: "I'm back + Did I miss anything? (prétérit)." },
+    ],
+  ],
+  'use-of-else': [
+    [
+      { q: "Compléter : 'Ask ___ — I don't know.' (quelqu'un d'autre)", opts: ["someone else","anyone else","somebody other","another one"], ans: "someone else", hint: "Quelqu'un d'autre → someone else." },
+      { q: "Compléter : '___ could they be?' (Où d'autre)", opts: ["Where else","What else","Who else","How else"], ans: "Where else", hint: "Où d'autre → where else." },
+      { q: "Compléter : '___ was present at the meeting?' (Qui d'autre)", opts: ["Who else","What else","Whoever else","Which else"], ans: "Who else", hint: "Qui d'autre → who else." },
+      { q: "Compléter : 'Hurry up, ___ we'll miss the bus.' (sinon)", opts: ["or else","if not","otherwise","or other"], ans: "or else", hint: "Sinon (conséquence) → or else." },
+      { q: "Compléter : 'Everything ___ is closed.' (tout le reste)", opts: ["else","other","more","another"], ans: "else", hint: "Everything else = tout le reste." },
+      { q: "Compléter : 'Is there ___ I can do?' (autre chose)", opts: ["anything else","something else","nothing else","everything else"], ans: "anything else", hint: "En question → anything else." },
+    ],
+    [
+      { q: "Choisir la bonne phrase : 'Je ne veux rien d'autre.'", opts: ["I want nothing else.","I want anything else.","I don't want something else.","I need nothing other."], ans: "I want nothing else.", hint: "Rien d'autre → nothing else." },
+      { q: "Compléter : '___ would he go to the bakery?' (Sinon pourquoi)", opts: ["Why else","How else","What else","Who else"], ans: "Why else", hint: "Pourquoi d'autre / Sinon pourquoi → why else." },
+      { q: "Compléter : '___ could he have entered?' (Comment d'autre)", opts: ["How else","What else","Where else","Why else"], ans: "How else", hint: "Comment d'autre → how else." },
+      { q: "Choisir la bonne phrase : 'Tout le monde d'autre est parti.'", opts: ["Everyone else had gone.","All else has gone.","Everybody other left.","Everyone other went."], ans: "Everyone else had gone.", hint: "Tout le monde d'autre → everyone else." },
+      { q: "Choisir la bonne phrase : 'Personne d'autre n'était là.'", opts: ["Nobody else was there.","No one other was there.","Nobody other was present.","No else was there."], ans: "Nobody else was there.", hint: "Personne d'autre → nobody else." },
+      { q: "Traduction : 'On mange ce qu'on trouve, sinon on fait les courses.'", opts: ["We eat what we find, or else we go shopping.","We eat what we find, if not we shop.","We eat what we find, otherwise else we shop.","We eat whatever, or else go shopping."], ans: "We eat what we find, or else we go shopping.", hint: "Sinon → or else." },
     ],
   ],
 };
