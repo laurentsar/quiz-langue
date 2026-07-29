@@ -3330,5 +3330,56 @@
         ]
       }
     ]
+  },
+  {
+    "id": "refusal-expressions",
+    "title": "Expressions de refus",
+    "subtitle": "15 façons polies de dire non en anglais",
+    "sections": [
+      {
+        "heading": "Refus directs",
+        "points": [
+          "I can't = Je ne peux pas",
+          "I don't want to = Je ne veux pas",
+          "No, thanks = Non, merci",
+          "I don't think so = Je ne pense pas",
+          "I'll pass = Je vais décliner / Je passe"
+        ],
+        "examples": [
+          {"en": "I can't, sorry.", "fr": "Je ne peux pas, désolé."},
+          {"en": "No, thanks — I'm fine.", "fr": "Non, merci — ça va."},
+          {"en": "I don't think so.", "fr": "Je ne pense pas."}
+        ]
+      },
+      {
+        "heading": "Refus polis / avec excuse",
+        "points": [
+          "Sorry, I'm busy = Désolé, je suis occupé",
+          "I don't have time = Je n'ai pas le temps",
+          "Maybe another time = Peut-être une autre fois",
+          "I'm not interested = Je ne suis pas intéressé",
+          "I'm sorry = Je suis désolé"
+        ],
+        "examples": [
+          {"en": "Sorry, I'm busy right now.", "fr": "Désolé, je suis occupé en ce moment."},
+          {"en": "Maybe another time — I don't have time today.", "fr": "Peut-être une autre fois — je n'ai pas le temps aujourd'hui."}
+        ]
+      },
+      {
+        "heading": "Refus informels (style natif)",
+        "points": [
+          "It's not possible = C'est pas possible",
+          "I'm taken = Je suis pris",
+          "I'm gonna pass = Je vais passer / Je passe",
+          "It's not for me = C'est pas pour moi",
+          "It's complicated = C'est compliqué"
+        ],
+        "examples": [
+          {"en": "I'm gonna pass on this one.", "fr": "Je vais passer sur celui-ci."},
+          {"en": "It's not really for me.", "fr": "C'est pas vraiment pour moi."},
+          {"en": "It's complicated — let me think about it.", "fr": "C'est compliqué — laisse-moi y réfléchir."}
+        ]
+      }
+    ]
   }
 ]
