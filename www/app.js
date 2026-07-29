@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.59';
+const APP_VERSION = '2.60';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2336,6 +2336,14 @@ const _GFIX = {
     { q: "Traduction : 'Ça vaut la peine d'essayer.'", opts: ["It's worth trying","It's no use trying","It's time trying","It's up to try"], ans: "It's worth trying", hint: "Ça vaut la peine → It's worth + V-ing." },
     { q: "Traduction : 'Ça ne sert à rien de s'inquiéter.'", opts: ["It's no use worrying","It's worth worrying","It's time to worry","It's up to worry"], ans: "It's no use worrying", hint: "Ça ne sert à rien → It's no use + V-ing." },
   ],
+  'refusal-expressions': [
+    { q: "Comment dire 'Je ne peux pas' ?", opts: ["I can't","I won't","I don't","I'm not"], ans: "I can't", hint: "Je ne peux pas → I can't." },
+    { q: "Comment dire 'Je ne suis pas intéressé' ?", opts: ["I'm not interested","I'm not interesting","I don't interest","I have no interest"], ans: "I'm not interested", hint: "Pas intéressé → I'm not interested." },
+    { q: "Comment dire 'Peut-être une autre fois' ?", opts: ["Maybe another time","Maybe other time","Perhaps another day time","Maybe one time"], ans: "Maybe another time", hint: "Peut-être une autre fois → Maybe another time." },
+    { q: "Comment dire 'Je vais passer' (refus informel) ?", opts: ["I'm gonna pass","I'm gonna go","I'll pass by","I pass"], ans: "I'm gonna pass", hint: "Je vais passer (décliner) → I'm gonna pass." },
+    { q: "Comment dire 'C'est pas pour moi' ?", opts: ["It's not for me","It's not mine","It's not about me","It's not by me"], ans: "It's not for me", hint: "C'est pas pour moi → It's not for me." },
+    { q: "Comment dire 'C'est compliqué' ?", opts: ["It's complicated","It's complex","It's difficult","It's a problem"], ans: "It's complicated", hint: "C'est compliqué → It's complicated." },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -2928,6 +2936,24 @@ const _GFIX_SERIES = {
       { q: "Choisir la bonne structure : 'C'est à eux de choisir.'", opts: ["It's up to them to choose","It's up to they to choose","It's no use them choosing","It's worth them choosing"], ans: "It's up to them to choose", hint: "It's up to + pronom tonique + to + infinitif." },
       { q: "Traduction : 'Ça vaut la peine d'essayer.'", opts: ["It's worth trying","It's time trying","It's no use to try","It's up to try"], ans: "It's worth trying", hint: "Ça vaut la peine → It's worth + V-ing." },
       { q: "Traduction : 'Ça ne sert à rien d'attendre.'", opts: ["It's no use waiting","It's worth waiting","It's time to wait","It's up to wait"], ans: "It's no use waiting", hint: "Ça ne sert à rien → It's no use + V-ing." },
+    ],
+  ],
+  'refusal-expressions': [
+    [
+      { q: "Comment dire 'Je ne veux pas' ?", opts: ["I don't want to","I won't want","I can't want","I don't like to"], ans: "I don't want to", hint: "Je ne veux pas → I don't want to." },
+      { q: "Comment dire 'Je n'ai pas le temps' ?", opts: ["I don't have time","I have no times","I'm out of times","I missing time"], ans: "I don't have time", hint: "Pas le temps → I don't have time." },
+      { q: "Comment dire 'Désolé, je suis occupé' ?", opts: ["Sorry, I'm busy","Sorry, I'm bored","Sorry, I'm taken","Sorry, I'm missing"], ans: "Sorry, I'm busy", hint: "Je suis occupé → I'm busy." },
+      { q: "Comment dire 'Je ne pense pas' (refus poli) ?", opts: ["I don't think so","I'm not thinking","I don't believe","I can't think"], ans: "I don't think so", hint: "Je ne pense pas → I don't think so." },
+      { q: "Comment dire 'C'est pas possible' ?", opts: ["It's not possible","It's impossible to","It can't possible","That's no possible"], ans: "It's not possible", hint: "C'est pas possible → It's not possible." },
+      { q: "Comment dire 'Je vais décliner' (soutenu) ?", opts: ["I'll pass","I'll decline it","I pass away","I won't accept"], ans: "I'll pass", hint: "Je vais décliner / passer → I'll pass." },
+    ],
+    [
+      { q: "Traduction : 'Non, merci — ça va.'", opts: ["No, thanks — I'm fine","No, thank — I'm okay","Not, thanks — I fine","No thanks — I'm good it"], ans: "No, thanks — I'm fine", hint: "Non merci → No, thanks." },
+      { q: "Traduction : 'Je suis pris ce soir.'", opts: ["I'm taken tonight","I'm busy tonight","I'm not free tonight","I'm occupied tonight"], ans: "I'm taken tonight", hint: "Je suis pris → I'm taken (informal)." },
+      { q: "Compléter : 'Sorry, ___ right now.' (je suis occupé)", opts: ["I'm busy","I'm taken","I can't","I'm not free"], ans: "I'm busy", hint: "Occupé → busy." },
+      { q: "Compléter : '___ — maybe next time.' (peut-être une autre fois)", opts: ["Maybe another time","Not this time maybe","Another time perhaps","Maybe some time"], ans: "Maybe another time", hint: "Peut-être une autre fois → Maybe another time." },
+      { q: "Traduction : 'C'est pas vraiment pour moi.'", opts: ["It's not really for me","It's not really mine","It's really not me","It really isn't about me"], ans: "It's not really for me", hint: "Pas pour moi → not for me." },
+      { q: "Traduction : 'Je suis désolé, je ne peux pas venir.'", opts: ["I'm sorry, I can't make it","I'm sorry, I won't come","I'm sorry, I don't come","I'm sorry, I'm not coming"], ans: "I'm sorry, I can't make it", hint: "Je ne peux pas venir → I can't make it (idiomatique)." },
     ],
   ],
 };
