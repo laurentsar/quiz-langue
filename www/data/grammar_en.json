@@ -3639,5 +3639,92 @@
         ]
       }
     ]
+  },
+  {
+    "id": "tout-expressions",
+    "title": "Expressions avec TOUT",
+    "subtitle": "41 expressions françaises incontournables",
+    "sections": [
+      {
+        "heading": "Temps et fréquence",
+        "points": [
+          "à tout à l'heure → see you later (au revoir)",
+          "tout à l'heure → earlier / later today",
+          "tous les jours → every day",
+          "tous les mois → every month",
+          "tous les samedis → every Saturday",
+          "tout le temps → all the time",
+          "toute la journée → all day",
+          "toute la nuit → all night",
+          "toute l'année → all year"
+        ],
+        "examples": [
+          {"en": "I'll see you later!", "fr": "À tout à l'heure !"},
+          {"en": "She works all day long.", "fr": "Elle travaille toute la journée."},
+          {"en": "He plays games all the time.", "fr": "Il joue tout le temps."}
+        ]
+      },
+      {
+        "heading": "Totalité et intensité",
+        "points": [
+          "pas du tout → not at all",
+          "rien du tout → nothing at all",
+          "de tout cœur → wholeheartedly",
+          "à tout prix → at all costs",
+          "tout à fait → absolutely / exactly",
+          "tout le monde → everyone",
+          "malgré tout → despite everything",
+          "en tout → completely / in total",
+          "en toute sécurité → in complete safety"
+        ],
+        "examples": [
+          {"en": "Not at all — it was my pleasure.", "fr": "Pas du tout — c'était un plaisir."},
+          {"en": "Absolutely! I agree with you.", "fr": "Tout à fait ! Je suis d'accord avec toi."},
+          {"en": "Everyone was there.", "fr": "Tout le monde était là."}
+        ]
+      },
+      {
+        "heading": "Séquence et logique",
+        "points": [
+          "tout d'abord → first of all",
+          "tout de suite → right away / immediately",
+          "après tout → after all",
+          "avant tout → above all",
+          "tout compte fait → all things considered",
+          "une fois pour toutes → once and for all",
+          "en tout cas → in any case",
+          "de toute façon → anyway",
+          "tout d'un coup / tout à coup → all of a sudden"
+        ],
+        "examples": [
+          {"en": "First of all, let me explain.", "fr": "Tout d'abord, laisse-moi expliquer."},
+          {"en": "Come right away!", "fr": "Viens tout de suite !"},
+          {"en": "All of a sudden, it started raining.", "fr": "Tout d'un coup, il a commencé à pleuvoir."}
+        ]
+      },
+      {
+        "heading": "Manière, direction et nuance",
+        "points": [
+          "tout de même → all the same / still",
+          "tout comme → just like",
+          "tout sauf → anything but",
+          "tout seul / toute seule → alone",
+          "tout simplement → quite simply",
+          "tout particulièrement → particularly",
+          "tout doucement → very gently",
+          "tout droit → straight ahead",
+          "tout en haut → all the way up",
+          "tout autour → all around",
+          "tout près → very close",
+          "tout au long de → throughout",
+          "à toute vitesse → at full speed"
+        ],
+        "examples": [
+          {"en": "Go straight ahead, then turn left.", "fr": "Allez tout droit, puis tournez à gauche."},
+          {"en": "He did it all by himself.", "fr": "Il l'a fait tout seul."},
+          {"en": "She ran at full speed.", "fr": "Elle a couru à toute vitesse."}
+        ]
+      }
+    ]
   }
 ]

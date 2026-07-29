@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.67';
+const APP_VERSION = '2.68';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2368,6 +2368,14 @@ const _GFIX = {
     { q: "Comment dire 'Je dois rester concentré' ?", opts: ["I need to stay focused","I must stay focused","I have to be focused","I need to focus more"], ans: "I need to stay focused", hint: "Je dois rester concentré → I need to stay focused." },
     { q: "Comment dire 'Je suis de retour' ?", opts: ["I'm back","I'm returned","I came back","I'm here again"], ans: "I'm back", hint: "Je suis de retour → I'm back." },
   ],
+  'tout-expressions': [
+    { q: "'Tout à fait' en anglais ?", opts: ['Absolutely','All the way','Quite well','Fully'], ans: 'Absolutely', hint: "Tout à fait → Absolutely / Exactly." },
+    { q: "'Tout de suite' en anglais ?", opts: ['Right away','All at once','Soon','Immediately after'], ans: 'Right away', hint: "Tout de suite → Right away / Immediately." },
+    { q: "'Tout le monde' en anglais ?", opts: ['Everyone','All the world','Everybody out','The whole world'], ans: 'Everyone', hint: "Tout le monde → Everyone / Everybody." },
+    { q: "'Tout d'abord' en anglais ?", opts: ['First of all','Above all','After all','All things considered'], ans: 'First of all', hint: "Tout d'abord → First of all." },
+    { q: "'Malgré tout' en anglais ?", opts: ['Despite everything','Above all','After all','All the same'], ans: 'Despite everything', hint: "Malgré tout → Despite everything." },
+    { q: "'Pas du tout' en anglais ?", opts: ['Not at all','Not totally','Not really','Absolutely not'], ans: 'Not at all', hint: "Pas du tout → Not at all." },
+  ],
   'use-of-else': [
     { q: "'Autre chose ?' en anglais (question au restaurant)", opts: ["Anything else?","Something else?","What else?","Other thing?"], ans: "Anything else?", hint: "En question → anything else (pas something)." },
     { q: "'Quelqu'un d'autre' en anglais", opts: ["Someone else","Anyone else","Nobody else","Other person"], ans: "Someone else", hint: "Quelqu'un d'autre → someone else (affirmatif)." },
@@ -3100,6 +3108,24 @@ const _GFIX_SERIES = {
       { q: "Choisir la bonne phrase : 'Tout le monde d'autre est parti.'", opts: ["Everyone else had gone.","All else has gone.","Everybody other left.","Everyone other went."], ans: "Everyone else had gone.", hint: "Tout le monde d'autre → everyone else." },
       { q: "Choisir la bonne phrase : 'Personne d'autre n'était là.'", opts: ["Nobody else was there.","No one other was there.","Nobody other was present.","No else was there."], ans: "Nobody else was there.", hint: "Personne d'autre → nobody else." },
       { q: "Traduction : 'On mange ce qu'on trouve, sinon on fait les courses.'", opts: ["We eat what we find, or else we go shopping.","We eat what we find, if not we shop.","We eat what we find, otherwise else we shop.","We eat whatever, or else go shopping."], ans: "We eat what we find, or else we go shopping.", hint: "Sinon → or else." },
+    ],
+  ],
+  'tout-expressions': [
+    [
+      { q: "'Après tout' en anglais ?", opts: ['After all','Above all','Despite everything','All things considered'], ans: 'After all', hint: "Après tout → After all." },
+      { q: "'Avant tout' en anglais ?", opts: ['Above all','First of all','After all','Before everything'], ans: 'Above all', hint: "Avant tout → Above all." },
+      { q: "'De tout cœur' en anglais ?", opts: ['Wholeheartedly','With all heart','From the heart','Sincerely'], ans: 'Wholeheartedly', hint: "De tout cœur → Wholeheartedly." },
+      { q: "'Tout à coup' en anglais ?", opts: ['All of a sudden','All at once','Right away','Suddenly enough'], ans: 'All of a sudden', hint: "Tout à coup → All of a sudden." },
+      { q: "'Une fois pour toutes' en anglais ?", opts: ['Once and for all','One time for all','Once for everything','All at once'], ans: 'Once and for all', hint: "Une fois pour toutes → Once and for all." },
+      { q: "'Tout de même' en anglais ?", opts: ['All the same','All the way','Despite all','Just the same'], ans: 'All the same', hint: "Tout de même → All the same / Still." },
+    ],
+    [
+      { q: "'En tout cas' en anglais ?", opts: ['In any case','In all cases','Anyway','No matter what'], ans: 'In any case', hint: "En tout cas → In any case." },
+      { q: "'Tout compte fait' en anglais ?", opts: ['All things considered','After all','Above all','In any case'], ans: 'All things considered', hint: "Tout compte fait → All things considered." },
+      { q: "'Tout droit' en anglais ?", opts: ['Straight ahead','All right','Right away','Directly'], ans: 'Straight ahead', hint: "Tout droit → Straight ahead." },
+      { q: "'Tout seul' en anglais ?", opts: ['Alone','By myself','All alone','On your own'], ans: 'Alone', hint: "Tout seul / toute seule → Alone." },
+      { q: "'À tout prix' en anglais ?", opts: ['At all costs','At any price','Whatever the cost','By all means'], ans: 'At all costs', hint: "À tout prix → At all costs." },
+      { q: "Quelle est la différence entre 'à tout à l'heure' et 'tout à l'heure' ?", opts: ["À tout à l'heure = au revoir ; tout à l'heure = plus tôt/plus tard aujourd'hui","Ce sont des synonymes","À tout à l'heure = plus tôt ; tout à l'heure = au revoir","Aucune différence"], ans: "À tout à l'heure = au revoir ; tout à l'heure = plus tôt/plus tard aujourd'hui", hint: "À tout à l'heure = see you later ; tout à l'heure = earlier/later today." },
     ],
   ],
 };
