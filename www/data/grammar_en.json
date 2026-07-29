@@ -3430,5 +3430,44 @@
         ]
       }
     ]
+  },
+  {
+    "id": "everyday-expressions",
+    "title": "Expressions du quotidien",
+    "subtitle": "12 expressions indispensables en conversation",
+    "sections": [
+      {
+        "heading": "Réactions et attitudes",
+        "points": [
+          "I don't mind = Ça ne me dérange pas (indifférence positive)",
+          "I don't feel like it = Je n'en ai pas envie",
+          "As you wish = Comme tu veux (acquiescement)",
+          "Why bother? = À quoi bon ? (découragement)",
+          "For sure = Bien sûr / Certainement",
+          "Not at all = Pas du tout (pour répondre à un merci)"
+        ],
+        "examples": [
+          {"en": "I don't mind helping you.", "fr": "Ça ne me dérange pas de t'aider."},
+          {"en": "As you wish — it's your choice.", "fr": "Comme tu veux — c'est ton choix."},
+          {"en": "For sure, I'll be there!", "fr": "Bien sûr, j'y serai !"}
+        ]
+      },
+      {
+        "heading": "Interactions courantes",
+        "points": [
+          "Watch out = Fais attention (avertissement)",
+          "Here we go = C'est parti (démarrage)",
+          "What's going on? = Que se passe-t-il ?",
+          "What do you mean? = Que veux-tu dire ?",
+          "Take your time = Prends ton temps",
+          "Don't mention it = Je t'en prie / De rien (après un merci)"
+        ],
+        "examples": [
+          {"en": "Watch out — the floor is wet!", "fr": "Fais attention — le sol est mouillé !"},
+          {"en": "What do you mean by that?", "fr": "Que veux-tu dire par là ?"},
+          {"en": "Take your time, there's no rush.", "fr": "Prends ton temps, ce n'est pas pressé."}
+        ]
+      }
+    ]
   }
 ]
