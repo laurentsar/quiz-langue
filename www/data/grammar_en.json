@@ -1560,6 +1560,22 @@
             "fr": "De toute façon, passons à autre chose."
           }
         ]
+      },
+      {
+        "heading": "Adverbes de temps (présent / futur / passé)",
+        "points": [
+          "Today = aujourd'hui — Nowadays = de nos jours — Currently = actuellement",
+          "Tomorrow = demain — Soon = bientôt",
+          "Yesterday = hier — Earlier = plus tôt — Before = avant — Ago = il y a",
+          "Rarely = rarement — Never = jamais",
+          "Astuce : 'Ago' se place APRÈS la durée → two days ago (il y a deux jours)"
+        ],
+        "examples": [
+          {"en": "I saw him two days ago.", "fr": "Je l'ai vu il y a deux jours."},
+          {"en": "Nowadays, everyone has a smartphone.", "fr": "De nos jours, tout le monde a un smartphone."},
+          {"en": "I'll call you soon.", "fr": "Je t'appellerai bientôt."},
+          {"en": "She arrived earlier than expected.", "fr": "Elle est arrivée plus tôt que prévu."}
+        ]
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=iTd0gcR_VVM",

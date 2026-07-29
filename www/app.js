@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.64';
+const APP_VERSION = '2.65';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2774,6 +2774,14 @@ const _GFIX_SERIES = {
       { q: "'Absolument' en anglais ?", opts: ['Absolutely','Generally','Exactly','Certainly'], ans: 'Absolutely', hint: 'Absolument → absolutely.' },
       { q: "'À la place' en anglais ?", opts: ['Instead','Anyway','However','Therefore'], ans: 'Instead', hint: 'À la place → instead.' },
       { q: "'Surtout / Particulièrement' en anglais ?", opts: ['Especially','Generally','Totally','Probably'], ans: 'Especially', hint: 'Surtout → especially.' },
+    ],
+    [
+      { q: "'De nos jours' en anglais ?", opts: ['Nowadays','These days','Currently','Today'], ans: 'Nowadays', hint: 'De nos jours → Nowadays.' },
+      { q: "'Actuellement' en anglais ?", opts: ['Currently','Actually','Now','At the moment'], ans: 'Currently', hint: "Currently = actuellement (≠ Actually = en fait)." },
+      { q: "'Il y a deux jours' en anglais ?", opts: ['Two days ago','Before two days','Two days before','Since two days'], ans: 'Two days ago', hint: "Ago se place APRÈS la durée : two days ago." },
+      { q: "'Plus tôt' en anglais ?", opts: ['Earlier','Before','Sooner','Previously'], ans: 'Earlier', hint: 'Plus tôt → earlier (comparatif de early).' },
+      { q: "'Bientôt' en anglais ?", opts: ['Soon','Shortly','Quickly','Now'], ans: 'Soon', hint: 'Bientôt → soon.' },
+      { q: "Compléter : 'She called me ___ this morning.' (plus tôt)", opts: ['earlier','before','sooner','previously'], ans: 'earlier', hint: 'Earlier = plus tôt (plus tôt dans la journée).' },
     ],
   ],
   'numbers': [
