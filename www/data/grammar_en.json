@@ -1571,10 +1571,22 @@
           "Astuce : 'Ago' se place APRÈS la durée → two days ago (il y a deux jours)"
         ],
         "examples": [
-          {"en": "I saw him two days ago.", "fr": "Je l'ai vu il y a deux jours."},
-          {"en": "Nowadays, everyone has a smartphone.", "fr": "De nos jours, tout le monde a un smartphone."},
-          {"en": "I'll call you soon.", "fr": "Je t'appellerai bientôt."},
-          {"en": "She arrived earlier than expected.", "fr": "Elle est arrivée plus tôt que prévu."}
+          {
+            "en": "I saw him two days ago.",
+            "fr": "Je l'ai vu il y a deux jours."
+          },
+          {
+            "en": "Nowadays, everyone has a smartphone.",
+            "fr": "De nos jours, tout le monde a un smartphone."
+          },
+          {
+            "en": "I'll call you soon.",
+            "fr": "Je t'appellerai bientôt."
+          },
+          {
+            "en": "She arrived earlier than expected.",
+            "fr": "Elle est arrivée plus tôt que prévu."
+          }
         ]
       }
     ],
@@ -3284,9 +3296,18 @@
           "You know what I mean? = Tu vois ce que je veux dire?"
         ],
         "examples": [
-          {"en": "Actually, I prefer tea.", "fr": "En fait, je préfère le thé."},
-          {"en": "To be honest, I'm not sure.", "fr": "Honnêtement, je ne suis pas sûr."},
-          {"en": "It's kind of difficult to explain.", "fr": "C'est plutôt difficile à expliquer."}
+          {
+            "en": "Actually, I prefer tea.",
+            "fr": "En fait, je préfère le thé."
+          },
+          {
+            "en": "To be honest, I'm not sure.",
+            "fr": "Honnêtement, je ne suis pas sûr."
+          },
+          {
+            "en": "It's kind of difficult to explain.",
+            "fr": "C'est plutôt difficile à expliquer."
+          }
         ]
       },
       {
@@ -3300,9 +3321,18 @@
           "Fair enough = C'est juste / D'accord (accepter un argument)"
         ],
         "examples": [
-          {"en": "Hang on, let me check.", "fr": "Attends une seconde, je vérifie."},
-          {"en": "Fair enough, let's do it your way.", "fr": "C'est juste, faisons-le à ta façon."},
-          {"en": "It depends on the situation.", "fr": "Ça dépend de la situation."}
+          {
+            "en": "Hang on, let me check.",
+            "fr": "Attends une seconde, je vérifie."
+          },
+          {
+            "en": "Fair enough, let's do it your way.",
+            "fr": "C'est juste, faisons-le à ta façon."
+          },
+          {
+            "en": "It depends on the situation.",
+            "fr": "Ça dépend de la situation."
+          }
         ]
       }
     ]
@@ -3320,8 +3350,14 @@
           "Exemples : It's worth trying / asking / the effort / every penny"
         ],
         "examples": [
-          {"en": "It's worth trying.", "fr": "Ça vaut la peine d'essayer."},
-          {"en": "It's worth thinking about.", "fr": "Ça vaut la peine d'y réfléchir."}
+          {
+            "en": "It's worth trying.",
+            "fr": "Ça vaut la peine d'essayer."
+          },
+          {
+            "en": "It's worth thinking about.",
+            "fr": "Ça vaut la peine d'y réfléchir."
+          }
         ]
       },
       {
@@ -3332,8 +3368,14 @@
           "Exemples : It's no use crying / worrying / complaining / arguing"
         ],
         "examples": [
-          {"en": "It's no use crying.", "fr": "Ça ne sert à rien de pleurer."},
-          {"en": "It's no use worrying about it.", "fr": "Ça ne sert à rien de s'en inquiéter."}
+          {
+            "en": "It's no use crying.",
+            "fr": "Ça ne sert à rien de pleurer."
+          },
+          {
+            "en": "It's no use worrying about it.",
+            "fr": "Ça ne sert à rien de s'en inquiéter."
+          }
         ]
       },
       {
@@ -3344,8 +3386,14 @@
           "Exemples : It's time to go / move on / be honest / make a decision"
         ],
         "examples": [
-          {"en": "It's time to go.", "fr": "Il est temps de partir."},
-          {"en": "It's time to move on.", "fr": "Il est temps de passer à autre chose."}
+          {
+            "en": "It's time to go.",
+            "fr": "Il est temps de partir."
+          },
+          {
+            "en": "It's time to move on.",
+            "fr": "Il est temps de passer à autre chose."
+          }
         ]
       },
       {
@@ -3356,8 +3404,14 @@
           "Variantes : It's up to you / them / her / him to..."
         ],
         "examples": [
-          {"en": "It's up to you to decide.", "fr": "C'est à toi de décider."},
-          {"en": "It's up to them to solve it.", "fr": "C'est à eux de le résoudre."}
+          {
+            "en": "It's up to you to decide.",
+            "fr": "C'est à toi de décider."
+          },
+          {
+            "en": "It's up to them to solve it.",
+            "fr": "C'est à eux de le résoudre."
+          }
         ]
       }
     ]
@@ -3377,9 +3431,18 @@
           "I'll pass = Je vais décliner / Je passe"
         ],
         "examples": [
-          {"en": "I can't, sorry.", "fr": "Je ne peux pas, désolé."},
-          {"en": "No, thanks — I'm fine.", "fr": "Non, merci — ça va."},
-          {"en": "I don't think so.", "fr": "Je ne pense pas."}
+          {
+            "en": "I can't, sorry.",
+            "fr": "Je ne peux pas, désolé."
+          },
+          {
+            "en": "No, thanks — I'm fine.",
+            "fr": "Non, merci — ça va."
+          },
+          {
+            "en": "I don't think so.",
+            "fr": "Je ne pense pas."
+          }
         ]
       },
       {
@@ -3392,8 +3455,14 @@
           "I'm sorry = Je suis désolé"
         ],
         "examples": [
-          {"en": "Sorry, I'm busy right now.", "fr": "Désolé, je suis occupé en ce moment."},
-          {"en": "Maybe another time — I don't have time today.", "fr": "Peut-être une autre fois — je n'ai pas le temps aujourd'hui."}
+          {
+            "en": "Sorry, I'm busy right now.",
+            "fr": "Désolé, je suis occupé en ce moment."
+          },
+          {
+            "en": "Maybe another time — I don't have time today.",
+            "fr": "Peut-être une autre fois — je n'ai pas le temps aujourd'hui."
+          }
         ]
       },
       {
@@ -3406,9 +3475,18 @@
           "It's complicated = C'est compliqué"
         ],
         "examples": [
-          {"en": "I'm gonna pass on this one.", "fr": "Je vais passer sur celui-ci."},
-          {"en": "It's not really for me.", "fr": "C'est pas vraiment pour moi."},
-          {"en": "It's complicated — let me think about it.", "fr": "C'est compliqué — laisse-moi y réfléchir."}
+          {
+            "en": "I'm gonna pass on this one.",
+            "fr": "Je vais passer sur celui-ci."
+          },
+          {
+            "en": "It's not really for me.",
+            "fr": "C'est pas vraiment pour moi."
+          },
+          {
+            "en": "It's complicated — let me think about it.",
+            "fr": "C'est compliqué — laisse-moi y réfléchir."
+          }
         ]
       }
     ]
@@ -3427,9 +3505,18 @@
           "I'm not really up for it = Je n'en ai pas vraiment envie"
         ],
         "examples": [
-          {"en": "That doesn't work for me, sorry.", "fr": "Ça ne m'arrange pas, désolé."},
-          {"en": "I'd rather not, if that's okay.", "fr": "Je préfèrerais pas, si ça ne te dérange pas."},
-          {"en": "I'm afraid I can't make it.", "fr": "J'ai bien peur de ne pas pouvoir venir."}
+          {
+            "en": "That doesn't work for me, sorry.",
+            "fr": "Ça ne m'arrange pas, désolé."
+          },
+          {
+            "en": "I'd rather not, if that's okay.",
+            "fr": "Je préfèrerais pas, si ça ne te dérange pas."
+          },
+          {
+            "en": "I'm afraid I can't make it.",
+            "fr": "J'ai bien peur de ne pas pouvoir venir."
+          }
         ]
       },
       {
@@ -3441,8 +3528,14 @@
           "I'm going to sit this one out = Je vais passer mon tour (informel)"
         ],
         "examples": [
-          {"en": "I'd love to, but I've already got plans.", "fr": "J'adorerais, mais j'ai déjà quelque chose de prévu."},
-          {"en": "Thanks for thinking of me, but I'm going to sit this one out.", "fr": "Merci d'avoir pensé à moi, mais je vais passer mon tour."}
+          {
+            "en": "I'd love to, but I've already got plans.",
+            "fr": "J'adorerais, mais j'ai déjà quelque chose de prévu."
+          },
+          {
+            "en": "Thanks for thinking of me, but I'm going to sit this one out.",
+            "fr": "Merci d'avoir pensé à moi, mais je vais passer mon tour."
+          }
         ]
       }
     ]
@@ -3463,9 +3556,18 @@
           "Not at all = Pas du tout (pour répondre à un merci)"
         ],
         "examples": [
-          {"en": "I don't mind helping you.", "fr": "Ça ne me dérange pas de t'aider."},
-          {"en": "As you wish — it's your choice.", "fr": "Comme tu veux — c'est ton choix."},
-          {"en": "For sure, I'll be there!", "fr": "Bien sûr, j'y serai !"}
+          {
+            "en": "I don't mind helping you.",
+            "fr": "Ça ne me dérange pas de t'aider."
+          },
+          {
+            "en": "As you wish — it's your choice.",
+            "fr": "Comme tu veux — c'est ton choix."
+          },
+          {
+            "en": "For sure, I'll be there!",
+            "fr": "Bien sûr, j'y serai !"
+          }
         ]
       },
       {
@@ -3479,9 +3581,18 @@
           "Don't mention it = Je t'en prie / De rien (après un merci)"
         ],
         "examples": [
-          {"en": "Watch out — the floor is wet!", "fr": "Fais attention — le sol est mouillé !"},
-          {"en": "What do you mean by that?", "fr": "Que veux-tu dire par là ?"},
-          {"en": "Take your time, there's no rush.", "fr": "Prends ton temps, ce n'est pas pressé."}
+          {
+            "en": "Watch out — the floor is wet!",
+            "fr": "Fais attention — le sol est mouillé !"
+          },
+          {
+            "en": "What do you mean by that?",
+            "fr": "Que veux-tu dire par là ?"
+          },
+          {
+            "en": "Take your time, there's no rush.",
+            "fr": "Prends ton temps, ce n'est pas pressé."
+          }
         ]
       }
     ]
@@ -3505,9 +3616,18 @@
           "You look very confident = Tu as l'air très confiant(e)"
         ],
         "examples": [
-          {"en": "You look amazing today — what's your secret?", "fr": "Tu es magnifique aujourd'hui — quel est ton secret ?"},
-          {"en": "You're glowing — you look so happy!", "fr": "Tu rayonnes — tu as l'air tellement heureuse !"},
-          {"en": "You look stunning tonight!", "fr": "Tu es éblouissant(e) ce soir !"}
+          {
+            "en": "You look amazing today — what's your secret?",
+            "fr": "Tu es magnifique aujourd'hui — quel est ton secret ?"
+          },
+          {
+            "en": "You're glowing — you look so happy!",
+            "fr": "Tu rayonnes — tu as l'air tellement heureuse !"
+          },
+          {
+            "en": "You look stunning tonight!",
+            "fr": "Tu es éblouissant(e) ce soir !"
+          }
         ]
       },
       {
@@ -3524,9 +3644,18 @@
           "You look so neat and clean = Tu es très soigné(e)"
         ],
         "examples": [
-          {"en": "I love your style — where did you get that?", "fr": "J'adore ton style — tu l'as trouvé où ?"},
-          {"en": "That color looks great on you!", "fr": "Cette couleur te va très bien !"},
-          {"en": "You always dress so well.", "fr": "Tu t'habilles toujours très bien."}
+          {
+            "en": "I love your style — where did you get that?",
+            "fr": "J'adore ton style — tu l'as trouvé où ?"
+          },
+          {
+            "en": "That color looks great on you!",
+            "fr": "Cette couleur te va très bien !"
+          },
+          {
+            "en": "You always dress so well.",
+            "fr": "Tu t'habilles toujours très bien."
+          }
         ]
       }
     ]
@@ -3549,9 +3678,18 @@
           "It doesn't matter = Ce n'est pas grave"
         ],
         "examples": [
-          {"en": "That's what I wanted — perfect!", "fr": "C'est ce que je voulais — parfait !"},
-          {"en": "It's too late now, we missed the train.", "fr": "C'est trop tard maintenant, on a raté le train."},
-          {"en": "It doesn't matter — we'll try again.", "fr": "Ce n'est pas grave — on va réessayer."}
+          {
+            "en": "That's what I wanted — perfect!",
+            "fr": "C'est ce que je voulais — parfait !"
+          },
+          {
+            "en": "It's too late now, we missed the train.",
+            "fr": "C'est trop tard maintenant, on a raté le train."
+          },
+          {
+            "en": "It doesn't matter — we'll try again.",
+            "fr": "Ce n'est pas grave — on va réessayer."
+          }
         ]
       },
       {
@@ -3569,9 +3707,18 @@
           "I want to leave quickly = Je veux partir vite"
         ],
         "examples": [
-          {"en": "I haven't finished yet — give me five more minutes.", "fr": "Je n'ai pas encore fini — donne-moi encore cinq minutes."},
-          {"en": "I still don't understand — can you explain again?", "fr": "Je ne comprends toujours pas — tu peux réexpliquer ?"},
-          {"en": "I need to stay focused — no distractions!", "fr": "Je dois rester concentré — pas de distractions !"}
+          {
+            "en": "I haven't finished yet — give me five more minutes.",
+            "fr": "Je n'ai pas encore fini — donne-moi encore cinq minutes."
+          },
+          {
+            "en": "I still don't understand — can you explain again?",
+            "fr": "Je ne comprends toujours pas — tu peux réexpliquer ?"
+          },
+          {
+            "en": "I need to stay focused — no distractions!",
+            "fr": "Je dois rester concentré — pas de distractions !"
+          }
         ]
       },
       {
@@ -3583,9 +3730,18 @@
           "I'm back = Je suis de retour"
         ],
         "examples": [
-          {"en": "I'm stuck — can you help me?", "fr": "Je suis bloqué — tu peux m'aider ?"},
-          {"en": "I'm back! Did I miss anything?", "fr": "Je suis de retour ! J'ai raté quelque chose ?"},
-          {"en": "I'm serious — this needs to stop.", "fr": "Je suis sérieux — ça doit s'arrêter."}
+          {
+            "en": "I'm stuck — can you help me?",
+            "fr": "Je suis bloqué — tu peux m'aider ?"
+          },
+          {
+            "en": "I'm back! Did I miss anything?",
+            "fr": "Je suis de retour ! J'ai raté quelque chose ?"
+          },
+          {
+            "en": "I'm serious — this needs to stop.",
+            "fr": "Je suis sérieux — ça doit s'arrêter."
+          }
         ]
       }
     ]
@@ -3604,9 +3760,18 @@
           "'Or else' = sinon (conséquence si quelque chose ne se produit pas)"
         ],
         "examples": [
-          {"en": "Would you like anything else?", "fr": "Voulez-vous autre chose ?"},
-          {"en": "Everything else is too expensive.", "fr": "Tout le reste est trop cher."},
-          {"en": "Hurry up, or else we'll be late.", "fr": "Dépêche-toi, sinon on va être en retard."}
+          {
+            "en": "Would you like anything else?",
+            "fr": "Voulez-vous autre chose ?"
+          },
+          {
+            "en": "Everything else is too expensive.",
+            "fr": "Tout le reste est trop cher."
+          },
+          {
+            "en": "Hurry up, or else we'll be late.",
+            "fr": "Dépêche-toi, sinon on va être en retard."
+          }
         ]
       },
       {
@@ -3619,9 +3784,18 @@
           "nowhere else = nulle part ailleurs — somewhere else = ailleurs"
         ],
         "examples": [
-          {"en": "I don't know the answer — ask someone else.", "fr": "Je ne connais pas la réponse — demande à quelqu'un d'autre."},
-          {"en": "Have you got nothing else to do?", "fr": "Tu n'as rien d'autre à faire ?"},
-          {"en": "Some animals can be found nowhere else in the world.", "fr": "Certains animaux ne se trouvent nulle part ailleurs dans le monde."}
+          {
+            "en": "I don't know the answer — ask someone else.",
+            "fr": "Je ne connais pas la réponse — demande à quelqu'un d'autre."
+          },
+          {
+            "en": "Have you got nothing else to do?",
+            "fr": "Tu n'as rien d'autre à faire ?"
+          },
+          {
+            "en": "Some animals can be found nowhere else in the world.",
+            "fr": "Certains animaux ne se trouvent nulle part ailleurs dans le monde."
+          }
         ]
       },
       {
@@ -3633,9 +3807,18 @@
           "Or else = sinon (implique une conséquence négative)"
         ],
         "examples": [
-          {"en": "What else do we need?", "fr": "De quoi d'autre avons-nous besoin ?"},
-          {"en": "Where else could they be?", "fr": "Où d'autre pourraient-ils être ?"},
-          {"en": "We eat whatever we find, or else we go shopping.", "fr": "On mange ce qu'on trouve, sinon on fait les courses."}
+          {
+            "en": "What else do we need?",
+            "fr": "De quoi d'autre avons-nous besoin ?"
+          },
+          {
+            "en": "Where else could they be?",
+            "fr": "Où d'autre pourraient-ils être ?"
+          },
+          {
+            "en": "We eat whatever we find, or else we go shopping.",
+            "fr": "On mange ce qu'on trouve, sinon on fait les courses."
+          }
         ]
       }
     ]
@@ -3659,9 +3842,18 @@
           "toute l'année → all year"
         ],
         "examples": [
-          {"en": "I'll see you later!", "fr": "À tout à l'heure !"},
-          {"en": "She works all day long.", "fr": "Elle travaille toute la journée."},
-          {"en": "He plays games all the time.", "fr": "Il joue tout le temps."}
+          {
+            "en": "I'll see you later!",
+            "fr": "À tout à l'heure !"
+          },
+          {
+            "en": "She works all day long.",
+            "fr": "Elle travaille toute la journée."
+          },
+          {
+            "en": "He plays games all the time.",
+            "fr": "Il joue tout le temps."
+          }
         ]
       },
       {
@@ -3678,9 +3870,18 @@
           "en toute sécurité → in complete safety"
         ],
         "examples": [
-          {"en": "Not at all — it was my pleasure.", "fr": "Pas du tout — c'était un plaisir."},
-          {"en": "Absolutely! I agree with you.", "fr": "Tout à fait ! Je suis d'accord avec toi."},
-          {"en": "Everyone was there.", "fr": "Tout le monde était là."}
+          {
+            "en": "Not at all — it was my pleasure.",
+            "fr": "Pas du tout — c'était un plaisir."
+          },
+          {
+            "en": "Absolutely! I agree with you.",
+            "fr": "Tout à fait ! Je suis d'accord avec toi."
+          },
+          {
+            "en": "Everyone was there.",
+            "fr": "Tout le monde était là."
+          }
         ]
       },
       {
@@ -3697,9 +3898,18 @@
           "tout d'un coup / tout à coup → all of a sudden"
         ],
         "examples": [
-          {"en": "First of all, let me explain.", "fr": "Tout d'abord, laisse-moi expliquer."},
-          {"en": "Come right away!", "fr": "Viens tout de suite !"},
-          {"en": "All of a sudden, it started raining.", "fr": "Tout d'un coup, il a commencé à pleuvoir."}
+          {
+            "en": "First of all, let me explain.",
+            "fr": "Tout d'abord, laisse-moi expliquer."
+          },
+          {
+            "en": "Come right away!",
+            "fr": "Viens tout de suite !"
+          },
+          {
+            "en": "All of a sudden, it started raining.",
+            "fr": "Tout d'un coup, il a commencé à pleuvoir."
+          }
         ]
       },
       {
@@ -3720,9 +3930,89 @@
           "à toute vitesse → at full speed"
         ],
         "examples": [
-          {"en": "Go straight ahead, then turn left.", "fr": "Allez tout droit, puis tournez à gauche."},
-          {"en": "He did it all by himself.", "fr": "Il l'a fait tout seul."},
-          {"en": "She ran at full speed.", "fr": "Elle a couru à toute vitesse."}
+          {
+            "en": "Go straight ahead, then turn left.",
+            "fr": "Allez tout droit, puis tournez à gauche."
+          },
+          {
+            "en": "He did it all by himself.",
+            "fr": "Il l'a fait tout seul."
+          },
+          {
+            "en": "She ran at full speed.",
+            "fr": "Elle a couru à toute vitesse."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "negotiation-expressions",
+    "title": "Business Negotiation",
+    "subtitle": "18 expressions clés pour négocier en anglais",
+    "sections": [
+      {
+        "heading": "Ouvrir et clarifier",
+        "points": [
+          "To open the talks → Ouvrir les négociations",
+          "To clarify expectations → Clarifier les attentes",
+          "To explore options → Explorer les options",
+          "To assess the risks → Évaluer les risques"
+        ],
+        "examples": [
+          "Let's open the talks with a brief overview.",
+          "We need to clarify expectations before moving forward.",
+          "I'd like to explore all available options.",
+          "First, let's assess the risks involved."
+        ]
+      },
+      {
+        "heading": "Proposer et négocier",
+        "points": [
+          "To propose a solution → Proposer une solution",
+          "To compare alternatives → Comparer les alternatives",
+          "To negotiate the terms → Négocier les termes",
+          "To seek an agreement → Rechercher un accord"
+        ],
+        "examples": [
+          "Allow me to propose a solution that works for both sides.",
+          "Let's compare alternatives before deciding.",
+          "We still need to negotiate the terms of the contract.",
+          "Our goal is to seek an agreement by end of day."
+        ]
+      },
+      {
+        "heading": "Position et concessions",
+        "points": [
+          "To make a concession → Faire une concession",
+          "To gain benefits → Obtenir des avantages",
+          "To strengthen your position → Renforcer votre position",
+          "To handle objections → Gérer les objections",
+          "To stay flexible → Rester flexible"
+        ],
+        "examples": [
+          "We're willing to make a concession on the price.",
+          "This deal will help us gain significant benefits.",
+          "This data helps strengthen your position.",
+          "You need to handle objections professionally.",
+          "It's important to stay flexible during negotiations."
+        ]
+      },
+      {
+        "heading": "Conclure et suivre",
+        "points": [
+          "To keep your composure → Garder votre calme",
+          "To take your time → Prendre votre temps",
+          "To reach a compromise → Parvenir à un compromis",
+          "To close the deal → Conclure l'accord",
+          "To follow up → Assurer le suivi"
+        ],
+        "examples": [
+          "Always keep your composure, even under pressure.",
+          "Don't rush — take your time to review the terms.",
+          "We finally managed to reach a compromise.",
+          "We're ready to close the deal today.",
+          "Don't forget to follow up after the meeting."
         ]
       }
     ]

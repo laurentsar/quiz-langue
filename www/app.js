@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.68';
+const APP_VERSION = '2.69';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2368,6 +2368,14 @@ const _GFIX = {
     { q: "Comment dire 'Je dois rester concentré' ?", opts: ["I need to stay focused","I must stay focused","I have to be focused","I need to focus more"], ans: "I need to stay focused", hint: "Je dois rester concentré → I need to stay focused." },
     { q: "Comment dire 'Je suis de retour' ?", opts: ["I'm back","I'm returned","I came back","I'm here again"], ans: "I'm back", hint: "Je suis de retour → I'm back." },
   ],
+  'negotiation-expressions': [
+    { q: "Traduction de 'To open the talks'", opts: ['Ouvrir les négociations','Commencer à parler','Lancer le débat','Ouvrir la discussion'], ans: 'Ouvrir les négociations', hint: "To open the talks → Ouvrir les négociations." },
+    { q: "Traduction de 'To make a concession'", opts: ['Faire une concession','Accepter un compromis','Céder du terrain','Prendre position'], ans: 'Faire une concession', hint: "To make a concession → Faire une concession." },
+    { q: "Traduction de 'To close the deal'", opts: ["Conclure l'accord",'Fermer le dossier','Signer le contrat','Terminer les talks'], ans: "Conclure l'accord", hint: "To close the deal → Conclure l'accord." },
+    { q: "Traduction de 'To handle objections'", opts: ['Gérer les objections','Répondre aux questions','Traiter les plaintes','Ignorer les objections'], ans: 'Gérer les objections', hint: "To handle objections → Gérer les objections." },
+    { q: "Traduction de 'To reach a compromise'", opts: ['Parvenir à un compromis','Trouver une solution','Accepter les termes','Faire un accord'], ans: 'Parvenir à un compromis', hint: "To reach a compromise → Parvenir à un compromis." },
+    { q: "Traduction de 'To follow up'", opts: ['Assurer le suivi','Faire un retour','Vérifier les détails','Continuer les talks'], ans: 'Assurer le suivi', hint: "To follow up → Assurer le suivi." },
+  ],
   'tout-expressions': [
     { q: "'Tout à fait' en anglais ?", opts: ['Absolutely','All the way','Quite well','Fully'], ans: 'Absolutely', hint: "Tout à fait → Absolutely / Exactly." },
     { q: "'Tout de suite' en anglais ?", opts: ['Right away','All at once','Soon','Immediately after'], ans: 'Right away', hint: "Tout de suite → Right away / Immediately." },
@@ -3108,6 +3116,24 @@ const _GFIX_SERIES = {
       { q: "Choisir la bonne phrase : 'Tout le monde d'autre est parti.'", opts: ["Everyone else had gone.","All else has gone.","Everybody other left.","Everyone other went."], ans: "Everyone else had gone.", hint: "Tout le monde d'autre → everyone else." },
       { q: "Choisir la bonne phrase : 'Personne d'autre n'était là.'", opts: ["Nobody else was there.","No one other was there.","Nobody other was present.","No else was there."], ans: "Nobody else was there.", hint: "Personne d'autre → nobody else." },
       { q: "Traduction : 'On mange ce qu'on trouve, sinon on fait les courses.'", opts: ["We eat what we find, or else we go shopping.","We eat what we find, if not we shop.","We eat what we find, otherwise else we shop.","We eat whatever, or else go shopping."], ans: "We eat what we find, or else we go shopping.", hint: "Sinon → or else." },
+    ],
+  ],
+  'negotiation-expressions': [
+    [
+      { q: "Traduction de 'To clarify expectations'", opts: ['Clarifier les attentes','Préciser les objectifs','Expliquer les règles','Définir les critères'], ans: 'Clarifier les attentes', hint: "To clarify expectations → Clarifier les attentes." },
+      { q: "Traduction de 'To explore options'", opts: ['Explorer les options','Chercher des solutions','Analyser les possibilités','Examiner les choix'], ans: 'Explorer les options', hint: "To explore options → Explorer les options." },
+      { q: "Traduction de 'To assess the risks'", opts: ['Évaluer les risques','Mesurer les dangers','Analyser les problèmes','Identifier les menaces'], ans: 'Évaluer les risques', hint: "To assess the risks → Évaluer les risques." },
+      { q: "Traduction de 'To seek an agreement'", opts: ['Rechercher un accord','Trouver un terrain commun','Négocier un deal','Viser un consensus'], ans: 'Rechercher un accord', hint: "To seek an agreement → Rechercher un accord." },
+      { q: "Traduction de 'To gain benefits'", opts: ['Obtenir des avantages','Gagner des points','Avoir des bénéfices','Remporter des gains'], ans: 'Obtenir des avantages', hint: "To gain benefits → Obtenir des avantages." },
+      { q: "Traduction de 'To strengthen your position'", opts: ['Renforcer votre position','Améliorer votre stance','Consolider votre place','Défendre votre terrain'], ans: 'Renforcer votre position', hint: "To strengthen your position → Renforcer votre position." },
+    ],
+    [
+      { q: "Traduction de 'To propose a solution'", opts: ['Proposer une solution','Suggérer une idée','Offrir une alternative','Présenter un plan'], ans: 'Proposer une solution', hint: "To propose a solution → Proposer une solution." },
+      { q: "Traduction de 'To compare alternatives'", opts: ['Comparer les alternatives','Analyser les options','Évaluer les choix','Peser les possibilités'], ans: 'Comparer les alternatives', hint: "To compare alternatives → Comparer les alternatives." },
+      { q: "Traduction de 'To negotiate the terms'", opts: ['Négocier les termes','Discuter les conditions','Revoir le contrat','Ajuster les clauses'], ans: 'Négocier les termes', hint: "To negotiate the terms → Négocier les termes." },
+      { q: "Traduction de 'To keep your composure'", opts: ['Garder votre calme','Rester concentré','Maintenir votre sérieux','Conserver votre sang-froid'], ans: 'Garder votre calme', hint: "To keep your composure → Garder votre calme." },
+      { q: "Traduction de 'To take your time'", opts: ['Prendre votre temps','Ne pas vous presser','Avancer lentement','Gérer le timing'], ans: 'Prendre votre temps', hint: "To take your time → Prendre votre temps." },
+      { q: "Traduction de 'To stay flexible'", opts: ['Rester flexible','Être adaptable','Garder des options','Éviter la rigidité'], ans: 'Rester flexible', hint: "To stay flexible → Rester flexible." },
     ],
   ],
   'tout-expressions': [
