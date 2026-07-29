@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.65';
+const APP_VERSION = '2.66';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2360,6 +2360,14 @@ const _GFIX = {
     { q: "Comment dire 'Prends ton temps' ?", opts: ["Take your time","Take the time","Have your time","Keep your time"], ans: "Take your time", hint: "Prends ton temps → Take your time." },
     { q: "Comment dire 'Je t'en prie' (après un merci) ?", opts: ["Don't mention it","You're welcome","No problem","Of course"], ans: "Don't mention it", hint: "Je t'en prie → Don't mention it (très naturel)." },
   ],
+  'practical-phrases': [
+    { q: "Comment dire 'Ce n'est pas grave' ?", opts: ["It doesn't matter","It's not serious","It's no big deal","It's not grave"], ans: "It doesn't matter", hint: "Ce n'est pas grave → It doesn't matter." },
+    { q: "Comment dire 'Je suis bloqué(e)' ?", opts: ["I'm stuck","I'm blocked","I'm frozen","I'm stopped"], ans: "I'm stuck", hint: "Je suis bloqué → I'm stuck." },
+    { q: "Comment dire 'C'est trop tard' ?", opts: ["It's too late","It's too slow","It's very late","This is late"], ans: "It's too late", hint: "C'est trop tard → It's too late." },
+    { q: "Comment dire 'Je n'ai pas encore fini' ?", opts: ["I haven't finished yet","I didn't finish yet","I'm not finished yet","I haven't done yet"], ans: "I haven't finished yet", hint: "Pas encore fini → haven't finished yet (present perfect)." },
+    { q: "Comment dire 'Je dois rester concentré' ?", opts: ["I need to stay focused","I must stay focused","I have to be focused","I need to focus more"], ans: "I need to stay focused", hint: "Je dois rester concentré → I need to stay focused." },
+    { q: "Comment dire 'Je suis de retour' ?", opts: ["I'm back","I'm returned","I came back","I'm here again"], ans: "I'm back", hint: "Je suis de retour → I'm back." },
+  ],
   'compliments': [
     { q: "Comment dire 'Tu es magnifique aujourd'hui' ?", opts: ["You look amazing today","You are amazing today","You look beautiful today","You seem amazing today"], ans: "You look amazing today", hint: "Magnifique → You look amazing (look + adjectif)." },
     { q: "Comment dire 'J'adore ton style' ?", opts: ["I love your style","I like your style","I adore your style","I enjoy your style"], ans: "I love your style", hint: "J'adore → I love (plus naturel qu'I adore en anglais)." },
@@ -3048,6 +3056,24 @@ const _GFIX_SERIES = {
       { q: "Traduction : 'J'adore ton style — tu l'as trouvé où ?'", opts: ["I love your style — where did you get that?","I like your style — where you found it?","I love your style — where is it from?","I adore your style — from where?"], ans: "I love your style — where did you get that?", hint: "Where did you get that? = tu l'as trouvé où ?" },
       { q: "Traduction : 'Cette couleur te va très bien !'", opts: ["That color looks great on you!","That color is perfect on you!","This color looks amazing on you!","That color suits you perfectly!"], ans: "That color looks great on you!", hint: "Te va bien → looks great on you." },
       { q: "Traduction : 'Tu rayonnes — tu as l'air tellement heureuse !'", opts: ["You're glowing — you look so happy!","You're shining — you look so glad!","You glow — you appear so happy!","You're glowing — you're so happy!"], ans: "You're glowing — you look so happy!", hint: "You're glowing + you look so happy." },
+    ],
+  ],
+  'practical-phrases': [
+    [
+      { q: "Comment dire 'C'est suffisant' ?", opts: ["That's enough","It's sufficient","That's sufficient","It's enough"], ans: "That's enough", hint: "C'est suffisant → That's enough." },
+      { q: "Comment dire 'Je ne comprends toujours pas' ?", opts: ["I still don't understand","I still can't understand","I don't understand yet","I never understand"], ans: "I still don't understand", hint: "Toujours pas → still don't." },
+      { q: "Comment dire 'Je ne peux pas décider' ?", opts: ["I can't decide","I cannot decide it","I'm unable to decide","I don't decide"], ans: "I can't decide", hint: "Je ne peux pas décider → I can't decide." },
+      { q: "Comment dire 'C'est une bonne idée' ?", opts: ["That's a good idea","It's a good idea","This is a good idea","That's great idea"], ans: "That's a good idea", hint: "C'est une bonne idée → That's a good idea." },
+      { q: "Comment dire 'Je veux savoir pourquoi' ?", opts: ["I want to know why","I want to know the why","I'd like to know why","I need to know why"], ans: "I want to know why", hint: "Je veux savoir pourquoi → I want to know why." },
+      { q: "Comment dire 'Je suis disponible' ?", opts: ["I'm available","I'm free","I'm open","I'm ready"], ans: "I'm available", hint: "Je suis disponible → I'm available." },
+    ],
+    [
+      { q: "Comment dire 'Je dois trouver une solution' ?", opts: ["I need to find a solution","I must find a solution","I have to find a solution","I need to solve this"], ans: "I need to find a solution", hint: "Je dois → I need to (plus naturel qu'I must)." },
+      { q: "Comment dire 'Je n'ai rien à dire' ?", opts: ["I have nothing to say","I have nothing to tell","I don't have anything to say","I've nothing to say"], ans: "I have nothing to say", hint: "Je n'ai rien à dire → I have nothing to say." },
+      { q: "Comment dire 'C'est évident' ?", opts: ["It's obvious","It's evident","It's clear","It's certain"], ans: "It's obvious", hint: "C'est évident → It's obvious." },
+      { q: "Traduction : 'Je suis bloqué — tu peux m'aider ?'", opts: ["I'm stuck — can you help me?","I'm blocked — can you help?","I'm frozen — help me?","I'm stuck — help me please?"], ans: "I'm stuck — can you help me?", hint: "Bloqué → stuck + can you help me?" },
+      { q: "Traduction : 'Je ne veux pas attendre.'", opts: ["I don't want to wait","I won't wait","I don't want waiting","I can't wait"], ans: "I don't want to wait", hint: "Je ne veux pas + attendre → don't want to + wait." },
+      { q: "Traduction : 'Je suis de retour ! J'ai raté quelque chose ?'", opts: ["I'm back! Did I miss anything?","I'm back! Did I miss something?","I returned! Miss anything?","I'm back! Have I missed anything?"], ans: "I'm back! Did I miss anything?", hint: "I'm back + Did I miss anything? (prétérit)." },
     ],
   ],
 };
