@@ -1560,6 +1560,22 @@
             "fr": "De toute façon, passons à autre chose."
           }
         ]
+      },
+      {
+        "heading": "Adverbes de temps (présent / futur / passé)",
+        "points": [
+          "Today = aujourd'hui — Nowadays = de nos jours — Currently = actuellement",
+          "Tomorrow = demain — Soon = bientôt",
+          "Yesterday = hier — Earlier = plus tôt — Before = avant — Ago = il y a",
+          "Rarely = rarement — Never = jamais",
+          "Astuce : 'Ago' se place APRÈS la durée → two days ago (il y a deux jours)"
+        ],
+        "examples": [
+          {"en": "I saw him two days ago.", "fr": "Je l'ai vu il y a deux jours."},
+          {"en": "Nowadays, everyone has a smartphone.", "fr": "De nos jours, tout le monde a un smartphone."},
+          {"en": "I'll call you soon.", "fr": "Je t'appellerai bientôt."},
+          {"en": "She arrived earlier than expected.", "fr": "Elle est arrivée plus tôt que prévu."}
+        ]
       }
     ],
     "videoUrl": "https://www.youtube.com/watch?v=iTd0gcR_VVM",
@@ -3466,6 +3482,51 @@
           {"en": "Watch out — the floor is wet!", "fr": "Fais attention — le sol est mouillé !"},
           {"en": "What do you mean by that?", "fr": "Que veux-tu dire par là ?"},
           {"en": "Take your time, there's no rush.", "fr": "Prends ton temps, ce n'est pas pressé."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "compliments",
+    "title": "Faire des compliments",
+    "subtitle": "18 expressions pour complimenter en anglais",
+    "sections": [
+      {
+        "heading": "Apparence générale",
+        "points": [
+          "You look amazing today = Tu es magnifique aujourd'hui",
+          "You're glowing today = Tu rayonnes aujourd'hui",
+          "You look very elegant = Tu es très élégant(e)",
+          "You look really handsome = Tu es vraiment beau",
+          "You look really pretty = Tu es vraiment jolie",
+          "You look stunning tonight = Tu es éblouissant(e) ce soir",
+          "You look so fresh today = Tu as l'air tellement frais aujourd'hui",
+          "You look different today = Tu es différent(e) aujourd'hui",
+          "You look very confident = Tu as l'air très confiant(e)"
+        ],
+        "examples": [
+          {"en": "You look amazing today — what's your secret?", "fr": "Tu es magnifique aujourd'hui — quel est ton secret ?"},
+          {"en": "You're glowing — you look so happy!", "fr": "Tu rayonnes — tu as l'air tellement heureuse !"},
+          {"en": "You look stunning tonight!", "fr": "Tu es éblouissant(e) ce soir !"}
+        ]
+      },
+      {
+        "heading": "Style, tenue et détails",
+        "points": [
+          "I love your style = J'adore ton style",
+          "Your outfit is perfect = Ta tenue est parfaite",
+          "You always dress so well = Tu t'habilles toujours très bien",
+          "That color looks great on you = Cette couleur te va très bien",
+          "Your haircut looks great = Ta coupe de cheveux te va très bien",
+          "You have a beautiful smile = Tu as un beau sourire",
+          "You have beautiful eyes = Tu as de beaux yeux",
+          "You're in great shape = Tu es en pleine forme",
+          "You look so neat and clean = Tu es très soigné(e)"
+        ],
+        "examples": [
+          {"en": "I love your style — where did you get that?", "fr": "J'adore ton style — tu l'as trouvé où ?"},
+          {"en": "That color looks great on you!", "fr": "Cette couleur te va très bien !"},
+          {"en": "You always dress so well.", "fr": "Tu t'habilles toujours très bien."}
         ]
       }
     ]
