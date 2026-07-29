@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.57';
+const APP_VERSION = '2.58';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -426,6 +426,7 @@ function renderHomeLessonCard() {
 function renderStats() {
   renderMotivBar();
   renderHomeLessonCard();
+  renderMorningCards();
   const s = loadStats(state.lang);
   $('stat-last').textContent = `${s.lastScore}/5`;
   $('stat-total').textContent = `${s.totalCompleted} · ${s.totalPoints}`;
@@ -448,6 +449,119 @@ function renderStats() {
 async function loadWords(lang) {
   if (!cache[lang]) cache[lang] = await (await fetch(LANGS[lang].file)).json();
   return cache[lang];
+}
+
+// ---------- Série du matin + Révisions express (reset à 7h chaque jour) ----------
+
+function morningDate() {
+  const now = new Date();
+  // Avant 7h : on reste sur la "journée d'hier" pour conserver le contenu de la veille
+  return now.getHours() < 7
+    ? new Date(Date.now() - 86400000).toISOString().slice(0, 10)
+    : now.toISOString().slice(0, 10);
+}
+
+function _loadMorning(key) {
+  const today = morningDate();
+  try {
+    const s = JSON.parse(localStorage.getItem(key) || 'null');
+    if (s?.date === today) return s;
+  } catch {}
+  return null;
+}
+function _saveMorning(key, data) { localStorage.setItem(key, JSON.stringify(data)); }
+
+function _startTargetedVocabQuiz(wordObjects, lang, badge) {
+  state.kind = 'vocab';
+  state.lang = lang;
+  state.words = cache[lang] || state.words;
+  state.mode = 'srs';
+  state.badge = badge;
+  state.questions = shuffle([...wordObjects]).map(it => buildQuestion(it, state.words));
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
+}
+
+async function renderMorningCards() {
+  const serCard = $('morning-series-card');
+  const exCard  = $('morning-express-card');
+  if (!serCard || !exCard) return;
+
+  const lang = state.lang;
+  const words = state.words && state.words.length ? state.words : await loadWords(lang);
+  const srs   = getSrs(lang);
+  const now   = Date.now();
+  const today = morningDate();
+  const serKey = `morning_series_${lang}`;
+  const exKey  = `morning_express_${lang}`;
+
+  // ── Série du matin (8 mots non maîtrisés) ──
+  let series = _loadMorning(serKey);
+  if (!series) {
+    const unseen = shuffle(words.filter(w => !srs[w.word]));
+    const lowBox = shuffle(words.filter(w => srs[w.word] && srs[w.word].box < 2));
+    const picks  = [...unseen, ...lowBox].slice(0, 8);
+    if (picks.length) {
+      series = { date: today, words: picks.map(w => w.word), done: false };
+      _saveMorning(serKey, series);
+    }
+  }
+
+  if (series) {
+    const wList = series.words.map(wid => words.find(w => w.word === wid)).filter(Boolean);
+    const doneCount = wList.filter(w => { const e = srs[w.word]; return e && e.seen > 0 && e.last === 'ok'; }).length;
+    const done = series.done || doneCount >= wList.length;
+    serCard.innerHTML = `
+      <div class="morning-header">
+        <span class="morning-label">📚 Série du matin</span>
+        <span class="morning-progress">${doneCount}/${wList.length}</span>
+      </div>
+      <div class="morning-wordlist">
+        ${wList.slice(0, 5).map(w => `<div class="morning-word"><span class="morning-en${srs[w.word]?.last==='ok'?' morning-done-word':''}">${esc(w.word)}</span><span class="morning-fr">${esc(w.fr)}</span></div>`).join('')}
+        ${wList.length > 5 ? `<div class="morning-word"><span class="morning-fr">+${wList.length - 5} mots…</span></div>` : ''}
+      </div>
+      ${done
+        ? `<p class="morning-done-msg">✅ Série terminée — à demain 7h !</p>`
+        : `<button id="btn-start-series" class="primary">▶ ${doneCount > 0 ? 'Continuer' : 'Commencer'}</button>`}`;
+    serCard.classList.remove('hidden');
+    if (!done) $('btn-start-series').addEventListener('click', () => _startTargetedVocabQuiz(wList, lang, '📚 Série du matin'));
+  } else {
+    serCard.classList.add('hidden');
+  }
+
+  // ── Révisions express (5 mots les plus en retard) ──
+  let express = _loadMorning(exKey);
+  if (!express) {
+    const due = dueList(words, srs, now).slice(0, 5);
+    if (due.length) {
+      express = { date: today, words: due.map(w => w.word), done: false };
+      _saveMorning(exKey, express);
+    }
+  }
+
+  if (express) {
+    const eList = express.words.map(wid => words.find(w => w.word === wid)).filter(Boolean);
+    const done  = express.done;
+    exCard.innerHTML = `
+      <div class="morning-header">
+        <span class="morning-label">⚡ Révisions express</span>
+        <span class="morning-progress">${eList.length} mots</span>
+      </div>
+      <div class="morning-chips">${eList.map(w => `<span class="morning-chip">${esc(w.word)}</span>`).join('')}</div>
+      ${done
+        ? `<p class="morning-done-msg">✅ Révisions faites — à demain 7h !</p>`
+        : `<button id="btn-start-express" class="primary">⚡ Réviser en 3 min</button>`}`;
+    exCard.classList.remove('hidden');
+    if (!done) $('btn-start-express').addEventListener('click', () => {
+      express.done = true;
+      _saveMorning(exKey, express);
+      _startTargetedVocabQuiz(eList, lang, '⚡ Révisions express');
+    });
+  } else {
+    exCard.classList.add('hidden');
+  }
 }
 
 // ---------- magazine Vocable (Cafeyn) selon la langue ----------
