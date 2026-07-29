@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.62';
+const APP_VERSION = '2.63';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2352,6 +2352,14 @@ const _GFIX = {
     { q: "Comment dire 'J'ai déjà quelque chose de prévu' ?", opts: ["I've already got plans","I already have plans made","I've got something planned","I have something already"], ans: "I've already got plans", hint: "Déjà prévu → I've already got plans." },
     { q: "Comment dire 'Je vais passer mon tour' ?", opts: ["I'm going to sit this one out","I'm gonna pass my turn","I'll skip this turn","I'm sitting out this"], ans: "I'm going to sit this one out", hint: "Passer son tour → sit this one out." },
   ],
+  'everyday-expressions': [
+    { q: "Comment dire 'Ça ne me dérange pas' ?", opts: ["I don't mind","I don't care","It's okay","No problem"], ans: "I don't mind", hint: "Ça ne me dérange pas → I don't mind." },
+    { q: "Comment dire 'Fais attention !' ?", opts: ["Watch out!","Look out!","Be careful!","Pay attention!"], ans: "Watch out!", hint: "Fais attention ! → Watch out!" },
+    { q: "Comment dire 'C'est parti !' ?", opts: ["Here we go!","Let's go!","We start!","Off we go!"], ans: "Here we go!", hint: "C'est parti ! → Here we go!" },
+    { q: "Comment dire 'Que se passe-t-il ?' ?", opts: ["What's going on?","What is happening?","What's the matter?","What's wrong?"], ans: "What's going on?", hint: "Que se passe-t-il ? → What's going on?" },
+    { q: "Comment dire 'Prends ton temps' ?", opts: ["Take your time","Take the time","Have your time","Keep your time"], ans: "Take your time", hint: "Prends ton temps → Take your time." },
+    { q: "Comment dire 'Je t'en prie' (après un merci) ?", opts: ["Don't mention it","You're welcome","No problem","Of course"], ans: "Don't mention it", hint: "Je t'en prie → Don't mention it (très naturel)." },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -2988,6 +2996,24 @@ const _GFIX_SERIES = {
       { q: "Traduction : 'J'adorerais, mais j'ai déjà quelque chose de prévu.'", opts: ["I'd love to, but I've already got plans.","I would love but I have plans.","I'd loved to but got plans.","I love to, but I've plans."], ans: "I'd love to, but I've already got plans.", hint: "I'd love to, but... + I've already got plans." },
       { q: "Que signifie 'sit this one out' ?", opts: ['Passer son tour','Rester assis','Quitter la pièce','Ignorer quelqu\'un'], ans: 'Passer son tour', hint: "To sit out = ne pas participer cette fois." },
       { q: "Traduction : 'Merci d'avoir pensé à moi, mais je vais passer mon tour.'", opts: ["Thanks for thinking of me, but I'm going to sit this one out.","Thanks to think of me but I pass my turn.","Thank you for me, but I'll sit out.","Thanks thinking of me, but I sit this out."], ans: "Thanks for thinking of me, but I'm going to sit this one out.", hint: "Thanks for thinking of me + sit this one out." },
+    ],
+  ],
+  'everyday-expressions': [
+    [
+      { q: "Comment dire 'Je n'en ai pas envie' ?", opts: ["I don't feel like it","I don't want it","I'm not into it","I don't like it"], ans: "I don't feel like it", hint: "Je n'en ai pas envie → I don't feel like it." },
+      { q: "Comment dire 'Comme tu veux' ?", opts: ["As you wish","As you want","Like you want","Whatever you say"], ans: "As you wish", hint: "Comme tu veux → As you wish." },
+      { q: "Comment dire 'À quoi bon ?' ?", opts: ["Why bother?","Why try?","What's the point?","Why care?"], ans: "Why bother?", hint: "À quoi bon ? → Why bother?" },
+      { q: "Comment dire 'Que veux-tu dire ?' ?", opts: ["What do you mean?","What are you saying?","What do you say?","What do you want to say?"], ans: "What do you mean?", hint: "Que veux-tu dire ? → What do you mean?" },
+      { q: "Comment dire 'Bien sûr' (informal) ?", opts: ["For sure","Of course","Certainly","Absolutely"], ans: "For sure", hint: "Bien sûr → For sure (familier et naturel)." },
+      { q: "Comment dire 'Pas du tout' ?", opts: ["Not at all","Not really","Never","Not ever"], ans: "Not at all", hint: "Pas du tout → Not at all." },
+    ],
+    [
+      { q: "Compléter : '___ — the floor is wet!' (Fais attention)", opts: ["Watch out","Look there","Take care","Be safe"], ans: "Watch out", hint: "Fais attention → Watch out." },
+      { q: "Compléter : '___ — I don't have to explain myself.' (Comme tu veux)", opts: ["As you wish","If you like","Whatever","As you want"], ans: "As you wish", hint: "As you wish = comme tu veux (légèrement formel)." },
+      { q: "Traduction : 'Prends ton temps, ce n'est pas pressé.'", opts: ["Take your time, there's no rush.","Take the time, no hurry.","Have your time, no rush.","Keep calm, no hurry."], ans: "Take your time, there's no rush.", hint: "Prends ton temps → Take your time + there's no rush." },
+      { q: "Traduction : 'Ça ne me dérange pas du tout.'", opts: ["I don't mind at all.","I don't care at all.","It's fine by me all.","I really don't care."], ans: "I don't mind at all.", hint: "I don't mind + at all pour renforcer." },
+      { q: "Que signifie 'Why bother?' dans ce contexte : 'Why bother learning if you won't practice?' ?", opts: ['À quoi bon','Pourquoi essayer','Pour quelle raison','Comment savoir'], ans: 'À quoi bon', hint: "Why bother = à quoi bon (sentiment de futilité)." },
+      { q: "Traduction : 'C'est parti — on commence !'", opts: ["Here we go — let's start!","We go — let's begin!","Here we start — let's go!","Off we are — starting!"], ans: "Here we go — let's start!", hint: "C'est parti → Here we go." },
     ],
   ],
 };
