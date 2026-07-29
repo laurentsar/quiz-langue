@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.60';
+const APP_VERSION = '2.61';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2344,6 +2344,14 @@ const _GFIX = {
     { q: "Comment dire 'C'est pas pour moi' ?", opts: ["It's not for me","It's not mine","It's not about me","It's not by me"], ans: "It's not for me", hint: "C'est pas pour moi → It's not for me." },
     { q: "Comment dire 'C'est compliqué' ?", opts: ["It's complicated","It's complex","It's difficult","It's a problem"], ans: "It's complicated", hint: "C'est compliqué → It's complicated." },
   ],
+  'polite-refusals': [
+    { q: "Comment dire 'Ça ne m'arrange pas' ?", opts: ["That doesn't work for me","That's not for me","That doesn't help me","That won't work out"], ans: "That doesn't work for me", hint: "Ça ne m'arrange pas → That doesn't work for me." },
+    { q: "Comment dire 'Je préfèrerais pas' (doux) ?", opts: ["I'd rather not","I prefer not","I don't want","I won't do it"], ans: "I'd rather not", hint: "Je préfèrerais pas → I'd rather not." },
+    { q: "Comment dire 'J'ai bien peur de ne pas pouvoir' ?", opts: ["I'm afraid I can't","I'm scared I won't","I fear I don't","I'm afraid to not"], ans: "I'm afraid I can't", hint: "Très poli : I'm afraid I can't." },
+    { q: "Comment dire 'J'adorerais, mais...' ?", opts: ["I'd love to, but...","I would love, but...","I'd like to, but...","I loved to, but..."], ans: "I'd love to, but...", hint: "J'adorerais → I'd love to (conditionnel)." },
+    { q: "Comment dire 'J'ai déjà quelque chose de prévu' ?", opts: ["I've already got plans","I already have plans made","I've got something planned","I have something already"], ans: "I've already got plans", hint: "Déjà prévu → I've already got plans." },
+    { q: "Comment dire 'Je vais passer mon tour' ?", opts: ["I'm going to sit this one out","I'm gonna pass my turn","I'll skip this turn","I'm sitting out this"], ans: "I'm going to sit this one out", hint: "Passer son tour → sit this one out." },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -2954,6 +2962,24 @@ const _GFIX_SERIES = {
       { q: "Compléter : '___ — maybe next time.' (peut-être une autre fois)", opts: ["Maybe another time","Not this time maybe","Another time perhaps","Maybe some time"], ans: "Maybe another time", hint: "Peut-être une autre fois → Maybe another time." },
       { q: "Traduction : 'C'est pas vraiment pour moi.'", opts: ["It's not really for me","It's not really mine","It's really not me","It really isn't about me"], ans: "It's not really for me", hint: "Pas pour moi → not for me." },
       { q: "Traduction : 'Je suis désolé, je ne peux pas venir.'", opts: ["I'm sorry, I can't make it","I'm sorry, I won't come","I'm sorry, I don't come","I'm sorry, I'm not coming"], ans: "I'm sorry, I can't make it", hint: "Je ne peux pas venir → I can't make it (idiomatique)." },
+    ],
+  ],
+  'polite-refusals': [
+    [
+      { q: "Comment dire 'Je n'en ai pas vraiment envie' ?", opts: ["I'm not really up for it","I don't really want it","I'm not really into it","I don't really feel it"], ans: "I'm not really up for it", hint: "Pas vraiment envie → not really up for it." },
+      { q: "Comment dire 'Merci d'avoir pensé à moi, mais...' ?", opts: ["Thanks for thinking of me, but...","Thanks to think of me, but...","Thank you to thought of me...","Thanks for your thinking, but..."], ans: "Thanks for thinking of me, but...", hint: "Merci d'avoir pensé à moi → Thanks for thinking of me." },
+      { q: "Traduction : 'Ça ne m'arrange pas, désolé.'", opts: ["That doesn't work for me, sorry.","That's not my problem, sorry.","That doesn't help me, sorry.","That won't work, I'm sorry."], ans: "That doesn't work for me, sorry.", hint: "Ça ne m'arrange pas → That doesn't work for me." },
+      { q: "Compléter : 'I'd love ___, but I've got plans.'", opts: ["to","doing it","that","it"], ans: "to", hint: "I'd love to (infinitif sous-entendu)." },
+      { q: "Compléter : 'I'm ___ I can't make it.' (très poli)", opts: ["afraid","sorry","scared","worried"], ans: "afraid", hint: "I'm afraid I can't = formule très polie." },
+      { q: "Traduction : 'Je préfèrerais pas, si ça ne te dérange pas.'", opts: ["I'd rather not, if that's okay.","I prefer not, if it's okay.","I don't want to, if okay.","Rather not, if that's fine."], ans: "I'd rather not, if that's okay.", hint: "I'd rather not = forme conditionnelle polie." },
+    ],
+    [
+      { q: "Quelle formule montre un regret sincère ?", opts: ["I'd love to, but...","I can't, no.","Not possible.","I don't want to."], ans: "I'd love to, but...", hint: "I'd love to, but... exprime un regret sincère avant de refuser." },
+      { q: "Quelle formule est la plus formelle ?", opts: ["I'm afraid I can't","I'd rather not","I'm not up for it","I'll pass"], ans: "I'm afraid I can't", hint: "I'm afraid I can't = plus formel et poli." },
+      { q: "Compléter : 'I'm going to ___ this one out.'", opts: ["sit","pass","skip","leave"], ans: "sit", hint: "Sit this one out = expression idiomatique pour passer son tour." },
+      { q: "Traduction : 'J'adorerais, mais j'ai déjà quelque chose de prévu.'", opts: ["I'd love to, but I've already got plans.","I would love but I have plans.","I'd loved to but got plans.","I love to, but I've plans."], ans: "I'd love to, but I've already got plans.", hint: "I'd love to, but... + I've already got plans." },
+      { q: "Que signifie 'sit this one out' ?", opts: ['Passer son tour','Rester assis','Quitter la pièce','Ignorer quelqu\'un'], ans: 'Passer son tour', hint: "To sit out = ne pas participer cette fois." },
+      { q: "Traduction : 'Merci d'avoir pensé à moi, mais je vais passer mon tour.'", opts: ["Thanks for thinking of me, but I'm going to sit this one out.","Thanks to think of me but I pass my turn.","Thank you for me, but I'll sit out.","Thanks thinking of me, but I sit this out."], ans: "Thanks for thinking of me, but I'm going to sit this one out.", hint: "Thanks for thinking of me + sit this one out." },
     ],
   ],
 };

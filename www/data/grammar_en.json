@@ -3381,5 +3381,39 @@
         ]
       }
     ]
+  },
+  {
+    "id": "polite-refusals",
+    "title": "Refus diplomatiques",
+    "subtitle": "Dire non avec élégance et tact",
+    "sections": [
+      {
+        "heading": "Refus directs mais polis",
+        "points": [
+          "That doesn't work for me = Ça ne m'arrange pas",
+          "I'd rather not = Je préfèrerais pas (plus doux que 'no')",
+          "I'm afraid I can't = J'ai bien peur de ne pas pouvoir (très poli)",
+          "I'm not really up for it = Je n'en ai pas vraiment envie"
+        ],
+        "examples": [
+          {"en": "That doesn't work for me, sorry.", "fr": "Ça ne m'arrange pas, désolé."},
+          {"en": "I'd rather not, if that's okay.", "fr": "Je préfèrerais pas, si ça ne te dérange pas."},
+          {"en": "I'm afraid I can't make it.", "fr": "J'ai bien peur de ne pas pouvoir venir."}
+        ]
+      },
+      {
+        "heading": "Refus chaleureux (avec excuse gracieuse)",
+        "points": [
+          "I'd love to, but... = J'adorerais, mais... (refus regretté)",
+          "Thanks for thinking of me, but... = Merci d'avoir pensé à moi, mais...",
+          "I've already got plans = J'ai déjà quelque chose de prévu",
+          "I'm going to sit this one out = Je vais passer mon tour (informel)"
+        ],
+        "examples": [
+          {"en": "I'd love to, but I've already got plans.", "fr": "J'adorerais, mais j'ai déjà quelque chose de prévu."},
+          {"en": "Thanks for thinking of me, but I'm going to sit this one out.", "fr": "Merci d'avoir pensé à moi, mais je vais passer mon tour."}
+        ]
+      }
+    ]
   }
 ]
