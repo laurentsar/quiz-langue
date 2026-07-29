@@ -3236,5 +3236,99 @@
         ]
       }
     ]
+  },
+  {
+    "id": "native-expressions",
+    "title": "Expressions des natifs",
+    "subtitle": "Filler words et réactions naturelles",
+    "sections": [
+      {
+        "heading": "Mots de remplissage (Filler words)",
+        "points": [
+          "Actually = En fait (corriger ou nuancer une idée)",
+          "I mean... = Je veux dire... (clarifier sa pensée)",
+          "Kind of = Un peu / plutôt (adoucir une affirmation)",
+          "Basically = En gros (résumer l'essentiel)",
+          "To be honest = Honnêtement (introduire une opinion sincère)",
+          "You know what I mean? = Tu vois ce que je veux dire?"
+        ],
+        "examples": [
+          {"en": "Actually, I prefer tea.", "fr": "En fait, je préfère le thé."},
+          {"en": "To be honest, I'm not sure.", "fr": "Honnêtement, je ne suis pas sûr."},
+          {"en": "It's kind of difficult to explain.", "fr": "C'est plutôt difficile à expliquer."}
+        ]
+      },
+      {
+        "heading": "Réactions naturelles",
+        "points": [
+          "I'm not sure about that = Je ne suis pas sûr de ça",
+          "Hang on = Attends une seconde (demander de patienter)",
+          "Never mind = Laisse tomber (abandonner un sujet)",
+          "It depends = Ça dépend (réponse nuancée)",
+          "That makes sense = C'est logique / Je comprends",
+          "Fair enough = C'est juste / D'accord (accepter un argument)"
+        ],
+        "examples": [
+          {"en": "Hang on, let me check.", "fr": "Attends une seconde, je vérifie."},
+          {"en": "Fair enough, let's do it your way.", "fr": "C'est juste, faisons-le à ta façon."},
+          {"en": "It depends on the situation.", "fr": "Ça dépend de la situation."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "it-structures",
+    "title": "Structures en \"It's\"",
+    "subtitle": "It's worth / no use / time to / up to you",
+    "sections": [
+      {
+        "heading": "It's worth + V-ing (Ça vaut la peine de...)",
+        "points": [
+          "Structure : It's worth + gérondif (V-ing)",
+          "Exprime que quelque chose mérite d'être fait",
+          "Exemples : It's worth trying / asking / the effort / every penny"
+        ],
+        "examples": [
+          {"en": "It's worth trying.", "fr": "Ça vaut la peine d'essayer."},
+          {"en": "It's worth thinking about.", "fr": "Ça vaut la peine d'y réfléchir."}
+        ]
+      },
+      {
+        "heading": "It's no use + V-ing (Ça ne sert à rien de...)",
+        "points": [
+          "Structure : It's no use + gérondif (V-ing)",
+          "Exprime l'inutilité d'une action",
+          "Exemples : It's no use crying / worrying / complaining / arguing"
+        ],
+        "examples": [
+          {"en": "It's no use crying.", "fr": "Ça ne sert à rien de pleurer."},
+          {"en": "It's no use worrying about it.", "fr": "Ça ne sert à rien de s'en inquiéter."}
+        ]
+      },
+      {
+        "heading": "It's time to + infinitif (Il est temps de...)",
+        "points": [
+          "Structure : It's time to + base verbale",
+          "Exprime qu'un moment d'action est venu",
+          "Exemples : It's time to go / move on / be honest / make a decision"
+        ],
+        "examples": [
+          {"en": "It's time to go.", "fr": "Il est temps de partir."},
+          {"en": "It's time to move on.", "fr": "Il est temps de passer à autre chose."}
+        ]
+      },
+      {
+        "heading": "It's up to you to + infinitif (C'est à toi de...)",
+        "points": [
+          "Structure : It's up to + personne + to + infinitif",
+          "Exprime la responsabilité ou le choix d'une personne",
+          "Variantes : It's up to you / them / her / him to..."
+        ],
+        "examples": [
+          {"en": "It's up to you to decide.", "fr": "C'est à toi de décider."},
+          {"en": "It's up to them to solve it.", "fr": "C'est à eux de le résoudre."}
+        ]
+      }
+    ]
   }
 ]

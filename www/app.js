@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.58';
+const APP_VERSION = '2.59';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2320,6 +2320,22 @@ const _GFIX = {
     { q: "'Admettre' en anglais ?", opts: ['admit','avoid','achieve','advise'], ans: 'admit', hint: 'Admettre → admit.' },
     { q: "'Se concentrer' en anglais ?", opts: ['focus','complain','compare','commit'], ans: 'focus', hint: 'Se concentrer → focus.' },
   ],
+  'native-expressions': [
+    { q: "Que signifie 'Actually' ?", opts: ['En fait','Donc','Peut-être','Vraiment'], ans: 'En fait', hint: "Actually = En fait (corriger ou nuancer)." },
+    { q: "Que signifie 'Basically' ?", opts: ['En gros','Enfin','Franchement','Pourtant'], ans: 'En gros', hint: "Basically = En gros (résumer l'essentiel)." },
+    { q: "Que signifie 'Never mind' ?", opts: ['Laisse tomber','Je vois','Ça dépend','Franchement'], ans: 'Laisse tomber', hint: "Never mind = Laisse tomber (abandonner un sujet)." },
+    { q: "Que signifie 'Fair enough' ?", opts: ["C'est juste",'Laisse tomber','Attends','En gros'], ans: "C'est juste", hint: "Fair enough = C'est juste / D'accord." },
+    { q: "Que signifie 'Hang on' ?", opts: ['Attends','Laisse tomber','Ça dépend','En fait'], ans: 'Attends', hint: "Hang on = Attends une seconde." },
+    { q: "Que signifie 'It depends' ?", opts: ['Ça dépend','Je vois','Enfin','Ça suffit'], ans: 'Ça dépend', hint: "It depends = Ça dépend (réponse nuancée)." },
+  ],
+  'it-structures': [
+    { q: "It's worth ___ (essayer)", opts: ['trying','to try','try','tried'], ans: 'trying', hint: "It's worth + gérondif (V-ing)." },
+    { q: "It's no use ___ (pleurer)", opts: ['crying','to cry','cry','cried'], ans: 'crying', hint: "It's no use + gérondif (V-ing)." },
+    { q: "It's time ___ (partir)", opts: ['to go','going','go','gone'], ans: 'to go', hint: "It's time to + infinitif (base verbale)." },
+    { q: "It's up to you ___ (décider)", opts: ['to decide','deciding','decide','decided'], ans: 'to decide', hint: "It's up to you to + infinitif." },
+    { q: "Traduction : 'Ça vaut la peine d'essayer.'", opts: ["It's worth trying","It's no use trying","It's time trying","It's up to try"], ans: "It's worth trying", hint: "Ça vaut la peine → It's worth + V-ing." },
+    { q: "Traduction : 'Ça ne sert à rien de s'inquiéter.'", opts: ["It's no use worrying","It's worth worrying","It's time to worry","It's up to worry"], ans: "It's no use worrying", hint: "Ça ne sert à rien → It's no use + V-ing." },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -2876,6 +2892,42 @@ const _GFIX_SERIES = {
       { q: "'Identifier' en anglais ?", opts: ['identify','ignore','involve','imagine'], ans: 'identify', hint: 'Identifier → identify.' },
       { q: "'Encourager' en anglais ?", opts: ['encourage','ensure','examine','evaluate'], ans: 'encourage', hint: 'Encourager → encourage.' },
       { q: "'Comparer' en anglais ?", opts: ['compare','confirm','consider','commit'], ans: 'compare', hint: 'Comparer → compare.' },
+    ],
+  ],
+  'native-expressions': [
+    [
+      { q: "Que signifie 'Kind of' ?", opts: ['Un peu / plutôt','En fait','Ça dépend','Laisse tomber'], ans: 'Un peu / plutôt', hint: "Kind of = Un peu / plutôt (adoucir une affirmation)." },
+      { q: "Que signifie 'To be honest' ?", opts: ['Honnêtement','En gros','En fait','Attends'], ans: 'Honnêtement', hint: "To be honest = Honnêtement." },
+      { q: "Que signifie 'That makes sense' ?", opts: ["C'est logique",'Ça dépend','Laisse tomber','Attends'], ans: "C'est logique", hint: "That makes sense = C'est logique / Je comprends." },
+      { q: "Que signifie 'I mean...' ?", opts: ['Je veux dire...','En fait','En gros','Honnêtement'], ans: 'Je veux dire...', hint: "I mean... = Je veux dire... (clarifier sa pensée)." },
+      { q: "Comment dire 'En fait' en anglais ?", opts: ['Actually','Basically','Honestly','Never mind'], ans: 'Actually', hint: "En fait → Actually." },
+      { q: "Comment dire 'En gros' en anglais ?", opts: ['Basically','Actually','Kind of','Fair enough'], ans: 'Basically', hint: "En gros → Basically." },
+    ],
+    [
+      { q: "Compléter : '___, I don't agree.' (En fait...)", opts: ['Actually','Basically','Never mind','Hang on'], ans: 'Actually', hint: "Actually = En fait, pour corriger ou nuancer." },
+      { q: "Compléter : '___, it's a bit complicated.' (En gros...)", opts: ['Basically','Actually','Fair enough','Kind of'], ans: 'Basically', hint: "Basically = En gros, pour résumer." },
+      { q: "Compléter : '___, let me check.' (Attends...)", opts: ['Hang on','Never mind','Actually','Fair enough'], ans: 'Hang on', hint: "Hang on = Attends une seconde." },
+      { q: "Compléter : '___, let's do it your way.' (C'est juste...)", opts: ['Fair enough','Never mind','Actually','Hang on'], ans: 'Fair enough', hint: "Fair enough = C'est juste / D'accord." },
+      { q: "Comment dire 'Ça dépend de toi.' ?", opts: ['It depends on you','It depends you','Depends of you','You depend on it'], ans: 'It depends on you', hint: "It depends on + personne/situation." },
+      { q: "Comment dire 'Tu vois ce que je veux dire ?' ?", opts: ['You know what I mean?','You understand my mean?','You get my idea?','You know what I say?'], ans: 'You know what I mean?', hint: "You know what I mean? = expression idiomatique." },
+    ],
+  ],
+  'it-structures': [
+    [
+      { q: "It's worth ___ (demander)", opts: ['asking','to ask','ask','asked'], ans: 'asking', hint: "It's worth + gérondif (V-ing)." },
+      { q: "It's no use ___ (se plaindre)", opts: ['complaining','to complain','complain','complained'], ans: 'complaining', hint: "It's no use + gérondif (V-ing)." },
+      { q: "It's time ___ (être honnête)", opts: ['to be honest','being honest','be honest','been honest'], ans: 'to be honest', hint: "It's time to + infinitif." },
+      { q: "Traduction : 'C'est à elle de décider.'", opts: ["It's up to her to decide","It's up to she to decide","It's worth her deciding","It's her time to decide"], ans: "It's up to her to decide", hint: "It's up to + personne + to + infinitif." },
+      { q: "Traduction : 'Il est temps de passer à autre chose.'", opts: ["It's time to move on","It's worth moving on","It's no use moving on","It's up to you to move"], ans: "It's time to move on", hint: "Il est temps de → It's time to + infinitif." },
+      { q: "Traduction : 'Ça vaut la peine d'y réfléchir.'", opts: ["It's worth thinking about","It's time to think about","It's no use thinking","It's up to think about"], ans: "It's worth thinking about", hint: "Ça vaut la peine → It's worth + V-ing." },
+    ],
+    [
+      { q: "It's worth ___ (chaque centime)", opts: ['every penny','to every penny','for every penny','of every penny'], ans: 'every penny', hint: "It's worth + nom aussi possible (not just V-ing)." },
+      { q: "Choisir la bonne structure : 'Il est temps de prendre une décision.'", opts: ["It's time to make a decision","It's worth making a decision","It's no use making a decision","It's up to make a decision"], ans: "It's time to make a decision", hint: "Il est temps de → It's time to + infinitif." },
+      { q: "Choisir la bonne structure : 'Ça ne sert à rien de se disputer.'", opts: ["It's no use arguing","It's worth arguing","It's time to argue","It's up to argue"], ans: "It's no use arguing", hint: "Ça ne sert à rien → It's no use + V-ing." },
+      { q: "Choisir la bonne structure : 'C'est à eux de choisir.'", opts: ["It's up to them to choose","It's up to they to choose","It's no use them choosing","It's worth them choosing"], ans: "It's up to them to choose", hint: "It's up to + pronom tonique + to + infinitif." },
+      { q: "Traduction : 'Ça vaut la peine d'essayer.'", opts: ["It's worth trying","It's time trying","It's no use to try","It's up to try"], ans: "It's worth trying", hint: "Ça vaut la peine → It's worth + V-ing." },
+      { q: "Traduction : 'Ça ne sert à rien d'attendre.'", opts: ["It's no use waiting","It's worth waiting","It's time to wait","It's up to wait"], ans: "It's no use waiting", hint: "Ça ne sert à rien → It's no use + V-ing." },
     ],
   ],
 };
