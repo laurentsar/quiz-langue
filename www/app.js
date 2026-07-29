@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.63';
+const APP_VERSION = '2.64';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2360,6 +2360,14 @@ const _GFIX = {
     { q: "Comment dire 'Prends ton temps' ?", opts: ["Take your time","Take the time","Have your time","Keep your time"], ans: "Take your time", hint: "Prends ton temps → Take your time." },
     { q: "Comment dire 'Je t'en prie' (après un merci) ?", opts: ["Don't mention it","You're welcome","No problem","Of course"], ans: "Don't mention it", hint: "Je t'en prie → Don't mention it (très naturel)." },
   ],
+  'compliments': [
+    { q: "Comment dire 'Tu es magnifique aujourd'hui' ?", opts: ["You look amazing today","You are amazing today","You look beautiful today","You seem amazing today"], ans: "You look amazing today", hint: "Magnifique → You look amazing (look + adjectif)." },
+    { q: "Comment dire 'J'adore ton style' ?", opts: ["I love your style","I like your style","I adore your style","I enjoy your style"], ans: "I love your style", hint: "J'adore → I love (plus naturel qu'I adore en anglais)." },
+    { q: "Comment dire 'Ta tenue est parfaite' ?", opts: ["Your outfit is perfect","Your clothes are perfect","Your dress is perfect","Your suit is perfect"], ans: "Your outfit is perfect", hint: "Tenue → outfit (terme général pour une tenue vestimentaire)." },
+    { q: "Comment dire 'Cette couleur te va très bien' ?", opts: ["That color looks great on you","That color is great for you","This color suits to you","That color fits you"], ans: "That color looks great on you", hint: "Te va bien → looks great on you." },
+    { q: "Comment dire 'Tu rayonnes aujourd'hui' ?", opts: ["You're glowing today","You're shining today","You're radiant today","You're beaming today"], ans: "You're glowing today", hint: "Tu rayonnes → You're glowing (expression très naturelle)." },
+    { q: "Comment dire 'Tu es en pleine forme' ?", opts: ["You're in great shape","You look healthy","You're very fit","You're in good form"], ans: "You're in great shape", hint: "En pleine forme → in great shape." },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -3014,6 +3022,24 @@ const _GFIX_SERIES = {
       { q: "Traduction : 'Ça ne me dérange pas du tout.'", opts: ["I don't mind at all.","I don't care at all.","It's fine by me all.","I really don't care."], ans: "I don't mind at all.", hint: "I don't mind + at all pour renforcer." },
       { q: "Que signifie 'Why bother?' dans ce contexte : 'Why bother learning if you won't practice?' ?", opts: ['À quoi bon','Pourquoi essayer','Pour quelle raison','Comment savoir'], ans: 'À quoi bon', hint: "Why bother = à quoi bon (sentiment de futilité)." },
       { q: "Traduction : 'C'est parti — on commence !'", opts: ["Here we go — let's start!","We go — let's begin!","Here we start — let's go!","Off we are — starting!"], ans: "Here we go — let's start!", hint: "C'est parti → Here we go." },
+    ],
+  ],
+  'compliments': [
+    [
+      { q: "Comment dire 'Tu as un beau sourire' ?", opts: ["You have a beautiful smile","You have a nice smile","Your smile is beautiful","You smile beautifully"], ans: "You have a beautiful smile", hint: "Tu as un beau sourire → You have a beautiful smile." },
+      { q: "Comment dire 'Ta coupe de cheveux te va très bien' ?", opts: ["Your haircut looks great","Your haircut is great","Your hair looks great","Your haircut suits you"], ans: "Your haircut looks great", hint: "Te va très bien → looks great (sans 'on you' ici)." },
+      { q: "Comment dire 'Tu t'habilles toujours très bien' ?", opts: ["You always dress so well","You always wear so well","You always look so well","You always dress very good"], ans: "You always dress so well", hint: "Tu t'habilles bien → you dress well." },
+      { q: "Comment dire 'Tu es très soigné(e)' ?", opts: ["You look so neat and clean","You look very tidy","You look well-groomed","You appear very clean"], ans: "You look so neat and clean", hint: "Soigné → neat and clean." },
+      { q: "Comment dire 'Tu as l'air très confiant(e)' ?", opts: ["You look very confident","You seem very confident","You appear very confident","You are very confident"], ans: "You look very confident", hint: "Tu as l'air → You look (apparence perçue)." },
+      { q: "Comment dire 'Tu es éblouissant(e) ce soir' ?", opts: ["You look stunning tonight","You look amazing tonight","You're gorgeous tonight","You look brilliant tonight"], ans: "You look stunning tonight", hint: "Éblouissant → stunning (très fort comme compliment)." },
+    ],
+    [
+      { q: "Comment dire 'Tu as de beaux yeux' ?", opts: ["You have beautiful eyes","Your eyes are beautiful","You've got nice eyes","Your eyes look beautiful"], ans: "You have beautiful eyes", hint: "Tu as de beaux yeux → You have beautiful eyes." },
+      { q: "Comment dire 'Tu es vraiment beau' ?", opts: ["You look really handsome","You're really handsome","You look very handsome","You seem really handsome"], ans: "You look really handsome", hint: "Vraiment beau → really handsome (pour un homme)." },
+      { q: "Comment dire 'Tu es vraiment jolie' ?", opts: ["You look really pretty","You're really pretty","You look so pretty","You seem really pretty"], ans: "You look really pretty", hint: "Vraiment jolie → really pretty (pour une femme)." },
+      { q: "Traduction : 'J'adore ton style — tu l'as trouvé où ?'", opts: ["I love your style — where did you get that?","I like your style — where you found it?","I love your style — where is it from?","I adore your style — from where?"], ans: "I love your style — where did you get that?", hint: "Where did you get that? = tu l'as trouvé où ?" },
+      { q: "Traduction : 'Cette couleur te va très bien !'", opts: ["That color looks great on you!","That color is perfect on you!","This color looks amazing on you!","That color suits you perfectly!"], ans: "That color looks great on you!", hint: "Te va bien → looks great on you." },
+      { q: "Traduction : 'Tu rayonnes — tu as l'air tellement heureuse !'", opts: ["You're glowing — you look so happy!","You're shining — you look so glad!","You glow — you appear so happy!","You're glowing — you're so happy!"], ans: "You're glowing — you look so happy!", hint: "You're glowing + you look so happy." },
     ],
   ],
 };
