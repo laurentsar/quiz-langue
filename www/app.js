@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.70';
+const APP_VERSION = '2.71';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2368,6 +2368,14 @@ const _GFIX = {
     { q: "Comment dire 'Je dois rester concentré' ?", opts: ["I need to stay focused","I must stay focused","I have to be focused","I need to focus more"], ans: "I need to stay focused", hint: "Je dois rester concentré → I need to stay focused." },
     { q: "Comment dire 'Je suis de retour' ?", opts: ["I'm back","I'm returned","I came back","I'm here again"], ans: "I'm back", hint: "Je suis de retour → I'm back." },
   ],
+  'french-proverbs': [
+    { q: "'L'espoir fait vivre' en anglais ?", opts: ['Hope keeps us going','Hope makes us live','Hope drives us forward','Hope is everything'], ans: 'Hope keeps us going', hint: "L'espoir fait vivre → Hope keeps us going." },
+    { q: "'La patience est une vertu' en anglais ?", opts: ['Patience is a virtue','Patience is key','Patience pays off','Patience always wins'], ans: 'Patience is a virtue', hint: "La patience est une vertu → Patience is a virtue." },
+    { q: "'Il n'y a pas de fumée sans feu' en anglais ?", opts: ["Where there's smoke, there's fire",'No smoke without reason','Fire always leaves traces','Smoke means danger'], ans: "Where there's smoke, there's fire", hint: "Il n'y a pas de fumée sans feu → Where there's smoke, there's fire." },
+    { q: "'On apprend de ses erreurs' en anglais ?", opts: ['We learn from our mistakes','We grow from failure','Mistakes teach us all','Error is human'], ans: 'We learn from our mistakes', hint: "On apprend de ses erreurs → We learn from our mistakes." },
+    { q: "'La vérité finit toujours par éclater' en anglais ?", opts: ['The truth always comes out','Truth is never hidden','Facts come to light','Lies never last'], ans: 'The truth always comes out', hint: "La vérité finit toujours par éclater → The truth always comes out." },
+    { q: "'Mieux vaut être seul que mal accompagné' en anglais ?", opts: ['Better be alone than in bad company','Solitude is better than misery','Choose friends wisely','Bad friends bring bad luck'], ans: 'Better be alone than in bad company', hint: "Mieux vaut être seul que mal accompagné → Better be alone than in bad company." },
+  ],
   'negotiation-expressions': [
     { q: "Traduction de 'To open the talks'", opts: ['Ouvrir les négociations','Commencer à parler','Lancer le débat','Ouvrir la discussion'], ans: 'Ouvrir les négociations', hint: "To open the talks → Ouvrir les négociations." },
     { q: "Traduction de 'To make a concession'", opts: ['Faire une concession','Accepter un compromis','Céder du terrain','Prendre position'], ans: 'Faire une concession', hint: "To make a concession → Faire une concession." },
@@ -3116,6 +3124,24 @@ const _GFIX_SERIES = {
       { q: "Choisir la bonne phrase : 'Tout le monde d'autre est parti.'", opts: ["Everyone else had gone.","All else has gone.","Everybody other left.","Everyone other went."], ans: "Everyone else had gone.", hint: "Tout le monde d'autre → everyone else." },
       { q: "Choisir la bonne phrase : 'Personne d'autre n'était là.'", opts: ["Nobody else was there.","No one other was there.","Nobody other was present.","No else was there."], ans: "Nobody else was there.", hint: "Personne d'autre → nobody else." },
       { q: "Traduction : 'On mange ce qu'on trouve, sinon on fait les courses.'", opts: ["We eat what we find, or else we go shopping.","We eat what we find, if not we shop.","We eat what we find, otherwise else we shop.","We eat whatever, or else go shopping."], ans: "We eat what we find, or else we go shopping.", hint: "Sinon → or else." },
+    ],
+  ],
+  'french-proverbs': [
+    [
+      { q: "'Qui ne tente rien n'a rien' en anglais ?", opts: ['He who dares nothing wins nothing','Nothing is free in life','Try hard or fail','Risk nothing, get nothing'], ans: 'He who dares nothing wins nothing', hint: "Qui ne tente rien n'a rien → He who dares nothing wins nothing." },
+      { q: "Quel proverbe correspond à 'Hope keeps us going' ?", opts: ["L'espoir fait vivre",'La patience est une vertu','On apprend de ses erreurs','Mieux vaut être seul'], ans: "L'espoir fait vivre", hint: "Hope keeps us going → L'espoir fait vivre." },
+      { q: "Quel proverbe correspond à 'Patience is a virtue' ?", opts: ['La patience est une vertu','La vérité éclate','L'espoir fait vivre','On apprend de ses erreurs'], ans: 'La patience est une vertu', hint: "Patience is a virtue → La patience est une vertu." },
+      { q: "Quel proverbe correspond à 'The truth always comes out' ?", opts: ['La vérité finit toujours par éclater','Il n'y a pas de fumée sans feu','On apprend de ses erreurs','La patience est une vertu'], ans: 'La vérité finit toujours par éclater', hint: "The truth always comes out → La vérité finit toujours par éclater." },
+      { q: "Quel proverbe correspond à 'Where there's smoke, there's fire' ?", opts: ['Il n'y a pas de fumée sans feu','La vérité finit par éclater','Qui ne tente rien n'a rien','L'espoir fait vivre'], ans: 'Il n'y a pas de fumée sans feu', hint: "Where there's smoke, there's fire → Il n'y a pas de fumée sans feu." },
+      { q: "Quel proverbe correspond à 'We learn from our mistakes' ?", opts: ['On apprend de ses erreurs','La patience est une vertu','Mieux vaut être seul','Qui ne tente rien n'a rien'], ans: 'On apprend de ses erreurs', hint: "We learn from our mistakes → On apprend de ses erreurs." },
+    ],
+    [
+      { q: "Quel proverbe correspond à 'Better be alone than in bad company' ?", opts: ['Mieux vaut être seul que mal accompagné','La patience est une vertu','Il n'y a pas de fumée sans feu','On apprend de ses erreurs'], ans: 'Mieux vaut être seul que mal accompagné', hint: "Better be alone than in bad company → Mieux vaut être seul que mal accompagné." },
+      { q: "Complète : 'L'espoir fait ___'", opts: ['vivre','aller','grandir','avancer'], ans: 'vivre', hint: "L'espoir fait vivre — Hope keeps us going." },
+      { q: "Complète : 'La vérité finit toujours par ___'", opts: ['éclater','venir','paraître','sortir'], ans: 'éclater', hint: "La vérité finit toujours par éclater — The truth always comes out." },
+      { q: "Complète : 'Il n'y a pas de fumée sans ___'", opts: ['feu','raison','cause','flamme'], ans: 'feu', hint: "Il n'y a pas de fumée sans feu — Where there's smoke, there's fire." },
+      { q: "Complète : 'Mieux vaut être seul que mal ___'", opts: ['accompagné','entouré','conseillé','guidé'], ans: 'accompagné', hint: "Mieux vaut être seul que mal accompagné." },
+      { q: "Complète : 'On apprend de ses ___'", opts: ['erreurs','fautes','échecs','problèmes'], ans: 'erreurs', hint: "On apprend de ses erreurs — We learn from our mistakes." },
     ],
   ],
   'negotiation-expressions': [
