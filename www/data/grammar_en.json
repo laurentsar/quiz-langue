@@ -4016,5 +4016,40 @@
         ]
       }
     ]
+  },
+  {
+    "id": "french-proverbs",
+    "title": "Proverbes Français",
+    "subtitle": "7 proverbes incontournables FR→EN",
+    "sections": [
+      {
+        "heading": "Sagesse et persévérance",
+        "points": [
+          "Qui ne tente rien n'a rien. → He who dares nothing wins nothing.",
+          "L'espoir fait vivre. → Hope keeps us going.",
+          "On apprend de ses erreurs. → We learn from our mistakes.",
+          "La patience est une vertu. → Patience is a virtue."
+        ],
+        "examples": [
+          "Qui ne tente rien n'a rien — lance-toi !",
+          "L'espoir fait vivre, même dans les moments difficiles.",
+          "On apprend de ses erreurs — c'est comme ça qu'on grandit.",
+          "La patience est une vertu — rien ne sert de se précipiter."
+        ]
+      },
+      {
+        "heading": "Vérité et société",
+        "points": [
+          "Il n'y a pas de fumée sans feu. → Where there's smoke, there's fire.",
+          "Mieux vaut être seul que mal accompagné. → Better be alone than in bad company.",
+          "La vérité finit toujours par éclater. → The truth always comes out."
+        ],
+        "examples": [
+          "Il n'y a pas de fumée sans feu — ces rumeurs ont sûrement un fond de vérité.",
+          "Mieux vaut être seul que mal accompagné — choisis bien ton entourage.",
+          "La vérité finit toujours par éclater — inutile de mentir."
+        ]
+      }
+    ]
   }
 ]
