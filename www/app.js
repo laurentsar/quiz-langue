@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.72';
+const APP_VERSION = '2.73';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -3078,6 +3078,14 @@ const _GFIX_SERIES = {
       { q: "Traduction : 'Ça ne me dérange pas du tout.'", opts: ["I don't mind at all.","I don't care at all.","It's fine by me all.","I really don't care."], ans: "I don't mind at all.", hint: "I don't mind + at all pour renforcer." },
       { q: "Que signifie 'Why bother?' dans ce contexte : 'Why bother learning if you won't practice?' ?", opts: ['À quoi bon','Pourquoi essayer','Pour quelle raison','Comment savoir'], ans: 'À quoi bon', hint: "Why bother = à quoi bon (sentiment de futilité)." },
       { q: "Traduction : 'C'est parti — on commence !'", opts: ["Here we go — let's start!","We go — let's begin!","Here we start — let's go!","Off we are — starting!"], ans: "Here we go — let's start!", hint: "C'est parti → Here we go." },
+    ],
+    [
+      { q: "Comment dire 'Tiens bon !' ?", opts: ["Hang in there!","Hold on tight!","Stay strong!","Keep it up!"], ans: "Hang in there!", hint: "Tiens bon ! → Hang in there!" },
+      { q: "Comment dire 'C'est ma faute !' ?", opts: ["My bad!","My fault!","It's my fault!","I'm wrong!"], ans: "My bad!", hint: "C'est ma faute ! → My bad! (très familier)." },
+      { q: "Comment dire 'Je plaisante !' ?", opts: ["Just kidding!","I'm joking!","It's a joke!","Only joking!"], ans: "Just kidding!", hint: "Je plaisante ! → Just kidding! (plus courant que I'm joking)." },
+      { q: "Comment dire 'Quand on parle du loup !' ?", opts: ["Speak of the devil!","Talk of the devil!","Here comes trouble!","What a coincidence!"], ans: "Speak of the devil!", hint: "Quand on parle du loup → Speak of the devil!" },
+      { q: "'Hang in there' correspond à quel sentiment ?", opts: ['Encouragement','Surprise','Colère','Regret'], ans: 'Encouragement', hint: "Hang in there = tiens bon — c'est une expression d'encouragement." },
+      { q: "'My bad' s'utilise pour exprimer…", opts: ['Une excuse rapide','Un compliment','Un remerciement','Une question'], ans: 'Une excuse rapide', hint: "My bad = c'est ma faute — excuser de façon informelle." },
     ],
   ],
   'compliments': [
