@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.75';
+const APP_VERSION = '2.76';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2368,6 +2368,14 @@ const _GFIX = {
     { q: "Comment dire 'Je dois rester concentré' ?", opts: ["I need to stay focused","I must stay focused","I have to be focused","I need to focus more"], ans: "I need to stay focused", hint: "Je dois rester concentré → I need to stay focused." },
     { q: "Comment dire 'Je suis de retour' ?", opts: ["I'm back","I'm returned","I came back","I'm here again"], ans: "I'm back", hint: "Je suis de retour → I'm back." },
   ],
+  'essential-sentences': [
+    { q: "'Attends une minute' en anglais ?", opts: ['Wait a minute','Hold on a second','One moment please','Just a minute'], ans: 'Wait a minute', hint: "Attends une minute → Wait a minute." },
+    { q: "'Je suis perdu(e)' en anglais ?", opts: ["I'm lost","I'm confused","I don't know where I am","I'm disoriented"], ans: "I'm lost", hint: "Je suis perdu(e) → I'm lost." },
+    { q: "'Je suis d'accord' en anglais ?", opts: ['I agree','I accept','I approve','I confirm'], ans: 'I agree', hint: "Je suis d'accord → I agree." },
+    { q: "'Assieds-toi' en anglais ?", opts: ['Sit down','Take a seat','Be seated','Sit here'], ans: 'Sit down', hint: "Assieds-toi → Sit down." },
+    { q: "'C'est parfait' en anglais ?", opts: ["That's perfect","That's great","That's excellent","That's correct"], ans: "That's perfect", hint: "C'est parfait → That's perfect." },
+    { q: "'Fais de ton mieux' en anglais ?", opts: ['Do your best','Try your hardest','Give your best','Do what you can'], ans: 'Do your best', hint: "Fais de ton mieux → Do your best." },
+  ],
   'slang-expressions': [
     { q: "'C'est la galère' en anglais ?", opts: ["It's a struggle","It's hard","It's a mess","It's complicated"], ans: "It's a struggle", hint: "C'est la galère → It's a struggle." },
     { q: "'Je suis crevé' en anglais ?", opts: ["I'm exhausted","I'm tired","I'm done","I'm finished"], ans: "I'm exhausted", hint: "Je suis crevé → I'm exhausted." },
@@ -3156,6 +3164,24 @@ const _GFIX_SERIES = {
       { q: "Choisir la bonne phrase : 'Tout le monde d'autre est parti.'", opts: ["Everyone else had gone.","All else has gone.","Everybody other left.","Everyone other went."], ans: "Everyone else had gone.", hint: "Tout le monde d'autre → everyone else." },
       { q: "Choisir la bonne phrase : 'Personne d'autre n'était là.'", opts: ["Nobody else was there.","No one other was there.","Nobody other was present.","No else was there."], ans: "Nobody else was there.", hint: "Personne d'autre → nobody else." },
       { q: "Traduction : 'On mange ce qu'on trouve, sinon on fait les courses.'", opts: ["We eat what we find, or else we go shopping.","We eat what we find, if not we shop.","We eat what we find, otherwise else we shop.","We eat whatever, or else go shopping."], ans: "We eat what we find, or else we go shopping.", hint: "Sinon → or else." },
+    ],
+  ],
+  'essential-sentences': [
+    [
+      { q: "'Parle plus lentement' en anglais ?", opts: ['Speak more slowly','Talk slower','Slow your speech','Speak slowly please'], ans: 'Speak more slowly', hint: "Parle plus lentement → Speak more slowly." },
+      { q: "'Écris-le' en anglais ?", opts: ['Write it down','Write it','Note it down','Put it in writing'], ans: 'Write it down', hint: "Écris-le → Write it down." },
+      { q: "'Viens avec moi' en anglais ?", opts: ['Come with me','Follow me','Walk with me','Come along'], ans: 'Come with me', hint: "Viens avec moi → Come with me." },
+      { q: "'Je suis en retard' en anglais ?", opts: ["I'm late","I'm delayed","I'm behind","I'm slow"], ans: "I'm late", hint: "Je suis en retard → I'm late." },
+      { q: "'Je ne suis pas d'accord' en anglais ?", opts: ['I disagree','I refuse','I oppose','I don\'t agree with that'], ans: 'I disagree', hint: "Je ne suis pas d'accord → I disagree." },
+      { q: "'À demain' en anglais ?", opts: ['See you tomorrow','Until tomorrow','Bye for now','Talk tomorrow'], ans: 'See you tomorrow', hint: "À demain → See you tomorrow." },
+    ],
+    [
+      { q: "'Ouvre la porte' en anglais ?", opts: ['Open the door','Unlock the door','Push the door','Enter the door'], ans: 'Open the door', hint: "Ouvre la porte → Open the door." },
+      { q: "'Ferme la fenêtre' en anglais ?", opts: ['Close the window','Shut the window','Lock the window','Block the window'], ans: 'Close the window', hint: "Ferme la fenêtre → Close the window." },
+      { q: "'Je vais bien' en anglais ?", opts: ["I'm doing well","I'm fine","I'm good","I'm okay"], ans: "I'm doing well", hint: "Je vais bien → I'm doing well." },
+      { q: "'Lève-toi' en anglais ?", opts: ['Stand up','Get up','Rise up','Get on your feet'], ans: 'Stand up', hint: "Lève-toi → Stand up." },
+      { q: "'Lis ceci' en anglais ?", opts: ['Read this','Look at this','See this','Check this'], ans: 'Read this', hint: "Lis ceci → Read this." },
+      { q: "'Bon voyage' en anglais ?", opts: ['Have a safe trip','Safe travels','Bon voyage','Have a good journey'], ans: 'Have a safe trip', hint: "Bon voyage → Have a safe trip." },
     ],
   ],
   'slang-expressions': [

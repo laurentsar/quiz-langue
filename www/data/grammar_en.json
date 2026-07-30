@@ -4217,5 +4217,75 @@
         ]
       }
     ]
+  },
+  {
+    "id": "essential-sentences",
+    "title": "Phrases Essentielles",
+    "subtitle": "19 phrases indispensables du quotidien FR→EN",
+    "sections": [
+      {
+        "heading": "Demandes et instructions",
+        "points": [
+          "Wait a minute. → Attends une minute.",
+          "Speak more slowly. → Parle plus lentement.",
+          "Write it down. → Écris-le.",
+          "Read this. → Lis ceci.",
+          "Come with me. → Viens avec moi.",
+          "Open the door. → Ouvre la porte.",
+          "Close the window. → Ferme la fenêtre."
+        ],
+        "examples": [
+          "Wait a minute — I'll be right back.",
+          "Could you speak more slowly, please?",
+          "Write it down so you don't forget.",
+          "Come with me — I'll show you."
+        ]
+      },
+      {
+        "heading": "Situation et état",
+        "points": [
+          "I'm busy. → Je suis occupé(e).",
+          "I'm late. → Je suis en retard.",
+          "I'm lost. → Je suis perdu(e).",
+          "I'm doing well. → Je vais bien."
+        ],
+        "examples": [
+          "Sorry, I'm busy right now — call me back.",
+          "Hurry up — I'm late!",
+          "Excuse me, I'm lost. Where is the station?",
+          "I'm doing well, thanks for asking."
+        ]
+      },
+      {
+        "heading": "Posture et accord",
+        "points": [
+          "Sit down. → Assieds-toi.",
+          "Stand up. → Lève-toi.",
+          "I agree. → Je suis d'accord.",
+          "I disagree. → Je ne suis pas d'accord.",
+          "That's perfect. → C'est parfait."
+        ],
+        "examples": [
+          "Please sit down — the meeting is starting.",
+          "Stand up when the teacher enters.",
+          "I agree — that's a great idea.",
+          "I disagree — I think there's a better way.",
+          "That's perfect! Well done."
+        ]
+      },
+      {
+        "heading": "Au revoir et encouragements",
+        "points": [
+          "See you tomorrow. → À demain.",
+          "Have a safe trip. → Bon voyage.",
+          "Do your best. → Fais de ton mieux."
+        ],
+        "examples": [
+          "See you tomorrow — same time!",
+          "Have a safe trip — text me when you arrive.",
+          "Do your best — that's all we ask."
+        ]
+      }
+    ]
   }
 ]
