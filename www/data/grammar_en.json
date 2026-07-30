@@ -3594,6 +3594,21 @@
             "fr": "Prends ton temps, ce n'est pas pressé."
           }
         ]
+      },
+      {
+        "heading": "Humour et réactions spontanées",
+        "points": [
+          "Hang in there! → Tiens bon !",
+          "My bad! → C'est ma faute !",
+          "Just kidding! → Je plaisante !",
+          "Speak of the devil! → Quand on parle du loup !"
+        ],
+        "examples": [
+          "Hang in there, you're almost done!",
+          "Oh, my bad — I forgot to call you.",
+          "Just kidding! Don't take it seriously.",
+          "Speak of the devil! We were just talking about you."
+        ]
       }
     ]
   },
