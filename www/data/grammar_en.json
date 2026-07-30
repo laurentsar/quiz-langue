@@ -4287,5 +4287,71 @@
         ]
       }
     ]
+  },
+  {
+    "id": "do-you-questions",
+    "title": "Questions avec DO / ARE",
+    "subtitle": "29 questions conversationnelles EN↔FR",
+    "sections": [
+      {
+        "heading": "Do you want to...? (Tu veux... ?)",
+        "points": [
+          "Do you want to eat? → Tu veux manger ?",
+          "Do you want to drink? → Tu veux boire ?",
+          "Do you want to sleep? → Tu veux dormir ?",
+          "Do you want to go out? → Tu veux sortir ?",
+          "Do you want to stay? → Tu veux rester ?",
+          "Do you want to come? → Tu veux venir ?",
+          "Do you want to talk? → Tu veux parler ?",
+          "Do you want to listen? → Tu veux écouter ?",
+          "Do you want to try? → Tu veux essayer ?",
+          "Do you want to learn? → Tu veux apprendre ?"
+        ],
+        "examples": [
+          "Do you want to eat? — Yes, I'm starving!",
+          "Do you want to come with us tonight?",
+          "Do you want to try? — Why not!"
+        ]
+      },
+      {
+        "heading": "Do you like / Do you...?",
+        "points": [
+          "Do you like coffee? → Tu aimes le café ?",
+          "Do you like tea? → Tu aimes le thé ?",
+          "Do you like music? → Tu aimes la musique ?",
+          "Do you understand? → Tu comprends ?",
+          "Do you agree? → Tu es d'accord ?",
+          "Do you need help? → Tu as besoin d'aide ?",
+          "Do you have time? → Tu as le temps ?",
+          "Do you want to help me? → Tu veux m'aider ?",
+          "Do you want to see me? → Tu veux me voir ?"
+        ],
+        "examples": [
+          "Do you like coffee? — Yes, I love it!",
+          "Do you understand? — Not really, can you explain?",
+          "Do you need help? — Yes please, I'm stuck."
+        ]
+      },
+      {
+        "heading": "Questions avec mots interrogatifs et Are you...?",
+        "points": [
+          "What do you want? → Tu veux quoi ?",
+          "What do you like? → Tu aimes quoi ?",
+          "What are you doing? → Tu fais quoi ?",
+          "Where are you going? → Tu vas où ?",
+          "When are you coming? → Tu viens quand ?",
+          "Why are you sad? → Pourquoi tu es triste ?",
+          "How are you? → Comment tu vas ?",
+          "Are you tired? → Tu es fatigué(e) ?",
+          "Are you happy? → Tu es heureux/heureuse ?",
+          "Are you ready? → Tu es prêt(e) ?"
+        ],
+        "examples": [
+          "What are you doing tonight? — Nothing special.",
+          "Where are you going? — To the supermarket.",
+          "Are you ready? — Almost, give me 2 minutes!"
+        ]
+      }
+    ]
   }
 ]
