@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.76';
+const APP_VERSION = '2.77';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2368,6 +2368,14 @@ const _GFIX = {
     { q: "Comment dire 'Je dois rester concentré' ?", opts: ["I need to stay focused","I must stay focused","I have to be focused","I need to focus more"], ans: "I need to stay focused", hint: "Je dois rester concentré → I need to stay focused." },
     { q: "Comment dire 'Je suis de retour' ?", opts: ["I'm back","I'm returned","I came back","I'm here again"], ans: "I'm back", hint: "Je suis de retour → I'm back." },
   ],
+  'do-you-questions': [
+    { q: "'Tu veux manger ?' en anglais ?", opts: ['Do you want to eat?','Do you want to drink?','Do you want food?','Are you hungry?'], ans: 'Do you want to eat?', hint: "Tu veux manger ? → Do you want to eat?" },
+    { q: "'Tu veux sortir ?' en anglais ?", opts: ['Do you want to go out?','Do you want to leave?','Do you want to exit?','Do you want to go?'], ans: 'Do you want to go out?', hint: "Tu veux sortir ? → Do you want to go out?" },
+    { q: "'Tu veux essayer ?' en anglais ?", opts: ['Do you want to try?','Do you want to test?','Do you want to attempt?','Do you want to practice?'], ans: 'Do you want to try?', hint: "Tu veux essayer ? → Do you want to try?" },
+    { q: "'Tu aimes la musique ?' en anglais ?", opts: ['Do you like music?','Do you enjoy music?','Do you love music?','Are you into music?'], ans: 'Do you like music?', hint: "Tu aimes la musique ? → Do you like music?" },
+    { q: "'Tu fais quoi ?' en anglais ?", opts: ['What are you doing?','What do you do?','What are you making?','What are you up to?'], ans: 'What are you doing?', hint: "Tu fais quoi ? → What are you doing?" },
+    { q: "'Tu es prêt(e) ?' en anglais ?", opts: ['Are you ready?','Are you set?','Are you prepared?','Are you done?'], ans: 'Are you ready?', hint: "Tu es prêt(e) ? → Are you ready?" },
+  ],
   'essential-sentences': [
     { q: "'Attends une minute' en anglais ?", opts: ['Wait a minute','Hold on a second','One moment please','Just a minute'], ans: 'Wait a minute', hint: "Attends une minute → Wait a minute." },
     { q: "'Je suis perdu(e)' en anglais ?", opts: ["I'm lost","I'm confused","I don't know where I am","I'm disoriented"], ans: "I'm lost", hint: "Je suis perdu(e) → I'm lost." },
@@ -3166,6 +3174,24 @@ const _GFIX_SERIES = {
       { q: "Traduction : 'On mange ce qu'on trouve, sinon on fait les courses.'", opts: ["We eat what we find, or else we go shopping.","We eat what we find, if not we shop.","We eat what we find, otherwise else we shop.","We eat whatever, or else go shopping."], ans: "We eat what we find, or else we go shopping.", hint: "Sinon → or else." },
     ],
   ],
+  'do-you-questions': [
+    [
+      { q: "'Tu veux boire ?' en anglais ?", opts: ['Do you want to drink?','Do you want water?','Are you thirsty?','Do you want to eat?'], ans: 'Do you want to drink?', hint: "Tu veux boire ? → Do you want to drink?" },
+      { q: "'Tu veux venir ?' en anglais ?", opts: ['Do you want to come?','Do you want to go?','Will you come?','Are you coming?'], ans: 'Do you want to come?', hint: "Tu veux venir ? → Do you want to come?" },
+      { q: "'Tu aimes le café ?' en anglais ?", opts: ['Do you like coffee?','Do you want coffee?','Do you drink coffee?','Do you enjoy coffee?'], ans: 'Do you like coffee?', hint: "Tu aimes le café ? → Do you like coffee?" },
+      { q: "'Tu comprends ?' en anglais ?", opts: ['Do you understand?','Do you follow?','Do you know?','Can you understand?'], ans: 'Do you understand?', hint: "Tu comprends ? → Do you understand?" },
+      { q: "'Tu vas où ?' en anglais ?", opts: ['Where are you going?','Where do you go?','Where are you?','Where will you go?'], ans: 'Where are you going?', hint: "Tu vas où ? → Where are you going?" },
+      { q: "'Tu es fatigué(e) ?' en anglais ?", opts: ['Are you tired?','Are you sleepy?','Do you feel tired?','Are you exhausted?'], ans: 'Are you tired?', hint: "Tu es fatigué(e) ? → Are you tired?" },
+    ],
+    [
+      { q: "'Tu veux apprendre ?' en anglais ?", opts: ['Do you want to learn?','Do you want to study?','Do you want to know?','Do you want to understand?'], ans: 'Do you want to learn?', hint: "Tu veux apprendre ? → Do you want to learn?" },
+      { q: "'Tu as besoin d'aide ?' en anglais ?", opts: ['Do you need help?','Do you want help?','Can I help you?','Do you need support?'], ans: 'Do you need help?', hint: "Tu as besoin d'aide ? → Do you need help?" },
+      { q: "'Tu viens quand ?' en anglais ?", opts: ['When are you coming?','When will you come?','When do you come?','When are you arriving?'], ans: 'When are you coming?', hint: "Tu viens quand ? → When are you coming?" },
+      { q: "'Tu es heureux/heureuse ?' en anglais ?", opts: ['Are you happy?','Are you glad?','Are you joyful?','Do you feel happy?'], ans: 'Are you happy?', hint: "Tu es heureux/heureuse ? → Are you happy?" },
+      { q: "'Tu es d'accord ?' en anglais ?", opts: ['Do you agree?','Are you okay?','Do you accept?','Is that fine?'], ans: 'Do you agree?', hint: "Tu es d'accord ? → Do you agree?" },
+      { q: "'Pourquoi tu es triste ?' en anglais ?", opts: ['Why are you sad?','Why are you upset?','Why do you feel sad?','What makes you sad?'], ans: 'Why are you sad?', hint: "Pourquoi tu es triste ? → Why are you sad?" },
+    ],
+  ],
   'essential-sentences': [
     [
       { q: "'Parle plus lentement' en anglais ?", opts: ['Speak more slowly','Talk slower','Slow your speech','Speak slowly please'], ans: 'Speak more slowly', hint: "Parle plus lentement → Speak more slowly." },
@@ -3242,13 +3268,13 @@ const _GFIX_SERIES = {
     [
       { q: "'Qui ne tente rien n'a rien' en anglais ?", opts: ['He who dares nothing wins nothing','Nothing is free in life','Try hard or fail','Risk nothing, get nothing'], ans: 'He who dares nothing wins nothing', hint: "Qui ne tente rien n'a rien → He who dares nothing wins nothing." },
       { q: "Quel proverbe correspond à 'Hope keeps us going' ?", opts: ["L'espoir fait vivre",'La patience est une vertu','On apprend de ses erreurs','Mieux vaut être seul'], ans: "L'espoir fait vivre", hint: "Hope keeps us going → L'espoir fait vivre." },
-      { q: "Quel proverbe correspond à 'Patience is a virtue' ?", opts: ['La patience est une vertu','La vérité éclate','L'espoir fait vivre','On apprend de ses erreurs'], ans: 'La patience est une vertu', hint: "Patience is a virtue → La patience est une vertu." },
-      { q: "Quel proverbe correspond à 'The truth always comes out' ?", opts: ['La vérité finit toujours par éclater','Il n'y a pas de fumée sans feu','On apprend de ses erreurs','La patience est une vertu'], ans: 'La vérité finit toujours par éclater', hint: "The truth always comes out → La vérité finit toujours par éclater." },
-      { q: "Quel proverbe correspond à 'Where there's smoke, there's fire' ?", opts: ['Il n'y a pas de fumée sans feu','La vérité finit par éclater','Qui ne tente rien n'a rien','L'espoir fait vivre'], ans: 'Il n'y a pas de fumée sans feu', hint: "Where there's smoke, there's fire → Il n'y a pas de fumée sans feu." },
-      { q: "Quel proverbe correspond à 'We learn from our mistakes' ?", opts: ['On apprend de ses erreurs','La patience est une vertu','Mieux vaut être seul','Qui ne tente rien n'a rien'], ans: 'On apprend de ses erreurs', hint: "We learn from our mistakes → On apprend de ses erreurs." },
+      { q: "Quel proverbe correspond à 'Patience is a virtue' ?", opts: ['La patience est une vertu','La vérité éclate',"L'espoir fait vivre",'On apprend de ses erreurs'], ans: 'La patience est une vertu', hint: "Patience is a virtue → La patience est une vertu." },
+      { q: "Quel proverbe correspond à 'The truth always comes out' ?", opts: ['La vérité finit toujours par éclater',"Il n'y a pas de fumée sans feu",'On apprend de ses erreurs','La patience est une vertu'], ans: 'La vérité finit toujours par éclater', hint: "The truth always comes out → La vérité finit toujours par éclater." },
+      { q: "Quel proverbe correspond à 'Where there's smoke, there's fire' ?", opts: ["Il n'y a pas de fumée sans feu",'La vérité finit par éclater',"Qui ne tente rien n'a rien","L'espoir fait vivre"], ans: "Il n'y a pas de fumée sans feu", hint: "Where there's smoke, there's fire → Il n'y a pas de fumée sans feu." },
+      { q: "Quel proverbe correspond à 'We learn from our mistakes' ?", opts: ['On apprend de ses erreurs','La patience est une vertu','Mieux vaut être seul',"Qui ne tente rien n'a rien"], ans: 'On apprend de ses erreurs', hint: "We learn from our mistakes → On apprend de ses erreurs." },
     ],
     [
-      { q: "Quel proverbe correspond à 'Better be alone than in bad company' ?", opts: ['Mieux vaut être seul que mal accompagné','La patience est une vertu','Il n'y a pas de fumée sans feu','On apprend de ses erreurs'], ans: 'Mieux vaut être seul que mal accompagné', hint: "Better be alone than in bad company → Mieux vaut être seul que mal accompagné." },
+      { q: "Quel proverbe correspond à 'Better be alone than in bad company' ?", opts: ['Mieux vaut être seul que mal accompagné','La patience est une vertu',"Il n'y a pas de fumée sans feu",'On apprend de ses erreurs'], ans: 'Mieux vaut être seul que mal accompagné', hint: "Better be alone than in bad company → Mieux vaut être seul que mal accompagné." },
       { q: "Complète : 'L'espoir fait ___'", opts: ['vivre','aller','grandir','avancer'], ans: 'vivre', hint: "L'espoir fait vivre — Hope keeps us going." },
       { q: "Complète : 'La vérité finit toujours par ___'", opts: ['éclater','venir','paraître','sortir'], ans: 'éclater', hint: "La vérité finit toujours par éclater — The truth always comes out." },
       { q: "Complète : 'Il n'y a pas de fumée sans ___'", opts: ['feu','raison','cause','flamme'], ans: 'feu', hint: "Il n'y a pas de fumée sans feu — Where there's smoke, there's fire." },
