@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.71';
+const APP_VERSION = '2.72';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2368,6 +2368,14 @@ const _GFIX = {
     { q: "Comment dire 'Je dois rester concentré' ?", opts: ["I need to stay focused","I must stay focused","I have to be focused","I need to focus more"], ans: "I need to stay focused", hint: "Je dois rester concentré → I need to stay focused." },
     { q: "Comment dire 'Je suis de retour' ?", opts: ["I'm back","I'm returned","I came back","I'm here again"], ans: "I'm back", hint: "Je suis de retour → I'm back." },
   ],
+  'driving-expressions': [
+    { q: "'Je tourne à gauche' en anglais ?", opts: ['I turn left','I go left','I drive left','I move left'], ans: 'I turn left', hint: "Je tourne à gauche → I turn left." },
+    { q: "'Je freine' en anglais ?", opts: ['I brake','I stop','I slow','I halt'], ans: 'I brake', hint: "Je freine → I brake." },
+    { q: "'Je ralentis' en anglais ?", opts: ['I slow down','I brake','I stop','I calm down'], ans: 'I slow down', hint: "Je ralentis → I slow down." },
+    { q: "'J'accélère' en anglais ?", opts: ['I speed up','I go fast','I accelerate more','I drive fast'], ans: 'I speed up', hint: "J'accélère → I speed up." },
+    { q: "'Je dépasse la voiture' en anglais ?", opts: ['I overtake the car','I pass by the car','I drive past it','I skip the car'], ans: 'I overtake the car', hint: "Je dépasse la voiture → I overtake the car." },
+    { q: "'Il y a des embouteillages' en anglais ?", opts: ["There's traffic",'There are jams','The road is blocked','Cars are everywhere'], ans: "There's traffic", hint: "Il y a des embouteillages → There's traffic." },
+  ],
   'french-proverbs': [
     { q: "'L'espoir fait vivre' en anglais ?", opts: ['Hope keeps us going','Hope makes us live','Hope drives us forward','Hope is everything'], ans: 'Hope keeps us going', hint: "L'espoir fait vivre → Hope keeps us going." },
     { q: "'La patience est une vertu' en anglais ?", opts: ['Patience is a virtue','Patience is key','Patience pays off','Patience always wins'], ans: 'Patience is a virtue', hint: "La patience est une vertu → Patience is a virtue." },
@@ -3124,6 +3132,24 @@ const _GFIX_SERIES = {
       { q: "Choisir la bonne phrase : 'Tout le monde d'autre est parti.'", opts: ["Everyone else had gone.","All else has gone.","Everybody other left.","Everyone other went."], ans: "Everyone else had gone.", hint: "Tout le monde d'autre → everyone else." },
       { q: "Choisir la bonne phrase : 'Personne d'autre n'était là.'", opts: ["Nobody else was there.","No one other was there.","Nobody other was present.","No else was there."], ans: "Nobody else was there.", hint: "Personne d'autre → nobody else." },
       { q: "Traduction : 'On mange ce qu'on trouve, sinon on fait les courses.'", opts: ["We eat what we find, or else we go shopping.","We eat what we find, if not we shop.","We eat what we find, otherwise else we shop.","We eat whatever, or else go shopping."], ans: "We eat what we find, or else we go shopping.", hint: "Sinon → or else." },
+    ],
+  ],
+  'driving-expressions': [
+    [
+      { q: "'Je tourne à droite' en anglais ?", opts: ['I turn right','I go right','I drive right','I turn rightward'], ans: 'I turn right', hint: "Je tourne à droite → I turn right." },
+      { q: "'Je mets ma ceinture' en anglais ?", opts: ['I put on my seatbelt','I wear my belt','I fasten my belt','I put my belt'], ans: 'I put on my seatbelt', hint: "Je mets ma ceinture → I put on my seatbelt." },
+      { q: "'Je roule doucement' en anglais ?", opts: ['I drive slowly','I go slowly','I roll gently','I move slowly'], ans: 'I drive slowly', hint: "Je roule doucement → I drive slowly." },
+      { q: "'Je démarre la voiture' en anglais ?", opts: ['I start the car','I launch the car','I turn the car','I ignite the car'], ans: 'I start the car', hint: "Je démarre la voiture → I start the car." },
+      { q: "'On prend la route' en anglais ?", opts: ['We hit the road','We take the road','We drive away','We start driving'], ans: 'We hit the road', hint: "On prend la route → We hit the road." },
+      { q: "'Je change de voie' en anglais ?", opts: ['I change lanes','I switch roads','I change path','I move over'], ans: 'I change lanes', hint: "Je change de voie → I change lanes." },
+    ],
+    [
+      { q: "'I turn left' en français ?", opts: ['Je tourne à gauche','Je vais à gauche','Je conduis à gauche','Je penche à gauche'], ans: 'Je tourne à gauche', hint: "I turn left → Je tourne à gauche." },
+      { q: "'I brake' en français ?", opts: ['Je freine','Je stoppe','Je ralentis','Je bloque'], ans: 'Je freine', hint: "I brake → Je freine." },
+      { q: "'I speed up' en français ?", opts: ["J'accélère",'Je roule vite','Je fonce','Je vais plus vite'], ans: "J'accélère", hint: "I speed up → J'accélère." },
+      { q: "'I put on my seatbelt' en français ?", opts: ['Je mets ma ceinture','Je boucle ma ceinture','Je porte ma ceinture','Je fixe ma ceinture'], ans: 'Je mets ma ceinture', hint: "I put on my seatbelt → Je mets ma ceinture." },
+      { q: "'We hit the road' en français ?", opts: ['On prend la route','On part sur la route','On démarre','On va sur la route'], ans: 'On prend la route', hint: "We hit the road → On prend la route." },
+      { q: "'There's traffic' en français ?", opts: ['Il y a des embouteillages','Il y a de la circulation','La route est bloquée','Il y a des voitures'], ans: 'Il y a des embouteillages', hint: "There's traffic → Il y a des embouteillages." },
     ],
   ],
   'french-proverbs': [
