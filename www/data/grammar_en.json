@@ -4051,5 +4051,46 @@
         ]
       }
     ]
+  },
+  {
+    "id": "driving-expressions",
+    "title": "Conduire en Anglais",
+    "subtitle": "12 expressions clés au volant EN↔FR",
+    "sections": [
+      {
+        "heading": "Manœuvres de base",
+        "points": [
+          "I turn left. → Je tourne à gauche.",
+          "I turn right. → Je tourne à droite.",
+          "I brake. → Je freine.",
+          "I slow down. → Je ralentis.",
+          "I speed up. → J'accélère.",
+          "I drive slowly. → Je roule doucement."
+        ],
+        "examples": [
+          "I turn left at the traffic light.",
+          "I brake when I see a red light.",
+          "I slow down in the school zone.",
+          "I speed up to join the motorway."
+        ]
+      },
+      {
+        "heading": "Sur la route",
+        "points": [
+          "I start the car. → Je démarre la voiture.",
+          "I put on my seatbelt. → Je mets ma ceinture.",
+          "I overtake the car. → Je dépasse la voiture.",
+          "I change lanes. → Je change de voie.",
+          "We hit the road. → On prend la route.",
+          "There's traffic. → Il y a des embouteillages."
+        ],
+        "examples": [
+          "I put on my seatbelt before I start the car.",
+          "I overtake the car carefully.",
+          "I change lanes before turning right.",
+          "There's traffic — we'll be late."
+        ]
+      }
+    ]
   }
 ]
