@@ -4107,5 +4107,67 @@
         ]
       }
     ]
+  },
+  {
+    "id": "social-expressions",
+    "title": "Expressions Sociales Essentielles",
+    "subtitle": "18 expressions anglaises incontournables du quotidien",
+    "sections": [
+      {
+        "heading": "Salutations et au revoir",
+        "points": [
+          "Nice to meet you. → Enchanté(e).",
+          "Glad to see you. → Ravi(e) de vous voir.",
+          "Have a great day! → Passe une bonne journée !",
+          "Sleep well! → Dors bien !",
+          "Stay safe! → Sois prudent(e) !",
+          "See you soon. → À bientôt !"
+        ],
+        "examples": [
+          "Nice to meet you — I've heard a lot about you.",
+          "Glad to see you again after so long!",
+          "Have a great day! — See you tomorrow.",
+          "Sleep well! — Sweet dreams.",
+          "Stay safe! — Take care on the road."
+        ]
+      },
+      {
+        "heading": "Bravo et vœux",
+        "points": [
+          "Good job! → Bon travail !",
+          "Not bad! → Pas mal !",
+          "Well done! → Bravo !",
+          "Best of luck! → Bonne chance !",
+          "Happy birthday! → Joyeux anniversaire !",
+          "Happy holidays! → Joyeuses fêtes !"
+        ],
+        "examples": [
+          "Good job on that presentation!",
+          "Not bad — a bit more practice and you'll be perfect.",
+          "Well done! You passed the exam!",
+          "Best of luck at your interview tomorrow.",
+          "Happy birthday! Hope you have an amazing day."
+        ]
+      },
+      {
+        "heading": "Communication du quotidien",
+        "points": [
+          "Tell me. → Dis-moi.",
+          "I don't understand. → Je ne comprends pas.",
+          "I have an idea! → J'ai une idée !",
+          "That's right. → C'est exact.",
+          "That's not correct. → Ce n'est pas correct.",
+          "Call me. → Appelle-moi."
+        ],
+        "examples": [
+          "Tell me — what happened?",
+          "I don't understand. Could you repeat that?",
+          "I have an idea! What if we tried a different approach?",
+          "That's right — you've got it!",
+          "That's not correct. Let me show you.",
+          "Call me when you get home."
+        ]
+      }
+    ]
   }
 ]

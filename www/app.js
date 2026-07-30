@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.73';
+const APP_VERSION = '2.74';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2368,6 +2368,14 @@ const _GFIX = {
     { q: "Comment dire 'Je dois rester concentré' ?", opts: ["I need to stay focused","I must stay focused","I have to be focused","I need to focus more"], ans: "I need to stay focused", hint: "Je dois rester concentré → I need to stay focused." },
     { q: "Comment dire 'Je suis de retour' ?", opts: ["I'm back","I'm returned","I came back","I'm here again"], ans: "I'm back", hint: "Je suis de retour → I'm back." },
   ],
+  'social-expressions': [
+    { q: "'Enchanté(e)' en anglais ?", opts: ['Nice to meet you','Glad to see you','Pleased to be here','Good to meet you'], ans: 'Nice to meet you', hint: "Enchanté(e) → Nice to meet you." },
+    { q: "'Bon travail !' en anglais ?", opts: ['Good job!','Well done!','Not bad!','Great work!'], ans: 'Good job!', hint: "Bon travail ! → Good job!" },
+    { q: "'Bravo !' en anglais ?", opts: ['Well done!','Good job!','Not bad!','Great!'], ans: 'Well done!', hint: "Bravo ! → Well done!" },
+    { q: "'Bonne chance !' en anglais ?", opts: ['Best of luck!','Good luck!','You can do it!','Stay strong!'], ans: 'Best of luck!', hint: "Bonne chance ! → Best of luck!" },
+    { q: "'J'ai une idée !' en anglais ?", opts: ['I have an idea!','I got it!','I think so!','Let me think!'], ans: 'I have an idea!', hint: "J'ai une idée ! → I have an idea!" },
+    { q: "'C'est exact.' en anglais ?", opts: ["That's right.","That's correct.","Exactly right.","You're right."], ans: "That's right.", hint: "C'est exact. → That's right." },
+  ],
   'driving-expressions': [
     { q: "'Je tourne à gauche' en anglais ?", opts: ['I turn left','I go left','I drive left','I move left'], ans: 'I turn left', hint: "Je tourne à gauche → I turn left." },
     { q: "'Je freine' en anglais ?", opts: ['I brake','I stop','I slow','I halt'], ans: 'I brake', hint: "Je freine → I brake." },
@@ -3140,6 +3148,24 @@ const _GFIX_SERIES = {
       { q: "Choisir la bonne phrase : 'Tout le monde d'autre est parti.'", opts: ["Everyone else had gone.","All else has gone.","Everybody other left.","Everyone other went."], ans: "Everyone else had gone.", hint: "Tout le monde d'autre → everyone else." },
       { q: "Choisir la bonne phrase : 'Personne d'autre n'était là.'", opts: ["Nobody else was there.","No one other was there.","Nobody other was present.","No else was there."], ans: "Nobody else was there.", hint: "Personne d'autre → nobody else." },
       { q: "Traduction : 'On mange ce qu'on trouve, sinon on fait les courses.'", opts: ["We eat what we find, or else we go shopping.","We eat what we find, if not we shop.","We eat what we find, otherwise else we shop.","We eat whatever, or else go shopping."], ans: "We eat what we find, or else we go shopping.", hint: "Sinon → or else." },
+    ],
+  ],
+  'social-expressions': [
+    [
+      { q: "'Ravi(e) de vous voir' en anglais ?", opts: ['Glad to see you','Nice to see you','Happy to meet you','Good to see you'], ans: 'Glad to see you', hint: "Ravi(e) de vous voir → Glad to see you." },
+      { q: "'Pas mal !' en anglais ?", opts: ['Not bad!','Not great!','Pretty good!','Could be better!'], ans: 'Not bad!', hint: "Pas mal ! → Not bad!" },
+      { q: "'Joyeux anniversaire !' en anglais ?", opts: ['Happy birthday!','Happy anniversary!','Many happy returns!','Congrats!'], ans: 'Happy birthday!', hint: "Joyeux anniversaire ! → Happy birthday!" },
+      { q: "'Joyeuses fêtes !' en anglais ?", opts: ['Happy holidays!','Merry Christmas!','Happy new year!','Season greetings!'], ans: 'Happy holidays!', hint: "Joyeuses fêtes ! → Happy holidays! (expression générale)." },
+      { q: "'Passe une bonne journée !' en anglais ?", opts: ['Have a great day!','Have a good day!','Enjoy your day!','Good day to you!'], ans: 'Have a great day!', hint: "Passe une bonne journée ! → Have a great day!" },
+      { q: "'Sois prudent(e) !' en anglais ?", opts: ['Stay safe!','Be careful!','Watch out!','Take care!'], ans: 'Stay safe!', hint: "Sois prudent(e) ! → Stay safe!" },
+    ],
+    [
+      { q: "'Dors bien !' en anglais ?", opts: ['Sleep well!','Good night!','Sweet dreams!','Rest well!'], ans: 'Sleep well!', hint: "Dors bien ! → Sleep well!" },
+      { q: "'À bientôt !' en anglais ?", opts: ['See you soon.','See you later.','Catch you later.','Goodbye for now.'], ans: 'See you soon.', hint: "À bientôt ! → See you soon." },
+      { q: "'Dis-moi.' en anglais ?", opts: ['Tell me.','Say it.','Speak to me.','Let me know.'], ans: 'Tell me.', hint: "Dis-moi. → Tell me." },
+      { q: "'Je ne comprends pas.' en anglais ?", opts: ["I don't understand.","I can't follow.","I'm lost.","This is unclear."], ans: "I don't understand.", hint: "Je ne comprends pas. → I don't understand." },
+      { q: "'Ce n'est pas correct.' en anglais ?", opts: ["That's not correct.","That's wrong.","Not right.","Incorrect!"], ans: "That's not correct.", hint: "Ce n'est pas correct. → That's not correct." },
+      { q: "'Appelle-moi.' en anglais ?", opts: ['Call me.','Ring me.','Phone me.','Text me.'], ans: 'Call me.', hint: "Appelle-moi. → Call me." },
     ],
   ],
   'driving-expressions': [
