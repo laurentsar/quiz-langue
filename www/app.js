@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.74';
+const APP_VERSION = '2.75';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2368,6 +2368,14 @@ const _GFIX = {
     { q: "Comment dire 'Je dois rester concentré' ?", opts: ["I need to stay focused","I must stay focused","I have to be focused","I need to focus more"], ans: "I need to stay focused", hint: "Je dois rester concentré → I need to stay focused." },
     { q: "Comment dire 'Je suis de retour' ?", opts: ["I'm back","I'm returned","I came back","I'm here again"], ans: "I'm back", hint: "Je suis de retour → I'm back." },
   ],
+  'slang-expressions': [
+    { q: "'C'est la galère' en anglais ?", opts: ["It's a struggle","It's hard","It's a mess","It's complicated"], ans: "It's a struggle", hint: "C'est la galère → It's a struggle." },
+    { q: "'Je suis crevé' en anglais ?", opts: ["I'm exhausted","I'm tired","I'm done","I'm finished"], ans: "I'm exhausted", hint: "Je suis crevé → I'm exhausted." },
+    { q: "'Je capte rien' en anglais ?", opts: ['I have no clue','I understand nothing','I got nothing','I know nothing'], ans: 'I have no clue', hint: "Je capte rien → I have no clue." },
+    { q: "'T'es sérieux là ?' en anglais ?", opts: ['Are you serious?','Are you joking?','Is that real?','Really?'], ans: 'Are you serious?', hint: "T'es sérieux là ? → Are you serious?" },
+    { q: "'On gère' en anglais ?", opts: ['We got this','We manage','We handle it','We can do it'], ans: 'We got this', hint: "On gère → We got this." },
+    { q: "'J'ai la flemme' en anglais ?", opts: ['I feel lazy','I have no energy','I feel tired','I can\'t be bothered'], ans: 'I feel lazy', hint: "J'ai la flemme → I feel lazy." },
+  ],
   'social-expressions': [
     { q: "'Enchanté(e)' en anglais ?", opts: ['Nice to meet you','Glad to see you','Pleased to be here','Good to meet you'], ans: 'Nice to meet you', hint: "Enchanté(e) → Nice to meet you." },
     { q: "'Bon travail !' en anglais ?", opts: ['Good job!','Well done!','Not bad!','Great work!'], ans: 'Good job!', hint: "Bon travail ! → Good job!" },
@@ -3148,6 +3156,24 @@ const _GFIX_SERIES = {
       { q: "Choisir la bonne phrase : 'Tout le monde d'autre est parti.'", opts: ["Everyone else had gone.","All else has gone.","Everybody other left.","Everyone other went."], ans: "Everyone else had gone.", hint: "Tout le monde d'autre → everyone else." },
       { q: "Choisir la bonne phrase : 'Personne d'autre n'était là.'", opts: ["Nobody else was there.","No one other was there.","Nobody other was present.","No else was there."], ans: "Nobody else was there.", hint: "Personne d'autre → nobody else." },
       { q: "Traduction : 'On mange ce qu'on trouve, sinon on fait les courses.'", opts: ["We eat what we find, or else we go shopping.","We eat what we find, if not we shop.","We eat what we find, otherwise else we shop.","We eat whatever, or else go shopping."], ans: "We eat what we find, or else we go shopping.", hint: "Sinon → or else." },
+    ],
+  ],
+  'slang-expressions': [
+    [
+      { q: "'Ça me saoule' en anglais ?", opts: ['That bugs me','That annoys me','I hate that','That bothers me'], ans: 'That bugs me', hint: "Ça me saoule → That bugs me." },
+      { q: "'Pas mon problème' en anglais ?", opts: ['Not my business','Not my problem','Not my concern','Not my deal'], ans: 'Not my business', hint: "Pas mon problème → Not my business." },
+      { q: "'Tu m'étonnes' en anglais ?", opts: ['You amaze me','You surprise me','I can\'t believe you','You shock me'], ans: 'You amaze me', hint: "Tu m'étonnes → You amaze me." },
+      { q: "'On fait comment ?' en anglais ?", opts: ['What do we do?','How do we do it?','What shall we do?','How do we manage?'], ans: 'What do we do?', hint: "On fait comment ? → What do we do?" },
+      { q: "Traduction : 'Je capte rien à ce cours'", opts: ['I have no clue about this lesson','I understand nothing here','This lesson is unclear','I can\'t follow this'], ans: 'I have no clue about this lesson', hint: "Je capte rien → I have no clue." },
+      { q: "Traduction : 'On gère, pas de panique !'", opts: ["We got this, don't panic!","We manage, no panic!","We handle it, calm down!","We're fine, no worries!"], ans: "We got this, don't panic!", hint: "On gère → We got this." },
+    ],
+    [
+      { q: "Traduction : 'C'est la galère ce projet'", opts: ["This project is a struggle","This project is difficult","This project is hard","This project is a mess"], ans: "This project is a struggle", hint: "C'est la galère → It's a struggle." },
+      { q: "Traduction : 'J'ai la flemme d'y aller'", opts: ["I feel lazy about going","I don't want to go","I'm too tired to go","I can't go"], ans: "I feel lazy about going", hint: "J'ai la flemme → I feel lazy." },
+      { q: "Traduction : 'T'es sérieux là ? C'est pas possible !'", opts: ["Are you serious? That can't be!","Are you joking? Impossible!","Really? I can't believe it!","Is this real? No way!"], ans: "Are you serious? That can't be!", hint: "T'es sérieux là ? → Are you serious?" },
+      { q: "Laquelle traduit 'Ça me saoule qu'il soit en retard' ?", opts: ["It bugs me that he's late","He annoys me being late","His lateness bothers me","I hate his lateness"], ans: "It bugs me that he's late", hint: "Ça me saoule → That bugs me / It bugs me." },
+      { q: "Que signifie 'We got this' ?", opts: ['On gère','On y va','On a ça','On peut le faire'], ans: 'On gère', hint: "We got this → On gère (on a la situation en main)." },
+      { q: "Que signifie 'Not my business' ?", opts: ['Pas mon problème','Pas mes affaires','Ce n\'est pas pour moi','Ça ne me regarde pas'], ans: 'Pas mon problème', hint: "Not my business → Pas mon problème." },
     ],
   ],
   'social-expressions': [

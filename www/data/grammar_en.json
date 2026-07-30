@@ -4169,5 +4169,53 @@
         ]
       }
     ]
+  },
+  {
+    "id": "slang-expressions",
+    "title": "Expressions Familières",
+    "subtitle": "10 expressions du quotidien FR→EN style parlé",
+    "sections": [
+      {
+        "heading": "Galère et fatigue",
+        "points": [
+          "C'est la galère → It's a struggle",
+          "Je suis crevé → I'm exhausted",
+          "J'ai la flemme → I feel lazy",
+          "Je capte rien → I have no clue"
+        ],
+        "examples": [
+          "C'est la galère ce projet — It's a real struggle with this project.",
+          "Je suis crevé après cette journée — I'm exhausted after this day.",
+          "J'ai la flemme d'y aller — I feel lazy about going.",
+          "Je capte rien à ce cours — I have no clue about this lesson."
+        ]
+      },
+      {
+        "heading": "Réactions et attitudes",
+        "points": [
+          "T'es sérieux là ? → Are you serious?",
+          "Ça me saoule → That bugs me",
+          "Pas mon problème → Not my business",
+          "Tu m'étonnes → You amaze me"
+        ],
+        "examples": [
+          "T'es sérieux là ? C'est pas possible ! — Are you serious? That can't be!",
+          "Ça me saoule qu'il arrive toujours en retard — That bugs me, he's always late.",
+          "Pas mon problème — règle ça toi-même — Not my business — sort it out yourself.",
+          "Tu m'étonnes, t'as réussi du premier coup ! — You amaze me, you got it first try!"
+        ]
+      },
+      {
+        "heading": "Action et résolution",
+        "points": [
+          "On fait comment ? → What do we do?",
+          "On gère → We got this"
+        ],
+        "examples": [
+          "On fait comment maintenant ? — What do we do now?",
+          "Pas de panique — on gère ! — Don't panic — we got this!"
+        ]
+      }
+    ]
   }
 ]
