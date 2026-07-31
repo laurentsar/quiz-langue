@@ -4402,5 +4402,52 @@
         ]
       }
     ]
+  },
+  {
+    "id": "disagreement-expressions",
+    "title": "Expressions de Désaccord",
+    "subtitle": "8 façons d'exprimer le désaccord en anglais",
+    "sections": [
+      {
+        "heading": "Nier ou contredire",
+        "points": [
+          "I don't believe so → Je ne crois pas",
+          "That's not true → Ce n'est pas vrai",
+          "You're wrong → Tu as tort"
+        ],
+        "tip": "\"That's not true\" est direct ; préférer \"I don't believe so\" en contexte formel.",
+        "examples": [
+          "I don't believe so — I've checked the data.",
+          "That's not true! I was there.",
+          "You're wrong about the date — it's the 15th."
+        ]
+      },
+      {
+        "heading": "Exprimer une vision différente",
+        "points": [
+          "I see it differently → Je vois les choses autrement",
+          "I'm not convinced → Je ne suis pas convaincu(e)",
+          "I don't share your opinion → Je ne partage pas ton avis"
+        ],
+        "tip": "Ces expressions sont plus diplomatiques — utiles en réunion ou à l'écrit.",
+        "examples": [
+          "I see it differently — let me explain my view.",
+          "I'm not convinced this is the right approach.",
+          "I don't share your opinion on this matter."
+        ]
+      },
+      {
+        "heading": "Refus et rejet",
+        "points": [
+          "It's not a good idea → Ce n'est pas une bonne idée",
+          "I refuse → Je refuse"
+        ],
+        "tip": "\"I refuse\" est très direct et ferme. \"It's not a good idea\" est plus doux.",
+        "examples": [
+          "It's not a good idea to rush this decision.",
+          "I refuse to sign this contract."
+        ]
+      }
+    ]
   }
 ]

@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.78';
+const APP_VERSION = '2.79';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2448,6 +2448,14 @@ const _GFIX = {
     { q: "Comment dire 'Tu rayonnes aujourd'hui' ?", opts: ["You're glowing today","You're shining today","You're radiant today","You're beaming today"], ans: "You're glowing today", hint: "Tu rayonnes → You're glowing (expression très naturelle)." },
     { q: "Comment dire 'Tu es en pleine forme' ?", opts: ["You're in great shape","You look healthy","You're very fit","You're in good form"], ans: "You're in great shape", hint: "En pleine forme → in great shape." },
   ],
+  'disagreement-expressions': [
+    { q: "Comment dire 'Je ne crois pas' poliment ?", opts: ["I don't believe so","I don't think so","I'm not sure","That's not true"], ans: "I don't believe so", hint: "I don't believe so → Je ne crois pas — plus poli que 'I don't think so'." },
+    { q: "Que signifie 'That's not true' ?", opts: ["Ce n'est pas vrai","Ce n'est pas juste","Je ne crois pas","Tu as tort"], ans: "Ce n'est pas vrai", hint: "That's not true → Ce n'est pas vrai (direct, à éviter en contexte formel)." },
+    { q: "Comment dire 'Tu as tort' en anglais ?", opts: ["You're wrong","You're mistaken","That's false","You're incorrect"], ans: "You're wrong", hint: "You're wrong → Tu as tort (direct et courant)." },
+    { q: "Que signifie 'I see it differently' ?", opts: ["Je vois les choses autrement","Je comprends différemment","J'ai une autre idée","Je ne suis pas d'accord"], ans: "Je vois les choses autrement", hint: "I see it differently → Je vois les choses autrement (diplomatique)." },
+    { q: "Comment dire 'Je ne suis pas convaincu(e)' ?", opts: ["I'm not convinced","I'm not sure","I disagree","I don't believe so"], ans: "I'm not convinced", hint: "I'm not convinced → Je ne suis pas convaincu(e)." },
+    { q: "Comment dire 'Ce n'est pas une bonne idée' ?", opts: ["It's not a good idea","That's a bad idea","I refuse that","Not a great plan"], ans: "It's not a good idea", hint: "It's not a good idea → Ce n'est pas une bonne idée (doux mais clair)." },
+  ],
   'i-dont-know-alternatives': [
     { q: "Que signifie 'It beats me' ?", opts: ["Je n'en sais rien","Ça me dépasse (difficile)","Je suis battu","Tu m'impressionnes"], ans: "Je n'en sais rien", hint: "It beats me → Ça me dépasse / Je n'en sais rien (informel)." },
     { q: "Comment dire 'Je ne suis pas sûr(e)' poliment ?", opts: ["I'm not sure","I have no clue","It beats me","I wouldn't know"], ans: "I'm not sure", hint: "I'm not sure → Je ne suis pas sûr(e) — expression polie et naturelle." },
@@ -3324,6 +3332,24 @@ const _GFIX_SERIES = {
       { q: "'Tout seul' en anglais ?", opts: ['Alone','By myself','All alone','On your own'], ans: 'Alone', hint: "Tout seul / toute seule → Alone." },
       { q: "'À tout prix' en anglais ?", opts: ['At all costs','At any price','Whatever the cost','By all means'], ans: 'At all costs', hint: "À tout prix → At all costs." },
       { q: "Quelle est la différence entre 'à tout à l'heure' et 'tout à l'heure' ?", opts: ["À tout à l'heure = au revoir ; tout à l'heure = plus tôt/plus tard aujourd'hui","Ce sont des synonymes","À tout à l'heure = plus tôt ; tout à l'heure = au revoir","Aucune différence"], ans: "À tout à l'heure = au revoir ; tout à l'heure = plus tôt/plus tard aujourd'hui", hint: "À tout à l'heure = see you later ; tout à l'heure = earlier/later today." },
+    ],
+  ],
+  'disagreement-expressions': [
+    [
+      { q: "Comment dire 'Je ne partage pas ton avis' ?", opts: ["I don't share your opinion","I disagree with you","I see it differently","I'm not convinced"], ans: "I don't share your opinion", hint: "I don't share your opinion → Je ne partage pas ton avis (formel et diplomatique)." },
+      { q: "Que signifie 'I refuse' ?", opts: ["Je refuse","Je ne veux pas","Je n'accepte pas","Je m'y oppose"], ans: "Je refuse", hint: "I refuse → Je refuse (ferme et direct)." },
+      { q: "Laquelle est la plus diplomatique pour exprimer le désaccord ?", opts: ["I see it differently","You're wrong","That's not true","I refuse"], ans: "I see it differently", hint: "I see it differently → présente votre point de vue sans attaquer l'autre." },
+      { q: "Traduire : 'Je ne crois pas que ce soit la bonne solution.'", opts: ["I don't believe so — that's not the right solution.","I don't think so about the solution.","I'm not sure this is right.","That's not a good idea."], ans: "I don't believe so — that's not the right solution.", hint: "I don't believe so → Je ne crois pas." },
+      { q: "Que signifie 'I'm not convinced this is the right approach' ?", opts: ["Je ne suis pas convaincu que c'est la bonne approche","Je ne crois pas que c'est juste","Je vois les choses autrement","Je ne suis pas sûr de l'approche"], ans: "Je ne suis pas convaincu que c'est la bonne approche", hint: "I'm not convinced → Je ne suis pas convaincu(e)." },
+      { q: "Compléter : '___ to sign this contract.' (Je refuse)", opts: ["I refuse","I don't believe so","I'm not convinced","I won't agree"], ans: "I refuse", hint: "I refuse + to + verbe → Je refuse de…" },
+    ],
+    [
+      { q: "Mettre en ordre du plus doux au plus direct :", opts: ["I see it differently / I'm not convinced / You're wrong","You're wrong / I'm not convinced / I see it differently","I'm not convinced / You're wrong / I see it differently","I see it differently / You're wrong / I'm not convinced"], ans: "I see it differently / I'm not convinced / You're wrong", hint: "Du plus diplomatique au plus direct : I see it differently < I'm not convinced < You're wrong." },
+      { q: "Dans quel contexte utiliser 'That's not true' ?", opts: ["Pour corriger un fait incorrect","Pour exprimer poliment un désaccord","En réunion formelle","Pour refuser une proposition"], ans: "Pour corriger un fait incorrect", hint: "That's not true → Ce n'est pas vrai — pour contredire un fait." },
+      { q: "Traduire : 'Ce n'est pas une bonne idée de se précipiter.'", opts: ["It's not a good idea to rush.","That's not a good plan to rush.","I don't think rushing is right.","I refuse to rush."], ans: "It's not a good idea to rush.", hint: "It's not a good idea + to + verbe → Ce n'est pas une bonne idée de…" },
+      { q: "Que signifie 'I don't share your opinion on this matter' ?", opts: ["Je ne partage pas ton avis là-dessus","Je ne suis pas d'accord avec toi","Je vois les choses différemment","Je refuse cette idée"], ans: "Je ne partage pas ton avis là-dessus", hint: "I don't share your opinion → Je ne partage pas ton/votre avis." },
+      { q: "Comment contredire poliment en réunion ?", opts: ["I see it differently — let me explain.","You're wrong, let me explain.","That's not true — here's why.","I refuse this proposal."], ans: "I see it differently — let me explain.", hint: "I see it differently → présente une vision alternative sans agressivité." },
+      { q: "Compléter : '___ this contract.' (Je refuse de signer)", opts: ["I refuse to sign","I don't believe in signing","It's not a good idea to sign","I'm not convinced to sign"], ans: "I refuse to sign", hint: "I refuse to + infinitif → Je refuse de + infinitif." },
     ],
   ],
   'i-dont-know-alternatives': [
