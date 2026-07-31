@@ -1120,6 +1120,20 @@
         ]
       },
       {
+        "heading": "AT / TO / FROM — lieu, mouvement, origine",
+        "points": [
+          "AT → indique le lieu où l'on est (position statique) : I am at home. / At school.",
+          "TO → indique un mouvement vers un lieu : I am going to Paris.",
+          "FROM → indique l'origine, d'où l'on vient : I come from church. / I come from Africa."
+        ],
+        "tip": "Piège ! Le verbe 'arrive' s'emploie toujours avec AT (jamais TO) : I arrive AT school. ✓  (pas 'I arrive to school' ✗)",
+        "examples": [
+          "She is at the office. (position) → She is going to the office. (mouvement)",
+          "He comes from Italy. (origine)",
+          "I arrive at the airport at 8am. ✓  (pas 'arrive to')"
+        ]
+      },
+      {
         "heading": "Autres prépositions",
         "points": [
           "under (sous), over / above (au-dessus), behind (derrière), in front of (devant).",
@@ -4486,6 +4500,69 @@
         "examples": [
           "This job is tiring. (le travail) → I'm tired after work. (moi)",
           "The ending was moving. (le film) → She was moved to tears. (elle)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "such-expressions",
+    "title": "Expressions avec SUCH",
+    "subtitle": "AS SUCH / SUCH AND SUCH / NO SUCH THING / TO SUCH AN EXTENT",
+    "sections": [
+      {
+        "heading": "AS SUCH — en tant que tel / en soi",
+        "points": [
+          "The job, as such, doesn't appeal to him, but the salary is good.",
+          "There is no barrier, as such, just a row of trees.",
+          "He was a great leader and should be remembered as such.",
+          "A police officer, as such, is entitled to respect.",
+          "He is the elected president, and as such he holds a lot of power."
+        ],
+        "tip": "\"As such\" se place entre virgules ou en fin de phrase. Sens : en lui-même / à ce titre.",
+        "examples": [
+          "It's not a problem as such, but it could become one.",
+          "She's the manager and, as such, she makes the decisions."
+        ]
+      },
+      {
+        "heading": "SUCH AND SUCH — tel ou tel (non précisé)",
+        "points": [
+          "He said he was going to do such and such in the garden.",
+          "We were given suggestions on how to introduce such and such a topic.",
+          "If you are told to arrive at such and such a time, get there a little earlier."
+        ],
+        "tip": "\"Such and such\" remplace une information vague ou non précisée.",
+        "examples": [
+          "They told me to go to such and such a place.",
+          "She always says she'll do such and such, but never does."
+        ]
+      },
+      {
+        "heading": "NO SUCH THING — ça n'existe pas / rien de tel",
+        "points": [
+          "There's no such thing as a mermaid.",
+          "There's no such thing as a perfect person.",
+          "There was no such thing as electric blankets in those days.",
+          "\"You broke it!\" \"I did no such thing!\""
+        ],
+        "tip": "\"I did no such thing!\" = Je n'ai rien fait de tel ! (pour nier avec force).",
+        "examples": [
+          "There's no such thing as a free lunch.",
+          "\"He insulted you?\" \"He did no such thing!\""
+        ]
+      },
+      {
+        "heading": "TO SUCH AN EXTENT — à tel point / tellement",
+        "points": [
+          "She protested to such an extent that an investigation was demanded.",
+          "The explanation was detailed to such an extent that it was hard to follow.",
+          "The vehicle was damaged to such an extent that it couldn't be repaired.",
+          "Sales decreased to such an extent that employees feared for their jobs."
+        ],
+        "tip": "\"To such an extent that...\" = tellement... que... (conséquence extrême).",
+        "examples": [
+          "He trained to such an extent that he won the championship.",
+          "The noise was to such an extent that nobody could sleep."
         ]
       }
     ]

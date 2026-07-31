@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.80';
+const APP_VERSION = '2.81';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2448,6 +2448,14 @@ const _GFIX = {
     { q: "Comment dire 'Tu rayonnes aujourd'hui' ?", opts: ["You're glowing today","You're shining today","You're radiant today","You're beaming today"], ans: "You're glowing today", hint: "Tu rayonnes → You're glowing (expression très naturelle)." },
     { q: "Comment dire 'Tu es en pleine forme' ?", opts: ["You're in great shape","You look healthy","You're very fit","You're in good form"], ans: "You're in great shape", hint: "En pleine forme → in great shape." },
   ],
+  'such-expressions': [
+    { q: "Que signifie 'as such' dans 'The job, as such, doesn't appeal to him' ?", opts: ['En soi / en tant que tel','Par conséquent','Tellement','Tel ou tel'], ans: 'En soi / en tant que tel', hint: "As such → en lui-même / à ce titre." },
+    { q: "Compléter : 'There's no ___ thing as a perfect person.'", opts: ['such','such a','as such','such and such'], ans: 'such', hint: "There's no such thing as… → ça n'existe pas." },
+    { q: "Que signifie 'such and such a time' ?", opts: ['À telle ou telle heure (non précisée)','À une heure précise','Tellement tard','En tant que telle'], ans: 'À telle ou telle heure (non précisée)', hint: "Such and such → remplace une info vague ou non précisée." },
+    { q: "Traduire : 'Elle a tellement protesté qu'une enquête a été demandée.'", opts: ['She protested to such an extent that an investigation was demanded.','She protested so much that an investigation was such.','Such was her protest that she demanded an investigation.','She did no such thing as protest.'], ans: 'She protested to such an extent that an investigation was demanded.', hint: "To such an extent that… → tellement… que… (conséquence extrême)." },
+    { q: "Comment utilise-t-on 'I did no such thing' ?", opts: ['Pour nier fermement une accusation','Pour exprimer un doute','Pour indiquer une quantité vague','Pour marquer une conséquence'], ans: 'Pour nier fermement une accusation', hint: "\"I did no such thing!\" → Je n'ai rien fait de tel ! (déni ferme)." },
+    { q: "Quelle expression remplace une info non précisée ?", opts: ['Such and such','As such','No such thing','To such an extent'], ans: 'Such and such', hint: "Such and such → tel ou tel, une chose ou une autre (info vague)." },
+  ],
   'ing-ed-adjectives': [
     { q: "The film was very ___. I fell asleep.", opts: ['boring','bored','bore','boringly'], ans: 'boring', hint: "-ING décrit la chose : the film was boring (ennuyeux)." },
     { q: "We were ___ by the shocking news.", opts: ['shocked','shocking','shock','shockingly'], ans: 'shocked', hint: "-ED décrit ce qu'on ressent : we were shocked (choqués)." },
@@ -3340,6 +3348,24 @@ const _GFIX_SERIES = {
       { q: "'Tout seul' en anglais ?", opts: ['Alone','By myself','All alone','On your own'], ans: 'Alone', hint: "Tout seul / toute seule → Alone." },
       { q: "'À tout prix' en anglais ?", opts: ['At all costs','At any price','Whatever the cost','By all means'], ans: 'At all costs', hint: "À tout prix → At all costs." },
       { q: "Quelle est la différence entre 'à tout à l'heure' et 'tout à l'heure' ?", opts: ["À tout à l'heure = au revoir ; tout à l'heure = plus tôt/plus tard aujourd'hui","Ce sont des synonymes","À tout à l'heure = plus tôt ; tout à l'heure = au revoir","Aucune différence"], ans: "À tout à l'heure = au revoir ; tout à l'heure = plus tôt/plus tard aujourd'hui", hint: "À tout à l'heure = see you later ; tout à l'heure = earlier/later today." },
+    ],
+  ],
+  'such-expressions': [
+    [
+      { q: "Choisir la bonne phrase : 'He is the president, and ___ he has power.'", opts: ['as such','such and such','no such','to such an extent'], ans: 'as such', hint: "As such → à ce titre / en tant que tel." },
+      { q: "Compléter : '___ thing as a free lunch.' (ça n'existe pas)", opts: ["There's no such","There's no such a","There's no as such","There's such no"], ans: "There's no such", hint: "There's no such thing as… → ça n'existe pas." },
+      { q: "Que signifie 'to such an extent that' ?", opts: ['Tellement… que','En tant que','Tel ou tel','Rien de tel'], ans: 'Tellement… que', hint: "To such an extent that → tellement… que (conséquence forte)." },
+      { q: "Compléter : 'She told me to meet her at ___ a place.' (lieu vague)", opts: ['such and such','as such','no such','such an extent'], ans: 'such and such', hint: "Such and such a place → tel ou tel endroit (non précisé)." },
+      { q: "\"Tu as menti !\" \"___\" (déni ferme)", opts: ['I did no such thing!','There is no such thing!','I am as such!','No such thing I did!'], ans: 'I did no such thing!', hint: "I did no such thing! → Je n'ai rien fait de tel !" },
+      { q: "Traduire : 'Le véhicule était tellement endommagé qu'il ne pouvait pas être réparé.'", opts: ['The vehicle was damaged to such an extent that it could not be repaired.','The vehicle was such damaged that it could not be repaired.','As such, the vehicle could not be repaired.','No such vehicle could be repaired.'], ans: 'The vehicle was damaged to such an extent that it could not be repaired.', hint: "To such an extent that → tellement… que." },
+    ],
+    [
+      { q: "Quelle construction signifie 'en lui-même / à ce titre' ?", opts: ['As such','Such and such','No such thing','To such an extent'], ans: 'As such', hint: "As such → en soi / à ce titre / en tant que tel." },
+      { q: "Compléter : 'It's not a problem ___, but it could become one.'", opts: ['as such','such and such','no such','to such an extent'], ans: 'as such', hint: "As such entre virgules → en lui-même / proprement dit." },
+      { q: "Compléter : 'The noise was ___ that nobody could sleep.'", opts: ['to such an extent','as such','such and such','no such'], ans: 'to such an extent', hint: "To such an extent that → tellement fort que." },
+      { q: "Compléter : 'There was ___ thing as electric blankets in those days.'", opts: ['no such','as such','such and such','no as such'], ans: 'no such', hint: "No such thing (as) → ça n'existait pas." },
+      { q: "Compléter : 'He said he would do ___ in the garden.' (tâches vagues)", opts: ['such and such','as such','to such an extent','no such thing'], ans: 'such and such', hint: "Such and such → des choses vagues ou non précisées." },
+      { q: "Traduire : 'Elle est manager et, à ce titre, elle prend les décisions.'", opts: ["She's the manager and, as such, she makes the decisions.","She's the manager and, such and such, she decides.","She's the manager to such an extent she decides.","There's no such manager as her."], ans: "She's the manager and, as such, she makes the decisions.", hint: "And, as such → et, à ce titre / en tant que tel." },
     ],
   ],
   'ing-ed-adjectives': [
