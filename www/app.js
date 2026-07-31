@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.82';
+const APP_VERSION = '2.83';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -1061,7 +1061,8 @@ function showGrammarTopic(idx) {
     `<div class="card gram-section">
       <h3 class="gram-h3">${esc(sec.heading)}</h3>
       <ul class="gram-points">${(sec.points || []).map(p => `<li>${esc(p)}</li>`).join('')}</ul>
-      ${(sec.examples && sec.examples.length) ? `<div class="gram-ex">${sec.examples.map(e => `<div class="gex-row"><span class="gex-en">${esc(e.en)}</span><span class="gex-fr">${esc(e.fr)}</span></div>`).join('')}</div>` : ''}
+      ${sec.tip ? `<div class="gram-tip">💡 ${esc(sec.tip)}</div>` : ''}
+      ${(sec.examples && sec.examples.length) ? `<div class="gram-ex">${sec.examples.map(e => typeof e === 'string' ? `<div class="gex-row"><span class="gex-en">${esc(e)}</span></div>` : `<div class="gex-row"><span class="gex-en">${esc(e.en)}</span>${e.fr ? `<span class="gex-fr">${esc(e.fr)}</span>` : ''}</div>`).join('')}</div>` : ''}
     </div>`
   ).join('') +
     (() => {
