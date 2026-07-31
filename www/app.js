@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.81';
+const APP_VERSION = '2.82';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -3443,7 +3443,7 @@ function markSeriesDone(key) {
 }
 
 function getDailySession() {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = morningDate();
   try {
     const stored = JSON.parse(localStorage.getItem('grammar_daily') || 'null');
     if (stored?.date === today) return stored;
