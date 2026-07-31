@@ -4449,5 +4449,45 @@
         ]
       }
     ]
+  },
+  {
+    "id": "ing-ed-adjectives",
+    "title": "Adjectifs en -ING ou -ED",
+    "subtitle": "CAUSE (-ing) vs EFFET (-ed) — 10 paires essentielles",
+    "sections": [
+      {
+        "heading": "La règle clé",
+        "points": [
+          "-ING → décrit la caractéristique d'une chose (CAUSE)",
+          "-ED → décrit ce que vous ressentez (EFFET)",
+          "The film was boring. (= le film était ennuyeux) → I was bored. (= je m'ennuyais)"
+        ],
+        "tip": "Moyen mnémotechnique : -ING = la chose ; -ED = la personne.",
+        "examples": [
+          "The lecture was interesting. (chose) → I was interested. (personne)",
+          "The news was shocking. (chose) → We were shocked. (personnes)"
+        ]
+      },
+      {
+        "heading": "Paires CAUSE → EFFET",
+        "points": [
+          "amusing → amused : The jokes were amusing. / We were amused by the jokes.",
+          "boring → bored : The film was boring. / The boy felt bored.",
+          "confusing → confused : The rules were confusing. / We were confused.",
+          "disgusting → disgusted : The kitchen was disgusting. / He was disgusted.",
+          "exciting → excited : A circus is exciting. / The kids were excited.",
+          "insulting → insulted : That's an insulting remark! / Alice felt insulted.",
+          "hypnotizing → hypnotized : The speech was hypnotizing. / They were hypnotized.",
+          "moving → moved : The story was moving. / I was moved by the story.",
+          "shocking → shocked : We heard shocking news. / We were shocked.",
+          "tiring → tired : The hike was tiring. / The hikers arrived tired."
+        ],
+        "tip": "Notez que 'tiring' ≠ 'tired' : le trajet est fatigant, mais c'est vous qui êtes fatigué(e).",
+        "examples": [
+          "This job is tiring. (le travail) → I'm tired after work. (moi)",
+          "The ending was moving. (le film) → She was moved to tears. (elle)"
+        ]
+      }
+    ]
   }
 ]

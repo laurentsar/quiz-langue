@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.79';
+const APP_VERSION = '2.80';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2448,6 +2448,14 @@ const _GFIX = {
     { q: "Comment dire 'Tu rayonnes aujourd'hui' ?", opts: ["You're glowing today","You're shining today","You're radiant today","You're beaming today"], ans: "You're glowing today", hint: "Tu rayonnes → You're glowing (expression très naturelle)." },
     { q: "Comment dire 'Tu es en pleine forme' ?", opts: ["You're in great shape","You look healthy","You're very fit","You're in good form"], ans: "You're in great shape", hint: "En pleine forme → in great shape." },
   ],
+  'ing-ed-adjectives': [
+    { q: "The film was very ___. I fell asleep.", opts: ['boring','bored','bore','boringly'], ans: 'boring', hint: "-ING décrit la chose : the film was boring (ennuyeux)." },
+    { q: "We were ___ by the shocking news.", opts: ['shocked','shocking','shock','shockingly'], ans: 'shocked', hint: "-ED décrit ce qu'on ressent : we were shocked (choqués)." },
+    { q: "The hike was ___. (Le trajet était fatigant)", opts: ['tiring','tired','tire','tiresome'], ans: 'tiring', hint: "Le trajet (chose) → tiring ; c'est vous (personne) → tired." },
+    { q: "She was ___ by her son's results. (impressionnée)", opts: ['amazed','amazing','amaze','amazingly'], ans: 'amazed', hint: "Elle ressent → amazed (-ED). Les résultats sont amazing (-ING)." },
+    { q: "The circus is ___ for children.", opts: ['exciting','excited','excite','excitingly'], ans: 'exciting', hint: "Le cirque (chose) → exciting ; les enfants (personnes) → excited." },
+    { q: "I was ___ by the refugee's story. (touché)", opts: ['moved','moving','move','movingly'], ans: 'moved', hint: "-ED pour la personne qui ressent : I was moved." },
+  ],
   'disagreement-expressions': [
     { q: "Comment dire 'Je ne crois pas' poliment ?", opts: ["I don't believe so","I don't think so","I'm not sure","That's not true"], ans: "I don't believe so", hint: "I don't believe so → Je ne crois pas — plus poli que 'I don't think so'." },
     { q: "Que signifie 'That's not true' ?", opts: ["Ce n'est pas vrai","Ce n'est pas juste","Je ne crois pas","Tu as tort"], ans: "Ce n'est pas vrai", hint: "That's not true → Ce n'est pas vrai (direct, à éviter en contexte formel)." },
@@ -3332,6 +3340,24 @@ const _GFIX_SERIES = {
       { q: "'Tout seul' en anglais ?", opts: ['Alone','By myself','All alone','On your own'], ans: 'Alone', hint: "Tout seul / toute seule → Alone." },
       { q: "'À tout prix' en anglais ?", opts: ['At all costs','At any price','Whatever the cost','By all means'], ans: 'At all costs', hint: "À tout prix → At all costs." },
       { q: "Quelle est la différence entre 'à tout à l'heure' et 'tout à l'heure' ?", opts: ["À tout à l'heure = au revoir ; tout à l'heure = plus tôt/plus tard aujourd'hui","Ce sont des synonymes","À tout à l'heure = plus tôt ; tout à l'heure = au revoir","Aucune différence"], ans: "À tout à l'heure = au revoir ; tout à l'heure = plus tôt/plus tard aujourd'hui", hint: "À tout à l'heure = see you later ; tout à l'heure = earlier/later today." },
+    ],
+  ],
+  'ing-ed-adjectives': [
+    [
+      { q: "The new rules were very ___. Nobody understood them.", opts: ['confusing','confused','confuse','confusingly'], ans: 'confusing', hint: "Les règles (chose) → confusing. Les gens → confused." },
+      { q: "He was ___ by the filthy kitchen.", opts: ['disgusted','disgusting','disgust','disgustedly'], ans: 'disgusted', hint: "-ED pour la personne : he was disgusted." },
+      { q: "That's an ___ remark! (insultant)", opts: ['insulting','insulted','insult','insultingly'], ans: 'insulting', hint: "La remarque (chose) → insulting." },
+      { q: "Alice felt ___ by the remark.", opts: ['insulted','insulting','insult','offended'], ans: 'insulted', hint: "Alice (personne) ressent → insulted (-ED)." },
+      { q: "The speech was ___. Everyone listened. (hypnotisant)", opts: ['hypnotizing','hypnotized','hypnotize','hypnotic'], ans: 'hypnotizing', hint: "Le discours (chose) → hypnotizing." },
+      { q: "They were ___ by the speech.", opts: ['hypnotized','hypnotizing','hypnotize','captivated'], ans: 'hypnotized', hint: "Ils (personnes) → hypnotized (-ED)." },
+    ],
+    [
+      { q: "Choisir la bonne forme : 'Je m'ennuyais pendant la réunion.'", opts: ["I was bored during the meeting.","The meeting was bored.","I was boring during the meeting.","The meeting bored."], ans: "I was bored during the meeting.", hint: "Vous (personne) ressentez → bored (-ED)." },
+      { q: "Choisir la bonne forme : 'La réunion était ennuyeuse.'", opts: ["The meeting was boring.","The meeting was bored.","I was boring.","The meeting bored me."], ans: "The meeting was boring.", hint: "La réunion (chose) → boring (-ING)." },
+      { q: "Quelle phrase est correcte ?", opts: ["The kids were excited about the circus.","The kids were exciting about the circus.","The circus was excited.","The kids excited the circus."], ans: "The kids were excited about the circus.", hint: "Les enfants (personnes) ressentent → excited (-ED)." },
+      { q: "Quelle phrase est correcte ?", opts: ["A circus is exciting for children.","A circus is excited for children.","Children are exciting the circus.","The circus excites children."], ans: "A circus is exciting for children.", hint: "Le cirque (chose) → exciting (-ING)." },
+      { q: "Traduire : 'La randonnée était fatigante mais nous étions contents.'", opts: ["The hike was tiring but we were pleased.","The hike was tired but we were pleased.","We were tiring but pleased.","The hike was tiring but we were pleasing."], ans: "The hike was tiring but we were pleased.", hint: "La randonnée → tiring ; nous → pleased (-ED)." },
+      { q: "Règle clé : -ING vs -ED ?", opts: ["-ING = la chose ; -ED = la personne","-ED = la chose ; -ING = la personne","-ING et -ED = même sens","Pas de règle fixe"], ans: "-ING = la chose ; -ED = la personne", hint: "La chose provoque (-ING) ; la personne ressent (-ED)." },
     ],
   ],
   'disagreement-expressions': [
