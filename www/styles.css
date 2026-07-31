@@ -355,6 +355,7 @@ html, body {
 }
 .gex-en { font-weight: 600; }
 .gex-fr { color: var(--text-dim); font-size: 14px; }
+.gram-tip { margin-top: 8px; padding: 8px 12px; border-radius: 8px; background: rgba(27,92,255,0.08); border-left: 3px solid var(--accent); font-size: 14px; color: var(--text-dim); }
 
 /* ----- Séries de grammaire ----- */
 .series-list { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
