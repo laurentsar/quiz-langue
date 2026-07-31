@@ -4353,5 +4353,54 @@
         ]
       }
     ]
+  },
+  {
+    "id": "i-dont-know-alternatives",
+    "title": "Alternatives à \"I don't know\"",
+    "subtitle": "9 façons de dire qu'on ne sait pas en anglais",
+    "sections": [
+      {
+        "heading": "Hésitation douce",
+        "points": [
+          "I'm not sure → Je ne suis pas sûr(e)",
+          "I'm not certain → Je ne suis pas certain(e)",
+          "I'm unsure → Je ne suis pas sûr(e)"
+        ],
+        "tip": "Ces expressions sont polies et naturelles dans toutes les situations.",
+        "examples": [
+          "I'm not sure about the time. Let me check.",
+          "I'm not certain — you should ask the manager.",
+          "I'm unsure what to do next."
+        ]
+      },
+      {
+        "heading": "Exprimer l'ignorance",
+        "points": [
+          "I can't say → Je ne peux pas dire",
+          "I'm not aware → Je ne suis pas au courant",
+          "I wouldn't know → Je ne saurais pas dire"
+        ],
+        "tip": "\"I can't say\" implique aussi parfois la confidentialité.",
+        "examples": [
+          "I can't say for sure — it depends.",
+          "I'm not aware of any changes to the plan.",
+          "I wouldn't know — it's not my area."
+        ]
+      },
+      {
+        "heading": "Expressions familières",
+        "points": [
+          "It beats me → Ça me dépasse / Je n'en sais rien",
+          "I haven't got a clue → Je n'ai pas la moindre idée",
+          "I don't have a clue → Je n'ai aucune idée"
+        ],
+        "tip": "\"It beats me\" est très courant en anglais parlé informel.",
+        "examples": [
+          "It beats me why he left so early.",
+          "I haven't got a clue where my keys are!",
+          "I don't have a clue about cooking."
+        ]
+      }
+    ]
   }
 ]

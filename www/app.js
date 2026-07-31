@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.77';
+const APP_VERSION = '2.78';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2448,6 +2448,14 @@ const _GFIX = {
     { q: "Comment dire 'Tu rayonnes aujourd'hui' ?", opts: ["You're glowing today","You're shining today","You're radiant today","You're beaming today"], ans: "You're glowing today", hint: "Tu rayonnes → You're glowing (expression très naturelle)." },
     { q: "Comment dire 'Tu es en pleine forme' ?", opts: ["You're in great shape","You look healthy","You're very fit","You're in good form"], ans: "You're in great shape", hint: "En pleine forme → in great shape." },
   ],
+  'i-dont-know-alternatives': [
+    { q: "Que signifie 'It beats me' ?", opts: ["Je n'en sais rien","Ça me dépasse (difficile)","Je suis battu","Tu m'impressionnes"], ans: "Je n'en sais rien", hint: "It beats me → Ça me dépasse / Je n'en sais rien (informel)." },
+    { q: "Comment dire 'Je ne suis pas sûr(e)' poliment ?", opts: ["I'm not sure","I have no clue","It beats me","I wouldn't know"], ans: "I'm not sure", hint: "I'm not sure → Je ne suis pas sûr(e) — expression polie et naturelle." },
+    { q: "Quelle expression signifie 'Je ne suis pas au courant' ?", opts: ["I'm not aware","I'm not certain","I can't say","I'm unsure"], ans: "I'm not aware", hint: "I'm not aware → Je ne suis pas au courant de ça." },
+    { q: "Comment dire 'Je n'ai pas la moindre idée' (familier) ?", opts: ["I haven't got a clue","I'm not sure","I can't say","I wouldn't know"], ans: "I haven't got a clue", hint: "I haven't got a clue → Je n'ai pas la moindre idée (très familier)." },
+    { q: "Que signifie 'I wouldn't know' ?", opts: ["Je ne saurais pas dire","Je ne voudrais pas savoir","Je ne le saurai jamais","Je n'aurais pas su"], ans: "Je ne saurais pas dire", hint: "I wouldn't know → Je ne saurais pas dire (ce n'est pas mon domaine)." },
+    { q: "Comment dire 'Je ne peux pas dire' en anglais ?", opts: ["I can't say","I don't know","I'm unsure","I won't tell"], ans: "I can't say", hint: "I can't say → Je ne peux pas dire (parfois : c'est confidentiel)." },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -3316,6 +3324,24 @@ const _GFIX_SERIES = {
       { q: "'Tout seul' en anglais ?", opts: ['Alone','By myself','All alone','On your own'], ans: 'Alone', hint: "Tout seul / toute seule → Alone." },
       { q: "'À tout prix' en anglais ?", opts: ['At all costs','At any price','Whatever the cost','By all means'], ans: 'At all costs', hint: "À tout prix → At all costs." },
       { q: "Quelle est la différence entre 'à tout à l'heure' et 'tout à l'heure' ?", opts: ["À tout à l'heure = au revoir ; tout à l'heure = plus tôt/plus tard aujourd'hui","Ce sont des synonymes","À tout à l'heure = plus tôt ; tout à l'heure = au revoir","Aucune différence"], ans: "À tout à l'heure = au revoir ; tout à l'heure = plus tôt/plus tard aujourd'hui", hint: "À tout à l'heure = see you later ; tout à l'heure = earlier/later today." },
+    ],
+  ],
+  'i-dont-know-alternatives': [
+    [
+      { q: "Laquelle est une alternative polie à 'I don't know' ?", opts: ["I'm not certain","It beats me","I haven't got a clue","I don't have a clue"], ans: "I'm not certain", hint: "I'm not certain → Je ne suis pas certain(e) — poli et neutre." },
+      { q: "Compléter : '___ about the new policy.' (Je ne suis pas au courant)", opts: ["I'm not aware","I'm not sure","I can't say","I wouldn't know"], ans: "I'm not aware", hint: "I'm not aware of / about → Je ne suis pas au courant de." },
+      { q: "Que signifie 'I'm unsure' ?", opts: ["Je ne suis pas sûr(e)","Je suis perdu(e)","Je ne comprends pas","Je ne suis pas prêt(e)"], ans: "Je ne suis pas sûr(e)", hint: "I'm unsure → Je ne suis pas sûr(e) (synonyme de I'm not sure)." },
+      { q: "Quelle expression montre qu'on ignore complètement ?", opts: ["I don't have a clue","I'm not sure","I'm not aware","I can't say"], ans: "I don't have a clue", hint: "I don't have a clue → Je n'ai aucune idée (très familier)." },
+      { q: "Comment dire 'Ce n'est pas mon domaine' élégamment ?", opts: ["I wouldn't know","I can't say","It beats me","I'm not certain"], ans: "I wouldn't know", hint: "I wouldn't know → Je ne saurais pas dire — implique que ce n'est pas son domaine." },
+      { q: "Choisir la plus familière parmi ces alternatives", opts: ["It beats me","I'm not sure","I'm not certain","I can't say"], ans: "It beats me", hint: "It beats me → très familier et expressif." },
+    ],
+    [
+      { q: "Traduire : 'Je ne suis pas sûr(e) — renseigne-toi auprès du manager.'", opts: ["I'm not sure — ask the manager.","I don't know — ask the manager.","I can't say — ask the manager.","I'm unsure — see the manager."], ans: "I'm not sure — ask the manager.", hint: "I'm not sure est la formulation la plus naturelle ici." },
+      { q: "Traduire : 'Ça me dépasse pourquoi il est parti si tôt.'", opts: ["It beats me why he left so early.","I don't know why he left early.","I haven't got a clue why he left.","I'm unsure why he left early."], ans: "It beats me why he left so early.", hint: "It beats me why… → Ça me dépasse pourquoi… (idiome familier)." },
+      { q: "Traduire : 'Je n'ai pas la moindre idée où sont mes clés.'", opts: ["I haven't got a clue where my keys are.","I don't know where my keys are.","I'm not aware of my keys.","I can't say where my keys are."], ans: "I haven't got a clue where my keys are.", hint: "I haven't got a clue → je n'ai pas la moindre idée (très familier)." },
+      { q: "Dans quel cas utilise-t-on surtout 'I can't say' ?", opts: ["Quand c'est confidentiel ou incertain","Quand on ignore totalement","Quand on manque de vocabulaire","Quand on est très familier"], ans: "Quand c'est confidentiel ou incertain", hint: "I can't say peut indiquer la confidentialité ou l'incertitude." },
+      { q: "Quelle phrase est la plus formelle ?", opts: ["I'm not certain","It beats me","I haven't got a clue","I don't have a clue"], ans: "I'm not certain", hint: "I'm not certain → le plus formel et poli des quatre." },
+      { q: "Compléter : '___ — it's not my area.' (Je ne saurais pas dire)", opts: ["I wouldn't know","I'm not sure","I can't say","I'm unsure"], ans: "I wouldn't know", hint: "I wouldn't know — it's not my area → Je ne saurais pas dire — ce n'est pas mon domaine." },
     ],
   ],
 };
