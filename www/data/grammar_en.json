@@ -4665,5 +4665,172 @@
         ]
       }
     ]
+  },
+  {
+    "id": "question-expressions",
+    "title": "Expressions Interrogatives Avancées",
+    "subtitle": "17 expressions pour poser des questions précises en anglais",
+    "sections": [
+      {
+        "heading": "But, raison et manière",
+        "points": [
+          "What for → Dans quel but / Pourquoi",
+          "How come → Comment se fait-il que (informel)",
+          "In what way → De quelle manière",
+          "For what reason → Pour quelle raison",
+          "Under what condition → Sous quelle condition",
+          "On what occasion → À quelle occasion"
+        ],
+        "tip": "\"How come\" est familier et s'utilise sans inversion : How come you're late? (pas How come are you late?).",
+        "examples": [
+          "What for did they call the meeting? → Dans quel but ont-ils convoqué la réunion ?",
+          "How come you didn't tell me? → Comment se fait-il que tu ne m'aies pas dit ?",
+          "In what way does this help us? → De quelle manière est-ce que ça nous aide ?"
+        ]
+      },
+      {
+        "heading": "Qui, d'où, vers où",
+        "points": [
+          "With whom → Avec qui",
+          "By whom → Par qui",
+          "From where → D'où",
+          "To where → Où (vers où)"
+        ],
+        "tip": "Ces formes sont plus formelles : \"With whom did you speak?\" vs \"Who did you speak with?\" (informel).",
+        "examples": [
+          "With whom did you discuss the project? → Avec qui as-tu discuté du projet ?",
+          "By whom was this letter written? → Par qui cette lettre a-t-elle été écrite ?",
+          "From where did they come? → D'où venaient-ils ?"
+        ]
+      },
+      {
+        "heading": "Temps et durée",
+        "points": [
+          "From when → Depuis quand",
+          "Until when → Jusqu'à quand",
+          "At what time → À quelle heure",
+          "At which time → À quelle heure (précise)",
+          "During what time → Pendant combien de temps",
+          "Before what time → Avant quelle heure",
+          "After what time → Après quelle heure"
+        ],
+        "tip": "\"At which time\" est plus précis et formel que \"at what time\".",
+        "examples": [
+          "From when have you been learning English? → Depuis quand apprenez-vous l'anglais ?",
+          "Until when will you be in Paris? → Jusqu'à quand serez-vous à Paris ?",
+          "During what time were you abroad? → Pendant combien de temps étiez-vous à l'étranger ?"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "linking-expressions",
+    "title": "Expressions de Liaison et Conditions",
+    "subtitle": "16 connecteurs logiques pour structurer et argumenter",
+    "sections": [
+      {
+        "heading": "Condition et concession",
+        "points": [
+          "As long as → Tant que (condition)",
+          "As soon as → Dès que",
+          "Provided that → À condition que",
+          "In case → Au cas où",
+          "Even if → Même si",
+          "In spite of → Malgré, en dépit de"
+        ],
+        "tip": "\"Provided that\" = si et seulement si (condition stricte). \"In case\" anticipe un risque éventuel.",
+        "examples": [
+          "You can stay as long as you behave. → Tu peux rester tant que tu te tiens bien.",
+          "Provided that you study, you'll pass. → À condition que tu étudies, tu réussiras.",
+          "Take an umbrella in case it rains. → Prends un parapluie au cas où il pleuvrait."
+        ]
+      },
+      {
+        "heading": "But et conséquence",
+        "points": [
+          "So that → Afin que / Pour que",
+          "So as to → De manière à",
+          "In order to → Afin de / Pour",
+          "As for → Quant à",
+          "As to → En ce qui concerne"
+        ],
+        "tip": "\"So that\" + sujet + verbe ; \"so as to\" + infinitif ; \"in order to\" + infinitif.",
+        "examples": [
+          "He whispered so that nobody would hear. → Il a chuchoté afin que personne n'entende.",
+          "She left early so as to avoid traffic. → Elle est partie tôt de manière à éviter les embouteillages.",
+          "As for the budget, we'll discuss it later. → Quant au budget, nous en parlerons plus tard."
+        ]
+      },
+      {
+        "heading": "Cause et addition",
+        "points": [
+          "Because → Parce que",
+          "Since → Puisque (cause logique)",
+          "Thanks to → Grâce à",
+          "Due to → À cause de",
+          "In addition to → En plus de"
+        ],
+        "tip": "\"Thanks to\" = résultat positif ; \"due to\" = résultat négatif ou neutre.",
+        "examples": [
+          "Since you're here, let's start. → Puisque tu es là, commençons.",
+          "Thanks to your help, we succeeded. → Grâce à ton aide, nous avons réussi.",
+          "In addition to English, she speaks Japanese. → En plus de l'anglais, elle parle japonais."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "verb-types",
+    "title": "Les 5 Types de Verbes",
+    "subtitle": "Finite, Non-Finite, Auxiliary, Modal et Phrasal Verb",
+    "sections": [
+      {
+        "heading": "Finite vs Non-Finite",
+        "points": [
+          "Finite verb → montre le temps, s'accorde avec le sujet (Main Verb)",
+          "Non-Finite verb → ne montre pas le temps, pas d'accord sujet",
+          "Infinitive (non-finite) → to + verb : to go, to eat",
+          "Gerund (non-finite) → verb + ing : going, eating",
+          "Present Participle → verb + ing : going, talking",
+          "Past Participle → V3 / verb + ed : gone, eaten"
+        ],
+        "tip": "Un verbe fini peut être le seul verbe d'une phrase ; un verbe non-fini ne le peut pas.",
+        "examples": [
+          "She runs every day. (finite — présent, 3e personne)",
+          "Running is good for health. (non-finite gerund — sujet)",
+          "He wants to leave. (non-finite infinitive — complément)"
+        ]
+      },
+      {
+        "heading": "Auxiliary Verb (verbe auxiliaire)",
+        "points": [
+          "Primary Auxiliary → be, do, have (temps, voix, aspect)",
+          "be : am, is, are, was, were, been, being",
+          "do : do, does, did",
+          "have : have, has, had",
+          "Modal Auxiliary → can, could, may, might, shall, should, will, would, must, ought to, need, dare, used to"
+        ],
+        "tip": "Les Primary Auxiliaries peuvent aussi être des verbes principaux : I have a car. (have = verbe principal).",
+        "examples": [
+          "She is running. (be = auxiliaire)",
+          "Do you speak English? (do = auxiliaire interrogatif)",
+          "He has finished. (have = auxiliaire perfect)"
+        ]
+      },
+      {
+        "heading": "Phrasal Verb (verbe à particule)",
+        "points": [
+          "Verb + Adverb → give up, take off",
+          "Verb + Preposition → look at, depend on",
+          "Verb + Adverb + Preposition → look forward to, give in to"
+        ],
+        "tip": "Le sens d'un phrasal verb est souvent différent du sens littéral de ses composants.",
+        "examples": [
+          "She gave up smoking. (give up = arrêter — sens non littéral)",
+          "Look at this! (look at = regarder)",
+          "I look forward to seeing you. (look forward to = avoir hâte de)"
+        ]
+      }
+    ]
   }
 ]
