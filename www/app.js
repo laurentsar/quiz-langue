@@ -1027,6 +1027,10 @@ function renderGrammarList(restoreScroll) {
   $('btn-grammar-quiz').classList.toggle('hidden', !isEn);
   $('btn-grammar-learn').classList.toggle('hidden', !isEn);
   $('btn-toggle-ai').classList.toggle('hidden', !isEn);
+  const _wrongCount = isEn ? grammarWrongTopics().length : 0;
+  $('btn-grammar-review').classList.toggle('hidden', !isEn);
+  $('btn-grammar-review').disabled = _wrongCount === 0;
+  $('grammar-review-count').textContent = _wrongCount;
   if (!isEn) $('grammar-ai-panel').classList.add('hidden');
   else $('grammar-ai-panel').classList.toggle('hidden', !grammarCustomPanelOpen);
   document.querySelectorAll('.glang-chip').forEach(c => c.classList.toggle('active', c.dataset.lang === grammarLang));
@@ -1174,6 +1178,7 @@ document.querySelectorAll('.glang-chip').forEach(c => c.addEventListener('click'
 
 $('btn-grammar').addEventListener('click', openGrammar);
 $('btn-grammar-quiz').addEventListener('click', () => startGrammarQuiz(null));
+$('btn-grammar-review').addEventListener('click', startGrammarReview);
 $('btn-grammar-back').addEventListener('click', () => renderGrammarList(true));
 $('btn-grammar-home').addEventListener('click', () => showView('home'));
 
@@ -3898,6 +3903,39 @@ function startGrammarQuizSeries(topicId, seriesIdx) {
     const item = _mkItem(topicId, t.q, shuffle([...t.opts]), t.ans, t.hint);
     const q = buildGrammarQuestion(item);
     q.word = 'gen-' + topicId;
+    return q;
+  });
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
+}
+
+function grammarWrongTopics() {
+  const srs = getSrs(GRAMMAR_KEY);
+  return Object.keys(_GFIX).filter(id => {
+    const e = srs['gen-' + id];
+    return e && e.seen > 0 && (e.last === 'ko' || e.wrong > e.correct);
+  });
+}
+
+function startGrammarReview() {
+  const topics = grammarWrongTopics();
+  if (!topics.length) return;
+  const allItems = [];
+  topics.forEach(id => {
+    getTopicSeries(id).flat().forEach(t => {
+      allItems.push(_mkItem(id, t.q, shuffle([...t.opts]), t.ans, t.hint));
+    });
+  });
+  const count = Math.min(grammarCustomCount, allItems.length);
+  state.kind = 'grammar';
+  state.level = 'Global';
+  state.badge = `⟳ Révision (${topics.length} concept${topics.length > 1 ? 's' : ''})`;
+  state.mode = 'review';
+  state.questions = shuffle(allItems).slice(0, count).map(item => {
+    const q = buildGrammarQuestion(item);
+    q.word = 'gen-' + item.topic;
     return q;
   });
   state.answers = [];
