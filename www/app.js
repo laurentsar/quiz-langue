@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.86';
+const APP_VERSION = '2.88';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2521,6 +2521,62 @@ const _GFIX = {
     { q: "Un gerund (gérondif) est quel type de verbe ?", opts: ['Non-fini (non-finite)','Fini (finite)','Auxiliaire','Modal'], ans: 'Non-fini (non-finite)', hint: "Le gérondif (verb + ing) est un verbe non-fini — il n'indique pas le temps." },
     { q: "Quel modal verb exprime la nécessité absolue ?", opts: ['must','can','might','shall'], ans: 'must', hint: "Must → nécessité absolue. Can → capacité. Might → possibilité faible." },
   ],
+  'idioms-work-learning': [
+    { q: "Que signifie 'bite the bullet' ?", opts: ["Prendre sur soi / avaler la pilule","Mâcher son frein","Foncer tête baissée","Arrêter de travailler"], ans: "Prendre sur soi / avaler la pilule", hint: "Bite the bullet → faire face à quelque chose de difficile avec courage." },
+    { q: "Que signifie 'burn the midnight oil' ?", opts: ["Travailler tard dans la nuit","Gaspiller ses ressources","Allumer les bougies","Faire la fête jusqu'au bout"], ans: "Travailler tard dans la nuit", hint: "Burn the midnight oil → travailler tard, à la lumière d'une lampe à huile." },
+    { q: "Que signifie 'call it a day' ?", opts: ['Arrêter de travailler / en rester là','Terminer la journée à midi','Appeler un collègue','Tout recommencer'], ans: 'Arrêter de travailler / en rester là', hint: "Call it a day → décider que le travail du jour est terminé." },
+    { q: "Que signifie 'back to square one' ?", opts: ['Repartir de zéro','Revenir au bureau','Recommencer correctement','Retourner à la case départ du jeu'], ans: 'Repartir de zéro', hint: "Back to square one → tout recommencer depuis le début." },
+    { q: "Que signifie 'miss the boat' ?", opts: ['Rater le coche / manquer une opportunité','Rater son bus','Arriver en retard','Manquer un rendez-vous'], ans: 'Rater le coche / manquer une opportunité', hint: "Miss the boat → laisser passer une chance qu'on ne retrouvera peut-être pas." },
+    { q: "Que signifie 'kill two birds with one stone' ?", opts: ["Faire d'une pierre deux coups","Éliminer des problèmes","Travailler trop vite","Tout accomplir en une journée"], ans: "Faire d'une pierre deux coups", hint: "Kill two birds with one stone → atteindre deux objectifs avec une seule action." },
+  ],
+  'idioms-communication': [
+    { q: "Que signifie 'beat around the bush' ?", opts: ['Tourner autour du pot','Parler fort','Éviter le sujet principal','Chercher ses mots'], ans: 'Tourner autour du pot', hint: "Beat around the bush → éviter de dire quelque chose directement." },
+    { q: "Que signifie 'spill the beans' ?", opts: ['Révéler un secret','Faire une gaffe','Renverser quelque chose','Raconter une histoire'], ans: 'Révéler un secret', hint: "Spill the beans → révéler un secret, souvent accidentellement." },
+    { q: "Que signifie 'all ears' ?", opts: ['Tout ouïe / à l\'écoute','Attentif visuellement','Disponible','Prêt à parler'], ans: "Tout ouïe / à l'écoute", hint: "All ears → entièrement à l'écoute, prêt à entendre ce qu'on va dire." },
+    { q: "Que signifie 'pull someone's leg' ?", opts: ['Faire marcher quelqu\'un','Blesser quelqu\'un','Aider quelqu\'un','Persuader quelqu\'un'], ans: "Faire marcher quelqu'un", hint: "Pull someone's leg → taquiner ou faire croire quelque chose de faux." },
+    { q: "Que signifie 'speak of the devil' ?", opts: ['Quand on parle du loup','Parler de quelqu\'un de mauvais','Appeler quelqu\'un','Faire une mauvaise blague'], ans: "Quand on parle du loup", hint: "Speak of the devil → dit quand la personne dont on parlait arrive." },
+    { q: "Différence entre 'let the cat out of the bag' et 'spill the beans' ?", opts: ["Même sens : révéler un secret","Let the cat... = mentir ; spill the beans = trahir","Let the cat... = positif ; spill... = négatif","Spill the beans = volontairement ; let the cat... = uniquement par accident"], ans: "Même sens : révéler un secret", hint: "Les deux signifient révéler un secret, souvent sans le vouloir." },
+  ],
+  'idioms-feelings-situations': [
+    { q: "Que signifie 'a blessing in disguise' ?", opts: ['Un bien pour un mal / une chance cachée','Une bénédiction évidente','Une mauvaise surprise','Une occasion manquée'], ans: 'Un bien pour un mal / une chance cachée', hint: "A blessing in disguise → quelque chose qui semblait mauvais mais s'avère bénéfique." },
+    { q: "Que signifie 'under the weather' ?", opts: ['Ne pas être dans son assiette','Travailler sous la pluie','Être déprimé','Avoir froid'], ans: 'Ne pas être dans son assiette', hint: "Under the weather → se sentir malade ou pas en forme." },
+    { q: "Que signifie 'once in a blue moon' ?", opts: ['Très rarement','Une fois par mois','La nuit seulement','Quand la lune est pleine'], ans: 'Très rarement', hint: "Once in a blue moon → très rarement, presque jamais." },
+    { q: "Que signifie 'on cloud nine' ?", opts: ['Aux anges / extrêmement heureux','Dans les nuages','Rêveur','Distrait'], ans: 'Aux anges / extrêmement heureux', hint: "On cloud nine → dans un état de bonheur intense." },
+    { q: "Que signifie 'water under the bridge' ?", opts: ["C'est du passé / on tourne la page","Problème résolu","Eau coulée sous les ponts (littéral)","Chose sans importance"], ans: "C'est du passé / on tourne la page", hint: "Water under the bridge → ce qui est passé ne sert à rien d'en débattre." },
+    { q: "Que signifie 'through thick and thin' ?", opts: ['Dans les bons et les mauvais moments','Avec beaucoup de difficulté','À travers tous les obstacles','En toutes circonstances physiques'], ans: 'Dans les bons et les mauvais moments', hint: "Through thick and thin → loyauté inconditionnelle, en toutes circonstances." },
+  ],
+  'idioms-decisions-risks': [
+    { q: "Que signifie 'bite off more than you can chew' ?", opts: ['Voir trop grand / vouloir trop faire','Manger trop vite','Accepter une proposition dangereuse','Travailler trop dur'], ans: 'Voir trop grand / vouloir trop faire', hint: "Bite off more than you can chew → prendre en charge plus qu'on ne peut gérer." },
+    { q: "Que signifie 'face the music' ?", opts: ['Assumer les conséquences','Affronter la musique','Accepter la critique','Écouter attentivement'], ans: 'Assumer les conséquences', hint: "Face the music → faire face aux conséquences de ses actes, même désagréables." },
+    { q: "Que signifie 'throw in the towel' ?", opts: ["Jeter l'éponge / abandonner","Se battre jusqu'au bout","Tout recommencer","Refuser de participer"], ans: "Jeter l'éponge / abandonner", hint: "Throw in the towel → vient de la boxe, où l'entraîneur jette la serviette pour arrêter le combat." },
+    { q: "Que signifie 'the last straw' ?", opts: ['La goutte d\'eau qui fait déborder le vase','La dernière chance','La paille finale','Le dernier espoir'], ans: "La goutte d'eau qui fait déborder le vase", hint: "The last straw → l'élément final qui rend une situation insupportable." },
+    { q: "Que signifie 'jump the gun' ?", opts: ['Agir trop vite / brûler les étapes','Sauter sur une opportunité','Tirer en premier','Devancer ses adversaires'], ans: 'Agir trop vite / brûler les étapes', hint: "Jump the gun → partir avant le signal (sport), agir prématurément." },
+    { q: "Que signifie 'put all your eggs in one basket' ?", opts: ['Mettre tous ses œufs dans le même panier','Se concentrer sur un seul objectif','Risquer tout sur une seule chance','Compter sur une seule personne'], ans: 'Mettre tous ses œufs dans le même panier', hint: "Put all your eggs in one basket → ne pas diversifier ses risques." },
+  ],
+  'idioms-character-attitude': [
+    { q: "Que signifie 'a dime a dozen' ?", opts: ['Très commun / banal','Très rare','Peu coûteux','À la douzaine'], ans: 'Très commun / banal', hint: "A dime a dozen → si commun que ça n'a pas grande valeur." },
+    { q: "Que signifie 'you can't judge a book by its cover' ?", opts: ["L'habit ne fait pas le moine","Il faut apprendre à lire","Les apparences sont trompeuses","Tout ce qui brille n'est pas or"], ans: "L'habit ne fait pas le moine", hint: "You can't judge a book by its cover → l'apparence ne reflète pas la valeur réelle." },
+    { q: "Que signifie 'caught red-handed' ?", opts: ['Pris la main dans le sac','Surpris en flagrant délit','Pris sur le fait avec des preuves','Toutes ces réponses'], ans: 'Toutes ces réponses', hint: "Caught red-handed → surpris en train de faire quelque chose de répréhensible." },
+    { q: "Que signifie 'out of the blue' ?", opts: ['De façon inattendue / sans prévenir','Du ciel','Sans raison','En secret'], ans: 'De façon inattendue / sans prévenir', hint: "Out of the blue → comme un coup de tonnerre dans un ciel bleu — totalement inattendu." },
+    { q: "Que signifie 'walk on eggshells' ?", opts: ['Marcher sur des œufs / être très précautionneux','Faire attention à ses pas','Avoir peur de quelqu\'un','Éviter un sujet délicat'], ans: "Marcher sur des œufs / être très précautionneux", hint: "Walk on eggshells → agir avec une extrême précaution pour ne pas offenser." },
+    { q: "Que signifie 'a leopard can't change its spots' ?", opts: ["On ne change pas sa nature","Il faut accepter les gens tels qu'ils sont","Les mauvaises habitudes persistent","Les deux premières réponses"], ans: "On ne change pas sa nature", hint: "A leopard can't change its spots → la nature profonde d'une personne ne change pas." },
+  ],
+  'fixed-prepositions-1': [
+    { q: "She apologized ___ being late.", opts: ['for','of','to','at'], ans: 'for', hint: "Apologize FOR = s'excuser de. Toujours suivi de FOR." },
+    { q: "This problem is difficult to deal ___.", opts: ['with','from','to','in'], ans: 'with', hint: "Deal WITH = gérer / s'occuper de." },
+    { q: "He insisted ___ paying the bill.", opts: ['on','in','for','to'], ans: 'on', hint: "Insist ON doing something = insister pour faire quelque chose." },
+    { q: "The committee consists ___ five members.", opts: ['of','from','in','with'], ans: 'of', hint: "Consist OF = être composé de." },
+    { q: "You can always count ___ me.", opts: ['on','in','for','to'], ans: 'on', hint: "Count ON someone = compter sur quelqu'un." },
+    { q: "We arrived ___ the airport on time.", opts: ['at','in','to','for'], ans: 'at', hint: "Arrive AT (lieu précis) ; Arrive IN (ville, pays)." },
+  ],
+  'fixed-prepositions-2': [
+    { q: "He refused to pay ___ the damage.", opts: ['for','of','to','on'], ans: 'for', hint: "Pay FOR something = payer pour quelque chose." },
+    { q: "We should protect children ___ online dangers.", opts: ['from','of','against','with'], ans: 'from', hint: "Protect FROM = protéger de (une menace)." },
+    { q: "She specializes ___ tax law.", opts: ['in','on','at','for'], ans: 'in', hint: "Specialize IN a field = se spécialiser dans un domaine." },
+    { q: "He finally succeeded ___ passing the exam.", opts: ['in','at','on','for'], ans: 'in', hint: "Succeed IN doing = réussir à faire quelque chose." },
+    { q: "Take care ___ yourself!", opts: ['of','for','about','with'], ans: 'of', hint: "Take care OF = prendre soin de." },
+    { q: "She recovered ___ her illness quickly.", opts: ['from','of','to','in'], ans: 'from', hint: "Recover FROM = se remettre de." },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -3551,6 +3607,168 @@ const _GFIX_SERIES = {
       { q: "Identifier le gerund : 'Running is good for health.'", opts: ['Running','is','good','health'], ans: 'Running', hint: "Running en début de phrase = gérondif (non-fini) qui sert de sujet." },
       { q: "Quelle liste contient uniquement des modaux ?", opts: ['can, could, may, must, shall','be, do, have, must','am, is, are, can','go, come, take, will'], ans: 'can, could, may, must, shall', hint: "Les modaux : can, could, may, might, shall, should, will, would, must, ought to…" },
       { q: "Que signifie 'depend on' comme phrasal verb ?", opts: ['Dépendre de','Compter à','Regarder sur','Attendre pour'], ans: 'Dépendre de', hint: "Depend on (Verb + Preposition) → dépendre de, compter sur." },
+    ],
+  ],
+  'idioms-work-learning': [
+    [
+      { q: "Que signifie 'go the extra mile' ?", opts: ['Faire plus que nécessaire','Parcourir une grande distance','Travailler plus longtemps','Aller au bureau à pied'], ans: 'Faire plus que nécessaire', hint: "Go the extra mile → fournir un effort supplémentaire au-delà des attentes." },
+      { q: "Que signifie 'cut corners' ?", opts: ['Rogner sur la qualité / faire les choses à moitié','Prendre des raccourcis physiques','Économiser sur tout','Réduire les coûts'], ans: 'Rogner sur la qualité / faire les choses à moitié', hint: "Cut corners → faire quelque chose plus vite ou moins bien pour économiser." },
+      { q: "Que signifie 'leave no stone unturned' ?", opts: ['Tout essayer / ne rien laisser au hasard','Chercher partout','Ne rien oublier','Retourner les pierres'], ans: 'Tout essayer / ne rien laisser au hasard', hint: "Leave no stone unturned → faire tout ce qui est possible pour trouver une solution." },
+      { q: "Que signifie 'hit the nail on the head' ?", opts: ['Dire exactement ce qu\'il faut / mettre le doigt dessus','Réussir du premier coup','Trouver la solution rapidement','Frapper juste'], ans: "Dire exactement ce qu'il faut / mettre le doigt dessus", hint: "Hit the nail on the head → identifier parfaitement le problème ou la solution." },
+      { q: "Que signifie 'get the hang of it' ?", opts: ['Prendre le coup de main / comprendre comment faire','Accrocher quelque chose','Commencer à apprécier','Attraper le rythme'], ans: 'Prendre le coup de main / comprendre comment faire', hint: "Get the hang of it → apprendre à maîtriser quelque chose après de la pratique." },
+      { q: "Que signifie 'know the ropes' ?", opts: ['Connaître les ficelles du métier','Apprendre les bases','Maîtriser les détails techniques','Comprendre les règles'], ans: 'Connaître les ficelles du métier', hint: "Know the ropes → comprendre comment les choses fonctionnent dans un domaine." },
+    ],
+    [
+      { q: "Traduire : 'Elle a tout essayé pour retrouver son chien.'", opts: ["She left no stone unturned to find her dog.","She missed the boat to find her dog.","She burned the midnight oil to find her dog.","She hit the jackpot finding her dog."], ans: "She left no stone unturned to find her dog.", hint: "Leave no stone unturned → faire tout ce qui est possible." },
+      { q: "Que signifie 'in over your head' ?", opts: ['Être dépassé par les événements','Être submergé de travail','Avoir trop de responsabilités','Avoir accepté trop de projets'], ans: 'Être dépassé par les événements', hint: "In over your head → trop impliqué pour gérer la situation." },
+      { q: "Que signifie \"don't count your chickens before they hatch\" ?", opts: ["Ne vendez pas la peau de l'ours","Soyez patient","Ne présumez pas du succès","Ne comptez pas sur l'avenir"], ans: "Ne vendez pas la peau de l'ours", hint: "Don't count your chickens → ne présumez pas d'un résultat avant qu'il soit acquis." },
+      { q: "Que signifie 'no pain, no gain' ?", opts: ['Sans effort, pas de résultat','Il faut souffrir pour réussir','Le travail est difficile','La réussite demande du sacrifice'], ans: 'Sans effort, pas de résultat', hint: "No pain, no gain → pas de progrès sans effort et sans difficultés." },
+      { q: "Que signifie 'get out of hand' ?", opts: ['Devenir incontrôlable','Dépasser les bornes','Échapper à tout contrôle','Toutes ces réponses'], ans: 'Toutes ces réponses', hint: "Get out of hand → une situation qui devient impossible à contrôler." },
+      { q: "Traduire : 'Pour résumer, c'était une réussite totale.'", opts: ["To make a long story short, it was a complete success.","To cut to the chase, it was a complete success.","All in all, it was a complete success.","To cut corners, it was a complete success."], ans: "To make a long story short, it was a complete success.", hint: "Make a long story short → résumer en sautant les détails." },
+    ],
+  ],
+  'idioms-communication': [
+    [
+      { q: "Que signifie 'cut to the chase' ?", opts: ["En venir au fait / aller droit au but","Couper court à la conversation","Interrompre quelqu'un","Changer de sujet"], ans: "En venir au fait / aller droit au but", hint: "Cut to the chase → venir directement à l'essentiel sans détours." },
+      { q: "Que signifie 'read between the lines' ?", opts: ['Lire entre les lignes / comprendre le sens caché','Analyser en détail','Chercher le double sens','Interpréter un texte'], ans: 'Lire entre les lignes / comprendre le sens caché', hint: "Read between the lines → comprendre ce qui n'est pas dit explicitement." },
+      { q: "Que signifie 'your guess is as good as mine' ?", opts: ["Je n'en sais pas plus que toi","On a les mêmes chances","Je suppose la même chose","On pense pareil"], ans: "Je n'en sais pas plus que toi", hint: "Your guess is as good as mine → je suis aussi ignorant que toi sur ce sujet." },
+      { q: "Que signifie 'rain on someone's parade' ?", opts: ["Gâcher la fête / briser les plans de quelqu'un","Critiquer quelqu'un en public","Décevoir quelqu'un","Ruiner les efforts de quelqu'un"], ans: "Gâcher la fête / briser les plans de quelqu'un", hint: "Rain on someone's parade → gâcher le bonheur ou les plans de quelqu'un." },
+      { q: "Que signifie 'twist someone's arm' ?", opts: ["Forcer la main à quelqu'un / convaincre sous pression","Blesser quelqu'un","Exercer une pression physique","Convaincre facilement"], ans: "Forcer la main à quelqu'un / convaincre sous pression", hint: "Twist someone's arm → persuader quelqu'un contre son gré." },
+      { q: "Que signifie 'give someone the cold shoulder' ?", opts: ["Ignorer quelqu'un volontairement","Être froid avec quelqu'un","Traiter quelqu'un avec mépris","Éviter quelqu'un"], ans: "Ignorer quelqu'un volontairement", hint: "Give someone the cold shoulder → ignorer délibérément quelqu'un." },
+    ],
+    [
+      { q: "Traduire : 'Arrête de tourner autour du pot et dis-moi la vérité.'", opts: ["Stop beating around the bush and tell me the truth.","Stop cutting corners and tell me the truth.","Stop rocking the boat and tell me the truth.","Stop spilling the beans and tell me the truth."], ans: "Stop beating around the bush and tell me the truth.", hint: "Beat around the bush → tourner autour du pot, éviter le sujet." },
+      { q: "Que signifie 'break the ice' ?", opts: ["Briser la glace / créer une atmosphère détendue","Commencer une réunion","Résoudre un problème","Faire une blague"], ans: "Briser la glace / créer une atmosphère détendue", hint: "Break the ice → faire quelque chose pour détendre l'atmosphère dans un groupe." },
+      { q: "Que signifie 'pass the buck' ?", opts: ["Se décharger de la responsabilité","Passer l'argent à quelqu'un","Déléguer une tâche","Éviter une obligation"], ans: "Se décharger de la responsabilité", hint: "Pass the buck → transférer la responsabilité à quelqu'un d'autre." },
+      { q: "Que signifie 'rock the boat' ?", opts: ["Faire des vagues / semer le trouble","Provoquer une crise","Créer des problèmes dans une situation stable","Toutes ces réponses"], ans: "Toutes ces réponses", hint: "Rock the boat → perturber une situation stable et fonctionnelle." },
+      { q: "Que signifie 'steal someone's thunder' ?", opts: ["Voler la vedette à quelqu'un","Utiliser les idées de quelqu'un","Prendre le mérite de quelqu'un","Interrompre quelqu'un"], ans: "Voler la vedette à quelqu'un", hint: "Steal someone's thunder → attirer l'attention à la place de quelqu'un d'autre." },
+      { q: "Que signifie 'wrap your head around' ?", opts: ["Arriver à comprendre quelque chose de difficile","Analyser en profondeur","Étudier attentivement","Chercher à comprendre"], ans: "Arriver à comprendre quelque chose de difficile", hint: "Wrap your head around → réussir à comprendre quelque chose de complexe." },
+    ],
+  ],
+  'idioms-feelings-situations': [
+    [
+      { q: "Que signifie 'every cloud has a silver lining' ?", opts: ['Après la pluie le beau temps / il y a du bon dans chaque mauvaise situation','Chaque problème a une solution','Soyez optimiste','Il faut toujours espérer'], ans: 'Après la pluie le beau temps / il y a du bon dans chaque mauvaise situation', hint: "Every cloud has a silver lining → même dans une mauvaise situation, il y a un aspect positif." },
+      { q: "Que signifie 'keep your chin up' ?", opts: ['Garde la tête haute / courage','Sois fier','Ne montre pas tes faiblesses','Reste positif'], ans: 'Garde la tête haute / courage', hint: "Keep your chin up → rester courageux et optimiste malgré les difficultés." },
+      { q: "Que signifie 'blow off steam' ?", opts: ["Décompresser / évacuer sa frustration","Exploser de colère","Faire de l'exercice","Se défouler physiquement"], ans: "Décompresser / évacuer sa frustration", hint: "Blow off steam → libérer sa tension ou sa frustration accumulée." },
+      { q: "Que signifie 'in the same boat' ?", opts: ['Dans la même galère / même situation','Avoir les mêmes problèmes','Être solidaires','Faire face aux mêmes difficultés'], ans: 'Dans la même galère / même situation', hint: "In the same boat → être dans la même situation difficile que quelqu'un d'autre." },
+      { q: "Que signifie 'add insult to injury' ?", opts: ["En rajouter / aggraver une mauvaise situation","Blesser et insulter quelqu'un","Cumuler les problèmes","Frapper quelqu'un de mots"], ans: "En rajouter / aggraver une mauvaise situation", hint: "Add insult to injury → rendre une mauvaise situation encore pire." },
+      { q: "Que signifie 'get cold feet' ?", opts: ["Avoir la frousse / perdre courage au dernier moment","Avoir froid","Hésiter avant de commencer","Renoncer à un projet"], ans: "Avoir la frousse / perdre courage au dernier moment", hint: "Get cold feet → perdre courage et hésiter juste avant de faire quelque chose." },
+    ],
+    [
+      { q: "Que signifie 'better late than never' ?", opts: ['Mieux vaut tard que jamais','Il faut s\'excuser quand on est en retard','Un retard vaut mieux qu\'une absence','Il vaut mieux agir même tardivement'], ans: "Mieux vaut tard que jamais", hint: "Better late than never → il vaut mieux faire quelque chose tard que de ne pas le faire du tout." },
+      { q: "Que signifie 'the best of both worlds' ?", opts: ['Le meilleur des deux mondes / tous les avantages','Le meilleur choix possible','Avoir le beurre et l\'argent du beurre','Profiter de tout'], ans: 'Le meilleur des deux mondes / tous les avantages', hint: "The best of both worlds → profiter des avantages de deux options différentes." },
+      { q: "Que signifie 'easy does it' ?", opts: ['Doucement / vas-y mollo','Simplicité avant tout','Ne te complique pas la vie','Le plus facile d\'abord'], ans: 'Doucement / vas-y mollo', hint: "Easy does it → conseil de prudence : faire quelque chose lentement et avec soin." },
+      { q: "Que signifie 'on the ball' ?", opts: ['Vif et efficace / réactif','À l\'aise','Concentré','Performant'], ans: 'Vif et efficace / réactif', hint: "On the ball → être alerte, compétent et réactif." },
+      { q: "Que signifie 'up in the air' ?", opts: ["Dans l'incertitude / pas encore décidé","Sans fondement","Impossible","En suspension"], ans: "Dans l'incertitude / pas encore décidé", hint: "Up in the air → une situation encore incertaine, pas encore résolue." },
+      { q: "Que signifie 'on thin ice' ?", opts: ['Sur un terrain glissant / situation risquée',"Dans une position délicate","En danger","À la limite"], ans: 'Sur un terrain glissant / situation risquée', hint: "On thin ice → dans une situation précaire où une erreur pourrait avoir de graves conséquences." },
+    ],
+  ],
+  'idioms-decisions-risks': [
+    [
+      { q: "Que signifie 'sit on the fence' ?", opts: ['Rester neutre / ne pas se décider','Éviter les conflits','Refuser de choisir','Être indécis'], ans: 'Rester neutre / ne pas se décider', hint: "Sit on the fence → refuser de prendre position dans un débat ou une décision." },
+      { q: "Que signifie 'take the bull by the horns' ?", opts: ["Prendre le taureau par les cornes / affronter directement","S'attaquer à un problème difficile","Agir avec courage","Toutes ces réponses"], ans: "Toutes ces réponses", hint: "Take the bull by the horns → affronter un problème difficile avec courage et décision." },
+      { q: "Que signifie 'let sleeping dogs lie' ?", opts: ["Ne pas réveiller le chat qui dort / ne pas ranimer un vieux problème","Laisser les choses aller","Ignorer les problèmes","Éviter les conflits"], ans: "Ne pas réveiller le chat qui dort / ne pas ranimer un vieux problème", hint: "Let sleeping dogs lie → ne pas soulever un problème qui s'est calmé." },
+      { q: "Que signifie 'off the hook' ?", opts: ["Tiré d'affaire / hors de cause","Libre de toute obligation","Sans responsabilité","Hors de danger"], ans: "Tiré d'affaire / hors de cause", hint: "Off the hook → ne plus être tenu responsable ou en difficulté." },
+      { q: "Que signifie 'costs an arm and a leg' ?", opts: ["Coûter les yeux de la tête","Être très cher","Être hors de prix","Toutes ces réponses"], ans: "Toutes ces réponses", hint: "Costs an arm and a leg → quelque chose d'extrêmement cher." },
+      { q: "Que signifie 'cold turkey' ?", opts: ["Arrêter quelque chose d'un coup / sevrage brutal","Manger sainement","Être très courageux","Ne rien dire"], ans: "Arrêter quelque chose d'un coup / sevrage brutal", hint: "Cold turkey → arrêter une addiction ou une habitude brutalement, sans aide progressive." },
+    ],
+    [
+      { q: "Traduire : 'Il a dû assumer les conséquences de sa décision.'", opts: ["He had to face the music for his decision.","He had to throw in the towel for his decision.","He had to bite the bullet for his decision.","He had to jump the gun for his decision."], ans: "He had to face the music for his decision.", hint: "Face the music → assumer les conséquences, souvent désagréables." },
+      { q: "Que signifie 'cry over spilled milk' ?", opts: ["Se lamenter en vain / pleurer sur du lait renversé","Regretter ses erreurs","Ressasser le passé","Toutes ces réponses"], ans: "Toutes ces réponses", hint: "Cry over spilled milk → se lamenter sur quelque chose qui ne peut pas être changé." },
+      { q: "Que signifie 'jump on the bandwagon' ?", opts: ['Suivre la tendance / faire comme tout le monde','Profiter d\'une opportunité','Rejoindre un mouvement populaire','Faire ce que font les autres'], ans: "Suivre la tendance / faire comme tout le monde", hint: "Jump on the bandwagon → adopter une mode ou une idée parce que tout le monde le fait." },
+      { q: "Que signifie 'take it with a grain of salt' ?", opts: ["Ne pas prendre trop au sérieux","Remettre en question","Accueillir avec scepticisme","Toutes ces réponses"], ans: "Toutes ces réponses", hint: "Take it with a grain of salt → ne pas croire ou accepter quelque chose entièrement." },
+      { q: "Que signifie 'the ball is in your court' ?", opts: ["C'est à toi de jouer / c'est ta décision","Tu as la responsabilité","C'est ton tour d'agir","Toutes ces réponses"], ans: "Toutes ces réponses", hint: "The ball is in your court → c'est maintenant à l'autre personne d'agir ou de décider." },
+      { q: "Que signifie \"don't put it past someone\" ?", opts: ["Croire quelqu'un capable du pire","Ne pas faire confiance","Soupçonner quelqu'un","Penser le pire de quelqu'un"], ans: "Croire quelqu'un capable du pire", hint: "Don't put it past someone → croire que cette personne est capable de faire quelque chose de mal." },
+    ],
+  ],
+  'idioms-character-attitude': [
+    [
+      { q: "Que signifie 'a leopard can't change its spots' ?", opts: ["On ne change pas sa nature","Il faut accepter les gens","Les habitudes persistent","Tout le monde peut changer"], ans: "On ne change pas sa nature", hint: "A leopard can't change its spots → la nature profonde d'une personne ne change pas." },
+      { q: "Que signifie 'barking up the wrong tree' ?", opts: ["Faire fausse route / se tromper de cible","Chercher au mauvais endroit","Accuser la mauvaise personne","Toutes ces réponses"], ans: "Toutes ces réponses", hint: "Barking up the wrong tree → chercher ou accuser dans la mauvaise direction." },
+      { q: "Que signifie 'skeleton in the closet' ?", opts: ["Un secret honteux / un cadavre dans le placard","Un problème caché","Un secret de famille","Toutes ces réponses"], ans: "Toutes ces réponses", hint: "Skeleton in the closet → un secret embarrassant que quelqu'un cache." },
+      { q: "Que signifie 'the tip of the iceberg' ?", opts: ["La partie visible d'un problème bien plus grand","Le début d'un problème","Un problème mineur","Le premier symptôme"], ans: "La partie visible d'un problème bien plus grand", hint: "The tip of the iceberg → ce qu'on voit n'est qu'une petite partie d'un problème plus vaste." },
+      { q: "Que signifie 'to each their own' ?", opts: ["Chacun ses goûts / à chacun le sien","Tout le monde est différent","On a tous nos préférences","Toutes ces réponses"], ans: "Toutes ces réponses", hint: "To each their own → chacun a le droit d'avoir ses propres goûts et préférences." },
+      { q: "Que signifie 'not my cup of tea' ?", opts: ["Ce n'est pas mon truc / pas à mon goût","Je n'aime pas le thé","Ce n'est pas mon style","Je préfère autre chose"], ans: "Ce n'est pas mon truc / pas à mon goût", hint: "Not my cup of tea → quelque chose qui ne correspond pas à nos goûts ou préférences." },
+    ],
+    [
+      { q: "Que signifie 'devil's advocate' ?", opts: ["Avocat du diable / argumenter par principe","Défendre une mauvaise cause","Prendre une position extrême","Provoquer un débat"], ans: "Avocat du diable / argumenter par principe", hint: "Devil's advocate → défendre une position à laquelle on ne croit pas forcément, pour stimuler le débat." },
+      { q: "Que signifie 'keep your fingers crossed' ?", opts: ["Croiser les doigts / espérer bonne chance","Prier pour quelque chose","Espérer le meilleur","Faire un vœu"], ans: "Croiser les doigts / espérer bonne chance", hint: "Keep your fingers crossed → espérer que quelque chose se passe bien." },
+      { q: "Que signifie 'under your nose' ?", opts: ["Sous ton nez / évident","Juste devant toi","Obvious","Pas difficile à trouver"], ans: "Sous ton nez / évident", hint: "Under your nose → quelque chose d'évident qui était là depuis le début sans être remarqué." },
+      { q: "Que signifie 'go down in flames' ?", opts: ["Échouer de façon spectaculaire","Perdre complètement","Subir une défaite cuisante","Toutes ces réponses"], ans: "Toutes ces réponses", hint: "Go down in flames → échouer de manière dramatique et visible." },
+      { q: "Que signifie 'not playing with a full deck' ?", opts: ["Ne pas avoir toute sa tête / un peu fou","Manquer d'intelligence","Avoir des lacunes","Être bizarre"], ans: "Ne pas avoir toute sa tête / un peu fou", hint: "Not playing with a full deck → manquer de bon sens ou de santé mentale." },
+      { q: "Que signifie \"don't bite the hand that feeds you\" ?", opts: ["Ne mords pas la main qui te nourrit","Sois reconnaissant","Ne trahis pas ceux qui t'aident","Toutes ces réponses"], ans: "Toutes ces réponses", hint: "Don't bite the hand that feeds you → ne pas nuire à ceux dont on dépend." },
+    ],
+  ],
+  'take-expressions': [
+    [
+      { q: "Compléter : 'Please ___ — the doctor will see you shortly.'", opts: ['take a seat','take a stand','take a break','take the floor'], ans: 'take a seat', hint: "Take a seat → s'asseoir / se mettre à sa place." },
+      { q: "Que signifie 'take into account' ?", opts: ['Prendre en compte / tenir compte de','Prendre note','Prendre en considération uniquement','Compter sur quelqu\'un'], ans: 'Prendre en compte / tenir compte de', hint: "Take into account → tenir compte de, considérer dans sa réflexion." },
+      { q: "Que signifie 'take the floor' ?", opts: ['Prendre la parole','Prendre le sol','Commencer à parler','Diriger la réunion'], ans: 'Prendre la parole', hint: "Take the floor → prendre la parole, s'adresser à un groupe." },
+      { q: "Différence entre 'take a chance' et 'take your chance' ?", opts: ["Take a chance = tenter le coup (spontané) ; take your chance = saisir l'occasion","Ils sont synonymes","Take your chance est plus formel","Take a chance s'utilise uniquement au jeu"], ans: "Take a chance = tenter le coup (spontané) ; take your chance = saisir l'occasion", hint: "Take a chance (spontané) vs take your chance (occasion qui se présente)." },
+      { q: "Compléter : 'Don't rush — ___ to review the terms.'", opts: ['take your time','take a break','take a stand','take action'], ans: 'take your time', hint: "Take your time → prendre son temps, ne pas se presser." },
+      { q: "Que signifie 'take back your words' ?", opts: ['Retirer ce qu\'on a dit','Se corriger','S\'excuser','Revenir sur sa décision'], ans: "Retirer ce qu'on a dit", hint: "Take back your words → retirer ses paroles, admettre qu'on avait tort." },
+    ],
+    [
+      { q: "Que signifie 'take action' ?", opts: ["Passer à l'action","Prendre des mesures","Agir concrètement","Toutes ces réponses"], ans: "Toutes ces réponses", hint: "Take action → agir, passer des paroles aux actes." },
+      { q: "Compléter : '___ during the meeting — the boss expects it.'", opts: ['Take notes','Take a break','Take a stand','Take a nap'], ans: 'Take notes', hint: "Take notes → prendre des notes (pendant une réunion, un cours)." },
+      { q: "Que signifie 'take a stand' ?", opts: ['Prendre position / défendre un point de vue','S\'affirmer','S\'opposer ouvertement','Toutes ces réponses'], ans: 'Toutes ces réponses', hint: "Take a stand → prendre position, défendre une opinion fermement." },
+      { q: "Que signifie 'take care of yourself' ?", opts: ['Prendre soin de soi','S\'occuper de soi-même','Faire attention à sa santé','Toutes ces réponses'], ans: 'Toutes ces réponses', hint: "Take care of yourself → prendre soin de sa santé et de son bien-être." },
+      { q: "Compléter : 'I ___ what I said — I was wrong.'", opts: ['take back','take out','take away','take apart'], ans: 'take back', hint: "Take back → retirer, rétracter ce qu'on a dit." },
+      { q: "Que signifie 'take a role' ?", opts: ['Prendre un rôle / assumer une fonction','Jouer un personnage','Participer à quelque chose','Avoir une responsabilité'], ans: 'Prendre un rôle / assumer une fonction', hint: "Take a role → assumer un rôle, une responsabilité dans quelque chose." },
+    ],
+  ],
+  'housework-vocabulary': [
+    [
+      { q: "Que signifie 'to mop' ?", opts: ['Laver le sol à la serpillière','Balayer','Nettoyer les vitres','Frotter'], ans: 'Laver le sol à la serpillière', hint: "To mop → passer la serpillière (mop) sur le sol." },
+      { q: "Que signifie 'to dust' ?", opts: ['Épousseter','Balayer','Essuyer','Rincer'], ans: 'Épousseter', hint: "To dust → enlever la poussière (dust = poussière)." },
+      { q: "Que signifie 'to iron' ?", opts: ['Repasser','Ranger','Plier','Étendre'], ans: 'Repasser', hint: "To iron → repasser les vêtements avec un fer à repasser." },
+      { q: "Que signifie 'to tidy up' ?", opts: ['Ranger / mettre en ordre','Nettoyer','Faire la vaisselle','Essuyer'], ans: 'Ranger / mettre en ordre', hint: "To tidy up → ranger le désordre, mettre de l'ordre." },
+      { q: "Que signifie 'to sweep' ?", opts: ['Balayer','Frotter','Laver le sol','Essuyer'], ans: 'Balayer', hint: "To sweep → balayer avec un balai (broom)." },
+      { q: "Que signifie 'to air out' ?", opts: ['Aérer','Nettoyer en profondeur','Secouer les tapis','Ouvrir toutes les fenêtres'], ans: 'Aérer', hint: "To air out → ouvrir les fenêtres pour renouveler l'air d'une pièce." },
+    ],
+    [
+      { q: "Que signifie 'to scrub' ?", opts: ['Frotter énergiquement','Laver','Essuyer','Rincer'], ans: 'Frotter énergiquement', hint: "To scrub → frotter avec force pour nettoyer (la baignoire, le sol…)." },
+      { q: "Que signifie 'to fold the clothes' ?", opts: ['Plier les vêtements','Ranger les vêtements','Étendre le linge','Repasser'], ans: 'Plier les vêtements', hint: "To fold (the clothes) → plier soigneusement les vêtements après lavage." },
+      { q: "Que signifie 'to hang clothes' ?", opts: ['Étendre le linge','Accrocher au mur','Ranger dans l\'armoire','Plier'], ans: 'Étendre le linge', hint: "To hang clothes → étendre le linge pour le faire sécher." },
+      { q: "Que signifie 'to make the bed' ?", opts: ['Faire le lit','Ranger la chambre','Mettre les draps','Nettoyer le matelas'], ans: 'Faire le lit', hint: "To make the bed → arranger le lit après s'être levé." },
+      { q: "Que signifie 'to wipe' ?", opts: ['Essuyer','Rincer','Frotter','Laver'], ans: 'Essuyer', hint: "To wipe → essuyer une surface avec un chiffon ou une éponge." },
+      { q: "Mettre dans le bon ordre logique :", opts: ['Sweep → mop → dry','Mop → sweep → dry','Dry → sweep → mop','Sweep → dry → mop'], ans: 'Sweep → mop → dry', hint: "On balaye d'abord (sweep), puis on passe la serpillière (mop), puis on laisse sécher." },
+    ],
+  ],
+  'fixed-prepositions-1': [
+    [
+      { q: "He confessed ___ the theft.", opts: ['to','about','for','of'], ans: 'to', hint: "Confess TO something = avouer quelque chose." },
+      { q: "I believe ___ second chances.", opts: ['in','of','to','at'], ans: 'in', hint: "Believe IN an idea or principle = croire en quelque chose." },
+      { q: "She invested all her savings ___ this company.", opts: ['in','on','for','at'], ans: 'in', hint: "Invest IN something = investir dans quelque chose." },
+      { q: "Stop interfering ___ my work!", opts: ['with','in','on','against'], ans: 'with', hint: "Interfere WITH = s'immiscer dans / entraver." },
+      { q: "She focused ___ her studies.", opts: ['on','in','for','at'], ans: 'on', hint: "Focus ON = se concentrer sur." },
+      { q: "They laughed ___ his mistake.", opts: ['at','to','with','on'], ans: 'at', hint: "Laugh AT = se moquer de. Laugh WITH = rire ensemble." },
+    ],
+    [
+      { q: "She applied ___ the manager position.", opts: ['for','to','at','in'], ans: 'for', hint: "Apply FOR a job or position = postuler à." },
+      { q: "He escaped ___ prison last night.", opts: ['from','of','to','in'], ans: 'from', hint: "Escape FROM a place = s'échapper de." },
+      { q: "I'm longing ___ my summer holiday.", opts: ['for','to','about','in'], ans: 'for', hint: "Long FOR something = désirer ardemment." },
+      { q: "She consented ___ the operation.", opts: ['to','for','in','with'], ans: 'to', hint: "Consent TO = consentir à / accepter formellement." },
+      { q: "I haven't heard ___ her in weeks.", opts: ['from','about','of','at'], ans: 'from', hint: "Hear FROM sb = avoir des nouvelles de quelqu'un." },
+      { q: "Do you agree ___ me on this point?", opts: ['with','to','about','on'], ans: 'with', hint: "Agree WITH a person ; Agree TO a proposal." },
+    ],
+  ],
+  'fixed-prepositions-2': [
+    [
+      { q: "Please refrain ___ using your phone during the meeting.", opts: ['from','to','of','in'], ans: 'from', hint: "Refrain FROM doing = s'abstenir de faire." },
+      { q: "He reminded me ___ my appointment.", opts: ['of','about','to','for'], ans: 'of', hint: "Remind sb OF something = rappeler quelque chose à quelqu'un." },
+      { q: "This accident will result ___ serious consequences.", opts: ['in','from','to','of'], ans: 'in', hint: "Result IN = aboutir à (la conséquence)." },
+      { q: "She surrendered ___ temptation.", opts: ['to','in','for','at'], ans: 'to', hint: "Surrender TO = céder à quelque chose." },
+      { q: "He objected ___ the new proposal.", opts: ['to','about','against','with'], ans: 'to', hint: "Object TO = s'opposer à quelque chose." },
+      { q: "She was punished ___ cheating.", opts: ['for','of','to','in'], ans: 'for', hint: "Punish sb FOR something = punir quelqu'un de." },
+    ],
+    [
+      { q: "Take advantage ___ this opportunity!", opts: ['of','from','in','to'], ans: 'of', hint: "Take advantage OF = profiter de." },
+      { q: "Let's talk ___ this problem.", opts: ['about','with','of','on'], ans: 'about', hint: "Talk ABOUT something = parler de quelque chose." },
+      { q: "She translated the book ___ Spanish.", opts: ['into','from','in','to'], ans: 'into', hint: "Translate INTO the target language. Translate FROM the source." },
+      { q: "I trust him ___ my most important files.", opts: ['with','in','of','to'], ans: 'with', hint: "Trust sb WITH something = confier quelque chose à quelqu'un." },
+      { q: "We should vote ___ the best candidate.", opts: ['for','to','in','at'], ans: 'for', hint: "Vote FOR a candidate = voter pour." },
+      { q: "He yielded ___ the pressure.", opts: ['to','in','for','at'], ans: 'to', hint: "Yield TO = céder à une pression ou une demande." },
     ],
   ],
 };
