@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.87';
+const APP_VERSION = '2.88';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2561,6 +2561,22 @@ const _GFIX = {
     { q: "Que signifie 'walk on eggshells' ?", opts: ['Marcher sur des œufs / être très précautionneux','Faire attention à ses pas','Avoir peur de quelqu\'un','Éviter un sujet délicat'], ans: "Marcher sur des œufs / être très précautionneux", hint: "Walk on eggshells → agir avec une extrême précaution pour ne pas offenser." },
     { q: "Que signifie 'a leopard can't change its spots' ?", opts: ["On ne change pas sa nature","Il faut accepter les gens tels qu'ils sont","Les mauvaises habitudes persistent","Les deux premières réponses"], ans: "On ne change pas sa nature", hint: "A leopard can't change its spots → la nature profonde d'une personne ne change pas." },
   ],
+  'fixed-prepositions-1': [
+    { q: "She apologized ___ being late.", opts: ['for','of','to','at'], ans: 'for', hint: "Apologize FOR = s'excuser de. Toujours suivi de FOR." },
+    { q: "This problem is difficult to deal ___.", opts: ['with','from','to','in'], ans: 'with', hint: "Deal WITH = gérer / s'occuper de." },
+    { q: "He insisted ___ paying the bill.", opts: ['on','in','for','to'], ans: 'on', hint: "Insist ON doing something = insister pour faire quelque chose." },
+    { q: "The committee consists ___ five members.", opts: ['of','from','in','with'], ans: 'of', hint: "Consist OF = être composé de." },
+    { q: "You can always count ___ me.", opts: ['on','in','for','to'], ans: 'on', hint: "Count ON someone = compter sur quelqu'un." },
+    { q: "We arrived ___ the airport on time.", opts: ['at','in','to','for'], ans: 'at', hint: "Arrive AT (lieu précis) ; Arrive IN (ville, pays)." },
+  ],
+  'fixed-prepositions-2': [
+    { q: "He refused to pay ___ the damage.", opts: ['for','of','to','on'], ans: 'for', hint: "Pay FOR something = payer pour quelque chose." },
+    { q: "We should protect children ___ online dangers.", opts: ['from','of','against','with'], ans: 'from', hint: "Protect FROM = protéger de (une menace)." },
+    { q: "She specializes ___ tax law.", opts: ['in','on','at','for'], ans: 'in', hint: "Specialize IN a field = se spécialiser dans un domaine." },
+    { q: "He finally succeeded ___ passing the exam.", opts: ['in','at','on','for'], ans: 'in', hint: "Succeed IN doing = réussir à faire quelque chose." },
+    { q: "Take care ___ yourself!", opts: ['of','for','about','with'], ans: 'of', hint: "Take care OF = prendre soin de." },
+    { q: "She recovered ___ her illness quickly.", opts: ['from','of','to','in'], ans: 'from', hint: "Recover FROM = se remettre de." },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -3717,6 +3733,42 @@ const _GFIX_SERIES = {
       { q: "Que signifie 'to make the bed' ?", opts: ['Faire le lit','Ranger la chambre','Mettre les draps','Nettoyer le matelas'], ans: 'Faire le lit', hint: "To make the bed → arranger le lit après s'être levé." },
       { q: "Que signifie 'to wipe' ?", opts: ['Essuyer','Rincer','Frotter','Laver'], ans: 'Essuyer', hint: "To wipe → essuyer une surface avec un chiffon ou une éponge." },
       { q: "Mettre dans le bon ordre logique :", opts: ['Sweep → mop → dry','Mop → sweep → dry','Dry → sweep → mop','Sweep → dry → mop'], ans: 'Sweep → mop → dry', hint: "On balaye d'abord (sweep), puis on passe la serpillière (mop), puis on laisse sécher." },
+    ],
+  ],
+  'fixed-prepositions-1': [
+    [
+      { q: "He confessed ___ the theft.", opts: ['to','about','for','of'], ans: 'to', hint: "Confess TO something = avouer quelque chose." },
+      { q: "I believe ___ second chances.", opts: ['in','of','to','at'], ans: 'in', hint: "Believe IN an idea or principle = croire en quelque chose." },
+      { q: "She invested all her savings ___ this company.", opts: ['in','on','for','at'], ans: 'in', hint: "Invest IN something = investir dans quelque chose." },
+      { q: "Stop interfering ___ my work!", opts: ['with','in','on','against'], ans: 'with', hint: "Interfere WITH = s'immiscer dans / entraver." },
+      { q: "She focused ___ her studies.", opts: ['on','in','for','at'], ans: 'on', hint: "Focus ON = se concentrer sur." },
+      { q: "They laughed ___ his mistake.", opts: ['at','to','with','on'], ans: 'at', hint: "Laugh AT = se moquer de. Laugh WITH = rire ensemble." },
+    ],
+    [
+      { q: "She applied ___ the manager position.", opts: ['for','to','at','in'], ans: 'for', hint: "Apply FOR a job or position = postuler à." },
+      { q: "He escaped ___ prison last night.", opts: ['from','of','to','in'], ans: 'from', hint: "Escape FROM a place = s'échapper de." },
+      { q: "I'm longing ___ my summer holiday.", opts: ['for','to','about','in'], ans: 'for', hint: "Long FOR something = désirer ardemment." },
+      { q: "She consented ___ the operation.", opts: ['to','for','in','with'], ans: 'to', hint: "Consent TO = consentir à / accepter formellement." },
+      { q: "I haven't heard ___ her in weeks.", opts: ['from','about','of','at'], ans: 'from', hint: "Hear FROM sb = avoir des nouvelles de quelqu'un." },
+      { q: "Do you agree ___ me on this point?", opts: ['with','to','about','on'], ans: 'with', hint: "Agree WITH a person ; Agree TO a proposal." },
+    ],
+  ],
+  'fixed-prepositions-2': [
+    [
+      { q: "Please refrain ___ using your phone during the meeting.", opts: ['from','to','of','in'], ans: 'from', hint: "Refrain FROM doing = s'abstenir de faire." },
+      { q: "He reminded me ___ my appointment.", opts: ['of','about','to','for'], ans: 'of', hint: "Remind sb OF something = rappeler quelque chose à quelqu'un." },
+      { q: "This accident will result ___ serious consequences.", opts: ['in','from','to','of'], ans: 'in', hint: "Result IN = aboutir à (la conséquence)." },
+      { q: "She surrendered ___ temptation.", opts: ['to','in','for','at'], ans: 'to', hint: "Surrender TO = céder à quelque chose." },
+      { q: "He objected ___ the new proposal.", opts: ['to','about','against','with'], ans: 'to', hint: "Object TO = s'opposer à quelque chose." },
+      { q: "She was punished ___ cheating.", opts: ['for','of','to','in'], ans: 'for', hint: "Punish sb FOR something = punir quelqu'un de." },
+    ],
+    [
+      { q: "Take advantage ___ this opportunity!", opts: ['of','from','in','to'], ans: 'of', hint: "Take advantage OF = profiter de." },
+      { q: "Let's talk ___ this problem.", opts: ['about','with','of','on'], ans: 'about', hint: "Talk ABOUT something = parler de quelque chose." },
+      { q: "She translated the book ___ Spanish.", opts: ['into','from','in','to'], ans: 'into', hint: "Translate INTO the target language. Translate FROM the source." },
+      { q: "I trust him ___ my most important files.", opts: ['with','in','of','to'], ans: 'with', hint: "Trust sb WITH something = confier quelque chose à quelqu'un." },
+      { q: "We should vote ___ the best candidate.", opts: ['for','to','in','at'], ans: 'for', hint: "Vote FOR a candidate = voter pour." },
+      { q: "He yielded ___ the pressure.", opts: ['to','in','for','at'], ans: 'to', hint: "Yield TO = céder à une pression ou une demande." },
     ],
   ],
 };

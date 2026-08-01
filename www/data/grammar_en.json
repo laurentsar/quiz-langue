@@ -5249,5 +5249,139 @@
         ]
       }
     ]
+  },
+  {
+    "id": "fixed-prepositions-1",
+    "title": "Prépositions Fixes : Verbes A–L",
+    "subtitle": "Chaque verbe impose sa propre préposition — il faut les mémoriser.",
+    "sections": [
+      {
+        "heading": "Verbes A–C",
+        "points": [
+          "Agree with sb (opinion) / Agree to sth (proposal) → être d'accord avec / accepter",
+          "Apologize for sth → s'excuser de",
+          "Apply for sth → postuler à / faire une demande de",
+          "Arrive at (lieu précis) / Arrive in (ville, pays) → arriver à / arriver dans",
+          "Believe in sth/sb → croire en",
+          "Belong to sb → appartenir à",
+          "Care for sb / Care about sth → prendre soin de / se soucier de",
+          "Complain about sth → se plaindre de",
+          "Concentrate on sth → se concentrer sur",
+          "Confess to sth → avouer",
+          "Consent to sth → consentir à",
+          "Consist of sth → être composé de",
+          "Count on sb → compter sur"
+        ],
+        "tip": "Agree WITH (personne/opinion) ≠ Agree TO (proposition/plan). Arrive AT (aéroport, gare) ≠ Arrive IN (Paris, France).",
+        "examples": [
+          "She apologized for being late.",
+          "The committee consists of seven members.",
+          "I count on you to finish this."
+        ]
+      },
+      {
+        "heading": "Verbes D–H",
+        "points": [
+          "Deal with sth/sb → gérer / traiter avec",
+          "Depend on sb/sth → dépendre de",
+          "Escape from sth → s'échapper de",
+          "Focus on sth → se concentrer sur / mettre l'accent sur",
+          "Forgive sb for sth → pardonner à qqn de",
+          "Get rid of sth → se débarrasser de",
+          "Hear from sb → avoir des nouvelles de",
+          "Hear of sth → entendre parler de"
+        ],
+        "tip": "Hear FROM = recevoir un message, avoir de ses nouvelles. Hear OF = apprendre l'existence de quelque chose.",
+        "examples": [
+          "How do you deal with stress?",
+          "She forgave him for his mistake.",
+          "I haven't heard from her in weeks."
+        ]
+      },
+      {
+        "heading": "Verbes I–L",
+        "points": [
+          "Insist on sth/doing → insister pour",
+          "Interfere with sth → interférer avec / entraver",
+          "Invest in sth → investir dans",
+          "Laugh at sb/sth → rire de",
+          "Listen to sb/sth → écouter",
+          "Long for sth → aspirer à / désirer ardemment"
+        ],
+        "tip": "Laugh AT = se moquer de. Laugh WITH = rire ensemble (sans moquerie).",
+        "examples": [
+          "He insisted on paying the bill.",
+          "Invest in yourself every day.",
+          "She was longing for a break."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fixed-prepositions-2",
+    "title": "Prépositions Fixes : Verbes M–Z",
+    "subtitle": "La préposition change le sens — apprends-les avec le verbe.",
+    "sections": [
+      {
+        "heading": "Verbes O–P",
+        "points": [
+          "Object to sth → s'opposer à",
+          "Participate in sth → participer à",
+          "Pay for sth → payer pour",
+          "Prefer sth to sth → préférer A à B",
+          "Prevent sb from doing → empêcher qqn de",
+          "Protect sb from sth → protéger de",
+          "Punish sb for sth → punir qqn de"
+        ],
+        "tip": "Prevent FROM et Protect FROM s'utilisent avec la même préposition — penser à \"de\" comme une source de danger.",
+        "examples": [
+          "She objected to the new rule.",
+          "He was punished for cheating.",
+          "Protect your skin from the sun."
+        ]
+      },
+      {
+        "heading": "Verbes R–S",
+        "points": [
+          "Recover from sth → se remettre de",
+          "Refrain from doing → s'abstenir de",
+          "Remind sb of sth → rappeler qqch à qqn",
+          "Rescue sb from sth → sauver qqn de",
+          "Result in sth → aboutir à / entraîner",
+          "Search for sth → chercher",
+          "Specialize in sth → se spécialiser dans",
+          "Succeed in doing → réussir à",
+          "Suffer from sth → souffrir de",
+          "Surrender to sth → céder à / se rendre à"
+        ],
+        "tip": "Result IN = la conséquence (the accident resulted in injuries). Result FROM = la cause (the accident resulted from carelessness).",
+        "examples": [
+          "She recovered from the flu quickly.",
+          "He succeeded in passing the exam.",
+          "Refrain from using your phone during meetings."
+        ]
+      },
+      {
+        "heading": "Verbes T–Z",
+        "points": [
+          "Take care of sth/sb → prendre soin de",
+          "Take advantage of sth → profiter de",
+          "Talk about sth → parler de",
+          "Translate from X into Y → traduire de X en Y",
+          "Trust sb with sth → confier qqch à qqn",
+          "Trust in sth/sb → avoir confiance en",
+          "Vote for / Vote against → voter pour / contre",
+          "Warn sb about/of sth → avertir qqn de",
+          "Write to sb → écrire à qqn",
+          "Yield to sth → céder à"
+        ],
+        "tip": "Translate FROM the source language INTO the target language — les deux prépositions sont différentes.",
+        "examples": [
+          "Take advantage of every opportunity.",
+          "I trust him with my most important files.",
+          "She translated the novel from Spanish into English."
+        ]
+      }
+    ]
   }
 ]
