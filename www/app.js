@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.84';
+const APP_VERSION = '2.85';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2489,6 +2489,14 @@ const _GFIX = {
     { q: "Que signifie 'I wouldn't know' ?", opts: ["Je ne saurais pas dire","Je ne voudrais pas savoir","Je ne le saurai jamais","Je n'aurais pas su"], ans: "Je ne saurais pas dire", hint: "I wouldn't know → Je ne saurais pas dire (ce n'est pas mon domaine)." },
     { q: "Comment dire 'Je ne peux pas dire' en anglais ?", opts: ["I can't say","I don't know","I'm unsure","I won't tell"], ans: "I can't say", hint: "I can't say → Je ne peux pas dire (parfois : c'est confidentiel)." },
   ],
+  'away-phrasal-verbs': [
+    { q: "Que signifie 'turn away' ?", opts: ['Se détourner','Partir','S\'enfuir','Ranger'], ans: 'Se détourner', hint: "Turn away → se détourner, faire face à l'opposé." },
+    { q: "Compléter : 'The thief managed to ___ before the police arrived.'", opts: ['get away','run away','go away','stay away'], ans: 'get away', hint: "Get away → s'échapper avec succès." },
+    { q: "Que signifie 'put away' ?", opts: ['Ranger','Jeter','Enlever','Donner'], ans: 'Ranger', hint: "Put away → ranger soigneusement à sa place." },
+    { q: "Que signifie 'give away' ?", opts: ['Donner gratuitement','Jeter','Enlever','Ranger'], ans: 'Donner gratuitement', hint: "Give away → donner gratuitement, offrir." },
+    { q: "Compléter : '___ from that dog — it bites!'", opts: ['Stay away','Run away','Look away','Go away'], ans: 'Stay away', hint: "Stay away → rester à distance (éviter)." },
+    { q: "Traduire : 'Elle a jeté tous ses vieux magazines.'", opts: ["She threw away all her old magazines.","She put away all her old magazines.","She gave away all her old magazines.","She took away all her old magazines."], ans: "She threw away all her old magazines.", hint: "Throw away → jeter définitivement." },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -3447,6 +3455,24 @@ const _GFIX_SERIES = {
       { q: "Dans quel cas utilise-t-on surtout 'I can't say' ?", opts: ["Quand c'est confidentiel ou incertain","Quand on ignore totalement","Quand on manque de vocabulaire","Quand on est très familier"], ans: "Quand c'est confidentiel ou incertain", hint: "I can't say peut indiquer la confidentialité ou l'incertitude." },
       { q: "Quelle phrase est la plus formelle ?", opts: ["I'm not certain","It beats me","I haven't got a clue","I don't have a clue"], ans: "I'm not certain", hint: "I'm not certain → le plus formel et poli des quatre." },
       { q: "Compléter : '___ — it's not my area.' (Je ne saurais pas dire)", opts: ["I wouldn't know","I'm not sure","I can't say","I'm unsure"], ans: "I wouldn't know", hint: "I wouldn't know — it's not my area → Je ne saurais pas dire — ce n'est pas mon domaine." },
+    ],
+  ],
+  'away-phrasal-verbs': [
+    [
+      { q: "Que signifie 'look away' ?", opts: ['Détourner les yeux','Se détourner','Partir','Regarder au loin'], ans: 'Détourner les yeux', hint: "Look away → détourner les yeux (regarder ailleurs)." },
+      { q: "Compléter : '___ — I'm trying to concentrate!' (Pars !)", opts: ['Go away','Run away','Stay away','Get away'], ans: 'Go away', hint: "Go away → partir / disparaître complètement." },
+      { q: "Que signifie 'take away' ?", opts: ['Enlever','Ranger','Jeter','Donner'], ans: 'Enlever', hint: "Take away → enlever, retirer quelque chose." },
+      { q: "Compléter : 'She ___ her old clothes to charity.'", opts: ['gave away','threw away','put away','ran away'], ans: 'gave away', hint: "Give away → donner gratuitement (à une association)." },
+      { q: "Que signifie 'run away' ?", opts: ["S'enfuir","Partir","Se détourner","Rester à distance"], ans: "S'enfuir", hint: "Run away → s'enfuir rapidement." },
+      { q: "Compléter : 'Please ___ your toys before dinner.'", opts: ['put away','throw away','take away','give away'], ans: 'put away', hint: "Put away → ranger à sa place." },
+    ],
+    [
+      { q: "Traduire : 'La police lui a retiré son permis de conduire.'", opts: ["The police took away his driving licence.","The police put away his driving licence.","The police threw away his driving licence.","The police gave away his driving licence."], ans: "The police took away his driving licence.", hint: "Take away → enlever, retirer quelque chose à quelqu'un." },
+      { q: "Compléter : 'He ___, embarrassed.' (détourna les yeux)", opts: ['looked away','turned away','ran away','stayed away'], ans: 'looked away', hint: "Look away → détourner les yeux par gêne ou refus." },
+      { q: "Différence entre 'throw away' et 'put away' ?", opts: ["Throw away = jeter ; put away = ranger","Throw away = ranger ; put away = jeter","Ils sont synonymes","Throw away = donner ; put away = enlever"], ans: "Throw away = jeter ; put away = ranger", hint: "Throw away = à la poubelle ; put away = à sa place." },
+      { q: "Compléter : 'Don't ___ that — we can still use it!'", opts: ['throw away','put away','give away','take away'], ans: 'throw away', hint: "Throw away → jeter définitivement à la poubelle." },
+      { q: "Compléter : 'The dog ___ when it heard the thunder.'", opts: ['ran away','went away','stayed away','got away'], ans: 'ran away', hint: "Run away → s'enfuir (réaction de frayeur)." },
+      { q: "Quel verbe signifie 's'échapper d'un danger' ?", opts: ['Get away','Go away','Run away','Turn away'], ans: 'Get away', hint: "Get away = s'échapper avec succès. Run away = fuir en courant." },
     ],
   ],
 };

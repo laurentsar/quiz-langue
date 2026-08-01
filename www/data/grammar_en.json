@@ -4614,5 +4614,56 @@
         ]
       }
     ]
+  },
+  {
+    "id": "away-phrasal-verbs",
+    "title": "Verbes à Particule : AWAY",
+    "subtitle": "10 verbes courants avec AWAY — mouvement, distance et action",
+    "sections": [
+      {
+        "heading": "Mouvement et départ",
+        "points": [
+          "Turn away → Se détourner (face the opposite direction)",
+          "Go away → Partir (leave or disappear completely)",
+          "Run away → S'enfuir (escape from somewhere quickly)",
+          "Look away → Détourner les yeux (turn eyes elsewhere)"
+        ],
+        "tip": "Ces verbes expriment un mouvement physique s'éloignant de quelque chose ou quelqu'un.",
+        "examples": [
+          "She turned away and said nothing.",
+          "The dog ran away when it heard the thunder.",
+          "Go away — I'm trying to concentrate!",
+          "He looked away, embarrassed."
+        ]
+      },
+      {
+        "heading": "Ranger et éliminer",
+        "points": [
+          "Put away → Ranger (store neatly in place)",
+          "Throw away → Jeter (discard something as trash)",
+          "Take away → Enlever (remove something from somewhere)"
+        ],
+        "tip": "\"Put away\" = ranger à sa place ; \"throw away\" = jeter définitivement.",
+        "examples": [
+          "Please put your toys away before dinner.",
+          "Don't throw that away — we can still use it!",
+          "The police took away his driving licence."
+        ]
+      },
+      {
+        "heading": "Donner et s'échapper",
+        "points": [
+          "Give away → Donner gratuitement (donate something for free)",
+          "Get away → S'échapper (escape successfully from danger)",
+          "Stay away → Rester à distance (keep distance from something)"
+        ],
+        "tip": "\"Get away with something\" = s'en tirer sans conséquences.",
+        "examples": [
+          "She gave away all her old clothes to charity.",
+          "The thief managed to get away before the police arrived.",
+          "Stay away from that dog — it bites!"
+        ]
+      }
+    ]
   }
 ]
