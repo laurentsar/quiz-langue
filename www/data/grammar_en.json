@@ -4832,5 +4832,422 @@
         ]
       }
     ]
+  },
+  {
+    "id": "idioms-work-learning",
+    "title": "Idiomes : Travail et Apprentissage",
+    "subtitle": "20 expressions idiomatiques sur l'effort, le travail et la réussite",
+    "sections": [
+      {
+        "heading": "Effort et travail",
+        "points": [
+          "Bite the bullet → Prendre sur soi / Avaler la pilule",
+          "Burn the midnight oil → Travailler tard dans la nuit",
+          "Call it a day → Arrêter de travailler / En rester là",
+          "Cut corners → Faire les choses à moitié / Rogner sur la qualité",
+          "Go the extra mile → Faire plus que nécessaire"
+        ],
+        "tip": "\"Call it a day\" ne signifie pas forcément en fin de journée — on peut l'utiliser à tout moment pour dire qu'on arrête.",
+        "examples": [
+          "I'll bite the bullet and go to the dentist.",
+          "She burned the midnight oil to finish the report.",
+          "Let's call it a day — we've done enough."
+        ]
+      },
+      {
+        "heading": "Réussite et efficacité",
+        "points": [
+          "Hit the jackpot → Décrocher le jackpot / Réussir brillamment",
+          "Hit the nail on the head → Mettre le doigt dessus / Dire exactement ce qu'il faut",
+          "Hit the ground running → Démarrer en trombe / Commencer avec énergie",
+          "Kill two birds with one stone → Faire d'une pierre deux coups",
+          "Leave no stone unturned → Tout essayer / Ne rien laisser au hasard"
+        ],
+        "tip": "\"Hit\" revient souvent dans les idiomes de réussite : hit the jackpot, hit the nail on the head, hit the ground running.",
+        "examples": [
+          "She hit the jackpot with her new business.",
+          "You hit the nail on the head — that's exactly the problem.",
+          "I killed two birds with one stone by shopping near my commute."
+        ]
+      },
+      {
+        "heading": "Apprendre, échouer et recommencer",
+        "points": [
+          "Know the ropes → Connaître les ficelles du métier",
+          "Get the hang of it → Prendre le coup de main",
+          "Jump through hoops → Sauter des obstacles / Se plier en quatre",
+          "Back to square one → Repartir de zéro",
+          "Miss the boat → Rater le coche / Manquer une opportunité",
+          "No pain, no gain → Sans effort, pas de résultat",
+          "Make a long story short → Pour résumer / En bref",
+          "In over your head → Être dépassé par les événements",
+          "Don't count your chickens before they hatch → Ne vendez pas la peau de l'ours",
+          "Get out of hand → Devenir incontrôlable / Dépasser les bornes"
+        ],
+        "tip": "\"Don't count your chickens before they hatch\" = ne présumez pas d'un résultat avant qu'il soit acquis.",
+        "examples": [
+          "It took time, but I know the ropes now.",
+          "The plan failed — back to square one.",
+          "She missed the boat by not applying early."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "idioms-communication",
+    "title": "Idiomes : Communication et Relations",
+    "subtitle": "20 expressions idiomatiques sur la communication et les relations sociales",
+    "sections": [
+      {
+        "heading": "Dire et ne pas dire",
+        "points": [
+          "Beat around the bush → Tourner autour du pot",
+          "Cut to the chase → En venir au fait / Aller droit au but",
+          "Let the cat out of the bag → Vendre la mèche / Révéler un secret",
+          "Spill the beans → Tout déballer / Révéler un secret",
+          "Zip your lip → La fermer / Garder le silence"
+        ],
+        "tip": "\"Let the cat out of the bag\" et \"spill the beans\" signifient tous deux révéler un secret — souvent accidentellement.",
+        "examples": [
+          "Stop beating around the bush and tell me what happened.",
+          "Cut to the chase — what do you want?",
+          "He let the cat out of the bag about the surprise party."
+        ]
+      },
+      {
+        "heading": "Écouter et comprendre",
+        "points": [
+          "A penny for your thoughts → À quoi tu penses ? (inviter à partager)",
+          "All ears → Tout ouïe / Je vous écoute",
+          "Read between the lines → Lire entre les lignes / Comprendre le sens caché",
+          "Wrap your head around → Arriver à comprendre quelque chose de difficile",
+          "Your guess is as good as mine → Je n'en sais pas plus que toi"
+        ],
+        "tip": "\"A penny for your thoughts\" s'utilise quand quelqu'un semble préoccupé ou silencieux.",
+        "examples": [
+          "Go on — I'm all ears.",
+          "Read between the lines — he's not happy.",
+          "I have no idea — your guess is as good as mine."
+        ]
+      },
+      {
+        "heading": "Influence et relations",
+        "points": [
+          "Break the ice → Briser la glace / Créer une atmosphère détendue",
+          "Give someone the cold shoulder → Ignorer quelqu'un volontairement",
+          "Pull someone's leg → Faire marcher quelqu'un / Plaisanter",
+          "Put a sock in it → La fermer / Se taire",
+          "Rain on someone's parade → Gâcher la fête de quelqu'un",
+          "Rock the boat → Faire des vagues / Semer le trouble",
+          "Speak of the devil → Quand on parle du loup",
+          "Steal someone's thunder → Voler la vedette à quelqu'un",
+          "Twist someone's arm → Forcer la main à quelqu'un",
+          "Pass the buck → Se décharger de la responsabilité"
+        ],
+        "tip": "\"Rock the boat\" = créer des problèmes dans une situation stable (souvent utilisé au négatif : \"don't rock the boat\").",
+        "examples": [
+          "Don't worry, I was just pulling your leg.",
+          "Speak of the devil! We were just talking about you.",
+          "Don't pass the buck — own your mistake."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "idioms-feelings-situations",
+    "title": "Idiomes : Émotions et Situations",
+    "subtitle": "20 expressions idiomatiques sur les sentiments, la chance et les circonstances",
+    "sections": [
+      {
+        "heading": "Bonheur, énergie et courage",
+        "points": [
+          "A blessing in disguise → Un bien pour un mal / Une chance cachée",
+          "Every cloud has a silver lining → Après la pluie le beau temps",
+          "On cloud nine → Aux anges / Extrêmement heureux",
+          "On the ball → Vif et efficace / Réactif",
+          "Keep your chin up → Garde la tête haute / Courage"
+        ],
+        "tip": "\"Every cloud has a silver lining\" s'utilise pour encourager quelqu'un dans une situation difficile.",
+        "examples": [
+          "Losing that job was a blessing in disguise.",
+          "He's been on cloud nine since the promotion.",
+          "Keep your chin up — it'll be okay."
+        ]
+      },
+      {
+        "heading": "Fatigue, santé et temps",
+        "points": [
+          "Under the weather → Ne pas être dans son assiette / Se sentir malade",
+          "Hit the sack → Aller au lit / Se coucher",
+          "Easy does it → Doucement / Vas-y mollo",
+          "Time flies → Le temps passe vite",
+          "Once in a blue moon → Très rarement / Une fois tous les 36 du mois"
+        ],
+        "tip": "\"Hit the sack\" et \"hit the hay\" sont deux synonymes familiers pour aller dormir.",
+        "examples": [
+          "I'm a bit under the weather today.",
+          "Time flies when you're having fun.",
+          "We go out for dinner once in a blue moon."
+        ]
+      },
+      {
+        "heading": "Situations et circonstances",
+        "points": [
+          "Add insult to injury → En rajouter / Aggraver une mauvaise situation",
+          "Better late than never → Mieux vaut tard que jamais",
+          "Blow off steam → Décompresser / Évacuer sa frustration",
+          "In the same boat → Dans la même galère / Même situation",
+          "The best of both worlds → Le meilleur des deux mondes",
+          "Through thick and thin → Dans les bons et les mauvais moments",
+          "Up in the air → Dans l'incertitude / Pas encore décidé",
+          "Water under the bridge → C'est du passé / On tourne la page",
+          "On thin ice → Sur un terrain glissant / Situation risquée",
+          "Get cold feet → Avoir la frousse / Perdre courage au dernier moment"
+        ],
+        "tip": "\"Through thick and thin\" décrit une loyauté inconditionnelle — présent en toutes circonstances.",
+        "examples": [
+          "Our holiday plans are up in the air.",
+          "That fight is water under the bridge now.",
+          "He stood by me through thick and thin."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "idioms-decisions-risks",
+    "title": "Idiomes : Décisions et Conséquences",
+    "subtitle": "20 expressions idiomatiques sur les choix, les risques et la responsabilité",
+    "sections": [
+      {
+        "heading": "Risques et prudence",
+        "points": [
+          "Bite off more than you can chew → Voir trop grand / Vouloir trop faire",
+          "Don't put it past someone → Croire quelqu'un capable du pire",
+          "In hot water → Dans le pétrin / Avoir des ennuis",
+          "A snowball's chance in hell → Quasi aucune chance / Très peu probable",
+          "Sit on the fence → Rester neutre / Ne pas se décider"
+        ],
+        "tip": "\"A snowball's chance in hell\" exprime une probabilité quasi nulle, souvent pour souligner l'absurdité d'une situation.",
+        "examples": [
+          "She bit off more than she could chew with this job.",
+          "He's in hot water with his boss.",
+          "He has a snowball's chance in hell of winning."
+        ]
+      },
+      {
+        "heading": "Décisions et responsabilité",
+        "points": [
+          "Face the music → Assumer les conséquences / Faire face",
+          "Put all your eggs in one basket → Mettre tous ses œufs dans le même panier",
+          "Take it with a grain of salt → Ne pas prendre trop au sérieux",
+          "Take the bull by the horns → Prendre le taureau par les cornes",
+          "The ball is in your court → C'est à toi de jouer / C'est ta décision"
+        ],
+        "tip": "\"Take it with a grain of salt\" vient du latin — une pincée de sel aidant à avaler ce qui est difficile à croire.",
+        "examples": [
+          "He had to face the music after the mistake.",
+          "I take gossip with a grain of salt.",
+          "I've done my part — the ball is in your court."
+        ]
+      },
+      {
+        "heading": "Abandon, excès et résignation",
+        "points": [
+          "Cold turkey → Arrêter d'un coup / Sevrage brutal",
+          "Costs an arm and a leg → Coûter les yeux de la tête",
+          "Cry over spilled milk → Se lamenter en vain / Pleurer sur du lait renversé",
+          "Jump on the bandwagon → Suivre la tendance / Faire comme tout le monde",
+          "Jump the gun → Agir trop vite / Brûler les étapes",
+          "Let sleeping dogs lie → Ne pas réveiller le chat qui dort",
+          "Off the hook → Tiré d'affaire / Hors de cause",
+          "The last straw → La goutte d'eau qui fait déborder le vase",
+          "Throw in the towel → Jeter l'éponge / Abandonner",
+          "Miss the boat → Rater le coche / Manquer une opportunité"
+        ],
+        "tip": "\"The last straw\" vient de l'image d'un chameau dont le dos se brise sous la dernière paille d'un chargement.",
+        "examples": [
+          "He quit smoking cold turkey.",
+          "It's done — don't cry over spilled milk.",
+          "Her constant yelling was the last straw."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "idioms-character-attitude",
+    "title": "Idiomes : Caractère et Attitude",
+    "subtitle": "20 expressions idiomatiques sur la personnalité, la vérité et les jugements",
+    "sections": [
+      {
+        "heading": "Jugement et apparence",
+        "points": [
+          "A dime a dozen → Très commun / Banal / Sans grande valeur",
+          "A leopard can't change its spots → On ne change pas sa nature",
+          "Fish out of water → Comme un poisson hors de l'eau / Dépaysé",
+          "Not my cup of tea → Ce n'est pas mon truc / Pas à mon goût",
+          "You can't judge a book by its cover → L'habit ne fait pas le moine"
+        ],
+        "tip": "\"A dime a dozen\" vient des États-Unis — un dime = 10 cents, donc si quelque chose vaut 12 pour un dime, c'est sans grande valeur.",
+        "examples": [
+          "Good ideas are a dime a dozen — execution is what counts.",
+          "He lied again — a leopard can't change its spots.",
+          "I felt like a fish out of water at that party."
+        ]
+      },
+      {
+        "heading": "Vérité, secret et surprise",
+        "points": [
+          "Barking up the wrong tree → Faire fausse route / Se tromper de cible",
+          "Caught red-handed → Pris la main dans le sac",
+          "Out of the blue → De façon inattendue / Comme un cheveu sur la soupe",
+          "Skeleton in the closet → Un secret honteux / Un cadavre dans le placard",
+          "The tip of the iceberg → La partie visible / La face émergée de l'iceberg"
+        ],
+        "tip": "\"Caught red-handed\" vient de l'image d'un meurtrier surpris les mains rouges de sang.",
+        "examples": [
+          "If you think I lied, you're barking up the wrong tree.",
+          "He was caught red-handed stealing.",
+          "He called me out of the blue."
+        ]
+      },
+      {
+        "heading": "Attitude et comportement",
+        "points": [
+          "A slap on the wrist → Une punition légère / Un simple avertissement",
+          "Devil's advocate → Avocat du diable / Argumenter par principe",
+          "Don't bite the hand that feeds you → Ne mords pas la main qui te nourrit",
+          "Go down in flames → Échouer de façon spectaculaire",
+          "Keep your fingers crossed → Croiser les doigts / Espérer bonne chance",
+          "Not playing with a full deck → Ne pas avoir toute sa tête",
+          "To each their own → Chacun ses goûts / À chacun le sien",
+          "Under your nose → Sous ton nez / Évident",
+          "Walk on eggshells → Marcher sur des œufs / Être très précautionneux",
+          "Hit the road → Prendre la route / Partir en voyage"
+        ],
+        "tip": "\"Walk on eggshells\" décrit la précaution extrême prise pour ne pas offenser ou provoquer quelqu'un.",
+        "examples": [
+          "He got a slap on the wrist for cheating.",
+          "I'm just playing devil's advocate here.",
+          "I feel like I'm walking on eggshells around her."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "take-expressions",
+    "title": "Expressions avec TAKE",
+    "subtitle": "20 expressions courantes avec le verbe TAKE",
+    "sections": [
+      {
+        "heading": "Actions quotidiennes",
+        "points": [
+          "Take a seat → Assieds-toi / Asseyez-vous",
+          "Take a break → Fais une pause",
+          "Take a nap → Faire une sieste",
+          "Take a walk → Faire une promenade",
+          "Take a shower → Prendre une douche",
+          "Take a look → Jeter un coup d'œil",
+          "Take a picture → Prendre une photo"
+        ],
+        "tip": "En anglais, on utilise \"take\" là où le français utilise \"faire\" : take a walk (faire une promenade), take a shower (prendre une douche).",
+        "examples": [
+          "Please take a seat — the doctor will see you shortly.",
+          "Let's take a break — I'm tired.",
+          "Take a look at this! → Jette un coup d'œil à ça !"
+        ]
+      },
+      {
+        "heading": "Apprentissage et décisions",
+        "points": [
+          "Take lessons → Prendre des cours",
+          "Take notes → Prendre des notes",
+          "Take action → Passer à l'action",
+          "Take a chance → Tenter sa chance",
+          "Take your chance → Saisir sa chance",
+          "Take a risk → Prendre un risque",
+          "Take a stand → Prendre position"
+        ],
+        "tip": "\"Take a chance\" = tenter le coup (plus spontané) ; \"take your chance\" = saisir l'occasion qui se présente.",
+        "examples": [
+          "Take notes during the meeting — it's important.",
+          "It's time to take action and fix this problem.",
+          "She took a stand against injustice."
+        ]
+      },
+      {
+        "heading": "Communication et attitude",
+        "points": [
+          "Take your time → Prendre son temps / Ne pas se presser",
+          "Take back your words → Retirer ce qu'on a dit",
+          "Take the floor → Prendre la parole",
+          "Take a role → Prendre un rôle",
+          "Take into account → Prendre en compte / Tenir compte de",
+          "Take care of yourself → Prendre soin de soi"
+        ],
+        "tip": "\"Take into account\" = tenir compte de, prendre en considération — très utile en contexte professionnel.",
+        "examples": [
+          "Don't rush — take your time to review the terms.",
+          "I take back what I said — I was wrong.",
+          "Please take into account that we have a tight budget."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "housework-vocabulary",
+    "title": "Le Ménage en Anglais",
+    "subtitle": "16 verbes essentiels pour parler des tâches ménagères",
+    "sections": [
+      {
+        "heading": "Nettoyer et laver",
+        "points": [
+          "To clean → nettoyer",
+          "To wash → laver",
+          "To rinse → rincer",
+          "To scrub → frotter / récurer",
+          "To mop → laver le sol (à la serpillière)",
+          "To wipe → essuyer"
+        ],
+        "tip": "\"To mop\" = utiliser une serpillière (mop) pour laver le sol. \"To scrub\" = frotter énergiquement.",
+        "examples": [
+          "She scrubbed the bathtub until it was spotless.",
+          "Mop the floor after sweeping — don't skip steps.",
+          "Wipe the table before setting it."
+        ]
+      },
+      {
+        "heading": "Ranger et entretenir",
+        "points": [
+          "To tidy up → ranger",
+          "To arrange → arranger / mettre en ordre",
+          "To fold the clothes → plier les vêtements",
+          "To hang (clothes) → étendre (les vêtements)",
+          "To make (the bed) → faire (le lit)",
+          "To iron → repasser",
+          "To polish → polir / faire briller"
+        ],
+        "tip": "\"Tidy up\" est plus général que \"arrange\" : on range le désordre vs on dispose soigneusement.",
+        "examples": [
+          "Tidy up your room before dinner.",
+          "She ironed her shirt before the meeting.",
+          "Fold the laundry while it's still warm."
+        ]
+      },
+      {
+        "heading": "Entretien de la maison",
+        "points": [
+          "To sweep → balayer",
+          "To dust → épousseter",
+          "To air out → aérer",
+          "To hang (clothes) → étendre le linge"
+        ],
+        "tip": "\"Air out\" = ouvrir les fenêtres pour renouveler l'air. \"Dust\" = enlever la poussière (dust = poussière).",
+        "examples": [
+          "Sweep the floor every morning.",
+          "Don't forget to dust the shelves.",
+          "Air out the room — it smells musty."
+        ]
+      }
+    ]
   }
 ]
