@@ -4566,5 +4566,271 @@
         ]
       }
     ]
+  },
+  {
+    "id": "discourse-connectors",
+    "title": "Connecteurs de Discours",
+    "subtitle": "10 connecteurs pour structurer vos idées en anglais",
+    "sections": [
+      {
+        "heading": "Séquence et progression",
+        "points": [
+          "First → D'abord",
+          "Next → Puis / Ensuite",
+          "Then → Ensuite / Puis",
+          "After that → Après cela",
+          "Finally → Enfin"
+        ],
+        "tip": "Ordre naturel pour raconter ou expliquer : First… Next… Then… After that… Finally.",
+        "examples": [
+          "First, preheat the oven. Next, mix the ingredients. Then, bake for 30 minutes. Finally, let it cool.",
+          "First, I checked my emails. After that, I joined the meeting."
+        ]
+      },
+      {
+        "heading": "Simultanéité",
+        "points": [
+          "Meanwhile → Pendant ce temps",
+          "At the same time → En même temps"
+        ],
+        "tip": "\"Meanwhile\" est plus narratif (récit) ; \"at the same time\" est plus factuel.",
+        "examples": [
+          "She was cooking dinner. Meanwhile, the kids were doing their homework.",
+          "He was talking on the phone at the same time as driving."
+        ]
+      },
+      {
+        "heading": "Conclusion et résumé",
+        "points": [
+          "To sum up → Pour résumer",
+          "In conclusion → En conclusion",
+          "Last but not least → Enfin, et non des moindres"
+        ],
+        "tip": "\"Last but not least\" souligne que le dernier point est tout aussi important que les autres.",
+        "examples": [
+          "To sum up, the project was a success.",
+          "In conclusion, we need to act now.",
+          "Last but not least, I'd like to thank the entire team."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "away-phrasal-verbs",
+    "title": "Verbes à Particule : AWAY",
+    "subtitle": "10 verbes courants avec AWAY — mouvement, distance et action",
+    "sections": [
+      {
+        "heading": "Mouvement et départ",
+        "points": [
+          "Turn away → Se détourner (face the opposite direction)",
+          "Go away → Partir (leave or disappear completely)",
+          "Run away → S'enfuir (escape from somewhere quickly)",
+          "Look away → Détourner les yeux (turn eyes elsewhere)"
+        ],
+        "tip": "Ces verbes expriment un mouvement physique s'éloignant de quelque chose ou quelqu'un.",
+        "examples": [
+          "She turned away and said nothing.",
+          "The dog ran away when it heard the thunder.",
+          "Go away — I'm trying to concentrate!",
+          "He looked away, embarrassed."
+        ]
+      },
+      {
+        "heading": "Ranger et éliminer",
+        "points": [
+          "Put away → Ranger (store neatly in place)",
+          "Throw away → Jeter (discard something as trash)",
+          "Take away → Enlever (remove something from somewhere)"
+        ],
+        "tip": "\"Put away\" = ranger à sa place ; \"throw away\" = jeter définitivement.",
+        "examples": [
+          "Please put your toys away before dinner.",
+          "Don't throw that away — we can still use it!",
+          "The police took away his driving licence."
+        ]
+      },
+      {
+        "heading": "Donner et s'échapper",
+        "points": [
+          "Give away → Donner gratuitement (donate something for free)",
+          "Get away → S'échapper (escape successfully from danger)",
+          "Stay away → Rester à distance (keep distance from something)"
+        ],
+        "tip": "\"Get away with something\" = s'en tirer sans conséquences.",
+        "examples": [
+          "She gave away all her old clothes to charity.",
+          "The thief managed to get away before the police arrived.",
+          "Stay away from that dog — it bites!"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "question-expressions",
+    "title": "Expressions Interrogatives Avancées",
+    "subtitle": "17 expressions pour poser des questions précises en anglais",
+    "sections": [
+      {
+        "heading": "But, raison et manière",
+        "points": [
+          "What for → Dans quel but / Pourquoi",
+          "How come → Comment se fait-il que (informel)",
+          "In what way → De quelle manière",
+          "For what reason → Pour quelle raison",
+          "Under what condition → Sous quelle condition",
+          "On what occasion → À quelle occasion"
+        ],
+        "tip": "\"How come\" est familier et s'utilise sans inversion : How come you're late? (pas How come are you late?).",
+        "examples": [
+          "What for did they call the meeting? → Dans quel but ont-ils convoqué la réunion ?",
+          "How come you didn't tell me? → Comment se fait-il que tu ne m'aies pas dit ?",
+          "In what way does this help us? → De quelle manière est-ce que ça nous aide ?"
+        ]
+      },
+      {
+        "heading": "Qui, d'où, vers où",
+        "points": [
+          "With whom → Avec qui",
+          "By whom → Par qui",
+          "From where → D'où",
+          "To where → Où (vers où)"
+        ],
+        "tip": "Ces formes sont plus formelles : \"With whom did you speak?\" vs \"Who did you speak with?\" (informel).",
+        "examples": [
+          "With whom did you discuss the project? → Avec qui as-tu discuté du projet ?",
+          "By whom was this letter written? → Par qui cette lettre a-t-elle été écrite ?",
+          "From where did they come? → D'où venaient-ils ?"
+        ]
+      },
+      {
+        "heading": "Temps et durée",
+        "points": [
+          "From when → Depuis quand",
+          "Until when → Jusqu'à quand",
+          "At what time → À quelle heure",
+          "At which time → À quelle heure (précise)",
+          "During what time → Pendant combien de temps",
+          "Before what time → Avant quelle heure",
+          "After what time → Après quelle heure"
+        ],
+        "tip": "\"At which time\" est plus précis et formel que \"at what time\".",
+        "examples": [
+          "From when have you been learning English? → Depuis quand apprenez-vous l'anglais ?",
+          "Until when will you be in Paris? → Jusqu'à quand serez-vous à Paris ?",
+          "During what time were you abroad? → Pendant combien de temps étiez-vous à l'étranger ?"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "linking-expressions",
+    "title": "Expressions de Liaison et Conditions",
+    "subtitle": "16 connecteurs logiques pour structurer et argumenter",
+    "sections": [
+      {
+        "heading": "Condition et concession",
+        "points": [
+          "As long as → Tant que (condition)",
+          "As soon as → Dès que",
+          "Provided that → À condition que",
+          "In case → Au cas où",
+          "Even if → Même si",
+          "In spite of → Malgré, en dépit de"
+        ],
+        "tip": "\"Provided that\" = si et seulement si (condition stricte). \"In case\" anticipe un risque éventuel.",
+        "examples": [
+          "You can stay as long as you behave. → Tu peux rester tant que tu te tiens bien.",
+          "Provided that you study, you'll pass. → À condition que tu étudies, tu réussiras.",
+          "Take an umbrella in case it rains. → Prends un parapluie au cas où il pleuvrait."
+        ]
+      },
+      {
+        "heading": "But et conséquence",
+        "points": [
+          "So that → Afin que / Pour que",
+          "So as to → De manière à",
+          "In order to → Afin de / Pour",
+          "As for → Quant à",
+          "As to → En ce qui concerne"
+        ],
+        "tip": "\"So that\" + sujet + verbe ; \"so as to\" + infinitif ; \"in order to\" + infinitif.",
+        "examples": [
+          "He whispered so that nobody would hear. → Il a chuchoté afin que personne n'entende.",
+          "She left early so as to avoid traffic. → Elle est partie tôt de manière à éviter les embouteillages.",
+          "As for the budget, we'll discuss it later. → Quant au budget, nous en parlerons plus tard."
+        ]
+      },
+      {
+        "heading": "Cause et addition",
+        "points": [
+          "Because → Parce que",
+          "Since → Puisque (cause logique)",
+          "Thanks to → Grâce à",
+          "Due to → À cause de",
+          "In addition to → En plus de"
+        ],
+        "tip": "\"Thanks to\" = résultat positif ; \"due to\" = résultat négatif ou neutre.",
+        "examples": [
+          "Since you're here, let's start. → Puisque tu es là, commençons.",
+          "Thanks to your help, we succeeded. → Grâce à ton aide, nous avons réussi.",
+          "In addition to English, she speaks Japanese. → En plus de l'anglais, elle parle japonais."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "verb-types",
+    "title": "Les 5 Types de Verbes",
+    "subtitle": "Finite, Non-Finite, Auxiliary, Modal et Phrasal Verb",
+    "sections": [
+      {
+        "heading": "Finite vs Non-Finite",
+        "points": [
+          "Finite verb → montre le temps, s'accorde avec le sujet (Main Verb)",
+          "Non-Finite verb → ne montre pas le temps, pas d'accord sujet",
+          "Infinitive (non-finite) → to + verb : to go, to eat",
+          "Gerund (non-finite) → verb + ing : going, eating",
+          "Present Participle → verb + ing : going, talking",
+          "Past Participle → V3 / verb + ed : gone, eaten"
+        ],
+        "tip": "Un verbe fini peut être le seul verbe d'une phrase ; un verbe non-fini ne le peut pas.",
+        "examples": [
+          "She runs every day. (finite — présent, 3e personne)",
+          "Running is good for health. (non-finite gerund — sujet)",
+          "He wants to leave. (non-finite infinitive — complément)"
+        ]
+      },
+      {
+        "heading": "Auxiliary Verb (verbe auxiliaire)",
+        "points": [
+          "Primary Auxiliary → be, do, have (temps, voix, aspect)",
+          "be : am, is, are, was, were, been, being",
+          "do : do, does, did",
+          "have : have, has, had",
+          "Modal Auxiliary → can, could, may, might, shall, should, will, would, must, ought to, need, dare, used to"
+        ],
+        "tip": "Les Primary Auxiliaries peuvent aussi être des verbes principaux : I have a car. (have = verbe principal).",
+        "examples": [
+          "She is running. (be = auxiliaire)",
+          "Do you speak English? (do = auxiliaire interrogatif)",
+          "He has finished. (have = auxiliaire perfect)"
+        ]
+      },
+      {
+        "heading": "Phrasal Verb (verbe à particule)",
+        "points": [
+          "Verb + Adverb → give up, take off",
+          "Verb + Preposition → look at, depend on",
+          "Verb + Adverb + Preposition → look forward to, give in to"
+        ],
+        "tip": "Le sens d'un phrasal verb est souvent différent du sens littéral de ses composants.",
+        "examples": [
+          "She gave up smoking. (give up = arrêter — sens non littéral)",
+          "Look at this! (look at = regarder)",
+          "I look forward to seeing you. (look forward to = avoir hâte de)"
+        ]
+      }
+    ]
   }
 ]

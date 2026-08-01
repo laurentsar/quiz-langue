@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.83';
+const APP_VERSION = '2.86';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2449,6 +2449,14 @@ const _GFIX = {
     { q: "Comment dire 'Tu rayonnes aujourd'hui' ?", opts: ["You're glowing today","You're shining today","You're radiant today","You're beaming today"], ans: "You're glowing today", hint: "Tu rayonnes → You're glowing (expression très naturelle)." },
     { q: "Comment dire 'Tu es en pleine forme' ?", opts: ["You're in great shape","You look healthy","You're very fit","You're in good form"], ans: "You're in great shape", hint: "En pleine forme → in great shape." },
   ],
+  'discourse-connectors': [
+    { q: "Quel connecteur signifie 'D'abord' ?", opts: ['First','Then','Next','After that'], ans: 'First', hint: "First → D'abord — le premier connecteur de séquence." },
+    { q: "Quel connecteur signifie 'Pendant ce temps' ?", opts: ['Meanwhile','At the same time','Then','After that'], ans: 'Meanwhile', hint: "Meanwhile → Pendant ce temps (récit / narration)." },
+    { q: "Que signifie 'Last but not least' ?", opts: ["Enfin, et non des moindres","Enfin et le dernier","Le dernier mais pas le moindre effort","Dernier point, sans importance"], ans: "Enfin, et non des moindres", hint: "Last but not least → souligne que le dernier point est tout aussi important." },
+    { q: "Quel connecteur utiliser pour résumer ?", opts: ['To sum up','In conclusion','Meanwhile','After that'], ans: 'To sum up', hint: "To sum up → Pour résumer (début d'une synthèse)." },
+    { q: "Différence entre 'Meanwhile' et 'At the same time' ?", opts: ["Meanwhile = récit/narration ; at the same time = factuel","Ce sont des synonymes exacts","At the same time = résumé","Meanwhile = conclusion"], ans: "Meanwhile = récit/narration ; at the same time = factuel", hint: "Meanwhile est plus narratif ; at the same time est plus factuel/explicatif." },
+    { q: "Compléter : '___, I'd like to thank the entire team.' (dernier point important)", opts: ['Last but not least','Finally','To sum up','In conclusion'], ans: 'Last but not least', hint: "Last but not least → dernier point présenté comme tout aussi important." },
+  ],
   'such-expressions': [
     { q: "Que signifie 'as such' dans 'The job, as such, doesn't appeal to him' ?", opts: ['En soi / en tant que tel','Par conséquent','Tellement','Tel ou tel'], ans: 'En soi / en tant que tel', hint: "As such → en lui-même / à ce titre." },
     { q: "Compléter : 'There's no ___ thing as a perfect person.'", opts: ['such','such a','as such','such and such'], ans: 'such', hint: "There's no such thing as… → ça n'existe pas." },
@@ -2480,6 +2488,38 @@ const _GFIX = {
     { q: "Comment dire 'Je n'ai pas la moindre idée' (familier) ?", opts: ["I haven't got a clue","I'm not sure","I can't say","I wouldn't know"], ans: "I haven't got a clue", hint: "I haven't got a clue → Je n'ai pas la moindre idée (très familier)." },
     { q: "Que signifie 'I wouldn't know' ?", opts: ["Je ne saurais pas dire","Je ne voudrais pas savoir","Je ne le saurai jamais","Je n'aurais pas su"], ans: "Je ne saurais pas dire", hint: "I wouldn't know → Je ne saurais pas dire (ce n'est pas mon domaine)." },
     { q: "Comment dire 'Je ne peux pas dire' en anglais ?", opts: ["I can't say","I don't know","I'm unsure","I won't tell"], ans: "I can't say", hint: "I can't say → Je ne peux pas dire (parfois : c'est confidentiel)." },
+  ],
+  'away-phrasal-verbs': [
+    { q: "Que signifie 'turn away' ?", opts: ['Se détourner','Partir','S\'enfuir','Ranger'], ans: 'Se détourner', hint: "Turn away → se détourner, faire face à l'opposé." },
+    { q: "Compléter : 'The thief managed to ___ before the police arrived.'", opts: ['get away','run away','go away','stay away'], ans: 'get away', hint: "Get away → s'échapper avec succès." },
+    { q: "Que signifie 'put away' ?", opts: ['Ranger','Jeter','Enlever','Donner'], ans: 'Ranger', hint: "Put away → ranger soigneusement à sa place." },
+    { q: "Que signifie 'give away' ?", opts: ['Donner gratuitement','Jeter','Enlever','Ranger'], ans: 'Donner gratuitement', hint: "Give away → donner gratuitement, offrir." },
+    { q: "Compléter : '___ from that dog — it bites!'", opts: ['Stay away','Run away','Look away','Go away'], ans: 'Stay away', hint: "Stay away → rester à distance (éviter)." },
+    { q: "Traduire : 'Elle a jeté tous ses vieux magazines.'", opts: ["She threw away all her old magazines.","She put away all her old magazines.","She gave away all her old magazines.","She took away all her old magazines."], ans: "She threw away all her old magazines.", hint: "Throw away → jeter définitivement." },
+  ],
+  'question-expressions': [
+    { q: "Que signifie 'What for' ?", opts: ['Dans quel but / Pourquoi','Avec qui','De quelle manière','Depuis quand'], ans: 'Dans quel but / Pourquoi', hint: "What for → dans quel but, pourquoi (informel et direct)." },
+    { q: "Comment dit-on 'Avec qui' (formel) en anglais ?", opts: ['With whom','Who with','By whom','For whom'], ans: 'With whom', hint: "With whom → avec qui (formel). Informel : who with." },
+    { q: "Que signifie 'How come' ?", opts: ['Comment se fait-il que','Comment venir','Pourquoi venir','De quelle manière'], ans: 'Comment se fait-il que', hint: "How come → comment se fait-il que (informel, sans inversion : How come you're late?)." },
+    { q: "Quelle expression signifie 'Jusqu'à quand' ?", opts: ['Until when','From when','At what time','At which time'], ans: 'Until when', hint: "Until when → jusqu'à quand." },
+    { q: "Différence entre 'At what time' et 'At which time' ?", opts: ["At which time est plus précis et formel","Ce sont des synonymes exacts","At what time est plus formel","At which time s'utilise en informel"], ans: "At which time est plus précis et formel", hint: "At which time → version plus précise et formelle de at what time." },
+    { q: "Que signifie 'From where' ?", opts: ["D'où","Vers où","Depuis quand","Par où"], ans: "D'où", hint: "From where → d'où (origine ou provenance)." },
+  ],
+  'linking-expressions': [
+    { q: "Que signifie 'Provided that' ?", opts: ['À condition que','Au cas où','Même si','Tant que'], ans: 'À condition que', hint: "Provided that → à condition que (condition stricte)." },
+    { q: "Différence entre 'Thanks to' et 'Due to' ?", opts: ["Thanks to = résultat positif ; due to = résultat négatif/neutre","Ce sont des synonymes","Due to = résultat positif","Thanks to = cause logique"], ans: "Thanks to = résultat positif ; due to = résultat négatif/neutre", hint: "Thanks to → grâce à (positif) ; due to → à cause de (négatif/neutre)." },
+    { q: "Que signifie 'In case' ?", opts: ['Au cas où','À condition que','Même si','Puisque'], ans: 'Au cas où', hint: "In case → au cas où (précaution face à un risque)." },
+    { q: "Compléter : 'She left early ___ avoid traffic.' (de manière à)", opts: ['so as to','so that','in order that','because'], ans: 'so as to', hint: "So as to + infinitif → de manière à." },
+    { q: "Que signifie 'In spite of' ?", opts: ['Malgré / en dépit de','En plus de','À cause de','Grâce à'], ans: 'Malgré / en dépit de', hint: "In spite of → malgré, en dépit de (concession)." },
+    { q: "Que signifie 'Since' dans 'Since you're here, let's start' ?", opts: ['Puisque (cause logique)','Depuis (temps)','Tant que','Même si'], ans: 'Puisque (cause logique)', hint: "Since peut signifier 'puisque' (cause) ou 'depuis' (temps). Ici : cause logique." },
+  ],
+  'verb-types': [
+    { q: "Qu'est-ce qu'un verbe fini (finite verb) ?", opts: ['Un verbe qui montre le temps et s\'accorde avec le sujet','Un verbe sans temps ni accord','Un verbe auxiliaire','Un verbe à particule'], ans: "Un verbe qui montre le temps et s'accorde avec le sujet", hint: "Finite verb → montre le temps, s'accorde avec le sujet — c'est le verbe principal de la phrase." },
+    { q: "Lequel est un verbe non-fini (non-finite) ?", opts: ['To go','She goes','He went','They go'], ans: 'To go', hint: "To go = infinitif → non-fini (pas de temps, pas d'accord sujet)." },
+    { q: "Quels sont les 3 Primary Auxiliaries ?", opts: ['be, do, have','can, will, must','am, is, are','was, were, been'], ans: 'be, do, have', hint: "Primary Auxiliaries : be, do, have. Ils aident à former les temps et les questions." },
+    { q: "Que signifie 'give up' comme phrasal verb ?", opts: ['Abandonner / arrêter','Donner','Monter','Offrir'], ans: 'Abandonner / arrêter', hint: "Give up (Verb + Adverb) → abandonner, arrêter. Sens non littéral." },
+    { q: "Un gerund (gérondif) est quel type de verbe ?", opts: ['Non-fini (non-finite)','Fini (finite)','Auxiliaire','Modal'], ans: 'Non-fini (non-finite)', hint: "Le gérondif (verb + ing) est un verbe non-fini — il n'indique pas le temps." },
+    { q: "Quel modal verb exprime la nécessité absolue ?", opts: ['must','can','might','shall'], ans: 'must', hint: "Must → nécessité absolue. Can → capacité. Might → possibilité faible." },
   ],
 };
 
@@ -3351,6 +3391,24 @@ const _GFIX_SERIES = {
       { q: "Quelle est la différence entre 'à tout à l'heure' et 'tout à l'heure' ?", opts: ["À tout à l'heure = au revoir ; tout à l'heure = plus tôt/plus tard aujourd'hui","Ce sont des synonymes","À tout à l'heure = plus tôt ; tout à l'heure = au revoir","Aucune différence"], ans: "À tout à l'heure = au revoir ; tout à l'heure = plus tôt/plus tard aujourd'hui", hint: "À tout à l'heure = see you later ; tout à l'heure = earlier/later today." },
     ],
   ],
+  'discourse-connectors': [
+    [
+      { q: "Compléter : '___, preheat the oven. ___, mix the ingredients.' (d'abord / ensuite)", opts: ['First / Then','Next / After that','Meanwhile / Finally','First / After that'], ans: 'First / Then', hint: "First → d'abord ; Then → ensuite (ordre logique)." },
+      { q: "Que signifie 'After that' ?", opts: ['Après cela','Ensuite seulement','En même temps','Enfin'], ans: 'Après cela', hint: "After that → après cela (suit une action précédente)." },
+      { q: "Compléter : '___ she was cooking, the kids were playing.' (pendant ce temps)", opts: ['Meanwhile','At the same time','Then','After that'], ans: 'Meanwhile', hint: "Meanwhile → pendant ce temps (deux actions parallèles, narration)." },
+      { q: "Compléter : '___, we need to act now.' (en conclusion)", opts: ['In conclusion','To sum up','Last but not least','Finally'], ans: 'In conclusion', hint: "In conclusion → en conclusion (formule de clôture)." },
+      { q: "Quel connecteur introduit le dernier point important d'une liste ?", opts: ['Last but not least','Finally','In conclusion','After that'], ans: 'Last but not least', hint: "Last but not least → dernier mais tout aussi important." },
+      { q: "Que signifie 'At the same time' ?", opts: ['En même temps','Pendant ce temps','Après cela',"D'abord"], ans: 'En même temps', hint: "At the same time → en même temps (simultanéité factuelle)." },
+    ],
+    [
+      { q: "Mettre dans le bon ordre : discours structuré", opts: ['First / Next / Then / After that / Finally','Next / First / Then / Finally / After that','Then / First / Next / Finally / After that','First / Finally / Next / Then / After that'], ans: 'First / Next / Then / After that / Finally', hint: "Ordre naturel : First → Next → Then → After that → Finally." },
+      { q: "Compléter : '___ the project was a success.' (pour résumer)", opts: ['To sum up,','In conclusion,','Finally,','Last but not least,'], ans: 'To sum up,', hint: "To sum up → pour résumer (synthèse concise)." },
+      { q: "Compléter : 'He drove ___ he talked on the phone.' (en même temps)", opts: ['at the same time as','meanwhile','after that','while next'], ans: 'at the same time as', hint: "At the same time as → en même temps que (simultanéité)." },
+      { q: "Différence entre 'To sum up' et 'In conclusion' ?", opts: ["To sum up = résumé bref ; In conclusion = conclusion formelle","Ce sont des synonymes","In conclusion = résumé ; To sum up = conclusion","Pas de différence en anglais"], ans: "To sum up = résumé bref ; In conclusion = conclusion formelle", hint: "To sum up est plus informel ; In conclusion est plus académique/formel." },
+      { q: "Quel connecteur est le plus narratif (récit) ?", opts: ['Meanwhile','At the same time','After that','Next'], ans: 'Meanwhile', hint: "Meanwhile est plus utilisé dans les récits et la narration." },
+      { q: "Compléter : '___, I'd like to mention the volunteers.' (dernier mais important)", opts: ['Last but not least','Finally','To sum up','In conclusion'], ans: 'Last but not least', hint: "Last but not least → pour valoriser le dernier point d'une liste." },
+    ],
+  ],
   'such-expressions': [
     [
       { q: "Choisir la bonne phrase : 'He is the president, and ___ he has power.'", opts: ['as such','such and such','no such','to such an extent'], ans: 'as such', hint: "As such → à ce titre / en tant que tel." },
@@ -3421,6 +3479,78 @@ const _GFIX_SERIES = {
       { q: "Dans quel cas utilise-t-on surtout 'I can't say' ?", opts: ["Quand c'est confidentiel ou incertain","Quand on ignore totalement","Quand on manque de vocabulaire","Quand on est très familier"], ans: "Quand c'est confidentiel ou incertain", hint: "I can't say peut indiquer la confidentialité ou l'incertitude." },
       { q: "Quelle phrase est la plus formelle ?", opts: ["I'm not certain","It beats me","I haven't got a clue","I don't have a clue"], ans: "I'm not certain", hint: "I'm not certain → le plus formel et poli des quatre." },
       { q: "Compléter : '___ — it's not my area.' (Je ne saurais pas dire)", opts: ["I wouldn't know","I'm not sure","I can't say","I'm unsure"], ans: "I wouldn't know", hint: "I wouldn't know — it's not my area → Je ne saurais pas dire — ce n'est pas mon domaine." },
+    ],
+  ],
+  'away-phrasal-verbs': [
+    [
+      { q: "Que signifie 'look away' ?", opts: ['Détourner les yeux','Se détourner','Partir','Regarder au loin'], ans: 'Détourner les yeux', hint: "Look away → détourner les yeux (regarder ailleurs)." },
+      { q: "Compléter : '___ — I'm trying to concentrate!' (Pars !)", opts: ['Go away','Run away','Stay away','Get away'], ans: 'Go away', hint: "Go away → partir / disparaître complètement." },
+      { q: "Que signifie 'take away' ?", opts: ['Enlever','Ranger','Jeter','Donner'], ans: 'Enlever', hint: "Take away → enlever, retirer quelque chose." },
+      { q: "Compléter : 'She ___ her old clothes to charity.'", opts: ['gave away','threw away','put away','ran away'], ans: 'gave away', hint: "Give away → donner gratuitement (à une association)." },
+      { q: "Que signifie 'run away' ?", opts: ["S'enfuir","Partir","Se détourner","Rester à distance"], ans: "S'enfuir", hint: "Run away → s'enfuir rapidement." },
+      { q: "Compléter : 'Please ___ your toys before dinner.'", opts: ['put away','throw away','take away','give away'], ans: 'put away', hint: "Put away → ranger à sa place." },
+    ],
+    [
+      { q: "Traduire : 'La police lui a retiré son permis de conduire.'", opts: ["The police took away his driving licence.","The police put away his driving licence.","The police threw away his driving licence.","The police gave away his driving licence."], ans: "The police took away his driving licence.", hint: "Take away → enlever, retirer quelque chose à quelqu'un." },
+      { q: "Compléter : 'He ___, embarrassed.' (détourna les yeux)", opts: ['looked away','turned away','ran away','stayed away'], ans: 'looked away', hint: "Look away → détourner les yeux par gêne ou refus." },
+      { q: "Différence entre 'throw away' et 'put away' ?", opts: ["Throw away = jeter ; put away = ranger","Throw away = ranger ; put away = jeter","Ils sont synonymes","Throw away = donner ; put away = enlever"], ans: "Throw away = jeter ; put away = ranger", hint: "Throw away = à la poubelle ; put away = à sa place." },
+      { q: "Compléter : 'Don't ___ that — we can still use it!'", opts: ['throw away','put away','give away','take away'], ans: 'throw away', hint: "Throw away → jeter définitivement à la poubelle." },
+      { q: "Compléter : 'The dog ___ when it heard the thunder.'", opts: ['ran away','went away','stayed away','got away'], ans: 'ran away', hint: "Run away → s'enfuir (réaction de frayeur)." },
+      { q: "Quel verbe signifie 's'échapper d'un danger' ?", opts: ['Get away','Go away','Run away','Turn away'], ans: 'Get away', hint: "Get away = s'échapper avec succès. Run away = fuir en courant." },
+    ],
+  ],
+  'question-expressions': [
+    [
+      { q: "Compléter : '___ did they call the meeting?' (dans quel but)", opts: ['What for','How come','By whom','From when'], ans: 'What for', hint: "What for → dans quel but, pourquoi." },
+      { q: "Compléter : '___ you didn't tell me?' (comment se fait-il que)", opts: ["How come","What for","In what way","For what reason"], ans: "How come", hint: "How come → comment se fait-il que (informel, sans inversion)." },
+      { q: "Que signifie 'By whom' ?", opts: ['Par qui','Avec qui','Pour qui','Par où'], ans: 'Par qui', hint: "By whom → par qui (passif formel)." },
+      { q: "Compléter : '___ were you abroad?' (pendant combien de temps)", opts: ['During what time','Until when','From when','At what time'], ans: 'During what time', hint: "During what time → pendant combien de temps." },
+      { q: "Que signifie 'To where' ?", opts: ['Vers où','D\'où','Depuis quand','Jusqu\'à quand'], ans: 'Vers où', hint: "To where → vers où, en direction de quel endroit." },
+      { q: "Comment dire 'Sous quelle condition' ?", opts: ['Under what condition','In what way','On what occasion','For what reason'], ans: 'Under what condition', hint: "Under what condition → sous quelle condition." },
+    ],
+    [
+      { q: "Que signifie 'On what occasion' ?", opts: ['À quelle occasion','À quelle heure','Dans quel but','Par qui'], ans: 'À quelle occasion', hint: "On what occasion → à quelle occasion." },
+      { q: "Quelle question est la plus formelle pour demander 'avec qui' ?", opts: ['With whom','Who with','Who did you go with','Who were you with'], ans: 'With whom', hint: "With whom → forme formelle. Who with → forme informelle." },
+      { q: "Compléter : '___ will you be in Paris?' (jusqu'à quand)", opts: ['Until when','From when','At which time','After what time'], ans: 'Until when', hint: "Until when → jusqu'à quand." },
+      { q: "Différence entre 'From when' et 'Since when' ?", opts: ["Même sens — depuis quand","From when = jusqu'à quand","Since when = vers où","From when = par qui"], ans: "Même sens — depuis quand", hint: "From when et since when → depuis quand (depuis quel moment)." },
+      { q: "Compléter : '___ should I arrive?' (avant quelle heure)", opts: ['Before what time','After what time','At what time','Until when'], ans: 'Before what time', hint: "Before what time → avant quelle heure." },
+      { q: "Que signifie 'In what way' ?", opts: ['De quelle manière','Pour quelle raison','Dans quel but','Depuis quand'], ans: 'De quelle manière', hint: "In what way → de quelle manière, comment exactement." },
+    ],
+  ],
+  'linking-expressions': [
+    [
+      { q: "Compléter : '___ you study, you'll pass.' (à condition que)", opts: ['Provided that','In case','Even if','As long as'], ans: 'Provided that', hint: "Provided that → à condition que (condition stricte)." },
+      { q: "Compléter : 'Take an umbrella ___ it rains.' (au cas où)", opts: ['in case','even if','so that','provided that'], ans: 'in case', hint: "In case → au cas où (précaution préventive)." },
+      { q: "Que signifie 'Even if' ?", opts: ['Même si','Tant que','Puisque','Afin que'], ans: 'Même si', hint: "Even if → même si (concession hypothétique)." },
+      { q: "Compléter : '___ your help, we succeeded.' (grâce à)", opts: ['Thanks to','Due to','Because of','In spite of'], ans: 'Thanks to', hint: "Thanks to → grâce à (cause positive)." },
+      { q: "Que signifie 'In addition to' ?", opts: ['En plus de','À cause de','Malgré','Afin de'], ans: 'En plus de', hint: "In addition to → en plus de (ajout)." },
+      { q: "Compléter : 'She whispered ___ nobody would hear.' (afin que)", opts: ['so that','so as to','in order to','because'], ans: 'so that', hint: "So that + sujet + verbe → afin que." },
+    ],
+    [
+      { q: "Différence entre 'so that' et 'so as to' ?", opts: ["So that + sujet + verbe ; so as to + infinitif","Ce sont des synonymes","So as to + sujet ; so that + infinitif","Pas de différence"], ans: "So that + sujet + verbe ; so as to + infinitif", hint: "So that she can… / so as to avoid… — structures différentes." },
+      { q: "Compléter : '___ English, she speaks Japanese.' (en plus de)", opts: ['In addition to','Thanks to','In spite of','Due to'], ans: 'In addition to', hint: "In addition to → en plus de (ajout d'élément)." },
+      { q: "Que signifie 'Since' dans 'Since you're here, let's start' ?", opts: ['Puisque (cause)','Depuis (temps)','Tant que','Même si'], ans: 'Puisque (cause)', hint: "Since = puisque (cause logique) ou depuis (temps) — contexte décisif." },
+      { q: "Compléter : '___ the budget, we'll discuss it later.' (quant à)", opts: ['As for','As to','As long as','As soon as'], ans: 'As for', hint: "As for → quant à (introduit un nouveau sujet)." },
+      { q: "Que signifie 'In spite of' ?", opts: ['Malgré','En plus de','À cause de','Grâce à'], ans: 'Malgré', hint: "In spite of → malgré, en dépit de (= despite)." },
+      { q: "Compléter : 'She left early ___ avoid traffic.' (de manière à)", opts: ['so as to','so that','in order that','because'], ans: 'so as to', hint: "So as to + infinitif → de manière à + infinitif." },
+    ],
+  ],
+  'verb-types': [
+    [
+      { q: "Identifier le verbe fini : 'She is running every morning.'", opts: ['is','running','every','morning'], ans: 'is', hint: "Is = verbe fini (présent, 3e personne). Running = participe présent (non-fini)." },
+      { q: "Quel est le rôle de 'do' dans 'Do you speak English?' ?", opts: ['Auxiliaire pour la question','Verbe principal','Verbe modal','Verbe non-fini'], ans: 'Auxiliaire pour la question', hint: "Do en début de question = auxiliaire primaire qui forme l'interrogatif." },
+      { q: "Past participle de 'go' ?", opts: ['gone','went','going','to go'], ans: 'gone', hint: "Gone = past participle (V3) de go. Went = simple past (V2)." },
+      { q: "Quel type est 'look forward to' ?", opts: ['Verb + Adverb + Preposition','Verb + Adverb','Verb + Preposition','Verbe fini'], ans: 'Verb + Adverb + Preposition', hint: "Look forward to = Verb + Adverb (forward) + Preposition (to)." },
+      { q: "Quel verbe est non-fini dans 'He wants to leave' ?", opts: ['to leave','wants','He','wants to'], ans: 'to leave', hint: "To leave = infinitif (non-fini). Wants = verbe fini (accord sujet)." },
+      { q: "Parmi les modaux, lequel exprime la permission ?", opts: ['may','must','should','will'], ans: 'may', hint: "May → permission ou possibilité. Must → nécessité. Should → conseil." },
+    ],
+    [
+      { q: "Quel auxiliaire primaire sert à former le present perfect ?", opts: ['have','be','do','used to'], ans: 'have', hint: "Have/has + past participle → present perfect : She has finished." },
+      { q: "Quel auxiliaire primaire forme la voix passive ?", opts: ['be','have','do','modal'], ans: 'be', hint: "Be + past participle → voix passive : The letter was written by him." },
+      { q: "Quelle est la différence entre 'look at' et 'look forward to' ?", opts: ["Look at = Verb+Prep ; look forward to = Verb+Adv+Prep","Ce sont des synonymes","Look at = non-fini ; look forward to = fini","Look at = modal ; look forward to = auxiliaire"], ans: "Look at = Verb+Prep ; look forward to = Verb+Adv+Prep", hint: "Look at (V+Prep) vs look forward to (V+Adv+Prep) — deux structures différentes." },
+      { q: "Identifier le gerund : 'Running is good for health.'", opts: ['Running','is','good','health'], ans: 'Running', hint: "Running en début de phrase = gérondif (non-fini) qui sert de sujet." },
+      { q: "Quelle liste contient uniquement des modaux ?", opts: ['can, could, may, must, shall','be, do, have, must','am, is, are, can','go, come, take, will'], ans: 'can, could, may, must, shall', hint: "Les modaux : can, could, may, might, shall, should, will, would, must, ought to…" },
+      { q: "Que signifie 'depend on' comme phrasal verb ?", opts: ['Dépendre de','Compter à','Regarder sur','Attendre pour'], ans: 'Dépendre de', hint: "Depend on (Verb + Preposition) → dépendre de, compter sur." },
     ],
   ],
 };
