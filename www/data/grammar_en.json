@@ -4566,5 +4566,53 @@
         ]
       }
     ]
+  },
+  {
+    "id": "discourse-connectors",
+    "title": "Connecteurs de Discours",
+    "subtitle": "10 connecteurs pour structurer vos idées en anglais",
+    "sections": [
+      {
+        "heading": "Séquence et progression",
+        "points": [
+          "First → D'abord",
+          "Next → Puis / Ensuite",
+          "Then → Ensuite / Puis",
+          "After that → Après cela",
+          "Finally → Enfin"
+        ],
+        "tip": "Ordre naturel pour raconter ou expliquer : First… Next… Then… After that… Finally.",
+        "examples": [
+          "First, preheat the oven. Next, mix the ingredients. Then, bake for 30 minutes. Finally, let it cool.",
+          "First, I checked my emails. After that, I joined the meeting."
+        ]
+      },
+      {
+        "heading": "Simultanéité",
+        "points": [
+          "Meanwhile → Pendant ce temps",
+          "At the same time → En même temps"
+        ],
+        "tip": "\"Meanwhile\" est plus narratif (récit) ; \"at the same time\" est plus factuel.",
+        "examples": [
+          "She was cooking dinner. Meanwhile, the kids were doing their homework.",
+          "He was talking on the phone at the same time as driving."
+        ]
+      },
+      {
+        "heading": "Conclusion et résumé",
+        "points": [
+          "To sum up → Pour résumer",
+          "In conclusion → En conclusion",
+          "Last but not least → Enfin, et non des moindres"
+        ],
+        "tip": "\"Last but not least\" souligne que le dernier point est tout aussi important que les autres.",
+        "examples": [
+          "To sum up, the project was a success.",
+          "In conclusion, we need to act now.",
+          "Last but not least, I'd like to thank the entire team."
+        ]
+      }
+    ]
   }
 ]

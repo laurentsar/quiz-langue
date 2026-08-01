@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.83';
+const APP_VERSION = '2.84';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2449,6 +2449,14 @@ const _GFIX = {
     { q: "Comment dire 'Tu rayonnes aujourd'hui' ?", opts: ["You're glowing today","You're shining today","You're radiant today","You're beaming today"], ans: "You're glowing today", hint: "Tu rayonnes → You're glowing (expression très naturelle)." },
     { q: "Comment dire 'Tu es en pleine forme' ?", opts: ["You're in great shape","You look healthy","You're very fit","You're in good form"], ans: "You're in great shape", hint: "En pleine forme → in great shape." },
   ],
+  'discourse-connectors': [
+    { q: "Quel connecteur signifie 'D'abord' ?", opts: ['First','Then','Next','After that'], ans: 'First', hint: "First → D'abord — le premier connecteur de séquence." },
+    { q: "Quel connecteur signifie 'Pendant ce temps' ?", opts: ['Meanwhile','At the same time','Then','After that'], ans: 'Meanwhile', hint: "Meanwhile → Pendant ce temps (récit / narration)." },
+    { q: "Que signifie 'Last but not least' ?", opts: ["Enfin, et non des moindres","Enfin et le dernier","Le dernier mais pas le moindre effort","Dernier point, sans importance"], ans: "Enfin, et non des moindres", hint: "Last but not least → souligne que le dernier point est tout aussi important." },
+    { q: "Quel connecteur utiliser pour résumer ?", opts: ['To sum up','In conclusion','Meanwhile','After that'], ans: 'To sum up', hint: "To sum up → Pour résumer (début d'une synthèse)." },
+    { q: "Différence entre 'Meanwhile' et 'At the same time' ?", opts: ["Meanwhile = récit/narration ; at the same time = factuel","Ce sont des synonymes exacts","At the same time = résumé","Meanwhile = conclusion"], ans: "Meanwhile = récit/narration ; at the same time = factuel", hint: "Meanwhile est plus narratif ; at the same time est plus factuel/explicatif." },
+    { q: "Compléter : '___, I'd like to thank the entire team.' (dernier point important)", opts: ['Last but not least','Finally','To sum up','In conclusion'], ans: 'Last but not least', hint: "Last but not least → dernier point présenté comme tout aussi important." },
+  ],
   'such-expressions': [
     { q: "Que signifie 'as such' dans 'The job, as such, doesn't appeal to him' ?", opts: ['En soi / en tant que tel','Par conséquent','Tellement','Tel ou tel'], ans: 'En soi / en tant que tel', hint: "As such → en lui-même / à ce titre." },
     { q: "Compléter : 'There's no ___ thing as a perfect person.'", opts: ['such','such a','as such','such and such'], ans: 'such', hint: "There's no such thing as… → ça n'existe pas." },
@@ -3349,6 +3357,24 @@ const _GFIX_SERIES = {
       { q: "'Tout seul' en anglais ?", opts: ['Alone','By myself','All alone','On your own'], ans: 'Alone', hint: "Tout seul / toute seule → Alone." },
       { q: "'À tout prix' en anglais ?", opts: ['At all costs','At any price','Whatever the cost','By all means'], ans: 'At all costs', hint: "À tout prix → At all costs." },
       { q: "Quelle est la différence entre 'à tout à l'heure' et 'tout à l'heure' ?", opts: ["À tout à l'heure = au revoir ; tout à l'heure = plus tôt/plus tard aujourd'hui","Ce sont des synonymes","À tout à l'heure = plus tôt ; tout à l'heure = au revoir","Aucune différence"], ans: "À tout à l'heure = au revoir ; tout à l'heure = plus tôt/plus tard aujourd'hui", hint: "À tout à l'heure = see you later ; tout à l'heure = earlier/later today." },
+    ],
+  ],
+  'discourse-connectors': [
+    [
+      { q: "Compléter : '___, preheat the oven. ___, mix the ingredients.' (d'abord / ensuite)", opts: ['First / Then','Next / After that','Meanwhile / Finally','First / After that'], ans: 'First / Then', hint: "First → d'abord ; Then → ensuite (ordre logique)." },
+      { q: "Que signifie 'After that' ?", opts: ['Après cela','Ensuite seulement','En même temps','Enfin'], ans: 'Après cela', hint: "After that → après cela (suit une action précédente)." },
+      { q: "Compléter : '___ she was cooking, the kids were playing.' (pendant ce temps)", opts: ['Meanwhile','At the same time','Then','After that'], ans: 'Meanwhile', hint: "Meanwhile → pendant ce temps (deux actions parallèles, narration)." },
+      { q: "Compléter : '___, we need to act now.' (en conclusion)", opts: ['In conclusion','To sum up','Last but not least','Finally'], ans: 'In conclusion', hint: "In conclusion → en conclusion (formule de clôture)." },
+      { q: "Quel connecteur introduit le dernier point important d'une liste ?", opts: ['Last but not least','Finally','In conclusion','After that'], ans: 'Last but not least', hint: "Last but not least → dernier mais tout aussi important." },
+      { q: "Que signifie 'At the same time' ?", opts: ['En même temps','Pendant ce temps','Après cela',"D'abord"], ans: 'En même temps', hint: "At the same time → en même temps (simultanéité factuelle)." },
+    ],
+    [
+      { q: "Mettre dans le bon ordre : discours structuré", opts: ['First / Next / Then / After that / Finally','Next / First / Then / Finally / After that','Then / First / Next / Finally / After that','First / Finally / Next / Then / After that'], ans: 'First / Next / Then / After that / Finally', hint: "Ordre naturel : First → Next → Then → After that → Finally." },
+      { q: "Compléter : '___ the project was a success.' (pour résumer)", opts: ['To sum up,','In conclusion,','Finally,','Last but not least,'], ans: 'To sum up,', hint: "To sum up → pour résumer (synthèse concise)." },
+      { q: "Compléter : 'He drove ___ he talked on the phone.' (en même temps)", opts: ['at the same time as','meanwhile','after that','while next'], ans: 'at the same time as', hint: "At the same time as → en même temps que (simultanéité)." },
+      { q: "Différence entre 'To sum up' et 'In conclusion' ?", opts: ["To sum up = résumé bref ; In conclusion = conclusion formelle","Ce sont des synonymes","In conclusion = résumé ; To sum up = conclusion","Pas de différence en anglais"], ans: "To sum up = résumé bref ; In conclusion = conclusion formelle", hint: "To sum up est plus informel ; In conclusion est plus académique/formel." },
+      { q: "Quel connecteur est le plus narratif (récit) ?", opts: ['Meanwhile','At the same time','After that','Next'], ans: 'Meanwhile', hint: "Meanwhile est plus utilisé dans les récits et la narration." },
+      { q: "Compléter : '___, I'd like to mention the volunteers.' (dernier mais important)", opts: ['Last but not least','Finally','To sum up','In conclusion'], ans: 'Last but not least', hint: "Last but not least → pour valoriser le dernier point d'une liste." },
     ],
   ],
   'such-expressions': [
