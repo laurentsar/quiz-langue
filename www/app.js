@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.90';
+const APP_VERSION = '2.91';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -1132,25 +1132,50 @@ function showGrammarTopic(idx) {
 
 // ---------- mode Parcours grammaire (lecture libre, sans notation) ----------
 // Inspiré du mode « Parcourir » de CyberRévision : on avance carte par carte dans les
-// règles de grammaire (toutes les sections de tous les topics, dans l'ordre pédagogique),
-// avec révélation progressive de la règle. Aucune note SRS n'est enregistrée ici.
-const browseState = { cards: [], idx: 0, revealed: false };
+// règles de grammaire, avec révélation progressive de la règle. Aucune note SRS n'est
+// enregistrée ici. Les leçons (topics) sont tirées dans un ordre aléatoire, et celles déjà
+// vues dans la journée sont exclues tant que toutes les leçons n'ont pas été parcourues.
+const browseState = { cards: [], idx: 0, revealed: false, seenMarked: new Set() };
+
+// Persiste, par langue et par jour, la liste des leçons déjà proposées en Parcours —
+// remise à zéro automatiquement au changement de date (comparaison de la clé 'date').
+function grammarBrowseSeenStore() {
+  const today = todayStr();
+  let store = null;
+  try { store = JSON.parse(localStorage.getItem('grammar_browse_seen') || 'null'); } catch (e) {}
+  if (!store || store.date !== today) store = { date: today, en: [], es: [] };
+  return store;
+}
+function grammarBrowseMarkSeen(topicId) {
+  const store = grammarBrowseSeenStore();
+  const seen = store[grammarLang] || (store[grammarLang] = []);
+  if (!seen.includes(topicId)) seen.push(topicId);
+  localStorage.setItem('grammar_browse_seen', JSON.stringify(store));
+}
 
 function buildGrammarBrowseCards() {
-  const cards = [];
-  (grammarData || []).forEach(t => {
-    (t.sections || []).forEach((sec, i) => {
-      cards.push({
-        topicTitle: t.title,
-        partLabel: t.sections.length > 1 ? `Partie ${i + 1}/${t.sections.length}` : '',
-        heading: sec.heading,
-        points: sec.points || [],
-        tip: sec.tip,
-        examples: sec.examples || [],
-      });
-    });
-  });
-  return cards;
+  const topics = grammarData || [];
+  if (!topics.length) return [];
+  const store = grammarBrowseSeenStore();
+  const seenIds = new Set(store[grammarLang] || []);
+  let pool = topics.filter(t => !seenIds.has(t.id));
+  if (!pool.length) {
+    // Toutes les leçons du jour ont déjà été vues : on repart pour un nouveau tour.
+    store[grammarLang] = [];
+    localStorage.setItem('grammar_browse_seen', JSON.stringify(store));
+    pool = topics;
+  }
+  return shuffle(pool).flatMap(t =>
+    (t.sections || []).map((sec, i) => ({
+      topicId: t.id,
+      topicTitle: t.title,
+      partLabel: t.sections.length > 1 ? `Partie ${i + 1}/${t.sections.length}` : '',
+      heading: sec.heading,
+      points: sec.points || [],
+      tip: sec.tip,
+      examples: sec.examples || [],
+    }))
+  );
 }
 
 function startGrammarBrowse() {
@@ -1159,6 +1184,7 @@ function startGrammarBrowse() {
   browseState.cards = cards;
   browseState.idx = 0;
   browseState.revealed = false;
+  browseState.seenMarked = new Set();
   state.browse = true;
   state.kind = 'grammar';
   showView('learn');
@@ -1168,6 +1194,10 @@ function startGrammarBrowse() {
 function renderBrowseCard() {
   clearTimeout(autoNextTimer);
   const c = browseState.cards[browseState.idx];
+  if (c.topicId && !browseState.seenMarked.has(c.topicId)) {
+    browseState.seenMarked.add(c.topicId);
+    grammarBrowseMarkSeen(c.topicId);
+  }
   $('learn-progress').textContent = `Carte ${browseState.idx + 1}/${browseState.cards.length}`;
   $('learn-badge').textContent = `📖 Grammaire · ${grammarLang === 'en' ? 'Anglais' : 'Espagnol'}`;
   $('flash-label').textContent = c.topicTitle + (c.partLabel ? ' · ' + c.partLabel : '');
