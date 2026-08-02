@@ -444,6 +444,7 @@ function renderStats() {
   $('stat-due').textContent = due;
   $('review-count').textContent = wrong;
   $('btn-review').disabled = wrong === 0;
+  renderGrammarExpressCard();
 }
 
 async function loadWords(lang) {
@@ -482,6 +483,26 @@ function _startTargetedVocabQuiz(wordObjects, lang, badge) {
   state.index = 0;
   showView('quiz');
   renderQuestion();
+}
+
+function renderGrammarExpressCard() {
+  const card = $('grammar-express-card');
+  if (!card) return;
+  const topics = grammarWrongTopics();
+  if (!topics.length) { card.classList.add('hidden'); return; }
+  const chips = topics.map(id => {
+    const t = grammarData && grammarData.find(d => d.id === id);
+    return `<span class="morning-chip">${esc(t ? t.title : id)}</span>`;
+  }).join('');
+  card.innerHTML = `
+    <div class="morning-header">
+      <span class="morning-label">⟳ Révision Grammaire</span>
+      <span class="morning-progress">${topics.length} concept${topics.length > 1 ? 's' : ''}</span>
+    </div>
+    <div class="morning-chips">${chips}</div>
+    <button id="btn-start-grammar-review" class="primary">▶ Réviser</button>`;
+  card.classList.remove('hidden');
+  $('btn-start-grammar-review').addEventListener('click', startGrammarReview);
 }
 
 async function renderMorningCards() {
@@ -1178,7 +1199,6 @@ document.querySelectorAll('.glang-chip').forEach(c => c.addEventListener('click'
 
 $('btn-grammar').addEventListener('click', openGrammar);
 $('btn-grammar-quiz').addEventListener('click', () => startGrammarQuiz(null));
-$('btn-grammar-review').addEventListener('click', startGrammarReview);
 $('btn-grammar-back').addEventListener('click', () => renderGrammarList(true));
 $('btn-grammar-home').addEventListener('click', () => showView('home'));
 
