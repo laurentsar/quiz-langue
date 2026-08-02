@@ -1275,6 +1275,12 @@ async function openGrammar() {
   showView('grammar');
 }
 
+// Accès direct au Parcours grammaire depuis l'accueil (raccourci, sans passer par le sommaire).
+async function openGrammarBrowseFromHome() {
+  await loadGrammarLang(grammarLang);
+  startGrammarBrowse();
+}
+
 document.querySelectorAll('.glang-chip').forEach(c => c.addEventListener('click', async () => {
   if (c.dataset.lang === grammarLang) return;
   await loadGrammarLang(c.dataset.lang);
@@ -1283,6 +1289,7 @@ document.querySelectorAll('.glang-chip').forEach(c => c.addEventListener('click'
 }));
 
 $('btn-grammar').addEventListener('click', openGrammar);
+$('btn-home-grammar-browse').addEventListener('click', openGrammarBrowseFromHome);
 $('btn-grammar-quiz').addEventListener('click', () => startGrammarQuiz(null));
 $('btn-grammar-back').addEventListener('click', () => renderGrammarList(true));
 $('btn-grammar-home').addEventListener('click', () => showView('home'));
