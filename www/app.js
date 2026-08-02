@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.91';
+const APP_VERSION = '2.92';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -22,7 +22,7 @@ const FAMILLES_KEY = 'familles';
 const COGNATES_KEY = 'cognates';
 const TENSES_KEY  = 'tenses';
 const PHRASES_KEY = 'phrases';
-const KIND_COLORS = { vocab: '#27B3FF', verbs: '#4CE0D2', grammar: '#1B5CFF', 'faux-amis': '#FF6B35', familles: '#A855F7', cognates: '#10B981', tenses: '#EF4444', phrases: '#F59E0B', toeic: '#F97316' };
+const KIND_COLORS = { vocab: '#27B3FF', verbs: '#4CE0D2', grammar: '#1B5CFF', 'faux-amis': '#FF6B35', familles: '#A855F7', cognates: '#10B981', tenses: '#EF4444', phrases: '#F59E0B', toeic: '#F97316', mixed: '#7C3AED' };
 
 const state = {
   lang: 'en',
@@ -50,7 +50,7 @@ let verbSelectPanelOpen = false;
 // Clé de stats/SRS et voix TTS selon le mode courant.
 const TOEIC_KEY = 'toeic';
 function quizKey() { return state.kind === 'verbs' ? VERBS_KEY : state.kind === 'grammar' ? GRAMMAR_KEY : state.kind === 'faux-amis' ? FAUX_AMIS_KEY : state.kind === 'familles' ? FAMILLES_KEY : state.kind === 'cognates' ? COGNATES_KEY : state.kind === 'tenses' ? TENSES_KEY : state.kind === 'phrases' ? PHRASES_KEY : state.kind === 'toeic' ? TOEIC_KEY : state.lang; }
-function quizTts() { return (state.kind === 'verbs' || state.kind === 'grammar' || state.kind === 'faux-amis' || state.kind === 'familles' || state.kind === 'cognates' || state.kind === 'tenses' || state.kind === 'phrases' || state.kind === 'toeic') ? 'en-US' : LANGS[state.lang].tts; }
+function quizTts() { return (state.kind === 'verbs' || state.kind === 'grammar' || state.kind === 'faux-amis' || state.kind === 'familles' || state.kind === 'cognates' || state.kind === 'tenses' || state.kind === 'phrases' || state.kind === 'toeic' || state.kind === 'mixed') ? 'en-US' : LANGS[state.lang].tts; }
 
 const settings = loadSettings();
 const cache = {};   // lang -> words
@@ -446,6 +446,7 @@ function renderStats() {
   $('review-count').textContent = wrong;
   $('btn-review').disabled = wrong === 0;
   renderGrammarExpressCard();
+  renderMixedBrowseCard();
 }
 
 async function loadWords(lang) {
@@ -504,6 +505,73 @@ function renderGrammarExpressCard() {
     <button id="btn-start-grammar-review" class="primary">▶ Réviser</button>`;
   card.classList.remove('hidden');
   $('btn-start-grammar-review').addEventListener('click', startGrammarReview);
+}
+
+function renderMixedBrowseCard() {
+  const card = $('mixed-browse-card');
+  if (!card) return;
+  if (state.lang !== 'en') { card.classList.add('hidden'); return; }
+  card.innerHTML = `
+    <div class="morning-header">
+      <span class="morning-label">🔀 Parcourir</span>
+      <span class="morning-progress">10 mots + 1 topic</span>
+    </div>
+    <div class="morning-chips">
+      <span class="morning-chip">🔊 Prononciation auto</span>
+      <span class="morning-chip">📝 1 concept grammaire (6 q.)</span>
+    </div>
+    <button id="btn-start-mixed-browse" class="primary">▶ Parcourir</button>`;
+  card.classList.remove('hidden');
+  $('btn-start-mixed-browse').addEventListener('click', startMixedBrowse);
+}
+
+async function startMixedBrowse() {
+  const lang = 'en';
+  if (!cache[lang]) await loadWords(lang);
+  if (!grammarData) await loadGrammarLang(lang);
+  const words = cache[lang] || [];
+  const srsVocab = getSrs(lang);
+  const due = dueList(words, srsVocab);
+  const newWords = shuffle(words.filter(w => !srsVocab[w.word]));
+  const vocabPicks = [...due, ...newWords].slice(0, 10);
+  const allTopicIds = shuffle(Object.keys(_GFIX));
+  let pickedTopicId = null;
+  for (const id of allTopicIds) {
+    if (getTopicSeries(id).length) { pickedTopicId = id; break; }
+  }
+  state.kind = 'mixed';
+  state.lang = lang;
+  state.dir = 'fwd';
+  const allWords = words;
+  const vocabQs = vocabPicks.map(it => {
+    const q = buildQuestion(it, allWords);
+    q._srsKey = lang;
+    q._isVocab = true;
+    return q;
+  });
+  const grammarQs = [];
+  if (pickedTopicId) {
+    const serie = getTopicSeries(pickedTopicId)[0] || [];
+    serie.forEach(t => {
+      const item = _mkItem(pickedTopicId, t.q, shuffle([...t.opts]), t.ans, t.hint);
+      const gq = buildGrammarQuestion(item);
+      gq.word = 'gen-' + pickedTopicId;
+      gq._srsKey = GRAMMAR_KEY;
+      gq._isGrammar = true;
+      gq._isSentence = true;
+      grammarQs.push(gq);
+    });
+  }
+  const questions = [...vocabQs, ...grammarQs];
+  const grammarTitle = pickedTopicId && grammarData ? (grammarData.find(t => t.id === pickedTopicId)?.title || pickedTopicId) : '';
+  state.words = allWords;
+  state.mode = 'srs';
+  state.badge = grammarTitle ? `🔀 Parcourir — ${grammarTitle}` : '🔀 Parcourir';
+  state.questions = questions;
+  state.answers = [];
+  state.index = 0;
+  showView('quiz');
+  renderQuestion();
 }
 
 async function renderMorningCards() {
@@ -720,7 +788,7 @@ function renderQuestion() {
   $('quiz-level').style.color = accent;
   $('quiz-prompt-label').textContent = q.promptLabel || (q.promptIsForeign ? 'Mot' : 'Traduire en ' + (state.lang === 'en' ? 'anglais' : 'espagnol'));
   $('quiz-word').textContent = q.promptText;
-  $('quiz-word').classList.toggle('sentence', state.kind === 'grammar' || state.kind === 'tenses' || (state.kind === 'phrases' && !!q.fullSentence));
+  $('quiz-word').classList.toggle('sentence', q._isSentence || state.kind === 'grammar' || state.kind === 'tenses' || (state.kind === 'phrases' && !!q.fullSentence));
   $('quiz-ipa').textContent = q.ipa ? '/' + q.ipa + '/' : '';
 
   // speak button: only meaningful for the foreign word
@@ -747,8 +815,8 @@ function renderQuestion() {
   if (a) {
     let html = `<div class="fb-head">${a.correct ? '✅ Correct' : '❌ Faux'}</div>`;
     if (!a.correct) html += `<div class="fb-line">Réponse : <b>${esc(q.correctText)}</b></div>`;
-    if (['grammar', 'tenses', 'phrases'].includes(state.kind) && q.fullSentence) html += `<div class="fb-line">📝 ${esc(q.fullSentence)}</div>`;
-    if (['grammar', 'faux-amis', 'familles', 'cognates', 'tenses', 'phrases'].includes(state.kind) && q.hint) html += `<div class="fb-line tip">💡 ${esc(q.hint)}</div>`;
+    if ((q._isSentence || ['grammar', 'tenses', 'phrases'].includes(state.kind)) && q.fullSentence) html += `<div class="fb-line">📝 ${esc(q.fullSentence)}</div>`;
+    if ((q._isSentence || ['grammar', 'faux-amis', 'familles', 'cognates', 'tenses', 'phrases'].includes(state.kind)) && q.hint) html += `<div class="fb-line tip">💡 ${esc(q.hint)}</div>`;
     fb.innerHTML = html;
     fb.className = 'feedback show ' + (a.correct ? 'good' : 'bad');
   } else { fb.innerHTML = ''; fb.className = 'feedback'; }
@@ -763,13 +831,14 @@ function selectOption(idx) {
   const q = state.questions[state.index];
   const correct = idx === q.correctIndex;
   state.answers[state.index] = { selectedIndex: idx, correct };
-  srsUpdate(quizKey(), q.word, correct);
-  saveSrs(quizKey());
-  logDaily(quizKey(), correct);
+  const _sk = q._srsKey || quizKey();
+  srsUpdate(_sk, q.word, correct);
+  saveSrs(_sk);
+  logDaily(_sk, correct);
   beep(correct); vibrate(correct);
   // prononce la bonne réponse après coup : mot étranger (sens inverse) ou forme correcte (verbes)
   if (settings.audioAuto) {
-    if (state.kind === 'grammar' || state.kind === 'tenses' || (state.kind === 'phrases' && q.fullSentence)) speak(q.fullSentence || q.correctText);
+    if (q._isGrammar || state.kind === 'grammar' || state.kind === 'tenses' || (state.kind === 'phrases' && q.fullSentence)) speak(q.fullSentence || q.correctText);
     else if (state.kind === 'verbs') speak(q.correctText);
     else if (!q.promptIsForeign) speak(q.foreign);
   }
@@ -2738,6 +2807,38 @@ const _GFIX = {
     { q: "Take care ___ yourself!", opts: ['of','for','about','with'], ans: 'of', hint: "Take care OF = prendre soin de." },
     { q: "She recovered ___ her illness quickly.", opts: ['from','of','to','in'], ans: 'from', hint: "Recover FROM = se remettre de." },
   ],
+  'connectors-advanced-1': [
+    { q: "She speaks French ___ Spanish and Italian.", opts: ['as well as','despite this','hence','then again'], ans: 'as well as', hint: "As well as = ainsi que / en plus de (addition)." },
+    { q: "He worked hard. ___, he deserved the promotion.", opts: ['Hence','Though','Despite this','All the same'], ans: 'Hence', hint: "Hence = D'où / Par conséquent (conséquence formelle)." },
+    { q: "___ the heavy rain, the match was cancelled.", opts: ['Owing to','Just as','Likewise','Then again'], ans: 'Owing to', hint: "Owing to + nom = En raison de (cause)." },
+    { q: "I don't like the plan. ___, I will support it.", opts: ['That said','Likewise','Hence','As well as'], ans: 'That said', hint: "That said = Cela dit (concession après accord)." },
+    { q: "The product is expensive. ___, it has poor reviews.", opts: ["What's more",'Given that','Yet','Just as'], ans: "What's more", hint: "What's more = Qui plus est (accumulation de points négatifs)." },
+    { q: "___ she studied hard, her success was expected.", opts: ['Given that','Still','Besides','In contrast'], ans: 'Given that', hint: "Given that = Étant donné que (cause/condition)." },
+  ],
+  'connectors-advanced-2': [
+    { q: "___, let me introduce the main topic.", opts: ['To begin with','As such','In short','By doing so'], ans: 'To begin with', hint: "To begin with = Pour commencer (ouverture de discours)." },
+    { q: "She is the manager. ___, she makes the final call.", opts: ['As such','Firstly','Previously','In this manner'], ans: 'As such', hint: "As such = De ce fait / En tant que tel (conclusion logique)." },
+    { q: "___, it was a great year for the company.", opts: ['All in all','Through this','Thereafter','Coupled with'], ans: 'All in all', hint: "All in all = Tout compte fait (bilan global)." },
+    { q: "Save your work regularly — ___, you risk losing everything.", opts: ['Otherwise','Indeed','Firstly','In the same vein'], ans: 'Otherwise', hint: "Otherwise = Sinon / Autrement (conséquence si non rempli)." },
+    { q: "The results were, ___, better than expected.", opts: ['in fact','by doing so','thereafter','as such'], ans: 'in fact', hint: "In fact = En fait (rectification ou renforcement)." },
+    { q: "He apologized; ___, he saved the friendship.", opts: ['by doing so','in short','clearly','previously'], ans: 'by doing so', hint: "By doing so = En faisant cela (référence à l'action précédente)." },
+  ],
+  'what-when-why-questions': [
+    { q: "___ makes you happy?", opts: ['What','When','Why','How'], ans: 'What', hint: "What makes you…? → sujet = what, pas de DO nécessaire." },
+    { q: "___ did this happen?", opts: ['When','Why','What','Where'], ans: 'When', hint: "When did…? → WHEN pour une information temporelle (passé → did)." },
+    { q: "___ are you late?", opts: ['Why','When','What','Where'], ans: 'Why', hint: "Why are you…? → WHY demande une raison ou une explication." },
+    { q: "What ___ you want?", opts: ['do','are','did','is'], ans: 'do', hint: "What DO you want? → présent simple avec do (sujet = you)." },
+    { q: "When ___ this happen?", opts: ['did','does','is','was'], ans: 'did', hint: "When DID this happen? → passé simple → did + base verbale." },
+    { q: "When ___ you coming back?", opts: ['are','do','did','were'], ans: 'are', hint: "When ARE you coming? → action future arrangée → présent continu." },
+  ],
+  'out-phrasal-verbs': [
+    { q: "I finally ___ the answer.", opts: ['figured out','gave out','ran out','came out'], ans: 'figured out', hint: "Figure out = comprendre / résoudre par la réflexion." },
+    { q: "She ___ he had been lying all along.", opts: ['found out','hung out','worked out','checked out'], ans: 'found out', hint: "Find out = découvrir une information cachée ou inconnue." },
+    { q: "Everything ___ better than expected.", opts: ['worked out','carried out','ran out','came out'], ans: 'worked out', hint: "Work out (bien se passer) = réussir, fonctionner bien." },
+    { q: "They were asked to ___ the new plan.", opts: ['carry out','check out','find out','hang out'], ans: 'carry out', hint: "Carry out = exécuter / accomplir une tâche assignée." },
+    { q: "We've ___ of time — hurry up!", opts: ['run out','come out','give out','turn out'], ans: 'run out', hint: "Run out of = épuiser le stock / manquer de quelque chose." },
+    { q: "Let's ___ at the mall this weekend!", opts: ['hang out','figure out','work out','carry out'], ans: 'hang out', hint: "Hang out = passer du temps ensemble (très familier)." },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -3930,6 +4031,78 @@ const _GFIX_SERIES = {
       { q: "I trust him ___ my most important files.", opts: ['with','in','of','to'], ans: 'with', hint: "Trust sb WITH something = confier quelque chose à quelqu'un." },
       { q: "We should vote ___ the best candidate.", opts: ['for','to','in','at'], ans: 'for', hint: "Vote FOR a candidate = voter pour." },
       { q: "He yielded ___ the pressure.", opts: ['to','in','for','at'], ans: 'to', hint: "Yield TO = céder à une pression ou une demande." },
+    ],
+  ],
+  'what-when-why-questions': [
+    [
+      { q: "___ happened yesterday?", opts: ['What','When','Why','Who'], ans: 'What', hint: "What happened? → WHAT pour un événement ou une information." },
+      { q: "___ do you hesitate?", opts: ['Why','When','What','Where'], ans: 'Why', hint: "Why do you…? → WHY + do + sujet → présent simple." },
+      { q: "___ do you want to leave?", opts: ['When','Why','What','How'], ans: 'When', hint: "When do you want to…? → WHEN pour une information temporelle." },
+      { q: "What ___ you want?", opts: ['do','are','did','is'], ans: 'do', hint: "What DO you want? → présent simple avec do." },
+      { q: "Why ___ you say that?", opts: ['did','do','are','were'], ans: 'did', hint: "Why DID you say that? → passé simple → did + base verbale." },
+      { q: "When ___ you coming back?", opts: ['are','do','did','were'], ans: 'are', hint: "When ARE you coming back? → présent continu → are + -ing." },
+    ],
+    [
+      { q: "___ do you want for dinner?", opts: ['What','When','Why','Which'], ans: 'What', hint: "WHAT = demande un objet ou une information spécifique." },
+      { q: "___ are you coming back?", opts: ['When','Why','What','Where'], ans: 'When', hint: "WHEN = demande une information temporelle (heure, date)." },
+      { q: "___ did you say that to her?", opts: ['Why','When','What','Where'], ans: 'Why', hint: "WHY = demande une raison ou une explication." },
+      { q: "___ makes you smile every day?", opts: ['What','When','Why','How'], ans: 'What', hint: "What makes you…? → sujet = what, pas de do." },
+      { q: "Why ___ this happen?", opts: ['did','does','is','was'], ans: 'did', hint: "Why DID this happen? → passé simple → did." },
+      { q: "Why ___ you late?", opts: ['are','do','did','were'], ans: 'are', hint: "Why ARE you late? → être en retard = be late → are." },
+    ],
+  ],
+  'out-phrasal-verbs': [
+    [
+      { q: "You should ___ this new café — it's amazing!", opts: ['check out','find out','give out','run out'], ans: 'check out', hint: "Check out = jeter un œil / examiner (informel)." },
+      { q: "The movie will ___ next Friday.", opts: ['come out','turn out','work out','carry out'], ans: 'come out', hint: "Come out = sortir / devenir public (livre, film…)." },
+      { q: "How did the party ___?", opts: ['turn out','hang out','give out','figure out'], ans: 'turn out', hint: "Turn out = s'avérer / donner un résultat." },
+      { q: "The volunteers ___ free food to everyone.", opts: ['gave out','figured out','ran out','came out'], ans: 'gave out', hint: "Give out = distribuer à un groupe." },
+      { q: "We nearly ___ of petrol on the motorway.", opts: ['ran out','carried out','hung out','checked out'], ans: 'ran out', hint: "Run out of = ne plus avoir de stock de quelque chose." },
+      { q: "She ___ the mystery in just minutes.", opts: ['figured out','came out','gave out','turned out'], ans: 'figured out', hint: "Figure out = résoudre / comprendre par la réflexion." },
+    ],
+    [
+      { q: "We ___ that the concert had been cancelled.", opts: ['found out','worked out','hung out','ran out'], ans: 'found out', hint: "Find out = apprendre une information (souvent une surprise)." },
+      { q: "He goes to the gym to ___ every morning.", opts: ['work out','carry out','check out','give out'], ans: 'work out', hint: "Work out = faire de l'exercice / s'entraîner." },
+      { q: "It ___ that she had been right.", opts: ['turned out','came out','found out','ran out'], ans: 'turned out', hint: "Turn out = s'avérer (it turned out that…)." },
+      { q: "The manager ___ the new safety procedures.", opts: ['carried out','checked out','gave out','hung out'], ans: 'carried out', hint: "Carry out = mettre en œuvre / exécuter officiellement." },
+      { q: "The truth will eventually ___.", opts: ['come out','figure out','work out','turn out'], ans: 'come out', hint: "Come out = devenir public / être révélé." },
+      { q: "We ___ at the beach all afternoon.", opts: ['hung out','ran out','checked out','gave out'], ans: 'hung out', hint: "Hang out (past: hung out) = passer du temps ensemble à se détendre." },
+    ],
+  ],
+  'connectors-advanced-1': [
+    [
+      { q: "I enjoy hiking. ___, my friend loves cycling.", opts: ['Likewise','Still','Hence','Given that'], ans: 'Likewise', hint: "Likewise = De même / Pareillement (parallélisme)." },
+      { q: "The film was long. ___, it was worth watching.", opts: ['Still','Owing to','Besides','As well as'], ans: 'Still', hint: "Still = Pourtant / Malgré tout (concession)." },
+      { q: "He is talented. ___, he is incredibly hardworking.", opts: ['Not only that','In contrast','Yet','Though'], ans: 'Not only that', hint: "Not only that = Non seulement ça (renforcement addition)." },
+      { q: "The beach was crowded. ___, it was dirty.", opts: ["What's more",'Hence','That said','Just as'], ans: "What's more", hint: "What's more = Qui plus est (accumulation)." },
+      { q: "___ this challenge, he faced a budget problem.", opts: ['Along with','Yet','Hence','Though'], ans: 'Along with', hint: "Along with = En plus de (addition d'un élément)." },
+      { q: "___ the storm, all flights were grounded.", opts: ['On account of','Just as','Still','As well as'], ans: 'On account of', hint: "On account of + nom = En raison de / À cause de." },
+    ],
+    [
+      { q: "She didn't like the idea. ___, she gave it a try.", opts: ['All the same','Hence','Owing to','Likewise'], ans: 'All the same', hint: "All the same = Malgré tout / Quand même." },
+      { q: "She loves art. ___, she loves music.", opts: ['Just as','Hence','On account of','Yet'], ans: 'Just as', hint: "Just as = Tout comme (parallélisme renforcé)." },
+      { q: "The plan was good. ___, it was too expensive.", opts: ['Yet','Owing to','Likewise','Not only that'], ans: 'Yet', hint: "Yet = Pourtant / Cependant (contraste après affirmation)." },
+      { q: "Traffic was heavy. ___, we arrived late.", opts: ['Hence','Besides','All the same','In contrast'], ans: 'Hence', hint: "Hence = D'où / Par conséquent (conséquence)." },
+      { q: "London is expensive. ___, smaller cities are affordable.", opts: ['In contrast','Hence','Just as','Along with'], ans: 'In contrast', hint: "In contrast = En revanche / Par contraste." },
+      { q: "___ his delay, the meeting still went well.", opts: ['Despite this','Likewise','Hence','As well as'], ans: 'Despite this', hint: "Despite this = Malgré cela (concession)." },
+    ],
+  ],
+  'connectors-advanced-2': [
+    [
+      { q: "Hurry up — ___ you miss the last train!", opts: ['lest','as such','in the same vein','thereafter'], ans: 'lest', hint: "Lest = De peur que (précaution soutenue, anglais formel)." },
+      { q: "He worked hard. ___, he got the promotion.", opts: ['Indeed','Previously','In this manner','Firstly'], ans: 'Indeed', hint: "Indeed = En effet (confirmation ou renforcement)." },
+      { q: "___ the new policy, they simplified the process.", opts: ['Through this','All in all','As such','Otherwise'], ans: 'Through this', hint: "Through this = Grâce à cela / Par ce moyen." },
+      { q: "___, she had worked at a rival company.", opts: ['Previously','In short','Clearly','Coupled with'], ans: 'Previously', hint: "Previously = Auparavant (séquence temporelle)." },
+      { q: "The plan is, ___, a waste of money.", opts: ['clearly','by doing so','thereafter','speaking of'], ans: 'clearly', hint: "Clearly = Clairement (emphase directe)." },
+      { q: "___ her talent, her dedication made her stand out.", opts: ['Coupled with','In summary','Firstly','Thereafter'], ans: 'Coupled with', hint: "Coupled with = Associé à (addition de facteurs)." },
+    ],
+    [
+      { q: "He smiled and waved. ___, he made a good impression.", opts: ['In this manner','Lest','As such','All in all'], ans: 'In this manner', hint: "In this manner = De cette manière (référence au comportement précédent)." },
+      { q: "___, they expanded to new markets.", opts: ['Thereafter','Clearly','In the same vein','Otherwise'], ans: 'Thereafter', hint: "Thereafter = Par la suite (suite chronologique)." },
+      { q: "___, the film was too long but still enjoyable.", opts: ['In summary','By doing so','As such','Through this'], ans: 'In summary', hint: "In summary = En résumé (bilan concis)." },
+      { q: "___ we're talking about food — have you tried that new restaurant?", opts: ['Speaking of','Firstly','Indeed','All in all'], ans: 'Speaking of', hint: "Speaking of = En parlant de (transition conversationnelle)." },
+      { q: "The data was unclear. ___, the decision was delayed.", opts: ['As such','Lest','Previously','In the same vein'], ans: 'As such', hint: "As such = De ce fait (conclusion tirée de la situation)." },
+      { q: "___ the policy is clear — follow the rules or face consequences.", opts: ['Overall','In this manner','Thereafter','Coupled with'], ans: 'Overall', hint: "Overall = Dans l'ensemble (bilan ou vue d'ensemble)." },
     ],
   ],
 };

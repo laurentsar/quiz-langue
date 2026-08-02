@@ -5383,5 +5383,230 @@
         ]
       }
     ]
+  },
+  {
+    "id": "connectors-advanced-1",
+    "title": "Connecteurs Avancés : Addition, Contraste et Cause",
+    "subtitle": "47 connecteurs pour écrire et parler comme un natif — partie 1.",
+    "sections": [
+      {
+        "heading": "Addition et similitude",
+        "points": [
+          "Likewise = De même / Également",
+          "Besides = En plus / D'ailleurs",
+          "Along with = Avec / En plus de",
+          "As well as = Ainsi que",
+          "Plus = De plus / En plus de",
+          "What's more = Qui plus est / De plus",
+          "Not only that = Et ce n'est pas tout",
+          "To add to this = À cela s'ajoute",
+          "Just as / Just like / Much like = Tout comme"
+        ],
+        "tip": "What's more et Not only that ajoutent un élément surprenant ou renforcent l'argument. Likewise relie deux éléments parallèles.",
+        "examples": [
+          "She speaks French. Likewise, her sister is fluent in Italian.",
+          "The hotel is beautiful — what's more, it's affordable.",
+          "Just as practice makes perfect, effort leads to success."
+        ]
+      },
+      {
+        "heading": "Contraste et concession",
+        "points": [
+          "Yet = Pourtant / Cependant",
+          "Still = Pourtant / Malgré tout",
+          "Though = Bien que / Cependant",
+          "In contrast = En revanche / Par contraste",
+          "Then again = D'un autre côté",
+          "All the same = Malgré tout / Quand même",
+          "Despite this = Malgré cela",
+          "While = Alors que / Tandis que",
+          "That said = Cela dit"
+        ],
+        "tip": "Yet et Still s'utilisent après une virgule pour exprimer une surprise ou une contradiction. That said introduit une nuance après avoir donné son accord.",
+        "examples": [
+          "It was raining — yet they continued the match.",
+          "He's young. That said, he has a lot of experience.",
+          "While she loves coffee, her husband prefers tea."
+        ]
+      },
+      {
+        "heading": "Cause et conséquence",
+        "points": [
+          "Hence = D'où / Par conséquent",
+          "That's why = C'est pour cela que",
+          "Owing to = En raison de",
+          "On account of = En raison de / À cause de",
+          "Given that = Étant donné que"
+        ],
+        "tip": "Hence est plus soutenu que So. Owing to et On account of sont suivis d'un nom. Given that est suivi d'une proposition.",
+        "examples": [
+          "The road was blocked — hence the delay.",
+          "Owing to heavy rain, the match was cancelled.",
+          "Given that she studied hard, her success was expected."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "connectors-advanced-2",
+    "title": "Connecteurs Avancés : Séquence, Clarification et Résumé",
+    "subtitle": "47 connecteurs pour écrire et parler comme un natif — partie 2.",
+    "sections": [
+      {
+        "heading": "Séquence et manière",
+        "points": [
+          "Firstly = Tout d'abord",
+          "To begin with = Pour commencer",
+          "Thereafter = Par la suite",
+          "Previously = Auparavant",
+          "By doing so = En faisant cela",
+          "Through this = Grâce à cela / Par ce moyen",
+          "In this manner = De cette manière"
+        ],
+        "tip": "Firstly / To begin with ouvrent une liste ou un discours structuré. Thereafter et Previously situent dans le temps. By doing so renvoie à l'action précédente.",
+        "examples": [
+          "To begin with, let me introduce myself.",
+          "He apologized — by doing so, he saved the relationship.",
+          "Thereafter, the company expanded to new markets."
+        ]
+      },
+      {
+        "heading": "Clarification et emphase",
+        "points": [
+          "That is = C'est-à-dire",
+          "In fact = En fait",
+          "Indeed = En effet",
+          "Clearly = Clairement",
+          "As such = En tant que tel / De ce fait",
+          "In the same vein = Dans le même ordre d'idées",
+          "Speaking of = En parlant de",
+          "Coupled with = Associé à"
+        ],
+        "tip": "That is (= i.e.) reformule ce qu'on vient de dire. Indeed renforce une affirmation. As such tire une conclusion logique de ce qui précède.",
+        "examples": [
+          "She is the CEO — as such, she makes the final decisions.",
+          "Indeed, the results were better than expected.",
+          "Coupled with the new strategy, sales increased by 30%."
+        ]
+      },
+      {
+        "heading": "Résumé et alternatives",
+        "points": [
+          "In short = En bref",
+          "In summary = En résumé",
+          "All in all = Tout compte fait",
+          "Overall = Dans l'ensemble",
+          "Otherwise = Sinon / Autrement",
+          "Lest = De peur que / Afin d'éviter que",
+          "As = Comme / Puisque"
+        ],
+        "tip": "In short et All in all concluent un raisonnement. Lest est soutenu et exprime une précaution (\"Hurry, lest you miss the train\"). Otherwise introduit la conséquence si la condition n'est pas remplie.",
+        "examples": [
+          "All in all, it was a successful year.",
+          "Hurry up, lest you miss the bus.",
+          "Study hard — otherwise, you'll regret it."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "out-phrasal-verbs",
+    "title": "Verbes à Particule : OUT",
+    "subtitle": "10 phrasal verbs essentiels avec OUT — action, résultat et socialisation",
+    "sections": [
+      {
+        "heading": "Découvrir et comprendre",
+        "points": [
+          "Find out → Découvrir (discover something unknown)",
+          "Figure out → Comprendre / Résoudre (understand or solve)",
+          "Check out → Examiner / Jeter un œil (look or examine)"
+        ],
+        "tip": "Find out s'utilise pour une information découverte (fait, nouvelle). Figure out implique un effort de réflexion. Check out est plus informel.",
+        "examples": [
+          "I found out later that he had lied.",
+          "I finally figured it out!",
+          "Check out this new restaurant!"
+        ]
+      },
+      {
+        "heading": "Accomplir et distribuer",
+        "points": [
+          "Work out → Réussir / S'entraîner (exercise or succeed)",
+          "Carry out → Exécuter / Accomplir (complete assigned task)",
+          "Give out → Distribuer / S'épuiser (distribute or stop)"
+        ],
+        "tip": "Work out a deux sens : faire du sport ou fonctionner bien. Carry out s'utilise dans un contexte formel. Give out peut aussi signifier tomber en panne ou s'épuiser.",
+        "examples": [
+          "Things worked out well in the end.",
+          "They carried out the plan perfectly.",
+          "Don't give out yet — keep going!"
+        ]
+      },
+      {
+        "heading": "Apparaître et socialiser",
+        "points": [
+          "Turn out → S'avérer / Apparaître (result or appear)",
+          "Come out → Devenir public / Sortir (become known publicly)",
+          "Hang out → Passer du temps ensemble (spend time together)",
+          "Run out → Épuiser le stock (use entire supply)"
+        ],
+        "tip": "Turn out est souvent suivi de well, badly, great. Come out s'applique aussi à un livre ou film qui sort. Hang out est très familier.",
+        "examples": [
+          "It turned out great!",
+          "The truth will come out eventually.",
+          "Let's hang out tonight!",
+          "We ran out of milk."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "what-when-why-questions",
+    "title": "Questions avec WHAT, WHEN et WHY",
+    "subtitle": "9 phrases conversationnelles essentielles pour poser les bonnes questions",
+    "sections": [
+      {
+        "heading": "Questions avec WHAT (Que / Qu'est-ce que)",
+        "points": [
+          "What do you want? = Qu'est-ce que tu veux ?",
+          "What happened yesterday? = Que s'est-il passé hier ?",
+          "What makes you happy? = Qu'est-ce qui te rend heureux ?"
+        ],
+        "tip": "WHAT demande un objet, une action ou une information précise. Attention : 'What makes you…' utilise le présent simple sans DO (sujet = what).",
+        "examples": [
+          "What do you want for dinner?",
+          "What happened? Tell me everything.",
+          "What makes you smile every day?"
+        ]
+      },
+      {
+        "heading": "Questions avec WHEN (Quand)",
+        "points": [
+          "When are you coming back? = Quand reviens-tu ?",
+          "When did this happen? = Quand est-ce que c'est arrivé ?",
+          "When do you want to leave? = Quand veux-tu partir ?"
+        ],
+        "tip": "WHEN s'utilise avec be (When are you…), did (passé) ou do/does (habitude). On répond avec une heure, un jour ou une période.",
+        "examples": [
+          "When are you coming back?",
+          "When did this happen exactly?",
+          "When do you want to leave?"
+        ]
+      },
+      {
+        "heading": "Questions avec WHY (Pourquoi)",
+        "points": [
+          "Why are you late? = Pourquoi es-tu en retard ?",
+          "Why did you say that? = Pourquoi as-tu dit ça ?",
+          "Why do you hesitate? = Pourquoi hésites-tu ?"
+        ],
+        "tip": "WHY demande toujours une raison ou une explication. On répond souvent par Because… (Parce que…).",
+        "examples": [
+          "Why are you late again?",
+          "Why did you say that to her?",
+          "Why do you hesitate — just try!"
+        ]
+      }
+    ]
   }
 ]
