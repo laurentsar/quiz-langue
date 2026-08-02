@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.92';
+const APP_VERSION = '2.93';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -539,35 +539,40 @@ async function startMixedBrowse() {
   for (const id of allTopicIds) {
     if (getTopicSeries(id).length) { pickedTopicId = id; break; }
   }
+  const grammarTitle = pickedTopicId && grammarData ? (grammarData.find(t => t.id === pickedTopicId)?.title || pickedTopicId) : '';
   state.kind = 'mixed';
   state.lang = lang;
-  state.dir = 'fwd';
-  const allWords = words;
-  const vocabQs = vocabPicks.map(it => {
-    const q = buildQuestion(it, allWords);
-    q._srsKey = lang;
-    q._isVocab = true;
-    return q;
+  state.words = words;
+  state.badge = grammarTitle ? `🔀 Parcourir — ${grammarTitle}` : '🔀 Parcourir';
+  state.browse = true;
+  browseState.cards = vocabPicks.map(it => buildCard(it));
+  browseState.idx = 0;
+  browseState.revealed = false;
+  browseState.seenMarked = new Set();
+  browseState.renderFn = renderVocabBrowseCard;
+  browseState.doneLabel = pickedTopicId ? 'Commencer la grammaire →' : 'Terminer';
+  browseState.onDone = pickedTopicId ? () => _startMixedGrammarQuiz(pickedTopicId, words, grammarTitle) : null;
+  showView('learn');
+  renderVocabBrowseCard();
+}
+
+function _startMixedGrammarQuiz(topicId, allWords, grammarTitle) {
+  const serie = getTopicSeries(topicId)[0] || [];
+  const grammarQs = serie.map(t => {
+    const item = _mkItem(topicId, t.q, shuffle([...t.opts]), t.ans, t.hint);
+    const gq = buildGrammarQuestion(item);
+    gq.word = 'gen-' + topicId;
+    gq._srsKey = GRAMMAR_KEY;
+    gq._isGrammar = true;
+    gq._isSentence = true;
+    return gq;
   });
-  const grammarQs = [];
-  if (pickedTopicId) {
-    const serie = getTopicSeries(pickedTopicId)[0] || [];
-    serie.forEach(t => {
-      const item = _mkItem(pickedTopicId, t.q, shuffle([...t.opts]), t.ans, t.hint);
-      const gq = buildGrammarQuestion(item);
-      gq.word = 'gen-' + pickedTopicId;
-      gq._srsKey = GRAMMAR_KEY;
-      gq._isGrammar = true;
-      gq._isSentence = true;
-      grammarQs.push(gq);
-    });
-  }
-  const questions = [...vocabQs, ...grammarQs];
-  const grammarTitle = pickedTopicId && grammarData ? (grammarData.find(t => t.id === pickedTopicId)?.title || pickedTopicId) : '';
+  state.kind = 'mixed';
+  state.browse = false;
   state.words = allWords;
   state.mode = 'srs';
   state.badge = grammarTitle ? `🔀 Parcourir — ${grammarTitle}` : '🔀 Parcourir';
-  state.questions = questions;
+  state.questions = grammarQs;
   state.answers = [];
   state.index = 0;
   showView('quiz');
@@ -1204,7 +1209,7 @@ function showGrammarTopic(idx) {
 // règles de grammaire, avec révélation progressive de la règle. Aucune note SRS n'est
 // enregistrée ici. Les leçons (topics) sont tirées dans un ordre aléatoire, et celles déjà
 // vues dans la journée sont exclues tant que toutes les leçons n'ont pas été parcourues.
-const browseState = { cards: [], idx: 0, revealed: false, seenMarked: new Set() };
+const browseState = { cards: [], idx: 0, revealed: false, seenMarked: new Set(), onDone: null, renderFn: null, doneLabel: 'Terminer' };
 
 // Persiste, par langue et par jour, la liste des leçons déjà proposées en Parcours —
 // remise à zéro automatiquement au changement de date (comparaison de la clé 'date').
@@ -1289,10 +1294,30 @@ function renderBrowseCard() {
   $('btn-browse-next').textContent = 'Voir la règle →';
 }
 
+function renderVocabBrowseCard() {
+  clearTimeout(autoNextTimer);
+  const c = browseState.cards[browseState.idx];
+  $('learn-progress').textContent = `Mot ${browseState.idx + 1}/${browseState.cards.length}`;
+  $('learn-badge').textContent = '🔀 Parcourir';
+  $('flash-label').textContent = 'Vocabulaire';
+  $('flash-front').textContent = c.front;
+  $('flash-front').classList.remove('sentence');
+  $('flash-ipa').textContent = c.ipa ? '/' + c.ipa + '/' : '';
+  const back = $('flash-back'); back.innerHTML = c.backHtml; back.classList.add('hidden');
+  $('btn-flash-speak').style.display = '';
+  $('btn-flash-reveal').classList.add('hidden');
+  $('flash-grade').classList.add('hidden');
+  $('browse-nav').classList.remove('hidden');
+  $('btn-browse-prev').disabled = browseState.idx === 0;
+  $('btn-browse-next').textContent = 'Voir la traduction →';
+  browseState.revealed = false;
+  if (settings.audioAuto) speak(c.audio);
+}
+
 function browsePrev() {
   if (!state.browse || browseState.idx === 0) return;
   browseState.idx--;
-  renderBrowseCard();
+  (browseState.renderFn || renderBrowseCard)();
 }
 
 function browseNext() {
@@ -1300,13 +1325,16 @@ function browseNext() {
   if (!browseState.revealed) {
     browseState.revealed = true;
     $('flash-back').classList.remove('hidden');
-    $('btn-browse-next').textContent = browseState.idx < browseState.cards.length - 1 ? 'Suivant →' : 'Terminer';
+    $('btn-browse-next').textContent = browseState.idx < browseState.cards.length - 1 ? 'Suivant →' : (browseState.doneLabel || 'Terminer');
   } else if (browseState.idx < browseState.cards.length - 1) {
     browseState.idx++;
-    renderBrowseCard();
+    (browseState.renderFn || renderBrowseCard)();
   } else {
     state.browse = false;
-    exitToHome();
+    const done = browseState.onDone;
+    browseState.onDone = null;
+    if (done) done();
+    else exitToHome();
   }
 }
 
