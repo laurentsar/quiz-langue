@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.88';
+const APP_VERSION = '2.89';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
