@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.89';
+const APP_VERSION = '2.90';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -40,6 +40,7 @@ const state = {
   index: 0,
   grammarSeriesKey: null,
   dailySession: null,
+  browse: false,   // true pendant le mode Parcours grammaire (lecture libre, sans notation)
 };
 
 let verbsData = null;   // liste des verbes irréguliers (chargée à la demande)
@@ -922,6 +923,7 @@ $('btn-level-none').addEventListener('click', () => {
 function exitToHome() {
   clearTimeout(autoNextTimer);
   try { speechSynthesis && speechSynthesis.cancel(); } catch (e) {}
+  state.browse = false;
   if (['verbs', 'grammar', 'faux-amis', 'familles', 'cognates', 'tenses', 'phrases', 'toeic'].includes(state.kind)) state.kind = 'vocab';
   state.words = cache[state.lang] || state.words;
   showView('home'); renderStats();
@@ -1047,6 +1049,7 @@ function renderGrammarList(restoreScroll) {
   const isEn = grammarLang === 'en';
   $('btn-grammar-quiz').classList.toggle('hidden', !isEn);
   $('btn-grammar-learn').classList.toggle('hidden', !isEn);
+  $('btn-grammar-browse').classList.toggle('hidden', !(grammarData && grammarData.length));
   $('btn-toggle-ai').classList.toggle('hidden', !isEn);
   const _wrongCount = isEn ? grammarWrongTopics().length : 0;
   $('btn-grammar-review').classList.toggle('hidden', !isEn);
@@ -1075,6 +1078,7 @@ function showGrammarTopic(idx) {
   $('grammar-ai-panel').classList.add('hidden');
   $('btn-grammar-quiz').classList.add('hidden');
   $('btn-grammar-learn').classList.add('hidden');
+  $('btn-grammar-browse').classList.add('hidden');
   const videoBtn = t.videoUrl
     ? `<a class="btn-video" href="${esc(t.videoUrl)}" target="_blank" rel="noopener">🇬🇧 ${esc(t.videoTitle || 'Voir la vidéo')}</a>`
     : '';
@@ -1124,6 +1128,87 @@ function showGrammarTopic(idx) {
   $('btn-grammar-quiz').classList.add('hidden');
   $('btn-grammar-back').classList.remove('hidden');
   window.scrollTo(0, 0);
+}
+
+// ---------- mode Parcours grammaire (lecture libre, sans notation) ----------
+// Inspiré du mode « Parcourir » de CyberRévision : on avance carte par carte dans les
+// règles de grammaire (toutes les sections de tous les topics, dans l'ordre pédagogique),
+// avec révélation progressive de la règle. Aucune note SRS n'est enregistrée ici.
+const browseState = { cards: [], idx: 0, revealed: false };
+
+function buildGrammarBrowseCards() {
+  const cards = [];
+  (grammarData || []).forEach(t => {
+    (t.sections || []).forEach((sec, i) => {
+      cards.push({
+        topicTitle: t.title,
+        partLabel: t.sections.length > 1 ? `Partie ${i + 1}/${t.sections.length}` : '',
+        heading: sec.heading,
+        points: sec.points || [],
+        tip: sec.tip,
+        examples: sec.examples || [],
+      });
+    });
+  });
+  return cards;
+}
+
+function startGrammarBrowse() {
+  const cards = buildGrammarBrowseCards();
+  if (!cards.length) return;
+  browseState.cards = cards;
+  browseState.idx = 0;
+  browseState.revealed = false;
+  state.browse = true;
+  state.kind = 'grammar';
+  showView('learn');
+  renderBrowseCard();
+}
+
+function renderBrowseCard() {
+  clearTimeout(autoNextTimer);
+  const c = browseState.cards[browseState.idx];
+  $('learn-progress').textContent = `Carte ${browseState.idx + 1}/${browseState.cards.length}`;
+  $('learn-badge').textContent = `📖 Grammaire · ${grammarLang === 'en' ? 'Anglais' : 'Espagnol'}`;
+  $('flash-label').textContent = c.topicTitle + (c.partLabel ? ' · ' + c.partLabel : '');
+  $('flash-front').textContent = c.heading;
+  $('flash-front').classList.add('sentence');
+  $('flash-ipa').textContent = '';
+  const back = $('flash-back');
+  back.innerHTML = `<ul class="gram-points">${c.points.map(p => `<li>${esc(p)}</li>`).join('')}</ul>` +
+    (c.tip ? `<div class="gram-tip">💡 ${esc(c.tip)}</div>` : '') +
+    (c.examples.length ? `<div class="gram-ex">${c.examples.map(e => typeof e === 'string'
+      ? `<div class="gex-row"><span class="gex-en">${esc(e)}</span></div>`
+      : `<div class="gex-row"><span class="gex-en">${esc(e.en)}</span>${e.fr ? `<span class="gex-fr">${esc(e.fr)}</span>` : ''}</div>`).join('')}</div>` : '');
+  back.classList.add('hidden');
+  browseState.revealed = false;
+  $('btn-flash-reveal').classList.add('hidden');
+  $('btn-flash-speak').style.display = 'none';
+  $('flash-grade').classList.add('hidden');
+  $('browse-nav').classList.remove('hidden');
+  $('btn-browse-prev').disabled = browseState.idx === 0;
+  $('btn-browse-next').textContent = 'Voir la règle →';
+}
+
+function browsePrev() {
+  if (!state.browse || browseState.idx === 0) return;
+  browseState.idx--;
+  renderBrowseCard();
+}
+
+function browseNext() {
+  if (!state.browse) return;
+  if (!browseState.revealed) {
+    browseState.revealed = true;
+    $('flash-back').classList.remove('hidden');
+    $('btn-browse-next').textContent = browseState.idx < browseState.cards.length - 1 ? 'Suivant →' : 'Terminer';
+  } else if (browseState.idx < browseState.cards.length - 1) {
+    browseState.idx++;
+    renderBrowseCard();
+  } else {
+    state.browse = false;
+    exitToHome();
+  }
 }
 
 let grammarCustomCount = 5;
@@ -1190,6 +1275,12 @@ async function openGrammar() {
   showView('grammar');
 }
 
+// Accès direct au Parcours grammaire depuis l'accueil (raccourci, sans passer par le sommaire).
+async function openGrammarBrowseFromHome() {
+  await loadGrammarLang(grammarLang);
+  startGrammarBrowse();
+}
+
 document.querySelectorAll('.glang-chip').forEach(c => c.addEventListener('click', async () => {
   if (c.dataset.lang === grammarLang) return;
   await loadGrammarLang(c.dataset.lang);
@@ -1198,6 +1289,7 @@ document.querySelectorAll('.glang-chip').forEach(c => c.addEventListener('click'
 }));
 
 $('btn-grammar').addEventListener('click', openGrammar);
+$('btn-home-grammar-browse').addEventListener('click', openGrammarBrowseFromHome);
 $('btn-grammar-quiz').addEventListener('click', () => startGrammarQuiz(null));
 $('btn-grammar-back').addEventListener('click', () => renderGrammarList(true));
 $('btn-grammar-home').addEventListener('click', () => showView('home'));
@@ -1557,6 +1649,7 @@ function buildCard(item) {
 
 const learnState = { cards: [], idx: 0 };
 function startLearn() {
+  state.browse = false;
   learnState.cards = pickSession('srs').map(buildCard);
   if (!learnState.cards.length) return;
   learnState.idx = 0;
@@ -1576,6 +1669,7 @@ function renderCard() {
   $('btn-flash-speak').style.display = (state.kind === 'grammar') ? 'none' : '';
   $('btn-flash-reveal').classList.remove('hidden');
   $('flash-grade').classList.add('hidden');
+  $('browse-nav').classList.add('hidden');
   if (state.kind !== 'grammar' && settings.audioAuto) speak(c.audio);
 }
 function revealCard() {
@@ -1606,6 +1700,18 @@ $('btn-flash-speak').addEventListener('click', () => { const c = learnState.card
 $('btn-flash-ok').addEventListener('click', () => gradeCard(true));
 $('btn-flash-again').addEventListener('click', () => gradeCard(false));
 $('btn-learn-abort').addEventListener('click', exitToHome);
+$('btn-grammar-browse').addEventListener('click', startGrammarBrowse);
+$('btn-browse-prev').addEventListener('click', browsePrev);
+$('btn-browse-next').addEventListener('click', browseNext);
+
+// Raccourcis clavier du mode Parcours grammaire (← précédent, → suivant/révéler, Échap quitter)
+document.addEventListener('keydown', (e) => {
+  if (!state.browse || $('view-learn').classList.contains('hidden')) return;
+  if (e.target.matches('input, textarea, select, [contenteditable]')) return;
+  if (e.key === 'ArrowLeft') { e.preventDefault(); browsePrev(); }
+  else if (e.key === 'ArrowRight') { e.preventDefault(); browseNext(); }
+  else if (e.key === 'Escape') { e.preventDefault(); exitToHome(); }
+});
 
 // ---------- réseau (CapacitorHttp natif, sinon fetch + repli proxy) ----------
 async function httpGetText(url) {
