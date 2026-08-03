@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.95';
+const APP_VERSION = '2.96';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -4870,8 +4870,17 @@ function renderStatsView() {
 document.querySelectorAll('.slang-chip').forEach(c => c.addEventListener('click', async () => {
   await selectLang(c.dataset.lang); renderStatsView();
 }));
-$('btn-stats').addEventListener('click', () => { showView('stats'); renderStatsView(); });
-$('btn-stats-home').addEventListener('click', () => { showView('home'); renderStats(); });
+$('tab-home-stats').addEventListener('click', () => { showView('stats'); renderStatsView(); });
+$('tab-home-accueil').addEventListener('click', () => { /* already on home */ });
+$('tab-stats-accueil').addEventListener('click', () => { showView('home'); renderStats(); });
+$('tab-stats-stats').addEventListener('click', () => { /* already on stats */ });
+$('btn-toggle-settings').addEventListener('click', () => {
+  const panel = $('settings-panel');
+  const arrow = $('settings-toggle-arrow');
+  const open = !panel.classList.contains('hidden');
+  panel.classList.toggle('hidden', open);
+  arrow.textContent = open ? '▾' : '▴';
+});
 window.addEventListener('resize', () => { if (!views.stats.classList.contains('hidden')) renderStatsView(); });
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
