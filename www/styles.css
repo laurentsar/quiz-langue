@@ -430,8 +430,11 @@ html, body {
 .morning-chip { background: var(--card-alt); padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 600; color: var(--text); }
 .morning-done-msg { text-align: center; font-size: 14px; font-weight: 600; color: var(--success); margin: 0; }
 
-/* ----- Flashcards (mode Apprendre) ----- */
-.flash-card { gap: 14px; }
+/* ----- Flashcards (mode Apprendre) — plein écran ----- */
+#view-learn {
+  min-height: calc(100svh - max(24px, env(safe-area-inset-top)) - max(24px, env(safe-area-inset-bottom)));
+}
+#view-learn .flash-card { flex: 1; gap: 14px; }
 .flash-back { border-top: 1px solid rgba(255,255,255,.1); padding-top: 14px; font-size: 18px; color: var(--white); line-height: 1.4; }
 .flash-back b { color: var(--sky); }
 
