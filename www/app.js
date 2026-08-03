@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.94';
+const APP_VERSION = '2.95';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -530,28 +530,53 @@ async function startMixedBrowse() {
   if (!cache[lang]) await loadWords(lang);
   if (!grammarData) await loadGrammarLang(lang);
   const words = cache[lang] || [];
-  const srsVocab = getSrs(lang);
-  const due = dueList(words, srsVocab);
-  const newWords = shuffle(words.filter(w => !srsVocab[w.word]));
-  const vocabPicks = [...due, ...newWords].slice(0, 10);
-  const allTopicIds = shuffle(Object.keys(_GFIX));
-  let pickedTopicId = null;
-  for (const id of allTopicIds) {
-    if (getTopicSeries(id).length) { pickedTopicId = id; break; }
-  }
-  const grammarTitle = pickedTopicId && grammarData ? (grammarData.find(t => t.id === pickedTopicId)?.title || pickedTopicId) : '';
+  // Initialise la session continue
+  state.mixedSession = { allWords: words, shownVocabSet: new Set(), usedTopicIds: new Set() };
   state.kind = 'mixed';
   state.lang = lang;
   state.words = words;
+  _launchMixedRound();
+}
+
+function _launchMixedRound() {
+  const session = state.mixedSession;
+  const srsVocab = getSrs('en');
+  const due = dueList(session.allWords, srsVocab).filter(w => !session.shownVocabSet.has(w.word));
+  const newWords = shuffle(session.allWords.filter(w => !srsVocab[w.word] && !session.shownVocabSet.has(w.word)));
+  const vocabPicks = [...due, ...newWords].slice(0, 10);
+
+  // Topics grammar : cycling si tous épuisés
+  let topicPool = Object.keys(_GFIX).filter(id => !session.usedTopicIds.has(id));
+  if (!topicPool.length) { session.usedTopicIds.clear(); topicPool = Object.keys(_GFIX); }
+  topicPool = shuffle(topicPool);
+  let pickedTopicId = null;
+  for (const id of topicPool) {
+    if (getTopicSeries(id).length) { pickedTopicId = id; break; }
+  }
+
+  // Session terminée : plus de vocab à voir
+  if (!vocabPicks.length) {
+    state.mixedSession = null;
+    exitToHome();
+    return;
+  }
+
+  vocabPicks.forEach(w => session.shownVocabSet.add(w.word));
+  if (pickedTopicId) session.usedTopicIds.add(pickedTopicId);
+
+  const grammarTitle = pickedTopicId && grammarData ? (grammarData.find(t => t.id === pickedTopicId)?.title || pickedTopicId) : '';
   state.badge = grammarTitle ? `🔀 Parcourir — ${grammarTitle}` : '🔀 Parcourir';
   state.browse = true;
+
   browseState.cards = vocabPicks.map(it => buildCard(it));
   browseState.idx = 0;
   browseState.revealed = false;
   browseState.seenMarked = new Set();
   browseState.renderFn = renderVocabBrowseCard;
   browseState.doneLabel = pickedTopicId ? 'Commencer la grammaire →' : 'Terminer';
-  browseState.onDone = pickedTopicId ? () => _startMixedGrammarQuiz(pickedTopicId, words, grammarTitle) : null;
+  browseState.onDone = pickedTopicId
+    ? () => _startMixedGrammarQuiz(pickedTopicId, session.allWords, grammarTitle)
+    : () => _launchMixedRound();
   showView('learn');
   renderVocabBrowseCard();
 }
@@ -575,6 +600,7 @@ function _startMixedGrammarQuiz(topicId, allWords, grammarTitle) {
   state.questions = grammarQs;
   state.answers = [];
   state.index = 0;
+  state.onQuizFinish = () => _launchMixedRound();
   showView('quiz');
   renderQuestion();
 }
@@ -879,6 +905,14 @@ function finishQuiz() {
   };
   saveStats(quizKey(), next);
   if (state.grammarSeriesKey) { markSeriesDone(state.grammarSeriesKey); state.grammarSeriesKey = null; }
+
+  // Mode Parcourir : enchaîner le prochain round sans afficher l'écran résultat
+  if (state.onQuizFinish) {
+    const cb = state.onQuizFinish;
+    state.onQuizFinish = null;
+    cb();
+    return;
+  }
 
   // Daily session: mark topic done and wire up continue button
   const _dailyCtx = state.dailySession ? { ...state.dailySession } : null;
