@@ -5867,5 +5867,56 @@
         ]
       }
     ]
+  },
+  {
+    "id": "basic-phrasal-verbs",
+    "title": "Les 10 verbes à particule essentiels",
+    "subtitle": "Les phrasal verbs les plus utiles au quotidien, avec prononciation et exemple",
+    "sections": [
+      {
+        "heading": "Effort, recherche et compréhension",
+        "points": [
+          "Give up [guiv eup] → Abandonner / Renoncer (Don't give up!)",
+          "Look for [louk for] → Chercher (I'm looking for my keys.)",
+          "Figure out [fi-gueur aout] → Comprendre / Trouver la solution (I can't figure it out.)"
+        ],
+        "tip": "Give up s'utilise sans complément (Just give up!) ou avec un objet (She gave up smoking). Look for se place toujours avant le complément : look for something — jamais look something for.",
+        "examples": [
+          "Don't give up — you're almost there!",
+          "I'm looking for my keys — have you seen them?",
+          "I can't figure it out — it makes no sense."
+        ]
+      },
+      {
+        "heading": "Se déplacer, arriver et revenir",
+        "points": [
+          "Show up [cho eup] → Se présenter / Arriver (He didn't show up.)",
+          "Pick up [pik eup] → Ramasser / Venir chercher quelqu'un (I'll pick you up.)",
+          "Wake up [weïk eup] → Se réveiller (Wake up!)",
+          "Come back [keum bak] → Revenir (Please come back soon.)"
+        ],
+        "tip": "Show up implique souvent une attente ou une obligation : ne pas show up = faire défaut. Pick up a deux sens principaux : ramasser un objet du sol, ou aller chercher quelqu'un en voiture.",
+        "examples": [
+          "He promised to come but he didn't show up.",
+          "I'll pick you up at the airport at 9.",
+          "Wake up! The alarm has been ringing for 10 minutes.",
+          "Please come back soon — we miss you."
+        ]
+      },
+      {
+        "heading": "Actions sur le corps et les objets",
+        "points": [
+          "Sit down [sit daoun] → S'asseoir (Please sit down.)",
+          "Turn on [teurn on] → Allumer (Turn on the light.) ↔ Turn off = éteindre",
+          "Put on [put on] → Mettre un vêtement (Put on your jacket.) ↔ Take off = enlever"
+        ],
+        "tip": "Turn on / Turn off et Put on / Take off fonctionnent toujours en paires opposées. Pour turn on et put on, le complément peut se placer au milieu : Turn it on / Put it on (avec pronom).",
+        "examples": [
+          "Please sit down — the meeting is about to start.",
+          "Turn on the light — it's too dark in here.",
+          "Put on your jacket before you go out."
+        ]
+      }
+    ]
   }
 ]

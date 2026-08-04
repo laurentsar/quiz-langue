@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.00';
+const APP_VERSION = '3.01';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2893,6 +2893,14 @@ const _GFIX = {
     { q: "When ___ this happen?", opts: ['did','does','is','was'], ans: 'did', hint: "When DID this happen? → passé simple → did + base verbale." },
     { q: "When ___ you coming back?", opts: ['are','do','did','were'], ans: 'are', hint: "When ARE you coming? → action future arrangée → présent continu." },
   ],
+  'basic-phrasal-verbs': [
+    { q: "Don't ___ — you're almost there!", opts: ['give up','show up','wake up','sit down'], ans: 'give up', hint: "Give up = abandonner / renoncer. Don't give up! = N'abandonne pas !" },
+    { q: "I'm ___ my keys — have you seen them?", opts: ['looking for','picking up','turning on','coming back'], ans: 'looking for', hint: "Look for = chercher quelque chose. I'm looking for = je cherche (présent continu)." },
+    { q: "___ the light — it's too dark in here.", opts: ['Turn on','Put on','Pick up','Wake up'], ans: 'Turn on', hint: "Turn on = allumer (lumière, appareil). Opposé : turn off = éteindre." },
+    { q: "He promised to come but he didn't ___.", opts: ['show up','give up','sit down','come back'], ans: 'show up', hint: "Show up = se présenter / arriver à un rendez-vous. He didn't show up = il ne s'est pas présenté." },
+    { q: "___ your jacket before you go out.", opts: ['Put on','Turn on','Pick up','Look for'], ans: 'Put on', hint: "Put on = mettre (un vêtement). Opposé : take off = enlever." },
+    { q: "Please ___ soon — we miss you.", opts: ['come back','show up','wake up','give up'], ans: 'come back', hint: "Come back = revenir. Please come back soon = reviens bientôt." },
+  ],
   'assertive-phrases': [
     { q: "Tu plaisantes j'espère.", opts: ['You must be kidding.','I\'m not arguing.','Believe what you want.','That\'s not how this works.'], ans: 'You must be kidding.', hint: "You must be kidding = tu plaisantes j'espère (incrédulité / surprise négative).", _isSentence: true },
     { q: "Je ne discute pas.", opts: ['I\'m not arguing.','I don\'t need approval.','You made your choice.','Don\'t disappoint me.'], ans: 'I\'m not arguing.', hint: "I'm not arguing = je ne discute pas / je ne vais pas en débattre (refus de polémique).", _isSentence: true },
@@ -4205,6 +4213,24 @@ const _GFIX_SERIES = {
       { q: "___ we're talking about food — have you tried that new restaurant?", opts: ['Speaking of','Firstly','Indeed','All in all'], ans: 'Speaking of', hint: "Speaking of = En parlant de (transition conversationnelle)." },
       { q: "The data was unclear. ___, the decision was delayed.", opts: ['As such','Lest','Previously','In the same vein'], ans: 'As such', hint: "As such = De ce fait (conclusion tirée de la situation)." },
       { q: "___ the policy is clear — follow the rules or face consequences.", opts: ['Overall','In this manner','Thereafter','Coupled with'], ans: 'Overall', hint: "Overall = Dans l'ensemble (bilan ou vue d'ensemble)." },
+    ],
+  ],
+  'basic-phrasal-verbs': [
+    [
+      { q: "___ ! The alarm has been ringing for 10 minutes.", opts: ['Wake up','Sit down','Come back','Show up'], ans: 'Wake up', hint: "Wake up = se réveiller. Impératif : Wake up! = Réveille-toi !" },
+      { q: "Please ___ — the meeting is about to start.", opts: ['sit down','give up','come back','turn on'], ans: 'sit down', hint: "Sit down = s'asseoir. Please sit down = veuillez vous asseoir (formel)." },
+      { q: "She spent an hour ___ her missing passport.", opts: ['looking for','picking up','figuring out','turning on'], ans: 'looking for', hint: "Look for = chercher activement quelque chose ou quelqu'un." },
+      { q: "I'll ___ you ___ at the station at 8.", opts: ['pick / up','turn / on','come / back','show / up'], ans: 'pick / up', hint: "Pick up = venir chercher quelqu'un. I'll pick you up = je viendrai te chercher." },
+      { q: "He ___ late to the party.", opts: ['showed up','gave up','woke up','came back'], ans: 'showed up', hint: "Show up (past: showed up) = se présenter / arriver quelque part." },
+      { q: "She couldn't ___ the problem.", opts: ['figure out','look for','give up','show up'], ans: 'figure out', hint: "Figure out = comprendre / trouver la solution à quelque chose." },
+    ],
+    [
+      { q: "___ the TV — the news is starting.", opts: ['Turn on','Put on','Wake up','Come back'], ans: 'Turn on', hint: "Turn on = allumer (télévision, radio, ordinateur…). Opposé : turn off." },
+      { q: "Can you ___ my bag while I pay?", opts: ['pick up','look for','give up','turn on'], ans: 'pick up', hint: "Pick up = ramasser / prendre quelque chose. Can you pick it up? = peux-tu le ramasser ?" },
+      { q: "Don't forget to ___ your coat — it's freezing!", opts: ['put on','turn on','pick up','look for'], ans: 'put on', hint: "Put on = enfiler / mettre un vêtement. Opposé : take off = enlever." },
+      { q: "I ___ every morning at 6 am.", opts: ['wake up','show up','sit down','give up'], ans: 'wake up', hint: "Wake up = se réveiller. I wake up at 6 = je me réveille à 6h." },
+      { q: "They never ___ even when things get tough.", opts: ['give up','show up','sit down','come back'], ans: 'give up', hint: "Give up = abandonner. They never give up = ils n'abandonnent jamais." },
+      { q: "I couldn't ___ why the computer wasn't working.", opts: ['figure out','look for','give up','turn on'], ans: 'figure out', hint: "Figure out = comprendre / trouver la cause. I couldn't figure out why… = je n'arrivais pas à comprendre pourquoi…" },
     ],
   ],
   'assertive-phrases': [
