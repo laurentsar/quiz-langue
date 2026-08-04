@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.99';
+const APP_VERSION = '3.02';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2893,6 +2893,30 @@ const _GFIX = {
     { q: "When ___ this happen?", opts: ['did','does','is','was'], ans: 'did', hint: "When DID this happen? → passé simple → did + base verbale." },
     { q: "When ___ you coming back?", opts: ['are','do','did','were'], ans: 'are', hint: "When ARE you coming? → action future arrangée → présent continu." },
   ],
+  'good-mood-expressions': [
+    { q: "Je suis aux anges.", opts: ["I'm on cloud nine.","I'm bursting with joy.","I feel fantastic.","I'm in a great mood."], ans: "I'm on cloud nine.", hint: "I'm on cloud nine = je suis aux anges (expression idiomatique, toujours 'nine').", _isSentence: true },
+    { q: "Je déborde de joie.", opts: ["I'm bursting with joy.","I'm full of energy.","I feel alive.","I'm so happy."], ans: "I'm bursting with joy.", hint: "I'm bursting with joy = je déborde de joie (très expressif, peu formel).", _isSentence: true },
+    { q: "Rien ne peut gâcher ma journée.", opts: ["Nothing can ruin my day.","I'm having a great day.","I'm enjoying this moment.","I'm in a great mood today."], ans: "Nothing can ruin my day.", hint: "Nothing can ruin my day = rien ne peut gâcher ma journée (sérénité totale).", _isSentence: true },
+    { q: "Je suis plein(e) d'énergie.", opts: ["I'm full of energy.","I feel alive.","I'm bursting with joy.","I feel fantastic."], ans: "I'm full of energy.", hint: "I'm full of energy = je suis plein(e) d'énergie (vitalité et dynamisme).", _isSentence: true },
+    { q: "Je passe une excellente journée.", opts: ["I'm having a great day.","I'm in a great mood today.","I'm enjoying this moment.","I'm doing great!"], ans: "I'm having a great day.", hint: "I'm having a great day = je passe une excellente journée (présent continu).", _isSentence: true },
+    { q: "Je suis ravi(e).", opts: ["I'm delighted.","I'm so happy.","I feel fantastic.","I'm in a good mood."], ans: "I'm delighted.", hint: "I'm delighted = je suis ravi(e) (plus formel, souvent pour une bonne nouvelle).", _isSentence: true },
+  ],
+  'basic-phrasal-verbs': [
+    { q: "Don't ___ — you're almost there!", opts: ['give up','show up','wake up','sit down'], ans: 'give up', hint: "Give up = abandonner / renoncer. Don't give up! = N'abandonne pas !" },
+    { q: "I'm ___ my keys — have you seen them?", opts: ['looking for','picking up','turning on','coming back'], ans: 'looking for', hint: "Look for = chercher quelque chose. I'm looking for = je cherche (présent continu)." },
+    { q: "___ the light — it's too dark in here.", opts: ['Turn on','Put on','Pick up','Wake up'], ans: 'Turn on', hint: "Turn on = allumer (lumière, appareil). Opposé : turn off = éteindre." },
+    { q: "He promised to come but he didn't ___.", opts: ['show up','give up','sit down','come back'], ans: 'show up', hint: "Show up = se présenter / arriver à un rendez-vous. He didn't show up = il ne s'est pas présenté." },
+    { q: "___ your jacket before you go out.", opts: ['Put on','Turn on','Pick up','Look for'], ans: 'Put on', hint: "Put on = mettre (un vêtement). Opposé : take off = enlever." },
+    { q: "Please ___ soon — we miss you.", opts: ['come back','show up','wake up','give up'], ans: 'come back', hint: "Come back = revenir. Please come back soon = reviens bientôt." },
+  ],
+  'assertive-phrases': [
+    { q: "Tu plaisantes j'espère.", opts: ['You must be kidding.','I\'m not arguing.','Believe what you want.','That\'s not how this works.'], ans: 'You must be kidding.', hint: "You must be kidding = tu plaisantes j'espère (incrédulité / surprise négative).", _isSentence: true },
+    { q: "Je ne discute pas.", opts: ['I\'m not arguing.','I don\'t need approval.','You made your choice.','Don\'t disappoint me.'], ans: 'I\'m not arguing.', hint: "I'm not arguing = je ne discute pas / je ne vais pas en débattre (refus de polémique).", _isSentence: true },
+    { q: "Ce n'est pas comme ça que ça marche.", opts: ["That's not how this works.",'You must be kidding.',"I don't need approval.",'Believe what you want.'], ans: "That's not how this works.", hint: "That's not how this works = ce n'est pas comme ça que ça marche (recadrage ferme).", _isSentence: true },
+    { q: "Tu as fait ton choix.", opts: ['You made your choice.',"Don't disappoint me.",'I\'m not arguing.',"That's not how this works."], ans: 'You made your choice.', hint: "You made your choice = tu as fait ton choix (constater une décision, souvent avec des conséquences).", _isSentence: true },
+    { q: "Je n'ai pas besoin d'approbation.", opts: ["I don't need approval.",'I\'m not arguing.','Believe what you want.','You must be kidding.'], ans: "I don't need approval.", hint: "I don't need approval = je n'ai pas besoin d'approbation (affirmation d'indépendance).", _isSentence: true },
+    { q: "Crois ce que tu veux.", opts: ['Believe what you want.','You made your choice.',"Don't disappoint me.","That's not how this works."], ans: 'Believe what you want.', hint: "Believe what you want = crois ce que tu veux (se désengager d'un débat inutile).", _isSentence: true },
+  ],
   'changing-subject-expressions': [
     { q: "___, did you hear about the new café downtown?", opts: ['By the way','Anyway','Enough about that',"Let's not go there"], ans: 'By the way', hint: "By the way = au fait (pour introduire une digression ou un nouveau sujet)." },
     { q: "___ — I have a meeting in ten minutes.", opts: ['Anyway','By the way','On a different note',"Let's not go there"], ans: 'Anyway', hint: "Anyway = bref (pour conclure une digression et reprendre le fil)." },
@@ -4197,6 +4221,60 @@ const _GFIX_SERIES = {
       { q: "___ we're talking about food — have you tried that new restaurant?", opts: ['Speaking of','Firstly','Indeed','All in all'], ans: 'Speaking of', hint: "Speaking of = En parlant de (transition conversationnelle)." },
       { q: "The data was unclear. ___, the decision was delayed.", opts: ['As such','Lest','Previously','In the same vein'], ans: 'As such', hint: "As such = De ce fait (conclusion tirée de la situation)." },
       { q: "___ the policy is clear — follow the rules or face consequences.", opts: ['Overall','In this manner','Thereafter','Coupled with'], ans: 'Overall', hint: "Overall = Dans l'ensemble (bilan ou vue d'ensemble)." },
+    ],
+  ],
+  'good-mood-expressions': [
+    [
+      { q: "I'm ___ with joy — this is the best news ever!", opts: ['bursting','full','shining','overflowing'], ans: 'bursting', hint: "I'm bursting WITH joy = je déborde de joie (bursting = débordant / explosant)." },
+      { q: "I'm on cloud ___.", opts: ['nine','seven','ten','high'], ans: 'nine', hint: "I'm on cloud NINE = je suis aux anges — expression idiomatique, toujours 'nine'." },
+      { q: "Nothing can ___ my day.", opts: ['ruin','break','stop','spoil'], ans: 'ruin', hint: "Nothing can RUIN my day = rien ne peut gâcher ma journée." },
+      { q: "I'm ___ this moment.", opts: ['enjoying','loving','living','feeling'], ans: 'enjoying', hint: "I'm ENJOYING this moment = je profite pleinement de ce moment (présent continu)." },
+      { q: "I'm ___ of energy this morning.", opts: ['full','burst','packed','loaded'], ans: 'full', hint: "I'm FULL of energy = je suis plein(e) d'énergie (full of = plein de)." },
+      { q: "I'm ___ a great day.", opts: ['having','making','doing','getting'], ans: 'having', hint: "I'm HAVING a great day = je passe une excellente journée (have a day = passer une journée)." },
+    ],
+    [
+      { q: "You want to express euphoric, top-of-the-world happiness:", opts: ["I'm on cloud nine.","I'm in a good mood.","I feel great.","I'm having a great day."], ans: "I'm on cloud nine.", hint: "I'm on cloud nine = état de bonheur extrême / être aux anges." },
+      { q: "You feel vibrant and alive with energy:", opts: ["I'm full of energy.","I'm doing great!","I'm in a good mood.","I feel great."], ans: "I'm full of energy.", hint: "I'm full of energy = je suis plein(e) d'énergie (vitalité et dynamisme)." },
+      { q: "You want to say you're thrilled by good news (formal):", opts: ["I'm delighted.","I'm so happy.","I feel fantastic.","I'm in a great mood."], ans: "I'm delighted.", hint: "I'm delighted = je suis ravi(e) — plus formel, souvent en réponse à une bonne nouvelle." },
+      { q: "You're overflowing with happiness and want to show it:", opts: ["I'm bursting with joy.","I feel alive.","I'm doing great!","I'm on cloud nine."], ans: "I'm bursting with joy.", hint: "I'm bursting with joy = je déborde de joie (très expressif et enthousiaste)." },
+      { q: "You want to say nothing can spoil your happiness today:", opts: ["Nothing can ruin my day.","I'm enjoying this moment.","I'm having a great day.","I'm in a great mood today."], ans: "Nothing can ruin my day.", hint: "Nothing can ruin my day = rien ne peut gâcher ma journée (sérénité absolue)." },
+      { q: "You're fully present and savoring a special moment:", opts: ["I'm enjoying this moment.","I feel alive.","I'm on cloud nine.","I'm doing great!"], ans: "I'm enjoying this moment.", hint: "I'm enjoying this moment = je profite pleinement de ce moment (être pleinement présent)." },
+    ],
+  ],
+  'basic-phrasal-verbs': [
+    [
+      { q: "___ ! The alarm has been ringing for 10 minutes.", opts: ['Wake up','Sit down','Come back','Show up'], ans: 'Wake up', hint: "Wake up = se réveiller. Impératif : Wake up! = Réveille-toi !" },
+      { q: "Please ___ — the meeting is about to start.", opts: ['sit down','give up','come back','turn on'], ans: 'sit down', hint: "Sit down = s'asseoir. Please sit down = veuillez vous asseoir (formel)." },
+      { q: "She spent an hour ___ her missing passport.", opts: ['looking for','picking up','figuring out','turning on'], ans: 'looking for', hint: "Look for = chercher activement quelque chose ou quelqu'un." },
+      { q: "I'll ___ you ___ at the station at 8.", opts: ['pick / up','turn / on','come / back','show / up'], ans: 'pick / up', hint: "Pick up = venir chercher quelqu'un. I'll pick you up = je viendrai te chercher." },
+      { q: "He ___ late to the party.", opts: ['showed up','gave up','woke up','came back'], ans: 'showed up', hint: "Show up (past: showed up) = se présenter / arriver quelque part." },
+      { q: "She couldn't ___ the problem.", opts: ['figure out','look for','give up','show up'], ans: 'figure out', hint: "Figure out = comprendre / trouver la solution à quelque chose." },
+    ],
+    [
+      { q: "___ the TV — the news is starting.", opts: ['Turn on','Put on','Wake up','Come back'], ans: 'Turn on', hint: "Turn on = allumer (télévision, radio, ordinateur…). Opposé : turn off." },
+      { q: "Can you ___ my bag while I pay?", opts: ['pick up','look for','give up','turn on'], ans: 'pick up', hint: "Pick up = ramasser / prendre quelque chose. Can you pick it up? = peux-tu le ramasser ?" },
+      { q: "Don't forget to ___ your coat — it's freezing!", opts: ['put on','turn on','pick up','look for'], ans: 'put on', hint: "Put on = enfiler / mettre un vêtement. Opposé : take off = enlever." },
+      { q: "I ___ every morning at 6 am.", opts: ['wake up','show up','sit down','give up'], ans: 'wake up', hint: "Wake up = se réveiller. I wake up at 6 = je me réveille à 6h." },
+      { q: "They never ___ even when things get tough.", opts: ['give up','show up','sit down','come back'], ans: 'give up', hint: "Give up = abandonner. They never give up = ils n'abandonnent jamais." },
+      { q: "I couldn't ___ why the computer wasn't working.", opts: ['figure out','look for','give up','turn on'], ans: 'figure out', hint: "Figure out = comprendre / trouver la cause. I couldn't figure out why… = je n'arrivais pas à comprendre pourquoi…" },
+    ],
+  ],
+  'assertive-phrases': [
+    [
+      { q: "That's not how ___ works.", opts: ['this','it','that','things'], ans: 'this', hint: "That's not how THIS works — 'this' renvoie à la situation ou la règle en question." },
+      { q: "You ___ be kidding!", opts: ['must','should','could','might'], ans: 'must', hint: "You MUST be kidding = tu plaisantes j'espère — 'must' exprime l'incrédulité forte." },
+      { q: "___ what you want — I know the truth.", opts: ['Believe','Think','Say','Do'], ans: 'Believe', hint: "BELIEVE what you want = crois ce que tu veux (refus de convaincre davantage)." },
+      { q: "I don't need ___.", opts: ['approval','attention','permission','advice'], ans: 'approval', hint: "I don't need APPROVAL = je n'ai pas besoin d'approbation (affirmation d'indépendance)." },
+      { q: "Don't ___ me.", opts: ['disappoint','ignore','blame','judge'], ans: 'disappoint', hint: "Don't DISAPPOINT me = ne me déçois pas (exprimer une attente forte envers quelqu'un)." },
+      { q: "You made your ___.", opts: ['choice','mind','point','decision'], ans: 'choice', hint: "You made your CHOICE = tu as fait ton choix — 'choice' insiste sur la responsabilité personnelle." },
+    ],
+    [
+      { q: "Someone shocks you with unexpected news. You say:", opts: ['You must be kidding!','Believe what you want.','You made your choice.',"That's not how this works."], ans: 'You must be kidding!', hint: "You must be kidding! = réaction d'incrédulité face à une information choquante ou surprenante." },
+      { q: "Someone keeps misunderstanding a rule. You say:", opts: ["That's not how this works.",'I\'m not arguing.','Believe what you want.',"Don't disappoint me."], ans: "That's not how this works.", hint: "That's not how this works. = recadrer quelqu'un qui applique mal une règle ou un processus." },
+      { q: "Someone insists on debating. You shut it down:", opts: ['I\'m not arguing.','Believe what you want.',"You made your choice.",'I don\'t need approval.'], ans: 'I\'m not arguing.', hint: "I'm not arguing. = je ne vais pas débattre davantage — fermer la discussion sans agressivité." },
+      { q: "Someone questions your decision without your asking. You say:", opts: ["I don't need approval.",'I\'m not arguing.','Believe what you want.',"You must be kidding."], ans: "I don't need approval.", hint: "I don't need approval. = je n'ai pas besoin de justification ou de permission (indépendance)." },
+      { q: "Someone refuses to believe you despite your explanations:", opts: ['Believe what you want.','I\'m not arguing.',"Don't disappoint me.","That's not how this works."], ans: 'Believe what you want.', hint: "Believe what you want. = se désengager élégamment d'un débat sans issue." },
+      { q: "Someone made an irreversible decision. You acknowledge it:", opts: ['You made your choice.','You must be kidding.',"I don't need approval.",'Believe what you want.'], ans: 'You made your choice.', hint: "You made your choice. = constater qu'une décision a été prise — sous-entend des conséquences." },
     ],
   ],
   'changing-subject-expressions': [

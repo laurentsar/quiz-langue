@@ -5830,5 +5830,154 @@
         ]
       }
     ]
+  },
+  {
+    "id": "assertive-phrases",
+    "title": "Phrases assertives du quotidien",
+    "subtitle": "7 phrases directes pour affirmer sa position et répondre avec assurance",
+    "sections": [
+      {
+        "heading": "Réaffirmer sa position",
+        "points": [
+          "I'm not arguing. → Je ne discute pas. (refus de débattre davantage)",
+          "I don't need approval. → Je n'ai pas besoin d'approbation. (indépendance)",
+          "That's not how this works. → Ce n'est pas comme ça que ça marche. (recadrer)"
+        ],
+        "tip": "Ces trois phrases servent à tenir sa position sans agressivité. I'm not arguing ne signifie pas 'j'abandonne' mais 'je ne vais pas débattre'. That's not how this works recadre poliment mais fermement.",
+        "examples": [
+          "I'm not arguing — I'm just stating the facts.",
+          "I don't need your approval to make this decision.",
+          "That's not how this works — let me explain the process."
+        ]
+      },
+      {
+        "heading": "Prendre ses distances",
+        "points": [
+          "Believe what you want. → Crois ce que tu veux. (se désengager d'un débat inutile)",
+          "Don't disappoint me. → Ne me déçois pas. (exprimer une attente forte)",
+          "You must be kidding. → Tu plaisantes j'espère. (incrédulité / surprise négative)",
+          "You made your choice. → Tu as fait ton choix. (constater une décision irréversible)"
+        ],
+        "tip": "Believe what you want clôt un débat sans concéder. You must be kidding exprime la stupeur — à ne pas confondre avec You must be joking (même sens, légèrement plus formel). You made your choice sous-entend souvent des conséquences.",
+        "examples": [
+          "Believe what you want — I know the truth.",
+          "Don't disappoint me — I'm counting on you.",
+          "You must be kidding — that can't be right!",
+          "You made your choice, and now you have to live with it."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "basic-phrasal-verbs",
+    "title": "Les 10 verbes à particule essentiels",
+    "subtitle": "Les phrasal verbs les plus utiles au quotidien, avec prononciation et exemple",
+    "sections": [
+      {
+        "heading": "Effort, recherche et compréhension",
+        "points": [
+          "Give up [guiv eup] → Abandonner / Renoncer (Don't give up!)",
+          "Look for [louk for] → Chercher (I'm looking for my keys.)",
+          "Figure out [fi-gueur aout] → Comprendre / Trouver la solution (I can't figure it out.)"
+        ],
+        "tip": "Give up s'utilise sans complément (Just give up!) ou avec un objet (She gave up smoking). Look for se place toujours avant le complément : look for something — jamais look something for.",
+        "examples": [
+          "Don't give up — you're almost there!",
+          "I'm looking for my keys — have you seen them?",
+          "I can't figure it out — it makes no sense."
+        ]
+      },
+      {
+        "heading": "Se déplacer, arriver et revenir",
+        "points": [
+          "Show up [cho eup] → Se présenter / Arriver (He didn't show up.)",
+          "Pick up [pik eup] → Ramasser / Venir chercher quelqu'un (I'll pick you up.)",
+          "Wake up [weïk eup] → Se réveiller (Wake up!)",
+          "Come back [keum bak] → Revenir (Please come back soon.)"
+        ],
+        "tip": "Show up implique souvent une attente ou une obligation : ne pas show up = faire défaut. Pick up a deux sens principaux : ramasser un objet du sol, ou aller chercher quelqu'un en voiture.",
+        "examples": [
+          "He promised to come but he didn't show up.",
+          "I'll pick you up at the airport at 9.",
+          "Wake up! The alarm has been ringing for 10 minutes.",
+          "Please come back soon — we miss you."
+        ]
+      },
+      {
+        "heading": "Actions sur le corps et les objets",
+        "points": [
+          "Sit down [sit daoun] → S'asseoir (Please sit down.)",
+          "Turn on [teurn on] → Allumer (Turn on the light.) ↔ Turn off = éteindre",
+          "Put on [put on] → Mettre un vêtement (Put on your jacket.) ↔ Take off = enlever"
+        ],
+        "tip": "Turn on / Turn off et Put on / Take off fonctionnent toujours en paires opposées. Pour turn on et put on, le complément peut se placer au milieu : Turn it on / Put it on (avec pronom).",
+        "examples": [
+          "Please sit down — the meeting is about to start.",
+          "Turn on the light — it's too dark in here.",
+          "Put on your jacket before you go out."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "good-mood-expressions",
+    "title": "Exprimer la bonne humeur",
+    "subtitle": "15 expressions pour dire qu'on est heureux, énergique ou aux anges",
+    "sections": [
+      {
+        "heading": "Humeur générale et joie",
+        "points": [
+          "I'm in a good mood. → Je suis de bonne humeur.",
+          "I'm in a great mood today. → Je suis de très bonne humeur aujourd'hui.",
+          "I'm so happy. → Je suis tellement heureux/heureuse.",
+          "I'm doing great! → Ça va super !",
+          "I'm having a great day. → Je passe une excellente journée."
+        ],
+        "tip": "I'm in a good mood et I'm in a great mood se distinguent par l'intensité. I'm having a great day est une expression en cours (present continuous) — elle décrit la journée qui se déroule bien.",
+        "examples": [
+          "I'm in a good mood today — everything is going well.",
+          "I'm in a great mood today — nothing can stop me!",
+          "I'm so happy you could make it.",
+          "I'm doing great, thanks for asking!",
+          "I'm having a great day — best one this week."
+        ]
+      },
+      {
+        "heading": "Sensations et énergie",
+        "points": [
+          "I feel great. → Je me sens super bien.",
+          "I feel fantastic. → Je me sens fantastique.",
+          "I feel alive. → Je me sens vivant(e).",
+          "I'm full of energy. → Je suis plein(e) d'énergie.",
+          "I'm delighted. → Je suis ravi(e)."
+        ],
+        "tip": "I feel great < I feel fantastic < I feel alive (progression d'intensité). I'm delighted est plus formel et s'utilise souvent pour exprimer sa satisfaction face à une nouvelle ou une situation précise.",
+        "examples": [
+          "I feel great after that run!",
+          "I feel fantastic — I slept really well.",
+          "I feel alive when I'm out in nature.",
+          "I'm full of energy this morning.",
+          "I'm delighted to hear the good news."
+        ]
+      },
+      {
+        "heading": "Expressions imagées et intenses",
+        "points": [
+          "I'm on cloud nine. → Je suis aux anges. (expression idiomatique)",
+          "I'm enjoying this moment. → Je profite pleinement de ce moment.",
+          "Nothing can ruin my day. → Rien ne peut gâcher ma journée.",
+          "I'm in a great mood tonight. → Je suis de très bonne humeur ce soir.",
+          "I'm bursting with joy. → Je déborde de joie."
+        ],
+        "tip": "I'm on cloud nine = état de bonheur extrême (cloud nine est toujours neuf, jamais un autre chiffre). I'm bursting with joy est très expressif et peu formel. Nothing can ruin my day affirme une sérénité totale.",
+        "examples": [
+          "She's been on cloud nine since she got the job.",
+          "I'm really enjoying this moment — let's stay a bit longer.",
+          "I'm in such a good mood that nothing can ruin my day.",
+          "I'm in a great mood tonight — let's celebrate!",
+          "I'm bursting with joy — this is the best news ever!"
+        ]
+      }
+    ]
   }
 ]
