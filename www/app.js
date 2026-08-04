@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.99';
+const APP_VERSION = '3.00';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2893,6 +2893,14 @@ const _GFIX = {
     { q: "When ___ this happen?", opts: ['did','does','is','was'], ans: 'did', hint: "When DID this happen? → passé simple → did + base verbale." },
     { q: "When ___ you coming back?", opts: ['are','do','did','were'], ans: 'are', hint: "When ARE you coming? → action future arrangée → présent continu." },
   ],
+  'assertive-phrases': [
+    { q: "Tu plaisantes j'espère.", opts: ['You must be kidding.','I\'m not arguing.','Believe what you want.','That\'s not how this works.'], ans: 'You must be kidding.', hint: "You must be kidding = tu plaisantes j'espère (incrédulité / surprise négative).", _isSentence: true },
+    { q: "Je ne discute pas.", opts: ['I\'m not arguing.','I don\'t need approval.','You made your choice.','Don\'t disappoint me.'], ans: 'I\'m not arguing.', hint: "I'm not arguing = je ne discute pas / je ne vais pas en débattre (refus de polémique).", _isSentence: true },
+    { q: "Ce n'est pas comme ça que ça marche.", opts: ["That's not how this works.",'You must be kidding.',"I don't need approval.",'Believe what you want.'], ans: "That's not how this works.", hint: "That's not how this works = ce n'est pas comme ça que ça marche (recadrage ferme).", _isSentence: true },
+    { q: "Tu as fait ton choix.", opts: ['You made your choice.',"Don't disappoint me.",'I\'m not arguing.',"That's not how this works."], ans: 'You made your choice.', hint: "You made your choice = tu as fait ton choix (constater une décision, souvent avec des conséquences).", _isSentence: true },
+    { q: "Je n'ai pas besoin d'approbation.", opts: ["I don't need approval.",'I\'m not arguing.','Believe what you want.','You must be kidding.'], ans: "I don't need approval.", hint: "I don't need approval = je n'ai pas besoin d'approbation (affirmation d'indépendance).", _isSentence: true },
+    { q: "Crois ce que tu veux.", opts: ['Believe what you want.','You made your choice.',"Don't disappoint me.","That's not how this works."], ans: 'Believe what you want.', hint: "Believe what you want = crois ce que tu veux (se désengager d'un débat inutile).", _isSentence: true },
+  ],
   'changing-subject-expressions': [
     { q: "___, did you hear about the new café downtown?", opts: ['By the way','Anyway','Enough about that',"Let's not go there"], ans: 'By the way', hint: "By the way = au fait (pour introduire une digression ou un nouveau sujet)." },
     { q: "___ — I have a meeting in ten minutes.", opts: ['Anyway','By the way','On a different note',"Let's not go there"], ans: 'Anyway', hint: "Anyway = bref (pour conclure une digression et reprendre le fil)." },
@@ -4197,6 +4205,24 @@ const _GFIX_SERIES = {
       { q: "___ we're talking about food — have you tried that new restaurant?", opts: ['Speaking of','Firstly','Indeed','All in all'], ans: 'Speaking of', hint: "Speaking of = En parlant de (transition conversationnelle)." },
       { q: "The data was unclear. ___, the decision was delayed.", opts: ['As such','Lest','Previously','In the same vein'], ans: 'As such', hint: "As such = De ce fait (conclusion tirée de la situation)." },
       { q: "___ the policy is clear — follow the rules or face consequences.", opts: ['Overall','In this manner','Thereafter','Coupled with'], ans: 'Overall', hint: "Overall = Dans l'ensemble (bilan ou vue d'ensemble)." },
+    ],
+  ],
+  'assertive-phrases': [
+    [
+      { q: "That's not how ___ works.", opts: ['this','it','that','things'], ans: 'this', hint: "That's not how THIS works — 'this' renvoie à la situation ou la règle en question." },
+      { q: "You ___ be kidding!", opts: ['must','should','could','might'], ans: 'must', hint: "You MUST be kidding = tu plaisantes j'espère — 'must' exprime l'incrédulité forte." },
+      { q: "___ what you want — I know the truth.", opts: ['Believe','Think','Say','Do'], ans: 'Believe', hint: "BELIEVE what you want = crois ce que tu veux (refus de convaincre davantage)." },
+      { q: "I don't need ___.", opts: ['approval','attention','permission','advice'], ans: 'approval', hint: "I don't need APPROVAL = je n'ai pas besoin d'approbation (affirmation d'indépendance)." },
+      { q: "Don't ___ me.", opts: ['disappoint','ignore','blame','judge'], ans: 'disappoint', hint: "Don't DISAPPOINT me = ne me déçois pas (exprimer une attente forte envers quelqu'un)." },
+      { q: "You made your ___.", opts: ['choice','mind','point','decision'], ans: 'choice', hint: "You made your CHOICE = tu as fait ton choix — 'choice' insiste sur la responsabilité personnelle." },
+    ],
+    [
+      { q: "Someone shocks you with unexpected news. You say:", opts: ['You must be kidding!','Believe what you want.','You made your choice.',"That's not how this works."], ans: 'You must be kidding!', hint: "You must be kidding! = réaction d'incrédulité face à une information choquante ou surprenante." },
+      { q: "Someone keeps misunderstanding a rule. You say:", opts: ["That's not how this works.",'I\'m not arguing.','Believe what you want.',"Don't disappoint me."], ans: "That's not how this works.", hint: "That's not how this works. = recadrer quelqu'un qui applique mal une règle ou un processus." },
+      { q: "Someone insists on debating. You shut it down:", opts: ['I\'m not arguing.','Believe what you want.',"You made your choice.",'I don\'t need approval.'], ans: 'I\'m not arguing.', hint: "I'm not arguing. = je ne vais pas débattre davantage — fermer la discussion sans agressivité." },
+      { q: "Someone questions your decision without your asking. You say:", opts: ["I don't need approval.",'I\'m not arguing.','Believe what you want.',"You must be kidding."], ans: "I don't need approval.", hint: "I don't need approval. = je n'ai pas besoin de justification ou de permission (indépendance)." },
+      { q: "Someone refuses to believe you despite your explanations:", opts: ['Believe what you want.','I\'m not arguing.',"Don't disappoint me.","That's not how this works."], ans: 'Believe what you want.', hint: "Believe what you want. = se désengager élégamment d'un débat sans issue." },
+      { q: "Someone made an irreversible decision. You acknowledge it:", opts: ['You made your choice.','You must be kidding.',"I don't need approval.",'Believe what you want.'], ans: 'You made your choice.', hint: "You made your choice. = constater qu'une décision a été prise — sous-entend des conséquences." },
     ],
   ],
   'changing-subject-expressions': [
