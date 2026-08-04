@@ -6044,5 +6044,52 @@
         ]
       }
     ]
+  },
+  {
+    "id": "daily-commands-phrases",
+    "title": "Phrases courantes du quotidien",
+    "subtitle": "8 phrases impératives pour les routines et actions de tous les jours",
+    "sections": [
+      {
+        "heading": "La routine du matin",
+        "points": [
+          "Wake up early every day. → Réveille-toi tôt chaque jour.",
+          "Get up and get ready. → Lève-toi et prépare-toi.",
+          "Put on your shoes. → Mets tes chaussures."
+        ],
+        "tip": "Wake up = se réveiller (ouvrir les yeux). Get up = se lever (sortir du lit). Ces deux verbes vont souvent ensemble : Wake up, then get up! Put on s'utilise pour enfiler un vêtement ou accessoire.",
+        "examples": [
+          "Wake up early every day — it sets the tone for the whole day.",
+          "Get up and get ready — we're leaving in 10 minutes!",
+          "Put on your shoes before you go outside."
+        ]
+      },
+      {
+        "heading": "Actions à la maison",
+        "points": [
+          "Turn on the light. → Allume la lumière. ↔ Turn off = éteindre",
+          "Turn off the TV. → Éteins la télévision.",
+          "Take off your jacket. → Enlève ta veste. ↔ Put on = mettre"
+        ],
+        "tip": "Turn on / Turn off et Put on / Take off fonctionnent toujours en paires opposées. Le complément peut se placer au milieu avec un pronom : Turn it off / Take it off.",
+        "examples": [
+          "Turn on the light — I can't see a thing.",
+          "Turn off the TV before you go to bed.",
+          "Take off your jacket — it's warm in here."
+        ]
+      },
+      {
+        "heading": "Se calmer et se reposer",
+        "points": [
+          "Sit down and relax. → Assieds-toi et détends-toi.",
+          "Slow down a little. → Ralentis un peu."
+        ],
+        "tip": "Sit down and relax combine deux verbes en une seule instruction. Slow down (ralentir) s'utilise au sens propre (vitesse) ou figuré (rythme de vie).",
+        "examples": [
+          "Sit down and relax — you've been working all day.",
+          "Slow down a little — you don't have to rush everything."
+        ]
+      }
+    ]
   }
 ]

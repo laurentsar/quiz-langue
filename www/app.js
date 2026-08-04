@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.03';
+const APP_VERSION = '3.04';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2893,6 +2893,14 @@ const _GFIX = {
     { q: "When ___ this happen?", opts: ['did','does','is','was'], ans: 'did', hint: "When DID this happen? → passé simple → did + base verbale." },
     { q: "When ___ you coming back?", opts: ['are','do','did','were'], ans: 'are', hint: "When ARE you coming? → action future arrangée → présent continu." },
   ],
+  'daily-commands-phrases': [
+    { q: "Réveille-toi tôt chaque jour.", opts: ['Wake up early every day.','Get up and get ready.','Sit down and relax.','Slow down a little.'], ans: 'Wake up early every day.', hint: "Wake up early every day = réveille-toi tôt chaque jour (habitude matinale).", _isSentence: true },
+    { q: "Éteins la télévision.", opts: ['Turn off the TV.','Turn on the light.','Take off your jacket.','Slow down a little.'], ans: 'Turn off the TV.', hint: "Turn off = éteindre (opposé de turn on = allumer).", _isSentence: true },
+    { q: "Enlève ta veste.", opts: ['Take off your jacket.','Put on your shoes.','Slow down a little.','Sit down and relax.'], ans: 'Take off your jacket.', hint: "Take off = enlever (un vêtement). Opposé : put on = mettre.", _isSentence: true },
+    { q: "Ralentis un peu.", opts: ['Slow down a little.','Sit down and relax.','Get up and get ready.','Turn off the TV.'], ans: 'Slow down a little.', hint: "Slow down = ralentir (au sens propre ou figuré). A little = un peu.", _isSentence: true },
+    { q: "Lève-toi et prépare-toi.", opts: ['Get up and get ready.','Wake up early every day.','Sit down and relax.','Put on your shoes.'], ans: 'Get up and get ready.', hint: "Get up = se lever (sortir du lit). Get ready = se préparer.", _isSentence: true },
+    { q: "Assieds-toi et détends-toi.", opts: ['Sit down and relax.','Slow down a little.','Turn off the TV.','Get up and get ready.'], ans: 'Sit down and relax.', hint: "Sit down and relax = assieds-toi et détends-toi (deux impératifs en un).", _isSentence: true },
+  ],
   'motivational-phrases': [
     { q: "Reste humble.", opts: ['Stay humble.','Be patient.','Stay strong.','Be kind.'], ans: 'Stay humble.', hint: "Stay humble = reste humble (stay + adjectif = rester dans un état).", _isSentence: true },
     { q: "Donne-toi à fond.", opts: ['Push yourself.','Work hard.','Act now.','Stay focused.'], ans: 'Push yourself.', hint: "Push yourself = donne-toi à fond / dépasse-toi.", _isSentence: true },
@@ -4229,6 +4237,24 @@ const _GFIX_SERIES = {
       { q: "___ we're talking about food — have you tried that new restaurant?", opts: ['Speaking of','Firstly','Indeed','All in all'], ans: 'Speaking of', hint: "Speaking of = En parlant de (transition conversationnelle)." },
       { q: "The data was unclear. ___, the decision was delayed.", opts: ['As such','Lest','Previously','In the same vein'], ans: 'As such', hint: "As such = De ce fait (conclusion tirée de la situation)." },
       { q: "___ the policy is clear — follow the rules or face consequences.", opts: ['Overall','In this manner','Thereafter','Coupled with'], ans: 'Overall', hint: "Overall = Dans l'ensemble (bilan ou vue d'ensemble)." },
+    ],
+  ],
+  'daily-commands-phrases': [
+    [
+      { q: "___ up early every day — it changes everything.", opts: ['Wake','Get','Show','Pick'], ans: 'Wake', hint: "WAKE up = se réveiller. Wake up early = se réveiller tôt (ouvrir les yeux)." },
+      { q: "___ off the TV before going to bed.", opts: ['Turn','Take','Put','Switch'], ans: 'Turn', hint: "TURN off = éteindre. Turn off the TV = éteins la télévision." },
+      { q: "___ on the light — I can't see a thing.", opts: ['Turn','Put','Get','Take'], ans: 'Turn', hint: "TURN on = allumer. Turn on the light = allume la lumière." },
+      { q: "___ off your jacket — it's warm in here.", opts: ['Take','Put','Turn','Get'], ans: 'Take', hint: "TAKE off = enlever (un vêtement). Take off your jacket = enlève ta veste." },
+      { q: "___ down a little — you're going too fast.", opts: ['Slow','Sit','Calm','Cut'], ans: 'Slow', hint: "SLOW down = ralentir (vitesse ou rythme). A little = un peu." },
+      { q: "___ up and get ready — we leave in 10 minutes.", opts: ['Get','Wake','Show','Pick'], ans: 'Get', hint: "GET up = se lever (sortir du lit). ≠ Wake up = se réveiller (ouvrir les yeux)." },
+    ],
+    [
+      { q: "Tu veux dire à quelqu'un d'allumer la lumière :", opts: ['Turn on the light.','Turn off the TV.','Put on your shoes.','Take off your jacket.'], ans: 'Turn on the light.', hint: "Turn on = allumer. Turn on the light = allume la lumière." },
+      { q: "Tu veux dire à quelqu'un d'enlever un vêtement :", opts: ['Take off your jacket.','Put on your shoes.','Turn off the TV.','Slow down a little.'], ans: 'Take off your jacket.', hint: "Take off = enlever (vêtement). Opposé : put on = mettre." },
+      { q: "Tu veux dire à quelqu'un de ralentir son rythme :", opts: ['Slow down a little.','Sit down and relax.','Turn off the TV.','Get up and get ready.'], ans: 'Slow down a little.', hint: "Slow down a little = ralentis un peu (rythme ou vitesse)." },
+      { q: "Tu veux dire à quelqu'un de s'asseoir et se détendre :", opts: ['Sit down and relax.','Slow down a little.','Wake up early every day.','Get up and get ready.'], ans: 'Sit down and relax.', hint: "Sit down and relax = assieds-toi et détends-toi (deux impératifs en un)." },
+      { q: "Tu veux dire à quelqu'un d'éteindre la télé :", opts: ['Turn off the TV.','Turn on the light.','Take off your jacket.','Slow down a little.'], ans: 'Turn off the TV.', hint: "Turn off = éteindre. Turn off the TV = éteins la télévision." },
+      { q: "Tu veux dire à quelqu'un de se lever et se préparer :", opts: ['Get up and get ready.','Wake up early every day.','Sit down and relax.','Put on your shoes.'], ans: 'Get up and get ready.', hint: "Get up and get ready = lève-toi et prépare-toi (deux actions matinales)." },
     ],
   ],
   'motivational-phrases': [
