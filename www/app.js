@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.97';
+const APP_VERSION = '2.98';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2893,6 +2893,22 @@ const _GFIX = {
     { q: "When ___ this happen?", opts: ['did','does','is','was'], ans: 'did', hint: "When DID this happen? → passé simple → did + base verbale." },
     { q: "When ___ you coming back?", opts: ['are','do','did','were'], ans: 'are', hint: "When ARE you coming? → action future arrangée → présent continu." },
   ],
+  'mind-expressions': [
+    { q: "She's ___ about whether to accept the offer.", opts: ['in two minds','out of her mind','of one mind','in her right mind'], ans: 'in two minds', hint: "Be in two minds = être indécis / hésiter entre deux options." },
+    { q: "There are so many options — I just can't ___!", opts: ['make up my mind','cross my mind','bear in mind','change my mind'], ans: 'make up my mind', hint: "Make up your mind = se décider définitivement / trancher." },
+    { q: "He ___ when he saw the weather forecast.", opts: ['changed his mind','made up his mind','crossed his mind','spoke his mind'], ans: 'changed his mind', hint: "Change your mind = revenir sur une décision déjà prise." },
+    { q: "___ that the library closes at 6 pm today.", opts: ['Bear in mind','Make up your mind','Cross your mind','Speak your mind'], ans: 'Bear in mind', hint: "Bear in mind = garder à l'esprit / se souvenir d'un fait important." },
+    { q: "Don't interfere — just ___!", opts: ['mind your own business','speak your mind','never mind','make up your mind'], ans: 'mind your own business', hint: "Mind your own business = mêle-toi de tes affaires (expression directe)." },
+    { q: "Sorry I forgot the tickets. ___ — we can buy more at the door.", opts: ['Never mind','Mind your own business','Cross your mind','Out of your mind'], ans: 'Never mind', hint: "Never mind = peu importe / ne t'en fais pas (pour consoler ou minimiser)." },
+  ],
+  'correlative-conjunctions': [
+    { q: "Diana not only plays the piano ___ also sings.", opts: ['but','nor','and','or'], ans: 'but', hint: "Not only…but also = non seulement…mais aussi (double affirmation)." },
+    { q: "Hugo was ___ willing nor able to chair the meeting.", opts: ['neither','either','not only','both'], ans: 'neither', hint: "Neither…nor = ni…ni (double négation pour deux éléments)." },
+    { q: "No sooner had I arrived ___ they all started to argue.", opts: ['than','when','that','as'], ans: 'than', hint: "No sooner…than — jamais no sooner…when : la paire exige 'than'." },
+    { q: "She was ___ weak that she could hardly move.", opts: ['so','such','too','very'], ans: 'so', hint: "So…that = si/tellement…que (so + adjectif ou adverbe + that)." },
+    { q: "It was ___ a cold day that we decided to stay indoors.", opts: ['such','so','too','very'], ans: 'such', hint: "Such…that = si/tellement…que (such + article + groupe nominal + that)." },
+    { q: "___ Tom walks to work or takes his bicycle.", opts: ['Either','Neither','Both','Whether'], ans: 'Either', hint: "Either…or = soit…soit (choix entre deux possibilités)." },
+  ],
   'across-phrasal-verbs': [
     { q: "She ___ an old letter while cleaning the attic.", opts: ['came across','ran across','went across','cut across'], ans: 'came across', hint: "Come across = trouver par hasard, sans l'avoir cherché." },
     { q: "It was hard to ___ my idea in that meeting.", opts: ['get across','go across','cut across','look across'], ans: 'get across', hint: "Get across = faire passer / communiquer clairement un message." },
@@ -4173,6 +4189,42 @@ const _GFIX_SERIES = {
       { q: "___ we're talking about food — have you tried that new restaurant?", opts: ['Speaking of','Firstly','Indeed','All in all'], ans: 'Speaking of', hint: "Speaking of = En parlant de (transition conversationnelle)." },
       { q: "The data was unclear. ___, the decision was delayed.", opts: ['As such','Lest','Previously','In the same vein'], ans: 'As such', hint: "As such = De ce fait (conclusion tirée de la situation)." },
       { q: "___ the policy is clear — follow the rules or face consequences.", opts: ['Overall','In this manner','Thereafter','Coupled with'], ans: 'Overall', hint: "Overall = Dans l'ensemble (bilan ou vue d'ensemble)." },
+    ],
+  ],
+  'mind-expressions': [
+    [
+      { q: "Did it ___ that she might be upset?", opts: ['cross your mind','make up your mind','change your mind','bear in mind'], ans: 'cross your mind', hint: "Cross your mind = venir à l'esprit soudainement / traverser l'esprit." },
+      { q: "Emma doesn't need advice — she has ___.", opts: ['a mind of her own','a one-track mind','two minds','her mind changed'], ans: 'a mind of her own', hint: "Have a mind of your own = penser par soi-même / prendre ses propres décisions." },
+      { q: "The boy has ___; football is all he ever talks about.", opts: ['a one-track mind','a mind of his own','two minds','a changed mind'], ans: 'a one-track mind', hint: "One-track mind = n'avoir la tête qu'à une seule chose / être obsédé." },
+      { q: "He's going to cycle around the world alone? Has he ___?", opts: ['gone out of his mind','changed his mind','made up his mind','crossed his mind'], ans: 'gone out of his mind', hint: "Gone out of your mind = avoir perdu la tête / être complètement fou." },
+      { q: "Watch your words in front of the children — please ___!", opts: ['mind your language','speak your mind','mind your own business','never mind'], ans: 'mind your language', hint: "Mind your language = surveille ton langage / fais attention à ce que tu dis." },
+      { q: "Andy always ___ — even when it makes people uncomfortable.", opts: ['speaks his mind','minds his business','changes his mind','makes up his mind'], ans: 'speaks his mind', hint: "Speak your mind = dire ce que l'on pense franchement, sans se censurer." },
+    ],
+    [
+      { q: "Julie wasn't ___ when she spent all her savings on shoes.", opts: ['in her right mind','in two minds','out of her mind','of her own mind'], ans: 'in her right mind', hint: "Not in your right mind = ne pas avoir toute sa tête / agir de façon irrationnelle." },
+      { q: "I was going to cancel, but I ___ when I saw the invitation again.", opts: ['changed my mind','crossed my mind','spoke my mind','made up my mind'], ans: 'changed my mind', hint: "Change your mind = revenir sur une décision initialement prise." },
+      { q: "We haven't booked yet, but we have a hotel ___.", opts: ['in mind','on our minds','in two minds','across our minds'], ans: 'in mind', hint: "Have something in mind = avoir quelque chose en tête / envisager quelque chose." },
+      { q: "It suddenly ___ that I had left the keys in the car.", opts: ['crossed my mind','made up my mind','changed my mind','bore in mind'], ans: 'crossed my mind', hint: "Cross your mind = traverser l'esprit soudainement / réaliser quelque chose tout à coup." },
+      { q: "___ that all work must be submitted by midnight.", opts: ['Keep in mind','Speak your mind','Cross your mind','Make up your mind'], ans: 'Keep in mind', hint: "Keep in mind = garder à l'esprit (interchangeable avec bear in mind)." },
+      { q: "Is she really going to quit her job? She must have ___!", opts: ['gone out of her mind','changed her mind','made up her mind','a one-track mind'], ans: 'gone out of her mind', hint: "Gone out of your mind = avoir complètement perdu la tête (étonnement / incrédulité)." },
+    ],
+  ],
+  'correlative-conjunctions': [
+    [
+      { q: "Jack didn't know ___ to call or to send a letter.", opts: ['whether','either','both','neither'], ans: 'whether', hint: "Whether…or = si…ou (alternative dans une subordonnée, souvent avec know/decide)." },
+      { q: "Emma liked ___ the location and the restaurant.", opts: ['both','either','not only','neither'], ans: 'both', hint: "Both…and = à la fois…et (les deux éléments sont vrais ensemble)." },
+      { q: "They'd rather go to the beach ___ play tennis.", opts: ['than','or','and','but'], ans: 'than', hint: "Rather…than = plutôt…que (préférence entre deux options, souvent avec would)." },
+      { q: "We had barely finished the game ___ it started to rain.", opts: ['when','than','that','as'], ans: 'when', hint: "Barely/hardly/scarcely…when — la paire correcte est 'when' (pas 'than')." },
+      { q: "It's ___ a lack of money but a lack of planning.", opts: ['not','neither','either','both'], ans: 'not', hint: "Not…but = non pas…mais (correction / rectification d'une idée reçue)." },
+      { q: "There are as ___ chairs as there are guests.", opts: ['many','much','more','most'], ans: 'many', hint: "As many…as = autant de (+ nom dénombrable) que — comparaison de quantité." },
+    ],
+    [
+      { q: "___ travel and work, he had a tiring schedule.", opts: ['Between','Both','What with','Either'], ans: 'Between', hint: "Between…and = entre…et (deux éléments qui créent ensemble une situation)." },
+      { q: "___ my job and the children, I have no free time.", opts: ['What with','Between','Both','Either'], ans: 'What with', hint: "What with…and = avec tout ce que représente (contexte d'explication ou de plainte)." },
+      { q: "No sooner had she sat down ___ the alarm went off.", opts: ['than','when','that','as'], ans: 'than', hint: "No sooner…than — la paire exige obligatoirement 'than', jamais 'when'." },
+      { q: "She is ___ talented but also incredibly hardworking.", opts: ['not only','neither','either','both'], ans: 'not only', hint: "Not only…but also = non seulement…mais aussi (double affirmation)." },
+      { q: "Hugo was neither willing ___ able to help us.", opts: ['nor','or','and','but'], ans: 'nor', hint: "Neither…nor — 'nor' est la seconde partie obligatoire (jamais 'or' avec neither)." },
+      { q: "___ a difficult exam was it that half the class failed.", opts: ['Such','So','Too','Very'], ans: 'Such', hint: "Such…that = si/tellement…que (such + groupe nominal, ici 'such a difficult exam')." },
     ],
   ],
   'across-phrasal-verbs': [

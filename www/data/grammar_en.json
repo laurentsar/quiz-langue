@@ -5657,5 +5657,127 @@
         ]
       }
     ]
+  },
+  {
+    "id": "mind-expressions",
+    "title": "Expressions avec MIND",
+    "subtitle": "14 expressions idiomatiques essentielles autour du mot MIND",
+    "sections": [
+      {
+        "heading": "Décision et hésitation",
+        "points": [
+          "Be in two minds → Être indécis / Hésiter (be undecided)",
+          "Change your mind → Changer d'avis (change your decision)",
+          "Make up your mind → Se décider / Trancher (decide)",
+          "Have something in mind → Avoir quelque chose en tête (be considering something)"
+        ],
+        "tip": "Be in two minds = hésiter entre deux options. Make up your mind = se décider définitivement. Change your mind = revenir sur une décision déjà prise.",
+        "examples": [
+          "I'm in two minds about what to do.",
+          "I changed my mind when I saw the weather.",
+          "There are so many options. I can't make up my mind!",
+          "We haven't decided yet but we've got something in mind."
+        ]
+      },
+      {
+        "heading": "Pensée et attention",
+        "points": [
+          "Bear / Keep in mind → Garder à l'esprit / Se souvenir de (remember)",
+          "Cross your mind → Traverser l'esprit / Venir à l'idée (occur to you)",
+          "Have a mind of your own → Penser par soi-même / Prendre ses propres décisions",
+          "One-track mind → N'avoir la tête qu'à une seule chose (think about only one subject)"
+        ],
+        "tip": "Bear in mind et keep in mind sont interchangeables. Cross your mind s'utilise souvent à la forme négative ou interrogative : Did it even cross your mind that…?",
+        "examples": [
+          "You must bear in mind that no food will be served on board.",
+          "It crossed my mind that the child might be hungry.",
+          "Emma doesn't need any advice; she's got a mind of her own.",
+          "The boy has a one-track mind; all he thinks about is football!"
+        ]
+      },
+      {
+        "heading": "Comportement et franchise",
+        "points": [
+          "Mind your own business (rude) → Mêle-toi de tes affaires (stop interfering)",
+          "Mind your language → Surveille ton langage (be careful what you say)",
+          "Never mind → Peu importe / Ne t'en fais pas (don't worry)",
+          "Not in your right mind → Ne pas avoir toute sa tête (not behaving sensibly)",
+          "Gone out of your mind → Avoir perdu la tête / Être fou (go crazy)",
+          "Speak your mind → Dire ce qu'on pense franchement (say frankly what you think)"
+        ],
+        "tip": "Never mind console ou minimise. Speak your mind valorise la franchise, mind your own business est négatif (ingérence). Gone out of your mind exprime la stupeur face à un comportement insensé.",
+        "examples": [
+          "Don't tell me what to do. Mind your own business!",
+          "My grandfather won't tolerate any rudeness, so mind your language!",
+          "Sorry I can't be of help. Never mind. It's OK.",
+          "Julie wasn't in her right mind when she bought those ridiculous shoes!",
+          "He's going to walk across the desert? Has he gone out of his mind?",
+          "Andy always speaks his mind but he's not always very diplomatic!"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "correlative-conjunctions",
+    "title": "Conjonctions corrélatives",
+    "subtitle": "16 paires de conjonctions qui fonctionnent toujours ensemble",
+    "sections": [
+      {
+        "heading": "Choix, opposition et addition",
+        "points": [
+          "Either … or → Soit … soit (choix entre deux alternatives)",
+          "Neither … nor → Ni … ni (double négation)",
+          "Not … but → Non pas … mais (rectification d'une idée)",
+          "Not only … but also → Non seulement … mais aussi",
+          "Both … and → À la fois … et (les deux sont vrais)",
+          "Whether … or → Si … ou (alternative dans une subordonnée)"
+        ],
+        "tip": "Neither…nor prend un verbe au singulier si les deux sujets sont singuliers. Not only…but also renforce une affirmation en ajoutant un deuxième élément surprenant.",
+        "examples": [
+          "Tom usually either walks to work or takes his bicycle.",
+          "Hugo was neither willing nor able to chair the meeting.",
+          "It's not a lack of money but a lack of planning.",
+          "Diana not only plays the piano but also sings.",
+          "Emma liked both the location and the restaurant.",
+          "Jack didn't know whether to call or to send a letter."
+        ]
+      },
+      {
+        "heading": "Proportion, intensité et préférence",
+        "points": [
+          "As many … as → Autant de … que (comparaison de quantité, dénombrable)",
+          "So … that → Si/tellement … que (so + adjectif/adverbe)",
+          "Such … that → Si/tellement … que (such + groupe nominal)",
+          "Rather … than → Plutôt … que (préférence entre deux options)",
+          "Between … and → Entre … et (deux éléments qui créent une situation)"
+        ],
+        "tip": "So…that s'utilise avec un adjectif seul (so tired that…), tandis que such…that s'utilise avec un groupe nominal (such a long day that…). Rather…than exprime une préférence, souvent avec would.",
+        "examples": [
+          "There are as many chairs as there are guests.",
+          "She was so weak that she could hardly lift her head.",
+          "It was such a cold day that we decided to stay indoors.",
+          "They'd rather go to the beach than play tennis.",
+          "Between travel and work he had a tiring schedule."
+        ]
+      },
+      {
+        "heading": "Succession immédiate",
+        "points": [
+          "Barely … when → À peine … que (avec had + pp)",
+          "Hardly … when → À peine … que (avec had + pp)",
+          "Scarcely … when → À peine … que (avec had + pp)",
+          "No sooner … than → À peine … que (avec had + pp — prend THAN et non when)",
+          "What with … and → Avec tout ce que représente … et (contexte d'explication)"
+        ],
+        "tip": "Barely, hardly et scarcely se suivent de 'when'. No sooner exige 'than' — jamais 'when'. Toutes ces structures utilisent had + participe passé et provoquent l'inversion sujet-auxiliaire : No sooner HAD I arrived THAN…",
+        "examples": [
+          "We had barely finished the game when it started to rain.",
+          "He had hardly begun to speak when he was interrupted.",
+          "We had scarcely started our meal when the phone rang.",
+          "No sooner had I arrived than they all started to argue.",
+          "What with my job and the children, I have no free time."
+        ]
+      }
+    ]
   }
 ]
