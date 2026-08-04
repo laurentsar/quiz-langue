@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.01';
+const APP_VERSION = '3.02';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2893,6 +2893,14 @@ const _GFIX = {
     { q: "When ___ this happen?", opts: ['did','does','is','was'], ans: 'did', hint: "When DID this happen? → passé simple → did + base verbale." },
     { q: "When ___ you coming back?", opts: ['are','do','did','were'], ans: 'are', hint: "When ARE you coming? → action future arrangée → présent continu." },
   ],
+  'good-mood-expressions': [
+    { q: "Je suis aux anges.", opts: ["I'm on cloud nine.","I'm bursting with joy.","I feel fantastic.","I'm in a great mood."], ans: "I'm on cloud nine.", hint: "I'm on cloud nine = je suis aux anges (expression idiomatique, toujours 'nine').", _isSentence: true },
+    { q: "Je déborde de joie.", opts: ["I'm bursting with joy.","I'm full of energy.","I feel alive.","I'm so happy."], ans: "I'm bursting with joy.", hint: "I'm bursting with joy = je déborde de joie (très expressif, peu formel).", _isSentence: true },
+    { q: "Rien ne peut gâcher ma journée.", opts: ["Nothing can ruin my day.","I'm having a great day.","I'm enjoying this moment.","I'm in a great mood today."], ans: "Nothing can ruin my day.", hint: "Nothing can ruin my day = rien ne peut gâcher ma journée (sérénité totale).", _isSentence: true },
+    { q: "Je suis plein(e) d'énergie.", opts: ["I'm full of energy.","I feel alive.","I'm bursting with joy.","I feel fantastic."], ans: "I'm full of energy.", hint: "I'm full of energy = je suis plein(e) d'énergie (vitalité et dynamisme).", _isSentence: true },
+    { q: "Je passe une excellente journée.", opts: ["I'm having a great day.","I'm in a great mood today.","I'm enjoying this moment.","I'm doing great!"], ans: "I'm having a great day.", hint: "I'm having a great day = je passe une excellente journée (présent continu).", _isSentence: true },
+    { q: "Je suis ravi(e).", opts: ["I'm delighted.","I'm so happy.","I feel fantastic.","I'm in a good mood."], ans: "I'm delighted.", hint: "I'm delighted = je suis ravi(e) (plus formel, souvent pour une bonne nouvelle).", _isSentence: true },
+  ],
   'basic-phrasal-verbs': [
     { q: "Don't ___ — you're almost there!", opts: ['give up','show up','wake up','sit down'], ans: 'give up', hint: "Give up = abandonner / renoncer. Don't give up! = N'abandonne pas !" },
     { q: "I'm ___ my keys — have you seen them?", opts: ['looking for','picking up','turning on','coming back'], ans: 'looking for', hint: "Look for = chercher quelque chose. I'm looking for = je cherche (présent continu)." },
@@ -4213,6 +4221,24 @@ const _GFIX_SERIES = {
       { q: "___ we're talking about food — have you tried that new restaurant?", opts: ['Speaking of','Firstly','Indeed','All in all'], ans: 'Speaking of', hint: "Speaking of = En parlant de (transition conversationnelle)." },
       { q: "The data was unclear. ___, the decision was delayed.", opts: ['As such','Lest','Previously','In the same vein'], ans: 'As such', hint: "As such = De ce fait (conclusion tirée de la situation)." },
       { q: "___ the policy is clear — follow the rules or face consequences.", opts: ['Overall','In this manner','Thereafter','Coupled with'], ans: 'Overall', hint: "Overall = Dans l'ensemble (bilan ou vue d'ensemble)." },
+    ],
+  ],
+  'good-mood-expressions': [
+    [
+      { q: "I'm ___ with joy — this is the best news ever!", opts: ['bursting','full','shining','overflowing'], ans: 'bursting', hint: "I'm bursting WITH joy = je déborde de joie (bursting = débordant / explosant)." },
+      { q: "I'm on cloud ___.", opts: ['nine','seven','ten','high'], ans: 'nine', hint: "I'm on cloud NINE = je suis aux anges — expression idiomatique, toujours 'nine'." },
+      { q: "Nothing can ___ my day.", opts: ['ruin','break','stop','spoil'], ans: 'ruin', hint: "Nothing can RUIN my day = rien ne peut gâcher ma journée." },
+      { q: "I'm ___ this moment.", opts: ['enjoying','loving','living','feeling'], ans: 'enjoying', hint: "I'm ENJOYING this moment = je profite pleinement de ce moment (présent continu)." },
+      { q: "I'm ___ of energy this morning.", opts: ['full','burst','packed','loaded'], ans: 'full', hint: "I'm FULL of energy = je suis plein(e) d'énergie (full of = plein de)." },
+      { q: "I'm ___ a great day.", opts: ['having','making','doing','getting'], ans: 'having', hint: "I'm HAVING a great day = je passe une excellente journée (have a day = passer une journée)." },
+    ],
+    [
+      { q: "You want to express euphoric, top-of-the-world happiness:", opts: ["I'm on cloud nine.","I'm in a good mood.","I feel great.","I'm having a great day."], ans: "I'm on cloud nine.", hint: "I'm on cloud nine = état de bonheur extrême / être aux anges." },
+      { q: "You feel vibrant and alive with energy:", opts: ["I'm full of energy.","I'm doing great!","I'm in a good mood.","I feel great."], ans: "I'm full of energy.", hint: "I'm full of energy = je suis plein(e) d'énergie (vitalité et dynamisme)." },
+      { q: "You want to say you're thrilled by good news (formal):", opts: ["I'm delighted.","I'm so happy.","I feel fantastic.","I'm in a great mood."], ans: "I'm delighted.", hint: "I'm delighted = je suis ravi(e) — plus formel, souvent en réponse à une bonne nouvelle." },
+      { q: "You're overflowing with happiness and want to show it:", opts: ["I'm bursting with joy.","I feel alive.","I'm doing great!","I'm on cloud nine."], ans: "I'm bursting with joy.", hint: "I'm bursting with joy = je déborde de joie (très expressif et enthousiaste)." },
+      { q: "You want to say nothing can spoil your happiness today:", opts: ["Nothing can ruin my day.","I'm enjoying this moment.","I'm having a great day.","I'm in a great mood today."], ans: "Nothing can ruin my day.", hint: "Nothing can ruin my day = rien ne peut gâcher ma journée (sérénité absolue)." },
+      { q: "You're fully present and savoring a special moment:", opts: ["I'm enjoying this moment.","I feel alive.","I'm on cloud nine.","I'm doing great!"], ans: "I'm enjoying this moment.", hint: "I'm enjoying this moment = je profite pleinement de ce moment (être pleinement présent)." },
     ],
   ],
   'basic-phrasal-verbs': [
