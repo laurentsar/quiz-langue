@@ -430,6 +430,31 @@ html, body {
 .morning-chip { background: var(--card-alt); padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 600; color: var(--text); }
 .morning-done-msg { text-align: center; font-size: 14px; font-weight: 600; color: var(--success); margin: 0; }
 
+/* ----- Onglets Accueil / Stats ----- */
+.home-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--card);
+  border-radius: 14px;
+  padding: 4px;
+}
+.home-tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.home-tab.active {
+  background: var(--sky);
+  color: var(--night);
+}
+
 /* ----- Flashcards (mode Apprendre) — plein écran ----- */
 #view-learn {
   min-height: calc(100svh - max(24px, env(safe-area-inset-top)) - max(24px, env(safe-area-inset-bottom)));

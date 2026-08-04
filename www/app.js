@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.95';
+const APP_VERSION = '2.99';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2893,6 +2893,38 @@ const _GFIX = {
     { q: "When ___ this happen?", opts: ['did','does','is','was'], ans: 'did', hint: "When DID this happen? → passé simple → did + base verbale." },
     { q: "When ___ you coming back?", opts: ['are','do','did','were'], ans: 'are', hint: "When ARE you coming? → action future arrangée → présent continu." },
   ],
+  'changing-subject-expressions': [
+    { q: "___, did you hear about the new café downtown?", opts: ['By the way','Anyway','Enough about that',"Let's not go there"], ans: 'By the way', hint: "By the way = au fait (pour introduire une digression ou un nouveau sujet)." },
+    { q: "___ — I have a meeting in ten minutes.", opts: ['Anyway','By the way','On a different note',"Let's not go there"], ans: 'Anyway', hint: "Anyway = bref (pour conclure une digression et reprendre le fil)." },
+    { q: "___ — your birthday is next week, right?", opts: ['Before I forget','Anyway',"Let's not go there",'Enough about that'], ans: 'Before I forget', hint: "Before I forget = avant que j'oublie (info urgente à glisser dans la conversation)." },
+    { q: "___ the trip we took last summer!", opts: ['That reminds me of','By the way','On a different note','Enough about that'], ans: 'That reminds me of', hint: "That reminds me of = ça me fait penser à (transition par association d'idées)." },
+    { q: "This topic is getting awkward. ___, please.", opts: ["Let's not go there","Enough about that",'Anyway','By the way'], ans: "Let's not go there", hint: "Let's not go there = évitons ce sujet (pour signaler qu'un sujet est délicat)." },
+    { q: "___ — I've already talked too much about myself tonight.", opts: ['Enough about that',"Let's not go there",'Anyway',"Let's change the subject"], ans: 'Enough about that', hint: "Enough about that = on a assez parlé de ça (pour clore un sujet avec légèreté)." },
+  ],
+  'mind-expressions': [
+    { q: "She's ___ about whether to accept the offer.", opts: ['in two minds','out of her mind','of one mind','in her right mind'], ans: 'in two minds', hint: "Be in two minds = être indécis / hésiter entre deux options." },
+    { q: "There are so many options — I just can't ___!", opts: ['make up my mind','cross my mind','bear in mind','change my mind'], ans: 'make up my mind', hint: "Make up your mind = se décider définitivement / trancher." },
+    { q: "He ___ when he saw the weather forecast.", opts: ['changed his mind','made up his mind','crossed his mind','spoke his mind'], ans: 'changed his mind', hint: "Change your mind = revenir sur une décision déjà prise." },
+    { q: "___ that the library closes at 6 pm today.", opts: ['Bear in mind','Make up your mind','Cross your mind','Speak your mind'], ans: 'Bear in mind', hint: "Bear in mind = garder à l'esprit / se souvenir d'un fait important." },
+    { q: "Don't interfere — just ___!", opts: ['mind your own business','speak your mind','never mind','make up your mind'], ans: 'mind your own business', hint: "Mind your own business = mêle-toi de tes affaires (expression directe)." },
+    { q: "Sorry I forgot the tickets. ___ — we can buy more at the door.", opts: ['Never mind','Mind your own business','Cross your mind','Out of your mind'], ans: 'Never mind', hint: "Never mind = peu importe / ne t'en fais pas (pour consoler ou minimiser)." },
+  ],
+  'correlative-conjunctions': [
+    { q: "Diana not only plays the piano ___ also sings.", opts: ['but','nor','and','or'], ans: 'but', hint: "Not only…but also = non seulement…mais aussi (double affirmation)." },
+    { q: "Hugo was ___ willing nor able to chair the meeting.", opts: ['neither','either','not only','both'], ans: 'neither', hint: "Neither…nor = ni…ni (double négation pour deux éléments)." },
+    { q: "No sooner had I arrived ___ they all started to argue.", opts: ['than','when','that','as'], ans: 'than', hint: "No sooner…than — jamais no sooner…when : la paire exige 'than'." },
+    { q: "She was ___ weak that she could hardly move.", opts: ['so','such','too','very'], ans: 'so', hint: "So…that = si/tellement…que (so + adjectif ou adverbe + that)." },
+    { q: "It was ___ a cold day that we decided to stay indoors.", opts: ['such','so','too','very'], ans: 'such', hint: "Such…that = si/tellement…que (such + article + groupe nominal + that)." },
+    { q: "___ Tom walks to work or takes his bicycle.", opts: ['Either','Neither','Both','Whether'], ans: 'Either', hint: "Either…or = soit…soit (choix entre deux possibilités)." },
+  ],
+  'across-phrasal-verbs': [
+    { q: "She ___ an old letter while cleaning the attic.", opts: ['came across','ran across','went across','cut across'], ans: 'came across', hint: "Come across = trouver par hasard, sans l'avoir cherché." },
+    { q: "It was hard to ___ my idea in that meeting.", opts: ['get across','go across','cut across','look across'], ans: 'get across', hint: "Get across = faire passer / communiquer clairement un message." },
+    { q: "He ___ his old teacher at the market.", opts: ['ran across','came across','stumbled across','went across'], ans: 'ran across', hint: "Run across = tomber sur quelqu'un par hasard (personne connue)." },
+    { q: "Let's ___ the park — it'll be faster.", opts: ['cut across','spread across','go across','look across'], ans: 'cut across', hint: "Cut across = couper par un endroit pour prendre un raccourci." },
+    { q: "She ___ to shake his hand warmly.", opts: ['reached across','looked across','stumbled across','spread across'], ans: 'reached across', hint: "Reach across = tendre le bras par-dessus / par-delà quelque chose." },
+    { q: "The news ___ the entire city overnight.", opts: ['spread across','reached across','cut across','came across'], ans: 'spread across', hint: "Spread across = s'étendre / se répandre sur une grande zone." },
+  ],
   'out-phrasal-verbs': [
     { q: "I finally ___ the answer.", opts: ['figured out','gave out','ran out','came out'], ans: 'figured out', hint: "Figure out = comprendre / résoudre par la réflexion." },
     { q: "She ___ he had been lying all along.", opts: ['found out','hung out','worked out','checked out'], ans: 'found out', hint: "Find out = découvrir une information cachée ou inconnue." },
@@ -4167,6 +4199,78 @@ const _GFIX_SERIES = {
       { q: "___ the policy is clear — follow the rules or face consequences.", opts: ['Overall','In this manner','Thereafter','Coupled with'], ans: 'Overall', hint: "Overall = Dans l'ensemble (bilan ou vue d'ensemble)." },
     ],
   ],
+  'changing-subject-expressions': [
+    [
+      { q: "___ — have you tried the new restaurant on Main Street?", opts: ['On a different note','Enough about that','Anyway',"Let's not go there"], ans: 'On a different note', hint: "On a different note = sur un autre sujet (transition polie vers un nouveau thème)." },
+      { q: "___ — could we discuss something more pleasant?", opts: ["Let's talk about something else","Let's change the subject",'Anyway','By the way'], ans: "Let's talk about something else", hint: "Let's talk about something else = parlons d'autre chose (changement clair de sujet)." },
+      { q: "We've talked about work all evening. ___ for a change!", opts: ["Let's change the subject","Let's not go there",'Anyway','Enough about that'], ans: "Let's change the subject", hint: "Let's change the subject = changeons de sujet (demande directe et explicite)." },
+      { q: "___ — you mentioned something about a trip earlier.", opts: ['While I remember','By the way','Anyway','Before I forget'], ans: 'While I remember', hint: "While I remember = pendant que j'y pense (pour ne pas oublier de revenir sur un point)." },
+      { q: "___ — I need to tell you something important before we go.", opts: ['Before I forget','Anyway',"Let's not go there",'Enough about that'], ans: 'Before I forget', hint: "Before I forget = avant que j'oublie (digression urgente avant la fin de la conversation)." },
+      { q: "The weather there was amazing. ___ Paris last spring.", opts: ['That reminds me of','By the way','Anyway','On a different note'], ans: 'That reminds me of', hint: "That reminds me of = ça me fait penser à (lien par association d'idées)." },
+    ],
+    [
+      { q: "___ — I have to leave in five minutes.", opts: ['Anyway','By the way','On a different note',"Let's not go there"], ans: 'Anyway', hint: "Anyway = bref (pour reprendre ou conclure après une digression)." },
+      { q: "Politics is a touchy subject. ___.", opts: ["Let's not go there","Enough about that","Let's change the subject",'Anyway'], ans: "Let's not go there", hint: "Let's not go there = évitons ce sujet (pour un sujet délicat ou potentiellement conflictuel)." },
+      { q: "___ — are you free this weekend?", opts: ['By the way','Anyway','On a different note','Enough about that'], ans: 'By the way', hint: "By the way = au fait (pour glisser une question sans lien avec le sujet précédent)." },
+      { q: "___ the concert — I had tickets for that same venue last year!", opts: ['That reminds me of','While I remember','Before I forget','On a different note'], ans: 'That reminds me of', hint: "That reminds me of = ça me fait penser à (rebond naturel par association)." },
+      { q: "___ — I think we've discussed this enough for today.", opts: ['Enough about that',"Let's not go there",'Anyway',"Let's change the subject"], ans: 'Enough about that', hint: "Enough about that = on a assez parlé de ça (clôture polie et définitive du sujet)." },
+      { q: "___ — could you send me that document before Friday?", opts: ['While I remember','By the way','Anyway','Before I forget'], ans: 'While I remember', hint: "While I remember = pendant que j'y pense (pour glisser une demande pratique)." },
+    ],
+  ],
+  'mind-expressions': [
+    [
+      { q: "Did it ___ that she might be upset?", opts: ['cross your mind','make up your mind','change your mind','bear in mind'], ans: 'cross your mind', hint: "Cross your mind = venir à l'esprit soudainement / traverser l'esprit." },
+      { q: "Emma doesn't need advice — she has ___.", opts: ['a mind of her own','a one-track mind','two minds','her mind changed'], ans: 'a mind of her own', hint: "Have a mind of your own = penser par soi-même / prendre ses propres décisions." },
+      { q: "The boy has ___; football is all he ever talks about.", opts: ['a one-track mind','a mind of his own','two minds','a changed mind'], ans: 'a one-track mind', hint: "One-track mind = n'avoir la tête qu'à une seule chose / être obsédé." },
+      { q: "He's going to cycle around the world alone? Has he ___?", opts: ['gone out of his mind','changed his mind','made up his mind','crossed his mind'], ans: 'gone out of his mind', hint: "Gone out of your mind = avoir perdu la tête / être complètement fou." },
+      { q: "Watch your words in front of the children — please ___!", opts: ['mind your language','speak your mind','mind your own business','never mind'], ans: 'mind your language', hint: "Mind your language = surveille ton langage / fais attention à ce que tu dis." },
+      { q: "Andy always ___ — even when it makes people uncomfortable.", opts: ['speaks his mind','minds his business','changes his mind','makes up his mind'], ans: 'speaks his mind', hint: "Speak your mind = dire ce que l'on pense franchement, sans se censurer." },
+    ],
+    [
+      { q: "Julie wasn't ___ when she spent all her savings on shoes.", opts: ['in her right mind','in two minds','out of her mind','of her own mind'], ans: 'in her right mind', hint: "Not in your right mind = ne pas avoir toute sa tête / agir de façon irrationnelle." },
+      { q: "I was going to cancel, but I ___ when I saw the invitation again.", opts: ['changed my mind','crossed my mind','spoke my mind','made up my mind'], ans: 'changed my mind', hint: "Change your mind = revenir sur une décision initialement prise." },
+      { q: "We haven't booked yet, but we have a hotel ___.", opts: ['in mind','on our minds','in two minds','across our minds'], ans: 'in mind', hint: "Have something in mind = avoir quelque chose en tête / envisager quelque chose." },
+      { q: "It suddenly ___ that I had left the keys in the car.", opts: ['crossed my mind','made up my mind','changed my mind','bore in mind'], ans: 'crossed my mind', hint: "Cross your mind = traverser l'esprit soudainement / réaliser quelque chose tout à coup." },
+      { q: "___ that all work must be submitted by midnight.", opts: ['Keep in mind','Speak your mind','Cross your mind','Make up your mind'], ans: 'Keep in mind', hint: "Keep in mind = garder à l'esprit (interchangeable avec bear in mind)." },
+      { q: "Is she really going to quit her job? She must have ___!", opts: ['gone out of her mind','changed her mind','made up her mind','a one-track mind'], ans: 'gone out of her mind', hint: "Gone out of your mind = avoir complètement perdu la tête (étonnement / incrédulité)." },
+    ],
+  ],
+  'correlative-conjunctions': [
+    [
+      { q: "Jack didn't know ___ to call or to send a letter.", opts: ['whether','either','both','neither'], ans: 'whether', hint: "Whether…or = si…ou (alternative dans une subordonnée, souvent avec know/decide)." },
+      { q: "Emma liked ___ the location and the restaurant.", opts: ['both','either','not only','neither'], ans: 'both', hint: "Both…and = à la fois…et (les deux éléments sont vrais ensemble)." },
+      { q: "They'd rather go to the beach ___ play tennis.", opts: ['than','or','and','but'], ans: 'than', hint: "Rather…than = plutôt…que (préférence entre deux options, souvent avec would)." },
+      { q: "We had barely finished the game ___ it started to rain.", opts: ['when','than','that','as'], ans: 'when', hint: "Barely/hardly/scarcely…when — la paire correcte est 'when' (pas 'than')." },
+      { q: "It's ___ a lack of money but a lack of planning.", opts: ['not','neither','either','both'], ans: 'not', hint: "Not…but = non pas…mais (correction / rectification d'une idée reçue)." },
+      { q: "There are as ___ chairs as there are guests.", opts: ['many','much','more','most'], ans: 'many', hint: "As many…as = autant de (+ nom dénombrable) que — comparaison de quantité." },
+    ],
+    [
+      { q: "___ travel and work, he had a tiring schedule.", opts: ['Between','Both','What with','Either'], ans: 'Between', hint: "Between…and = entre…et (deux éléments qui créent ensemble une situation)." },
+      { q: "___ my job and the children, I have no free time.", opts: ['What with','Between','Both','Either'], ans: 'What with', hint: "What with…and = avec tout ce que représente (contexte d'explication ou de plainte)." },
+      { q: "No sooner had she sat down ___ the alarm went off.", opts: ['than','when','that','as'], ans: 'than', hint: "No sooner…than — la paire exige obligatoirement 'than', jamais 'when'." },
+      { q: "She is ___ talented but also incredibly hardworking.", opts: ['not only','neither','either','both'], ans: 'not only', hint: "Not only…but also = non seulement…mais aussi (double affirmation)." },
+      { q: "Hugo was neither willing ___ able to help us.", opts: ['nor','or','and','but'], ans: 'nor', hint: "Neither…nor — 'nor' est la seconde partie obligatoire (jamais 'or' avec neither)." },
+      { q: "___ a difficult exam was it that half the class failed.", opts: ['Such','So','Too','Very'], ans: 'Such', hint: "Such…that = si/tellement…que (such + groupe nominal, ici 'such a difficult exam')." },
+    ],
+  ],
+  'across-phrasal-verbs': [
+    [
+      { q: "She ___ an amazing recipe in her grandmother's notebook.", opts: ['stumbled across','came across','ran across','went across'], ans: 'stumbled across', hint: "Stumble across = découvrir par accident, de manière totalement inattendue." },
+      { q: "Can you ___ to get the remote control?", opts: ['reach across','look across','spread across','cut across'], ans: 'reach across', hint: "Reach across = tendre le bras par-dessus quelque chose pour attraper." },
+      { q: "They need to ___ the river to reach the village.", opts: ['go across','cut across','come across','spread across'], ans: 'go across', hint: "Go across = traverser / se déplacer d'un côté à l'autre." },
+      { q: "He managed to ___ his message despite the language barrier.", opts: ['get across','go across','come across','look across'], ans: 'get across', hint: "Get across = réussir à communiquer / faire passer un message clairement." },
+      { q: "The fire ___ the hillside very quickly.", opts: ['spread across','reached across','ran across','cut across'], ans: 'spread across', hint: "Spread across = s'étendre / se propager sur une large surface." },
+      { q: "She ___ the lake at the beautiful sunset.", opts: ['looked across','stumbled across','went across','reached across'], ans: 'looked across', hint: "Look across = porter son regard vers l'autre côté, vers ce qui est en face." },
+    ],
+    [
+      { q: "I ___ my old diary while packing my bags.", opts: ['came across','ran across','went across','looked across'], ans: 'came across', hint: "Come across = trouver par hasard lors d'une autre activité." },
+      { q: "He ___ an old friend at the railway station.", opts: ['ran across','came across','stumbled across','looked across'], ans: 'ran across', hint: "Run across = tomber sur quelqu'un que l'on connaît, par hasard." },
+      { q: "We ___ the fields to avoid the traffic jam.", opts: ['cut across','spread across','go across','came across'], ans: 'cut across', hint: "Cut across = traverser en coupant pour prendre un chemin plus court." },
+      { q: "The paint ___ the whole wall in seconds.", opts: ['spread across','reached across','looked across','cut across'], ans: 'spread across', hint: "Spread across = s'étaler / se répandre sur toute une surface." },
+      { q: "She couldn't ___ the importance of the deadline.", opts: ['get across','go across','spread across','come across'], ans: 'get across', hint: "Get across = faire comprendre / communiquer clairement une idée urgente." },
+      { q: "He ___ the old manuscript in the library archives.", opts: ['stumbled across','came across','ran across','went across'], ans: 'stumbled across', hint: "Stumble across = tomber par hasard sur une découverte inattendue." },
+    ],
+  ],
 };
 
 function getTopicSeries(topicId) {
@@ -4870,8 +4974,17 @@ function renderStatsView() {
 document.querySelectorAll('.slang-chip').forEach(c => c.addEventListener('click', async () => {
   await selectLang(c.dataset.lang); renderStatsView();
 }));
-$('btn-stats').addEventListener('click', () => { showView('stats'); renderStatsView(); });
-$('btn-stats-home').addEventListener('click', () => { showView('home'); renderStats(); });
+$('tab-home-stats').addEventListener('click', () => { showView('stats'); renderStatsView(); });
+$('tab-home-accueil').addEventListener('click', () => { /* already on home */ });
+$('tab-stats-accueil').addEventListener('click', () => { showView('home'); renderStats(); });
+$('tab-stats-stats').addEventListener('click', () => { /* already on stats */ });
+$('btn-toggle-settings').addEventListener('click', () => {
+  const panel = $('settings-panel');
+  const arrow = $('settings-toggle-arrow');
+  const open = !panel.classList.contains('hidden');
+  panel.classList.toggle('hidden', open);
+  arrow.textContent = open ? '▾' : '▴';
+});
 window.addEventListener('resize', () => { if (!views.stats.classList.contains('hidden')) renderStatsView(); });
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});

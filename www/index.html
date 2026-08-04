@@ -40,6 +40,12 @@
         <button id="btn-settings" class="gear" title="Réglages">⚙️</button>
       </div>
 
+      <!-- Onglets Accueil / Stats -->
+      <div class="home-tabs">
+        <button class="home-tab active" id="tab-home-accueil">🏠 Accueil</button>
+        <button class="home-tab" id="tab-home-stats">📊 Stats</button>
+      </div>
+
       <!-- Widget motivation -->
       <div id="motivation-bar" class="card motiv-bar">
         <div class="motiv-streak">
@@ -66,7 +72,6 @@
       <div class="top-actions">
         <button id="btn-learn" class="secondary">🎓 Apprendre (cartes)</button>
         <button id="btn-review" class="secondary">⟳ Mes erreurs (<span id="review-count">0</span>)</button>
-        <button id="btn-stats" class="secondary">📊 Stats</button>
         <button id="btn-phrases" class="secondary">🧩 Phrases à compléter</button>
         <button id="btn-home-grammar-browse" class="secondary top-wide">📖 Parcourir la grammaire</button>
       </div>
@@ -100,7 +105,12 @@
         </div>
       </div>
 
-      <div class="card hero">
+      <!-- Accordéon Langue / Niveau / Réglages quiz -->
+      <button id="btn-toggle-settings" class="modules-toggle">
+        <span id="settings-toggle-label">⚙️ Langue · Niveau · Réglages</span>
+        <span id="settings-toggle-arrow" class="modules-arrow">▾</span>
+      </button>
+      <div id="settings-panel" class="card hero hidden">
         <span class="hero-label">Langue</span>
         <div class="chip-row">
           <button class="chip lang-chip" data-lang="en">🇬🇧 Anglais</button>
@@ -221,10 +231,12 @@
 
     <!-- STATS -->
     <section id="view-stats" class="view hidden">
-      <div class="quiz-header">
-        <span class="quiz-progress">📊 Statistiques</span>
-        <span id="stats-lang" class="quiz-level"></span>
+      <!-- Onglets Accueil / Stats -->
+      <div class="home-tabs">
+        <button class="home-tab" id="tab-stats-accueil">🏠 Accueil</button>
+        <button class="home-tab active" id="tab-stats-stats">📊 Stats</button>
       </div>
+      <span id="stats-lang" class="quiz-level" style="text-align:right"></span>
 
       <div class="chip-row">
         <button class="chip slang-chip" data-lang="en">🇬🇧 Anglais</button>
@@ -251,7 +263,6 @@
         <span class="chart-legend"><i class="dot sky"></i> Vus &nbsp; <i class="dot green"></i> Maîtrisés</span>
       </div>
 
-      <button id="btn-stats-home" class="secondary">Accueil</button>
     </section>
 
     <!-- VERBES IRRÉGULIERS (menu dédié) -->
