@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.02';
+const APP_VERSION = '3.03';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2893,6 +2893,14 @@ const _GFIX = {
     { q: "When ___ this happen?", opts: ['did','does','is','was'], ans: 'did', hint: "When DID this happen? → passé simple → did + base verbale." },
     { q: "When ___ you coming back?", opts: ['are','do','did','were'], ans: 'are', hint: "When ARE you coming? → action future arrangée → présent continu." },
   ],
+  'motivational-phrases': [
+    { q: "Reste humble.", opts: ['Stay humble.','Be patient.','Stay strong.','Be kind.'], ans: 'Stay humble.', hint: "Stay humble = reste humble (stay + adjectif = rester dans un état).", _isSentence: true },
+    { q: "Donne-toi à fond.", opts: ['Push yourself.','Work hard.','Act now.','Stay focused.'], ans: 'Push yourself.', hint: "Push yourself = donne-toi à fond / dépasse-toi.", _isSentence: true },
+    { q: "Fais que ça arrive.", opts: ['Make it happen.','Move forward.','Act now.',"Don't wait."], ans: 'Make it happen.', hint: "Make it happen = fais en sorte que ça arrive (responsabilité personnelle).", _isSentence: true },
+    { q: "N'abandonne jamais.", opts: ['Never give up.','Stay strong.',"Don't wait.",'Stay positive.'], ans: 'Never give up.', hint: "Never give up = n'abandonne jamais — phrase de motivation universelle.", _isSentence: true },
+    { q: "Rêve grand.", opts: ['Dream big.','Think big.','Move forward.','Keep learning.'], ans: 'Dream big.', hint: "Dream big = rêve grand (avoir de grandes ambitions).", _isSentence: true },
+    { q: "Continue d'apprendre.", opts: ['Keep learning.','Work hard.','Stay focused.','Push yourself.'], ans: 'Keep learning.', hint: "Keep learning = continue d'apprendre (keep + -ing = continuer à faire).", _isSentence: true },
+  ],
   'good-mood-expressions': [
     { q: "Je suis aux anges.", opts: ["I'm on cloud nine.","I'm bursting with joy.","I feel fantastic.","I'm in a great mood."], ans: "I'm on cloud nine.", hint: "I'm on cloud nine = je suis aux anges (expression idiomatique, toujours 'nine').", _isSentence: true },
     { q: "Je déborde de joie.", opts: ["I'm bursting with joy.","I'm full of energy.","I feel alive.","I'm so happy."], ans: "I'm bursting with joy.", hint: "I'm bursting with joy = je déborde de joie (très expressif, peu formel).", _isSentence: true },
@@ -4221,6 +4229,24 @@ const _GFIX_SERIES = {
       { q: "___ we're talking about food — have you tried that new restaurant?", opts: ['Speaking of','Firstly','Indeed','All in all'], ans: 'Speaking of', hint: "Speaking of = En parlant de (transition conversationnelle)." },
       { q: "The data was unclear. ___, the decision was delayed.", opts: ['As such','Lest','Previously','In the same vein'], ans: 'As such', hint: "As such = De ce fait (conclusion tirée de la situation)." },
       { q: "___ the policy is clear — follow the rules or face consequences.", opts: ['Overall','In this manner','Thereafter','Coupled with'], ans: 'Overall', hint: "Overall = Dans l'ensemble (bilan ou vue d'ensemble)." },
+    ],
+  ],
+  'motivational-phrases': [
+    [
+      { q: "___ humble — success won't last without it.", opts: ['Stay','Be','Keep','Act'], ans: 'Stay', hint: "STAY humble = reste humble (stay + adjectif = rester dans un état permanent)." },
+      { q: "___ yourself — authenticity is your strength.", opts: ['Be','Stay','Push','Keep'], ans: 'Be', hint: "BE yourself = sois toi-même (be + pronom réfléchi = être authentique)." },
+      { q: "___ big — your dreams shape your reality.", opts: ['Dream','Think','Act','Work'], ans: 'Dream', hint: "DREAM big = rêve grand (avoir de grandes ambitions pour l'avenir)." },
+      { q: "___ now — the right moment is always now.", opts: ['Act','Move','Work','Push'], ans: 'Act', hint: "ACT now = agis maintenant (passer à l'action sans attendre)." },
+      { q: "___ focused — distractions are everywhere.", opts: ['Stay','Be','Keep','Push'], ans: 'Stay', hint: "STAY focused = reste concentré(e) (stay + adjectif = maintenir un état)." },
+      { q: "___ it happen — no one will do it for you.", opts: ['Make','Let','Get','Do'], ans: 'Make', hint: "MAKE it happen = fais en sorte que ça arrive (make it happen = concrétiser)." },
+    ],
+    [
+      { q: "You want to say 'avance, ne reste pas bloqué(e)' :", opts: ['Move forward.','Act now.','Stay focused.','Keep learning.'], ans: 'Move forward.', hint: "Move forward = avance / ne reste pas bloqué(e) dans le passé." },
+      { q: "You want to say 'pense en grand, vise haut' (vision stratégique) :", opts: ['Think big.','Dream big.','Work hard.','Push yourself.'], ans: 'Think big.', hint: "Think big = pense grand (vision stratégique). Dream big = rêve grand (ambitions)." },
+      { q: "You want to say 'sois toi-même' :", opts: ['Be yourself.','Stay humble.','Be kind.','Stay strong.'], ans: 'Be yourself.', hint: "Be yourself = sois toi-même — l'une des phrases motivantes les plus universelles." },
+      { q: "You want to encourage someone to give 100% :", opts: ['Push yourself.','Work hard.','Stay focused.','Act now.'], ans: 'Push yourself.', hint: "Push yourself = donne-toi à fond / dépasse tes limites." },
+      { q: "You want to say 'n'abandonne jamais' :", opts: ['Never give up.','Stay strong.','Move forward.',"Don't wait."], ans: 'Never give up.', hint: "Never give up = n'abandonne jamais — la phrase de motivation la plus universelle." },
+      { q: "You want to say 'agis, n'attends pas' :", opts: ["Don't wait.",'Act now.','Move forward.','Make it happen.'], ans: "Don't wait.", hint: "Don't wait = n'attends pas — encouragement direct à passer à l'action." },
     ],
   ],
   'good-mood-expressions': [

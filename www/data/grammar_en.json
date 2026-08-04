@@ -5979,5 +5979,70 @@
         ]
       }
     ]
+  },
+  {
+    "id": "motivational-phrases",
+    "title": "Phrases de motivation",
+    "subtitle": "17 phrases courtes et percutantes pour s'encourager et avancer",
+    "sections": [
+      {
+        "heading": "Être et rester soi-même",
+        "points": [
+          "Stay humble. → Reste humble.",
+          "Be patient. → Sois patient(e).",
+          "Be kind. → Sois gentil(le).",
+          "Be yourself. → Sois toi-même.",
+          "Stay strong. → Reste fort(e).",
+          "Stay positive. → Reste positif/positive."
+        ],
+        "tip": "Stay + adjectif = rester (dans un état). Be + adjectif = être (conseil d'être). Ces impératifs courts sont très utilisés en anglais pour s'encourager ou encourager quelqu'un.",
+        "examples": [
+          "Stay humble — success won't last without it.",
+          "Be patient — good things take time.",
+          "Be kind — it costs nothing.",
+          "Be yourself — everyone else is taken.",
+          "Stay strong — you're closer than you think.",
+          "Stay positive — your mindset shapes your reality."
+        ]
+      },
+      {
+        "heading": "Agir et avancer",
+        "points": [
+          "Move forward. → Avance.",
+          "Act now. → Agis maintenant.",
+          "Don't wait. → N'attends pas.",
+          "Make it happen. → Fais que ça arrive.",
+          "Never give up. → N'abandonne jamais."
+        ],
+        "tip": "Move forward et Don't wait encouragent à passer à l'action. Make it happen (littéralement : fais en sorte que ça arrive) insiste sur la responsabilité personnelle. Never give up est peut-être la phrase de motivation la plus universelle en anglais.",
+        "examples": [
+          "Move forward — the past can't be changed.",
+          "Act now — the right moment is always now.",
+          "Don't wait — start today.",
+          "Make it happen — no one will do it for you.",
+          "Never give up — every expert was once a beginner."
+        ]
+      },
+      {
+        "heading": "Grandir et viser haut",
+        "points": [
+          "Work hard. → Travaille dur.",
+          "Push yourself. → Donne-toi à fond.",
+          "Think big. → Pense grand.",
+          "Stay focused. → Reste concentré(e).",
+          "Dream big. → Rêve grand.",
+          "Keep learning. → Continue d'apprendre."
+        ],
+        "tip": "Think big et Dream big se distinguent : Think big = adopter une grande vision stratégique, Dream big = avoir des ambitions élevées. Push yourself = se dépasser soi-même. Keep + -ing = continuer à faire quelque chose.",
+        "examples": [
+          "Work hard — talent without effort means nothing.",
+          "Push yourself — comfort zones don't grow.",
+          "Think big — small ideas stay small.",
+          "Stay focused — distractions are everywhere.",
+          "Dream big — then work hard to make it real.",
+          "Keep learning — knowledge is the best investment."
+        ]
+      }
+    ]
   }
 ]
