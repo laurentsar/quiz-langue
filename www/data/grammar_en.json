@@ -5608,5 +5608,54 @@
         ]
       }
     ]
+  },
+  {
+    "id": "across-phrasal-verbs",
+    "title": "Verbes à particule avec ACROSS",
+    "subtitle": "9 verbes essentiels pour traverser, découvrir et communiquer en anglais",
+    "sections": [
+      {
+        "heading": "Découverte et rencontre",
+        "points": [
+          "Come across → Trouver par hasard / Tomber sur (find unexpectedly)",
+          "Run across → Tomber sur quelqu'un par hasard (meet or find unexpectedly)",
+          "Stumble across → Découvrir par accident (discover accidentally)"
+        ],
+        "tip": "Come across et run across sont très proches : tous deux signifient tomber sur quelque chose par hasard. Stumble across insiste sur l'aspect totalement inattendu et accidentel de la découverte.",
+        "examples": [
+          "I came across an old photo album in the attic.",
+          "She ran across her former teacher at the supermarket.",
+          "He stumbled across the solution while reading a book."
+        ]
+      },
+      {
+        "heading": "Communication et déplacement",
+        "points": [
+          "Get across → Faire passer / Communiquer clairement une idée (communicate clearly)",
+          "Go across → Traverser / Aller de l'autre côté (travel to the other side)",
+          "Cut across → Couper par / Prendre un raccourci (take a shorter route)"
+        ],
+        "tip": "Get across s'utilise pour une idée ou un message difficile à transmettre. Go across décrit un déplacement physique. Cut across implique un chemin plus court à travers un espace.",
+        "examples": [
+          "It's hard to get my point across in a noisy room.",
+          "They went across the river by boat.",
+          "We cut across the park to save time."
+        ]
+      },
+      {
+        "heading": "Extension et regard",
+        "points": [
+          "Reach across → Tendre la main par-delà / Dépasser les divisions (extend beyond)",
+          "Spread across → S'étendre sur / Se répandre (extend over a wide area)",
+          "Look across → Regarder de l'autre côté / Porter le regard vers (gaze to the opposite side)"
+        ],
+        "tip": "Reach across et spread across décrivent une extension dans l'espace ou au sens figuré. Look across est concret et visuel — on regarde d'un point vers un autre situé en face.",
+        "examples": [
+          "She reached across the table to shake his hand.",
+          "The forest spreads across hundreds of kilometres.",
+          "He looked across the valley at the distant mountains."
+        ]
+      }
+    ]
   }
 ]

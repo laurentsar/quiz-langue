@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.96';
+const APP_VERSION = '2.97';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2893,6 +2893,14 @@ const _GFIX = {
     { q: "When ___ this happen?", opts: ['did','does','is','was'], ans: 'did', hint: "When DID this happen? → passé simple → did + base verbale." },
     { q: "When ___ you coming back?", opts: ['are','do','did','were'], ans: 'are', hint: "When ARE you coming? → action future arrangée → présent continu." },
   ],
+  'across-phrasal-verbs': [
+    { q: "She ___ an old letter while cleaning the attic.", opts: ['came across','ran across','went across','cut across'], ans: 'came across', hint: "Come across = trouver par hasard, sans l'avoir cherché." },
+    { q: "It was hard to ___ my idea in that meeting.", opts: ['get across','go across','cut across','look across'], ans: 'get across', hint: "Get across = faire passer / communiquer clairement un message." },
+    { q: "He ___ his old teacher at the market.", opts: ['ran across','came across','stumbled across','went across'], ans: 'ran across', hint: "Run across = tomber sur quelqu'un par hasard (personne connue)." },
+    { q: "Let's ___ the park — it'll be faster.", opts: ['cut across','spread across','go across','look across'], ans: 'cut across', hint: "Cut across = couper par un endroit pour prendre un raccourci." },
+    { q: "She ___ to shake his hand warmly.", opts: ['reached across','looked across','stumbled across','spread across'], ans: 'reached across', hint: "Reach across = tendre le bras par-dessus / par-delà quelque chose." },
+    { q: "The news ___ the entire city overnight.", opts: ['spread across','reached across','cut across','came across'], ans: 'spread across', hint: "Spread across = s'étendre / se répandre sur une grande zone." },
+  ],
   'out-phrasal-verbs': [
     { q: "I finally ___ the answer.", opts: ['figured out','gave out','ran out','came out'], ans: 'figured out', hint: "Figure out = comprendre / résoudre par la réflexion." },
     { q: "She ___ he had been lying all along.", opts: ['found out','hung out','worked out','checked out'], ans: 'found out', hint: "Find out = découvrir une information cachée ou inconnue." },
@@ -4165,6 +4173,24 @@ const _GFIX_SERIES = {
       { q: "___ we're talking about food — have you tried that new restaurant?", opts: ['Speaking of','Firstly','Indeed','All in all'], ans: 'Speaking of', hint: "Speaking of = En parlant de (transition conversationnelle)." },
       { q: "The data was unclear. ___, the decision was delayed.", opts: ['As such','Lest','Previously','In the same vein'], ans: 'As such', hint: "As such = De ce fait (conclusion tirée de la situation)." },
       { q: "___ the policy is clear — follow the rules or face consequences.", opts: ['Overall','In this manner','Thereafter','Coupled with'], ans: 'Overall', hint: "Overall = Dans l'ensemble (bilan ou vue d'ensemble)." },
+    ],
+  ],
+  'across-phrasal-verbs': [
+    [
+      { q: "She ___ an amazing recipe in her grandmother's notebook.", opts: ['stumbled across','came across','ran across','went across'], ans: 'stumbled across', hint: "Stumble across = découvrir par accident, de manière totalement inattendue." },
+      { q: "Can you ___ to get the remote control?", opts: ['reach across','look across','spread across','cut across'], ans: 'reach across', hint: "Reach across = tendre le bras par-dessus quelque chose pour attraper." },
+      { q: "They need to ___ the river to reach the village.", opts: ['go across','cut across','come across','spread across'], ans: 'go across', hint: "Go across = traverser / se déplacer d'un côté à l'autre." },
+      { q: "He managed to ___ his message despite the language barrier.", opts: ['get across','go across','come across','look across'], ans: 'get across', hint: "Get across = réussir à communiquer / faire passer un message clairement." },
+      { q: "The fire ___ the hillside very quickly.", opts: ['spread across','reached across','ran across','cut across'], ans: 'spread across', hint: "Spread across = s'étendre / se propager sur une large surface." },
+      { q: "She ___ the lake at the beautiful sunset.", opts: ['looked across','stumbled across','went across','reached across'], ans: 'looked across', hint: "Look across = porter son regard vers l'autre côté, vers ce qui est en face." },
+    ],
+    [
+      { q: "I ___ my old diary while packing my bags.", opts: ['came across','ran across','went across','looked across'], ans: 'came across', hint: "Come across = trouver par hasard lors d'une autre activité." },
+      { q: "He ___ an old friend at the railway station.", opts: ['ran across','came across','stumbled across','looked across'], ans: 'ran across', hint: "Run across = tomber sur quelqu'un que l'on connaît, par hasard." },
+      { q: "We ___ the fields to avoid the traffic jam.", opts: ['cut across','spread across','go across','came across'], ans: 'cut across', hint: "Cut across = traverser en coupant pour prendre un chemin plus court." },
+      { q: "The paint ___ the whole wall in seconds.", opts: ['spread across','reached across','looked across','cut across'], ans: 'spread across', hint: "Spread across = s'étaler / se répandre sur toute une surface." },
+      { q: "She couldn't ___ the importance of the deadline.", opts: ['get across','go across','spread across','come across'], ans: 'get across', hint: "Get across = faire comprendre / communiquer clairement une idée urgente." },
+      { q: "He ___ the old manuscript in the library archives.", opts: ['stumbled across','came across','ran across','went across'], ans: 'stumbled across', hint: "Stumble across = tomber par hasard sur une découverte inattendue." },
     ],
   ],
 };
