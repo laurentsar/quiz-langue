@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '2.98';
+const APP_VERSION = '2.99';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2893,6 +2893,14 @@ const _GFIX = {
     { q: "When ___ this happen?", opts: ['did','does','is','was'], ans: 'did', hint: "When DID this happen? → passé simple → did + base verbale." },
     { q: "When ___ you coming back?", opts: ['are','do','did','were'], ans: 'are', hint: "When ARE you coming? → action future arrangée → présent continu." },
   ],
+  'changing-subject-expressions': [
+    { q: "___, did you hear about the new café downtown?", opts: ['By the way','Anyway','Enough about that',"Let's not go there"], ans: 'By the way', hint: "By the way = au fait (pour introduire une digression ou un nouveau sujet)." },
+    { q: "___ — I have a meeting in ten minutes.", opts: ['Anyway','By the way','On a different note',"Let's not go there"], ans: 'Anyway', hint: "Anyway = bref (pour conclure une digression et reprendre le fil)." },
+    { q: "___ — your birthday is next week, right?", opts: ['Before I forget','Anyway',"Let's not go there",'Enough about that'], ans: 'Before I forget', hint: "Before I forget = avant que j'oublie (info urgente à glisser dans la conversation)." },
+    { q: "___ the trip we took last summer!", opts: ['That reminds me of','By the way','On a different note','Enough about that'], ans: 'That reminds me of', hint: "That reminds me of = ça me fait penser à (transition par association d'idées)." },
+    { q: "This topic is getting awkward. ___, please.", opts: ["Let's not go there","Enough about that",'Anyway','By the way'], ans: "Let's not go there", hint: "Let's not go there = évitons ce sujet (pour signaler qu'un sujet est délicat)." },
+    { q: "___ — I've already talked too much about myself tonight.", opts: ['Enough about that',"Let's not go there",'Anyway',"Let's change the subject"], ans: 'Enough about that', hint: "Enough about that = on a assez parlé de ça (pour clore un sujet avec légèreté)." },
+  ],
   'mind-expressions': [
     { q: "She's ___ about whether to accept the offer.", opts: ['in two minds','out of her mind','of one mind','in her right mind'], ans: 'in two minds', hint: "Be in two minds = être indécis / hésiter entre deux options." },
     { q: "There are so many options — I just can't ___!", opts: ['make up my mind','cross my mind','bear in mind','change my mind'], ans: 'make up my mind', hint: "Make up your mind = se décider définitivement / trancher." },
@@ -4189,6 +4197,24 @@ const _GFIX_SERIES = {
       { q: "___ we're talking about food — have you tried that new restaurant?", opts: ['Speaking of','Firstly','Indeed','All in all'], ans: 'Speaking of', hint: "Speaking of = En parlant de (transition conversationnelle)." },
       { q: "The data was unclear. ___, the decision was delayed.", opts: ['As such','Lest','Previously','In the same vein'], ans: 'As such', hint: "As such = De ce fait (conclusion tirée de la situation)." },
       { q: "___ the policy is clear — follow the rules or face consequences.", opts: ['Overall','In this manner','Thereafter','Coupled with'], ans: 'Overall', hint: "Overall = Dans l'ensemble (bilan ou vue d'ensemble)." },
+    ],
+  ],
+  'changing-subject-expressions': [
+    [
+      { q: "___ — have you tried the new restaurant on Main Street?", opts: ['On a different note','Enough about that','Anyway',"Let's not go there"], ans: 'On a different note', hint: "On a different note = sur un autre sujet (transition polie vers un nouveau thème)." },
+      { q: "___ — could we discuss something more pleasant?", opts: ["Let's talk about something else","Let's change the subject",'Anyway','By the way'], ans: "Let's talk about something else", hint: "Let's talk about something else = parlons d'autre chose (changement clair de sujet)." },
+      { q: "We've talked about work all evening. ___ for a change!", opts: ["Let's change the subject","Let's not go there",'Anyway','Enough about that'], ans: "Let's change the subject", hint: "Let's change the subject = changeons de sujet (demande directe et explicite)." },
+      { q: "___ — you mentioned something about a trip earlier.", opts: ['While I remember','By the way','Anyway','Before I forget'], ans: 'While I remember', hint: "While I remember = pendant que j'y pense (pour ne pas oublier de revenir sur un point)." },
+      { q: "___ — I need to tell you something important before we go.", opts: ['Before I forget','Anyway',"Let's not go there",'Enough about that'], ans: 'Before I forget', hint: "Before I forget = avant que j'oublie (digression urgente avant la fin de la conversation)." },
+      { q: "The weather there was amazing. ___ Paris last spring.", opts: ['That reminds me of','By the way','Anyway','On a different note'], ans: 'That reminds me of', hint: "That reminds me of = ça me fait penser à (lien par association d'idées)." },
+    ],
+    [
+      { q: "___ — I have to leave in five minutes.", opts: ['Anyway','By the way','On a different note',"Let's not go there"], ans: 'Anyway', hint: "Anyway = bref (pour reprendre ou conclure après une digression)." },
+      { q: "Politics is a touchy subject. ___.", opts: ["Let's not go there","Enough about that","Let's change the subject",'Anyway'], ans: "Let's not go there", hint: "Let's not go there = évitons ce sujet (pour un sujet délicat ou potentiellement conflictuel)." },
+      { q: "___ — are you free this weekend?", opts: ['By the way','Anyway','On a different note','Enough about that'], ans: 'By the way', hint: "By the way = au fait (pour glisser une question sans lien avec le sujet précédent)." },
+      { q: "___ the concert — I had tickets for that same venue last year!", opts: ['That reminds me of','While I remember','Before I forget','On a different note'], ans: 'That reminds me of', hint: "That reminds me of = ça me fait penser à (rebond naturel par association)." },
+      { q: "___ — I think we've discussed this enough for today.", opts: ['Enough about that',"Let's not go there",'Anyway',"Let's change the subject"], ans: 'Enough about that', hint: "Enough about that = on a assez parlé de ça (clôture polie et définitive du sujet)." },
+      { q: "___ — could you send me that document before Friday?", opts: ['While I remember','By the way','Anyway','Before I forget'], ans: 'While I remember', hint: "While I remember = pendant que j'y pense (pour glisser une demande pratique)." },
     ],
   ],
   'mind-expressions': [

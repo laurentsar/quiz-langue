@@ -5779,5 +5779,56 @@
         ]
       }
     ]
+  },
+  {
+    "id": "changing-subject-expressions",
+    "title": "Changer de sujet en anglais",
+    "subtitle": "10 expressions naturelles pour rebondir, éviter ou clore un sujet en conversation",
+    "sections": [
+      {
+        "heading": "Rebondir et digresser",
+        "points": [
+          "By the way → Au fait (introduire une digression ou un nouveau sujet)",
+          "That reminds me of → Ça me fait penser à (association d'idées)",
+          "Before I forget → Avant que j'oublie (info urgente à glisser)",
+          "While I remember → Pendant que j'y pense (même sens, légèrement plus formel)"
+        ],
+        "tip": "By the way est la plus courante et la plus neutre. That reminds me of crée un lien logique entre deux sujets. Before I forget et while I remember s'utilisent quand on veut glisser une info avant de l'oublier.",
+        "examples": [
+          "By the way, did you hear about the new café downtown?",
+          "That reminds me of the trip we took last summer.",
+          "Before I forget — your birthday is next week, right?",
+          "While I remember, could you send me that file?"
+        ]
+      },
+      {
+        "heading": "Changer de sujet clairement",
+        "points": [
+          "Anyway → Bref (reprendre le fil ou clore une digression)",
+          "On a different note → Sur un autre sujet (transition polie)",
+          "Let's change the subject → Changeons de sujet (demande directe)",
+          "Let's talk about something else → Parlons d'autre chose"
+        ],
+        "tip": "Anyway est très polyvalent : il conclut une digression ou relance la conversation. On a different note est plus poli et soutenu. Let's change the subject et Let's talk about something else sont plus directs.",
+        "examples": [
+          "Anyway, I have to get going soon.",
+          "On a different note, have you tried the new restaurant?",
+          "Let's change the subject — this is getting boring!",
+          "Let's talk about something else for a change."
+        ]
+      },
+      {
+        "heading": "Éviter ou clore un sujet",
+        "points": [
+          "Let's not go there → Évitons ce sujet (sujet délicat ou inconfortable)",
+          "Enough about that → On a assez parlé de ça (pour clore définitivement)"
+        ],
+        "tip": "Let's not go there signale poliment que le sujet est sensible ou qu'on préfère l'éviter. Enough about that clôt le sujet avec légèreté, souvent suivi d'une question sur un autre thème.",
+        "examples": [
+          "Let's not go there — it's a sensitive topic.",
+          "Enough about that! Tell me about your holiday."
+        ]
+      }
+    ]
   }
 ]
