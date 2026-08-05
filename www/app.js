@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.05';
+const APP_VERSION = '3.06';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2982,6 +2982,14 @@ const _GFIX = {
     { q: "We've ___ of time — hurry up!", opts: ['run out','come out','give out','turn out'], ans: 'run out', hint: "Run out of = épuiser le stock / manquer de quelque chose." },
     { q: "Let's ___ at the mall this weekend!", opts: ['hang out','figure out','work out','carry out'], ans: 'hang out', hint: "Hang out = passer du temps ensemble (très familier)." },
   ],
+  'job-interview-phrases': [
+    { q: "Skill signifie :", opts: ['Compétence','Force','Faiblesse','Capacité'], ans: 'Compétence', hint: "Skill = compétence (capacité acquise par l'apprentissage ou l'expérience)." },
+    { q: "Weakness signifie :", opts: ['Faiblesse','Force','Efficacité','Flexibilité'], ans: 'Faiblesse', hint: "Weakness = faiblesse (point faible, opposé de strength)." },
+    { q: "Traduction : 'Parlez-moi de vous.'", opts: ['Tell me about yourself.','Why should we hire you?','What motivates you?','What are your strengths?'], ans: 'Tell me about yourself.', hint: "Tell me about yourself = Parlez-moi de vous (question d'ouverture classique d'entretien).", _isSentence: true },
+    { q: "Comment gérez-vous le stress ?", opts: ['How do you handle stress?','Do you like teamwork?','Why do you want this job?','What are your career goals?'], ans: 'How do you handle stress?', hint: "Handle = gérer, s'en sortir avec. Ici : comment gérez-vous le stress ?", _isSentence: true },
+    { q: "Ability signifie :", opts: ['Capacité','Intérêt','Disponibilité','Expertise'], ans: 'Capacité', hint: "Ability = capacité, aptitude (peut être innée ou acquise)." },
+    { q: "Pourquoi voulez-vous ce poste ?", opts: ['Why do you want this job?','Why should we hire you?','What experience do you have?','What motivates you?'], ans: 'Why do you want this job?', hint: "This job = ce poste / cet emploi. Hire = embaucher.", _isSentence: true },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -4426,6 +4434,24 @@ const _GFIX_SERIES = {
       { q: "The paint ___ the whole wall in seconds.", opts: ['spread across','reached across','looked across','cut across'], ans: 'spread across', hint: "Spread across = s'étaler / se répandre sur toute une surface." },
       { q: "She couldn't ___ the importance of the deadline.", opts: ['get across','go across','spread across','come across'], ans: 'get across', hint: "Get across = faire comprendre / communiquer clairement une idée urgente." },
       { q: "He ___ the old manuscript in the library archives.", opts: ['stumbled across','came across','ran across','went across'], ans: 'stumbled across', hint: "Stumble across = tomber par hasard sur une découverte inattendue." },
+    ],
+  ],
+  'job-interview-phrases': [
+    [
+      { q: "Strength signifie :", opts: ['Force','Faiblesse','Compétence','Flexibilité'], ans: 'Force', hint: "Strength = force, point fort (opposé de weakness = faiblesse)." },
+      { q: "Deadline signifie :", opts: ['Date limite','Efficacité','Disponibilité','Intérêt'], ans: 'Date limite', hint: "Deadline = date limite, délai à ne pas dépasser (dead + line)." },
+      { q: "Aimez-vous travailler en équipe ?", opts: ['Do you like teamwork?','Do you prefer working alone?','How do you handle stress?','What are your strengths?'], ans: 'Do you like teamwork?', hint: "Teamwork = travail en équipe. Like + V-ing = aimer faire quelque chose.", _isSentence: true },
+      { q: "Quelle expérience avez-vous ?", opts: ['What experience do you have?','What are your strengths?','What are your career goals?','What motivates you?'], ans: 'What experience do you have?', hint: "Experience = expérience professionnelle. Do you have = avez-vous ?", _isSentence: true },
+      { q: "Efficiency signifie :", opts: ['Efficacité','Flexibilité','Disponibilité','Capacité'], ans: 'Efficacité', hint: "Efficiency = efficacité (faire plus avec moins, résultat optimal)." },
+      { q: "Pourquoi devrions-nous vous embaucher ?", opts: ['Why should we hire you?','Why do you want this job?','What motivates you?','Tell me about yourself.'], ans: 'Why should we hire you?', hint: "Hire = embaucher (recruter). Should we hire you = devrions-nous vous embaucher ?", _isSentence: true },
+    ],
+    [
+      { q: "Flexibility signifie :", opts: ['Flexibilité','Efficacité','Disponibilité','Intérêt'], ans: 'Flexibilité', hint: "Flexibility = flexibilité (capacité à s'adapter à des situations changeantes)." },
+      { q: "Availability signifie :", opts: ['Disponibilité','Flexibilité','Capacité','Compétence'], ans: 'Disponibilité', hint: "Availability = disponibilité (être disponible pour prendre un poste)." },
+      { q: "Qu'est-ce qui vous motive ?", opts: ['What motivates you?','What inspires you?','What interests you?','What challenges you?'], ans: 'What motivates you?', hint: "Motivate = motiver (ce qui vous pousse à agir et à vous investir).", _isSentence: true },
+      { q: "Quelles sont vos forces ?", opts: ['What are your strengths?','What are your skills?','What are your goals?','What are your interests?'], ans: 'What are your strengths?', hint: "Strengths (pluriel de strength) = forces, points forts.", _isSentence: true },
+      { q: "Interest signifie :", opts: ['Intérêt','Expertise','Capacité','Force'], ans: 'Intérêt', hint: "Interest = intérêt, centre d'intérêt (ce qui vous passionne)." },
+      { q: "Quels sont vos objectifs de carrière ?", opts: ['What are your career goals?','What are your career plans?','What do you want to achieve?','What are your ambitions?'], ans: 'What are your career goals?', hint: "Career goals = objectifs de carrière. Goals = buts, objectifs à atteindre.", _isSentence: true },
     ],
   ],
 };

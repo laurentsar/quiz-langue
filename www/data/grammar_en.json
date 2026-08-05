@@ -6147,5 +6147,56 @@
         ]
       }
     ]
+  },
+  {
+    "id": "job-interview-phrases",
+    "title": "Entretien d'embauche",
+    "subtitle": "Vocabulaire clé et questions types pour réussir un entretien en anglais",
+    "sections": [
+      {
+        "heading": "Vocabulaire clé",
+        "points": [
+          "Skill → Compétence (capacité acquise)",
+          "Strength → Force (point fort)",
+          "Weakness → Faiblesse (point faible)",
+          "Ability → Capacité (aptitude)",
+          "Expertise → Expertise (domaine de maîtrise)",
+          "Interest → Intérêt (centre d'intérêt)",
+          "Deadline → Date limite",
+          "Efficiency → Efficacité",
+          "Flexibility → Flexibilité",
+          "Availability → Disponibilité"
+        ],
+        "tip": "Strength / Weakness sont souvent demandés en duo : 'What are your strengths and weaknesses?' Strength ↔ Force, Weakness ↔ Faiblesse.",
+        "examples": [
+          "I have strong communication skills.",
+          "My main weakness is that I tend to be a perfectionist.",
+          "I have expertise in data analysis.",
+          "I am available immediately."
+        ]
+      },
+      {
+        "heading": "Questions types d'entretien",
+        "points": [
+          "Tell me about yourself. → Parlez-moi de vous.",
+          "What motivates you? → Qu'est-ce qui vous motive ?",
+          "Why should we hire you? → Pourquoi devrions-nous vous embaucher ?",
+          "What are your career goals? → Quels sont vos objectifs de carrière ?",
+          "What experience do you have? → Quelle expérience avez-vous ?",
+          "What are your strengths? → Quelles sont vos forces ?",
+          "How do you handle stress? → Comment gérez-vous le stress ?",
+          "Do you like teamwork? → Aimez-vous travailler en équipe ?",
+          "Why do you want this job? → Pourquoi voulez-vous ce poste ?"
+        ],
+        "tip": "Handle stress = gérer le stress. Handle = s'en occuper, gérer (sans traduction littérale). Hire = embaucher (recruter). Teamwork = travail en équipe.",
+        "examples": [
+          "Tell me about yourself.",
+          "Why should we hire you?",
+          "How do you handle stress?",
+          "What are your career goals?",
+          "Do you like teamwork?"
+        ]
+      }
+    ]
   }
 ]
