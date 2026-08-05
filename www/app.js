@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.04';
+const APP_VERSION = '3.05';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2893,6 +2893,14 @@ const _GFIX = {
     { q: "When ___ this happen?", opts: ['did','does','is','was'], ans: 'did', hint: "When DID this happen? → passé simple → did + base verbale." },
     { q: "When ___ you coming back?", opts: ['are','do','did','were'], ans: 'are', hint: "When ARE you coming? → action future arrangée → présent continu." },
   ],
+  'allow-let-permit-enable': [
+    { q: "Dad ___ me drive his car. (informel, sans 'to')", opts: ['let','allowed','permitted','enabled'], ans: 'let', hint: "Let = le plus informel. Let + objet + infinitif NUS (sans 'to'). Jamais au passif." },
+    { q: "Smoking is not ___ on board. (règle officielle, passif)", opts: ['permitted','allowed','let','enabled'], ans: 'permitted', hint: "Permit = formel, règles officielles. S'utilise souvent au passif (≠ let qui ne s'utilise jamais au passif)." },
+    { q: "A computer will ___ you to work from home. (rendre possible)", opts: ['enable','allow','let','permit'], ans: 'enable', hint: "Enable = rendre quelque chose possible, donner la capacité. ≠ autoriser." },
+    { q: "The boss ___ us to leave early. (autorisation neutre, avec 'to')", opts: ['allowed','let','permitted','enabled'], ans: 'allowed', hint: "Allow = autoriser (neutre, courant). Allow + objet + TO + infinitif." },
+    { q: "Don't ___ the dog sit on the sofa. (informel, sans 'to')", opts: ['let','allow','permit','enable'], ans: 'let', hint: "Let = informel, bare infinitive. Don't let = ne laisse pas (sans 'to')." },
+    { q: "Is parking ___ in this area? (règle officielle, passif)", opts: ['permitted','allowed','enabled','let'], ans: 'permitted', hint: "Permit au passif = règle officielle. Let ne s'utilise jamais au passif." },
+  ],
   'daily-commands-phrases': [
     { q: "Réveille-toi tôt chaque jour.", opts: ['Wake up early every day.','Get up and get ready.','Sit down and relax.','Slow down a little.'], ans: 'Wake up early every day.', hint: "Wake up early every day = réveille-toi tôt chaque jour (habitude matinale).", _isSentence: true },
     { q: "Éteins la télévision.", opts: ['Turn off the TV.','Turn on the light.','Take off your jacket.','Slow down a little.'], ans: 'Turn off the TV.', hint: "Turn off = éteindre (opposé de turn on = allumer).", _isSentence: true },
@@ -4237,6 +4245,24 @@ const _GFIX_SERIES = {
       { q: "___ we're talking about food — have you tried that new restaurant?", opts: ['Speaking of','Firstly','Indeed','All in all'], ans: 'Speaking of', hint: "Speaking of = En parlant de (transition conversationnelle)." },
       { q: "The data was unclear. ___, the decision was delayed.", opts: ['As such','Lest','Previously','In the same vein'], ans: 'As such', hint: "As such = De ce fait (conclusion tirée de la situation)." },
       { q: "___ the policy is clear — follow the rules or face consequences.", opts: ['Overall','In this manner','Thereafter','Coupled with'], ans: 'Overall', hint: "Overall = Dans l'ensemble (bilan ou vue d'ensemble)." },
+    ],
+  ],
+  'allow-let-permit-enable': [
+    [
+      { q: "Her parents ___ her go to the cinema with her friends.", opts: ['let','allowed','permitted','enabled'], ans: 'let', hint: "Let + bare infinitive (sans 'to'). Let her go = la laisser partir." },
+      { q: "The museum does not ___ photography inside.", opts: ['permit','allow','let','enable'], ans: 'permit', hint: "Permit = formel, règles officielles. The museum does not permit = règle de l'établissement." },
+      { q: "My new glasses ___ me to read small print.", opts: ['enable','allow','permit','let'], ans: 'enable', hint: "Enable = rendre possible (les lunettes me donnent la capacité de lire). ≠ autoriser." },
+      { q: "You're ___ one hour to complete the test.", opts: ['allowed','permitted','let','enabled'], ans: 'allowed', hint: "You're allowed = on vous autorise / on vous accorde (allow au passif, sens de 'disposer de')." },
+      { q: "She paused to ___ her eyes to adjust to the darkness.", opts: ['allow','let','permit','enable'], ans: 'allow', hint: "Allow ici = laisser le temps / l'espace pour que quelque chose se produise (faciliter, pas autoriser)." },
+      { q: "The new motorway will ___ traffic to avoid the city centre.", opts: ['enable','allow','let','permit'], ans: 'enable', hint: "Enable = rendre possible (la route donne la capacité d'éviter le centre). Objet inanimé → enable." },
+    ],
+    [
+      { q: "Quel verbe s'utilise avec un infinitif SANS 'to' ?", opts: ['let','allow','permit','enable'], ans: 'let', hint: "Let + bare infinitive (sans 'to') — Dad let me drive. ≠ allow/permit/enable + to." },
+      { q: "Quel verbe ne s'utilise JAMAIS à la voix passive ?", opts: ['let','allow','permit','enable'], ans: 'let', hint: "Let ne s'utilise jamais au passif. On ne dit pas 'I was let to go' — on dit 'I was allowed to go'." },
+      { q: "Quel verbe signifie 'rendre possible', pas 'autoriser' ?", opts: ['enable','allow','permit','let'], ans: 'enable', hint: "Enable = donner la capacité / rendre possible. ≠ allow/let/permit qui signifient autoriser." },
+      { q: "Quel verbe est le plus formel et associé aux règles officielles ?", opts: ['permit','allow','let','enable'], ans: 'permit', hint: "Permit = le plus formel. Souvent dans des contextes officiels, juridiques ou institutionnels." },
+      { q: "Dad ___ me to drive his car. (avec 'to', forme neutre)", opts: ['allowed','let','permitted','enabled'], ans: 'allowed', hint: "Allow + objet + TO + infinitif. ≠ let qui prend un bare infinitive sans 'to'." },
+      { q: "This software will ___ us to track sales. (rendre capable)", opts: ['enable','allow','permit','let'], ans: 'enable', hint: "Enable = donner la capacité de faire. Software/tools/conditions → enable, pas allow." },
     ],
   ],
   'daily-commands-phrases': [

@@ -6091,5 +6091,61 @@
         ]
       }
     ]
+  },
+  {
+    "id": "allow-let-permit-enable",
+    "title": "Allow, Let, Permit et Enable",
+    "subtitle": "4 verbes proches mais distincts : autoriser vs rendre possible",
+    "sections": [
+      {
+        "heading": "Allow, Let, Permit = autoriser",
+        "points": [
+          "Allow → neutre, très courant (+ objet + to + infinitif)",
+          "Let → le plus informel, jamais au passif (+ objet + infinitif sans 'to')",
+          "Permit → le plus formel, souvent pour des règles officielles (+ objet + to + infinitif)"
+        ],
+        "tip": "La différence clé de syntaxe : Let + bare infinitive (sans 'to') — Dad LET me drive. Allow/Permit + to infinitive — Dad ALLOWED me TO drive. Let ne s'utilise jamais à la voix passive.",
+        "examples": [
+          "Dad allowed me to drive his car.",
+          "Dad let me drive his car.",
+          "Smoking is not permitted on board.",
+          "The boss allowed us to leave early.",
+          "Don't let the dog sit on the sofa.",
+          "Is parking permitted in this area?"
+        ]
+      },
+      {
+        "heading": "Enable = rendre possible",
+        "points": [
+          "Enable ≠ autoriser → Enable = donner la capacité / rendre quelque chose possible",
+          "Enable + objet + to + infinitif",
+          "Souvent utilisé pour des technologies, outils ou conditions qui permettent quelque chose"
+        ],
+        "tip": "Enable ne remplace pas allow/let/permit. On n'utilise pas enable pour une permission : on dit 'Dad enabled me to drive' uniquement si une condition l'a rendu possible (ex. il m'a appris à conduire), pas pour une autorisation.",
+        "examples": [
+          "A computer will enable you to work from home.",
+          "My new glasses enable me to read small print.",
+          "The new motorway will enable traffic to avoid the city centre.",
+          "This software will enable us to track sales.",
+          "The boys found a hole in the fence that enabled them to watch the match."
+        ]
+      },
+      {
+        "heading": "Récapitulatif des structures",
+        "points": [
+          "Allow + objet + TO infinitif → She allowed him TO go.",
+          "Permit + objet + TO infinitif → They permitted us TO enter.",
+          "Let + objet + infinitif NUS (sans to) → She let him go.",
+          "Enable + objet + TO infinitif → This key enables you TO access the system."
+        ],
+        "tip": "Moyen mémo : LET = simple et court = syntaxe simple et courte (pas de 'to'). Allow et permit = plus long = syntaxe plus longue (avec 'to'). Enable = toujours avec 'to' mais signifie 'rendre capable', pas 'autoriser'.",
+        "examples": [
+          "Her parents let her go to the cinema with her friends.",
+          "The museum does not permit photography inside the building.",
+          "You're allowed one hour to do the test.",
+          "She paused to allow her eyes to adjust to the darkness."
+        ]
+      }
+    ]
   }
 ]
