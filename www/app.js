@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.07';
+const APP_VERSION = '3.08';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2998,6 +2998,14 @@ const _GFIX = {
     { q: "Pouvons-nous parler en privé ?", opts: ["Can we talk in private?","Can we meet in private?","Can we speak in secret?","Can we chat privately?"], ans: "Can we talk in private?", hint: "In private = en privé, loin des autres. Talk in private = avoir une conversation privée.", _isSentence: true },
     { q: "Je m'en occupe.", opts: ["I'll handle this.","I'll do this now.","I'll manage it well.","I'll take this over."], ans: "I'll handle this.", hint: "Handle = s'occuper de, gérer. I'll handle this = je m'en occupe (prise en charge).", _isSentence: true },
   ],
+  'farewell-expressions': [
+    { q: "À plus.", opts: ["See you.","Goodbye.","Take care.","See you later."], ans: "See you.", hint: "See you = à plus (très court et informel). La forme la plus courte pour dire au revoir.", _isSentence: true },
+    { q: "Je m'en vais.", opts: ["I'm off.","I'm leaving now.","I've got to go.","I'm going out."], ans: "I'm off.", hint: "I'm off = je m'en vais / je pars (très informel et courant). Plus court que 'I have to go'.", _isSentence: true },
+    { q: "À bientôt.", opts: ["See you soon.","See you later.","Talk to you later.","Speak soon."], ans: "See you soon.", hint: "See you soon = à bientôt (soon = bientôt). Ne pas confondre avec 'See you later' (à plus tard).", _isSentence: true },
+    { q: "On se parle plus tard.", opts: ["Talk to you later.","Speak soon.","Catch you later.","See you later."], ans: "Talk to you later.", hint: "Talk to you later = on se parle plus tard. Souvent abrégé en TTYL à l'écrit.", _isSentence: true },
+    { q: "Je dois y aller.", opts: ["I've got to go.","I have to go now.","I need to leave.","I should head off."], ans: "I've got to go.", hint: "I've got to go = je dois y aller (contraction informelle de 'I have got to go').", _isSentence: true },
+    { q: "À plus tard.", opts: ["See you later.","See you soon.","See you.","Catch you later."], ans: "See you later.", hint: "See you later = à plus tard. Later = plus tard (délai vague). ≠ See you soon (bientôt).", _isSentence: true },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -4478,6 +4486,24 @@ const _GFIX_SERIES = {
       { q: "'Due' dans un contexte pro signifie :", opts: ['Attendu / prévu pour une date','Terminé et livré','En cours de révision','Reporté à plus tard'], ans: 'Attendu / prévu pour une date', hint: "Due = attendu pour une date précise. This report is due today = ce rapport est à rendre aujourd'hui." },
       { q: "Je te tiendrai informé.", opts: ["I'll keep you updated.","I'll keep you informed.","I'll let you know later.","I'll send you an update."], ans: "I'll keep you updated.", hint: "Keep someone updated = tenir quelqu'un au courant (updated = mis à jour). Très courant dans un contexte pro.", _isSentence: true },
       { q: "'Prioritize' signifie :", opts: ['Établir des priorités','Organiser son agenda','Gérer son temps','Planifier ses réunions'], ans: 'Établir des priorités', hint: "Prioritize = prioriser, choisir ce qui est le plus urgent et important à faire en premier." },
+    ],
+  ],
+  'farewell-expressions': [
+    [
+      { q: "On se parle bientôt.", opts: ["Speak soon.","Talk to you later.","See you soon.","Speak later."], ans: "Speak soon.", hint: "Speak soon = on se parle bientôt (forme courte, souvent en fin d'appel ou par message).", _isSentence: true },
+      { q: "On se rattrape plus tard.", opts: ["Catch you later.","See you later.","Talk to you later.","Meet you later."], ans: "Catch you later.", hint: "Catch you later = on se rattrape plus tard (très familier, image de 'rattraper' quelqu'un).", _isSentence: true },
+      { q: "Je dois partir maintenant.", opts: ["I have to go now.","I've got to go.","I'm off right now.","I need to leave soon."], ans: "I have to go now.", hint: "I have to go now = je dois partir maintenant. Now insiste sur l'urgence immédiate.", _isSentence: true },
+      { q: "Je m'en vais.", opts: ["I'm off.","I'm going.","I'm leaving.","I'm out of here."], ans: "I'm off.", hint: "I'm off = je m'en vais. Forme très courte. On peut aussi dire 'I'm heading off' (je me casse).", _isSentence: true },
+      { q: "On se parle plus tard.", opts: ["Talk to you later.","Speak to you soon.","Call you later.","See you later."], ans: "Talk to you later.", hint: "Talk to you later = on se parle plus tard. Très courant pour finir un appel ou un message.", _isSentence: true },
+      { q: "À plus tard.", opts: ["See you later.","Catch you later.","Talk to you later.","See you soon."], ans: "See you later.", hint: "See you later = à plus tard. Plus vague que 'See you soon' qui implique un délai court.", _isSentence: true },
+    ],
+    [
+      { q: "'Speak soon' correspond à :", opts: ["On se parle bientôt.","On se rattrape plus tard.","On se parle plus tard.","On se retrouve bientôt."], ans: "On se parle bientôt.", hint: "Speak soon = on se parle bientôt. Speak = parler, soon = bientôt." },
+      { q: "'Catch you later' signifie :", opts: ["On se rattrape plus tard.","À plus tard.","On se parle plus tard.","On se retrouve bientôt."], ans: "On se rattrape plus tard.", hint: "Catch you later = on se rattrape plus tard (catch = rattraper, rejoindre quelqu'un)." },
+      { q: "'I'm off' est synonyme de :", opts: ["I have to go now.","See you later.","Talk to you later.","Catch you later."], ans: "I have to go now.", hint: "I'm off = je m'en vais — même sens que 'I have to go now' mais plus bref et informel." },
+      { q: "Quelle expression utilise 'catch' ?", opts: ["Catch you later.","See you later.","Talk to you later.","Speak soon."], ans: "Catch you later.", hint: "Catch you later = on se rattrape plus tard. Catch = rattraper, rejoindre quelqu'un." },
+      { q: "Pour dire 'Je dois y aller' (contraction informelle) :", opts: ["I've got to go.","I have to go.","I need to leave.","I must go now."], ans: "I've got to go.", hint: "I've got to go = I have got to go (contraction). Got to = have to. Très oral et informel." },
+      { q: "Différence entre 'See you soon' et 'See you later' :", opts: ["Soon = bientôt, Later = plus tard","Aucune différence","Soon = formel, Later = informel","Soon = oral, Later = écrit"], ans: "Soon = bientôt, Later = plus tard", hint: "See you soon (à bientôt) → délai court. See you later (à plus tard) → délai vague." },
     ],
   ],
 };

@@ -6243,5 +6243,33 @@
         ]
       }
     ]
+  },
+  {
+    "id": "farewell-expressions",
+    "title": "Dire au revoir",
+    "subtitle": "9 façons informelles de prendre congé en anglais",
+    "sections": [
+      {
+        "heading": "Les 9 expressions",
+        "points": [
+          "See you. → À plus.",
+          "I'm off. → Je m'en vais.",
+          "See you soon. → À bientôt.",
+          "Talk to you later. → On se parle plus tard.",
+          "Speak soon. → On se parle bientôt.",
+          "Catch you later. → On se rattrape plus tard.",
+          "I've got to go. → Je dois y aller.",
+          "I have to go now. → Je dois partir maintenant.",
+          "See you later. → À plus tard."
+        ],
+        "tip": "Attention : See you soon ≠ See you later. Soon = bientôt (délai court). Later = plus tard (délai vague). I'm off = très court et informel (je me barre). I've got to go = contraction de 'I have got to go' (je dois y aller).",
+        "examples": [
+          "I'm off! See you tomorrow.",
+          "I've got to go — talk to you later!",
+          "Catch you later, everyone.",
+          "I have to go now. See you soon."
+        ]
+      }
+    ]
   }
 ]
