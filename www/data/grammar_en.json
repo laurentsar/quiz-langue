@@ -6198,5 +6198,50 @@
         ]
       }
     ]
+  },
+  {
+    "id": "at-work-phrases",
+    "title": "Phrases au travail",
+    "subtitle": "14 expressions clés pour communiquer en anglais dans un contexte professionnel",
+    "sections": [
+      {
+        "heading": "Communication et collaboration",
+        "points": [
+          "Can we talk in private? → Pouvons-nous parler en privé ?",
+          "Let's keep in touch. → Restons en contact.",
+          "Could you please clarify this point? → Peux-tu clarifier ce point, s'il te plaît ?",
+          "Let me know if you need help. → Dis-moi si tu as besoin d'aide.",
+          "Thanks for your support. → Merci pour ton soutien.",
+          "Can we brainstorm together? → Pouvons-nous réfléchir ensemble ?",
+          "Let's solve this problem together. → Résolvons ce problème ensemble."
+        ],
+        "tip": "Let me know = fais-moi signe / dis-moi (très utile pour proposer de l'aide sans imposer). Brainstorm = réfléchir librement à plusieurs pour générer des idées.",
+        "examples": [
+          "Can we talk in private?",
+          "Let me know if you need help.",
+          "Can we brainstorm together?",
+          "Thanks for your support."
+        ]
+      },
+      {
+        "heading": "Organisation et clarté",
+        "points": [
+          "I'll keep you updated. → Je te tiendrai informé.",
+          "Let's organize our tasks. → Organisons nos tâches.",
+          "I'm almost finished. → J'ai presque terminé.",
+          "I'll handle this. → Je m'en occupe.",
+          "This report is due today. → Ce rapport est attendu aujourd'hui.",
+          "We need to prioritize. → Nous devons établir des priorités.",
+          "Let's share the workload. → Partageons la charge de travail."
+        ],
+        "tip": "Due = attendu pour une date précise (deadline). Handle = gérer, s'occuper de. Workload = charge de travail. Prioritize = choisir ce qui est le plus urgent.",
+        "examples": [
+          "I'll keep you updated.",
+          "This report is due today.",
+          "I'll handle this.",
+          "Let's share the workload."
+        ]
+      }
+    ]
   }
 ]

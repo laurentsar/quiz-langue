@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.06';
+const APP_VERSION = '3.07';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2990,6 +2990,14 @@ const _GFIX = {
     { q: "Ability signifie :", opts: ['Capacité','Intérêt','Disponibilité','Expertise'], ans: 'Capacité', hint: "Ability = capacité, aptitude (peut être innée ou acquise)." },
     { q: "Pourquoi voulez-vous ce poste ?", opts: ['Why do you want this job?','Why should we hire you?','What experience do you have?','What motivates you?'], ans: 'Why do you want this job?', hint: "This job = ce poste / cet emploi. Hire = embaucher.", _isSentence: true },
   ],
+  'at-work-phrases': [
+    { q: "Dis-moi si tu as besoin d'aide.", opts: ["Let me know if you need help.","Let me help you now.","Tell me if you are free.","Ask me for any help."], ans: "Let me know if you need help.", hint: "Let me know = dis-moi / fais-moi signe. If you need help = si tu as besoin d'aide.", _isSentence: true },
+    { q: "Je te tiendrai informé.", opts: ["I'll keep you updated.","I'll let you know soon.","I'll stay in touch.","I'll tell you everything."], ans: "I'll keep you updated.", hint: "Keep + objet + updated = tenir quelqu'un informé des dernières nouvelles.", _isSentence: true },
+    { q: "Ce rapport est attendu aujourd'hui.", opts: ["This report is due today.","This report is ready today.","This report is done today.","This report is needed soon."], ans: "This report is due today.", hint: "Due = attendu / prévu pour une date précise (deadline). Due today = à rendre aujourd'hui.", _isSentence: true },
+    { q: "Partageons la charge de travail.", opts: ["Let's share the workload.","Let's organize the workload.","Let's divide the tasks.","Let's split the work now."], ans: "Let's share the workload.", hint: "Share the workload = partager la charge de travail. Workload = charge de travail.", _isSentence: true },
+    { q: "Pouvons-nous parler en privé ?", opts: ["Can we talk in private?","Can we meet in private?","Can we speak in secret?","Can we chat privately?"], ans: "Can we talk in private?", hint: "In private = en privé, loin des autres. Talk in private = avoir une conversation privée.", _isSentence: true },
+    { q: "Je m'en occupe.", opts: ["I'll handle this.","I'll do this now.","I'll manage it well.","I'll take this over."], ans: "I'll handle this.", hint: "Handle = s'occuper de, gérer. I'll handle this = je m'en occupe (prise en charge).", _isSentence: true },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -4452,6 +4460,24 @@ const _GFIX_SERIES = {
       { q: "Quelles sont vos forces ?", opts: ['What are your strengths?','What are your skills?','What are your goals?','What are your interests?'], ans: 'What are your strengths?', hint: "Strengths (pluriel de strength) = forces, points forts.", _isSentence: true },
       { q: "Interest signifie :", opts: ['Intérêt','Expertise','Capacité','Force'], ans: 'Intérêt', hint: "Interest = intérêt, centre d'intérêt (ce qui vous passionne)." },
       { q: "Quels sont vos objectifs de carrière ?", opts: ['What are your career goals?','What are your career plans?','What do you want to achieve?','What are your ambitions?'], ans: 'What are your career goals?', hint: "Career goals = objectifs de carrière. Goals = buts, objectifs à atteindre.", _isSentence: true },
+    ],
+  ],
+  'at-work-phrases': [
+    [
+      { q: "Restons en contact.", opts: ["Let's keep in touch.","Let's stay connected.","Let's remain friends.","Let's keep close."], ans: "Let's keep in touch.", hint: "Keep in touch = rester en contact, ne pas se perdre de vue.", _isSentence: true },
+      { q: "Peux-tu clarifier ce point, s'il te plaît ?", opts: ["Could you please clarify this point?","Can you explain this point?","Would you mind clarifying?","Please explain this issue."], ans: "Could you please clarify this point?", hint: "Could you please = formule très polie. Clarify = clarifier, expliquer plus clairement.", _isSentence: true },
+      { q: "Organisons nos tâches.", opts: ["Let's organize our tasks.","Let's plan our work.","Let's sort our duties.","Let's structure our day."], ans: "Let's organize our tasks.", hint: "Let's + verbe = proposer de faire quelque chose ensemble. Tasks = tâches à accomplir.", _isSentence: true },
+      { q: "J'ai presque terminé.", opts: ["I'm almost finished.","I'm nearly done.","I'm about to finish.","I'm nearly there."], ans: "I'm almost finished.", hint: "Almost = presque. I'm almost finished = j'ai presque terminé / j'en suis presque à la fin.", _isSentence: true },
+      { q: "Nous devons établir des priorités.", opts: ["We need to prioritize.","We need to organize.","We need to plan more.","We need to focus better."], ans: "We need to prioritize.", hint: "Prioritize = prioriser, décider ce qui est le plus urgent et important à traiter en premier.", _isSentence: true },
+      { q: "Merci pour ton soutien.", opts: ["Thanks for your support.","Thanks for your help.","Thanks for your effort.","Thanks for your presence."], ans: "Thanks for your support.", hint: "Support = soutien (aide morale ou pratique). Thanks for = merci pour.", _isSentence: true },
+    ],
+    [
+      { q: "Pouvons-nous réfléchir ensemble ?", opts: ["Can we brainstorm together?","Can we think together?","Can we plan together?","Can we work together?"], ans: "Can we brainstorm together?", hint: "Brainstorm = faire un brainstorming (réfléchir librement à plusieurs pour générer des idées).", _isSentence: true },
+      { q: "Résolvons ce problème ensemble.", opts: ["Let's solve this problem together.","Let's fix this together.","Let's deal with this together.","Let's tackle this together."], ans: "Let's solve this problem together.", hint: "Solve a problem = résoudre un problème. Together = ensemble (coopération).", _isSentence: true },
+      { q: "'Workload' signifie :", opts: ['Charge de travail','Liste de tâches','Planning quotidien','Réunion de travail'], ans: 'Charge de travail', hint: "Workload = charge de travail (la quantité de travail à accomplir par une personne ou une équipe)." },
+      { q: "'Due' dans un contexte pro signifie :", opts: ['Attendu / prévu pour une date','Terminé et livré','En cours de révision','Reporté à plus tard'], ans: 'Attendu / prévu pour une date', hint: "Due = attendu pour une date précise. This report is due today = ce rapport est à rendre aujourd'hui." },
+      { q: "Je te tiendrai informé.", opts: ["I'll keep you updated.","I'll keep you informed.","I'll let you know later.","I'll send you an update."], ans: "I'll keep you updated.", hint: "Keep someone updated = tenir quelqu'un au courant (updated = mis à jour). Très courant dans un contexte pro.", _isSentence: true },
+      { q: "'Prioritize' signifie :", opts: ['Établir des priorités','Organiser son agenda','Gérer son temps','Planifier ses réunions'], ans: 'Établir des priorités', hint: "Prioritize = prioriser, choisir ce qui est le plus urgent et important à faire en premier." },
     ],
   ],
 };
