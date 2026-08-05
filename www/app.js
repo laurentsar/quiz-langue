@@ -1409,6 +1409,7 @@ function startGrammarQuiz(topicId) {
   state.level = 'Global';
   state.badge = topicId ? (grammarData && grammarData.find(t => t.id === topicId) ? grammarData.find(t => t.id === topicId).title : topicId) : 'Grammaire';
   state.mode = 'srs';
+  state.onQuizFinish = null;
   state.questions = shuffle(items).map(item => {
     const q = buildGrammarQuestion(item);
     q.word = 'gen-' + item.topic;
@@ -4549,6 +4550,7 @@ function startGrammarQuizSeries(topicId, seriesIdx) {
   state.level = 'Global';
   state.badge = `${topicTitle} — S${seriesIdx + 1}`;
   state.mode = 'srs';
+  state.onQuizFinish = null;
   state.grammarSeriesKey = `${topicId}:${seriesIdx}`;
   state.questions = bank.map(t => {
     const item = _mkItem(topicId, t.q, shuffle([...t.opts]), t.ans, t.hint);
