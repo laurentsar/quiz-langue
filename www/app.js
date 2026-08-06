@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.08';
+const APP_VERSION = '3.09';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -3006,6 +3006,14 @@ const _GFIX = {
     { q: "Je dois y aller.", opts: ["I've got to go.","I have to go now.","I need to leave.","I should head off."], ans: "I've got to go.", hint: "I've got to go = je dois y aller (contraction informelle de 'I have got to go').", _isSentence: true },
     { q: "À plus tard.", opts: ["See you later.","See you soon.","See you.","Catch you later."], ans: "See you later.", hint: "See you later = à plus tard. Later = plus tard (délai vague). ≠ See you soon (bientôt).", _isSentence: true },
   ],
+  'tired-expressions': [
+    { q: "Je suis fatigué.", opts: ["I'm tired.","I'm beat.","I'm drained.","I'm worn out."], ans: "I'm tired.", hint: "I'm tired = Je suis fatigué (l'expression la plus neutre et la plus courante).", _isSentence: true },
+    { q: "Je suis claqué.", opts: ["I'm beat.","I'm tired.","I'm exhausted.","I'm drained."], ans: "I'm beat.", hint: "I'm beat = Je suis claqué (très familier, idée d'être à plat comme après un combat).", _isSentence: true },
+    { q: "Je suis vidé.", opts: ["I'm drained.","I'm tired.","I'm worn out.","I feel drowsy."], ans: "I'm drained.", hint: "I'm drained = Je suis vidé (de 'to drain' = vider, comme une batterie déchargée).", _isSentence: true },
+    { q: "Je suis épuisé.", opts: ["I'm exhausted.","I'm dead tired.","I'm worn out.","I'm beat."], ans: "I'm exhausted.", hint: "I'm exhausted = Je suis épuisé (degré fort de fatigue, de 'to exhaust' = épuiser).", _isSentence: true },
+    { q: "Je suis mort de fatigue.", opts: ["I'm dead tired.","I'm exhausted.","I'm so sleepy.","I'm drained."], ans: "I'm dead tired.", hint: "I'm dead tired = Je suis mort de fatigue (dead amplifie tired de façon expressive).", _isSentence: true },
+    { q: "J'ai besoin de repos.", opts: ["I need some rest.","I'm so sleepy.","I feel drowsy.","I'm worn out."], ans: "I need some rest.", hint: "I need some rest = J'ai besoin de repos (rest = repos, need = avoir besoin).", _isSentence: true },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -4504,6 +4512,24 @@ const _GFIX_SERIES = {
       { q: "Quelle expression utilise 'catch' ?", opts: ["Catch you later.","See you later.","Talk to you later.","Speak soon."], ans: "Catch you later.", hint: "Catch you later = on se rattrape plus tard. Catch = rattraper, rejoindre quelqu'un." },
       { q: "Pour dire 'Je dois y aller' (contraction informelle) :", opts: ["I've got to go.","I have to go.","I need to leave.","I must go now."], ans: "I've got to go.", hint: "I've got to go = I have got to go (contraction). Got to = have to. Très oral et informel." },
       { q: "Différence entre 'See you soon' et 'See you later' :", opts: ["Soon = bientôt, Later = plus tard","Aucune différence","Soon = formel, Later = informel","Soon = oral, Later = écrit"], ans: "Soon = bientôt, Later = plus tard", hint: "See you soon (à bientôt) → délai court. See you later (à plus tard) → délai vague." },
+    ],
+  ],
+  'tired-expressions': [
+    [
+      { q: "Beat (familier) signifie :", opts: ["Claqué / épuisé","Battu / frappé","Vaincu","Assommé"], ans: "Claqué / épuisé", hint: "I'm beat (fam.) = Je suis claqué / à plat. Ne pas confondre avec beat = battre ou rythme musical." },
+      { q: "Drained signifie :", opts: ["Vidé / épuisé","Mouillé","Stressé","Drainé"], ans: "Vidé / épuisé", hint: "Drained = vidé (comme un réservoir vide). To drain = vider, drainer." },
+      { q: "Worn out signifie :", opts: ["Crevé / usé","Porté dehors","Fatigué seulement","Brisé"], ans: "Crevé / usé", hint: "Worn out = crevé (personne) ou usé (objet). Wear out = épuiser, user jusqu'à l'usure." },
+      { q: "Je me sens somnolent.", opts: ["I feel drowsy.","I feel sleepy.","I feel tired.","I feel drained."], ans: "I feel drowsy.", hint: "Drowsy = somnolent (envie de s'assoupir, souvent après un repas ou un médicament).", _isSentence: true },
+      { q: "J'ai tellement sommeil.", opts: ["I'm so sleepy.","I'm so tired.","I feel so drowsy.","I'm dead tired."], ans: "I'm so sleepy.", hint: "Sleepy = qui a sommeil (l'envie de dormir). So = tellement.", _isSentence: true },
+      { q: "Je suis crevé.", opts: ["I'm worn out.","I'm beat.","I'm exhausted.","I'm drained."], ans: "I'm worn out.", hint: "I'm worn out = Je suis crevé (worn out vient de 'wear out' = user jusqu'à l'usure).", _isSentence: true },
+    ],
+    [
+      { q: "Exhausted signifie :", opts: ["Épuisé","Claqué","Somnolent","Fatigué"], ans: "Épuisé", hint: "Exhausted = épuisé. Intensité croissante : tired → beat/drained/worn out → exhausted/dead tired." },
+      { q: "Quelle expression décrit la somnolence (envie de s'assoupir) ?", opts: ["I feel drowsy.","I'm drained.","I'm beat.","I'm worn out."], ans: "I feel drowsy.", hint: "Drowsy = somnolent (envie de s'assoupir, différent de 'tired' qui est une fatigue générale)." },
+      { q: "Rest signifie :", opts: ["Repos","Reste","Repose","Arrêt"], ans: "Repos", hint: "Rest = repos. To rest = se reposer. Some rest = un peu de repos. The rest = le reste." },
+      { q: "Quelle est la traduction correcte de 'Je suis claqué' ?", opts: ["I'm beat.","I'm bored.","I'm done.","I feel lazy."], ans: "I'm beat.", hint: "I'm beat (fam.) = Je suis claqué. Bored = ennuyé. Done = terminé. Lazy = paresseux." },
+      { q: "Laquelle de ces expressions est la PLUS intense ?", opts: ["I'm dead tired.","I'm tired.","I feel drowsy.","I need some rest."], ans: "I'm dead tired.", hint: "'Dead tired' est la plus forte : mort de fatigue. Tired = neutre. Drowsy = somnolent seulement." },
+      { q: "Quel adjectif vient du verbe 'to drain' (vider) ?", opts: ["Drained","Tired","Sleepy","Worn"], ans: "Drained", hint: "Drained vient de 'to drain' = vider. I'm drained = je suis vidé (comme une batterie à plat)." },
     ],
   ],
 };

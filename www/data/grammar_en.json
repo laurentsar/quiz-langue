@@ -6271,5 +6271,33 @@
         ]
       }
     ]
+  },
+  {
+    "id": "tired-expressions",
+    "title": "Je suis fatigué",
+    "subtitle": "9 façons de dire 'Je suis fatigué' en anglais",
+    "sections": [
+      {
+        "heading": "Les 9 expressions",
+        "points": [
+          "I'm tired. → Je suis fatigué.",
+          "I'm beat. → Je suis claqué.",
+          "I'm drained. → Je suis vidé.",
+          "I'm worn out. → Je suis crevé.",
+          "I'm exhausted. → Je suis épuisé.",
+          "I feel drowsy. → Je me sens somnolent.",
+          "I'm dead tired. → Je suis mort de fatigue.",
+          "I'm so sleepy. → J'ai tellement sommeil.",
+          "I need some rest. → J'ai besoin de repos."
+        ],
+        "tip": "Du plus neutre au plus intense : tired → beat / drained / worn out → exhausted / dead tired. Drowsy = somnolent (envie de s'assoupir). Sleepy = qui a sommeil. Beat et drained sont très familiers. I need some rest exprime un besoin plutôt qu'un état.",
+        "examples": [
+          "I'm beat after that match — I need some rest.",
+          "She was so drained after the meeting that she fell asleep.",
+          "He's dead tired — he hasn't slept in two days.",
+          "I feel drowsy after lunch. I might take a nap."
+        ]
+      }
+    ]
   }
 ]
