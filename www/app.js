@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.10';
+const APP_VERSION = '3.11';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -143,7 +143,12 @@ function pickSession(mode) {
   const now = Date.now();
   let picks;
   if (mode === 'review') {
-    picks = shuffle(wrongList(words, srs)).slice(0, state.count);
+    const wrong = shuffle(wrongList(words, srs));
+    const wrongSet = new Set(wrong.map(w => w.word));
+    const due = dueList(words, srs, now).filter(w => !wrongSet.has(w.word));
+    const fresh = newList(words, srs).filter(w => !wrongSet.has(w.word));
+    picks = wrong.concat(due).concat(fresh).slice(0, state.count);
+    const used = new Set(); picks = picks.filter(w => !used.has(w.word) && used.add(w.word));
   } else {
     const due = dueList(words, srs, now);
     const fresh = newList(words, srs);
@@ -443,8 +448,9 @@ function renderStats() {
   $('stat-seen').textContent = `${seen} / ${words.length}`;
   $('stat-mastered').textContent = mastered;
   $('stat-due').textContent = due;
-  $('review-count').textContent = wrong;
-  $('btn-review').disabled = wrong === 0;
+  const reviewCount = wrong + due;
+  $('review-count').textContent = reviewCount || newList(words, srs).length;
+  $('btn-review').disabled = false;
   renderGrammarExpressCard();
   renderMixedBrowseCard();
 }
@@ -940,7 +946,7 @@ function finishQuiz() {
   }
 
   $('result-sub').textContent = _dailyResultSub
-    || (state.mode === 'review' ? 'Révision des erreurs terminée' : 'Quiz terminé');
+    || (state.mode === 'review' ? 'Révision terminée' : 'Quiz terminé');
   $('result-score').textContent = `${score}/${total}`;
   const wbox = $('result-wrong');
   if (wrong.length) {
