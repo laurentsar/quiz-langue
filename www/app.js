@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.12';
+const APP_VERSION = '3.13';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -3042,6 +3042,30 @@ const _GFIX = {
     { q: "WHOM est la forme _____ de WHO :", opts: ["Objet (complément)","Sujet","Possessif","Pluriel"], ans: "Objet (complément)", hint: "WHOM = forme objet de WHO. Whom did you call? = Qui as-tu appelé ? (informel : Who did you call?)" },
     { q: "À qui est ce téléphone ?", opts: ["Whose phone is this?","Who has this phone?","Which phone is yours?","Where is my phone?"], ans: "Whose phone is this?", hint: "WHOSE = à qui (possession). Whose phone is this? → It's mine.", _isSentence: true },
   ],
+  'grow-phrasal-verbs': [
+    { q: "Grow apart signifie :", opts: ["S'éloigner l'un de l'autre","Grandir ensemble","Se rapprocher","Se séparer brusquement"], ans: "S'éloigner l'un de l'autre", hint: "Grow apart = s'éloigner (perdre le lien d'une relation). 'We've grown apart' = on s'est éloignés." },
+    { q: "Grow up signifie :", opts: ["Grandir / Devenir adulte","Monter en haut","Cultiver des plantes","Développer une habitude"], ans: "Grandir / Devenir adulte", hint: "Grow up = grandir, devenir adulte. 'I grew up in a small village.' / 'Grow up!' = arrête de faire l'enfant." },
+    { q: "Grow out of signifie :", opts: ["Devenir trop grand pour","Sortir en grimpant","Se désintéresser de","Grandir vers l'extérieur"], ans: "Devenir trop grand pour", hint: "Grow out of = devenir trop grand pour (vêtements). Aussi : dépasser une phase. 'He grew out of his shyness.'" },
+    { q: "Grow on someone signifie :", opts: ["Finir par apprécier quelque chose","Pousser sur quelqu'un","Envahir quelqu'un","Impressionner quelqu'un"], ans: "Finir par apprécier quelque chose", hint: "Grow on someone = finir par aimer quelque chose qu'on n'aimait pas au départ. 'The idea grew on me.'" },
+    { q: "Grow back signifie :", opts: ["Repousser","Reculer","Revenir en arrière","Retomber"], ans: "Repousser", hint: "Grow back = repousser (cheveux, ongles, plantes). 'Nails grow back very quickly.'" },
+    { q: "Grow into signifie :", opts: ["Évoluer en / Devenir (avec le temps)","Entrer dans","Cultiver à l'intérieur","Grandir vers"], ans: "Évoluer en / Devenir (avec le temps)", hint: "Grow into = évoluer en, devenir au fil du temps. 'The boy grew into a responsible man.' Aussi : devenir assez grand pour (vêtements)." },
+  ],
+  'credible-expressions': [
+    { q: "Franchement,", opts: ["Frankly,","Honestly,","To be honest,","To tell the truth,"], ans: "Frankly,", hint: "Frankly = franchement (direct, parfois tranchant). 'Frankly, I disagree.' Plus assertif que 'Honestly'.", _isSentence: true },
+    { q: "Il me semble que", opts: ["It seems to me that","I think that","I would say that","From my point of view,"], ans: "It seems to me that", hint: "It seems to me that = il me semble que (impression personnelle nuancée, moins affirmatif que 'I think').", _isSentence: true },
+    { q: "Ce que je veux dire, c'est que", opts: ["What I mean is that","What I say is that","What I think is that","What I know is that"], ans: "What I mean is that", hint: "What I mean is that = ce que je veux dire, c'est que (clarification ou reformulation de sa propre pensée).", _isSentence: true },
+    { q: "Pour être honnête,", opts: ["To be honest,","To be frank,","To tell the truth,","Honestly,"], ans: "To be honest,", hint: "To be honest = pour être honnête (introduit une confidence ou une vérité difficile à dire).", _isSentence: true },
+    { q: "D'après moi,", opts: ["In my view,","In my opinion,","From my point of view,","I think that"], ans: "In my view,", hint: "In my view = d'après moi (légèrement plus formel que 'In my opinion'). Les deux expriment un point de vue personnel.", _isSentence: true },
+    { q: "À vrai dire,", opts: ["To tell the truth,","To be honest,","Actually,","Frankly,"], ans: "To tell the truth,", hint: "To tell the truth = à vrai dire (révélation d'une vérité qu'on hésitait à dire). 'To tell the truth, I wasn't sure.'", _isSentence: true },
+  ],
+  'church-expressions': [
+    { q: "Que Dieu te bénisse.", opts: ["God bless you.","May God guide you.","Praise the LORD.","Let's pray."], ans: "God bless you.", hint: "God bless you = Que Dieu te bénisse (bless = bénir). Expression très courante après un éternuement ou pour prendre congé.", _isSentence: true },
+    { q: "Gloire à Dieu.", opts: ["Praise the LORD.","God bless you.","Joy in the LORD.","Let's sing for the LORD."], ans: "Praise the LORD.", hint: "Praise the LORD = Gloire à Dieu / Louange au Seigneur (praise = louer, glorifier).", _isSentence: true },
+    { q: "Prions ensemble.", opts: ["Let's pray.","Let's sing.","Let's go to church.","May God guide."], ans: "Let's pray.", hint: "Let's pray = Prions (Let's + base verbale = invitation à faire quelque chose ensemble). Pray = prier.", _isSentence: true },
+    { q: "Merci pour l'invitation.", opts: ["Thanks for the invitation.","Joy in the house of the LORD.","God bless you.","See you at church."], ans: "Thanks for the invitation.", hint: "Thanks for the invitation = Merci pour l'invitation (Thanks for + nom/gérondif = formule de remerciement).", _isSentence: true },
+    { q: "À bientôt à l'église.", opts: ["See you at church.","Let's go to church.","Church service is starting.","Church Celebration."], ans: "See you at church.", hint: "See you at church = À bientôt à l'église. See you at + lieu = formule d'au revoir avec rendez-vous.", _isSentence: true },
+    { q: "Chantons pour le Seigneur.", opts: ["Let's sing for the LORD.","Let's pray for the LORD.","Praise the LORD.","Joy in the house of the LORD."], ans: "Let's sing for the LORD.", hint: "Let's sing for the LORD = Chantons pour le Seigneur (LORD en majuscules = référence à Dieu dans la tradition chrétienne).", _isSentence: true },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -4594,6 +4618,52 @@ const _GFIX_SERIES = {
       { q: "WHOSE signifie :", opts: ["De qui / À qui","Qui (sujet)","Où","Lequel"], ans: "De qui / À qui", hint: "WHOSE interroge sur le possesseur. Whose is this? = C'est à qui ? / De qui est-ce ?" },
       { q: "Lequel veux-tu ?", opts: ["Which one do you want?","What one do you want?","Who do you want?","Where do you want?"], ans: "Which one do you want?", hint: "WHICH one = lequel. One fait référence à un objet déjà mentionné.", _isSentence: true },
       { q: "Quelle question utilise WHOM correctement ?", opts: ["Whom did you invite?","Whom is coming?","Whom book is this?","Whom do you live?"], ans: "Whom did you invite?", hint: "WHOM = objet (you invited WHOM → whom). 'Whom is coming?' est faux (sujet → who). Whose book, où → where." },
+    ],
+  ],
+  'grow-phrasal-verbs': [
+    [
+      { q: "Grow from signifie :", opts: ["Résulter de / Se développer à partir de","Cultiver depuis","Grandir depuis","Provenir physiquement de"], ans: "Résulter de / Se développer à partir de", hint: "Grow from = résulter de, émerger de. 'Mutual understanding grew from the discussions.'" },
+      { q: "Grow together signifie :", opts: ["Se rapprocher progressivement","Pousser côte à côte","Vieillir ensemble","Travailler en équipe"], ans: "Se rapprocher progressivement", hint: "Grow together = tisser un lien plus fort progressivement. ≠ Grow apart (s'éloigner)." },
+      { q: "Grow out (cheveux) signifie :", opts: ["Laisser repousser pour effacer une coupe/teinture","Couper très court","Raser","Teindre à nouveau"], ans: "Laisser repousser pour effacer une coupe/teinture", hint: "Grow out = laisser les cheveux repousser jusqu'à ce que la coupe ou la teinture disparaisse." },
+      { q: "Quelle phrase utilise 'grow apart' correctement ?", opts: ["We've grown apart since she moved away.","They grew apart the mountain quickly.","She grew apart her sister.","He grew apart with old age."], ans: "We've grown apart since she moved away.", hint: "Grow apart est intransitif — pas d'objet direct. 'They grew apart' = ils se sont éloignés." },
+      { q: "Traduction : 'The boy grew into a responsible man.'", opts: ["Le garçon est devenu un homme responsable.","Le garçon a grandi vers un homme responsable.","Le garçon s'est développé dans un homme.","Le garçon a grandi à l'intérieur d'un homme."], ans: "Le garçon est devenu un homme responsable.", hint: "Grow into + nom = évoluer en, devenir (changement progressif au fil du temps)." },
+      { q: "Traduction : 'The idea is growing on me.'", opts: ["L'idée finit par me plaire.","L'idée pousse sur moi.","L'idée me dépasse.","L'idée me grandit."], ans: "L'idée finit par me plaire.", hint: "Grow on someone = finir par apprécier progressivement. 'It's growing on me' = ça commence à me plaire." },
+    ],
+    [
+      { q: "Différence entre 'grow out' et 'grow out of' :", opts: ["Grow out = cheveux/coupe, Grow out of = vêtements trop petits","Aucune différence","Grow out of = cheveux, Grow out = vêtements","Les deux s'utilisent uniquement pour les cheveux"], ans: "Grow out = cheveux/coupe, Grow out of = vêtements trop petits", hint: "Grow out = laisser repousser les cheveux. Grow out of = devenir trop grand pour (vêtements, habits, phases)." },
+      { q: "Grow out of peut aussi signifier :", opts: ["Dépasser une habitude / une phase","Sortir d'une plante","Grandir hors de","Repousser à l'extérieur"], ans: "Dépasser une habitude / une phase", hint: "Grow out of = aussi : dépasser une phase. 'He grew out of his shyness.' = il a dépassé sa timidité." },
+      { q: "Quelle expression signifie 'finir par aimer' ?", opts: ["Grow on someone","Grow together","Grow from","Grow into"], ans: "Grow on someone", hint: "Grow on someone = finir par apprécier quelque chose. 'This song is growing on me.' = cette chanson commence à me plaire." },
+      { q: "Grow up peut signifier :", opts: ["Grandir (enfance) ET devenir adulte/mature","Monter physiquement","Cultiver en hauteur","Vieillir uniquement"], ans: "Grandir (enfance) ET devenir adulte/mature", hint: "Grow up = passer son enfance ('I grew up in Paris') ET devenir adulte / mûrir ('Grow up!' = arrête de faire l'enfant)." },
+      { q: "Grow from est proche de :", opts: ["Stem from / Come from","Break from","Stay from","Fall from"], ans: "Stem from / Come from", hint: "Grow from ≈ stem from / come from = résulter de, provenir de. 'The conflict grew from a misunderstanding.'" },
+        { q: "Grow together est le contraire de :", opts: ["Grow apart","Grow back","Grow up","Grow out"], ans: "Grow apart", hint: "Grow together (se rapprocher) ↔ Grow apart (s'éloigner). Antonymes parfaits pour décrire l'évolution d'une relation." },
+    ],
+  ],
+  'credible-expressions': [
+    [
+      { q: "In other words reformule :", opts: ["Ce qu'on vient de dire en termes plus clairs","Un exemple concret","Une opposition","Une conclusion"], ans: "Ce qu'on vient de dire en termes plus clairs", hint: "In other words = en d'autres termes (reformulation). 'He's very busy. In other words, he can't make it.'" },
+      { q: "FAUX AMI — 'Actually' signifie :", opts: ["En fait","Actuellement","En ce moment","Vraiment"], ans: "En fait", hint: "Actually ≠ actuellement. Actually = en fait (correction ou précision). Actuellement = currently / at the moment." },
+      { q: "Pour 'par exemple' :", opts: ["For example,","In other words,","That is to say,","In general,"], ans: "For example,", hint: "For example = par exemple. ≈ For instance. 'I enjoy sports, for example, cycling and swimming.'" },
+      { q: "However et Nevertheless expriment tous deux :", opts: ["Une opposition / concession","Une explication","Un exemple","Une conclusion"], ans: "Une opposition / concession", hint: "However (toutefois) et Nevertheless (néanmoins) marquent tous deux une opposition. Nevertheless insiste davantage sur le contraste malgré les faits." },
+      { q: "Quelle expression est proche de 'In my opinion' ?", opts: ["From my point of view,","To tell the truth,","Actually,","In other words,"], ans: "From my point of view,", hint: "From my point of view = de mon point de vue (proche de 'In my opinion', met l'accent sur la perspective personnelle)." },
+      { q: "That said signifie :", opts: ["Cela dit,","C'est-à-dire,","Néanmoins,","Toutefois,"], ans: "Cela dit,", hint: "That said = cela dit (reconnaît ce qui précède avant d'introduire une nuance). 'It's a good plan. That said, there are risks.'" },
+    ],
+  ],
+  'church-expressions': [
+    [
+      { q: "Allons à l'église.", opts: ["Let's go to church.","Let's pray.","See you at church.","Let's celebrate."], ans: "Let's go to church.", hint: "Let's go to church = Allons à l'église. Let's + verbe = invitation collective. Church = église.", _isSentence: true },
+      { q: "L'office commence.", opts: ["Church service is starting.","Church Celebration.","Let's go to church.","Joy in the house of the LORD."], ans: "Church service is starting.", hint: "Church service is starting = L'office commence. Church service = office ou service religieux. Starting = en train de commencer.", _isSentence: true },
+      { q: "Célébration à l'église.", opts: ["Church Celebration.","Church service is starting.","Joy in the house of the LORD.","Let's sing for the LORD."], ans: "Church Celebration.", hint: "Church Celebration = Célébration à l'église, fête religieuse. Désigne un moment de fête communautaire à l'église.", _isSentence: true },
+      { q: "Joie dans la maison du Seigneur.", opts: ["Joy in the house of the LORD.","Praise the LORD.","Let's sing for the LORD.","May God guide you."], ans: "Joy in the house of the LORD.", hint: "Joy in the house of the LORD = Joie dans la maison du Seigneur. Joy = joie, house = maison, LORD = Seigneur.", _isSentence: true },
+      { q: "Que Dieu te guide.", opts: ["May God guide you.","God bless you.","May God open doors.","Let's pray."], ans: "May God guide you.", hint: "May God guide you = Que Dieu te guide. May + sujet + verbe = souhait ou prière. Guide = guider, orienter.", _isSentence: true },
+      { q: "Que Dieu ouvre des portes.", opts: ["May God open doors.","May God guide you.","God bless you.","Joy in the house of the LORD."], ans: "May God open doors.", hint: "May God open doors = Que Dieu ouvre des portes (souhait d'opportunités). Open doors = ouvrir des portes, créer des opportunités.", _isSentence: true },
+    ],
+    [
+      { q: "Bless signifie :", opts: ["Bénir","Prier","Louer","Guider"], ans: "Bénir", hint: "Bless = bénir. God bless you = Que Dieu te bénisse. To bless = accorder une bénédiction divine." },
+      { q: "Praise signifie :", opts: ["Louer / Glorifier","Prier","Bénir","Chanter"], ans: "Louer / Glorifier", hint: "Praise = louer, glorifier. Praise the LORD = Gloire à Dieu. Praise (nom) = louange, éloge." },
+      { q: "Pray signifie :", opts: ["Prier","Louer","Bénir","Chanter"], ans: "Prier", hint: "Pray = prier. Let's pray = Prions. Prayer (nom) = prière. Pray for someone = prier pour quelqu'un." },
+      { q: "LORD (tout en majuscules) désigne :", opts: ["Dieu / le Seigneur (tradition chrétienne)","Un titre royal","Un chef de communauté","Un professeur religieux"], ans: "Dieu / le Seigneur (tradition chrétienne)", hint: "LORD en majuscules = le Seigneur / Dieu dans la Bible. Lord (minuscules) = seigneur, titre de noblesse ou de respect." },
+      { q: "May God... est une formule de :", opts: ["Souhait / Prière","Ordre","Question","Reproche"], ans: "Souhait / Prière", hint: "May + sujet + verbe = souhait ou prière en anglais. May God bless you = Que Dieu te bénisse. May God open doors = Que Dieu t'ouvre des portes." },
+      { q: "Church service signifie :", opts: ["Office religieux / Service religieux","Construction d'église","Service communautaire","Chorale d'église"], ans: "Office religieux / Service religieux", hint: "Church service = office religieux, service religieux (la célébration à l'église). 'Church service is starting' = L'office commence." },
     ],
   ],
 };
