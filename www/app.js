@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.05';
+const APP_VERSION = '3.12';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -143,7 +143,12 @@ function pickSession(mode) {
   const now = Date.now();
   let picks;
   if (mode === 'review') {
-    picks = shuffle(wrongList(words, srs)).slice(0, state.count);
+    const wrong = shuffle(wrongList(words, srs));
+    const wrongSet = new Set(wrong.map(w => w.word));
+    const due = dueList(words, srs, now).filter(w => !wrongSet.has(w.word));
+    const fresh = newList(words, srs).filter(w => !wrongSet.has(w.word));
+    picks = wrong.concat(due).concat(fresh).slice(0, state.count);
+    const used = new Set(); picks = picks.filter(w => !used.has(w.word) && used.add(w.word));
   } else {
     const due = dueList(words, srs, now);
     const fresh = newList(words, srs);
@@ -443,8 +448,9 @@ function renderStats() {
   $('stat-seen').textContent = `${seen} / ${words.length}`;
   $('stat-mastered').textContent = mastered;
   $('stat-due').textContent = due;
-  $('review-count').textContent = wrong;
-  $('btn-review').disabled = wrong === 0;
+  const reviewCount = wrong + due;
+  $('review-count').textContent = reviewCount || newList(words, srs).length;
+  $('btn-review').disabled = false;
   renderGrammarExpressCard();
   renderMixedBrowseCard();
 }
@@ -611,19 +617,20 @@ async function renderMorningCards() {
   if (!serCard || !exCard) return;
 
   const lang = state.lang;
-  const words = state.words && state.words.length ? state.words : await loadWords(lang);
+  const allWords = state.words && state.words.length ? state.words : await loadWords(lang);
+  const words = state.selectedLevels.size ? allWords.filter(w => state.selectedLevels.has(w.level)) : allWords;
   const srs   = getSrs(lang);
   const now   = Date.now();
   const today = morningDate();
   const serKey = `morning_series_${lang}`;
   const exKey  = `morning_express_${lang}`;
 
-  // ── Série du matin (8 mots non maîtrisés) ──
+  // ── Série du matin (10 mots non maîtrisés) ──
   let series = _loadMorning(serKey);
   if (!series) {
     const unseen = shuffle(words.filter(w => !srs[w.word]));
     const lowBox = shuffle(words.filter(w => srs[w.word] && srs[w.word].box < 2));
-    const picks  = [...unseen, ...lowBox].slice(0, 8);
+    const picks  = [...unseen, ...lowBox].slice(0, 10);
     if (picks.length) {
       series = { date: today, words: picks.map(w => w.word), done: false };
       _saveMorning(serKey, series);
@@ -784,7 +791,12 @@ function updateMagazineBtn() {
 async function selectLang(lang) {
   state.lang = lang;
   state.selectedLevels.clear();
-  state.level = 'Global';
+  if (lang === 'en') {
+    state.selectedLevels.add('D');
+    state.level = 'D';
+  } else {
+    state.level = 'Global';
+  }
   state.words = await loadWords(lang);
   renderChips('.lang-chip', lang, 'lang');
   renderLevelChips();
@@ -940,7 +952,7 @@ function finishQuiz() {
   }
 
   $('result-sub').textContent = _dailyResultSub
-    || (state.mode === 'review' ? 'Révision des erreurs terminée' : 'Quiz terminé');
+    || (state.mode === 'review' ? 'Révision terminée' : 'Quiz terminé');
   $('result-score').textContent = `${score}/${total}`;
   const wbox = $('result-wrong');
   if (wrong.length) {
@@ -2982,6 +2994,54 @@ const _GFIX = {
     { q: "We've ___ of time — hurry up!", opts: ['run out','come out','give out','turn out'], ans: 'run out', hint: "Run out of = épuiser le stock / manquer de quelque chose." },
     { q: "Let's ___ at the mall this weekend!", opts: ['hang out','figure out','work out','carry out'], ans: 'hang out', hint: "Hang out = passer du temps ensemble (très familier)." },
   ],
+  'job-interview-phrases': [
+    { q: "Skill signifie :", opts: ['Compétence','Force','Faiblesse','Capacité'], ans: 'Compétence', hint: "Skill = compétence (capacité acquise par l'apprentissage ou l'expérience)." },
+    { q: "Weakness signifie :", opts: ['Faiblesse','Force','Efficacité','Flexibilité'], ans: 'Faiblesse', hint: "Weakness = faiblesse (point faible, opposé de strength)." },
+    { q: "Traduction : 'Parlez-moi de vous.'", opts: ['Tell me about yourself.','Why should we hire you?','What motivates you?','What are your strengths?'], ans: 'Tell me about yourself.', hint: "Tell me about yourself = Parlez-moi de vous (question d'ouverture classique d'entretien).", _isSentence: true },
+    { q: "Comment gérez-vous le stress ?", opts: ['How do you handle stress?','Do you like teamwork?','Why do you want this job?','What are your career goals?'], ans: 'How do you handle stress?', hint: "Handle = gérer, s'en sortir avec. Ici : comment gérez-vous le stress ?", _isSentence: true },
+    { q: "Ability signifie :", opts: ['Capacité','Intérêt','Disponibilité','Expertise'], ans: 'Capacité', hint: "Ability = capacité, aptitude (peut être innée ou acquise)." },
+    { q: "Pourquoi voulez-vous ce poste ?", opts: ['Why do you want this job?','Why should we hire you?','What experience do you have?','What motivates you?'], ans: 'Why do you want this job?', hint: "This job = ce poste / cet emploi. Hire = embaucher.", _isSentence: true },
+  ],
+  'at-work-phrases': [
+    { q: "Dis-moi si tu as besoin d'aide.", opts: ["Let me know if you need help.","Let me help you now.","Tell me if you are free.","Ask me for any help."], ans: "Let me know if you need help.", hint: "Let me know = dis-moi / fais-moi signe. If you need help = si tu as besoin d'aide.", _isSentence: true },
+    { q: "Je te tiendrai informé.", opts: ["I'll keep you updated.","I'll let you know soon.","I'll stay in touch.","I'll tell you everything."], ans: "I'll keep you updated.", hint: "Keep + objet + updated = tenir quelqu'un informé des dernières nouvelles.", _isSentence: true },
+    { q: "Ce rapport est attendu aujourd'hui.", opts: ["This report is due today.","This report is ready today.","This report is done today.","This report is needed soon."], ans: "This report is due today.", hint: "Due = attendu / prévu pour une date précise (deadline). Due today = à rendre aujourd'hui.", _isSentence: true },
+    { q: "Partageons la charge de travail.", opts: ["Let's share the workload.","Let's organize the workload.","Let's divide the tasks.","Let's split the work now."], ans: "Let's share the workload.", hint: "Share the workload = partager la charge de travail. Workload = charge de travail.", _isSentence: true },
+    { q: "Pouvons-nous parler en privé ?", opts: ["Can we talk in private?","Can we meet in private?","Can we speak in secret?","Can we chat privately?"], ans: "Can we talk in private?", hint: "In private = en privé, loin des autres. Talk in private = avoir une conversation privée.", _isSentence: true },
+    { q: "Je m'en occupe.", opts: ["I'll handle this.","I'll do this now.","I'll manage it well.","I'll take this over."], ans: "I'll handle this.", hint: "Handle = s'occuper de, gérer. I'll handle this = je m'en occupe (prise en charge).", _isSentence: true },
+  ],
+  'farewell-expressions': [
+    { q: "À plus.", opts: ["See you.","Goodbye.","Take care.","See you later."], ans: "See you.", hint: "See you = à plus (très court et informel). La forme la plus courte pour dire au revoir.", _isSentence: true },
+    { q: "Je m'en vais.", opts: ["I'm off.","I'm leaving now.","I've got to go.","I'm going out."], ans: "I'm off.", hint: "I'm off = je m'en vais / je pars (très informel et courant). Plus court que 'I have to go'.", _isSentence: true },
+    { q: "À bientôt.", opts: ["See you soon.","See you later.","Talk to you later.","Speak soon."], ans: "See you soon.", hint: "See you soon = à bientôt (soon = bientôt). Ne pas confondre avec 'See you later' (à plus tard).", _isSentence: true },
+    { q: "On se parle plus tard.", opts: ["Talk to you later.","Speak soon.","Catch you later.","See you later."], ans: "Talk to you later.", hint: "Talk to you later = on se parle plus tard. Souvent abrégé en TTYL à l'écrit.", _isSentence: true },
+    { q: "Je dois y aller.", opts: ["I've got to go.","I have to go now.","I need to leave.","I should head off."], ans: "I've got to go.", hint: "I've got to go = je dois y aller (contraction informelle de 'I have got to go').", _isSentence: true },
+    { q: "À plus tard.", opts: ["See you later.","See you soon.","See you.","Catch you later."], ans: "See you later.", hint: "See you later = à plus tard. Later = plus tard (délai vague). ≠ See you soon (bientôt).", _isSentence: true },
+  ],
+  'tired-expressions': [
+    { q: "Je suis fatigué.", opts: ["I'm tired.","I'm beat.","I'm drained.","I'm worn out."], ans: "I'm tired.", hint: "I'm tired = Je suis fatigué (l'expression la plus neutre et la plus courante).", _isSentence: true },
+    { q: "Je suis claqué.", opts: ["I'm beat.","I'm tired.","I'm exhausted.","I'm drained."], ans: "I'm beat.", hint: "I'm beat = Je suis claqué (très familier, idée d'être à plat comme après un combat).", _isSentence: true },
+    { q: "Je suis vidé.", opts: ["I'm drained.","I'm tired.","I'm worn out.","I feel drowsy."], ans: "I'm drained.", hint: "I'm drained = Je suis vidé (de 'to drain' = vider, comme une batterie déchargée).", _isSentence: true },
+    { q: "Je suis épuisé.", opts: ["I'm exhausted.","I'm dead tired.","I'm worn out.","I'm beat."], ans: "I'm exhausted.", hint: "I'm exhausted = Je suis épuisé (degré fort de fatigue, de 'to exhaust' = épuiser).", _isSentence: true },
+    { q: "Je suis mort de fatigue.", opts: ["I'm dead tired.","I'm exhausted.","I'm so sleepy.","I'm drained."], ans: "I'm dead tired.", hint: "I'm dead tired = Je suis mort de fatigue (dead amplifie tired de façon expressive).", _isSentence: true },
+    { q: "J'ai besoin de repos.", opts: ["I need some rest.","I'm so sleepy.","I feel drowsy.","I'm worn out."], ans: "I need some rest.", hint: "I need some rest = J'ai besoin de repos (rest = repos, need = avoir besoin).", _isSentence: true },
+  ],
+  'times-of-day': [
+    { q: "Dawn signifie :", opts: ["L'aube","Le lever du soleil","Le crépuscule","La nuit"], ans: "L'aube", hint: "Dawn = l'aube (la première lueur du jour, avant que le soleil apparaisse à l'horizon)." },
+    { q: "Dusk signifie :", opts: ["Le crépuscule","L'aube","Le coucher du soleil","La soirée"], ans: "Le crépuscule", hint: "Dusk (= twilight) = le crépuscule (lumière déclinante après sunset, avant l'obscurité totale)." },
+    { q: "Noon signifie :", opts: ["Midi","Minuit","Le matin","L'après-midi"], ans: "Midi", hint: "Noon = midi (12h00, le milieu du jour). Attention : midnight = minuit (pas noon)." },
+    { q: "Sunset signifie :", opts: ["Le coucher du soleil","Le lever du soleil","Le crépuscule","Le soir"], ans: "Le coucher du soleil", hint: "Sunset = coucher du soleil (sun = soleil, set = se coucher). ≠ Sunrise (lever du soleil)." },
+    { q: "Afternoon est la période entre :", opts: ["Midi et le soir","Le matin et midi","Le soir et la nuit","L'aube et le matin"], ans: "Midi et le soir", hint: "Afternoon = l'après-midi (12h00–16h00), juste après noon/midi jusqu'au soir." },
+    { q: "Quel mot décrit la première lueur avant que le soleil apparaisse ?", opts: ["Dawn","Sunrise","Dusk","Twilight"], ans: "Dawn", hint: "Dawn = l'aube (premier signe de lumière). Sunrise est le moment où le soleil apparaît à l'horizon." },
+  ],
+  'who-which-where-questions': [
+    { q: "WHO s'utilise pour parler :", opts: ["D'une personne (sujet)","D'un lieu","D'un objet","D'une possession"], ans: "D'une personne (sujet)", hint: "WHO = qui (personne, sujet). Who is your teacher? = Qui est ton professeur ?" },
+    { q: "WHERE s'utilise pour parler :", opts: ["D'un lieu","D'une personne","D'un choix","D'un moment"], ans: "D'un lieu", hint: "WHERE = où (lieu). Where do you live? = Où habites-tu ?" },
+    { q: "WHOSE s'utilise pour demander :", opts: ["À qui appartient quelque chose","Qui fait quelque chose","Où est quelque chose","Lequel choisir"], ans: "À qui appartient quelque chose", hint: "WHOSE = à qui (possession). Whose phone is this? = À qui est ce téléphone ?" },
+    { q: "WHICH s'utilise pour :", opts: ["Un choix parmi un ensemble limité","Demander un lieu","Parler d'une personne","Exprimer une raison"], ans: "Un choix parmi un ensemble limité", hint: "WHICH = lequel/laquelle (choix limité). Which book do you like — this one or that one?" },
+    { q: "WHOM est la forme _____ de WHO :", opts: ["Objet (complément)","Sujet","Possessif","Pluriel"], ans: "Objet (complément)", hint: "WHOM = forme objet de WHO. Whom did you call? = Qui as-tu appelé ? (informel : Who did you call?)" },
+    { q: "À qui est ce téléphone ?", opts: ["Whose phone is this?","Who has this phone?","Which phone is yours?","Where is my phone?"], ans: "Whose phone is this?", hint: "WHOSE = à qui (possession). Whose phone is this? → It's mine.", _isSentence: true },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -4426,6 +4486,114 @@ const _GFIX_SERIES = {
       { q: "The paint ___ the whole wall in seconds.", opts: ['spread across','reached across','looked across','cut across'], ans: 'spread across', hint: "Spread across = s'étaler / se répandre sur toute une surface." },
       { q: "She couldn't ___ the importance of the deadline.", opts: ['get across','go across','spread across','come across'], ans: 'get across', hint: "Get across = faire comprendre / communiquer clairement une idée urgente." },
       { q: "He ___ the old manuscript in the library archives.", opts: ['stumbled across','came across','ran across','went across'], ans: 'stumbled across', hint: "Stumble across = tomber par hasard sur une découverte inattendue." },
+    ],
+  ],
+  'job-interview-phrases': [
+    [
+      { q: "Strength signifie :", opts: ['Force','Faiblesse','Compétence','Flexibilité'], ans: 'Force', hint: "Strength = force, point fort (opposé de weakness = faiblesse)." },
+      { q: "Deadline signifie :", opts: ['Date limite','Efficacité','Disponibilité','Intérêt'], ans: 'Date limite', hint: "Deadline = date limite, délai à ne pas dépasser (dead + line)." },
+      { q: "Aimez-vous travailler en équipe ?", opts: ['Do you like teamwork?','Do you prefer working alone?','How do you handle stress?','What are your strengths?'], ans: 'Do you like teamwork?', hint: "Teamwork = travail en équipe. Like + V-ing = aimer faire quelque chose.", _isSentence: true },
+      { q: "Quelle expérience avez-vous ?", opts: ['What experience do you have?','What are your strengths?','What are your career goals?','What motivates you?'], ans: 'What experience do you have?', hint: "Experience = expérience professionnelle. Do you have = avez-vous ?", _isSentence: true },
+      { q: "Efficiency signifie :", opts: ['Efficacité','Flexibilité','Disponibilité','Capacité'], ans: 'Efficacité', hint: "Efficiency = efficacité (faire plus avec moins, résultat optimal)." },
+      { q: "Pourquoi devrions-nous vous embaucher ?", opts: ['Why should we hire you?','Why do you want this job?','What motivates you?','Tell me about yourself.'], ans: 'Why should we hire you?', hint: "Hire = embaucher (recruter). Should we hire you = devrions-nous vous embaucher ?", _isSentence: true },
+    ],
+    [
+      { q: "Flexibility signifie :", opts: ['Flexibilité','Efficacité','Disponibilité','Intérêt'], ans: 'Flexibilité', hint: "Flexibility = flexibilité (capacité à s'adapter à des situations changeantes)." },
+      { q: "Availability signifie :", opts: ['Disponibilité','Flexibilité','Capacité','Compétence'], ans: 'Disponibilité', hint: "Availability = disponibilité (être disponible pour prendre un poste)." },
+      { q: "Qu'est-ce qui vous motive ?", opts: ['What motivates you?','What inspires you?','What interests you?','What challenges you?'], ans: 'What motivates you?', hint: "Motivate = motiver (ce qui vous pousse à agir et à vous investir).", _isSentence: true },
+      { q: "Quelles sont vos forces ?", opts: ['What are your strengths?','What are your skills?','What are your goals?','What are your interests?'], ans: 'What are your strengths?', hint: "Strengths (pluriel de strength) = forces, points forts.", _isSentence: true },
+      { q: "Interest signifie :", opts: ['Intérêt','Expertise','Capacité','Force'], ans: 'Intérêt', hint: "Interest = intérêt, centre d'intérêt (ce qui vous passionne)." },
+      { q: "Quels sont vos objectifs de carrière ?", opts: ['What are your career goals?','What are your career plans?','What do you want to achieve?','What are your ambitions?'], ans: 'What are your career goals?', hint: "Career goals = objectifs de carrière. Goals = buts, objectifs à atteindre.", _isSentence: true },
+    ],
+  ],
+  'at-work-phrases': [
+    [
+      { q: "Restons en contact.", opts: ["Let's keep in touch.","Let's stay connected.","Let's remain friends.","Let's keep close."], ans: "Let's keep in touch.", hint: "Keep in touch = rester en contact, ne pas se perdre de vue.", _isSentence: true },
+      { q: "Peux-tu clarifier ce point, s'il te plaît ?", opts: ["Could you please clarify this point?","Can you explain this point?","Would you mind clarifying?","Please explain this issue."], ans: "Could you please clarify this point?", hint: "Could you please = formule très polie. Clarify = clarifier, expliquer plus clairement.", _isSentence: true },
+      { q: "Organisons nos tâches.", opts: ["Let's organize our tasks.","Let's plan our work.","Let's sort our duties.","Let's structure our day."], ans: "Let's organize our tasks.", hint: "Let's + verbe = proposer de faire quelque chose ensemble. Tasks = tâches à accomplir.", _isSentence: true },
+      { q: "J'ai presque terminé.", opts: ["I'm almost finished.","I'm nearly done.","I'm about to finish.","I'm nearly there."], ans: "I'm almost finished.", hint: "Almost = presque. I'm almost finished = j'ai presque terminé / j'en suis presque à la fin.", _isSentence: true },
+      { q: "Nous devons établir des priorités.", opts: ["We need to prioritize.","We need to organize.","We need to plan more.","We need to focus better."], ans: "We need to prioritize.", hint: "Prioritize = prioriser, décider ce qui est le plus urgent et important à traiter en premier.", _isSentence: true },
+      { q: "Merci pour ton soutien.", opts: ["Thanks for your support.","Thanks for your help.","Thanks for your effort.","Thanks for your presence."], ans: "Thanks for your support.", hint: "Support = soutien (aide morale ou pratique). Thanks for = merci pour.", _isSentence: true },
+    ],
+    [
+      { q: "Pouvons-nous réfléchir ensemble ?", opts: ["Can we brainstorm together?","Can we think together?","Can we plan together?","Can we work together?"], ans: "Can we brainstorm together?", hint: "Brainstorm = faire un brainstorming (réfléchir librement à plusieurs pour générer des idées).", _isSentence: true },
+      { q: "Résolvons ce problème ensemble.", opts: ["Let's solve this problem together.","Let's fix this together.","Let's deal with this together.","Let's tackle this together."], ans: "Let's solve this problem together.", hint: "Solve a problem = résoudre un problème. Together = ensemble (coopération).", _isSentence: true },
+      { q: "'Workload' signifie :", opts: ['Charge de travail','Liste de tâches','Planning quotidien','Réunion de travail'], ans: 'Charge de travail', hint: "Workload = charge de travail (la quantité de travail à accomplir par une personne ou une équipe)." },
+      { q: "'Due' dans un contexte pro signifie :", opts: ['Attendu / prévu pour une date','Terminé et livré','En cours de révision','Reporté à plus tard'], ans: 'Attendu / prévu pour une date', hint: "Due = attendu pour une date précise. This report is due today = ce rapport est à rendre aujourd'hui." },
+      { q: "Je te tiendrai informé.", opts: ["I'll keep you updated.","I'll keep you informed.","I'll let you know later.","I'll send you an update."], ans: "I'll keep you updated.", hint: "Keep someone updated = tenir quelqu'un au courant (updated = mis à jour). Très courant dans un contexte pro.", _isSentence: true },
+      { q: "'Prioritize' signifie :", opts: ['Établir des priorités','Organiser son agenda','Gérer son temps','Planifier ses réunions'], ans: 'Établir des priorités', hint: "Prioritize = prioriser, choisir ce qui est le plus urgent et important à faire en premier." },
+    ],
+  ],
+  'farewell-expressions': [
+    [
+      { q: "On se parle bientôt.", opts: ["Speak soon.","Talk to you later.","See you soon.","Speak later."], ans: "Speak soon.", hint: "Speak soon = on se parle bientôt (forme courte, souvent en fin d'appel ou par message).", _isSentence: true },
+      { q: "On se rattrape plus tard.", opts: ["Catch you later.","See you later.","Talk to you later.","Meet you later."], ans: "Catch you later.", hint: "Catch you later = on se rattrape plus tard (très familier, image de 'rattraper' quelqu'un).", _isSentence: true },
+      { q: "Je dois partir maintenant.", opts: ["I have to go now.","I've got to go.","I'm off right now.","I need to leave soon."], ans: "I have to go now.", hint: "I have to go now = je dois partir maintenant. Now insiste sur l'urgence immédiate.", _isSentence: true },
+      { q: "Je m'en vais.", opts: ["I'm off.","I'm going.","I'm leaving.","I'm out of here."], ans: "I'm off.", hint: "I'm off = je m'en vais. Forme très courte. On peut aussi dire 'I'm heading off' (je me casse).", _isSentence: true },
+      { q: "On se parle plus tard.", opts: ["Talk to you later.","Speak to you soon.","Call you later.","See you later."], ans: "Talk to you later.", hint: "Talk to you later = on se parle plus tard. Très courant pour finir un appel ou un message.", _isSentence: true },
+      { q: "À plus tard.", opts: ["See you later.","Catch you later.","Talk to you later.","See you soon."], ans: "See you later.", hint: "See you later = à plus tard. Plus vague que 'See you soon' qui implique un délai court.", _isSentence: true },
+    ],
+    [
+      { q: "'Speak soon' correspond à :", opts: ["On se parle bientôt.","On se rattrape plus tard.","On se parle plus tard.","On se retrouve bientôt."], ans: "On se parle bientôt.", hint: "Speak soon = on se parle bientôt. Speak = parler, soon = bientôt." },
+      { q: "'Catch you later' signifie :", opts: ["On se rattrape plus tard.","À plus tard.","On se parle plus tard.","On se retrouve bientôt."], ans: "On se rattrape plus tard.", hint: "Catch you later = on se rattrape plus tard (catch = rattraper, rejoindre quelqu'un)." },
+      { q: "'I'm off' est synonyme de :", opts: ["I have to go now.","See you later.","Talk to you later.","Catch you later."], ans: "I have to go now.", hint: "I'm off = je m'en vais — même sens que 'I have to go now' mais plus bref et informel." },
+      { q: "Quelle expression utilise 'catch' ?", opts: ["Catch you later.","See you later.","Talk to you later.","Speak soon."], ans: "Catch you later.", hint: "Catch you later = on se rattrape plus tard. Catch = rattraper, rejoindre quelqu'un." },
+      { q: "Pour dire 'Je dois y aller' (contraction informelle) :", opts: ["I've got to go.","I have to go.","I need to leave.","I must go now."], ans: "I've got to go.", hint: "I've got to go = I have got to go (contraction). Got to = have to. Très oral et informel." },
+      { q: "Différence entre 'See you soon' et 'See you later' :", opts: ["Soon = bientôt, Later = plus tard","Aucune différence","Soon = formel, Later = informel","Soon = oral, Later = écrit"], ans: "Soon = bientôt, Later = plus tard", hint: "See you soon (à bientôt) → délai court. See you later (à plus tard) → délai vague." },
+    ],
+  ],
+  'tired-expressions': [
+    [
+      { q: "Beat (familier) signifie :", opts: ["Claqué / épuisé","Battu / frappé","Vaincu","Assommé"], ans: "Claqué / épuisé", hint: "I'm beat (fam.) = Je suis claqué / à plat. Ne pas confondre avec beat = battre ou rythme musical." },
+      { q: "Drained signifie :", opts: ["Vidé / épuisé","Mouillé","Stressé","Drainé"], ans: "Vidé / épuisé", hint: "Drained = vidé (comme un réservoir vide). To drain = vider, drainer." },
+      { q: "Worn out signifie :", opts: ["Crevé / usé","Porté dehors","Fatigué seulement","Brisé"], ans: "Crevé / usé", hint: "Worn out = crevé (personne) ou usé (objet). Wear out = épuiser, user jusqu'à l'usure." },
+      { q: "Je me sens somnolent.", opts: ["I feel drowsy.","I feel sleepy.","I feel tired.","I feel drained."], ans: "I feel drowsy.", hint: "Drowsy = somnolent (envie de s'assoupir, souvent après un repas ou un médicament).", _isSentence: true },
+      { q: "J'ai tellement sommeil.", opts: ["I'm so sleepy.","I'm so tired.","I feel so drowsy.","I'm dead tired."], ans: "I'm so sleepy.", hint: "Sleepy = qui a sommeil (l'envie de dormir). So = tellement.", _isSentence: true },
+      { q: "Je suis crevé.", opts: ["I'm worn out.","I'm beat.","I'm exhausted.","I'm drained."], ans: "I'm worn out.", hint: "I'm worn out = Je suis crevé (worn out vient de 'wear out' = user jusqu'à l'usure).", _isSentence: true },
+    ],
+    [
+      { q: "Exhausted signifie :", opts: ["Épuisé","Claqué","Somnolent","Fatigué"], ans: "Épuisé", hint: "Exhausted = épuisé. Intensité croissante : tired → beat/drained/worn out → exhausted/dead tired." },
+      { q: "Quelle expression décrit la somnolence (envie de s'assoupir) ?", opts: ["I feel drowsy.","I'm drained.","I'm beat.","I'm worn out."], ans: "I feel drowsy.", hint: "Drowsy = somnolent (envie de s'assoupir, différent de 'tired' qui est une fatigue générale)." },
+      { q: "Rest signifie :", opts: ["Repos","Reste","Repose","Arrêt"], ans: "Repos", hint: "Rest = repos. To rest = se reposer. Some rest = un peu de repos. The rest = le reste." },
+      { q: "Quelle est la traduction correcte de 'Je suis claqué' ?", opts: ["I'm beat.","I'm bored.","I'm done.","I feel lazy."], ans: "I'm beat.", hint: "I'm beat (fam.) = Je suis claqué. Bored = ennuyé. Done = terminé. Lazy = paresseux." },
+      { q: "Laquelle de ces expressions est la PLUS intense ?", opts: ["I'm dead tired.","I'm tired.","I feel drowsy.","I need some rest."], ans: "I'm dead tired.", hint: "'Dead tired' est la plus forte : mort de fatigue. Tired = neutre. Drowsy = somnolent seulement." },
+      { q: "Quel adjectif vient du verbe 'to drain' (vider) ?", opts: ["Drained","Tired","Sleepy","Worn"], ans: "Drained", hint: "Drained vient de 'to drain' = vider. I'm drained = je suis vidé (comme une batterie à plat)." },
+    ],
+  ],
+  'times-of-day': [
+    [
+      { q: "Sunrise signifie :", opts: ["Le lever du soleil","Le coucher du soleil","L'aube","Le crépuscule"], ans: "Le lever du soleil", hint: "Sunrise = lever du soleil. Sun = soleil, rise = se lever. ≠ Sunset (coucher)." },
+      { q: "Evening correspond à quelle plage horaire ?", opts: ["16h00–18h00","12h00–16h00","18h00–20h00","20h00–minuit"], ans: "16h00–18h00", hint: "Evening = la soirée (4–6 PM). En anglais, evening commence plus tôt qu'en français (avant sunset)." },
+      { q: "Twilight est synonyme de :", opts: ["Dusk","Dawn","Sunset","Night"], ans: "Dusk", hint: "Twilight et Dusk sont synonymes : tous deux désignent le crépuscule (lumière déclinante avant l'obscurité)." },
+      { q: "Quel moment précède immédiatement noon ?", opts: ["Morning","Afternoon","Evening","Dawn"], ans: "Morning", hint: "Morning (6h30–12h00) précède noon (midi). Après noon vient afternoon." },
+      { q: "Midday est synonyme de :", opts: ["Noon","Evening","Morning","Midnight"], ans: "Noon", hint: "Midday = noon = midi (12h00). Mid = milieu, day = jour. ≠ Midnight (minuit)." },
+      { q: "Dans quelle période se situe 7h du matin ?", opts: ["Morning","Dawn","Sunrise","Afternoon"], ans: "Morning", hint: "Morning = 6h30–12h00. 7h est bien dans la matinée. Dawn = avant 6h, Sunrise ≈ 6h–6h30." },
+    ],
+    [
+      { q: "Quelle est la différence entre Dawn et Sunrise ?", opts: ["Dawn = première lueur, Sunrise = soleil visible","Aucune différence","Dawn = après midi, Sunrise = le matin","Dawn = le soir, Sunrise = l'aube"], ans: "Dawn = première lueur, Sunrise = soleil visible", hint: "Dawn précède sunrise : d'abord la première lueur (dawn), puis le soleil apparaît à l'horizon (sunrise)." },
+      { q: "Dusk se produit :", opts: ["Après le coucher du soleil","Avant le lever du soleil","À midi","En début de soirée"], ans: "Après le coucher du soleil", hint: "Dusk = crépuscule, après sunset (18h30–20h00). À ne pas confondre avec dawn (avant sunrise)." },
+      { q: "En anglais, 'Good evening' s'utilise à partir de :", opts: ["~16h00","~12h00","~20h00","~18h30"], ans: "~16h00", hint: "Evening commence vers 16h (4 PM). Good evening peut s'utiliser dès la fin d'après-midi, bien plus tôt qu'en français." },
+      { q: "Que signifie 'I'll see you at noon' ?", opts: ["Je te verrai à midi.","Je te verrai ce soir.","Je te verrai demain matin.","Je te verrai à minuit."], ans: "Je te verrai à midi.", hint: "Noon = midi (12h00). Midnight = minuit. At noon = à midi pile." },
+      { q: "Quel mot désigne la période entre sunset et l'obscurité totale ?", opts: ["Dusk","Dawn","Evening","Morning"], ans: "Dusk", hint: "Dusk (twilight) = transition entre sunset et night (18h30–20h00). Dawn est à l'opposé (avant sunrise)." },
+      { q: "Quel est le contraire de sunrise ?", opts: ["Sunset","Dusk","Dawn","Night"], ans: "Sunset", hint: "Sunrise (lever) ↔ Sunset (coucher). Sun = soleil, rise = se lever, set = se coucher." },
+    ],
+  ],
+  'who-which-where-questions': [
+    [
+      { q: "Où habites-tu ?", opts: ["Where do you live?","Where are you from?","Where do you go?","Where are you?"], ans: "Where do you live?", hint: "WHERE + do you + V = question au présent sur une habitude. Live = habiter, vivre.", _isSentence: true },
+      { q: "Qui est ton professeur ?", opts: ["Who is your teacher?","Whose is the teacher?","Which teacher is yours?","Whom is your teacher?"], ans: "Who is your teacher?", hint: "WHO = qui (sujet, personne). Who is your teacher? → Mr. Smith.", _isSentence: true },
+      { q: "Quelle est la différence entre WHICH et WHAT ?", opts: ["WHICH = choix limité, WHAT = ouvert","Aucune différence","WHAT = personnes, WHICH = choses","WHICH = formel, WHAT = informel"], ans: "WHICH = choix limité, WHAT = ouvert", hint: "WHICH = choix dans un ensemble connu (which colour?). WHAT = question ouverte sans ensemble prédéfini." },
+      { q: "Qui as-tu appelé ? (forme formelle)", opts: ["Whom did you call?","Who did you call?","Which person did you call?","Whose did you call?"], ans: "Whom did you call?", hint: "WHOM = forme objet formelle de WHO. En informel courant, on dit souvent 'Who did you call?'", _isSentence: true },
+      { q: "WHERE peut répondre à :", opts: ["Où… ?","Quand… ?","Pourquoi… ?","Combien… ?"], ans: "Où… ?", hint: "WHERE = où. Il répond toujours à une question de lieu : Where are you? — I'm at home." },
+      { q: "Lequel de ces mots interrogatifs exprime la POSSESSION ?", opts: ["WHOSE","WHO","WHICH","WHERE"], ans: "WHOSE", hint: "WHOSE = possessif interrogatif. Whose = à qui / de qui. ≠ WHO (sujet personne)." },
+    ],
+    [
+      { q: "WHO vs WHOM : laquelle est la forme SUJET ?", opts: ["WHO","WHOM","WHOSE","WHICH"], ans: "WHO", hint: "WHO = sujet (Who called? = Qui a appelé ?). WHOM = objet (Whom did you call? = Qui as-tu appelé ?)." },
+      { q: "Lequel de ces livres préfères-tu ?", opts: ["Which of these books do you prefer?","What of these books do you prefer?","Who of these books do you prefer?","Whose of these books do you prefer?"], ans: "Which of these books do you prefer?", hint: "WHICH + of these = lequel de ces... (choix parmi un ensemble défini).", _isSentence: true },
+      { q: "Dans 'Where are you from?', WHERE demande :", opts: ["L'origine / la provenance","La destination","La durée","Le lieu actuel"], ans: "L'origine / la provenance", hint: "Where are you from? = D'où viens-tu ? (origine). ≠ Where are you? (lieu actuel)." },
+      { q: "WHOSE signifie :", opts: ["De qui / À qui","Qui (sujet)","Où","Lequel"], ans: "De qui / À qui", hint: "WHOSE interroge sur le possesseur. Whose is this? = C'est à qui ? / De qui est-ce ?" },
+      { q: "Lequel veux-tu ?", opts: ["Which one do you want?","What one do you want?","Who do you want?","Where do you want?"], ans: "Which one do you want?", hint: "WHICH one = lequel. One fait référence à un objet déjà mentionné.", _isSentence: true },
+      { q: "Quelle question utilise WHOM correctement ?", opts: ["Whom did you invite?","Whom is coming?","Whom book is this?","Whom do you live?"], ans: "Whom did you invite?", hint: "WHOM = objet (you invited WHOM → whom). 'Whom is coming?' est faux (sujet → who). Whose book, où → where." },
     ],
   ],
 };

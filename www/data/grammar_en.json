@@ -6147,5 +6147,220 @@
         ]
       }
     ]
+  },
+  {
+    "id": "job-interview-phrases",
+    "title": "Entretien d'embauche",
+    "subtitle": "Vocabulaire clé et questions types pour réussir un entretien en anglais",
+    "sections": [
+      {
+        "heading": "Vocabulaire clé",
+        "points": [
+          "Skill → Compétence (capacité acquise)",
+          "Strength → Force (point fort)",
+          "Weakness → Faiblesse (point faible)",
+          "Ability → Capacité (aptitude)",
+          "Expertise → Expertise (domaine de maîtrise)",
+          "Interest → Intérêt (centre d'intérêt)",
+          "Deadline → Date limite",
+          "Efficiency → Efficacité",
+          "Flexibility → Flexibilité",
+          "Availability → Disponibilité"
+        ],
+        "tip": "Strength / Weakness sont souvent demandés en duo : 'What are your strengths and weaknesses?' Strength ↔ Force, Weakness ↔ Faiblesse.",
+        "examples": [
+          "I have strong communication skills.",
+          "My main weakness is that I tend to be a perfectionist.",
+          "I have expertise in data analysis.",
+          "I am available immediately."
+        ]
+      },
+      {
+        "heading": "Questions types d'entretien",
+        "points": [
+          "Tell me about yourself. → Parlez-moi de vous.",
+          "What motivates you? → Qu'est-ce qui vous motive ?",
+          "Why should we hire you? → Pourquoi devrions-nous vous embaucher ?",
+          "What are your career goals? → Quels sont vos objectifs de carrière ?",
+          "What experience do you have? → Quelle expérience avez-vous ?",
+          "What are your strengths? → Quelles sont vos forces ?",
+          "How do you handle stress? → Comment gérez-vous le stress ?",
+          "Do you like teamwork? → Aimez-vous travailler en équipe ?",
+          "Why do you want this job? → Pourquoi voulez-vous ce poste ?"
+        ],
+        "tip": "Handle stress = gérer le stress. Handle = s'en occuper, gérer (sans traduction littérale). Hire = embaucher (recruter). Teamwork = travail en équipe.",
+        "examples": [
+          "Tell me about yourself.",
+          "Why should we hire you?",
+          "How do you handle stress?",
+          "What are your career goals?",
+          "Do you like teamwork?"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "at-work-phrases",
+    "title": "Phrases au travail",
+    "subtitle": "14 expressions clés pour communiquer en anglais dans un contexte professionnel",
+    "sections": [
+      {
+        "heading": "Communication et collaboration",
+        "points": [
+          "Can we talk in private? → Pouvons-nous parler en privé ?",
+          "Let's keep in touch. → Restons en contact.",
+          "Could you please clarify this point? → Peux-tu clarifier ce point, s'il te plaît ?",
+          "Let me know if you need help. → Dis-moi si tu as besoin d'aide.",
+          "Thanks for your support. → Merci pour ton soutien.",
+          "Can we brainstorm together? → Pouvons-nous réfléchir ensemble ?",
+          "Let's solve this problem together. → Résolvons ce problème ensemble."
+        ],
+        "tip": "Let me know = fais-moi signe / dis-moi (très utile pour proposer de l'aide sans imposer). Brainstorm = réfléchir librement à plusieurs pour générer des idées.",
+        "examples": [
+          "Can we talk in private?",
+          "Let me know if you need help.",
+          "Can we brainstorm together?",
+          "Thanks for your support."
+        ]
+      },
+      {
+        "heading": "Organisation et clarté",
+        "points": [
+          "I'll keep you updated. → Je te tiendrai informé.",
+          "Let's organize our tasks. → Organisons nos tâches.",
+          "I'm almost finished. → J'ai presque terminé.",
+          "I'll handle this. → Je m'en occupe.",
+          "This report is due today. → Ce rapport est attendu aujourd'hui.",
+          "We need to prioritize. → Nous devons établir des priorités.",
+          "Let's share the workload. → Partageons la charge de travail."
+        ],
+        "tip": "Due = attendu pour une date précise (deadline). Handle = gérer, s'occuper de. Workload = charge de travail. Prioritize = choisir ce qui est le plus urgent.",
+        "examples": [
+          "I'll keep you updated.",
+          "This report is due today.",
+          "I'll handle this.",
+          "Let's share the workload."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "farewell-expressions",
+    "title": "Dire au revoir",
+    "subtitle": "9 façons informelles de prendre congé en anglais",
+    "sections": [
+      {
+        "heading": "Les 9 expressions",
+        "points": [
+          "See you. → À plus.",
+          "I'm off. → Je m'en vais.",
+          "See you soon. → À bientôt.",
+          "Talk to you later. → On se parle plus tard.",
+          "Speak soon. → On se parle bientôt.",
+          "Catch you later. → On se rattrape plus tard.",
+          "I've got to go. → Je dois y aller.",
+          "I have to go now. → Je dois partir maintenant.",
+          "See you later. → À plus tard."
+        ],
+        "tip": "Attention : See you soon ≠ See you later. Soon = bientôt (délai court). Later = plus tard (délai vague). I'm off = très court et informel (je me barre). I've got to go = contraction de 'I have got to go' (je dois y aller).",
+        "examples": [
+          "I'm off! See you tomorrow.",
+          "I've got to go — talk to you later!",
+          "Catch you later, everyone.",
+          "I have to go now. See you soon."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tired-expressions",
+    "title": "Je suis fatigué",
+    "subtitle": "9 façons de dire 'Je suis fatigué' en anglais",
+    "sections": [
+      {
+        "heading": "Les 9 expressions",
+        "points": [
+          "I'm tired. → Je suis fatigué.",
+          "I'm beat. → Je suis claqué.",
+          "I'm drained. → Je suis vidé.",
+          "I'm worn out. → Je suis crevé.",
+          "I'm exhausted. → Je suis épuisé.",
+          "I feel drowsy. → Je me sens somnolent.",
+          "I'm dead tired. → Je suis mort de fatigue.",
+          "I'm so sleepy. → J'ai tellement sommeil.",
+          "I need some rest. → J'ai besoin de repos."
+        ],
+        "tip": "Du plus neutre au plus intense : tired → beat / drained / worn out → exhausted / dead tired. Drowsy = somnolent (envie de s'assoupir). Sleepy = qui a sommeil. Beat et drained sont très familiers. I need some rest exprime un besoin plutôt qu'un état.",
+        "examples": [
+          "I'm beat after that match — I need some rest.",
+          "She was so drained after the meeting that she fell asleep.",
+          "He's dead tired — he hasn't slept in two days.",
+          "I feel drowsy after lunch. I might take a nap."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "times-of-day",
+    "title": "Les moments de la journée",
+    "subtitle": "9 mots essentiels pour parler du temps qui passe en anglais",
+    "sections": [
+      {
+        "heading": "Du lever au coucher",
+        "points": [
+          "Dawn → L'aube (4h30–6h00) : la première lueur avant que le soleil apparaisse.",
+          "Sunrise → Le lever du soleil (6h00–6h30) : le soleil apparaît à l'horizon.",
+          "Morning → Le matin (6h30–12h00) : du lever du soleil jusqu'à midi.",
+          "Noon / Midday → Midi (12h00) : le milieu de la journée, le soleil est au plus haut.",
+          "Afternoon → L'après-midi (12h00–16h00) : juste après midi jusqu'au soir.",
+          "Evening → La soirée (16h00–18h00) : avant la nuit, la journée se termine.",
+          "Sunset → Le coucher du soleil (18h00–18h30) : le soleil disparaît à l'horizon.",
+          "Dusk / Twilight → Le crépuscule (18h30–20h00) : la lumière déclinante avant l'obscurité totale.",
+          "Night → La nuit (après 20h00) : l'obscurité complète."
+        ],
+        "tip": "Dawn ≠ Sunrise : dawn = la première lueur (avant le soleil), sunrise = le moment où le soleil apparaît. Evening commence vers 16h en anglais, plus tôt qu'en français. Dusk et twilight sont synonymes.",
+        "examples": [
+          "I wake up at dawn to go jogging.",
+          "The sunrise was beautiful this morning.",
+          "Let's meet in the afternoon, around 2 PM.",
+          "The sunset painted the sky orange and pink.",
+          "It gets dark at dusk in winter."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "who-which-where-questions",
+    "title": "WHO, WHOM, WHOSE, WHICH, WHERE",
+    "subtitle": "5 mots interrogatifs : personnes, possession, choix et lieu",
+    "sections": [
+      {
+        "heading": "Personnes et possession : WHO / WHOM / WHOSE",
+        "points": [
+          "WHO → Personne (sujet) : Qui est… ? — Who is your teacher?",
+          "WHOM → Personne (objet) : Qui as-tu appelé ? — Whom did you call?",
+          "WHOSE → Possession : À qui est… ? — Whose phone is this?"
+        ],
+        "tip": "WHO = sujet (Who is calling?). WHOM = objet (Whom did you call? — formel ; Who did you call? en informel). WHOSE demande le possesseur : Whose phone is this? → It's mine.",
+        "examples": [
+          "Who is your teacher? — Mr. Smith.",
+          "Whom did you call? — I called my sister.",
+          "Whose phone is this? — It's mine."
+        ]
+      },
+      {
+        "heading": "Choix et lieu : WHICH / WHERE",
+        "points": [
+          "WHICH → Choix parmi un ensemble limité : Lequel… ? — Which book do you like?",
+          "WHERE → Lieu : Où… ? — Where do you live?"
+        ],
+        "tip": "WHICH implique un choix dans un ensemble connu (which colour — rouge ou bleu ?). WHAT est plus ouvert (what colour do you want ?). WHERE demande toujours un lieu : Where do you live? / Where are you from?",
+        "examples": [
+          "Which book do you like — this one or that one?",
+          "Where do you live? — I live in Paris.",
+          "Which colour do you prefer, red or blue?"
+        ]
+      }
+    ]
   }
 ]
