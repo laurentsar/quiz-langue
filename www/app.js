@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.11';
+const APP_VERSION = '3.12';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -617,19 +617,20 @@ async function renderMorningCards() {
   if (!serCard || !exCard) return;
 
   const lang = state.lang;
-  const words = state.words && state.words.length ? state.words : await loadWords(lang);
+  const allWords = state.words && state.words.length ? state.words : await loadWords(lang);
+  const words = state.selectedLevels.size ? allWords.filter(w => state.selectedLevels.has(w.level)) : allWords;
   const srs   = getSrs(lang);
   const now   = Date.now();
   const today = morningDate();
   const serKey = `morning_series_${lang}`;
   const exKey  = `morning_express_${lang}`;
 
-  // ── Série du matin (8 mots non maîtrisés) ──
+  // ── Série du matin (10 mots non maîtrisés) ──
   let series = _loadMorning(serKey);
   if (!series) {
     const unseen = shuffle(words.filter(w => !srs[w.word]));
     const lowBox = shuffle(words.filter(w => srs[w.word] && srs[w.word].box < 2));
-    const picks  = [...unseen, ...lowBox].slice(0, 8);
+    const picks  = [...unseen, ...lowBox].slice(0, 10);
     if (picks.length) {
       series = { date: today, words: picks.map(w => w.word), done: false };
       _saveMorning(serKey, series);
@@ -790,7 +791,12 @@ function updateMagazineBtn() {
 async function selectLang(lang) {
   state.lang = lang;
   state.selectedLevels.clear();
-  state.level = 'Global';
+  if (lang === 'en') {
+    state.selectedLevels.add('D');
+    state.level = 'D';
+  } else {
+    state.level = 'Global';
+  }
   state.words = await loadWords(lang);
   renderChips('.lang-chip', lang, 'lang');
   renderLevelChips();
