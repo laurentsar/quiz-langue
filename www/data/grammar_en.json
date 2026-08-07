@@ -6299,5 +6299,68 @@
         ]
       }
     ]
+  },
+  {
+    "id": "times-of-day",
+    "title": "Les moments de la journée",
+    "subtitle": "9 mots essentiels pour parler du temps qui passe en anglais",
+    "sections": [
+      {
+        "heading": "Du lever au coucher",
+        "points": [
+          "Dawn → L'aube (4h30–6h00) : la première lueur avant que le soleil apparaisse.",
+          "Sunrise → Le lever du soleil (6h00–6h30) : le soleil apparaît à l'horizon.",
+          "Morning → Le matin (6h30–12h00) : du lever du soleil jusqu'à midi.",
+          "Noon / Midday → Midi (12h00) : le milieu de la journée, le soleil est au plus haut.",
+          "Afternoon → L'après-midi (12h00–16h00) : juste après midi jusqu'au soir.",
+          "Evening → La soirée (16h00–18h00) : avant la nuit, la journée se termine.",
+          "Sunset → Le coucher du soleil (18h00–18h30) : le soleil disparaît à l'horizon.",
+          "Dusk / Twilight → Le crépuscule (18h30–20h00) : la lumière déclinante avant l'obscurité totale.",
+          "Night → La nuit (après 20h00) : l'obscurité complète."
+        ],
+        "tip": "Dawn ≠ Sunrise : dawn = la première lueur (avant le soleil), sunrise = le moment où le soleil apparaît. Evening commence vers 16h en anglais, plus tôt qu'en français. Dusk et twilight sont synonymes.",
+        "examples": [
+          "I wake up at dawn to go jogging.",
+          "The sunrise was beautiful this morning.",
+          "Let's meet in the afternoon, around 2 PM.",
+          "The sunset painted the sky orange and pink.",
+          "It gets dark at dusk in winter."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "who-which-where-questions",
+    "title": "WHO, WHOM, WHOSE, WHICH, WHERE",
+    "subtitle": "5 mots interrogatifs : personnes, possession, choix et lieu",
+    "sections": [
+      {
+        "heading": "Personnes et possession : WHO / WHOM / WHOSE",
+        "points": [
+          "WHO → Personne (sujet) : Qui est… ? — Who is your teacher?",
+          "WHOM → Personne (objet) : Qui as-tu appelé ? — Whom did you call?",
+          "WHOSE → Possession : À qui est… ? — Whose phone is this?"
+        ],
+        "tip": "WHO = sujet (Who is calling?). WHOM = objet (Whom did you call? — formel ; Who did you call? en informel). WHOSE demande le possesseur : Whose phone is this? → It's mine.",
+        "examples": [
+          "Who is your teacher? — Mr. Smith.",
+          "Whom did you call? — I called my sister.",
+          "Whose phone is this? — It's mine."
+        ]
+      },
+      {
+        "heading": "Choix et lieu : WHICH / WHERE",
+        "points": [
+          "WHICH → Choix parmi un ensemble limité : Lequel… ? — Which book do you like?",
+          "WHERE → Lieu : Où… ? — Where do you live?"
+        ],
+        "tip": "WHICH implique un choix dans un ensemble connu (which colour — rouge ou bleu ?). WHAT est plus ouvert (what colour do you want ?). WHERE demande toujours un lieu : Where do you live? / Where are you from?",
+        "examples": [
+          "Which book do you like — this one or that one?",
+          "Where do you live? — I live in Paris.",
+          "Which colour do you prefer, red or blue?"
+        ]
+      }
+    ]
   }
 ]

@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.09';
+const APP_VERSION = '3.10';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -3014,6 +3014,22 @@ const _GFIX = {
     { q: "Je suis mort de fatigue.", opts: ["I'm dead tired.","I'm exhausted.","I'm so sleepy.","I'm drained."], ans: "I'm dead tired.", hint: "I'm dead tired = Je suis mort de fatigue (dead amplifie tired de façon expressive).", _isSentence: true },
     { q: "J'ai besoin de repos.", opts: ["I need some rest.","I'm so sleepy.","I feel drowsy.","I'm worn out."], ans: "I need some rest.", hint: "I need some rest = J'ai besoin de repos (rest = repos, need = avoir besoin).", _isSentence: true },
   ],
+  'times-of-day': [
+    { q: "Dawn signifie :", opts: ["L'aube","Le lever du soleil","Le crépuscule","La nuit"], ans: "L'aube", hint: "Dawn = l'aube (la première lueur du jour, avant que le soleil apparaisse à l'horizon)." },
+    { q: "Dusk signifie :", opts: ["Le crépuscule","L'aube","Le coucher du soleil","La soirée"], ans: "Le crépuscule", hint: "Dusk (= twilight) = le crépuscule (lumière déclinante après sunset, avant l'obscurité totale)." },
+    { q: "Noon signifie :", opts: ["Midi","Minuit","Le matin","L'après-midi"], ans: "Midi", hint: "Noon = midi (12h00, le milieu du jour). Attention : midnight = minuit (pas noon)." },
+    { q: "Sunset signifie :", opts: ["Le coucher du soleil","Le lever du soleil","Le crépuscule","Le soir"], ans: "Le coucher du soleil", hint: "Sunset = coucher du soleil (sun = soleil, set = se coucher). ≠ Sunrise (lever du soleil)." },
+    { q: "Afternoon est la période entre :", opts: ["Midi et le soir","Le matin et midi","Le soir et la nuit","L'aube et le matin"], ans: "Midi et le soir", hint: "Afternoon = l'après-midi (12h00–16h00), juste après noon/midi jusqu'au soir." },
+    { q: "Quel mot décrit la première lueur avant que le soleil apparaisse ?", opts: ["Dawn","Sunrise","Dusk","Twilight"], ans: "Dawn", hint: "Dawn = l'aube (premier signe de lumière). Sunrise est le moment où le soleil apparaît à l'horizon." },
+  ],
+  'who-which-where-questions': [
+    { q: "WHO s'utilise pour parler :", opts: ["D'une personne (sujet)","D'un lieu","D'un objet","D'une possession"], ans: "D'une personne (sujet)", hint: "WHO = qui (personne, sujet). Who is your teacher? = Qui est ton professeur ?" },
+    { q: "WHERE s'utilise pour parler :", opts: ["D'un lieu","D'une personne","D'un choix","D'un moment"], ans: "D'un lieu", hint: "WHERE = où (lieu). Where do you live? = Où habites-tu ?" },
+    { q: "WHOSE s'utilise pour demander :", opts: ["À qui appartient quelque chose","Qui fait quelque chose","Où est quelque chose","Lequel choisir"], ans: "À qui appartient quelque chose", hint: "WHOSE = à qui (possession). Whose phone is this? = À qui est ce téléphone ?" },
+    { q: "WHICH s'utilise pour :", opts: ["Un choix parmi un ensemble limité","Demander un lieu","Parler d'une personne","Exprimer une raison"], ans: "Un choix parmi un ensemble limité", hint: "WHICH = lequel/laquelle (choix limité). Which book do you like — this one or that one?" },
+    { q: "WHOM est la forme _____ de WHO :", opts: ["Objet (complément)","Sujet","Possessif","Pluriel"], ans: "Objet (complément)", hint: "WHOM = forme objet de WHO. Whom did you call? = Qui as-tu appelé ? (informel : Who did you call?)" },
+    { q: "À qui est ce téléphone ?", opts: ["Whose phone is this?","Who has this phone?","Which phone is yours?","Where is my phone?"], ans: "Whose phone is this?", hint: "WHOSE = à qui (possession). Whose phone is this? → It's mine.", _isSentence: true },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -4530,6 +4546,42 @@ const _GFIX_SERIES = {
       { q: "Quelle est la traduction correcte de 'Je suis claqué' ?", opts: ["I'm beat.","I'm bored.","I'm done.","I feel lazy."], ans: "I'm beat.", hint: "I'm beat (fam.) = Je suis claqué. Bored = ennuyé. Done = terminé. Lazy = paresseux." },
       { q: "Laquelle de ces expressions est la PLUS intense ?", opts: ["I'm dead tired.","I'm tired.","I feel drowsy.","I need some rest."], ans: "I'm dead tired.", hint: "'Dead tired' est la plus forte : mort de fatigue. Tired = neutre. Drowsy = somnolent seulement." },
       { q: "Quel adjectif vient du verbe 'to drain' (vider) ?", opts: ["Drained","Tired","Sleepy","Worn"], ans: "Drained", hint: "Drained vient de 'to drain' = vider. I'm drained = je suis vidé (comme une batterie à plat)." },
+    ],
+  ],
+  'times-of-day': [
+    [
+      { q: "Sunrise signifie :", opts: ["Le lever du soleil","Le coucher du soleil","L'aube","Le crépuscule"], ans: "Le lever du soleil", hint: "Sunrise = lever du soleil. Sun = soleil, rise = se lever. ≠ Sunset (coucher)." },
+      { q: "Evening correspond à quelle plage horaire ?", opts: ["16h00–18h00","12h00–16h00","18h00–20h00","20h00–minuit"], ans: "16h00–18h00", hint: "Evening = la soirée (4–6 PM). En anglais, evening commence plus tôt qu'en français (avant sunset)." },
+      { q: "Twilight est synonyme de :", opts: ["Dusk","Dawn","Sunset","Night"], ans: "Dusk", hint: "Twilight et Dusk sont synonymes : tous deux désignent le crépuscule (lumière déclinante avant l'obscurité)." },
+      { q: "Quel moment précède immédiatement noon ?", opts: ["Morning","Afternoon","Evening","Dawn"], ans: "Morning", hint: "Morning (6h30–12h00) précède noon (midi). Après noon vient afternoon." },
+      { q: "Midday est synonyme de :", opts: ["Noon","Evening","Morning","Midnight"], ans: "Noon", hint: "Midday = noon = midi (12h00). Mid = milieu, day = jour. ≠ Midnight (minuit)." },
+      { q: "Dans quelle période se situe 7h du matin ?", opts: ["Morning","Dawn","Sunrise","Afternoon"], ans: "Morning", hint: "Morning = 6h30–12h00. 7h est bien dans la matinée. Dawn = avant 6h, Sunrise ≈ 6h–6h30." },
+    ],
+    [
+      { q: "Quelle est la différence entre Dawn et Sunrise ?", opts: ["Dawn = première lueur, Sunrise = soleil visible","Aucune différence","Dawn = après midi, Sunrise = le matin","Dawn = le soir, Sunrise = l'aube"], ans: "Dawn = première lueur, Sunrise = soleil visible", hint: "Dawn précède sunrise : d'abord la première lueur (dawn), puis le soleil apparaît à l'horizon (sunrise)." },
+      { q: "Dusk se produit :", opts: ["Après le coucher du soleil","Avant le lever du soleil","À midi","En début de soirée"], ans: "Après le coucher du soleil", hint: "Dusk = crépuscule, après sunset (18h30–20h00). À ne pas confondre avec dawn (avant sunrise)." },
+      { q: "En anglais, 'Good evening' s'utilise à partir de :", opts: ["~16h00","~12h00","~20h00","~18h30"], ans: "~16h00", hint: "Evening commence vers 16h (4 PM). Good evening peut s'utiliser dès la fin d'après-midi, bien plus tôt qu'en français." },
+      { q: "Que signifie 'I'll see you at noon' ?", opts: ["Je te verrai à midi.","Je te verrai ce soir.","Je te verrai demain matin.","Je te verrai à minuit."], ans: "Je te verrai à midi.", hint: "Noon = midi (12h00). Midnight = minuit. At noon = à midi pile." },
+      { q: "Quel mot désigne la période entre sunset et l'obscurité totale ?", opts: ["Dusk","Dawn","Evening","Morning"], ans: "Dusk", hint: "Dusk (twilight) = transition entre sunset et night (18h30–20h00). Dawn est à l'opposé (avant sunrise)." },
+      { q: "Quel est le contraire de sunrise ?", opts: ["Sunset","Dusk","Dawn","Night"], ans: "Sunset", hint: "Sunrise (lever) ↔ Sunset (coucher). Sun = soleil, rise = se lever, set = se coucher." },
+    ],
+  ],
+  'who-which-where-questions': [
+    [
+      { q: "Où habites-tu ?", opts: ["Where do you live?","Where are you from?","Where do you go?","Where are you?"], ans: "Where do you live?", hint: "WHERE + do you + V = question au présent sur une habitude. Live = habiter, vivre.", _isSentence: true },
+      { q: "Qui est ton professeur ?", opts: ["Who is your teacher?","Whose is the teacher?","Which teacher is yours?","Whom is your teacher?"], ans: "Who is your teacher?", hint: "WHO = qui (sujet, personne). Who is your teacher? → Mr. Smith.", _isSentence: true },
+      { q: "Quelle est la différence entre WHICH et WHAT ?", opts: ["WHICH = choix limité, WHAT = ouvert","Aucune différence","WHAT = personnes, WHICH = choses","WHICH = formel, WHAT = informel"], ans: "WHICH = choix limité, WHAT = ouvert", hint: "WHICH = choix dans un ensemble connu (which colour?). WHAT = question ouverte sans ensemble prédéfini." },
+      { q: "Qui as-tu appelé ? (forme formelle)", opts: ["Whom did you call?","Who did you call?","Which person did you call?","Whose did you call?"], ans: "Whom did you call?", hint: "WHOM = forme objet formelle de WHO. En informel courant, on dit souvent 'Who did you call?'", _isSentence: true },
+      { q: "WHERE peut répondre à :", opts: ["Où… ?","Quand… ?","Pourquoi… ?","Combien… ?"], ans: "Où… ?", hint: "WHERE = où. Il répond toujours à une question de lieu : Where are you? — I'm at home." },
+      { q: "Lequel de ces mots interrogatifs exprime la POSSESSION ?", opts: ["WHOSE","WHO","WHICH","WHERE"], ans: "WHOSE", hint: "WHOSE = possessif interrogatif. Whose = à qui / de qui. ≠ WHO (sujet personne)." },
+    ],
+    [
+      { q: "WHO vs WHOM : laquelle est la forme SUJET ?", opts: ["WHO","WHOM","WHOSE","WHICH"], ans: "WHO", hint: "WHO = sujet (Who called? = Qui a appelé ?). WHOM = objet (Whom did you call? = Qui as-tu appelé ?)." },
+      { q: "Lequel de ces livres préfères-tu ?", opts: ["Which of these books do you prefer?","What of these books do you prefer?","Who of these books do you prefer?","Whose of these books do you prefer?"], ans: "Which of these books do you prefer?", hint: "WHICH + of these = lequel de ces... (choix parmi un ensemble défini).", _isSentence: true },
+      { q: "Dans 'Where are you from?', WHERE demande :", opts: ["L'origine / la provenance","La destination","La durée","Le lieu actuel"], ans: "L'origine / la provenance", hint: "Where are you from? = D'où viens-tu ? (origine). ≠ Where are you? (lieu actuel)." },
+      { q: "WHOSE signifie :", opts: ["De qui / À qui","Qui (sujet)","Où","Lequel"], ans: "De qui / À qui", hint: "WHOSE interroge sur le possesseur. Whose is this? = C'est à qui ? / De qui est-ce ?" },
+      { q: "Lequel veux-tu ?", opts: ["Which one do you want?","What one do you want?","Who do you want?","Where do you want?"], ans: "Which one do you want?", hint: "WHICH one = lequel. One fait référence à un objet déjà mentionné.", _isSentence: true },
+      { q: "Quelle question utilise WHOM correctement ?", opts: ["Whom did you invite?","Whom is coming?","Whom book is this?","Whom do you live?"], ans: "Whom did you invite?", hint: "WHOM = objet (you invited WHOM → whom). 'Whom is coming?' est faux (sujet → who). Whose book, où → where." },
     ],
   ],
 };
