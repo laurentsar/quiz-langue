@@ -6362,5 +6362,132 @@
         ]
       }
     ]
+  },
+  {
+    "id": "grow-phrasal-verbs",
+    "title": "Phrasal Verbs avec GROW",
+    "subtitle": "10 verbes à particule essentiels avec GROW",
+    "sections": [
+      {
+        "heading": "Relations et évolution personnelle",
+        "points": [
+          "Grow apart → S'éloigner l'un de l'autre (perdre le lien d'une relation)",
+          "Grow from → Résulter de / Se développer à partir de",
+          "Grow into → Évoluer en / Devenir (changement progressif au fil du temps)",
+          "Grow on someone → Finir par apprécier quelque chose qu'on n'aimait pas au départ",
+          "Grow together → Se rapprocher progressivement / Tisser un lien plus fort"
+        ],
+        "tip": "Grow together ↔ Grow apart : antonymes parfaits. Grow on someone = ça finit par plaire : 'It's growing on me'. Grow into + nom = devenir (adulte, personnalité).",
+        "examples": [
+          "We used to be close friends but we've grown apart in recent years.",
+          "Mutual understanding grew from the discussions.",
+          "The undisciplined boy grew into a responsible young man.",
+          "I didn't like his suggestion at first, but the idea grew on me.",
+          "We grew together during our years in boarding school."
+        ]
+      },
+      {
+        "heading": "Croissance physique et quotidien",
+        "points": [
+          "Grow back → Repousser (cheveux, ongles, plantes après coupe)",
+          "Grow into → Devenir assez grand pour rentrer dans (vêtements trop grands)",
+          "Grow out → Laisser repousser pour effacer une coupe ou une teinture",
+          "Grow out of → Devenir trop grand pour (vêtements, chaussures) / Dépasser une habitude",
+          "Grow up → Grandir (passer son enfance) / Devenir adulte ou mature"
+        ],
+        "tip": "Grow out vs Grow out of : 'grow out' = laisser les cheveux repousser ; 'grow out of' = devenir trop grand pour un vêtement, ou dépasser une phase ('He grew out of his shyness'). 'Grow up!' = arrête de faire l'enfant.",
+        "examples": [
+          "We need to cut our nails regularly because they grow back very quickly.",
+          "The coat is a bit big for the girl, but she'll grow into it.",
+          "I don't like my hair permed. Now I'll have to let it grow out!",
+          "My son had already grown out of the shoes I bought him earlier this year.",
+          "I grew up in a small village. — Don't be so childish. You need to grow up!"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "credible-expressions",
+    "title": "Anglais crédible",
+    "subtitle": "19 expressions pour donner son opinion et structurer sa pensée",
+    "sections": [
+      {
+        "heading": "Introduire son opinion (10 expressions)",
+        "points": [
+          "Honestly, → Honnêtement,",
+          "Frankly, → Franchement,",
+          "In my opinion, → À mon avis,",
+          "To be honest, → Pour être honnête,",
+          "I think that → Je pense que",
+          "I would say that → Je dirais que",
+          "It seems to me that → Il me semble que",
+          "In my view, → D'après moi,",
+          "From my point of view, → De mon point de vue,",
+          "What I mean is that → Ce que je veux dire, c'est que"
+        ],
+        "tip": "Honestly / Frankly / To be honest / To tell the truth sont proches mais nuancés : Honestly = adverbe neutre, Frankly = plus direct/tranchant, To be honest = confidence, To tell the truth = révélation. In my opinion ≈ In my view ≈ From my point of view (du plus courant au plus formel).",
+        "examples": [
+          "Honestly, I wasn't expecting that.",
+          "Frankly, I disagree with your decision.",
+          "In my opinion, this is the best solution.",
+          "To be honest, I'm not sure about that.",
+          "What I mean is that we need more time."
+        ]
+      },
+      {
+        "heading": "Connecteurs et nuances (9 expressions)",
+        "points": [
+          "In other words, → En d'autres termes,",
+          "That said, → Cela dit,",
+          "However, → Toutefois / Cependant,",
+          "Nevertheless, → Néanmoins,",
+          "Actually, → En fait,",
+          "To tell the truth, → À vrai dire,",
+          "That is to say, → C'est-à-dire,",
+          "For example, → Par exemple,",
+          "In general, → En général,"
+        ],
+        "tip": "FAUX AMI : Actually ≠ actuellement. Actually = en fait (correction d'une idée). Actuellement = currently / at the moment. However et Nevertheless expriment tous deux une opposition, mais Nevertheless insiste davantage sur le contraste malgré les faits.",
+        "examples": [
+          "He's very busy. In other words, he can't make it.",
+          "It's a good plan. That said, there are risks.",
+          "I like jazz. However, I rarely go to concerts.",
+          "It was raining. Nevertheless, we went for a walk.",
+          "Actually, I think you're right."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "church-expressions",
+    "title": "ÉGLISE / Fête",
+    "subtitle": "12 expressions chrétiennes et de célébration en anglais",
+    "sections": [
+      {
+        "heading": "Expressions chrétiennes et de fête (12 expressions)",
+        "points": [
+          "God bless you → Que Dieu te bénisse (bless = bénir)",
+          "Praise the LORD → Gloire à Dieu / Louange au Seigneur (praise = louer)",
+          "Let's pray → Prions (pray = prier)",
+          "Let's go to church → Allons à l'église",
+          "Church service is starting → L'office commence",
+          "Church Celebration → Célébration à l'église / Fête religieuse",
+          "Thanks for the invitation → Merci pour l'invitation",
+          "Joy in the house of the LORD → Joie dans la maison du Seigneur",
+          "May God guide you → Que Dieu te guide",
+          "Let's sing for the LORD → Chantons pour le Seigneur",
+          "May God open doors → Que Dieu ouvre des portes",
+          "See you at church → À bientôt à l'église"
+        ],
+        "tip": "LORD en majuscules = référence à Dieu dans la tradition chrétienne. May God... est une formule de souhait/prière (Que Dieu...). Let's + verbe = invitation collective (Let's pray = Prions, Let's sing = Chantons). Bless = bénir, Praise = louer/glorifier, Pray = prier.",
+        "examples": [
+          "God bless you! — Thank you, and God bless you too.",
+          "Praise the LORD! The concert was wonderful.",
+          "Let's pray before we start the service.",
+          "See you at church on Sunday!",
+          "May God open doors for you in this new chapter."
+        ]
+      }
+    ]
   }
 ]
