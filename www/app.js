@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.13';
+const APP_VERSION = '3.14';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -234,20 +234,42 @@ function buildQuestion(item, words) {
 // ---------- audio ----------
 function speak(text) {
   const lang = quizTts();
-  // Prefer Android native TTS (reliable inside the app's WebView)
   const cap = window.Capacitor;
   if (cap && cap.Plugins && cap.Plugins.TextToSpeech) {
     try { cap.Plugins.TextToSpeech.stop().catch(() => {}); } catch (e) {}
     cap.Plugins.TextToSpeech.speak({ text, lang, rate: 1.0, pitch: 1.0, volume: 1.0, category: 'playback' }).catch(() => {});
     return;
   }
-  // Web fallback (PWA in a browser)
   try {
     if (!('speechSynthesis' in window)) return;
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
     u.lang = lang;
     u.rate = 0.9;
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+
+function speakFemale(text) {
+  const lang = quizTts();
+  const cap = window.Capacitor;
+  if (cap && cap.Plugins && cap.Plugins.TextToSpeech) {
+    try { cap.Plugins.TextToSpeech.stop().catch(() => {}); } catch (e) {}
+    cap.Plugins.TextToSpeech.speak({ text, lang, rate: 1.0, pitch: 1.2, volume: 1.0, category: 'playback' }).catch(() => {});
+    return;
+  }
+  try {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang;
+    u.rate = 0.9;
+    const voices = speechSynthesis.getVoices();
+    const langCode = lang.split('-')[0];
+    const FEMALE = ['samantha','karen','victoria','fiona','kate','moira','veena','zira','female','google uk english female','google us english'];
+    const voice = voices.find(v => v.lang.startsWith(langCode) && FEMALE.some(n => v.name.toLowerCase().includes(n)))
+                || voices.find(v => v.lang.startsWith(langCode));
+    if (voice) u.voice = voice;
     speechSynthesis.speak(u);
   } catch (e) {}
 }
@@ -834,10 +856,12 @@ function renderQuestion() {
   $('quiz-word').classList.toggle('sentence', q._isSentence || state.kind === 'grammar' || state.kind === 'tenses' || (state.kind === 'phrases' && !!q.fullSentence));
   $('quiz-ipa').textContent = q.ipa ? '/' + q.ipa + '/' : '';
 
-  // speak button: only meaningful for the foreign word
   const speakBtn = $('btn-speak');
-  speakBtn.style.display = q.promptIsForeign ? '' : 'none';
-  if (q.promptIsForeign && !a && settings.audioAuto) speak(q.foreign);
+  speakBtn.style.display = (state.mode === 'review' || q.promptIsForeign) ? '' : 'none';
+  if (!a && settings.audioAuto) {
+    if (state.mode === 'review') speakFemale(q.promptText);
+    else if (q.promptIsForeign) speak(q.foreign);
+  }
 
   const box = $('quiz-options'); box.innerHTML = '';
   q.options.forEach((opt, idx) => {
@@ -881,7 +905,8 @@ function selectOption(idx) {
   beep(correct); vibrate(correct);
   // prononce la bonne réponse après coup : mot étranger (sens inverse) ou forme correcte (verbes)
   if (settings.audioAuto) {
-    if (q._isGrammar || state.kind === 'grammar' || state.kind === 'tenses' || (state.kind === 'phrases' && q.fullSentence)) speak(q.fullSentence || q.correctText);
+    if (state.mode === 'review') speakFemale(q.foreign || q.correctText);
+    else if (q._isGrammar || state.kind === 'grammar' || state.kind === 'tenses' || (state.kind === 'phrases' && q.fullSentence)) speak(q.fullSentence || q.correctText);
     else if (state.kind === 'verbs') speak(q.correctText);
     else if (!q.promptIsForeign) speak(q.foreign);
   }
@@ -1053,7 +1078,7 @@ $('btn-start').addEventListener('click', () => { state.kind = 'vocab'; startSess
 $('btn-review').addEventListener('click', () => { state.kind = 'vocab'; startSession('review'); });
 $('btn-next').addEventListener('click', goNext);
 $('btn-abort').addEventListener('click', exitToHome);
-$('btn-speak').addEventListener('click', () => { const q = state.questions[state.index]; if (q) speak(q.foreign); });
+$('btn-speak').addEventListener('click', () => { const q = state.questions[state.index]; if (!q) return; state.mode === 'review' ? speakFemale(q.promptText) : speak(q.foreign); });
 $('btn-replay').addEventListener('click', () => {
   if (state.mode === 'pronun') { startPronunciation(); return; }
   startSession(state.mode);
