@@ -1,0 +1,276 @@
+[
+  {
+    "id": "remote-work",
+    "show": "BBC 6 Minute English",
+    "showEmoji": "🎙",
+    "title": "Remote Working: the Future of Offices?",
+    "level": "B1",
+    "toeicPart": 4,
+    "duration": "6 min",
+    "showUrl": "https://www.bbc.co.uk/programmes/p02pc9zn/episodes/downloads",
+    "parts": [
+      "Working from home has become more ",
+      {"ans": "common"},
+      " than ever before. According to a recent ",
+      {"ans": "survey"},
+      ", nearly half of employees now work ",
+      {"ans": "remotely"},
+      " at least once a week. While many appreciate the ",
+      {"ans": "flexibility"},
+      " this offers, others struggle with ",
+      {"ans": "distractions"},
+      " at home. Experts recommend setting a clear daily ",
+      {"ans": "schedule"},
+      " and taking regular ",
+      {"ans": "breaks"},
+      " to maintain focus and ",
+      {"ans": "productivity"},
+      "."
+    ],
+    "words": ["common", "survey", "remotely", "flexibility", "distractions", "schedule", "breaks", "productivity"],
+    "questions": [
+      {
+        "q": "What is the main topic of this podcast?",
+        "opts": ["Commuting by public transport", "The rise of remote working", "Office design trends", "Hiring practices in tech"],
+        "ans": 1
+      },
+      {
+        "q": "According to a survey, how many employees work remotely at least once a week?",
+        "opts": ["About a quarter", "More than three quarters", "Almost half", "All of them"],
+        "ans": 2
+      },
+      {
+        "q": "What do experts recommend to stay productive when working from home?",
+        "opts": ["Working longer hours", "Renting a co-working space", "Turning off all devices", "Setting a schedule and taking breaks"],
+        "ans": 3
+      }
+    ]
+  },
+  {
+    "id": "job-interview",
+    "show": "English at Work · BBC",
+    "showEmoji": "💼",
+    "title": "Ace Your Job Interview",
+    "level": "B2",
+    "toeicPart": 4,
+    "duration": "5 min",
+    "showUrl": "https://www.bbc.co.uk/programmes/p026w4ck/episodes/downloads",
+    "parts": [
+      "A job interview can be a ",
+      {"ans": "stressful"},
+      " experience, but with the right ",
+      {"ans": "preparation"},
+      " you can walk in feeling confident. Experts advise researching the ",
+      {"ans": "company"},
+      " beforehand and preparing answers to common ",
+      {"ans": "questions"},
+      " such as your strengths and weaknesses. Dressing ",
+      {"ans": "professionally"},
+      " and arriving on time shows that you are ",
+      {"ans": "reliable"},
+      ". Remember to listen carefully and ask ",
+      {"ans": "thoughtful"},
+      " questions at the end of the interview."
+    ],
+    "words": ["stressful", "preparation", "company", "questions", "professionally", "reliable", "thoughtful", "confident"],
+    "questions": [
+      {
+        "q": "What does the speaker say a job interview can feel like?",
+        "opts": ["Exciting and easy", "Stressful but manageable", "Boring and repetitive", "Simple with good luck"],
+        "ans": 1
+      },
+      {
+        "q": "What do experts recommend doing before the interview?",
+        "opts": ["Sleeping as much as possible", "Memorising standard answers", "Researching the company", "Bringing a friend for support"],
+        "ans": 2
+      },
+      {
+        "q": "What do arriving on time and dressing professionally demonstrate?",
+        "opts": ["Your salary expectations", "That you are reliable", "Your technical skills", "Your language level"],
+        "ans": 1
+      }
+    ]
+  },
+  {
+    "id": "food-health",
+    "show": "VOA Learning English",
+    "showEmoji": "🥗",
+    "title": "Eating Well: Food and Your Health",
+    "level": "B1",
+    "toeicPart": 4,
+    "duration": "5 min",
+    "showUrl": "https://learningenglish.voanews.com/z/4355",
+    "parts": [
+      "A ",
+      {"ans": "balanced"},
+      " diet is essential for good health. Doctors recommend eating plenty of ",
+      {"ans": "vegetables"},
+      " and fruit every day, as they are rich in ",
+      {"ans": "vitamins"},
+      " and minerals. It is also important to reduce your ",
+      {"ans": "consumption"},
+      " of processed food, which is often high in ",
+      {"ans": "sugar"},
+      " and salt. Drinking enough ",
+      {"ans": "water"},
+      " throughout the day helps your body function properly and keeps you feeling ",
+      {"ans": "energetic"},
+      "."
+    ],
+    "words": ["balanced", "vegetables", "vitamins", "consumption", "sugar", "water", "energetic", "minerals"],
+    "questions": [
+      {
+        "q": "What do doctors recommend eating every day?",
+        "opts": ["Meat and dairy products", "Plenty of vegetables and fruit", "Protein shakes", "Bread and pasta"],
+        "ans": 1
+      },
+      {
+        "q": "What kind of food is often high in sugar and salt?",
+        "opts": ["Fresh produce", "Grains and legumes", "Processed food", "Homemade meals"],
+        "ans": 2
+      },
+      {
+        "q": "What benefit does drinking enough water provide?",
+        "opts": ["It increases your appetite", "It replaces meals", "It helps the body function and keeps you energetic", "It reduces the need for sleep"],
+        "ans": 2
+      }
+    ]
+  },
+  {
+    "id": "city-transport",
+    "show": "BBC The English We Speak",
+    "showEmoji": "🚌",
+    "title": "Getting Around the City",
+    "level": "B1",
+    "toeicPart": 3,
+    "duration": "3 min",
+    "showUrl": "https://www.bbc.co.uk/programmes/p02pc9x6/episodes/downloads",
+    "parts": [
+      "Mark: Excuse me, could you tell me how to ",
+      {"ans": "get"},
+      " to the city centre?\n\nSarah: Sure! You can take the ",
+      {"ans": "bus"},
+      " from this stop — it leaves every ten minutes.\n\nMark: How long does the ",
+      {"ans": "journey"},
+      " take?\n\nSarah: About twenty minutes, ",
+      {"ans": "depending"},
+      " on traffic. Or you could take the ",
+      {"ans": "underground"},
+      " — it's much faster.\n\nMark: Where is the nearest ",
+      {"ans": "station"},
+      "?\n\nSarah: Turn left at the corner and walk two ",
+      {"ans": "blocks"},
+      ". You can't miss it!"
+    ],
+    "words": ["get", "bus", "journey", "depending", "underground", "station", "blocks", "traffic"],
+    "questions": [
+      {
+        "q": "Where does Mark want to go?",
+        "opts": ["The airport", "The city centre", "A bus depot", "A train station"],
+        "ans": 1
+      },
+      {
+        "q": "How often does the bus leave from this stop?",
+        "opts": ["Every five minutes", "Every ten minutes", "Every twenty minutes", "Every half hour"],
+        "ans": 1
+      },
+      {
+        "q": "What does Sarah suggest as a faster option?",
+        "opts": ["A taxi", "Walking", "The underground", "A bicycle"],
+        "ans": 2
+      }
+    ]
+  },
+  {
+    "id": "technology-ai",
+    "show": "All Ears English",
+    "showEmoji": "🤖",
+    "title": "Artificial Intelligence in Everyday Life",
+    "level": "B2",
+    "toeicPart": 4,
+    "duration": "6 min",
+    "showUrl": "https://www.allearsenglish.com",
+    "parts": [
+      "Artificial intelligence, or AI, is rapidly changing the way we ",
+      {"ans": "live"},
+      " and work. From virtual ",
+      {"ans": "assistants"},
+      " on our phones to self-driving cars, AI is becoming part of our daily ",
+      {"ans": "routine"},
+      ". Businesses use AI to analyse large amounts of ",
+      {"ans": "data"},
+      " and make better ",
+      {"ans": "decisions"},
+      ". However, experts warn that AI also raises important ",
+      {"ans": "ethical"},
+      " questions about privacy and ",
+      {"ans": "employment"},
+      ". It is important that society ",
+      {"ans": "adapts"},
+      " carefully to these rapid changes."
+    ],
+    "words": ["live", "assistants", "routine", "data", "decisions", "ethical", "employment", "adapts"],
+    "questions": [
+      {
+        "q": "Which example of AI does the speaker mention for phones?",
+        "opts": ["Translation apps", "Virtual assistants", "Photo editors", "Music players"],
+        "ans": 1
+      },
+      {
+        "q": "How do businesses use AI, according to the podcast?",
+        "opts": ["To replace all workers", "To analyse data and make better decisions", "To manage social media", "To create entertainment"],
+        "ans": 1
+      },
+      {
+        "q": "What concerns do experts raise about AI?",
+        "opts": ["The cost of technology", "Ethical questions about privacy and employment", "The speed of internet connections", "The design of user interfaces"],
+        "ans": 1
+      }
+    ]
+  },
+  {
+    "id": "money-savings",
+    "show": "NPR Planet Money",
+    "showEmoji": "💰",
+    "title": "Smart Ways to Save Money",
+    "level": "B1",
+    "toeicPart": 4,
+    "duration": "5 min",
+    "showUrl": "https://www.npr.org/podcasts/510289/planet-money",
+    "parts": [
+      "Managing your money wisely is an important life ",
+      {"ans": "skill"},
+      ". Financial experts suggest setting a monthly ",
+      {"ans": "budget"},
+      " to track your ",
+      {"ans": "spending"},
+      ". One useful strategy is the 50/30/20 rule: spend 50% on ",
+      {"ans": "essentials"},
+      ", 30% on personal wants, and save the remaining 20%. Building an ",
+      {"ans": "emergency"},
+      " fund equal to three months of expenses gives you financial ",
+      {"ans": "security"},
+      ". Avoiding impulse ",
+      {"ans": "purchases"},
+      " is also key to staying within your budget."
+    ],
+    "words": ["skill", "budget", "spending", "essentials", "emergency", "security", "purchases", "savings"],
+    "questions": [
+      {
+        "q": "What do financial experts suggest setting up first?",
+        "opts": ["A savings account", "A monthly budget", "An investment portfolio", "A credit card"],
+        "ans": 1
+      },
+      {
+        "q": "In the 50/30/20 rule, what percentage should go to savings?",
+        "opts": ["10%", "30%", "50%", "20%"],
+        "ans": 3
+      },
+      {
+        "q": "How large should an emergency fund ideally be?",
+        "opts": ["One month of expenses", "Two months of expenses", "Three months of expenses", "Six months of expenses"],
+        "ans": 2
+      }
+    ]
+  }
+]

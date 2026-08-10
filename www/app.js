@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.16';
+const APP_VERSION = '3.17';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2249,6 +2249,213 @@ function playEpisode(i) {
 $('btn-listen').addEventListener('click', openListen);
 $('btn-listen-home').addEventListener('click', () => { const au = $('listen-audio'); if (au) { try { au.pause(); } catch (e) {} } showView('home'); });
 document.querySelectorAll('.slang2-chip').forEach(c => c.addEventListener('click', () => { listenLang = c.dataset.lang; listenAccent = 0; renderListen(); }));
+
+// ---------- Compréhension TOEIC (podcasts) ----------
+const COMPREHENSION_FILE = 'data/podcasts_comprehension.json';
+let comprehensionData = null;
+let listenMode = 'podcasts'; // 'podcasts' | 'comprehension'
+let coActiveBlank = null;
+const OPTS_LETTERS = ['A', 'B', 'C', 'D'];
+
+function setListenMode(m) {
+  listenMode = m;
+  $('listen-tab-podcasts').classList.toggle('active', m === 'podcasts');
+  $('listen-tab-comprehension').classList.toggle('active', m === 'comprehension');
+  $('listen-podcasts-zone').classList.toggle('hidden', m !== 'podcasts');
+  $('listen-comprehension-zone').classList.toggle('hidden', m !== 'comprehension');
+  if (m === 'comprehension') {
+    $('listen-header-title').textContent = '📝 Compréhension TOEIC';
+    $('listen-lang').textContent = '';
+    loadComprehension();
+  } else {
+    $('listen-header-title').textContent = '🎧 Écoute — accents';
+    $('listen-lang').textContent = LANGS[listenLang].label;
+  }
+}
+
+async function loadComprehension() {
+  if (!comprehensionData) {
+    try { comprehensionData = await (await fetch(COMPREHENSION_FILE)).json(); }
+    catch (e) { $('co-list').innerHTML = '<p class="listen-status">Impossible de charger les exercices.</p>'; return; }
+  }
+  renderComprehensionList();
+}
+
+function renderComprehensionList() {
+  $('co-exercise').classList.add('hidden');
+  $('co-exercise').innerHTML = '';
+  $('co-list').classList.remove('hidden');
+  $('co-list').innerHTML = comprehensionData.map((ep, i) => {
+    const lvlClass = ep.level === 'B2' ? 'co-badge-level b2' : 'co-badge-level';
+    return `<button class="co-card" data-i="${i}">
+      <span class="co-card-emoji">${esc(ep.showEmoji)}</span>
+      <span class="co-card-meta">
+        <span class="co-card-show">${esc(ep.show)}</span>
+        <span class="co-card-title">${esc(ep.title)}</span>
+        <span class="co-card-badges">
+          <span class="co-badge ${lvlClass}">${esc(ep.level)}</span>
+          <span class="co-badge co-badge-part">TOEIC Part ${ep.toeicPart}</span>
+          <span class="co-badge co-badge-dur">⏱ ${esc(ep.duration)}</span>
+        </span>
+      </span>
+    </button>`;
+  }).join('');
+  $('co-list').querySelectorAll('.co-card').forEach(btn => {
+    btn.addEventListener('click', () => openComprehensionExercise(comprehensionData[+btn.dataset.i]));
+  });
+}
+
+function openComprehensionExercise(ep) {
+  $('co-list').classList.add('hidden');
+  const box = $('co-exercise');
+  box.classList.remove('hidden');
+  const lvlClass = ep.level === 'B2' ? 'co-badge-level b2' : 'co-badge-level';
+  const qAnswered = {}; // groupId -> answered
+  let activeBlankEl = null;
+
+  // Build transcript HTML
+  const words = shuffle(ep.words.slice());
+  let transcriptHtml = '';
+  let blankIdx = 0;
+  ep.parts.forEach(part => {
+    if (typeof part === 'string') {
+      transcriptHtml += esc(part).replace(/\n/g, '<br>');
+    } else {
+      transcriptHtml += `<input class="co-blank" data-ans="${esc(part.ans)}" data-bi="${blankIdx++}" placeholder="…" autocomplete="off" spellcheck="false">`;
+    }
+  });
+
+  box.innerHTML = `
+    <div class="co-ex-header">
+      <button class="co-ex-back" id="co-back">← Retour</button>
+      <div class="co-ex-info">
+        <div class="co-ex-show">${esc(ep.show)}</div>
+        <div class="co-ex-title">${esc(ep.title)}</div>
+      </div>
+      <span class="co-badge ${lvlClass}" style="flex-shrink:0">${esc(ep.level)}</span>
+    </div>
+
+    <a class="co-ex-link" href="${esc(ep.showUrl)}" target="_blank" rel="noopener">
+      🎧 Écouter le podcast ↗
+    </a>
+
+    <div style="margin-top:18px">
+      <div class="co-section-label">Questions TOEIC — Part ${ep.toeicPart}</div>
+      <div class="co-questions" id="co-qs">
+        ${ep.questions.map((q, qi) => `
+          <div class="co-q">
+            <div class="co-q-num">Question ${qi + 1}</div>
+            <div class="co-q-text">${esc(q.q)}</div>
+            <div class="co-opts" id="co-q-${qi}">
+              ${q.opts.map((o, oi) => `<button class="co-opt" data-qi="${qi}" data-oi="${oi}" data-correct="${oi === q.ans}">${'<span class="co-opt-ltr">' + OPTS_LETTERS[oi] + '</span>'}${esc(o)}</button>`).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="co-actions" style="margin-top:10px">
+        <button class="co-btn-check" id="co-check-q">Vérifier les questions</button>
+        <button class="co-btn-reset" id="co-reset-q">Réinitialiser</button>
+        <span class="co-score" id="co-q-score"></span>
+      </div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="co-section-label green">Transcription à compléter</div>
+      <div class="co-transcript">${transcriptHtml}</div>
+      <div style="margin-top:12px">
+        <div class="co-section-label green" style="margin-bottom:8px">Banque de mots</div>
+        <div class="co-words" id="co-wordbank">
+          ${words.map(w => `<span class="co-chip" data-word="${esc(w)}">${esc(w)}</span>`).join('')}
+        </div>
+      </div>
+      <div class="co-actions" style="margin-top:10px">
+        <button class="co-btn-check green" id="co-check-tr">Vérifier la transcription</button>
+        <button class="co-btn-reset" id="co-reset-tr">Réinitialiser</button>
+        <span class="co-score" id="co-tr-score"></span>
+      </div>
+    </div>
+  `;
+
+  $('co-back').addEventListener('click', renderComprehensionList);
+
+  // Question options
+  box.querySelectorAll('.co-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const qi = +btn.dataset.qi;
+      if (qAnswered[qi]) return;
+      qAnswered[qi] = true;
+      const correct = btn.dataset.correct === 'true';
+      const group = box.querySelectorAll(`#co-q-${qi} .co-opt`);
+      group.forEach(o => {
+        o.disabled = true;
+        if (o !== btn) o.classList.add('dimmed');
+      });
+      btn.classList.add(correct ? 'correct' : 'wrong');
+      if (!correct) {
+        group.forEach(o => { if (o.dataset.correct === 'true') { o.classList.remove('dimmed'); o.classList.add('correct'); } });
+      }
+    });
+  });
+
+  // Check questions
+  $('co-check-q').addEventListener('click', () => {
+    const total = ep.questions.length;
+    const correct = box.querySelectorAll('.co-opt.correct[data-correct="true"]').length;
+    const sc = $('co-q-score');
+    sc.textContent = `${correct} / ${total}`;
+    sc.className = 'co-score' + (correct === total ? ' full' : '');
+  });
+  $('co-reset-q').addEventListener('click', () => {
+    Object.keys(qAnswered).forEach(k => delete qAnswered[k]);
+    box.querySelectorAll('.co-opt').forEach(o => { o.disabled = false; o.classList.remove('correct', 'wrong', 'dimmed'); });
+    $('co-q-score').textContent = ''; $('co-q-score').className = 'co-score';
+  });
+
+  // Blank focus tracking
+  box.addEventListener('focusin', e => { if (e.target.classList.contains('co-blank')) activeBlankEl = e.target; });
+
+  // Word bank chips
+  box.querySelectorAll('.co-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const blanks = [...box.querySelectorAll('.co-blank')];
+      let target = activeBlankEl && !activeBlankEl.value ? activeBlankEl : blanks.find(b => !b.value);
+      if (!target) return;
+      target.value = chip.dataset.word;
+      target.classList.remove('b-ok', 'b-err');
+      chip.classList.add('used');
+      let found = false;
+      for (const b of blanks) {
+        if (found && !b.value) { b.focus(); break; }
+        if (b === target) found = true;
+      }
+    });
+  });
+
+  // Check transcript
+  $('co-check-tr').addEventListener('click', () => {
+    const blanks = [...box.querySelectorAll('.co-blank')];
+    let correct = 0;
+    blanks.forEach(b => {
+      if (!b.value.trim()) return;
+      const ok = b.value.trim().toLowerCase() === b.dataset.ans.toLowerCase();
+      b.classList.toggle('b-ok', ok); b.classList.toggle('b-err', !ok);
+      if (ok) correct++;
+    });
+    const filled = blanks.filter(b => b.value.trim()).length;
+    const sc = $('co-tr-score');
+    sc.textContent = filled ? `${correct} / ${blanks.length}` : '';
+    sc.className = 'co-score' + (correct === blanks.length ? ' full' : '');
+  });
+
+  $('co-reset-tr').addEventListener('click', () => {
+    box.querySelectorAll('.co-blank').forEach(b => { b.value = ''; b.classList.remove('b-ok', 'b-err'); });
+    box.querySelectorAll('.co-chip').forEach(c => c.classList.remove('used'));
+    $('co-tr-score').textContent = ''; $('co-tr-score').className = 'co-score';
+    activeBlankEl = null;
+  });
+
+  box.scrollIntoView({ block: 'start', behavior: 'smooth' });
+}
 
 // ═══════════════════════════════════════════════════════════════
 // GÉNÉRATEUR TEMPS VERBAUX + GRAMMAIRE — questions à la volée
