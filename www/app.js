@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.15';
+const APP_VERSION = '3.16';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -3090,6 +3090,22 @@ const _GFIX = {
     { q: "À bientôt à l'église.", opts: ["See you at church.","Let's go to church.","Church service is starting.","Church Celebration."], ans: "See you at church.", hint: "See you at church = À bientôt à l'église. See you at + lieu = formule d'au revoir avec rendez-vous.", _isSentence: true },
     { q: "Chantons pour le Seigneur.", opts: ["Let's sing for the LORD.","Let's pray for the LORD.","Praise the LORD.","Joy in the house of the LORD."], ans: "Let's sing for the LORD.", hint: "Let's sing for the LORD = Chantons pour le Seigneur (LORD en majuscules = référence à Dieu dans la tradition chrétienne).", _isSentence: true },
   ],
+  'kitchen-vocabulary': [
+    { q: "Exhaust Hood signifie :", opts: ["Hotte aspirante","Four à micro-ondes","Égouttoir","Placard de cuisine"], ans: "Hotte aspirante", hint: "Exhaust Hood (ou Chimney) = hotte aspirante. Installée au-dessus de la cuisinière pour aspirer les fumées de cuisson." },
+    { q: "Dish Rack signifie :", opts: ["Égouttoir à vaisselle","Placard à vaisselle","Tiroir à couverts","Panier à linge"], ans: "Égouttoir à vaisselle", hint: "Dish Rack = égouttoir à vaisselle. Rack = grille/support. 'Please put the dishes in the dish rack.'" },
+    { q: "Faucet / Sink Tap signifie :", opts: ["Robinet / Évier","Poubelle","Égouttoir","Hotte aspirante"], ans: "Robinet / Évier", hint: "Faucet (US) = Tap (UK) = robinet. Sink = l'évier complet (cuve + robinet). 'Turn off the faucet!' = Ferme le robinet !" },
+    { q: "Cutting Board signifie :", opts: ["Planche à découper","Couteau de cuisine","Plan de travail","Tiroir"], ans: "Planche à découper", hint: "Cutting Board = planche à découper. Board = planche, cutting = découpe. Knife & Cutting Board = couteau et planche à découper." },
+    { q: "Dustbin signifie :", opts: ["Poubelle","Tiroir","Tapis de sol","Égouttoir"], ans: "Poubelle", hint: "Dustbin (UK) = poubelle. Américain : trash can / garbage can. 'Don't forget to throw waste in the dustbin.'" },
+    { q: "Kitchen Cabinet signifie :", opts: ["Placard de cuisine","Tiroir de cuisine","Comptoir de cuisine","Plan de travail"], ans: "Placard de cuisine", hint: "Kitchen Cabinet = placard / armoire de cuisine (avec portes). Drawer = tiroir (sans porte, s'ouvre en tirant)." },
+  ],
+  'motivation-cap': [
+    { q: "Reste positif(ve) !", opts: ["Stay positive!","Stay strong!","Stay brave!","Stay focused!"], ans: "Stay positive!", hint: "Stay + adjectif = Reste + adjectif. Stay positive = Reste positif(ve). Impératif encourageant très courant.", _isSentence: true },
+    { q: "Sois fort(e) et courageux(se) !", opts: ["Be strong and brave!","Be patient and kind!","Stay strong and focused!","Be positive and brave!"], ans: "Be strong and brave!", hint: "Be + adjectif = Sois + adjectif. Strong = fort(e), brave = courageux(se). Encouragement à l'effort et au courage.", _isSentence: true },
+    { q: "Fixe-toi des objectifs.", opts: ["Set goals for yourself.","Make plans for yourself.","Choose your objectives.","Fix your goals."], ans: "Set goals for yourself.", hint: "Set goals = fixer des objectifs (set = fixer/établir, goal = objectif). For yourself = pour toi-même.", _isSentence: true },
+    { q: "Crois en toi !", opts: ["Believe in yourself!","Trust in yourself!","Count on yourself!","Rely on yourself!"], ans: "Believe in yourself!", hint: "Believe in yourself = Crois en toi (believe in = croire en). ≠ Trust yourself = Fais-toi confiance (deux expressions proches mais distinctes).", _isSentence: true },
+    { q: "Chaque jour compte.", opts: ["Every day matters.","Each day counts.","Every day is important.","Each day means a lot."], ans: "Every day matters.", hint: "Every day matters = Chaque jour compte (matter = compter, avoir de l'importance). 'Every day matters' est la formulation de l'image.", _isSentence: true },
+    { q: "Apprends de tes erreurs.", opts: ["Learn from your mistakes.","Learn from your experiences.","Learn from your failures.","Learn your lessons."], ans: "Learn from your mistakes.", hint: "Learn from your mistakes = Apprends de tes erreurs (mistake = erreur/faute, learn from = tirer une leçon de).", _isSentence: true },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -4688,6 +4704,42 @@ const _GFIX_SERIES = {
       { q: "LORD (tout en majuscules) désigne :", opts: ["Dieu / le Seigneur (tradition chrétienne)","Un titre royal","Un chef de communauté","Un professeur religieux"], ans: "Dieu / le Seigneur (tradition chrétienne)", hint: "LORD en majuscules = le Seigneur / Dieu dans la Bible. Lord (minuscules) = seigneur, titre de noblesse ou de respect." },
       { q: "May God... est une formule de :", opts: ["Souhait / Prière","Ordre","Question","Reproche"], ans: "Souhait / Prière", hint: "May + sujet + verbe = souhait ou prière en anglais. May God bless you = Que Dieu te bénisse. May God open doors = Que Dieu t'ouvre des portes." },
       { q: "Church service signifie :", opts: ["Office religieux / Service religieux","Construction d'église","Service communautaire","Chorale d'église"], ans: "Office religieux / Service religieux", hint: "Church service = office religieux, service religieux (la célébration à l'église). 'Church service is starting' = L'office commence." },
+    ],
+  ],
+  'kitchen-vocabulary': [
+    [
+      { q: "Cooking Pot signifie :", opts: ["Casserole / Marmite","Poêle à frire","Bol de cuisine","Four à micro-ondes"], ans: "Casserole / Marmite", hint: "Cooking Pot = casserole, marmite. 'She is cooking food in the pot.' Pot = tout récipient pour cuire." },
+      { q: "Fruit Bowl signifie :", opts: ["Coupe à fruits / Corbeille à fruits","Saladier","Bol de petit-déjeuner","Panier à provisions"], ans: "Coupe à fruits / Corbeille à fruits", hint: "Fruit Bowl = coupe ou corbeille à fruits. Bowl = bol/coupelle. 'I keep the fruits in the fruit bowl.'" },
+      { q: "Floor Mat signifie :", opts: ["Tapis de sol","Nappe de table","Dessous de plat","Torchon de cuisine"], ans: "Tapis de sol", hint: "Floor Mat = tapis de sol (floor = sol, mat = tapis/dessous). Dans la cuisine, placé devant l'évier ou à l'entrée." },
+      { q: "Refrigerator au familier se dit :", opts: ["Fridge","Freezer","Cooler","Chiller"], ans: "Fridge", hint: "Refrigerator (formel) → Fridge (familier) = frigo. Freezer = congélateur. 'Put it in the fridge.'" },
+      { q: "Différence entre Oven et Microwave Oven :", opts: ["Oven = four classique / Microwave Oven = micro-ondes","Même appareil, tailles différentes","Microwave Oven est plus ancien","Oven = électrique / Microwave Oven = gaz"], ans: "Oven = four classique / Microwave Oven = micro-ondes", hint: "Oven = four à chaleur classique. Microwave Oven = four à micro-ondes (rapide). 'The microwave oven is very useful.'" },
+      { q: "Mets les assiettes dans l'égouttoir.", opts: ["Put the dishes in the dish rack.","Put the plates in the cabinet.","Place the dishes on the floor mat.","Put the bowls in the drawer."], ans: "Put the dishes in the dish rack.", hint: "Dish rack = égouttoir. Dishes = vaisselle (assiettes, bols, verres). Put X in Y = Mets X dans Y.", _isSentence: true },
+    ],
+    [
+      { q: "Différence entre Drawer et Cabinet :", opts: ["Drawer = tiroir / Cabinet = placard avec porte","Même meuble, noms différents","Cabinet = tiroir / Drawer = armoire","Drawer = petit meuble / Cabinet = grand meuble"], ans: "Drawer = tiroir / Cabinet = placard avec porte", hint: "Drawer = tiroir (s'ouvre en tirant, pas de porte). Kitchen Cabinet = armoire de cuisine (avec porte). 'The cutlery is in the drawer.'" },
+      { q: "Dustbin est synonyme de :", opts: ["Trash can / Garbage can / Bin","Dish rack","Floor mat","Fruit bowl"], ans: "Trash can / Garbage can / Bin", hint: "Dustbin (UK) = Trash can (US) = Garbage can (US) = Bin (informel). Tous signifient poubelle." },
+      { q: "Faucet vs Tap :", opts: ["Faucet = américain / Tap = britannique (même sens : robinet)","Faucet = robinet froid / Tap = robinet chaud","Noms d'appareils complètement différents","Tap = plus moderne que Faucet"], ans: "Faucet = américain / Tap = britannique (même sens : robinet)", hint: "Faucet (US) et Tap (UK/AU) = robinet. Sink Tap = robinet de l'évier. 'Turn off the faucet!' = Ferme le robinet !" },
+      { q: "Exhaust Hood est aussi appelé :", opts: ["Chimney (contexte cuisine)","Oven Hood","Cooking Shield","Steam Vent"], ans: "Chimney (contexte cuisine)", hint: "Exhaust Hood = Chimney = hotte aspirante dans une cuisine moderne. Chimney = aussi cheminée en général." },
+      { q: "La hotte aspirante est au-dessus de la cuisinière.", opts: ["The exhaust hood is above the stove.","The chimney is in the kitchen cabinet.","The exhaust hood is under the oven.","The cooking pot is above the stove."], ans: "The exhaust hood is above the stove.", hint: "Exhaust hood = hotte aspirante. Above = au-dessus de. Stove = cuisinière (avec plaques). ≠ Oven = four (encastré).", _isSentence: true },
+      { q: "Spoon / Utensils fait référence à :", opts: ["Cuillères et ustensiles de cuisine","Fourchettes uniquement","Couteaux de table","Électroménager"], ans: "Cuillères et ustensiles de cuisine", hint: "Utensils = ustensiles de cuisine (cuillères, spatules, louches…). Spoon = cuillère. 'Useful' ≠ 'utensil' (faux ami de forme)." },
+    ],
+  ],
+  'motivation-cap': [
+    [
+      { q: "Ne lâche jamais rien.", opts: ["Never give up.","Don't give up now.","Never let go.","Don't ever quit."], ans: "Never give up.", hint: "Never give up = Ne lâche jamais rien / N'abandonne jamais. Give up = abandonner, renoncer. 'Don't give up — you're almost there!'", _isSentence: true },
+      { q: "Sois patient(e), le temps agit.", opts: ["Be patient, time works wonders.","Be patient, time will pass.","Stay patient, time is everything.","Be patient, things will change."], ans: "Be patient, time works wonders.", hint: "Time works wonders = le temps fait des merveilles (wonders = merveilles). Be patient = sois patient(e).", _isSentence: true },
+      { q: "Célèbre tes petites victoires.", opts: ["Celebrate small wins.","Celebrate your victories.","Cherish small wins.","Enjoy your successes."], ans: "Celebrate small wins.", hint: "Celebrate small wins = Célèbre tes petites victoires (celebrate = célébrer, win = victoire/réussite, small = petite).", _isSentence: true },
+      { q: "Reste concentré(e).", opts: ["Stay focused.","Stay concentrated.","Remain focused.","Keep focused."], ans: "Stay focused.", hint: "Stay focused = Reste concentré(e) (focused = concentré, attentif). 'I need to stay focused — no distractions!'", _isSentence: true },
+      { q: "Fais de ton mieux.", opts: ["Do your best.","Try your hardest.","Give your best.","Do your most."], ans: "Do your best.", hint: "Do your best = Fais de ton mieux (best = le mieux, le meilleur de soi). 'Just do your best and that's enough.'", _isSentence: true },
+      { q: "Garde le cap.", opts: ["Stay on track.","Keep the course.","Stay the path.","Hold your direction."], ans: "Stay on track.", hint: "Stay on track = Garde le cap (track = voie, trajectoire). Ne pas dévier de son objectif. On track = dans la bonne direction.", _isSentence: true },
+    ],
+    [
+      { q: "Alimente ta passion.", opts: ["Fuel your passion.","Feed your passion.","Grow your passion.","Ignite your passion."], ans: "Fuel your passion.", hint: "Fuel your passion = Alimente ta passion (fuel = carburant/alimenter comme du carburant). 'Fuel the fire' = alimenter le feu.", _isSentence: true },
+      { q: "Entoure-toi de personnes positives.", opts: ["Surround yourself with positive people.","Be around positive people.","Gather positive people.","Find positive people around you."], ans: "Surround yourself with positive people.", hint: "Surround yourself with = Entoure-toi de (surround = entourer, yourself = toi-même). Structure clé pour exprimer son environnement.", _isSentence: true },
+      { q: "Chaque effort te rapproche du but.", opts: ["Every effort brings you closer.","Every step brings you nearer.","Each effort gets you closer.","Every try brings you forward."], ans: "Every effort brings you closer.", hint: "Every effort brings you closer = Chaque effort te rapproche du but (bring closer = rapprocher, effort = effort).", _isSentence: true },
+      { q: "Tu es capable de grandes choses.", opts: ["You are capable of great things.","You can do great things.","You are able of great things.","You are great at things."], ans: "You are capable of great things.", hint: "Capable of + nom = capable de. 'You are capable of great things' = Tu es capable de grandes choses. ≠ 'able to' + verbe.", _isSentence: true },
+      { q: "La discipline ouvre toutes les portes.", opts: ["Discipline opens every door.","Discipline unlocks all doors.","Discipline opens all doors.","Discipline is key to every door."], ans: "Discipline opens every door.", hint: "Discipline opens every door = La discipline ouvre toutes les portes. Every = toutes (chaque). Opens every door = figure de style : la discipline donne accès à tout.", _isSentence: true },
+      { q: "Transforme tes rêves en actions.", opts: ["Turn your dreams into actions.","Change your dreams into actions.","Make your dreams into actions.","Transform your dreams into actions."], ans: "Turn your dreams into actions.", hint: "Turn X into Y = Transformer X en Y. Turn est plus naturel que 'transform' dans cet usage. Dreams = rêves, actions = actions.", _isSentence: true },
     ],
   ],
 };

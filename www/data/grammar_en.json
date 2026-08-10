@@ -6489,5 +6489,102 @@
         ]
       }
     ]
+  },
+  {
+    "id": "kitchen-vocabulary",
+    "title": "Kitchen Vocabulary",
+    "subtitle": "15 objets essentiels de la cuisine en anglais",
+    "sections": [
+      {
+        "heading": "Appareils et équipements (6 objets)",
+        "points": [
+          "Microwave Oven → four à micro-ondes",
+          "Oven → four classique (à chaleur)",
+          "Refrigerator → réfrigérateur (fridge = frigo, familier)",
+          "Cooking Pot → casserole / marmite",
+          "Sink Tap / Faucet → robinet / évier (Faucet = américain, Tap = britannique)",
+          "Chimney / Exhaust Hood → hotte aspirante"
+        ],
+        "tip": "Faucet (US) = Tap (UK) = robinet. Fridge = forme familière de Refrigerator. Oven = four classique ≠ Microwave Oven = four à micro-ondes. Freezer = congélateur.",
+        "examples": [
+          "She is cooking food in the pot.",
+          "The microwave oven is very useful.",
+          "Put it in the fridge — it will keep for two days."
+        ]
+      },
+      {
+        "heading": "Mobilier, rangement et accessoires (9 objets)",
+        "points": [
+          "Kitchen Cabinet → placard de cuisine (armoire avec portes)",
+          "Drawer → tiroir (s'ouvre en tirant, sans porte)",
+          "Dish Rack → égouttoir à vaisselle",
+          "Fruit Bowl → coupe à fruits / corbeille à fruits",
+          "Knife & Cutting Board → couteau et planche à découper",
+          "Spoon / Utensils → cuillère / ustensiles de cuisine",
+          "Window → fenêtre",
+          "Floor Mat → tapis de sol / paillasson",
+          "Dustbin → poubelle (US : trash can / garbage can)"
+        ],
+        "tip": "Cabinet (avec porte) ≠ Drawer (tiroir, sans porte). Dustbin (UK) = Trash can (US) = Bin = poubelle.",
+        "examples": [
+          "I keep the fruits in the fruit bowl.",
+          "Please put the dishes in the dish rack.",
+          "Don't forget to throw waste in the dustbin.",
+          "The cutlery is in the drawer."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "motivation-cap",
+    "title": "Se motiver et garder le cap",
+    "subtitle": "23 phrases de motivation FR/EN pour s'encourager et avancer",
+    "sections": [
+      {
+        "heading": "Croire en soi et agir (12 phrases)",
+        "points": [
+          "Stay positive! → Reste positif(ve) !",
+          "Be strong and brave! → Sois fort(e) et courageux(se) !",
+          "Set goals for yourself. → Fixe-toi des objectifs.",
+          "Believe in yourself! → Crois en toi !",
+          "Every day matters. → Chaque jour compte.",
+          "Learn from your mistakes. → Apprends de tes erreurs.",
+          "Never give up. → Ne lâche jamais rien.",
+          "Be patient, time works wonders. → Sois patient(e), le temps agit.",
+          "Celebrate small wins. → Célèbre tes petites victoires.",
+          "Stay focused. → Reste concentré(e).",
+          "Do your best. → Fais de ton mieux.",
+          "Stay on track. → Garde le cap."
+        ],
+        "tip": "Stay + adjectif = Reste + adjectif. Be + adjectif = Sois + adjectif. Every day matters = Chaque jour compte (matter = avoir de l'importance). Never give up = N'abandonne jamais / Ne lâche jamais.",
+        "examples": [
+          "Never give up — you're almost there!",
+          "Believe in yourself — you can do it!",
+          "Celebrate small wins: they build momentum."
+        ]
+      },
+      {
+        "heading": "Persévérer et réussir (11 phrases)",
+        "points": [
+          "Fuel your passion. → Alimente ta passion.",
+          "Surround yourself with positive people. → Entoure-toi de personnes positives.",
+          "Every effort brings you closer. → Chaque effort te rapproche du but.",
+          "You are capable of great things. → Tu es capable de grandes choses.",
+          "Discipline opens every door. → La discipline ouvre toutes les portes.",
+          "Turn your dreams into actions. → Transforme tes rêves en actions.",
+          "Keep going and you will succeed. → Persévère et tu réussiras.",
+          "Trust yourself. → Fais-toi confiance.",
+          "Move forward at your own pace. → Avance à ton rythme.",
+          "Keep hope, the best is coming. → Garde espoir, le meilleur arrive.",
+          "Your future is in your hands. → Ton avenir dépend de toi."
+        ],
+        "tip": "Turn X into Y = Transformer X en Y. Surround yourself with = Entoure-toi de. Capable of + nom = capable de. Fuel = alimenter (comme du carburant). Keep going = Continue / Persévère.",
+        "examples": [
+          "Surround yourself with positive people — they lift you up.",
+          "Discipline opens every door: it is the key to success.",
+          "Your future is in your hands — start today."
+        ]
+      }
+    ]
   }
 ]
