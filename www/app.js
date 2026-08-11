@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.22';
+const APP_VERSION = '3.23';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2334,8 +2334,8 @@ function openComprehensionExercise(ep) {
   $('co-list').classList.add('hidden');
   const box = $('co-exercise');
   box.classList.remove('hidden');
-  const lvlClass = ep.level === 'B2' ? 'co-badge-level b2' : 'co-badge-level';
   const qAnswered = {};
+  let questionsChecked = false;
 
   // Build transcript HTML — each blank is a <select> with shuffled word options
   const words = shuffle(ep.words.slice());
@@ -2349,6 +2349,34 @@ function openComprehensionExercise(ep) {
       transcriptHtml += `<select class="co-blank" data-ans="${esc(part.ans)}" data-bi="${blankIdx++}"><option value="">…</option>${wordOptions}</select>`;
     }
   });
+
+  function makeQsHtml(qs) {
+    return qs.map((q, qi) => `
+      <div class="co-q">
+        <div class="co-q-num">Question ${qi + 1}</div>
+        <div class="co-q-text">${esc(q.q)}</div>
+        <div class="co-opts" id="co-q-${qi}">
+          ${q.opts.map((o, oi) => `<button class="co-opt" data-qi="${qi}" data-oi="${oi}" data-correct="${oi === q.ans}"><span class="co-opt-ltr">${OPTS_LETTERS[oi]}</span>${esc(o)}</button>`).join('')}
+        </div>
+      </div>`).join('');
+  }
+
+  function attachOptListeners() {
+    box.querySelectorAll('.co-opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const qi = +btn.dataset.qi;
+        if (qAnswered[qi]) return;
+        qAnswered[qi] = true;
+        const correct = btn.dataset.correct === 'true';
+        const group = box.querySelectorAll(`#co-q-${qi} .co-opt`);
+        group.forEach(o => { o.disabled = true; if (o !== btn) o.classList.add('dimmed'); });
+        btn.classList.add(correct ? 'correct' : 'wrong');
+        if (!correct) {
+          group.forEach(o => { if (o.dataset.correct === 'true') { o.classList.remove('dimmed'); o.classList.add('correct'); } });
+        }
+      });
+    });
+  }
 
   box.innerHTML = `
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
@@ -2372,17 +2400,7 @@ function openComprehensionExercise(ep) {
 
     <!-- Questions TOEIC -->
     <div class="co-section-divider">Questions TOEIC — Part ${ep.toeicPart}</div>
-    <div class="co-questions" id="co-qs">
-      ${ep.questions.map((q, qi) => `
-        <div class="co-q">
-          <div class="co-q-num">Question ${qi + 1}</div>
-          <div class="co-q-text">${esc(q.q)}</div>
-          <div class="co-opts" id="co-q-${qi}">
-            ${q.opts.map((o, oi) => `<button class="co-opt" data-qi="${qi}" data-oi="${oi}" data-correct="${oi === q.ans}"><span class="co-opt-ltr">${OPTS_LETTERS[oi]}</span>${esc(o)}</button>`).join('')}
-          </div>
-        </div>
-      `).join('')}
-    </div>
+    <div class="co-questions" id="co-qs"></div>
     <div class="co-actions" style="margin-top:10px">
       <button class="co-btn-check" id="co-check-q">Vérifier les questions</button>
       <button class="co-btn-reset" id="co-reset-q">Réinitialiser</button>
@@ -2398,6 +2416,10 @@ function openComprehensionExercise(ep) {
       <span class="co-score" id="co-tr-score"></span>
     </div>
   `;
+
+  // Render initial questions
+  $('co-qs').innerHTML = makeQsHtml(ep.questions);
+  attachOptListeners();
 
   // Audio zone — fetch RSS → inline <audio> player (like Podcasts tab)
   (async () => {
@@ -2428,35 +2450,30 @@ function openComprehensionExercise(ep) {
     renderComprehensionList();
   });
 
-  // Question options
-  box.querySelectorAll('.co-opt').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const qi = +btn.dataset.qi;
-      if (qAnswered[qi]) return;
-      qAnswered[qi] = true;
-      const correct = btn.dataset.correct === 'true';
-      const group = box.querySelectorAll(`#co-q-${qi} .co-opt`);
-      group.forEach(o => {
-        o.disabled = true;
-        if (o !== btn) o.classList.add('dimmed');
-      });
-      btn.classList.add(correct ? 'correct' : 'wrong');
-      if (!correct) {
-        group.forEach(o => { if (o.dataset.correct === 'true') { o.classList.remove('dimmed'); o.classList.add('correct'); } });
-      }
-    });
-  });
-
   $('co-check-q').addEventListener('click', () => {
+    questionsChecked = true;
     const total = ep.questions.length;
     const correct = box.querySelectorAll('.co-opt.correct[data-correct="true"]').length;
     const sc = $('co-q-score');
     sc.textContent = `${correct} / ${total}`;
     sc.className = 'co-score' + (correct === total ? ' full' : '');
   });
+
   $('co-reset-q').addEventListener('click', () => {
     Object.keys(qAnswered).forEach(k => delete qAnswered[k]);
-    box.querySelectorAll('.co-opt').forEach(o => { o.disabled = false; o.classList.remove('correct', 'wrong', 'dimmed'); });
+    if (questionsChecked) {
+      // Shuffle questions order + shuffle options within each question
+      const shuffledQs = shuffle(ep.questions.slice()).map(q => {
+        const indexed = q.opts.map((o, i) => ({ text: o, isCorrect: i === q.ans }));
+        const shuffledOpts = shuffle(indexed);
+        return { q: q.q, opts: shuffledOpts.map(x => x.text), ans: shuffledOpts.findIndex(x => x.isCorrect) };
+      });
+      $('co-qs').innerHTML = makeQsHtml(shuffledQs);
+      attachOptListeners();
+      questionsChecked = false;
+    } else {
+      box.querySelectorAll('.co-opt').forEach(o => { o.disabled = false; o.classList.remove('correct', 'wrong', 'dimmed'); });
+    }
     $('co-q-score').textContent = ''; $('co-q-score').className = 'co-score';
   });
 
