@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.19';
+const APP_VERSION = '3.20';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2224,10 +2224,30 @@ async function loadEpisodes(group) {
   if (eps.length) { lsSet(key, eps); renderEpisodes(eps); }
   else if (!cached) box.innerHTML = '<div class="listen-status">Aucun épisode (vérifie ta connexion).</div>';
 }
+const EP_EMOJI = {
+  'bbc': '🎙', 'global news': '📻', 'english we speak': '💬',
+  'learning english': '📚', 'english at work': '💼', 'six minute': '⏱',
+  'voa': '🌍', 'npr': '🎤', 'planet money': '💰', 'food': '🥗',
+  'city': '🚌', 'ai': '🤖', 'artificial': '🤖', 'health': '🏥',
+  'science': '🔬', 'sport': '⚽', 'music': '🎵', 'business': '💼',
+};
+function epEmoji(source) {
+  const s = (source || '').toLowerCase();
+  for (const [k, v] of Object.entries(EP_EMOJI)) { if (s.includes(k)) return v; }
+  return '🎧';
+}
 function renderEpisodes(eps) {
   listenEps = eps;
-  $('listen-episodes').innerHTML = eps.map((e, i) =>
-    `<button class="ep" data-i="${i}"><span class="ep-play">▶</span><span class="ep-meta"><b>${esc(e.title)}</b><span class="ep-sub">${esc(e.source)}${e.dur ? ' · ' + esc(e.dur) : ''}</span></span></button>`).join('');
+  $('listen-episodes').innerHTML = eps.map((e, i) => `
+    <button class="ep" data-i="${i}">
+      <span class="ep-cover">${epEmoji(e.source)}</span>
+      <span class="ep-meta">
+        <span class="ep-source">${esc(e.source)}</span>
+        <span class="ep-title">${esc(e.title)}</span>
+        ${e.dur ? `<span class="ep-badges"><span class="ep-dur-badge">⏱ ${esc(e.dur)}</span></span>` : ''}
+      </span>
+      <span class="ep-play-btn">▶</span>
+    </button>`).join('');
   $('listen-episodes').querySelectorAll('.ep').forEach(b => b.addEventListener('click', () => playEpisode(+b.dataset.i)));
 }
 function playEpisode(i) {
@@ -2236,11 +2256,16 @@ function playEpisode(i) {
   const box = $('listen-episodes');
   const btn = box.querySelector(`.ep[data-i="${i}"]`); if (!btn) return;
   const old = $('listen-inline'); if (old) old.remove();
+  box.querySelectorAll('.ep').forEach(b => b.classList.remove('ep-active'));
+  btn.classList.add('ep-active');
   const pl = document.createElement('div');
   pl.id = 'listen-inline'; pl.className = 'ep-player';
-  pl.innerHTML = `<div class="listen-now">${esc(e.title)}</div>`
-    + `<audio id="listen-audio" controls src="${esc(src)}"></audio>`
-    + `<a class="ep-ext" href="${esc(src)}" target="_blank" rel="noopener">Ouvrir dans le navigateur ↗</a>`;
+  pl.innerHTML = `
+    <div class="ep-player-now">
+      <span class="ep-player-dot"></span>En cours de lecture
+    </div>
+    <audio id="listen-audio" controls src="${esc(src)}"></audio>
+    <a class="ep-ext" href="${esc(src)}" target="_blank" rel="noopener">Ouvrir dans le navigateur ↗</a>`;
   btn.insertAdjacentElement('afterend', pl);
   const au = pl.querySelector('#listen-audio');
   try { au.load(); au.play().catch(() => {}); } catch (err) {}
