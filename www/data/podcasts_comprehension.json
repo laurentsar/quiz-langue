@@ -276,5 +276,292 @@
         "ans": 2
       }
     ]
+  },
+  {
+    "id": "airport-travel",
+    "show": "BBC 6 Minute English",
+    "showEmoji": "✈️",
+    "title": "Travelling by Air: Tips for a Smooth Journey",
+    "level": "B1",
+    "toeicPart": 4,
+    "duration": "5 min",
+    "showUrl": "https://www.bbc.co.uk/programmes/p02pc9zn/episodes/downloads",
+    "rssUrl": "https://podcasts.files.bbci.co.uk/p02pc9zn.rss",
+    "parts": [
+      "Travelling by air can be exciting but also ",
+      {"ans": "stressful"},
+      ". To make your journey easier, experts recommend arriving at least two ",
+      {"ans": "hours"},
+      " before your flight. Check in online to ",
+      {"ans": "avoid"},
+      " long queues at the counter. Make sure your luggage is within the airline's weight ",
+      {"ans": "limit"},
+      ", as extra baggage can be ",
+      {"ans": "expensive"},
+      ". At the security checkpoint, remove your laptop and any ",
+      {"ans": "liquids"},
+      " from your bag. Once through, go to your ",
+      {"ans": "gate"},
+      " and wait for ",
+      {"ans": "boarding"},
+      " to begin."
+    ],
+    "words": ["stressful", "hours", "avoid", "limit", "expensive", "liquids", "gate", "boarding"],
+    "questions": [
+      {
+        "q": "How early should you arrive at the airport?",
+        "opts": ["One hour before", "Two hours before", "Three hours before", "Thirty minutes before"],
+        "ans": 1
+      },
+      {
+        "q": "What does the speaker say about extra baggage?",
+        "opts": ["It is always free", "It is included in the price", "It can be expensive", "It is not allowed"],
+        "ans": 2
+      },
+      {
+        "q": "What should you remove at the security checkpoint?",
+        "opts": ["Your shoes and belt", "Your laptop and liquids", "Your boarding pass", "Your jacket and watch"],
+        "ans": 1
+      }
+    ]
+  },
+  {
+    "id": "business-meeting",
+    "show": "English at Work · BBC",
+    "showEmoji": "📊",
+    "title": "Running an Effective Business Meeting",
+    "level": "B2",
+    "toeicPart": 3,
+    "duration": "5 min",
+    "showUrl": "https://www.bbc.co.uk/programmes/p026w4ck/episodes/downloads",
+    "rssUrl": "https://podcasts.files.bbci.co.uk/p026w4ck.rss",
+    "parts": [
+      "Anna: Good morning, David. Are we ready to ",
+      {"ans": "begin"},
+      " the meeting?\n\nDavid: Almost — we're still waiting for the ",
+      {"ans": "figures"},
+      " from the finance team.\n\nAnna: While we wait, shall we go through the ",
+      {"ans": "agenda"},
+      "?\n\nDavid: Good idea. The main ",
+      {"ans": "priority"},
+      " today is the product launch scheduled for next ",
+      {"ans": "quarter"},
+      ".\n\nAnna: Agreed. We also need to ",
+      {"ans": "allocate"},
+      " the marketing budget.\n\nDavid: I'll ",
+      {"ans": "share"},
+      " the updated numbers with everyone by end of day.\n\nAnna: Perfect. Let's get ",
+      {"ans": "started"},
+      "."
+    ],
+    "words": ["begin", "figures", "agenda", "priority", "quarter", "allocate", "share", "started"],
+    "questions": [
+      {
+        "q": "What is the meeting waiting for at the start?",
+        "opts": ["The CEO to arrive", "Figures from the finance team", "A video call connection", "A printed agenda"],
+        "ans": 1
+      },
+      {
+        "q": "What is the main priority of today's meeting?",
+        "opts": ["The marketing budget", "Staff performance reviews", "The product launch", "Quarterly financial results"],
+        "ans": 2
+      },
+      {
+        "q": "What does David promise to do by end of day?",
+        "opts": ["Book the next meeting", "Write the meeting minutes", "Share the updated numbers", "Call the finance director"],
+        "ans": 2
+      }
+    ]
+  },
+  {
+    "id": "climate-change",
+    "show": "BBC 6 Minute English",
+    "showEmoji": "🌱",
+    "title": "Climate Change: What Can We Do?",
+    "level": "B2",
+    "toeicPart": 4,
+    "duration": "6 min",
+    "showUrl": "https://www.bbc.co.uk/programmes/p02pc9zn/episodes/downloads",
+    "rssUrl": "https://podcasts.files.bbci.co.uk/p02pc9zn.rss",
+    "parts": [
+      "Climate ",
+      {"ans": "change"},
+      " is one of the most urgent challenges facing the world today. Scientists report that global ",
+      {"ans": "temperatures"},
+      " have already risen by more than one degree since the industrial revolution. This warming is causing more frequent extreme ",
+      {"ans": "weather"},
+      " events, including floods, droughts and wildfires. Governments are working to reduce ",
+      {"ans": "emissions"},
+      " of greenhouse gases by investing in ",
+      {"ans": "renewable"},
+      " energy. Experts say that individual action also ",
+      {"ans": "matters"},
+      " — from recycling to reducing ",
+      {"ans": "consumption"},
+      " of meat and single-use ",
+      {"ans": "plastics"},
+      "."
+    ],
+    "words": ["change", "temperatures", "weather", "emissions", "renewable", "matters", "consumption", "plastics"],
+    "questions": [
+      {
+        "q": "What is already happening to global temperatures?",
+        "opts": ["They have stabilised", "They have fallen slightly", "They have risen by more than one degree", "They have doubled"],
+        "ans": 2
+      },
+      {
+        "q": "Which extreme weather events does the speaker mention?",
+        "opts": ["Hurricanes and tornadoes", "Floods, droughts and wildfires", "Blizzards and ice storms", "Heatwaves and sandstorms"],
+        "ans": 1
+      },
+      {
+        "q": "What does the speaker say individuals can do?",
+        "opts": ["Move to renewable energy regions", "Write to their governments", "Avoid travelling by plane", "Reduce consumption of meat and single-use plastics"],
+        "ans": 3
+      }
+    ]
+  },
+  {
+    "id": "hotel-checkin",
+    "show": "BBC The English We Speak",
+    "showEmoji": "🏨",
+    "title": "Checking In to a Hotel",
+    "level": "B1",
+    "toeicPart": 3,
+    "duration": "3 min",
+    "showUrl": "https://www.bbc.co.uk/programmes/p02pc9x6/episodes/downloads",
+    "rssUrl": "https://podcasts.files.bbci.co.uk/p02pc9x6.rss",
+    "parts": [
+      "Receptionist: Good evening! Welcome to the Grand Hotel. Do you have a ",
+      {"ans": "reservation"},
+      "?\n\nGuest: Yes, the booking is under the name Johnson.\n\nReceptionist: Let me check... A double room for three ",
+      {"ans": "nights"},
+      ". May I see your ",
+      {"ans": "passport"},
+      " or ID?\n\nGuest: Here you are.\n\nReceptionist: Thank you. Your room is on the ",
+      {"ans": "fifth"},
+      " floor — room 512. Breakfast is included and ",
+      {"ans": "served"},
+      " from seven until ten.\n\nGuest: Great. Is there a ",
+      {"ans": "gym"},
+      " in the hotel?\n\nReceptionist: Yes, on the ",
+      {"ans": "ground"},
+      " floor, open from six in the morning. Enjoy your ",
+      {"ans": "stay"},
+      "!"
+    ],
+    "words": ["reservation", "nights", "passport", "fifth", "served", "gym", "ground", "stay"],
+    "questions": [
+      {
+        "q": "How many nights is the guest staying?",
+        "opts": ["One", "Two", "Three", "Four"],
+        "ans": 2
+      },
+      {
+        "q": "What is included in the room price?",
+        "opts": ["Dinner", "Airport transfer", "Spa access", "Breakfast"],
+        "ans": 3
+      },
+      {
+        "q": "Where is the gym located?",
+        "opts": ["In the basement", "On the ground floor", "Next to reception", "On the fifth floor"],
+        "ans": 1
+      }
+    ]
+  },
+  {
+    "id": "shopping",
+    "show": "BBC The English We Speak",
+    "showEmoji": "🛍️",
+    "title": "Shopping for Clothes",
+    "level": "B1",
+    "toeicPart": 3,
+    "duration": "3 min",
+    "showUrl": "https://www.bbc.co.uk/programmes/p02pc9x6/episodes/downloads",
+    "rssUrl": "https://podcasts.files.bbci.co.uk/p02pc9x6.rss",
+    "parts": [
+      "Customer: Excuse me, could you help me find the ",
+      {"ans": "changing"},
+      " rooms?\n\nAssistant: Of course! They're just past the ",
+      {"ans": "accessories"},
+      " section on your right.\n\nCustomer: Thanks. Do you have this jacket in a ",
+      {"ans": "larger"},
+      " size? This one is too ",
+      {"ans": "tight"},
+      ".\n\nAssistant: Let me check the ",
+      {"ans": "stock"},
+      "... Yes, we have a large in the same ",
+      {"ans": "colour"},
+      ".\n\nCustomer: Perfect. And if it doesn't fit, can I ",
+      {"ans": "return"},
+      " it?\n\nAssistant: Absolutely — you have thirty days with your ",
+      {"ans": "receipt"},
+      "."
+    ],
+    "words": ["changing", "accessories", "larger", "tight", "stock", "colour", "return", "receipt"],
+    "questions": [
+      {
+        "q": "What is the customer looking for at the start?",
+        "opts": ["The exit", "The changing rooms", "The accessories section", "The checkout"],
+        "ans": 1
+      },
+      {
+        "q": "What is the problem with the jacket?",
+        "opts": ["The colour is wrong", "It is too expensive", "It is too tight", "It is out of stock"],
+        "ans": 2
+      },
+      {
+        "q": "How long does the customer have to return the jacket?",
+        "opts": ["Seven days", "Fourteen days", "Twenty-one days", "Thirty days"],
+        "ans": 3
+      }
+    ]
+  },
+  {
+    "id": "healthy-habits",
+    "show": "VOA Learning English",
+    "showEmoji": "🩺",
+    "title": "Healthy Habits for a Better Life",
+    "level": "B1",
+    "toeicPart": 4,
+    "duration": "5 min",
+    "showUrl": "https://learningenglish.voanews.com/z/4355",
+    "parts": [
+      "Staying ",
+      {"ans": "healthy"},
+      " is important at every stage of life. Doctors recommend at least thirty minutes of ",
+      {"ans": "exercise"},
+      " five times a week. A ",
+      {"ans": "balanced"},
+      " diet rich in fruit and vegetables gives your body the ",
+      {"ans": "nutrients"},
+      " it needs. Getting enough ",
+      {"ans": "sleep"},
+      " is also essential — most adults need seven to nine hours a night. Managing ",
+      {"ans": "stress"},
+      " through exercise or meditation can protect your health. Finally, visit your doctor for regular ",
+      {"ans": "check-ups"},
+      " and report any ",
+      {"ans": "symptoms"},
+      " that concern you."
+    ],
+    "words": ["healthy", "exercise", "balanced", "nutrients", "sleep", "stress", "check-ups", "symptoms"],
+    "questions": [
+      {
+        "q": "How much exercise do doctors recommend per week?",
+        "opts": ["Thirty minutes twice a week", "One hour every day", "Thirty minutes five times a week", "Two hours on weekends"],
+        "ans": 2
+      },
+      {
+        "q": "How many hours of sleep do most adults need?",
+        "opts": ["Five to seven", "Six to eight", "Seven to nine", "Eight to ten"],
+        "ans": 2
+      },
+      {
+        "q": "What does the speaker recommend for managing stress?",
+        "opts": ["Taking medication", "Avoiding social activities", "Exercise or meditation", "Working fewer hours"],
+        "ans": 2
+      }
+    ]
   }
 ]
