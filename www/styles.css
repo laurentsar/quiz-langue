@@ -602,12 +602,14 @@ html, body {
 /* Transcript */
 .co-transcript { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px;
   padding: 16px; font-size: 15px; line-height: 2.2; white-space: pre-wrap; word-break: break-word; }
-.co-blank { border: none; border-bottom: 2px solid var(--sky); background: transparent;
-  color: var(--sky); font-size: 14px; font-family: inherit; font-weight: 700; width: 8em;
-  text-align: center; outline: none; padding: 0 3px; margin: 0 2px; transition: border-color 0.15s, color 0.15s; }
+.co-blank { -webkit-appearance: none; appearance: none; border: none; border-bottom: 2px solid var(--sky);
+  background: transparent; color: var(--sky); font-size: 14px; font-family: inherit; font-weight: 700;
+  width: auto; min-width: 7em; text-align: center; outline: none; padding: 0 3px; margin: 0 2px;
+  cursor: pointer; transition: border-color 0.15s, color 0.15s; vertical-align: baseline; }
 .co-blank:focus { border-bottom-color: #F59E0B; color: #F59E0B; }
 .co-blank.b-ok  { border-bottom-color: #35D07F; color: #35D07F; }
 .co-blank.b-err { border-bottom-color: #FF6B82; color: #FF6B82; }
+.co-blank option { background: var(--card, #1e1e2e); color: var(--text, #fff); }
 .co-words { display: flex; flex-wrap: wrap; gap: 7px; }
 .co-chip { padding: 5px 11px; border-radius: 99px; background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1); color: var(--text-dim); font-size: 13px; font-weight: 600;

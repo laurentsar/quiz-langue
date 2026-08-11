@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.21';
+const APP_VERSION = '3.22';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2336,17 +2336,17 @@ function openComprehensionExercise(ep) {
   box.classList.remove('hidden');
   const lvlClass = ep.level === 'B2' ? 'co-badge-level b2' : 'co-badge-level';
   const qAnswered = {};
-  let activeBlankEl = null;
 
-  // Build transcript HTML
+  // Build transcript HTML — each blank is a <select> with shuffled word options
   const words = shuffle(ep.words.slice());
+  const wordOptions = words.map(w => `<option value="${esc(w)}">${esc(w)}</option>`).join('');
   let transcriptHtml = '';
   let blankIdx = 0;
   ep.parts.forEach(part => {
     if (typeof part === 'string') {
       transcriptHtml += esc(part).replace(/\n/g, '<br>');
     } else {
-      transcriptHtml += `<input class="co-blank" data-ans="${esc(part.ans)}" data-bi="${blankIdx++}" placeholder="…" autocomplete="off" spellcheck="false">`;
+      transcriptHtml += `<select class="co-blank" data-ans="${esc(part.ans)}" data-bi="${blankIdx++}"><option value="">…</option>${wordOptions}</select>`;
     }
   });
 
@@ -2392,12 +2392,6 @@ function openComprehensionExercise(ep) {
     <!-- Transcript -->
     <div class="co-section-divider green" style="margin-top:20px">Transcription à compléter</div>
     <div class="co-transcript">${transcriptHtml}</div>
-    <div style="margin-top:12px">
-      <div class="co-section-divider green" style="margin-top:14px;margin-bottom:10px">Banque de mots</div>
-      <div class="co-words" id="co-wordbank">
-        ${words.map(w => `<span class="co-chip" data-word="${esc(w)}">${esc(w)}</span>`).join('')}
-      </div>
-    </div>
     <div class="co-actions" style="margin-top:10px">
       <button class="co-btn-check green" id="co-check-tr">Vérifier la transcription</button>
       <button class="co-btn-reset" id="co-reset-tr">Réinitialiser</button>
@@ -2466,24 +2460,6 @@ function openComprehensionExercise(ep) {
     $('co-q-score').textContent = ''; $('co-q-score').className = 'co-score';
   });
 
-  box.addEventListener('focusin', e => { if (e.target.classList.contains('co-blank')) activeBlankEl = e.target; });
-
-  box.querySelectorAll('.co-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      const blanks = [...box.querySelectorAll('.co-blank')];
-      let target = activeBlankEl && !activeBlankEl.value ? activeBlankEl : blanks.find(b => !b.value);
-      if (!target) return;
-      target.value = chip.dataset.word;
-      target.classList.remove('b-ok', 'b-err');
-      chip.classList.add('used');
-      let found = false;
-      for (const b of blanks) {
-        if (found && !b.value) { b.focus(); break; }
-        if (b === target) found = true;
-      }
-    });
-  });
-
   $('co-check-tr').addEventListener('click', () => {
     const blanks = [...box.querySelectorAll('.co-blank')];
     let correct = 0;
@@ -2501,9 +2477,7 @@ function openComprehensionExercise(ep) {
 
   $('co-reset-tr').addEventListener('click', () => {
     box.querySelectorAll('.co-blank').forEach(b => { b.value = ''; b.classList.remove('b-ok', 'b-err'); });
-    box.querySelectorAll('.co-chip').forEach(c => c.classList.remove('used'));
     $('co-tr-score').textContent = ''; $('co-tr-score').className = 'co-score';
-    activeBlankEl = null;
   });
 
   box.scrollIntoView({ block: 'start', behavior: 'smooth' });
