@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.20';
+const APP_VERSION = '3.21';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2337,12 +2337,6 @@ function openComprehensionExercise(ep) {
   const lvlClass = ep.level === 'B2' ? 'co-badge-level b2' : 'co-badge-level';
   const qAnswered = {};
   let activeBlankEl = null;
-  let isPlaying = false;
-  let waveTimer = null;
-
-  // Build waveform bars (16 bars with varied heights)
-  const wvHeights = [7,14,20,11,24,16,9,22,17,13,25,10,18,22,8,16];
-  const wvHtml = wvHeights.map(h => `<div class="co-wv-bar" style="height:${h}px"></div>`).join('');
 
   // Build transcript HTML
   const words = shuffle(ep.words.slice());
@@ -2370,10 +2364,10 @@ function openComprehensionExercise(ep) {
         <div class="co-player-sub">${esc(ep.duration)} · ${esc(ep.level)}</div>
       </div>
       <span class="co-badge co-badge-part" style="flex-shrink:0">Part ${ep.toeicPart}</span>
-      <div class="co-player-controls">
-        <button class="co-play-btn" id="co-play-btn" title="Écouter le podcast">▶</button>
-        <div class="co-waveform" id="co-waveform">${wvHtml}</div>
-      </div>
+    </div>
+    <!-- Audio player -->
+    <div class="co-audio-zone" id="co-audio-zone">
+      <div class="co-audio-loading" id="co-audio-loading">⏳ Chargement du podcast…</div>
     </div>
 
     <!-- Questions TOEIC -->
@@ -2411,31 +2405,32 @@ function openComprehensionExercise(ep) {
     </div>
   `;
 
-  // Play button — opens podcast + toggles waveform animation
-  box.querySelector('#co-play-btn').addEventListener('click', () => {
-    isPlaying = !isPlaying;
-    const btn = box.querySelector('#co-play-btn');
-    btn.textContent = isPlaying ? '⏸' : '▶';
-    btn.classList.toggle('playing', isPlaying);
-    const bars = [...box.querySelectorAll('.co-wv-bar')];
-    if (isPlaying) {
-      let pos = 0;
-      const tick = () => {
-        bars.forEach((b, i) => b.classList.toggle('wv-on', Math.abs(i - pos % bars.length) <= 1));
-        pos++;
-        waveTimer = setTimeout(tick, 130);
-      };
-      tick();
-      window.open(ep.showUrl, '_blank', 'noopener');
-    } else {
-      clearTimeout(waveTimer);
-      bars.forEach(b => b.classList.remove('wv-on'));
+  // Audio zone — fetch RSS → inline <audio> player (like Podcasts tab)
+  (async () => {
+    const zone = $('co-audio-zone');
+    if (!ep.rssUrl) {
+      zone.innerHTML = `<a class="ep-ext" href="${esc(ep.showUrl)}" target="_blank" rel="noopener">🎧 Écouter le podcast ↗</a>`;
+      return;
     }
-  });
+    try {
+      const xml = await httpGetText(ep.rssUrl);
+      const eps = parsePodcast(xml, ep.show);
+      if (!eps.length || !eps[0].audio) throw new Error('no audio');
+      const src = eps[0].audio.replace(/^http:\/\//, 'https://').replace('/proto/http/', '/proto/https/');
+      zone.innerHTML = `
+        <div class="ep-player-now"><span class="ep-player-dot"></span>Écouter le podcast</div>
+        <audio controls src="${esc(src)}"></audio>
+        <a class="ep-ext" href="${esc(src)}" target="_blank" rel="noopener">Ouvrir dans le navigateur ↗</a>`;
+      const au = zone.querySelector('audio');
+      try { au.load(); } catch (e) {}
+    } catch (e) {
+      zone.innerHTML = `<a class="ep-ext" href="${esc(ep.showUrl)}" target="_blank" rel="noopener">🎧 Écouter le podcast ↗</a>`;
+    }
+  })();
 
   $('co-back').addEventListener('click', () => {
-    isPlaying = false;
-    clearTimeout(waveTimer);
+    const au = box.querySelector('audio');
+    if (au) try { au.pause(); } catch (e) {}
     renderComprehensionList();
   });
 
