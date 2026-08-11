@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.18';
+const APP_VERSION = '3.19';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -2310,8 +2310,14 @@ function openComprehensionExercise(ep) {
   const box = $('co-exercise');
   box.classList.remove('hidden');
   const lvlClass = ep.level === 'B2' ? 'co-badge-level b2' : 'co-badge-level';
-  const qAnswered = {}; // groupId -> answered
+  const qAnswered = {};
   let activeBlankEl = null;
+  let isPlaying = false;
+  let waveTimer = null;
+
+  // Build waveform bars (16 bars with varied heights)
+  const wvHeights = [7,14,20,11,24,16,9,22,17,13,25,10,18,22,8,16];
+  const wvHtml = wvHeights.map(h => `<div class="co-wv-bar" style="height:${h}px"></div>`).join('');
 
   // Build transcript HTML
   const words = shuffle(ep.words.slice());
@@ -2326,57 +2332,87 @@ function openComprehensionExercise(ep) {
   });
 
   box.innerHTML = `
-    <div class="co-ex-header">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
       <button class="co-ex-back" id="co-back">← Retour</button>
-      <div class="co-ex-info">
-        <div class="co-ex-show">${esc(ep.show)}</div>
-        <div class="co-ex-title">${esc(ep.title)}</div>
-      </div>
-      <span class="co-badge ${lvlClass}" style="flex-shrink:0">${esc(ep.level)}</span>
     </div>
 
-    <a class="co-ex-link" href="${esc(ep.showUrl)}" target="_blank" rel="noopener">
-      🎧 Écouter le podcast ↗
-    </a>
+    <!-- Player bar -->
+    <div class="co-player">
+      <div class="co-player-cover">${esc(ep.showEmoji || '🎙')}</div>
+      <div class="co-player-info">
+        <div class="co-player-show">${esc(ep.show)}</div>
+        <div class="co-player-ep">${esc(ep.title)}</div>
+        <div class="co-player-sub">${esc(ep.duration)} · ${esc(ep.level)}</div>
+      </div>
+      <span class="co-badge co-badge-part" style="flex-shrink:0">Part ${ep.toeicPart}</span>
+      <div class="co-player-controls">
+        <button class="co-play-btn" id="co-play-btn" title="Écouter le podcast">▶</button>
+        <div class="co-waveform" id="co-waveform">${wvHtml}</div>
+      </div>
+    </div>
 
-    <div style="margin-top:18px">
-      <div class="co-section-label">Questions TOEIC — Part ${ep.toeicPart}</div>
-      <div class="co-questions" id="co-qs">
-        ${ep.questions.map((q, qi) => `
-          <div class="co-q">
-            <div class="co-q-num">Question ${qi + 1}</div>
-            <div class="co-q-text">${esc(q.q)}</div>
-            <div class="co-opts" id="co-q-${qi}">
-              ${q.opts.map((o, oi) => `<button class="co-opt" data-qi="${qi}" data-oi="${oi}" data-correct="${oi === q.ans}">${'<span class="co-opt-ltr">' + OPTS_LETTERS[oi] + '</span>'}${esc(o)}</button>`).join('')}
-            </div>
+    <!-- Questions TOEIC -->
+    <div class="co-section-divider">Questions TOEIC — Part ${ep.toeicPart}</div>
+    <div class="co-questions" id="co-qs">
+      ${ep.questions.map((q, qi) => `
+        <div class="co-q">
+          <div class="co-q-num">Question ${qi + 1}</div>
+          <div class="co-q-text">${esc(q.q)}</div>
+          <div class="co-opts" id="co-q-${qi}">
+            ${q.opts.map((o, oi) => `<button class="co-opt" data-qi="${qi}" data-oi="${oi}" data-correct="${oi === q.ans}"><span class="co-opt-ltr">${OPTS_LETTERS[oi]}</span>${esc(o)}</button>`).join('')}
           </div>
-        `).join('')}
-      </div>
-      <div class="co-actions" style="margin-top:10px">
-        <button class="co-btn-check" id="co-check-q">Vérifier les questions</button>
-        <button class="co-btn-reset" id="co-reset-q">Réinitialiser</button>
-        <span class="co-score" id="co-q-score"></span>
-      </div>
+        </div>
+      `).join('')}
+    </div>
+    <div class="co-actions" style="margin-top:10px">
+      <button class="co-btn-check" id="co-check-q">Vérifier les questions</button>
+      <button class="co-btn-reset" id="co-reset-q">Réinitialiser</button>
+      <span class="co-score" id="co-q-score"></span>
     </div>
 
-    <div style="margin-top:22px">
-      <div class="co-section-label green">Transcription à compléter</div>
-      <div class="co-transcript">${transcriptHtml}</div>
-      <div style="margin-top:12px">
-        <div class="co-section-label green" style="margin-bottom:8px">Banque de mots</div>
-        <div class="co-words" id="co-wordbank">
-          ${words.map(w => `<span class="co-chip" data-word="${esc(w)}">${esc(w)}</span>`).join('')}
-        </div>
+    <!-- Transcript -->
+    <div class="co-section-divider green" style="margin-top:20px">Transcription à compléter</div>
+    <div class="co-transcript">${transcriptHtml}</div>
+    <div style="margin-top:12px">
+      <div class="co-section-divider green" style="margin-top:14px;margin-bottom:10px">Banque de mots</div>
+      <div class="co-words" id="co-wordbank">
+        ${words.map(w => `<span class="co-chip" data-word="${esc(w)}">${esc(w)}</span>`).join('')}
       </div>
-      <div class="co-actions" style="margin-top:10px">
-        <button class="co-btn-check green" id="co-check-tr">Vérifier la transcription</button>
-        <button class="co-btn-reset" id="co-reset-tr">Réinitialiser</button>
-        <span class="co-score" id="co-tr-score"></span>
-      </div>
+    </div>
+    <div class="co-actions" style="margin-top:10px">
+      <button class="co-btn-check green" id="co-check-tr">Vérifier la transcription</button>
+      <button class="co-btn-reset" id="co-reset-tr">Réinitialiser</button>
+      <span class="co-score" id="co-tr-score"></span>
     </div>
   `;
 
-  $('co-back').addEventListener('click', renderComprehensionList);
+  // Play button — opens podcast + toggles waveform animation
+  box.querySelector('#co-play-btn').addEventListener('click', () => {
+    isPlaying = !isPlaying;
+    const btn = box.querySelector('#co-play-btn');
+    btn.textContent = isPlaying ? '⏸' : '▶';
+    btn.classList.toggle('playing', isPlaying);
+    const bars = [...box.querySelectorAll('.co-wv-bar')];
+    if (isPlaying) {
+      let pos = 0;
+      const tick = () => {
+        bars.forEach((b, i) => b.classList.toggle('wv-on', Math.abs(i - pos % bars.length) <= 1));
+        pos++;
+        waveTimer = setTimeout(tick, 130);
+      };
+      tick();
+      window.open(ep.showUrl, '_blank', 'noopener');
+    } else {
+      clearTimeout(waveTimer);
+      bars.forEach(b => b.classList.remove('wv-on'));
+    }
+  });
+
+  $('co-back').addEventListener('click', () => {
+    isPlaying = false;
+    clearTimeout(waveTimer);
+    renderComprehensionList();
+  });
 
   // Question options
   box.querySelectorAll('.co-opt').forEach(btn => {
@@ -2397,7 +2433,6 @@ function openComprehensionExercise(ep) {
     });
   });
 
-  // Check questions
   $('co-check-q').addEventListener('click', () => {
     const total = ep.questions.length;
     const correct = box.querySelectorAll('.co-opt.correct[data-correct="true"]').length;
@@ -2411,10 +2446,8 @@ function openComprehensionExercise(ep) {
     $('co-q-score').textContent = ''; $('co-q-score').className = 'co-score';
   });
 
-  // Blank focus tracking
   box.addEventListener('focusin', e => { if (e.target.classList.contains('co-blank')) activeBlankEl = e.target; });
 
-  // Word bank chips
   box.querySelectorAll('.co-chip').forEach(chip => {
     chip.addEventListener('click', () => {
       const blanks = [...box.querySelectorAll('.co-blank')];
@@ -2431,7 +2464,6 @@ function openComprehensionExercise(ep) {
     });
   });
 
-  // Check transcript
   $('co-check-tr').addEventListener('click', () => {
     const blanks = [...box.querySelectorAll('.co-blank')];
     let correct = 0;
