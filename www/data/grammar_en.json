@@ -6586,5 +6586,138 @@
         ]
       }
     ]
+  },
+  {
+    "id": "daily-prayers",
+    "title": "Prières quotidiennes",
+    "subtitle": "15 phrases de prière et de foi en anglais et en français",
+    "sections": [
+      {
+        "heading": "Prières du matin et du soir (8 phrases)",
+        "points": [
+          "Lord, guide my steps today. → Seigneur, guide mes pas aujourd'hui.",
+          "Thank you, God, for this new day. → Merci, Dieu, pour ce nouveau jour.",
+          "Give us this day our daily bread. → Donne-nous aujourd'hui notre pain de ce jour.",
+          "Lead us not into temptation. → Ne nous soumets pas à la tentation.",
+          "Thy will be done. → Que ta volonté soit faite.",
+          "I put my trust in You, Lord. → Je mets ma confiance en Toi, Seigneur.",
+          "Protect me and my family. → Protège-moi ainsi que ma famille.",
+          "May Your light shine upon me. → Que Ta lumière brille sur moi."
+        ],
+        "tip": "Thy = Ton/Ta (forme archaïque, utilisée dans les prières). Lord = Seigneur. Forgive = pardonner. Lead = guider / conduire. May + sujet + verbe = Que + subjonctif (souhait).",
+        "examples": [
+          "Lord, guide my steps today — keep me on the right path.",
+          "Give us this day our daily bread.",
+          "Thy will be done, on earth as it is in heaven."
+        ]
+      },
+      {
+        "heading": "Prières de foi et de gratitude (7 phrases)",
+        "points": [
+          "Forgive me for my sins. → Pardonne-moi mes péchés.",
+          "I am grateful for Your blessings. → Je suis reconnaissant(e) pour Tes bénédictions.",
+          "Grant me wisdom and strength. → Accorde-moi sagesse et force.",
+          "Heal the sick and comfort the broken-hearted. → Guéris les malades et réconforte les cœurs brisés.",
+          "Praise the Lord! → Gloire au Seigneur !",
+          "Amen. → Ainsi soit-il.",
+          "May God bless you. → Que Dieu vous bénisse."
+        ],
+        "tip": "Grant = accorder (formel). Wisdom = sagesse. Strength = force. Blessings = bénédictions. Heal = guérir. Broken-hearted = au cœur brisé. Praise = louer / glorifier.",
+        "examples": [
+          "Forgive me for my sins and help me to do better.",
+          "I am grateful for Your blessings every day.",
+          "May God bless you and keep you safe."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepositions-usage",
+    "title": "Use of Prepositions",
+    "subtitle": "16 prépositions anglaises essentielles avec exemples",
+    "sections": [
+      {
+        "heading": "Prépositions de rapport et de position (8)",
+        "points": [
+          "About → à propos de / au sujet de — She is talking about her trip.",
+          "Against → contre — He is leaning against the wall.",
+          "Before → avant — Please finish it before Monday.",
+          "After → après — We went for a walk after dinner.",
+          "Across → de l'autre côté de / à travers — She walked across the street.",
+          "Along → le long de — We strolled along the river.",
+          "Among → parmi (plusieurs) — She was standing among friends.",
+          "Beside → à côté de — Sit beside me."
+        ],
+        "tip": "About = au sujet de (≠ around = autour). Against = contre (opposition ou contact physique). Among = parmi (3+ éléments, ≠ between = entre deux). Before/After = avant/après (temps ou ordre). Across = de l'autre côté. Along = le long de. Beside = à côté de (≠ besides = en plus de).",
+        "examples": [
+          "She is talking about her trip to Japan.",
+          "He leaned against the wall and waited.",
+          "Please finish the report before Friday."
+        ]
+      },
+      {
+        "heading": "Prépositions de relation et d'exclusion (8)",
+        "points": [
+          "During → pendant / au cours de — I fell asleep during the meeting.",
+          "Except → sauf / excepté — Everyone came except Tom.",
+          "Near → près de — The school is near the park.",
+          "Without → sans — She left without saying goodbye.",
+          "Behind → derrière — The cat is hiding behind the sofa.",
+          "Between → entre (deux éléments) — The shop is between the bank and the post office.",
+          "Under → sous / en dessous de — The keys are under the mat.",
+          "Above → au-dessus de — The temperature is above 30 degrees."
+        ],
+        "tip": "During = pendant (une période : during the summer). Except = sauf. Near = près de. Without = sans. Behind = derrière. Between = entre deux. Under = sous (contact ou non). Above = au-dessus de (sans contact, ≠ over = par-dessus).",
+        "examples": [
+          "I fell asleep during the film.",
+          "Everyone passed except one student.",
+          "The temperature is above average today."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "transport-get-on-off",
+    "title": "Les moyens de transport",
+    "subtitle": "Get on / Get off / Get in / Get out — comment monter et descendre en anglais",
+    "sections": [
+      {
+        "heading": "Get on / Get off — transports collectifs et grands véhicules",
+        "points": [
+          "Get on the bus → Monter dans le bus",
+          "Get on the train → Monter dans le train",
+          "Get on the metro → Monter dans le métro",
+          "Get on the tram → Monter dans le tramway",
+          "Get on the plane → Monter dans l'avion",
+          "Get on the bike / motorbike → Monter sur le vélo / la moto",
+          "Get off the bus → Descendre du bus",
+          "Get off the train → Descendre du train"
+        ],
+        "tip": "Get ON / OFF s'utilise pour les transports où l'on monte (bus, train, métro, avion, vélo, moto, bateau). On monte SUR le véhicule. Règle : si on dit 'ride it' → GET ON/OFF.",
+        "examples": [
+          "I get on the bus every morning at 8 a.m.",
+          "She got off the train at Victoria station.",
+          "Don't forget to get off at the right stop!"
+        ]
+      },
+      {
+        "heading": "Get in / Get out — voiture et petits véhicules",
+        "points": [
+          "Get in the car → Monter dans la voiture",
+          "Get in the taxi → Monter dans le taxi",
+          "Get in the truck → Monter dans le camion",
+          "Get out of the car → Descendre de la voiture",
+          "Get out of the taxi → Descendre du taxi",
+          "Get in / Get out — véhicules individuels fermés (voiture, taxi, camionnette)",
+          "Get on / Get off — transports en commun et véhicules à enfourcher (bus, train, vélo)"
+        ],
+        "tip": "Get IN / OUT OF s'utilise pour les petits véhicules fermés où l'on entre (voiture, taxi, camion). On entre DANS le véhicule. Règle : si on dit 'drive it' ou 'sit inside it' → GET IN/OUT OF. Attention : Get out = descendre / sortir (toujours sans 'of' pour le bus, toujours avec 'of' pour la voiture).",
+        "examples": [
+          "Get in the car — we're going to be late!",
+          "She got out of the taxi and paid the driver.",
+          "He gets in his truck every day at 6 a.m."
+        ]
+      }
+    ]
   }
 ]
