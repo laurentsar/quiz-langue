@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.17';
+const APP_VERSION = '3.18';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -3313,6 +3313,30 @@ const _GFIX = {
     { q: "Chaque jour compte.", opts: ["Every day matters.","Each day counts.","Every day is important.","Each day means a lot."], ans: "Every day matters.", hint: "Every day matters = Chaque jour compte (matter = compter, avoir de l'importance). 'Every day matters' est la formulation de l'image.", _isSentence: true },
     { q: "Apprends de tes erreurs.", opts: ["Learn from your mistakes.","Learn from your experiences.","Learn from your failures.","Learn your lessons."], ans: "Learn from your mistakes.", hint: "Learn from your mistakes = Apprends de tes erreurs (mistake = erreur/faute, learn from = tirer une leçon de).", _isSentence: true },
   ],
+  'daily-prayers': [
+    { q: "Seigneur, guide mes pas aujourd'hui.", opts: ["Lord, guide my steps today.","Lord, lead my path today.","Lord, show my way today.","Lord, bless my steps today."], ans: "Lord, guide my steps today.", hint: "Guide my steps = Guide mes pas. Lord = Seigneur. Steps = pas (au sens figuré : démarches, chemin de vie).", _isSentence: true },
+    { q: "Merci, Dieu, pour ce nouveau jour.", opts: ["Thank you, God, for this new day.","Thank you, Lord, for today.","Thank you, God, for every day.","Bless you, God, for this new day."], ans: "Thank you, God, for this new day.", hint: "Thank you, God, for this new day = Merci, Dieu, pour ce nouveau jour. Formule de gratitude du matin.", _isSentence: true },
+    { q: "Donne-nous aujourd'hui notre pain de ce jour.", opts: ["Give us this day our daily bread.","Give us today our bread.","Give us our daily bread today.","Lord, give us bread each day."], ans: "Give us this day our daily bread.", hint: "Give us this day our daily bread — extrait du Notre Père (The Lord's Prayer). Daily = quotidien. This day = aujourd'hui.", _isSentence: true },
+    { q: "Que ta volonté soit faite.", opts: ["Thy will be done.","Your will is done.","Thy will has been done.","May Your will happen."], ans: "Thy will be done.", hint: "Thy will be done = Que ta volonté soit faite. Thy = Ton/Ta (forme archaïque). Will = volonté. Be done = soit faite (subjonctif passif).", _isSentence: true },
+    { q: "Pardonne-moi mes péchés.", opts: ["Forgive me for my sins.","Pardon me my sins.","Forgive me of my sins.","Excuse me for my sins."], ans: "Forgive me for my sins.", hint: "Forgive me for my sins = Pardonne-moi mes péchés. Forgive = pardonner. Sin = péché. 'Forgive us our trespasses' = Pardonne-nous nos offenses.", _isSentence: true },
+    { q: "Que Dieu vous bénisse.", opts: ["May God bless you.","God will bless you.","Let God bless you.","God may bless you."], ans: "May God bless you.", hint: "May God bless you = Que Dieu vous bénisse. May + sujet + verbe = forme de souhait / bénédiction. Bless = bénir.", _isSentence: true },
+  ],
+  'prepositions-usage': [
+    { q: "\"About\" signifie :", opts: ["À propos de","Contre","Avant","Parmi"], ans: "À propos de", hint: "About = à propos de / au sujet de. 'She is talking about her trip.' ≠ Around = autour de. ≠ Against = contre." },
+    { q: "\"Against\" signifie :", opts: ["Contre","Avant","Autour de","À côté de"], ans: "Contre", hint: "Against = contre (opposition ou contact physique). 'He is leaning against the wall.' Aussi : to be against = être contre (opinion)." },
+    { q: "\"Among\" s'utilise pour :", opts: ["Parmi (3 éléments ou plus)","Entre deux éléments","À côté de","En face de"], ans: "Parmi (3 éléments ou plus)", hint: "Among = parmi (3+ éléments). ≠ Between = entre deux éléments. 'She was standing among friends.' (plusieurs amis)." },
+    { q: "\"During\" signifie :", opts: ["Pendant / Au cours de","Avant","Après","Sauf"], ans: "Pendant / Au cours de", hint: "During = pendant, au cours de (utilisé avec une période). 'I fell asleep during the meeting.' ≠ For = pendant (durée)." },
+    { q: "\"Except\" signifie :", opts: ["Sauf / Excepté","Sans","Derrière","Entre"], ans: "Sauf / Excepté", hint: "Except = sauf, excepté. 'Everyone came except Tom.' Synonyme : apart from. ≠ Without = sans (absence)." },
+    { q: "\"Above\" signifie :", opts: ["Au-dessus de","Sous","Derrière","À côté de"], ans: "Au-dessus de", hint: "Above = au-dessus de (sans contact). 'The temperature is above 30 degrees.' ≠ Under = sous. ≠ Over = par-dessus (mouvement)." },
+  ],
+  'transport-get-on-off': [
+    { q: "Pour monter dans un bus, on dit :", opts: ["Get on the bus","Get in the bus","Step into the bus","Board in the bus"], ans: "Get on the bus", hint: "Get ON = pour les transports collectifs (bus, train, métro, avion, vélo, moto). On monte SUR ces véhicules. Get IN = pour la voiture et les petits véhicules fermés." },
+    { q: "Pour descendre d'un train, on dit :", opts: ["Get off the train","Get out of the train","Step down the train","Exit the train"], ans: "Get off the train", hint: "Get OFF = descendre d'un transport collectif. 'She got off the train at Victoria station.' Toujours 'get off' pour bus, train, métro, avion, vélo." },
+    { q: "Pour monter dans une voiture, on dit :", opts: ["Get in the car","Get on the car","Board the car","Step on the car"], ans: "Get in the car", hint: "Get IN = pour la voiture, taxi, camion. On ENTRE dans le véhicule. 'Get in the car — we're going to be late!' Règle : si on 'drive it' → GET IN/OUT OF." },
+    { q: "Pour descendre de la voiture, on dit :", opts: ["Get out of the car","Get off the car","Get out the car","Step off the car"], ans: "Get out of the car", hint: "Get OUT OF = sortir de la voiture/taxi/camion. 'She got out of the taxi and paid the driver.' Toujours 'out of' avec la voiture." },
+    { q: "\"Get on\" s'utilise pour :", opts: ["Bus, train, avion, vélo, moto","Voiture, taxi, camion","Tous les véhicules","Aucun véhicule"], ans: "Bus, train, avion, vélo, moto", hint: "Get ON/OFF → transports collectifs + véhicules à enfourcher (bus, train, métro, tram, avion, bateau, vélo, moto). Get IN/OUT OF → petits véhicules fermés (voiture, taxi, camion)." },
+    { q: "\"Get in\" s'utilise pour :", opts: ["Voiture, taxi, camion","Bus, train, avion","Vélo, moto","Métro, tram"], ans: "Voiture, taxi, camion", hint: "Get IN the car/taxi/truck. Pour les véhicules individuels fermés où l'on entre vraiment. Mémotechnique : IN = inside (dedans). ≠ Get ON = monter sur (transport collectif ou à enfourcher)." },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -4947,6 +4971,60 @@ const _GFIX_SERIES = {
       { q: "Tu es capable de grandes choses.", opts: ["You are capable of great things.","You can do great things.","You are able of great things.","You are great at things."], ans: "You are capable of great things.", hint: "Capable of + nom = capable de. 'You are capable of great things' = Tu es capable de grandes choses. ≠ 'able to' + verbe.", _isSentence: true },
       { q: "La discipline ouvre toutes les portes.", opts: ["Discipline opens every door.","Discipline unlocks all doors.","Discipline opens all doors.","Discipline is key to every door."], ans: "Discipline opens every door.", hint: "Discipline opens every door = La discipline ouvre toutes les portes. Every = toutes (chaque). Opens every door = figure de style : la discipline donne accès à tout.", _isSentence: true },
       { q: "Transforme tes rêves en actions.", opts: ["Turn your dreams into actions.","Change your dreams into actions.","Make your dreams into actions.","Transform your dreams into actions."], ans: "Turn your dreams into actions.", hint: "Turn X into Y = Transformer X en Y. Turn est plus naturel que 'transform' dans cet usage. Dreams = rêves, actions = actions.", _isSentence: true },
+    ],
+  ],
+  'daily-prayers': [
+    [
+      { q: "Protège-moi ainsi que ma famille.", opts: ["Protect me and my family.","Guard me and my family.","Keep me and my family.","Save me and my family."], ans: "Protect me and my family.", hint: "Protect me and my family = Protège-moi ainsi que ma famille. Protect = protéger. 'May God protect me and my family.'", _isSentence: true },
+      { q: "Je mets ma confiance en Toi, Seigneur.", opts: ["I put my trust in You, Lord.","I place my faith in You, Lord.","I keep my trust in You, Lord.","I give my trust to You, Lord."], ans: "I put my trust in You, Lord.", hint: "Put my trust in = mettre sa confiance en. Trust = confiance. Lord = Seigneur. 'I put my trust in the Lord.'", _isSentence: true },
+      { q: "Que Ta lumière brille sur moi.", opts: ["May Your light shine upon me.","May Your light glow on me.","Let Your light shine on me.","May Your light fall on me."], ans: "May Your light shine upon me.", hint: "May Your light shine upon me = Que Ta lumière brille sur moi. May = que (souhait). Shine = briller. Upon = sur (forme plus soutenue que 'on').", _isSentence: true },
+      { q: "Ne nous soumets pas à la tentation.", opts: ["Lead us not into temptation.","Don't lead us to temptation.","Keep us from temptation.","Save us from temptation."], ans: "Lead us not into temptation.", hint: "Lead us not into temptation = Ne nous soumets pas à la tentation. Extrait du Notre Père. Lead = conduire/guider. Temptation = tentation.", _isSentence: true },
+      { q: "Je suis reconnaissant(e) pour Tes bénédictions.", opts: ["I am grateful for Your blessings.","I am thankful for Your blessings.","I feel grateful for Your gifts.","I give thanks for Your blessings."], ans: "I am grateful for Your blessings.", hint: "I am grateful for Your blessings = Je suis reconnaissant(e) pour Tes bénédictions. Grateful = reconnaissant(e). Blessings = bénédictions (de bless = bénir).", _isSentence: true },
+      { q: "Gloire au Seigneur !", opts: ["Praise the Lord!","Glory to the Lord!","Bless the Lord!","Honor the Lord!"], ans: "Praise the Lord!", hint: "Praise the Lord! = Gloire au Seigneur ! / Louez le Seigneur ! Praise = louer, glorifier. Expression biblique très utilisée dans les chants et prières.", _isSentence: true },
+    ],
+    [
+      { q: "\"Thy\" dans une prière signifie :", opts: ["Ton / Ta (forme archaïque)","Vous","Moi","Notre"], ans: "Ton / Ta (forme archaïque)", hint: "Thy = forme archaïque de 'your' (ton/ta). Utilisé dans les prières traditionnelles. 'Thy will be done' = Que ta volonté soit faite." },
+      { q: "\"Grant\" signifie :", opts: ["Accorder","Prendre","Guider","Protéger"], ans: "Accorder", hint: "Grant = accorder, octroyer (formel). 'Grant me wisdom and strength' = Accorde-moi sagesse et force. ≠ Give (plus courant, moins formel)." },
+      { q: "\"Forgive\" signifie :", opts: ["Pardonner","Oublier","Bénir","Aider"], ans: "Pardonner", hint: "Forgive = pardonner. Forgive me for my sins = Pardonne-moi mes péchés. Forgiveness = le pardon. 'I forgive you' = Je te pardonne." },
+      { q: "\"Blessings\" signifie :", opts: ["Bénédictions","Prières","Forces","Péchés"], ans: "Bénédictions", hint: "Blessings = bénédictions (pluriel de blessing). Vient de 'bless' = bénir. 'Count your blessings' = Compte tes bénédictions (sois reconnaissant)." },
+      { q: "\"Wisdom\" signifie :", opts: ["Sagesse","Courage","Force","Paix"], ans: "Sagesse", hint: "Wisdom = sagesse (connaissance profonde et bon jugement). ≠ Knowledge = connaissance. ≠ Strength = force. 'Grant me wisdom' = Accorde-moi la sagesse." },
+      { q: "\"Heal\" signifie :", opts: ["Guérir","Prier","Bénir","Louer"], ans: "Guérir", hint: "Heal = guérir (corps ou âme). 'Heal the sick' = Guéris les malades. Healing = guérison. ≠ Cure = guérir (maladie spécifique, médicalement)." },
+    ],
+  ],
+  'prepositions-usage': [
+    [
+      { q: "She walked ___ the street.", opts: ["across","along","among","beside"], ans: "across", hint: "Across = de l'autre côté de / à travers. 'She walked across the street' = Elle a traversé la rue. Along = le long de (on longe sans traverser)." },
+      { q: "He is leaning ___ the wall.", opts: ["against","across","about","along"], ans: "against", hint: "Against = contre (contact physique). 'He is leaning against the wall' = Il est appuyé contre le mur. ≠ Near = près de (sans contact)." },
+      { q: "I fell asleep ___ the meeting.", opts: ["during","before","after","except"], ans: "during", hint: "During = pendant (au cours d'une période). 'I fell asleep during the meeting' = Je me suis endormi(e) pendant la réunion. ≠ For = pendant (durée chiffrée)." },
+      { q: "The shop is ___ the bank and the post office.", opts: ["between","among","across","beside"], ans: "between", hint: "Between = entre (deux éléments). 'The shop is between the bank and the post office.' ≠ Among = parmi (3 éléments ou plus)." },
+      { q: "The keys are ___ the mat.", opts: ["under","above","behind","near"], ans: "under", hint: "Under = sous / en dessous de. 'The keys are under the mat.' ≠ Above = au-dessus de. ≠ Behind = derrière." },
+      { q: "Everyone came ___ Tom.", opts: ["except","without","beside","between"], ans: "except", hint: "Except = sauf. 'Everyone came except Tom.' = Tout le monde est venu sauf Tom. ≠ Without = sans (il serait venu, mais sans Tom en sa compagnie)." },
+    ],
+    [
+      { q: "\"Above\" signifie :", opts: ["Au-dessus de","Sous","Derrière","Devant"], ans: "Au-dessus de", hint: "Above = au-dessus de (sans contact nécessaire). 'The temperature is above 30 degrees.' ≠ Below / Under = sous, en dessous." },
+      { q: "\"Along\" signifie :", opts: ["Le long de","À travers","Au-dessus de","Entre"], ans: "Le long de", hint: "Along = le long de (on longe un chemin, une rivière). 'We strolled along the river.' ≠ Across = à travers / de l'autre côté." },
+      { q: "\"Near\" signifie :", opts: ["Près de","Au-dessus de","Le long de","Sauf"], ans: "Près de", hint: "Near = près de, à proximité de. 'The school is near the park.' ≠ Beside = à côté de (très proche). ≠ Far from = loin de." },
+      { q: "\"Behind\" signifie :", opts: ["Derrière","Devant","À côté de","Parmi"], ans: "Derrière", hint: "Behind = derrière. 'The cat is hiding behind the sofa.' ≠ Before = devant (dans l'espace) ou avant (dans le temps). ≠ Beside = à côté de." },
+      { q: "\"Before\" dans le temps signifie :", opts: ["Avant","Après","Pendant","Depuis"], ans: "Avant", hint: "Before = avant (dans le temps). 'Please finish it before Monday.' ≠ After = après. Before peut aussi signifier 'devant' dans l'espace (contexte formel)." },
+      { q: "\"Beside\" signifie :", opts: ["À côté de","En plus de","Derrière","Entre"], ans: "À côté de", hint: "Beside = à côté de (positionnement). 'Sit beside me.' ≠ Besides = en plus de, d'ailleurs (sens différent). Attention à cette paire!" },
+    ],
+  ],
+  'transport-get-on-off': [
+    [
+      { q: "I need to ___ the taxi — we're here!", opts: ["get out of","get off","get on","get in"], ans: "get out of", hint: "Get out of = descendre / sortir de (voiture, taxi). On sort de l'intérieur d'un véhicule fermé. ≠ Get off = descendre d'un transport collectif (bus, train)." },
+      { q: "She ___ the bus at the last stop.", opts: ["got off","got out of","got on","got in"], ans: "got off", hint: "Got off = est descendu(e) du (bus, train, avion, vélo). 'She got off the bus at the last stop.' Get off s'emploie toujours pour les transports collectifs." },
+      { q: "Please ___ the car — we're late!", opts: ["get in","get on","get off","get out"], ans: "get in", hint: "Get in = monter dans (la voiture, le taxi, le camion). 'Please get in the car — we're late!' On entre dans le véhicule. ≠ Get on = monter sur (bus, train, vélo)." },
+      { q: "He ___ the bike and rode away.", opts: ["got on","got in","got off","got out of"], ans: "got on", hint: "Got on = est monté(e) sur (le vélo, la moto). 'He got on the bike and rode away.' On enfourche le vélo → GET ON. ≠ Got in = entrer dans un véhicule fermé." },
+      { q: "They ___ the plane and found their seats.", opts: ["got on","got in","got off","got out of"], ans: "got on", hint: "Got on = sont monté(e)s dans l'avion. On board a plane = embarquer dans un avion. L'avion est un grand transport collectif → GET ON. ≠ Got in = voiture." },
+      { q: "Don't forget to ___ at Victoria station!", opts: ["get off","get out","get on","get in"], ans: "get off", hint: "Get off = descendre (du train, métro, bus). 'Don't forget to get off at Victoria station!' = N'oublie pas de descendre à la station Victoria." },
+    ],
+    [
+      { q: "Quelle règle pour choisir GET ON vs GET IN ?", opts: ["ON = transports collectifs/enfourcher ; IN = véhicules fermés individuels","IN = tous les transports ; ON = aucun transport","ON = voiture ; IN = bus","Aucune règle, c'est aléatoire"], ans: "ON = transports collectifs/enfourcher ; IN = véhicules fermés individuels", hint: "GET ON/OFF → bus, train, métro, tram, avion, bateau, vélo, moto. GET IN/OUT OF → voiture, taxi, camion. Mémotechnique : ON = 'on board' (à bord, collectif) ; IN = 'inside' (à l'intérieur, individuel fermé)." },
+      { q: "Pour un vélo, on utilise :", opts: ["Get on / Get off","Get in / Get out of","Les deux sont possibles","Aucun des deux"], ans: "Get on / Get off", hint: "Get ON the bike = monter sur le vélo. Get OFF the bike = descendre du vélo. On enfourche le vélo → GET ON/OFF. 'He got on the bike and rode away.'" },
+      { q: "Pour un taxi, on utilise :", opts: ["Get in / Get out of","Get on / Get off","Les deux","Aucun"], ans: "Get in / Get out of", hint: "Get IN the taxi = monter dans le taxi. Get OUT OF the taxi = descendre du taxi. Le taxi est un véhicule individuel fermé → GET IN/OUT OF." },
+      { q: "Pour un train, on utilise :", opts: ["Get on / Get off","Get in / Get out of","Les deux","Aucun"], ans: "Get on / Get off", hint: "Get ON the train = monter dans le train. Get OFF the train = descendre du train. Le train est un transport collectif → GET ON/OFF. 'She got off the train at Victoria station.'" },
+      { q: "Pour une moto, on utilise :", opts: ["Get on / Get off","Get in / Get out of","Les deux","Aucun"], ans: "Get on / Get off", hint: "Get ON the motorbike = monter sur la moto. Get OFF the motorbike = descendre de la moto. On enfourche la moto → GET ON/OFF. Même règle que pour le vélo." },
+      { q: "She ___ the train at Victoria station.", opts: ["got off","got out of","got on","got in"], ans: "got off", hint: "Got off the train = est descendu(e) du train. Le train → GET ON/OFF. ≠ Got out of = pour la voiture/taxi. 'She got off the train at Victoria station.' est la formulation correcte." },
     ],
   ],
 };
