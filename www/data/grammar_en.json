@@ -6719,5 +6719,42 @@
         ]
       }
     ]
+  },
+  {
+    "id": "while-meanwhile-meantime",
+    "title": "While, Meanwhile & Meantime",
+    "subtitle": "Relier des actions simultanées",
+    "sections": [
+      {
+        "heading": "WHILE — même phrase",
+        "points": [
+          "While connects two simultaneous actions within the <b>same sentence</b>.",
+          "<i>“Someone knocked on the door <b>while</b> I was playing the piano.”</i>",
+          "<i>“<b>While</b> I was watching a film, the postman delivered a parcel.”</i>",
+          "<i>“I will peel the potatoes <b>while</b> you chop the onions.”</i>"
+        ]
+      },
+      {
+        "heading": "MEANWHILE — nouvelle phrase, même moment",
+        "points": [
+          "Meanwhile introduces a <b>new sentence</b> describing something happening at the same time.",
+          "It is placed at the beginning of the sentence, followed by a <b>comma</b>.",
+          "<i>“Sue was tidying the house. <b>Meanwhile,</b> the children were playing outside.”</i>",
+          "<i>“The electricity was cut off. <b>Meanwhile,</b> we had no heating.”</i>",
+          "<i>“I will peel the potatoes. <b>Meanwhile,</b> you chop the onions.”</i>"
+        ],
+        "tip": "While = même phrase / Meanwhile = nouvelle phrase + virgule"
+      },
+      {
+        "heading": "IN THE MEANTIME — intervalle entre deux événements",
+        "points": [
+          "In the meantime means <b>'in the period between two events'</b> or <b>'until that happens'</b>.",
+          "<i>“The children will be home in an hour. <b>In the meantime</b> I'll prepare dinner.”</i>",
+          "<i>“Her new job starts next month. <b>In the meantime</b> she's doing temporary work.”</i>",
+          "<i>“The doctor will be here soon. Try to relax <b>in the meantime</b>.”</i>",
+          "<i>“Our children will be independent one day, but <b>in the meantime</b> they depend on us.”</i>"
+        ]
+      }
+    ]
   }
 ]

@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.23';
+const APP_VERSION = '3.26';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -3380,6 +3380,14 @@ const _GFIX = {
     { q: "\"Get on\" s'utilise pour :", opts: ["Bus, train, avion, vélo, moto","Voiture, taxi, camion","Tous les véhicules","Aucun véhicule"], ans: "Bus, train, avion, vélo, moto", hint: "Get ON/OFF → transports collectifs + véhicules à enfourcher (bus, train, métro, tram, avion, bateau, vélo, moto). Get IN/OUT OF → petits véhicules fermés (voiture, taxi, camion)." },
     { q: "\"Get in\" s'utilise pour :", opts: ["Voiture, taxi, camion","Bus, train, avion","Vélo, moto","Métro, tram"], ans: "Voiture, taxi, camion", hint: "Get IN the car/taxi/truck. Pour les véhicules individuels fermés où l'on entre vraiment. Mémotechnique : IN = inside (dedans). ≠ Get ON = monter sur (transport collectif ou à enfourcher)." },
   ],
+  'while-meanwhile-meantime': [
+    { q: "\"Someone knocked at the door ___ I was cooking dinner.\"", opts: ["In the meantime","While","Meanwhile","Until"], ans: "While", hint: "'While' connects two simultaneous actions within the same sentence. ≠ Meanwhile = new sentence + comma." },
+    { q: "\"The electricity was cut off. ___, we had no heating.\"", opts: ["While","Although","Meanwhile","In the meantime"], ans: "Meanwhile", hint: "'Meanwhile' starts a new sentence (followed by a comma) to describe something happening at the same time." },
+    { q: "\"The children will be home soon. ___, I'll prepare dinner.\"", opts: ["While","Meanwhile","In the meantime","However"], ans: "In the meantime", hint: "'In the meantime' = in the period between now and when something happens." },
+    { q: "\"Tony worked in the garden ___ his wife was preparing lunch.\"", opts: ["Meanwhile","In the meantime","However","While"], ans: "While", hint: "'While' links two simultaneous actions in the same sentence without a new sentence." },
+    { q: "Which sentence uses 'meanwhile' correctly?", opts: ["I'll cook meanwhile you set the table.","I'll cook. Meanwhile, you set the table.","I'll cook while, you set the table.","Meanwhile I'll cook you set the table."], ans: "I'll cook. Meanwhile, you set the table.", hint: "'Meanwhile' starts a new sentence and is always followed by a comma." },
+    { q: "\"Her new job starts next month. ___ she is doing temporary work.\"", opts: ["While","Although","However","In the meantime"], ans: "In the meantime", hint: "'In the meantime' = in the period until a future event happens. ≠ Meanwhile = at exactly the same moment." },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -5068,6 +5076,24 @@ const _GFIX_SERIES = {
       { q: "Pour un train, on utilise :", opts: ["Get on / Get off","Get in / Get out of","Les deux","Aucun"], ans: "Get on / Get off", hint: "Get ON the train = monter dans le train. Get OFF the train = descendre du train. Le train est un transport collectif → GET ON/OFF. 'She got off the train at Victoria station.'" },
       { q: "Pour une moto, on utilise :", opts: ["Get on / Get off","Get in / Get out of","Les deux","Aucun"], ans: "Get on / Get off", hint: "Get ON the motorbike = monter sur la moto. Get OFF the motorbike = descendre de la moto. On enfourche la moto → GET ON/OFF. Même règle que pour le vélo." },
       { q: "She ___ the train at Victoria station.", opts: ["got off","got out of","got on","got in"], ans: "got off", hint: "Got off the train = est descendu(e) du train. Le train → GET ON/OFF. ≠ Got out of = pour la voiture/taxi. 'She got off the train at Victoria station.' est la formulation correcte." },
+    ],
+  ],
+  'while-meanwhile-meantime': [
+    [
+      { q: "\"I will peel the potatoes ___ you chop the onions.\" (même phrase)", opts: ["meanwhile","in the meantime","however","while"], ans: "while", hint: "'While' connects two simultaneous actions in the same sentence. ≠ Meanwhile = new sentence." },
+      { q: "\"Sue was tidying the house. ___, the children were playing outside.\"", opts: ["While","In the meantime","Meanwhile","Although"], ans: "Meanwhile", hint: "'Meanwhile' introduces a new sentence describing something happening at the same time (followed by a comma)." },
+      { q: "'In the meantime' means:", opts: ["'At the same time' (within a sentence)","'However' or 'but'","'In the period between two events'","'While' or 'as'"], ans: "'In the period between two events'", hint: "'In the meantime' = in the period between now and when something happens, or 'until that happens'." },
+      { q: "Which sentence is correct?", opts: ["Tony worked in the garden meanwhile his wife cooked.","Tony worked in the garden. Meanwhile, his wife was cooking.","Tony worked in the garden, in the meantime his wife cooked.","Tony worked in the garden. While, his wife was cooking."], ans: "Tony worked in the garden. Meanwhile, his wife was cooking.", hint: "'Meanwhile' starts a new sentence followed by a comma. 'While' cannot start a standalone new sentence this way." },
+      { q: "\"While I was watching a film, the postman ___ a parcel.\"", opts: ["meanwhile delivered","had delivered","delivered","in the meantime delivered"], ans: "delivered", hint: "While + past continuous → past simple for the event that interrupts. 'While I was watching, the postman delivered.'" },
+      { q: "\"The doctor will be here soon. ___, try to stay calm.\"", opts: ["While","Although","In the meantime","Because"], ans: "In the meantime", hint: "'In the meantime' = until the doctor arrives — referring to the period until a future event." },
+    ],
+    [
+      { q: "\"___ I was studying, my brother was watching TV.\"", opts: ["Meanwhile","In the meantime","However","While"], ans: "While", hint: "'While' connects two simultaneous actions in the same sentence. It can start the sentence when the clause comes first." },
+      { q: "\"Our children will be independent one day, but ___ they depend on us.\"", opts: ["while","meanwhile","in the meantime","however"], ans: "in the meantime", hint: "'In the meantime' = until that future point in time. ≠ Meanwhile = describes simultaneous events in separate sentences." },
+      { q: "What must follow 'meanwhile' at the start of a sentence?", opts: ["A semicolon","A comma","A colon","Nothing"], ans: "A comma", hint: "'Meanwhile,' is always followed by a comma when it starts a sentence: 'Meanwhile, the children were playing.'" },
+      { q: "Which sentence is INCORRECT?", opts: ["While I was sleeping, the phone rang.","Meanwhile, he was preparing dinner.","I'll wait here. In the meantime, you find a parking space.","I'll wait here while, you find a parking space."], ans: "I'll wait here while, you find a parking space.", hint: "'While' connects two clauses directly with no comma after 'while': 'while you find...' ≠ 'while, you find...'" },
+      { q: "\"I'll read my emails ___ I wait for the meeting.\" (même phrase)", opts: ["meanwhile","in the meantime","while","however"], ans: "while", hint: "'While' is the correct connector for two simultaneous actions within the same sentence." },
+      { q: "Which word refers SPECIFICALLY to the period between two future events?", opts: ["While","Meanwhile","In the meantime","As"], ans: "In the meantime", hint: "'In the meantime' = in the period of time between two events, or 'until that happens'. ≠ While / Meanwhile = at the same time." },
     ],
   ],
 };
