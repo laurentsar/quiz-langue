@@ -8,6 +8,7 @@
     "toeicPart": 4,
     "duration": "6 min",
     "showUrl": "https://www.bbc.co.uk/programmes/p02pc9zn/episodes/downloads",
+    "rssUrl": "https://podcasts.files.bbci.co.uk/p02pc9zn.rss",
     "parts": [
       "Working from home has become more ",
       {"ans": "common"},
@@ -55,6 +56,7 @@
     "toeicPart": 4,
     "duration": "5 min",
     "showUrl": "https://www.bbc.co.uk/programmes/p026w4ck/episodes/downloads",
+    "rssUrl": "https://podcasts.files.bbci.co.uk/p026w4ck.rss",
     "parts": [
       "A job interview can be a ",
       {"ans": "stressful"},
@@ -145,6 +147,7 @@
     "toeicPart": 3,
     "duration": "3 min",
     "showUrl": "https://www.bbc.co.uk/programmes/p02pc9x6/episodes/downloads",
+    "rssUrl": "https://podcasts.files.bbci.co.uk/p02pc9x6.rss",
     "parts": [
       "Mark: Excuse me, could you tell me how to ",
       {"ans": "get"},
@@ -237,6 +240,7 @@
     "toeicPart": 4,
     "duration": "5 min",
     "showUrl": "https://www.npr.org/podcasts/510289/planet-money",
+    "rssUrl": "https://feeds.npr.org/510289/podcast.xml",
     "parts": [
       "Managing your money wisely is an important life ",
       {"ans": "skill"},
