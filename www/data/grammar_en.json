@@ -6756,5 +6756,53 @@
         ]
       }
     ]
+  },
+  {
+    "id": "english-suffixes",
+    "title": "Les Suffixes en Anglais",
+    "subtitle": "Transformer les mots avec -LY, -FUL, -ISH et -NESS",
+    "sections": [
+      {
+        "heading": "-LY — Adverbe de manière",
+        "points": [
+          "Le suffixe <b>-LY</b> transforme un adjectif en <b>adverbe</b> : il décrit <b>comment</b> quelque chose est fait.",
+          "<i>quick → quick<b>ly</b></i> (rapidement)",
+          "<i>slow → slow<b>ly</b></i> (lentement)",
+          "<i>careful → careful<b>ly</b></i> (avec soin)"
+        ],
+        "tip": "Si le mot se termine en <b>-le</b>, remplacez -le par -ly : gentle → gently."
+      },
+      {
+        "heading": "-FUL — Plein de / qui a beaucoup de",
+        "points": [
+          "Le suffixe <b>-FUL</b> transforme un nom en <b>adjectif</b> : il exprime l’abondance ou la possession d’une qualité.",
+          "<i>care → care<b>ful</b></i> (prudent, soigneux)",
+          "<i>help → help<b>ful</b></i> (utile, serviable)",
+          "<i>beauty → beauti<b>ful</b></i> (beau / belle)"
+        ],
+        "tip": "beauty → beautiful : le <b>-y</b> final devient <b>-i</b> avant -ful."
+      },
+      {
+        "heading": "-ISH — Un peu / qui ressemble à",
+        "points": [
+          "Le suffixe <b>-ISH</b> exprime une <b>ressemblance</b> ou une qualité <b>atténuée</b> (un peu de, tendant vers).",
+          "<i>child → child<b>ish</b></i> (puéril, enfantin)",
+          "<i>fool → fool<b>ish</b></i> (idiot, stupide)",
+          "<i>self → self<b>ish</b></i> (égoïste)",
+          "<i>green → green<b>ish</b></i> (verdâtre, tirant sur le vert)",
+          "<i>eight → eight-<b>ish</b></i> (vers 8 heures environ)"
+        ]
+      },
+      {
+        "heading": "-NESS — État ou qualité (nom abstrait)",
+        "points": [
+          "Le suffixe <b>-NESS</b> transforme un adjectif en <b>nom abstrait</b> : il désigne un <b>état</b> ou une <b>qualité</b>.",
+          "<i>happy → happi<b>ness</b></i> (le bonheur)",
+          "<i>kind → kind<b>ness</b></i> (la gentillesse)",
+          "<i>dark → dark<b>ness</b></i> (l’obscurité)"
+        ],
+        "tip": "happy → happiness : le <b>-y</b> final devient <b>-i</b> avant -ness."
+      }
+    ]
   }
 ]
