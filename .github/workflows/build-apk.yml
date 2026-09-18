@@ -26,7 +26,7 @@ jobs:
           java-version: 17
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
 
       - name: Install JS deps
         run: npm install --no-audit --no-fund
@@ -69,9 +69,14 @@ jobs:
 
       - name: Create / update GitHub Release
         if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v${{ steps.version.outputs.version }}
-          name: Quiz Langue v${{ steps.version.outputs.version }}
-          files: quiz-langue-${{ steps.version.outputs.version }}.apk
-          fail_on_unmatched_files: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          APK="quiz-langue-${{ steps.version.outputs.version }}.apk"
+          if gh release view "v${VERSION}" >/dev/null 2>&1; then
+            gh release upload "v${VERSION}" "$APK" --clobber
+          else
+            gh release create "v${VERSION}" "$APK" --title "Quiz Langues v${VERSION}" --notes "Build automatique v${VERSION}"
+          fi
+          gh release edit "v${VERSION}" --draft=false
