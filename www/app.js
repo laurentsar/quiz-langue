@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '3.26';
+const APP_VERSION = '3.27';
 window.APP_VERSION = APP_VERSION;
 const OPTION_COUNT = 4;
 
@@ -3388,6 +3388,14 @@ const _GFIX = {
     { q: "Which sentence uses 'meanwhile' correctly?", opts: ["I'll cook meanwhile you set the table.","I'll cook. Meanwhile, you set the table.","I'll cook while, you set the table.","Meanwhile I'll cook you set the table."], ans: "I'll cook. Meanwhile, you set the table.", hint: "'Meanwhile' starts a new sentence and is always followed by a comma." },
     { q: "\"Her new job starts next month. ___ she is doing temporary work.\"", opts: ["While","Although","However","In the meantime"], ans: "In the meantime", hint: "'In the meantime' = in the period until a future event happens. ≠ Meanwhile = at exactly the same moment." },
   ],
+  'english-suffixes': [
+    { q: "\"She speaks ___ in public.\" Transformez 'confident' en adverbe.", opts: ["confidentful","confidently","confidentish","confidence"], ans: "confidently", hint: "confident (adj) + -LY → confidently (adverbe de manière)." },
+    { q: "Quel adjectif forme-t-on avec 'help + -FUL' ?", opts: ["helpish","helply","helpful","helpness"], ans: "helpful", hint: "help + -ful = helpful (utile, serviable). -FUL = plein de / qui a beaucoup de." },
+    { q: "\"He is quite ___.\" (un peu enfantin) — transformez 'child' avec -ISH.", opts: ["childly","childful","childness","childish"], ans: "childish", hint: "child + -ish = childish (puéril). -ISH = qui ressemble à / un peu." },
+    { q: "Comment forme-t-on le nom abstrait à partir de 'kind' ?", opts: ["kindful","kindly","kindness","kindish"], ans: "kindness", hint: "kind + -ness = kindness (la gentillesse). -NESS transforme un adjectif en nom abstrait." },
+    { q: "'beauty + -FUL' → ? (attention à l'orthographe)", opts: ["beautyful","beautifully","beautifull","beautiful"], ans: "beautiful", hint: "beauty → beauti + ful = beautiful. Le -y final devient -i avant le suffixe." },
+    { q: "Il est environ 8 heures. En anglais familier :", opts: ["eightful","eightly","eight-ish","eightness"], ans: "eight-ish", hint: "-ISH peut s'ajouter aux heures pour exprimer une approximation : eight-ish = vers 8 heures." },
+  ],
 };
 
 // ========== SÉRIES 2 ET 3 PAR CONCEPT ==========
@@ -5094,6 +5102,24 @@ const _GFIX_SERIES = {
       { q: "Which sentence is INCORRECT?", opts: ["While I was sleeping, the phone rang.","Meanwhile, he was preparing dinner.","I'll wait here. In the meantime, you find a parking space.","I'll wait here while, you find a parking space."], ans: "I'll wait here while, you find a parking space.", hint: "'While' connects two clauses directly with no comma after 'while': 'while you find...' ≠ 'while, you find...'" },
       { q: "\"I'll read my emails ___ I wait for the meeting.\" (même phrase)", opts: ["meanwhile","in the meantime","while","however"], ans: "while", hint: "'While' is the correct connector for two simultaneous actions within the same sentence." },
       { q: "Which word refers SPECIFICALLY to the period between two future events?", opts: ["While","Meanwhile","In the meantime","As"], ans: "In the meantime", hint: "'In the meantime' = in the period of time between two events, or 'until that happens'. ≠ While / Meanwhile = at the same time." },
+    ],
+  ],
+  'english-suffixes': [
+    [
+      { q: "Quel suffixe transforme un adjectif en adverbe de manière ?", opts: ["-FUL","-ISH","-LY","-NESS"], ans: "-LY", hint: "-LY transforme un adjectif en adverbe : quick → quickly, slow → slowly." },
+      { q: "'slow + -LY' → ?", opts: ["slowful","slowish","slowly","slowness"], ans: "slowly", hint: "slow + -ly = slowly (lentement). -LY = adverbe de manière." },
+      { q: "'happy + -NESS' → ? (attention à l'orthographe)", opts: ["happyness","happiness","happiful","happily"], ans: "happiness", hint: "happy → happi + ness = happiness. Le -y final devient -i avant -ness." },
+      { q: "Le suffixe -ISH exprime :", opts: ["Une quantité exacte","Un état abstrait","Une ressemblance ou qualité atténuée","Une transformation en adverbe"], ans: "Une ressemblance ou qualité atténuée", hint: "-ISH = un peu, qui ressemble à : childish, foolish, greenish." },
+      { q: "'self + -ISH' → ?", opts: ["selfful","selfly","selfness","selfish"], ans: "selfish", hint: "self + -ish = selfish (égoïste). -ISH = qui ressemble à / tendant vers." },
+      { q: "Lequel est un adjectif formé avec -FUL ?", opts: ["darkness","careful","carefully","childish"], ans: "careful", hint: "care + -ful = careful (prudent). -FUL transforme un nom en adjectif signifiant 'plein de'." },
+    ],
+    [
+      { q: "'kind + -NESS' → ?", opts: ["kindful","kindly","kindish","kindness"], ans: "kindness", hint: "kind + -ness = kindness (gentillesse). -NESS crée des noms abstraits à partir d'adjectifs." },
+      { q: "'dark + -NESS' → ?", opts: ["darkful","darkish","darkly","darkness"], ans: "darkness", hint: "dark + -ness = darkness (obscurité). -NESS = état ou qualité exprimée comme un nom." },
+      { q: "'gentle + -LY' → ? (attention à l'orthographe)", opts: ["gently","gentlely","gentlily","gentleful"], ans: "gently", hint: "gentle → remplacez -le par -ly : gentle → gently. Règle : -le final devient -ly." },
+      { q: "Quel mot signifie 'verdâtre' (tirant un peu sur le vert) ?", opts: ["greenful","greenly","greenness","greenish"], ans: "greenish", hint: "green + -ish = greenish (verdâtre). -ISH indique une couleur approximative." },
+      { q: "Lequel n'est PAS correctement orthographié ?", opts: ["helpfully","foolishness","beautifully","beautifull"], ans: "beautifull", hint: "beautiful s'écrit avec un seul 'l' : beauti + ful = beautiful (non beautifull)." },
+      { q: "Quel suffixe transforme un NOM en adjectif signifiant 'plein de' ?", opts: ["-LY","-NESS","-FUL","-ISH"], ans: "-FUL", hint: "-FUL transforme un nom en adjectif : help → helpful, care → careful, beauty → beautiful." },
     ],
   ],
 };
