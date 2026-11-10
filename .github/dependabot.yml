@@ -1,0 +1,16 @@
+# Tient à jour les actions épinglées par empreinte (sécurité CI, 2026-11-10).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
+    ignore:
+      # versions majeures (v4 → v5) : changements possiblement cassants, à faire à la main
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "ci"
